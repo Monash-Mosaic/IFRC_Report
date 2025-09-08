@@ -415,7 +415,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
         {/* Instructions */}
         <div className="p-4 bg-blue-50 border-t border-blue-200">
           <p className="text-sm text-blue-800 text-center">
-            💡 <strong>How to bookmark:</strong> 
+            <strong>How to bookmark:</strong> 
             <br />
             <strong>Method 1:</strong> Select text in the PDF by clicking and dragging → Blue "Bookmark" button appears
             <br />
