@@ -3,6 +3,15 @@
 import { ArrowLeft, Copy, Share2 } from "lucide-react"
 import { useRouter, useParams } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+} from 'next-share'
+
 
 const sectionContent = {
   introduction: {
@@ -158,16 +167,18 @@ export default function SectionPage() {
     }
   }
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (contentRef.current && !contentRef.current.contains(event.target)) {
-        setShowToolbar(false)
-      }
-    }
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //       console.log("Click outsideish")
+  //     if (contentRef.current && !contentRef.current.contains(event.target)) {
+  //       console.log("Click outside")
+  //       setShowToolbar(false)
+  //     }
+  //   }
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
+  //   document.addEventListener("mousedown", handleClickOutside)
+  //   return () => document.removeEventListener("mousedown", handleClickOutside)
+  // }, [])
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -235,6 +246,26 @@ export default function SectionPage() {
             >
               <Share2 className="w-4 h-4 text-gray-700" />
             </button>
+            <FacebookShareButton
+              url={'https://solferinoacademy.com/'}
+              quote={selectedText}
+              hashtag="#wdr2024 #solferinoacademy"
+            >
+              <FacebookIcon size={15} round />
+           </FacebookShareButton>
+            <TwitterShareButton
+              url={'https://solferinoacademy.com/'}
+              title={selectedText}
+            >
+              <TwitterIcon size={15} round />
+            </TwitterShareButton>
+            <WhatsappShareButton
+              url={'https://solferinoacademy.com/'}
+              title={selectedText}
+              separator="-"
+            >
+              <WhatsappIcon size={15} round />
+            </WhatsappShareButton>
           </div>
         )}
 
