@@ -66,19 +66,19 @@ export default function PDFViewer({ fileUrl, onClose }) {
   const checkForTextSelection = () => {
     const selection = window.getSelection();
     const text = selection.toString().trim();
-    
+
     if (text && text.length > 0) {
       // Get the position of the selection
       const range = selection.getRangeAt(0);
       const rect = range.getBoundingClientRect();
-      
+
       setSelectedText(text);
       setCurrentSelection({
         text: text,
         page: currentPage,
         timestamp: Date.now()
       });
-      
+
       // Position the bookmark toolbar near the selection
       setSelectionPosition({
         x: rect.left + rect.width / 2,
@@ -94,7 +94,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
     // This will be called whenever the selection changes
     const selection = window.getSelection();
     const text = selection.toString().trim();
-    
+
     if (text && text.length > 0) {
       // Don't immediately show the toolbar, let the mouseup handler do it
       // This prevents flickering
@@ -119,7 +119,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
         timestamp: currentSelection.timestamp,
         documentUrl: fileUrl
       };
-      
+
       setBookmarks(prev => [...prev, newBookmark]);
       setBookmarkNote('');
       setIsAddingBookmark(false);
@@ -138,7 +138,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
         timestamp: Date.now(),
         documentUrl: fileUrl
       };
-      
+
       setBookmarks(prev => [...prev, newBookmark]);
       setBookmarkNote('');
       setShowManualBookmark(false);
@@ -152,7 +152,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
   const goToBookmark = (bookmark) => {
     setCurrentPage(bookmark.page);
     setShowBookmarks(false);
-    
+
     // Try to communicate with the PDF iframe to go to specific page
     if (iframeRef.current) {
       try {
@@ -172,7 +172,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
       try {
         const iframe = iframeRef.current;
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        
+
         // Add custom styles for text selection
         const style = iframeDoc.createElement('style');
         style.textContent = `
@@ -191,16 +191,16 @@ export default function PDFViewer({ fileUrl, onClose }) {
             try {
               const iframeSelection = iframeDoc.getSelection();
               const text = iframeSelection.toString().trim();
-              
+
               if (text && text.length > 0) {
                 const range = iframeSelection.getRangeAt(0);
                 const rect = range.getBoundingClientRect();
-                
+
                 // Convert iframe coordinates to page coordinates
                 const iframeRect = iframe.getBoundingClientRect();
                 const pageX = iframeRect.left + rect.left + rect.width / 2;
                 const pageY = iframeRect.top + rect.top - 10;
-                
+
                 setSelectedText(text);
                 setCurrentSelection({
                   text: text,
@@ -272,10 +272,10 @@ export default function PDFViewer({ fileUrl, onClose }) {
               onLoad={handleIframeLoad}
               title="PDF Viewer"
             />
-            
+
             {/* Text Selection Toolbar - Positioned absolutely */}
             {selectedText && (
-              <div 
+              <div
                 className="fixed bg-blue-600 text-white px-3 py-2 rounded-lg shadow-lg z-50"
                 style={{
                   left: `${selectionPosition.x}px`,
@@ -347,7 +347,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
               {isAddingBookmark && currentSelection && (
                 <div className="bg-white p-4 rounded-lg border border-gray-200 mb-4">
                   <h4 className="font-medium text-gray-900 mb-2">Add Bookmark</h4>
-                  <p className="text-sm text-gray-600 mb-2">"{currentSelection.text}"</p>
+                  <p className="text-sm text-gray-600 mb-2">{currentSelection.text}</p>
                   <textarea
                     value={bookmarkNote}
                     onChange={(e) => setBookmarkNote(e.target.value)}
@@ -394,7 +394,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
                           </svg>
                         </button>
                       </div>
-                      <p className="text-sm text-gray-900 mb-2 font-medium">"{bookmark.text}"</p>
+                      <p className="text-sm text-gray-900 mb-2 font-medium">{bookmark.text}</p>
                       {bookmark.note && (
                         <p className="text-sm text-gray-600 mb-2">{bookmark.note}</p>
                       )}
@@ -415,11 +415,11 @@ export default function PDFViewer({ fileUrl, onClose }) {
         {/* Instructions */}
         <div className="p-4 bg-blue-50 border-t border-blue-200">
           <p className="text-sm text-blue-800 text-center">
-            <strong>How to bookmark:</strong> 
+            <strong>How to bookmark:</strong>
             <br />
-            <strong>Method 1:</strong> Select text in the PDF by clicking and dragging → Blue "Bookmark" button appears
+            <strong>Method 1:</strong> Select text in the PDF by clicking and dragging → Blue Bookmark button appears
             <br />
-            <strong>Method 2:</strong> Click "Add Bookmark" button to manually add a page bookmark
+            <strong>Method 2:</strong> Click &quot;Add Bookmark&ldquot; button to manually add a page bookmark
             <br />
             <strong>Method 3:</strong> Use Ctrl+A (or Cmd+A) to select all text on a page
             <br />
