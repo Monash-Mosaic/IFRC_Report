@@ -167,18 +167,18 @@ export default function SectionPage() {
     }
   }
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //       console.log("Click outsideish")
-  //     if (contentRef.current && !contentRef.current.contains(event.target)) {
-  //       console.log("Click outside")
-  //       setShowToolbar(false)
-  //     }
-  //   }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        console.log("Click outsideish")
+      if (contentRef.current && !contentRef.current.contains(event.target)) {
+        console.log("Click outside")
+        setShowToolbar(false)
+      }
+    }
 
-  //   document.addEventListener("mousedown", handleClickOutside)
-  //   return () => document.removeEventListener("mousedown", handleClickOutside)
-  // }, [])
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   return (
     <div className="min-h-screen bg-white p-8">
