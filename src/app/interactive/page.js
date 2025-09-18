@@ -1,8 +1,9 @@
 "use client"
 
 import { Menu, Bookmark, ChevronDown, ArrowLeft } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import { getBookmarks, toggleBookmark } from "../utils/storage"
 
 const sections = [
 	{
@@ -38,13 +39,12 @@ export default function IFRCReportPage() {
 	const [expandedSections, setExpandedSections] = useState(new Set()) // Track expanded sections
 	const router = useRouter()
 
-	const toggleBookmark = (section) => {
-		const newBookmarks = new Set(bookmarkedSections)
-		if (newBookmarks.has(section)) {
-			newBookmarks.delete(section)
-		} else {
-			newBookmarks.add(section)
-		}
+	useEffect(() => {
+		setBookmarkedSections(getBookmarks())
+	}, [])
+
+	const handleToggleBookmark = (sectionName) => {
+		const newBookmarks = toggleBookmark(sectionName)
 		setBookmarkedSections(newBookmarks)
 	}
 
@@ -155,7 +155,7 @@ export default function IFRCReportPage() {
 									/>
 								</div>
 								<button
-									onClick={() => toggleBookmark(section.name)}
+									onClick={() => handleToggleBookmark(section.name)}
 									aria-label={`${
 										bookmarkedSections.has(section.name)
 											? "Remove bookmark"
