@@ -35,13 +35,9 @@ const sections = [
 
 export default function IFRCReportPage() {
 	const [activeMenu, setActiveMenu] = useState("toc")
-	const [bookmarkedSections, setBookmarkedSections] = useState(new Set())
+	const [bookmarkedSections, setBookmarkedSections] = useState(getBookmarks());
 	const [expandedSections, setExpandedSections] = useState(new Set()) // Track expanded sections
 	const router = useRouter()
-
-	useEffect(() => {
-		setBookmarkedSections(getBookmarks())
-	}, [])
 
 	const handleToggleBookmark = (sectionName) => {
 		const newBookmarks = toggleBookmark(sectionName)

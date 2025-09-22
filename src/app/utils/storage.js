@@ -1,7 +1,11 @@
-export const STORAGE_KEY = "bookmarkData"
+import 'client-only'
+export const STORAGE_KEY = "ifrcReport:bookmarkData"
 
 function getData() {
-  if (typeof window === "undefined") return {}
+  if (typeof window === "undefined") {
+    console.log("localStorage is not available on the server side")
+    return {}
+  }
   const raw = localStorage.getItem(STORAGE_KEY)
   return raw ? JSON.parse(raw) : { bookmarks: {} }
 }
