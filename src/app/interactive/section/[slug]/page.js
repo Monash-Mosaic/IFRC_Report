@@ -93,17 +93,16 @@ export default function SectionPage() {
   const [selectedText, setSelectedText] = useState("")
   const [toolbarPosition, setToolbarPosition] = useState({ x: 0, y: 0 })
   const [showToolbar, setShowToolbar] = useState(false)
-  const [showColorPicker, setShowColorPicker] = useState(false)
   const [highlights, setHighlights] = useState({})
   const [selectedRange, setSelectedRange] = useState(null)
+  const [isHighlightedText, setIsHighlightedText] = useState(false)
+  const [currentHighlightId, setCurrentHighlightId] = useState(null)
   const contentRef = useRef(null)
 
   const highlightColors = [
     { name: 'Yellow', color: '#fef08a', class: 'bg-yellow-200' },
-    { name: 'Green', color: '#bbf7d0', class: 'bg-green-200' },
     { name: 'Blue', color: '#bfdbfe', class: 'bg-blue-200' },
     { name: 'Pink', color: '#fbcfe8', class: 'bg-pink-200' },
-    { name: 'Orange', color: '#fed7aa', class: 'bg-orange-200' },
   ]
 
   const section = sectionContent[slug]
@@ -120,6 +119,23 @@ export default function SectionPage() {
       const range = selection.getRangeAt(0)
       const rect = range.getBoundingClientRect()
 
+      // Check if the selection is within a highlighted span
+      let container = range.commonAncestorContainer
+      let highlightId = null
+      let isHighlighted = false
+
+      // Check if we're selecting within a highlight span
+      while (container && container !== contentRef.current) {
+        if (container.nodeType === Node.ELEMENT_NODE && 
+            container.classList && 
+            container.classList.contains('highlight-span')) {
+          highlightId = container.getAttribute('data-highlight-id')
+          isHighlighted = true
+          break
+        }
+        container = container.parentNode
+      }
+
       setSelectedText(selection.toString())
       setSelectedRange({
         startContainer: range.startContainer,
@@ -128,17 +144,19 @@ export default function SectionPage() {
         endOffset: range.endOffset,
         text: selection.toString(),
       })
+      setIsHighlightedText(isHighlighted)
+      setCurrentHighlightId(highlightId)
       setToolbarPosition({
         x: rect.left + rect.width / 2,
         y: rect.top - 60,
       })
       setShowToolbar(true)
-      setShowColorPicker(false)
     } else {
       setShowToolbar(false)
       setSelectedText("")
       setSelectedRange(null)
-      setShowColorPicker(false)
+      setIsHighlightedText(false)
+      setCurrentHighlightId(null)
     }
   }
 
@@ -155,9 +173,7 @@ export default function SectionPage() {
     }
   }
 
-  const toggleColorPicker = () => {
-    setShowColorPicker(!showColorPicker)
-  }
+
 
   const handleShare = async () => {
     if (selectedText) {
@@ -213,7 +229,6 @@ export default function SectionPage() {
       // Clear selection and toolbar
       window.getSelection().removeAllRanges()
       setShowToolbar(false)
-      setShowColorPicker(false)
       setSelectedText("")
       setSelectedRange(null)
 
@@ -233,6 +248,22 @@ export default function SectionPage() {
       span.setAttribute('data-highlight-id', highlight.id)
       span.style.borderRadius = '2px'
       span.style.padding = '1px 2px'
+      span.style.cursor = 'pointer'
+      span.style.transition = 'opacity 0.2s ease'
+      
+      // Add hover effect
+      span.addEventListener('mouseenter', () => {
+        span.style.opacity = '0.8'
+      })
+      span.addEventListener('mouseleave', () => {
+        span.style.opacity = '1'
+      })
+      
+      // Add click handler to show toolbar when clicking highlighted text
+      span.addEventListener('click', (e) => {
+        e.stopPropagation()
+        handleHighlightClick(highlight, e)
+      })
       
       try {
         range.surroundContents(span)
@@ -244,6 +275,70 @@ export default function SectionPage() {
       }
     } catch (error) {
       console.error('Error applying highlight:', error)
+    }
+  }
+
+  const removeHighlight = () => {
+    if (currentHighlightId) {
+      // Remove from state
+      setHighlights(prev => {
+        const updated = { ...prev }
+        delete updated[currentHighlightId]
+        return updated
+      })
+
+      // Remove from DOM
+      const highlightElement = document.querySelector(`[data-highlight-id="${currentHighlightId}"]`)
+      if (highlightElement) {
+        const parent = highlightElement.parentNode
+        const textContent = highlightElement.textContent
+        const textNode = document.createTextNode(textContent)
+        parent.replaceChild(textNode, highlightElement)
+        parent.normalize()
+      }
+
+      // Clear selection and toolbar
+      window.getSelection().removeAllRanges()
+      setShowToolbar(false)
+      setSelectedText("")
+      setSelectedRange(null)
+      setIsHighlightedText(false)
+      setCurrentHighlightId(null)
+    }
+  }
+
+  const handleHighlightClick = (highlight, event) => {
+    // Find the highlight element
+    const highlightElement = document.querySelector(`[data-highlight-id="${highlight.id}"]`)
+    if (highlightElement) {
+      // Create a selection for the highlighted text
+      const range = document.createRange()
+      range.selectNodeContents(highlightElement)
+      
+      const selection = window.getSelection()
+      selection.removeAllRanges()
+      selection.addRange(range)
+      
+      // Set up the selection state
+      setSelectedText(highlight.text)
+      setSelectedRange({
+        startContainer: range.startContainer,
+        startOffset: range.startOffset,
+        endContainer: range.endContainer,
+        endOffset: range.endOffset,
+        text: highlight.text,
+      })
+      setIsHighlightedText(true)
+      setCurrentHighlightId(highlight.id)
+      
+      // Position toolbar at click location
+      const rect = highlightElement.getBoundingClientRect()
+      setToolbarPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.top - 60,
+      })
+      
+      setShowToolbar(true)
     }
   }
 
@@ -322,6 +417,22 @@ export default function SectionPage() {
                     span.setAttribute('data-highlight-id', highlight.id)
                     span.style.borderRadius = '2px'
                     span.style.padding = '1px 2px'
+                    span.style.cursor = 'pointer'
+                    span.style.transition = 'opacity 0.2s ease'
+                    
+                    // Add hover effect
+                    span.addEventListener('mouseenter', () => {
+                      span.style.opacity = '0.8'
+                    })
+                    span.addEventListener('mouseleave', () => {
+                      span.style.opacity = '1'
+                    })
+                    
+                    // Add click handler to show toolbar when clicking highlighted text
+                    span.addEventListener('click', (e) => {
+                      e.stopPropagation()
+                      handleHighlightClick(highlight, e)
+                    })
                     
                     try {
                       range.surroundContents(span)
@@ -344,6 +455,8 @@ export default function SectionPage() {
     return () => clearTimeout(timeoutId)
   }, [currentPage, currentContent, highlights])
 
+
+
   // Handle clicks outside the toolbar
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -351,7 +464,6 @@ export default function SectionPage() {
         const toolbar = event.target.closest('.fixed.z-50')
         if (!toolbar) {
           setShowToolbar(false)
-          setShowColorPicker(false)
         }
       }
     }
@@ -409,7 +521,31 @@ export default function SectionPage() {
             top: `${toolbarPosition.y}px`,
             transform: "translateX(-50%)",
           }}>
-            <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-2 flex items-center gap-2 mb-2">
+            <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-2 flex items-center gap-2">
+              {isHighlightedText ? (
+                // Show remove highlight button for highlighted text
+                <button
+                  onClick={removeHighlight}
+                  className="w-8 h-8 rounded-full border-2 border-red-300 hover:border-red-500 bg-white hover:bg-red-50 transition-colors flex items-center justify-center"
+                  title="Remove highlight"
+                >
+                  <span className="text-red-500 text-sm font-bold">×</span>
+                </button>
+              ) : (
+                // Show all highlight color buttons for normal text
+                <>
+                  {highlightColors.map((color) => (
+                    <button
+                      key={color.name}
+                      onClick={() => handleHighlight(color)}
+                      className={`w-8 h-8 rounded-full border-2 border-gray-300 hover:border-gray-500 transition-colors ${color.class}`}
+                      title={`Highlight in ${color.name}`}
+                      style={{ backgroundColor: color.color }}
+                    />
+                  ))}
+                </>
+              )}
+
               <button
                 onClick={handleCopy}
                 className="p-2 hover:bg-gray-100 rounded"
@@ -417,13 +553,7 @@ export default function SectionPage() {
               >
                 <Copy className="w-4 h-4 text-gray-700" />
               </button>
-              <button
-                onClick={toggleColorPicker}
-                className={`p-2 hover:bg-gray-100 rounded ${showColorPicker ? 'bg-gray-100' : ''}`}
-                title="Highlight text"
-              >
-                <Palette className="w-4 h-4 text-gray-700" />
-              </button>
+              
               <button
                 onClick={handleShare}
                 className="p-2 hover:bg-gray-100 rounded"
@@ -452,23 +582,6 @@ export default function SectionPage() {
                 <WhatsappIcon size={15} round />
               </WhatsappShareButton>
             </div>
-            
-            {showColorPicker && (
-              <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3">
-                <p className="text-xs text-gray-600 mb-2">Choose highlight color:</p>
-                <div className="flex gap-2">
-                  {highlightColors.map((color) => (
-                    <button
-                      key={color.name}
-                      onClick={() => handleHighlight(color)}
-                      className={`w-8 h-8 rounded-full border-2 border-gray-300 hover:border-gray-500 transition-colors ${color.class}`}
-                      title={`Highlight in ${color.name}`}
-                      style={{ backgroundColor: color.color }}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         )}
 
