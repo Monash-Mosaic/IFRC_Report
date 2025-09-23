@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, Copy, Share2 } from "lucide-react"
+import { ArrowLeft, Copy, Share2, Palette } from "lucide-react"
 import { useRouter, useParams } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
 import {
@@ -93,7 +93,18 @@ export default function SectionPage() {
   const [selectedText, setSelectedText] = useState("")
   const [toolbarPosition, setToolbarPosition] = useState({ x: 0, y: 0 })
   const [showToolbar, setShowToolbar] = useState(false)
+  const [showColorPicker, setShowColorPicker] = useState(false)
+  const [highlights, setHighlights] = useState({})
+  const [selectedRange, setSelectedRange] = useState(null)
   const contentRef = useRef(null)
+
+  const highlightColors = [
+    { name: 'Yellow', color: '#fef08a', class: 'bg-yellow-200' },
+    { name: 'Green', color: '#bbf7d0', class: 'bg-green-200' },
+    { name: 'Blue', color: '#bfdbfe', class: 'bg-blue-200' },
+    { name: 'Pink', color: '#fbcfe8', class: 'bg-pink-200' },
+    { name: 'Orange', color: '#fed7aa', class: 'bg-orange-200' },
+  ]
 
   const section = sectionContent[slug]
   const totalParagraphs = section ? section.content.length : 0
@@ -110,14 +121,24 @@ export default function SectionPage() {
       const rect = range.getBoundingClientRect()
 
       setSelectedText(selection.toString())
+      setSelectedRange({
+        startContainer: range.startContainer,
+        startOffset: range.startOffset,
+        endContainer: range.endContainer,
+        endOffset: range.endOffset,
+        text: selection.toString(),
+      })
       setToolbarPosition({
         x: rect.left + rect.width / 2,
         y: rect.top - 60,
       })
       setShowToolbar(true)
+      setShowColorPicker(false)
     } else {
       setShowToolbar(false)
       setSelectedText("")
+      setSelectedRange(null)
+      setShowColorPicker(false)
     }
   }
 
@@ -127,10 +148,15 @@ export default function SectionPage() {
         await navigator.clipboard.writeText(selectedText)
         setShowToolbar(false)
         setSelectedText("")
+        setSelectedRange(null)
       } catch (err) {
         console.error("Failed to copy text:", err)
       }
     }
+  }
+
+  const toggleColorPicker = () => {
+    setShowColorPicker(!showColorPicker)
   }
 
   const handleShare = async () => {
@@ -147,9 +173,77 @@ export default function SectionPage() {
         }
         setShowToolbar(false)
         setSelectedText("")
+        setSelectedRange(null)
       } catch (err) {
         console.error("Failed to share text:", err)
       }
+    }
+  }
+
+  const handleHighlight = (color) => {
+    if (selectedRange && selectedText) {
+      const highlightId = `highlight-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+      const newHighlight = {
+        id: highlightId,
+        text: selectedText,
+        color: color.color,
+        className: color.class,
+        startContainer: selectedRange.startContainer,
+        startOffset: selectedRange.startOffset,
+        endContainer: selectedRange.endContainer,
+        endOffset: selectedRange.endOffset,
+        page: currentPage,
+        paragraphIndex: null, // Will be set when we identify which paragraph
+      }
+
+      // Find which paragraph this highlight belongs to
+      if (selectedRange.startContainer.nodeType === Node.TEXT_NODE) {
+        const paragraphElement = selectedRange.startContainer.parentElement.closest('p')
+        if (paragraphElement) {
+          const paragraphs = contentRef.current.querySelectorAll('p')
+          newHighlight.paragraphIndex = Array.from(paragraphs).indexOf(paragraphElement)
+        }
+      }
+
+      setHighlights(prev => ({
+        ...prev,
+        [highlightId]: newHighlight
+      }))
+
+      // Clear selection and toolbar
+      window.getSelection().removeAllRanges()
+      setShowToolbar(false)
+      setShowColorPicker(false)
+      setSelectedText("")
+      setSelectedRange(null)
+
+      // Apply highlight to DOM
+      applyHighlightToDOM(newHighlight)
+    }
+  }
+
+  const applyHighlightToDOM = (highlight) => {
+    try {
+      const range = document.createRange()
+      range.setStart(highlight.startContainer, highlight.startOffset)
+      range.setEnd(highlight.endContainer, highlight.endOffset)
+      
+      const span = document.createElement('span')
+      span.className = `${highlight.className} highlight-span`
+      span.setAttribute('data-highlight-id', highlight.id)
+      span.style.borderRadius = '2px'
+      span.style.padding = '1px 2px'
+      
+      try {
+        range.surroundContents(span)
+      } catch (e) {
+        // If surroundContents fails (e.g., range spans multiple elements), use extractContents
+        const contents = range.extractContents()
+        span.appendChild(contents)
+        range.insertNode(span)
+      }
+    } catch (error) {
+      console.error('Error applying highlight:', error)
     }
   }
 
@@ -167,18 +261,104 @@ export default function SectionPage() {
     }
   }
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //       console.log("Click outsideish")
-  //     if (contentRef.current && !contentRef.current.contains(event.target)) {
-  //       console.log("Click outside")
-  //       setShowToolbar(false)
-  //     }
-  //   }
+  // Reapply highlights when page content changes
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      Object.values(highlights).forEach(highlight => {
+        if (highlight.page === currentPage) {
+          // Find the paragraph and reapply highlight
+          const paragraphs = contentRef.current?.querySelectorAll('p')
+          if (paragraphs && highlight.paragraphIndex !== null && paragraphs[highlight.paragraphIndex]) {
+            const paragraph = paragraphs[highlight.paragraphIndex]
+            const textContent = paragraph.textContent || paragraph.innerText
+            
+            if (textContent.includes(highlight.text)) {
+              const startIndex = textContent.indexOf(highlight.text)
+              const endIndex = startIndex + highlight.text.length
+              
+              // Create a range for the text in this paragraph
+              const walker = document.createTreeWalker(
+                paragraph,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              )
+              
+              let currentIndex = 0
+              let startNode = null
+              let startOffset = 0
+              let endNode = null
+              let endOffset = 0
+              
+              while (walker.nextNode()) {
+                const textNode = walker.currentNode
+                const textLength = textNode.textContent.length
+                
+                if (startNode === null && currentIndex + textLength > startIndex) {
+                  startNode = textNode
+                  startOffset = startIndex - currentIndex
+                }
+                
+                if (currentIndex + textLength >= endIndex) {
+                  endNode = textNode
+                  endOffset = endIndex - currentIndex
+                  break
+                }
+                
+                currentIndex += textLength
+              }
+              
+              if (startNode && endNode) {
+                try {
+                  const range = document.createRange()
+                  range.setStart(startNode, startOffset)
+                  range.setEnd(endNode, endOffset)
+                  
+                  // Check if this text is already highlighted
+                  const existingHighlight = document.querySelector(`[data-highlight-id="${highlight.id}"]`)
+                  if (!existingHighlight) {
+                    const span = document.createElement('span')
+                    span.className = `${highlight.className} highlight-span`
+                    span.setAttribute('data-highlight-id', highlight.id)
+                    span.style.borderRadius = '2px'
+                    span.style.padding = '1px 2px'
+                    
+                    try {
+                      range.surroundContents(span)
+                    } catch (e) {
+                      const contents = range.extractContents()
+                      span.appendChild(contents)
+                      range.insertNode(span)
+                    }
+                  }
+                } catch (error) {
+                  console.error('Error reapplying highlight:', error)
+                }
+              }
+            }
+          }
+        }
+      })
+    }, 100) // Small delay to ensure DOM is ready
 
-  //   document.addEventListener("mousedown", handleClickOutside)
-  //   return () => document.removeEventListener("mousedown", handleClickOutside)
-  // }, [])
+    return () => clearTimeout(timeoutId)
+  }, [currentPage, currentContent, highlights])
+
+  // Handle clicks outside the toolbar
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (contentRef.current && !contentRef.current.contains(event.target)) {
+        const toolbar = event.target.closest('.fixed.z-50')
+        if (!toolbar) {
+          setShowToolbar(false)
+          setShowColorPicker(false)
+        }
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -224,48 +404,71 @@ export default function SectionPage() {
         </div>
 
         {showToolbar && (
-          <div
-            className="fixed z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-2 flex items-center gap-2"
-            style={{
-              left: `${toolbarPosition.x}px`,
-              top: `${toolbarPosition.y}px`,
-              transform: "translateX(-50%)",
-            }}
-          >
-            <button
-              onClick={handleCopy}
-              className="p-2 hover:bg-gray-100 rounded"
-              title="Copy text"
-            >
-              <Copy className="w-4 h-4 text-gray-700" />
-            </button>
-            <button
-              onClick={handleShare}
-              className="p-2 hover:bg-gray-100 rounded"
-              title="Share text"
-            >
-              <Share2 className="w-4 h-4 text-gray-700" />
-            </button>
-            <FacebookShareButton
-              url={'https://solferinoacademy.com/'}
-              quote={selectedText}
-              hashtag="#wdr2024 #solferinoacademy"
-            >
-              <FacebookIcon size={15} round />
-           </FacebookShareButton>
-            <TwitterShareButton
-              url={'https://solferinoacademy.com/'}
-              title={selectedText}
-            >
-              <TwitterIcon size={15} round />
-            </TwitterShareButton>
-            <WhatsappShareButton
-              url={'https://solferinoacademy.com/'}
-              title={selectedText}
-              separator="-"
-            >
-              <WhatsappIcon size={15} round />
-            </WhatsappShareButton>
+          <div className="fixed z-50" style={{
+            left: `${toolbarPosition.x}px`,
+            top: `${toolbarPosition.y}px`,
+            transform: "translateX(-50%)",
+          }}>
+            <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-2 flex items-center gap-2 mb-2">
+              <button
+                onClick={handleCopy}
+                className="p-2 hover:bg-gray-100 rounded"
+                title="Copy text"
+              >
+                <Copy className="w-4 h-4 text-gray-700" />
+              </button>
+              <button
+                onClick={toggleColorPicker}
+                className={`p-2 hover:bg-gray-100 rounded ${showColorPicker ? 'bg-gray-100' : ''}`}
+                title="Highlight text"
+              >
+                <Palette className="w-4 h-4 text-gray-700" />
+              </button>
+              <button
+                onClick={handleShare}
+                className="p-2 hover:bg-gray-100 rounded"
+                title="Share text"
+              >
+                <Share2 className="w-4 h-4 text-gray-700" />
+              </button>
+              <FacebookShareButton
+                url={'https://solferinoacademy.com/'}
+                quote={selectedText}
+                hashtag="#wdr2024 #solferinoacademy"
+              >
+                <FacebookIcon size={15} round />
+             </FacebookShareButton>
+              <TwitterShareButton
+                url={'https://solferinoacademy.com/'}
+                title={selectedText}
+              >
+                <TwitterIcon size={15} round />
+              </TwitterShareButton>
+              <WhatsappShareButton
+                url={'https://solferinoacademy.com/'}
+                title={selectedText}
+                separator="-"
+              >
+                <WhatsappIcon size={15} round />
+              </WhatsappShareButton>
+            </div>
+            
+            {showColorPicker && (
+              <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3">
+                <p className="text-xs text-gray-600 mb-2">Choose highlight color:</p>
+                <div className="flex gap-2">
+                  {highlightColors.map((color) => (
+                    <button
+                      key={color.name}
+                      onClick={() => handleHighlight(color)}
+                      className={`w-8 h-8 rounded-full border-2 border-gray-300 hover:border-gray-500 transition-colors ${color.class}`}
+                      title={`Highlight in ${color.name}`}
+                      style={{ backgroundColor: color.color }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
