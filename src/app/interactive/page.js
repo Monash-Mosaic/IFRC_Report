@@ -17,6 +17,11 @@ const sections = [
 		summary: ["Achievements in 2024", "Challenges faced"],
 	},
 	{
+		name: "Harmful Information",
+		progress: 30,
+		summary: ["Achievements in 2024", "Challenges faced"],
+	},
+	{
 		name: "Response to Emergencies",
 		progress: 70,
 		summary: ["Major emergency responses", "Lessons learned"],

@@ -11,6 +11,7 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from 'next-share'
+import { title } from "process"
 
 
 const sectionContent = {
@@ -50,6 +51,18 @@ const sectionContent = {
       "Key highlights include our response to major disasters, expansion of community-based programs, and strengthening of National Society capacities across all regions.",
       "Our work focused on addressing the root causes of vulnerability while providing immediate humanitarian assistance to those in need.",
     ],
+  },
+  "harmful-information":{
+    title: "Harmful Information and the Erosion of Trust in Humanitarian Response",
+    subtitle: "“To be persuasive we must be believable; to be believable we must be credible; to be credible we must be truthful.”",
+    content: [
+      "So said Ed Murrow, the American broadcaster and correspondent during the Second World War.  The principle still holds: truth and credibility remain essential to building institutional trust.  But in today’s information landscape, applying that principle has become far more complex and frequently contested in an age shaped by harmful information.  In times of crisis or uncertainty – and we are living in profoundly uncertain times – people increasingly turn to information sources they perceive as relevant and aligned with their personal and lived experiences, rather than those grounded solely in factual accuracy.  In this shifting landscape, truth alone no longer always persuades. Emotion, identity and repetition can entrench misbeliefs in powerful and sometimes harmful ways.  In such an environment, even reaching agreement on what constitutes a fact is difficult. For humanitarian organizations, whose access, acceptance and ability to operate depend on trust, navigating this fragmented, emotionally charged information space has become not only an operational challenge but a security one as well",
+      "This online dynamic was described by Eli Pariser in 2011 as the “filter bubble,” a term used to explain how search engines and social media platforms are designed to serve us content that algorithms think we want to see, based on our searches, likes and clicks.  Pariser also warned that being confined to such echo chambers could reduce our exposure to diverse perspectives and increase the risk of becoming isolated in our views or reject opposing viewpoints and sources of information due to confirmation bias. ",
+      "Although some studies (Nguyen, Pierre) have shown that we do encounter opposing viewpoints online, these interactions often trigger annoyance and hostility rather than reflection or debate. Algorithms further amplify this by promoting divisive content, as hostility tends to drive engagement, and engagement, in turn, drives profits for platform companies.  As Eli Pariser notes, platforms are effectively “incentivizing us to fight with each other when we are online”. This dynamic is reinforced by the online disinhibition effect, a concept popularized by psychologist John Suler, which describes how people tend to express opinions more freely online due to factors like anonymity (hidden identities), invisibility (not being seen by others we communicate with) and asynchronicity (not engaging in real time).",
+      "These dynamics contribute to an erosion of shared reality. Increasingly, there are claims that natural disasters never happened, that scientifically validated medical treatments are unsafe, or that documented atrocities are fabricated or exaggerated. This reflects what many describe as a “post-trust” world - one in which people are especially vulnerable to harmful information and polarization around what is considered true or false.  This deepening  polarization increases the risk of social unrest, violence and even armed conflict.",
+      "The internet makes it easier than ever to find information that reinforces what we already believe – a phenomenon sometimes referred to as the “Google delusion”. Online spaces amplify confirmation bias by making it easier for users to find like-minded communities, cite, or recall information that supports existing beliefs while ignoring contradictory information or expert advice. While the internet offers access to vast knowledge, it also accelerates the spread of harmful information, polarisation and fosters hostility - encouraging argument over dialogue and conspiracy over evidence.",
+      "RAND researchers Jennifer Kavanagh and Michael Rich (2008) have described this phenomenon as  “truth decay”, characterized by: (1) an increasing volume of opinion and opinion over fact; (2) a blurring of the line between opinion and fact; (3) declining trust in formerly respected sources of factual information; and (4) growing disagreement about facts and the interpretations of data. Instead of using facts to inform our beliefs, we increasingly use information – regardless of its veracity (truthfulness) – to justify the beliefs that we and the groups we affiliate with, already hold.  “We are no longer willing to agree on something as seemingly fundamental as what counts as evidence, facts, or truth anymore”."
+    ]
   },
   "response-to-emergencies": {
     title: "Response to Emergencies",
@@ -126,8 +139,8 @@ export default function SectionPage() {
 
       // Check if we're selecting within a highlight span
       while (container && container !== contentRef.current) {
-        if (container.nodeType === Node.ELEMENT_NODE && 
-            container.classList && 
+        if (container.nodeType === Node.ELEMENT_NODE &&
+            container.classList &&
             container.classList.contains('highlight-span')) {
           highlightId = container.getAttribute('data-highlight-id')
           isHighlighted = true
@@ -242,7 +255,7 @@ export default function SectionPage() {
       const range = document.createRange()
       range.setStart(highlight.startContainer, highlight.startOffset)
       range.setEnd(highlight.endContainer, highlight.endOffset)
-      
+
       const span = document.createElement('span')
       span.className = `${highlight.className} highlight-span`
       span.setAttribute('data-highlight-id', highlight.id)
@@ -250,7 +263,7 @@ export default function SectionPage() {
       span.style.padding = '1px 2px'
       span.style.cursor = 'pointer'
       span.style.transition = 'opacity 0.2s ease'
-      
+
       // Add hover effect
       span.addEventListener('mouseenter', () => {
         span.style.opacity = '0.8'
@@ -258,13 +271,13 @@ export default function SectionPage() {
       span.addEventListener('mouseleave', () => {
         span.style.opacity = '1'
       })
-      
+
       // Add click handler to show toolbar when clicking highlighted text
       span.addEventListener('click', (e) => {
         e.stopPropagation()
         handleHighlightClick(highlight, e)
       })
-      
+
       try {
         range.surroundContents(span)
       } catch (e) {
@@ -314,11 +327,11 @@ export default function SectionPage() {
       // Create a selection for the highlighted text
       const range = document.createRange()
       range.selectNodeContents(highlightElement)
-      
+
       const selection = window.getSelection()
       selection.removeAllRanges()
       selection.addRange(range)
-      
+
       // Set up the selection state
       setSelectedText(highlight.text)
       setSelectedRange({
@@ -330,14 +343,14 @@ export default function SectionPage() {
       })
       setIsHighlightedText(true)
       setCurrentHighlightId(highlight.id)
-      
+
       // Position toolbar at click location
       const rect = highlightElement.getBoundingClientRect()
       setToolbarPosition({
         x: rect.left + rect.width / 2,
         y: rect.top - 60,
       })
-      
+
       setShowToolbar(true)
     }
   }
@@ -366,11 +379,11 @@ export default function SectionPage() {
           if (paragraphs && highlight.paragraphIndex !== null && paragraphs[highlight.paragraphIndex]) {
             const paragraph = paragraphs[highlight.paragraphIndex]
             const textContent = paragraph.textContent || paragraph.innerText
-            
+
             if (textContent.includes(highlight.text)) {
               const startIndex = textContent.indexOf(highlight.text)
               const endIndex = startIndex + highlight.text.length
-              
+
               // Create a range for the text in this paragraph
               const walker = document.createTreeWalker(
                 paragraph,
@@ -378,37 +391,37 @@ export default function SectionPage() {
                 null,
                 false
               )
-              
+
               let currentIndex = 0
               let startNode = null
               let startOffset = 0
               let endNode = null
               let endOffset = 0
-              
+
               while (walker.nextNode()) {
                 const textNode = walker.currentNode
                 const textLength = textNode.textContent.length
-                
+
                 if (startNode === null && currentIndex + textLength > startIndex) {
                   startNode = textNode
                   startOffset = startIndex - currentIndex
                 }
-                
+
                 if (currentIndex + textLength >= endIndex) {
                   endNode = textNode
                   endOffset = endIndex - currentIndex
                   break
                 }
-                
+
                 currentIndex += textLength
               }
-              
+
               if (startNode && endNode) {
                 try {
                   const range = document.createRange()
                   range.setStart(startNode, startOffset)
                   range.setEnd(endNode, endOffset)
-                  
+
                   // Check if this text is already highlighted
                   const existingHighlight = document.querySelector(`[data-highlight-id="${highlight.id}"]`)
                   if (!existingHighlight) {
@@ -419,7 +432,7 @@ export default function SectionPage() {
                     span.style.padding = '1px 2px'
                     span.style.cursor = 'pointer'
                     span.style.transition = 'opacity 0.2s ease'
-                    
+
                     // Add hover effect
                     span.addEventListener('mouseenter', () => {
                       span.style.opacity = '0.8'
@@ -427,13 +440,13 @@ export default function SectionPage() {
                     span.addEventListener('mouseleave', () => {
                       span.style.opacity = '1'
                     })
-                    
+
                     // Add click handler to show toolbar when clicking highlighted text
                     span.addEventListener('click', (e) => {
                       e.stopPropagation()
                       handleHighlightClick(highlight, e)
                     })
-                    
+
                     try {
                       range.surroundContents(span)
                     } catch (e) {
@@ -474,7 +487,7 @@ export default function SectionPage() {
 
   return (
     <div className="min-h-screen bg-white p-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <button
           onClick={() => router.push("/interactive")}
           className="flex items-center gap-2 text-black hover:text-gray-600 mb-8"
@@ -500,7 +513,21 @@ export default function SectionPage() {
           </span>
         </div>
 
-        <div className="mb-12" ref={contentRef}>
+        <div style={{ position: 'relative', width: '100%', height: '850px' }}>
+          {/* InDesign HTML5 Content */}
+          <iframe
+            src={"../../../WDR25-CHAPTER-02/index.html"}
+            style={{
+              width: '100%',
+              height: '100%',
+              border: 'border:2px solid navy',
+              backgroundColor: 'white'
+            }}
+            title="InDesign HTML5 Content"
+          />
+        </div>
+
+        {/* <div className="mb-12" ref={contentRef}>
           {section && (
             <div
               className="grid grid-cols-1 md:grid-cols-2 gap-8 text-black leading-relaxed"
@@ -513,7 +540,7 @@ export default function SectionPage() {
               ))}
             </div>
           )}
-        </div>
+        </div> */}
 
         {showToolbar && (
           <div className="fixed z-50" style={{
@@ -553,7 +580,7 @@ export default function SectionPage() {
               >
                 <Copy className="w-4 h-4 text-gray-700" />
               </button>
-              
+
               <button
                 onClick={handleShare}
                 className="p-2 hover:bg-gray-100 rounded"
