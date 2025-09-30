@@ -13,7 +13,6 @@ import {
 } from 'next-share'
 import { title } from "process"
 
-
 const sectionContent = {
   introduction: {
     title: "Introduction",
@@ -125,9 +124,11 @@ export default function SectionPage() {
   const endIndex = startIndex + paragraphsPerPage
   const currentContent = section ? section.content.slice(startIndex, endIndex) : []
   const progress = Math.round((currentPage / totalPages) * 100)
+   const iframeRef = useRef(null);
 
   const handleTextSelection = () => {
     const selection = window.getSelection()
+    console.log(selection)
     if (selection && selection.toString().trim().length > 0) {
       const range = selection.getRangeAt(0)
       const rect = range.getBoundingClientRect()
@@ -513,9 +514,9 @@ export default function SectionPage() {
           </span>
         </div>
 
-        <div style={{ position: 'relative', width: '100%', height: '850px' }}>
-          {/* InDesign HTML5 Content */}
+        <div style={{ position: 'relative', width: '100%', height: '850px' }} onMouseUp={handleTextSelection} >
           <iframe
+            ref={iframeRef}
             src={"../../../WDR25-CHAPTER-02/index.html"}
             style={{
               width: '100%',
@@ -524,23 +525,9 @@ export default function SectionPage() {
               backgroundColor: 'white'
             }}
             title="InDesign HTML5 Content"
+
           />
         </div>
-
-        {/* <div className="mb-12" ref={contentRef}>
-          {section && (
-            <div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 text-black leading-relaxed"
-              onMouseUp={handleTextSelection}
-            >
-              {currentContent.map((paragraph, index) => (
-                <p key={startIndex + index} className="text-justify select-text cursor-text">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
-        </div> */}
 
         {showToolbar && (
           <div className="fixed z-50" style={{
