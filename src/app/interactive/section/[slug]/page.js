@@ -11,7 +11,7 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from 'next-share'
-
+import NotesComponent from '../../../components/NotesComponent'
 
 const sectionContent = {
   introduction: {
@@ -167,18 +167,37 @@ export default function SectionPage() {
     }
   }
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //       console.log("Click outsideish")
-  //     if (contentRef.current && !contentRef.current.contains(event.target)) {
-  //       console.log("Click outside")
-  //       setShowToolbar(false)
-  //     }
-  //   }
+  // Hide toolbar when clicking outside content area
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Only hide toolbar if clicking outside the content area and not on the toolbar itself
+      if (contentRef.current && !contentRef.current.contains(event.target)) {
+        const toolbar = document.querySelector('[data-toolbar="selection"]')
+        if (!toolbar || !toolbar.contains(event.target)) {
+          setShowToolbar(false)
+        }
+      }
+    }
 
-  //   document.addEventListener("mousedown", handleClickOutside)
-  //   return () => document.removeEventListener("mousedown", handleClickOutside)
-  // }, [])
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  if (!section) {
+    return (
+      <div className="min-h-screen bg-white p-8 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Section not found</h1>
+          <button
+            onClick={() => router.push("/interactive")}
+            className="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-700"
+          >
+            Back to Interactive Report
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -196,35 +215,31 @@ export default function SectionPage() {
         </div>
 
         <div className="mb-8">
-          {section && (
-            <>
-              <span className="text-black font-medium">{section.title}</span>
-              <span className="text-black mx-2">&gt;</span>
-              <span className="text-black font-medium">{section.subtitle}</span>
-            </>
-          )}
+          <span className="text-black font-medium">{section.title}</span>
+          <span className="text-black mx-2">&gt;</span>
+          <span className="text-black font-medium">{section.subtitle}</span>
           <span className="text-gray-500 ml-4">
             Page {currentPage} of {totalPages}
           </span>
         </div>
 
         <div className="mb-12" ref={contentRef}>
-          {section && (
-            <div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 text-black leading-relaxed"
-              onMouseUp={handleTextSelection}
-            >
-              {currentContent.map((paragraph, index) => (
-                <p key={startIndex + index} className="text-justify select-text cursor-text">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 text-black leading-relaxed"
+            onMouseUp={handleTextSelection}
+          >
+            {currentContent.map((paragraph, index) => (
+              <p key={startIndex + index} className="text-justify select-text cursor-text">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
 
+        {/* Selection Toolbar */}
         {showToolbar && (
           <div
+            data-toolbar="selection"
             className="fixed z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-2 flex items-center gap-2"
             style={{
               left: `${toolbarPosition.x}px`,
@@ -269,6 +284,7 @@ export default function SectionPage() {
           </div>
         )}
 
+        {/* Progress and Navigation */}
         <div className="flex items-center gap-4">
           <div className="flex-1 bg-gray-200 rounded-full h-2">
             <div className="bg-gray-800 h-2 rounded-full" style={{ width: `${progress}%` }}></div>
@@ -293,6 +309,9 @@ export default function SectionPage() {
           </div>
         </div>
       </div>
+
+      {/* Notes Component */}
+      <NotesComponent sectionSlug={slug} currentPage={currentPage} />
     </div>
   )
 }
