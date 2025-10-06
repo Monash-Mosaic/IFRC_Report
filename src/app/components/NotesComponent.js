@@ -44,7 +44,6 @@ export default function NotesComponent({ sectionSlug: propSectionSlug, currentPa
   const savedSelectionRef = useRef(null)
   const activeEditorRef = useRef(null)
 
-  // -------- Portal so 'fixed' is truly fixed (not affected by transformed parents)
   const [portalEl, setPortalEl] = useState(null)
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -72,8 +71,6 @@ export default function NotesComponent({ sectionSlug: propSectionSlug, currentPa
   }, [])
 
 
-  // -------- Load notes properly --------
-// -------- Load notes properly --------
 const [notesLoaded, setNotesLoaded] = useState(false)
 
 useEffect(() => {
@@ -84,13 +81,13 @@ useEffect(() => {
   setNotesLoaded(true)
 }, [resolvedSlug])
 
-// -------- Save notes (only after load) --------
+// Save notes (only after load)
 useEffect(() => {
   if (!resolvedSlug || !notesLoaded) return
   saveNotes(resolvedSlug, notes)
 }, [notes, resolvedSlug, notesLoaded])
 
-  // Also save just before unload/navigation (extra safety for quick back navs)
+  // Save just before unload/navigation
 useEffect(() => {
   const handler = () => {
     if (!resolvedSlug || !notesLoaded) return
@@ -168,7 +165,7 @@ useEffect(() => {
     setEditingNoteTitle(note.title || '')
   }
 
-  // -------- Drag / Resize logic unchanged --------
+  // Drag / Resize logic 
   const handleDragStart = (e, noteId) => {
     if (e.target.closest('.no-drag')) return
     e.preventDefault()
@@ -210,7 +207,7 @@ useEffect(() => {
     setIsDragging(false)
   }
 
-  // -------- Resize
+  // Resize
   const handleResizeStart = (e, noteId, corner) => {
     e.preventDefault()
     e.stopPropagation()
@@ -265,7 +262,7 @@ useEffect(() => {
     setNotePosition(prev => clampToViewport(prev.x, prev.y, 350, 300))
   }
 
-  // -------- Selection / formatting helpers
+  // Selection / formatting helpers
   const saveSelection = () => {
     const sel = window.getSelection()
     if (sel && sel.rangeCount) savedSelectionRef.current = sel.getRangeAt(0).cloneRange()
@@ -401,8 +398,6 @@ useEffect(() => {
   }
 
   // ---------- UI ----------
-
-  // Everything below (button + notes) renders inside the body portal
   const overlay = (
     <div
     id="notes-overlay-root"
