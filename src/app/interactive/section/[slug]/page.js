@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, Copy, Share2 } from "lucide-react"
+import { ArrowLeft, Copy, Share2, Palette } from "lucide-react"
 import { useRouter, useParams } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
 import {
@@ -93,7 +93,17 @@ export default function SectionPage() {
   const [selectedText, setSelectedText] = useState("")
   const [toolbarPosition, setToolbarPosition] = useState({ x: 0, y: 0 })
   const [showToolbar, setShowToolbar] = useState(false)
+  const [highlights, setHighlights] = useState({})
+  const [selectedRange, setSelectedRange] = useState(null)
+  const [isHighlightedText, setIsHighlightedText] = useState(false)
+  const [currentHighlightId, setCurrentHighlightId] = useState(null)
   const contentRef = useRef(null)
+
+  const highlightColors = [
+    { name: 'Yellow', color: '#fef08a', class: 'bg-yellow-200' },
+    { name: 'Blue', color: '#bfdbfe', class: 'bg-blue-200' },
+    { name: 'Pink', color: '#fbcfe8', class: 'bg-pink-200' },
+  ]
 
   const section = sectionContent[slug]
   const totalParagraphs = section ? section.content.length : 0
@@ -109,7 +119,33 @@ export default function SectionPage() {
       const range = selection.getRangeAt(0)
       const rect = range.getBoundingClientRect()
 
+      // Check if the selection is within a highlighted span
+      let container = range.commonAncestorContainer
+      let highlightId = null
+      let isHighlighted = false
+
+      // Check if we're selecting within a highlight span
+      while (container && container !== contentRef.current) {
+        if (container.nodeType === Node.ELEMENT_NODE && 
+            container.classList && 
+            container.classList.contains('highlight-span')) {
+          highlightId = container.getAttribute('data-highlight-id')
+          isHighlighted = true
+          break
+        }
+        container = container.parentNode
+      }
+
       setSelectedText(selection.toString())
+      setSelectedRange({
+        startContainer: range.startContainer,
+        startOffset: range.startOffset,
+        endContainer: range.endContainer,
+        endOffset: range.endOffset,
+        text: selection.toString(),
+      })
+      setIsHighlightedText(isHighlighted)
+      setCurrentHighlightId(highlightId)
       setToolbarPosition({
         x: rect.left + rect.width / 2,
         y: rect.top - 60,
@@ -118,6 +154,9 @@ export default function SectionPage() {
     } else {
       setShowToolbar(false)
       setSelectedText("")
+      setSelectedRange(null)
+      setIsHighlightedText(false)
+      setCurrentHighlightId(null)
     }
   }
 
@@ -127,11 +166,14 @@ export default function SectionPage() {
         await navigator.clipboard.writeText(selectedText)
         setShowToolbar(false)
         setSelectedText("")
+        setSelectedRange(null)
       } catch (err) {
         console.error("Failed to copy text:", err)
       }
     }
   }
+
+
 
   const handleShare = async () => {
     if (selectedText) {
@@ -147,9 +189,156 @@ export default function SectionPage() {
         }
         setShowToolbar(false)
         setSelectedText("")
+        setSelectedRange(null)
       } catch (err) {
         console.error("Failed to share text:", err)
       }
+    }
+  }
+
+  const handleHighlight = (color) => {
+    if (selectedRange && selectedText) {
+      const highlightId = `highlight-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+      const newHighlight = {
+        id: highlightId,
+        text: selectedText,
+        color: color.color,
+        className: color.class,
+        startContainer: selectedRange.startContainer,
+        startOffset: selectedRange.startOffset,
+        endContainer: selectedRange.endContainer,
+        endOffset: selectedRange.endOffset,
+        page: currentPage,
+        paragraphIndex: null, // Will be set when we identify which paragraph
+      }
+
+      // Find which paragraph this highlight belongs to
+      if (selectedRange.startContainer.nodeType === Node.TEXT_NODE) {
+        const paragraphElement = selectedRange.startContainer.parentElement.closest('p')
+        if (paragraphElement) {
+          const paragraphs = contentRef.current.querySelectorAll('p')
+          newHighlight.paragraphIndex = Array.from(paragraphs).indexOf(paragraphElement)
+        }
+      }
+
+      setHighlights(prev => ({
+        ...prev,
+        [highlightId]: newHighlight
+      }))
+
+      // Clear selection and toolbar
+      window.getSelection().removeAllRanges()
+      setShowToolbar(false)
+      setSelectedText("")
+      setSelectedRange(null)
+
+      // Apply highlight to DOM
+      applyHighlightToDOM(newHighlight)
+    }
+  }
+
+  const applyHighlightToDOM = (highlight) => {
+    try {
+      const range = document.createRange()
+      range.setStart(highlight.startContainer, highlight.startOffset)
+      range.setEnd(highlight.endContainer, highlight.endOffset)
+      
+      const span = document.createElement('span')
+      span.className = `${highlight.className} highlight-span`
+      span.setAttribute('data-highlight-id', highlight.id)
+      span.style.borderRadius = '2px'
+      span.style.padding = '1px 2px'
+      span.style.cursor = 'pointer'
+      span.style.transition = 'opacity 0.2s ease'
+      
+      // Add hover effect
+      span.addEventListener('mouseenter', () => {
+        span.style.opacity = '0.8'
+      })
+      span.addEventListener('mouseleave', () => {
+        span.style.opacity = '1'
+      })
+      
+      // Add click handler to show toolbar when clicking highlighted text
+      span.addEventListener('click', (e) => {
+        e.stopPropagation()
+        handleHighlightClick(highlight, e)
+      })
+      
+      try {
+        range.surroundContents(span)
+      } catch (e) {
+        // If surroundContents fails (e.g., range spans multiple elements), use extractContents
+        const contents = range.extractContents()
+        span.appendChild(contents)
+        range.insertNode(span)
+      }
+    } catch (error) {
+      console.error('Error applying highlight:', error)
+    }
+  }
+
+  const removeHighlight = () => {
+    if (currentHighlightId) {
+      // Remove from state
+      setHighlights(prev => {
+        const updated = { ...prev }
+        delete updated[currentHighlightId]
+        return updated
+      })
+
+      // Remove from DOM
+      const highlightElement = document.querySelector(`[data-highlight-id="${currentHighlightId}"]`)
+      if (highlightElement) {
+        const parent = highlightElement.parentNode
+        const textContent = highlightElement.textContent
+        const textNode = document.createTextNode(textContent)
+        parent.replaceChild(textNode, highlightElement)
+        parent.normalize()
+      }
+
+      // Clear selection and toolbar
+      window.getSelection().removeAllRanges()
+      setShowToolbar(false)
+      setSelectedText("")
+      setSelectedRange(null)
+      setIsHighlightedText(false)
+      setCurrentHighlightId(null)
+    }
+  }
+
+  const handleHighlightClick = (highlight, event) => {
+    // Find the highlight element
+    const highlightElement = document.querySelector(`[data-highlight-id="${highlight.id}"]`)
+    if (highlightElement) {
+      // Create a selection for the highlighted text
+      const range = document.createRange()
+      range.selectNodeContents(highlightElement)
+      
+      const selection = window.getSelection()
+      selection.removeAllRanges()
+      selection.addRange(range)
+      
+      // Set up the selection state
+      setSelectedText(highlight.text)
+      setSelectedRange({
+        startContainer: range.startContainer,
+        startOffset: range.startOffset,
+        endContainer: range.endContainer,
+        endOffset: range.endOffset,
+        text: highlight.text,
+      })
+      setIsHighlightedText(true)
+      setCurrentHighlightId(highlight.id)
+      
+      // Position toolbar at click location
+      const rect = highlightElement.getBoundingClientRect()
+      setToolbarPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.top - 60,
+      })
+      
+      setShowToolbar(true)
     }
   }
 
@@ -167,18 +356,121 @@ export default function SectionPage() {
     }
   }
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //       console.log("Click outsideish")
-  //     if (contentRef.current && !contentRef.current.contains(event.target)) {
-  //       console.log("Click outside")
-  //       setShowToolbar(false)
-  //     }
-  //   }
+  // Reapply highlights when page content changes
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      Object.values(highlights).forEach(highlight => {
+        if (highlight.page === currentPage) {
+          // Find the paragraph and reapply highlight
+          const paragraphs = contentRef.current?.querySelectorAll('p')
+          if (paragraphs && highlight.paragraphIndex !== null && paragraphs[highlight.paragraphIndex]) {
+            const paragraph = paragraphs[highlight.paragraphIndex]
+            const textContent = paragraph.textContent || paragraph.innerText
+            
+            if (textContent.includes(highlight.text)) {
+              const startIndex = textContent.indexOf(highlight.text)
+              const endIndex = startIndex + highlight.text.length
+              
+              // Create a range for the text in this paragraph
+              const walker = document.createTreeWalker(
+                paragraph,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              )
+              
+              let currentIndex = 0
+              let startNode = null
+              let startOffset = 0
+              let endNode = null
+              let endOffset = 0
+              
+              while (walker.nextNode()) {
+                const textNode = walker.currentNode
+                const textLength = textNode.textContent.length
+                
+                if (startNode === null && currentIndex + textLength > startIndex) {
+                  startNode = textNode
+                  startOffset = startIndex - currentIndex
+                }
+                
+                if (currentIndex + textLength >= endIndex) {
+                  endNode = textNode
+                  endOffset = endIndex - currentIndex
+                  break
+                }
+                
+                currentIndex += textLength
+              }
+              
+              if (startNode && endNode) {
+                try {
+                  const range = document.createRange()
+                  range.setStart(startNode, startOffset)
+                  range.setEnd(endNode, endOffset)
+                  
+                  // Check if this text is already highlighted
+                  const existingHighlight = document.querySelector(`[data-highlight-id="${highlight.id}"]`)
+                  if (!existingHighlight) {
+                    const span = document.createElement('span')
+                    span.className = `${highlight.className} highlight-span`
+                    span.setAttribute('data-highlight-id', highlight.id)
+                    span.style.borderRadius = '2px'
+                    span.style.padding = '1px 2px'
+                    span.style.cursor = 'pointer'
+                    span.style.transition = 'opacity 0.2s ease'
+                    
+                    // Add hover effect
+                    span.addEventListener('mouseenter', () => {
+                      span.style.opacity = '0.8'
+                    })
+                    span.addEventListener('mouseleave', () => {
+                      span.style.opacity = '1'
+                    })
+                    
+                    // Add click handler to show toolbar when clicking highlighted text
+                    span.addEventListener('click', (e) => {
+                      e.stopPropagation()
+                      handleHighlightClick(highlight, e)
+                    })
+                    
+                    try {
+                      range.surroundContents(span)
+                    } catch (e) {
+                      const contents = range.extractContents()
+                      span.appendChild(contents)
+                      range.insertNode(span)
+                    }
+                  }
+                } catch (error) {
+                  console.error('Error reapplying highlight:', error)
+                }
+              }
+            }
+          }
+        }
+      })
+    }, 100) // Small delay to ensure DOM is ready
 
-  //   document.addEventListener("mousedown", handleClickOutside)
-  //   return () => document.removeEventListener("mousedown", handleClickOutside)
-  // }, [])
+    return () => clearTimeout(timeoutId)
+  }, [currentPage, currentContent, highlights])
+
+
+
+  // Handle clicks outside the toolbar
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (contentRef.current && !contentRef.current.contains(event.target)) {
+        const toolbar = event.target.closest('.fixed.z-50')
+        if (!toolbar) {
+          setShowToolbar(false)
+        }
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   return (
     <div className="min-h-screen bg-white p-8">
@@ -224,48 +516,72 @@ export default function SectionPage() {
         </div>
 
         {showToolbar && (
-          <div
-            className="fixed z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-2 flex items-center gap-2"
-            style={{
-              left: `${toolbarPosition.x}px`,
-              top: `${toolbarPosition.y}px`,
-              transform: "translateX(-50%)",
-            }}
-          >
-            <button
-              onClick={handleCopy}
-              className="p-2 hover:bg-gray-100 rounded"
-              title="Copy text"
-            >
-              <Copy className="w-4 h-4 text-gray-700" />
-            </button>
-            <button
-              onClick={handleShare}
-              className="p-2 hover:bg-gray-100 rounded"
-              title="Share text"
-            >
-              <Share2 className="w-4 h-4 text-gray-700" />
-            </button>
-            <FacebookShareButton
-              url={'https://solferinoacademy.com/'}
-              quote={selectedText}
-              hashtag="#wdr2024 #solferinoacademy"
-            >
-              <FacebookIcon size={15} round />
-           </FacebookShareButton>
-            <TwitterShareButton
-              url={'https://solferinoacademy.com/'}
-              title={selectedText}
-            >
-              <TwitterIcon size={15} round />
-            </TwitterShareButton>
-            <WhatsappShareButton
-              url={'https://solferinoacademy.com/'}
-              title={selectedText}
-              separator="-"
-            >
-              <WhatsappIcon size={15} round />
-            </WhatsappShareButton>
+          <div className="fixed z-50" style={{
+            left: `${toolbarPosition.x}px`,
+            top: `${toolbarPosition.y}px`,
+            transform: "translateX(-50%)",
+          }}>
+            <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-2 flex items-center gap-2">
+              {isHighlightedText ? (
+                // Show remove highlight button for highlighted text
+                <button
+                  onClick={removeHighlight}
+                  className="w-8 h-8 rounded-full border-2 border-red-300 hover:border-red-500 bg-white hover:bg-red-50 transition-colors flex items-center justify-center"
+                  title="Remove highlight"
+                >
+                  <span className="text-red-500 text-sm font-bold">×</span>
+                </button>
+              ) : (
+                // Show all highlight color buttons for normal text
+                <>
+                  {highlightColors.map((color) => (
+                    <button
+                      key={color.name}
+                      onClick={() => handleHighlight(color)}
+                      className={`w-8 h-8 rounded-full border-2 border-gray-300 hover:border-gray-500 transition-colors ${color.class}`}
+                      title={`Highlight in ${color.name}`}
+                      style={{ backgroundColor: color.color }}
+                    />
+                  ))}
+                </>
+              )}
+
+              <button
+                onClick={handleCopy}
+                className="p-2 hover:bg-gray-100 rounded"
+                title="Copy text"
+              >
+                <Copy className="w-4 h-4 text-gray-700" />
+              </button>
+              
+              <button
+                onClick={handleShare}
+                className="p-2 hover:bg-gray-100 rounded"
+                title="Share text"
+              >
+                <Share2 className="w-4 h-4 text-gray-700" />
+              </button>
+              <FacebookShareButton
+                url={'https://solferinoacademy.com/'}
+                quote={selectedText}
+                hashtag="#wdr2024 #solferinoacademy"
+              >
+                <FacebookIcon size={15} round />
+             </FacebookShareButton>
+              <TwitterShareButton
+                url={'https://solferinoacademy.com/'}
+                title={selectedText}
+              >
+                <TwitterIcon size={15} round />
+              </TwitterShareButton>
+              <WhatsappShareButton
+                url={'https://solferinoacademy.com/'}
+                title={selectedText}
+                separator="-"
+              >
+                <WhatsappIcon size={15} round />
+              </WhatsappShareButton>
+            </div>
           </div>
         )}
 
