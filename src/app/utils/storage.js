@@ -1,37 +1,19 @@
-import 'client-only'
-
-export const BOOKMARK_KEY = "ifrcReport:bookmarkData"
+import { db } from "./db";
 
 
-function getData(key, fallback) {
-  if (typeof window === "undefined") {
-    console.error("localStorage is not available on the server side")
-    return fallback
+export async function getBookmarks() {
+  const all = await db.bookmarks.toArray();
+  return new Set(all.map((b) => b.sectionName));
+}
+
+export async function toggleBookmark(sectionName) {
+  const existing = await db.bookmarks.where("sectionName").equals(sectionName).first();
+
+  if (existing) {
+    await db.bookmarks.delete(existing.id);
   }
-  const raw = localStorage.getItem(key)
-  return raw ? JSON.parse(raw) : fallback
+  else {
+    await db.bookmarks.add({ sectionName });
+  }
+  return getBookmarks();
 }
-
-function setData(data, key) {
-  localStorage.setItem(key, JSON.stringify(data))
-}
-
-
-export function getBookmarks() {
-  const data = getData(BOOKMARK_KEY, { bookmarks: {} })
-  return new Set(Object.keys(data.bookmarks).filter((key) => data.bookmarks[key]))
-}
-
-export function toggleBookmark(sectionName) {
-  const data = getData(BOOKMARK_KEY, { bookmarks: {} })
-  data.bookmarks[sectionName] = !data.bookmarks[sectionName]
-  setData(data, BOOKMARK_KEY)
-  return getBookmarks()
-}
-
-/* TODO:
-  Local storage in the future will hold the following:
-    - Highlights
-    - Proggress
-    - Notes
-*/
