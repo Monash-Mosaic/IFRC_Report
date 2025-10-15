@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package version="3.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" xml:lang="en-GB" prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">
+	<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<meta name="generator" content="Adobe InDesign 20.5" />
+		<meta name="cover" content="x1.png" />
+		<meta property="ibooks:specified-fonts">true</meta>
+		<dc:title>WDR25-CHAPTER-02-REBIRTH</dc:title>
+		<dc:date>2025-10-15T07:26:22Z</dc:date>
+		<dc:language>en-GB</dc:language>
+		<dc:language>en-US</dc:language>
+		<dc:language>fr-FR</dc:language>
+		<meta property="dcterms:modified">2025-10-15T07:26:22Z</meta>
+		<dc:identifier id="bookid">urn:uuid:D3A8F823-9034-4B79-8943-0FC95B10E268</dc:identifier>
+		<!--accessibility options-->
+	</metadata>
+	<manifest>
+		<item id="cover" href="cover.xhtml" media-type="application/xhtml+xml" />
+		<item id="WDR25-CHAPTER-02-REBIRTH" href="WDR25-CHAPTER-02-REBIRTH.xhtml" media-type="application/xhtml+xml" />
+		<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+		<item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
+		<item id="idGeneratedStyles.css" href="css/idGeneratedStyles.css" media-type="text/css" />
+		<item id="AkkuratLL-Black.otf" href="font/AkkuratLL-Black.otf" media-type="application/vnd.ms-opentype" />
+		<item id="AkkuratLL-Bold.otf" href="font/AkkuratLL-Bold.otf" media-type="application/vnd.ms-opentype" />
+		<item id="AkkuratLL-Italic.otf" href="font/AkkuratLL-Italic.otf" media-type="application/vnd.ms-opentype" />
+		<item id="AkkuratLL-Light.otf" href="font/AkkuratLL-Light.otf" media-type="application/vnd.ms-opentype" />
+		<item id="AkkuratLL-Regular.otf" href="font/AkkuratLL-Regular.otf" media-type="application/vnd.ms-opentype" />
+		<item id="AkkuratLL-Thin.otf" href="font/AkkuratLL-Thin.otf" media-type="application/vnd.ms-opentype" />
+		<item id="CeremonyBlack-C.otf" href="font/CeremonyBlack-C.otf" media-type="application/vnd.ms-opentype" />
+		<item id="LyonDisplay-Black.otf" href="font/LyonDisplay-Black.otf" media-type="application/vnd.ms-opentype" />
+		<item id="LyonDisplay-Regular.otf" href="font/LyonDisplay-Regular.otf" media-type="application/vnd.ms-opentype" />
+		<item id="x1.png" href="image/1.png" media-type="image/png" properties="cover-image" />
+		<item id="p-PSI0625.jpg" href="image/p-PSI0625.jpg" media-type="image/jpeg" />
+		<item id="p-SYR2114-b.png" href="image/p-SYR2114-b.png" media-type="image/png" />
+		<item id="p-SYR2114.png" href="image/p-SYR2114.png" media-type="image/png" />
+		<item id="p-TUR0754.jpg" href="image/p-TUR0754.jpg" media-type="image/jpeg" />
+	</manifest>
+	<spine toc="ncx">
+		<itemref idref="cover" linear="no" />
+		<itemref idref="WDR25-CHAPTER-02-REBIRTH" />
+	</spine>
+	<guide>
+		<reference type="cover" href="cover.xhtml" title="Cover" />
+	</guide>
+</package>

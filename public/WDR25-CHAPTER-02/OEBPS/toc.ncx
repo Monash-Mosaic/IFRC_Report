@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+	<head>
+		<meta name="dtb:uid" content="urn:uuid:D3A8F823-9034-4B79-8943-0FC95B10E268" />
+		<meta name="dtb:depth" content="10" />
+		<meta name="dtb:totalPageCount" content="0" />
+		<meta name="dtb:maxPageNumber" content="0" />
+	</head>
+	<docTitle>
+		<text>WDR25-CHAPTER-02-REBIRTH</text>
+	</docTitle>
+	<navMap>
+		<navPoint id="navpoint1" playOrder="1"><navLabel><text>Incentivised to Hostility</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-1" />
+			<navPoint id="navpoint2" playOrder="2"><navLabel><text>Trust: What is Being Lost?</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-2" />
+				<navPoint id="navpoint3" playOrder="3"><navLabel><text>Trust in Institutions</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-3" /></navPoint>
+				<navPoint id="navpoint4" playOrder="4"><navLabel><text>Integrity, Perception and the Fragile Foundation of Trust</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-4" /></navPoint>
+				<navPoint id="navpoint5" playOrder="5"><navLabel><text>Decline of Expertise and its Impact on Trust</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-5" /></navPoint>
+				<navPoint id="navpoint6" playOrder="6"><navLabel><text>Community Engagement: A Bridge to Trust</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-6" /></navPoint>
+				<navPoint id="navpoint7" playOrder="7"><navLabel><text>Facts and Feelings: A Perception Challenge</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-7" /></navPoint>
+				<navPoint id="navpoint8" playOrder="8"><navLabel><text>Responding to Harmful Information: Building Trust in Crises</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-8" /></navPoint>
+				<navPoint id="navpoint9" playOrder="9"><navLabel><text>Transparency and Identifiability: Foundations for Trust</text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-9" /></navPoint>
+				<navPoint id="navpoint10" playOrder="10"><navLabel><text>Concluding Remarks: Trust, Truth and Preparedness </text></navLabel><content src="WDR25-CHAPTER-02-REBIRTH.xhtml#_idParaDest-10" /></navPoint>
+			</navPoint>
+		</navPoint>
+	</navMap>
+</ncx>
