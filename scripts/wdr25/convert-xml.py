@@ -130,7 +130,7 @@ class MarkdownBuilder:
         return self
 
     def inline_code(self, code: str) -> "MarkdownBuilder":
-        text = _normalise_text(text)
+        code = _normalise_text(code)
         safe = code.replace("`", "\\`")
         self.parts.append(f"`{safe}`")
         return self
@@ -247,7 +247,7 @@ class MarkdownBuilder:
         if position:
             position_component = self._create_component('ContributorSpotlightPosition', position)
             inner_content.append(position_component)
-        full_content = f"\n  {"\n  ".join(inner_content)}"
+        full_content = f"\n  {('\n  '.join(inner_content))}"
         self.custom_components('ContributorSpotlight', full_content)
         return self
 
@@ -299,19 +299,17 @@ def parse_xml_dom(xml_str: str) -> etree._Element:
 
 def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
   builder = MarkdownBuilder()
-  keys = set()
 
   last_key = None
   last_values = []
-  for e in xml_el.getchildren():
+  for e in list(xml_el):
       key = e.tag
       value = e.text or ''
-      keys.add(key)
       if last_key == 'numbered-list' and key != 'numbered-list':
           builder.list(last_values, ordered=True)
           last_key = None
           last_values.clear()
-      
+
       if last_key == 'normal-spotlight-bullet-list' and key != 'normal-spotlight-bullet-list':
           builder.list(last_values, ordered=False)
           last_key = None
@@ -348,6 +346,7 @@ def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
           last_key = 'normal-spotlight-bullet-list'
           last_values.append(value)
       elif key == 'sidenotes-contributions-2col':
+          last_key = 'sidenotes-contributions-2col'
           last_values.append(value)
 
       elif key == 'h1-contributor-spotlight':
@@ -399,8 +398,7 @@ def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
           continue  # skip
       else:
           print(f"Unhandled key: {key}")
-          # print("value", value)
-  return builder, keys
+  return builder
 
 # %%
 # if __name__ == "__main__":
@@ -408,7 +406,6 @@ def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
 with open('./data/WDR25-CHAPTER-02-empty.xml', 'r', encoding='utf-8') as f:
     xml = f.read()
 data = parse_xml_dom(xml)
-story = data.getchildren()[2]
-builder, keys = convert_to_markdown(story)
-print("Keys found:", keys)
+story = list(data)[2]
+builder = convert_to_markdown(story)
 builder.to_file('./output/chapter-02.mdx')
