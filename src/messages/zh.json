@@ -1,0 +1,10 @@
+{
+  "Home": {
+    "title": "主页",
+    "welcome": "欢迎来到IFRC报告"
+  },
+  "InteractivePage": {
+    "title": "互动报告",
+    "backToDocuments": "返回文档"
+  }
+}

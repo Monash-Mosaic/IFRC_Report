@@ -1,0 +1,10 @@
+{
+  "Home": {
+    "title": "Home Page",
+    "welcome": "Welcome to the IFRC Report"
+  },
+  "InteractivePage": {
+    "title": "Interactive Report",
+    "backToDocuments": "Back to Documents"
+  }
+}

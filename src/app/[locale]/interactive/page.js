@@ -3,7 +3,8 @@
 import { Menu, Bookmark, ChevronDown, ArrowLeft } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { getBookmarks, toggleBookmark } from "../utils/storage"
+import { useTranslations } from 'next-intl'
+import { getBookmarks, toggleBookmark } from "@/utils/storage"
 
 const sections = [
 	{
@@ -38,6 +39,7 @@ export default function IFRCReportPage() {
 	const [bookmarkedSections, setBookmarkedSections] = useState(new Set());
 	const [expandedSections, setExpandedSections] = useState(new Set()) // Track expanded sections
 	const router = useRouter()
+	const t = useTranslations('InteractivePage');
 
 	useEffect(() => {
 		(async () => {
@@ -81,7 +83,7 @@ export default function IFRCReportPage() {
 					className="flex items-center gap-2 text-black hover:text-gray-600 mb-8"
 				>
 					<ArrowLeft className="w-5 h-5" />
-					<span className="font-semibold">Back to Documents</span>
+					<span className="font-semibold">{t('backToDocuments')}</span>
 				</button>
 
 				{/* Header */}
