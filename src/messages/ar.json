@@ -3,10 +3,42 @@
     "title": "الصفحة الرئيسية",
     "welcome": "مرحبًا بك في تقرير الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر"
   },
-  "LocaleSwitcher": {
-    "selectLanguage": "اختر اللغة"
+  "ReportListingPage": {
+    "meta": {
+      "title": "التقارير والمنشورات",
+      "description": "الوصول إلى تقارير ومنشورات الاتحاد الدولي وإدارتها"
+    },
+    "title": "التقارير والمنشورات",
+    "description": "الوصول إلى تقارير ومنشورات الاتحاد الدولي وإدارتها",
+    "filter": {
+      "label": "الفئة",
+      "all": "جميع الفئات"
+    },
+    "dateRange": {
+      "label": "النطاق الزمني",
+      "all": "كل الأوقات"
+    },
+    "search": {
+      "label": "بحث",
+      "placeholder": "ابحث في التقارير..."
+    },
+    "docList": {
+      "label": "جميع التقارير",
+      "showing": "{count, plural, =0 {لم يتم العثور على تقارير} =1 {عرض تقرير واحد} other {عرض # تقارير}}",
+      "download": "تحميل التقرير",
+      "readInteractiveAlt": "قراءة التقرير التفاعلي"
+    }
+  },
+  "ReportDetailPage": {
+    "backToDocuments": "العودة إلى التقارير",
+    "tableOfContent": "جدول المحتويات",
+    "bookmark": "إشارة مرجعية",
+    "bookmarkAria": "{action, select, add {إضافة إشارة مرجعية} remove {إزالة الإشارة المرجعية} other {غير معروف}} للقسم {section}",
+    "sections": {
+      "continue": "متابعة"
+    }
   },
   "ReportChapterPage": {
-    "back": "Back"
+    "back": "عودة"
   }
 }

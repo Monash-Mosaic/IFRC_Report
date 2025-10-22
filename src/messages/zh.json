@@ -3,12 +3,40 @@
     "title": "主页",
     "welcome": "欢迎来到IFRC报告"
   },
-  "InteractivePage": {
-    "title": "互动报告",
-    "backToDocuments": "返回文档"
+  "ReportListingPage": {
+    "meta": {
+      "title": "报告与出版物",
+      "description": "访问和管理 IFRC 报告与出版物"
+    },
+    "title": "报告与出版物",
+    "description": "访问和管理 IFRC 报告与出版物",
+    "filter": {
+      "label": "类别",
+      "all": "所有类别"
+    },
+    "dateRange": {
+      "label": "日期范围",
+      "all": "全部时间"
+    },
+    "search": {
+      "label": "搜索",
+      "placeholder": "搜索报告…"
+    },
+    "docList": {
+      "label": "所有报告",
+      "showing": "{count, plural, =0 {未找到报告} =1 {显示 # 份报告} other {显示 # 份报告}}",
+      "download": "下载报告",
+      "readInteractiveAlt": "阅读交互式报告"
+    }
   },
-  "LocaleSwitcher": {
-    "selectLanguage": "选择语言"
+  "ReportDetailPage": {
+    "backToDocuments": "返回报告",
+    "tableOfContent": "目录",
+    "bookmark": "书签",
+    "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
+    "sections": {
+      "continue": "继续"
+    }
   },
   "ReportChapterPage": {
     "back": "返回"

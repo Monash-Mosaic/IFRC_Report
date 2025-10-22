@@ -3,7 +3,42 @@
     "title": "Page d'accueil",
     "welcome": "Bienvenue dans le rapport IFRC"
   },
-  "LocaleSwitcher": {
-    "selectLanguage": "Choisir la langue"
+  "ReportListingPage": {
+    "meta": {
+      "title": "Rapports et publications",
+      "description": "Accéder aux rapports et publications de l'IFRC"
+    },
+    "title": "Rapports et publications",
+    "description": "Accéder aux rapports et publications de l'IFRC",
+    "filter": {
+      "label": "Catégorie",
+      "all": "Toutes les catégories"
+    },
+    "dateRange": {
+      "label": "Plage de dates",
+      "all": "Toutes les dates"
+    },
+    "search": {
+      "label": "Rechercher",
+      "placeholder": "Rechercher des rapports…"
+    },
+    "docList": {
+      "label": "Tous les rapports",
+      "showing": "{count, plural, =0 {Aucun rapport trouvé} =1 {Affichage de # rapport} other {Affichage de # rapports}}",
+      "download": "Télécharger le rapport",
+      "readInteractiveAlt": "Lire le rapport interactif"
+    }
+  },
+  "ReportDetailPage": {
+    "backToDocuments": "Retour aux rapports",
+    "tableOfContent": "Table des matières",
+    "bookmark": "Marque-page",
+    "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
+    "sections": {
+      "continue": "Continuer"
+    }
+  },
+  "ReportChapterPage": {
+    "back": "Retour"
   }
 }

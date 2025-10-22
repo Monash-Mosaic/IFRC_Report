@@ -1,126 +1,57 @@
-'use client';
+import 'server-only'
 
-import { useState } from 'react';
-import Link from 'next/link';
-import PDFViewer from '@/components/PDFViewer';
-import { useRouter } from 'next/navigation';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { hasLocale } from 'next-intl';
 
-export default function ReportListingPage() {
-  const router = useRouter(); // Move useRouter inside the component
+import { reportsByLocale } from '@/reports';
+import { Link } from '@/i18n/navigation';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showUploadForm, setShowUploadForm] = useState(false);
-  const [selectedDocument, setSelectedDocument] = useState(null);
-  const [documents, setDocuments] = useState([
-    {
-      id: 1,
-      title: "IFRC Annual Report 2024",
-      category: "Annual Report",
-      date: "12/08/2025",
-      size: "18.49 MB",
-      author: "IFRC Secretariat",
-      description: "Our achievements and how we use donor funds",
-      fileUrl: "#"
-    },
-    {
-      id: 2,
-      title: "Strategy 2030 mid-term review and forecast",
-      category: "Strategy",
-      date: "31/07/2025",
-      size: "5.7 MB",
-      author: "IFRC Secretariat",
-      description: "Key findings and recommendations",
-      fileUrl: "#"
-    },
-    {
-      id: 3,
-      title: "IFRC-DREF 2025 Annual Plan",
-      category: "DREF",
-      date: "28/07/2025",
-      size: "4.65 MB",
-      author: "IFRC Secretariat",
-      description: "Disaster Response Emergency Fund annual plan",
-      fileUrl: "#"
-    }
-  ]);
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations('ReportListingPage', locale);
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+  }
+}
 
-  const [uploadForm, setUploadForm] = useState({
-    title: '',
-    category: '',
-    description: '',
-    author: '',
-    file: null
+export async function generateStaticParams() {
+  return Object.keys(reportsByLocale).map(locale => ({ locale }));
+}
+
+export default async function ReportListingPage({ params }) {
+  const { locale } = await params;
+  if (!hasLocale(Object.keys(reportsByLocale), locale)) {
+    notFound()
+  }
+  setRequestLocale(locale);
+  const t = await getTranslations('ReportListingPage', locale);
+
+  const sizeFormatter = new Intl.NumberFormat([], {
+    style: 'unit',
+    unit: 'byte',
+    notation: 'compact',
+    unitDisplay: 'narrow',
   });
+  const dateFormatter = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  const documents = Object.entries(reportsByLocale[locale].reports).map(([reportKey, report], index) => ({
+      id: index + 1,
+      slug: reportKey,
+      title: report.title,
+      category: report.category,
+      date: dateFormatter.format(report.releaseDate),
+      size: sizeFormatter.format(report.reportFile.size),
+      author: report.author,
+      description: report.description,
+      fileUrl: report.reportFile.url,
+    }));
 
-  const categories = [
-    "Annual Report", "Strategy", "DREF", "Emergency Appeals", 
-    "Disaster Management", "Health and Care", "National Society Development",
-    "Climate Change", "Migration", "Advocacy", "Other"
-  ];
-
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type === 'application/pdf') {
-      setUploadForm(prev => ({ ...prev, file }));
-    } else {
-      alert('Please upload a PDF file');
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!uploadForm.file || !uploadForm.title || !uploadForm.category) {
-      alert('Please fill in all required fields and upload a file');
-      return;
-    }
-
-    const newDocument = {
-      id: documents.length + 1,
-      title: uploadForm.title,
-      category: uploadForm.category,
-      date: new Date().toLocaleDateString('en-GB'),
-      size: `${(uploadForm.file.size / (1024 * 1024)).toFixed(2)} MB`,
-      author: uploadForm.author || 'Admin',
-      description: uploadForm.description,
-      fileUrl: URL.createObjectURL(uploadForm.file)
-    };
-
-    setDocuments([newDocument, ...documents]);
-    setUploadForm({
-      title: '',
-      category: '',
-      description: '',
-      author: '',
-      file: null
-    });
-    setShowUploadForm(false);
-  };
-
-  const handleViewDocument = (document) => {
-    if (document.fileUrl && document.fileUrl !== '#') {
-      setSelectedDocument(document);
-    } else {
-      alert('This document is not available for viewing.');
-    }
-  };
-
-  const handleDownloadDocument = (document) => {
-    if (document.fileUrl && document.fileUrl !== '#') {
-      const link = document.createElement('a');
-      link.href = document.fileUrl;
-      link.download = `${document.title}.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      alert('This document is not available for download.');
-    }
-  };
-
-  const handleReadDocument = () => {
-    router.push('/interactive'); // Redirect to /interactive
-  };
-
+  const categories = reportsByLocale[locale].categories || [];
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -128,151 +59,47 @@ export default function ReportListingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Documents</h1>
-              <p className="text-gray-600 mt-1">Access and manage IFRC reports and publications</p>
+              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+              <p className="text-gray-600 mt-1">{t('description')}</p>
             </div>
             <div className="flex items-center gap-4">
-              <button
-                onClick={() => setIsAdmin(!isAdmin)}
-                className={`px-4 py-2 rounded-md text-sm font-medium ${
-                  isAdmin 
-                    ? 'bg-red-600 text-white hover:bg-red-700' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                {isAdmin ? 'Admin Mode' : 'Switch to Admin'}
-              </button>
-              {isAdmin && (
-                <button
-                  onClick={() => setShowUploadForm(!showUploadForm)}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 flex items-center gap-2"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                  Upload Document
-                </button>
-              )}
+              <div className="mr-6">
+                {/* Leftside: Locale Switcher */}
+                <LocaleSwitcher />
+              </div>
             </div>
           </div>
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Upload Form */}
-        {isAdmin && showUploadForm && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Upload New Document</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Document Title *
-                  </label>
-                  <input
-                    type="text"
-                    value={uploadForm.title}
-                    onChange={(e) => setUploadForm(prev => ({ ...prev, title: e.target.value }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Category *
-                  </label>
-                  <select
-                    value={uploadForm.category}
-                    onChange={(e) => setUploadForm(prev => ({ ...prev, category: e.target.value }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required
-                  >
-                    <option value="">Select Category</option>
-                    {categories.map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Author
-                  </label>
-                  <input
-                    type="text"
-                    value={uploadForm.author}
-                    onChange={(e) => setUploadForm(prev => ({ ...prev, author: e.target.value }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    PDF File *
-                  </label>
-                  <input
-                    type="file"
-                    accept=".pdf"
-                    onChange={handleFileUpload}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Description
-                </label>
-                <textarea
-                  value={uploadForm.description}
-                  onChange={(e) => setUploadForm(prev => ({ ...prev, description: e.target.value }))}
-                  rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div className="flex gap-3">
-                <button
-                  type="submit"
-                  className="bg-blue-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
-                >
-                  Upload Document
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowUploadForm(false)}
-                  className="bg-gray-300 text-gray-700 px-6 py-2 rounded-md text-sm font-medium hover:bg-gray-400"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
 
         {/* Filters */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="flex flex-wrap gap-4 items-center">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter.label')}</label>
               <select className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">All Categories</option>
+                <option value="">{t('filter.all')}</option>
                 {categories.map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('dateRange.label')}</label>
               <select className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">All Time</option>
+                <option value="">{t('dateRange.all')}</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('search.label')}</label>
               <input
                 type="text"
-                placeholder="Search documents..."
+                placeholder={t('search.placeholder')}
                 className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -282,8 +109,8 @@ export default function ReportListingPage() {
         {/* Documents List */}
         <div className="bg-white rounded-lg shadow-md">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">All Documents</h2>
-            <p className="text-sm text-gray-600 mt-1">Showing {documents.length} documents</p>
+            <h2 className="text-lg font-semibold text-gray-900">{t('docList.label')}</h2>
+            <p className="text-sm text-gray-600 mt-1">{t('docList.showing', { count: documents.length })}</p>
           </div>
           <div className="divide-y divide-gray-200">
             {documents.map((doc) => (
@@ -322,49 +149,30 @@ export default function ReportListingPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <button 
-                      onClick={() => handleViewDocument(doc)}
-                      className="p-2 text-gray-400 hover:text-gray-600 rounded-md hover:bg-gray-100"
-                      title="View Document"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                    </button>
-                    <button 
-                      onClick={() => handleDownloadDocument(doc)}
-                      className="p-2 text-gray-400 hover:text-gray-600 rounded-md hover:bg-gray-100"
-                      title="Download Document"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                      </svg>
-                    </button>
-                  <button 
-                    onClick={() => handleReadDocument()}
-                    className="p-2 text-gray-400 hover:text-gray-600 rounded-md hover:bg-gray-100"
-                    title="Read Interactive"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </button>
-                </div>
+                      <button 
+                        className="p-2 text-gray-400 hover:text-gray-600 rounded-md hover:bg-gray-100"
+                        title={t('docList.download')}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                      </button>
+                      <Link 
+                        className="p-2 text-gray-400 hover:text-gray-600 rounded-md hover:bg-gray-100"
+                        title={t('docList.readInteractiveAlt')}
+                        href={`./reports/${doc.slug}`}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </div>
             ))}
           </div>
         </div>
       </div>
-
-      {/* PDF Viewer Modal */}
-      {selectedDocument && (
-        <PDFViewer
-          fileUrl={selectedDocument.fileUrl}
-          onClose={() => setSelectedDocument(null)}
-        />
-      )}
     </div>
   );
 }
