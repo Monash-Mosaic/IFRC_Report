@@ -401,11 +401,25 @@ def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
   return builder
 
 # %%
-# if __name__ == "__main__":
+if __name__ == "__main__":
+    parser = ArgumentParser(description="Convert WDR25 XML to Markdown")
+    parser.add_argument("input_xml", help="Path to input XML file")
+    parser.add_argument("output_md", help="Path to output Markdown file")
+    parser.add_argument("--story-index", type=int, default=2, help="Index of story element (default: 2)")
+    args = parser.parse_args()
 
-with open('./data/WDR25-CHAPTER-02-empty.xml', 'r', encoding='utf-8') as f:
-    xml = f.read()
-data = parse_xml_dom(xml)
-story = list(data)[2]
-builder = convert_to_markdown(story)
-builder.to_file('./output/chapter-02.mdx')
+    try:
+        with open(args.input_xml, 'r', encoding='utf-8') as f:
+            xml = f.read()
+    except FileNotFoundError:
+        print(f"Error: Input file '{args.input_xml}' not found.")
+        exit(1)
+
+    data = parse_xml_dom(xml)
+    stories = list(data)
+    if args.story_index < 0 or args.story_index >= len(stories):
+        print(f"Error: story-index {args.story_index} is out of bounds (0..{len(stories)-1})")
+        exit(1)
+    story = stories[args.story_index]
+    builder = convert_to_markdown(story)
+    builder.to_file(args.output_md)
