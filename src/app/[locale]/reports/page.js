@@ -2,6 +2,7 @@ import 'server-only'
 
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
 
 import { reportsByLocale } from '@/reports';
 import { Link } from '@/i18n/navigation';

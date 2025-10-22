@@ -56,14 +56,14 @@ export default function PDFViewer({ fileUrl, onClose }) {
         clearTimeout(selectionTimeoutRef.current);
       }
     };
-  }, [checkForTextSelection]);
+  }, []);
 
   useEffect(() => {
     // Save bookmarks to localStorage whenever they change
     localStorage.setItem('pdfBookmarks', JSON.stringify(bookmarks));
   }, [bookmarks]);
 
-  const checkForTextSelection = useCallback(() => {
+  const checkForTextSelection =() => {
     const selection = window.getSelection();
     const text = selection.toString().trim();
 
@@ -88,7 +88,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
       setSelectedText('');
       setCurrentSelection(null);
     }
-  }, [currentPage]);
+  };
 
   const handleSelectionChange = () => {
     // This will be called whenever the selection changes
