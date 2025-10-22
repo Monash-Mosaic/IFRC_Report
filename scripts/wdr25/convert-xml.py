@@ -230,7 +230,7 @@ class MarkdownBuilder:
         self.custom_components('SmallQuoteAuthor', content)
         return self
 
-    def splotlight(self, content: str) -> "MarkdownBuilder":
+    def spotlight(self, content: str) -> "MarkdownBuilder":
         self.custom_components('Spotlight', content)
         return self
 
