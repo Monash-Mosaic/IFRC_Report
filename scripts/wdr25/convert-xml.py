@@ -390,7 +390,7 @@ def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
       elif key == 'small-quote-author':
           builder.small_quote_author(value)
       elif key == 'h1-spotlight':
-          builder.splotlight(value)
+          builder.spotlight(value)
       elif key == 'h1-ebn':
           # TODO: what to do here?
           continue
