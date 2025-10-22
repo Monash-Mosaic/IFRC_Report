@@ -1,5 +1,3 @@
-import 'server-only'
-
 import { Menu, Bookmark, ChevronDown, ArrowLeft } from "lucide-react"
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -11,6 +9,7 @@ import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export async function generateMetadata({ params }) {
   const { locale, report } = await params
+  setRequestLocale(locale);
   const decodedReport = decodeURIComponent(report);
   const { title, description } = reportsByLocale[locale].reports[decodedReport];
   return {
@@ -30,7 +29,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ReportDetailPage({ params }) {
-	const { locale, report} = await params;
+	const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
   if (!hasLocale(Object.keys(reportsByLocale), locale) || !reportsByLocale[locale].reports[decodedReport]) {
     notFound()

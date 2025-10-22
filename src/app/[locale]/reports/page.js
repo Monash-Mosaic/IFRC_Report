@@ -1,6 +1,4 @@
-import 'server-only'
-
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale, getFormatter } from 'next-intl/server';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 
@@ -10,6 +8,7 @@ import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('ReportListingPage', locale);
   return {
     title: t('meta.title'),
@@ -28,25 +27,15 @@ export default async function ReportListingPage({ params }) {
   }
   setRequestLocale(locale);
   const t = await getTranslations('ReportListingPage', locale);
+  const formatter = await getFormatter({ locale });
 
-  const sizeFormatter = new Intl.NumberFormat([], {
-    style: 'unit',
-    unit: 'byte',
-    notation: 'compact',
-    unitDisplay: 'narrow',
-  });
-  const dateFormatter = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
   const documents = Object.entries(reportsByLocale[locale].reports).map(([reportKey, report], index) => ({
       id: index + 1,
       slug: reportKey,
       title: report.title,
       category: report.category,
-      date: dateFormatter.format(report.releaseDate),
-      size: sizeFormatter.format(report.reportFile.size),
+      date: formatter.dateTime(report.releaseDate, { year: 'numeric', month: '2-digit', day: '2-digit' }),
+      size: formatter.number(report.reportFile.size, { style: 'unit', unit: 'byte', notation: 'compact', unitDisplay: 'narrow' }),
       author: report.author,
       description: report.description,
       fileUrl: report.reportFile.url,

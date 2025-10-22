@@ -1,5 +1,3 @@
-import 'server-only'
-
 import { ArrowLeft } from "lucide-react"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { notFound } from 'next/navigation'
@@ -9,6 +7,7 @@ import { Link } from '@/i18n/navigation'
 
 export async function generateMetadata({ params }) {
   const { report, chapter, locale } = await params
+  setRequestLocale(locale);
   const decodedReport = decodeURIComponent(report);
   const decodedChapter = decodeURIComponent(chapter);
   const { title, subtitle } = reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter];
