@@ -1,6 +1,12 @@
 {
   "Home": {
-    "title": "Home Page",
-    "welcome": "Welcome to the IFRC Report"
+    "title": "الصفحة الرئيسية",
+    "welcome": "مرحبًا بك في تقرير الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر"
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "اختر اللغة"
+  },
+  "ReportChapterPage": {
+    "back": "Back"
   }
 }

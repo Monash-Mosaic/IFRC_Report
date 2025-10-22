@@ -4,6 +4,7 @@ import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
 import "./globals.css";
+import { getDirection } from "@/i18n/helper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,14 +26,15 @@ export function generateStaticParams() {
 }
 
 export default async function RootLayout({ children, params }) {
-  const { locale } = await params
+  const { locale } = await params;
+  const dir = getDirection(locale);
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
  
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={dir}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

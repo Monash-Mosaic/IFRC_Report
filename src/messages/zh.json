@@ -6,5 +6,11 @@
   "InteractivePage": {
     "title": "互动报告",
     "backToDocuments": "返回文档"
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "选择语言"
+  },
+  "ReportChapterPage": {
+    "back": "返回"
   }
 }

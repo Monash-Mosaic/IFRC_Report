@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`LocaleSwitcher renders LocaleSwitcher 1`] = `
+<div>
+  <select>
+    <option
+      data-testid="locale-switcher-value-en"
+      value="en"
+    >
+      🇬🇧 English
+    </option>
+    <option
+      data-testid="locale-switcher-value-fr"
+      value="fr"
+    >
+      🇫🇷 Français
+    </option>
+    <option
+      data-testid="locale-switcher-value-zh"
+      value="zh"
+    >
+      🇨🇳 中文
+    </option>
+    <option
+      data-testid="locale-switcher-value-ru"
+      value="ru"
+    >
+      🇷🇺 Русский
+    </option>
+    <option
+      data-testid="locale-switcher-value-ar"
+      value="ar"
+    >
+      🇸🇦 العربية
+    </option>
+  </select>
+</div>
+`;

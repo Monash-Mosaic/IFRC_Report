@@ -1,6 +1,9 @@
 {
   "Home": {
-    "title": "Home Page",
-    "welcome": "Welcome to the IFRC Report"
+    "title": "Page d'accueil",
+    "welcome": "Bienvenue dans le rapport IFRC"
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "Choisir la langue"
   }
 }

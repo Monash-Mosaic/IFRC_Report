@@ -6,5 +6,11 @@
   "InteractivePage": {
     "title": "Interactive Report",
     "backToDocuments": "Back to Documents"
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "Select Language"
+  },
+  "ReportChapterPage": {
+    "back": "Back"
   }
 }
