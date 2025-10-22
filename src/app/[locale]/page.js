@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 
-export default function Home() {
-  const t = useTranslations('Home');
+export default async function Home() {
+  const t = await getTranslations('Home');
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Navigation */}
