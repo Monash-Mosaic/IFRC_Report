@@ -382,8 +382,6 @@ def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
       elif key == 'h1-sidenote-context':
           builder.h1(value)
       elif key == 'sidenotes-contributions-first':
-          builder.quote(re.sub(r'\s+', ' ', "".join(value)))
-      elif key == 'sidenotes-contributions-first':
           builder.sidenotes(value)
       elif key == 'small-quote':
           builder.small_quote(value)
