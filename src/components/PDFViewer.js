@@ -63,7 +63,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
     localStorage.setItem('pdfBookmarks', JSON.stringify(bookmarks));
   }, [bookmarks]);
 
-  const checkForTextSelection =() => {
+  const checkForTextSelection = () => {
     const selection = window.getSelection();
     const text = selection.toString().trim();
 
