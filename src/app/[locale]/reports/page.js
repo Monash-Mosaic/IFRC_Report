@@ -8,7 +8,6 @@ import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  setRequestLocale(locale);
   const t = await getTranslations('ReportListingPage', locale);
   return {
     title: t('meta.title'),
@@ -62,12 +61,6 @@ export default async function ReportListingPage({ params }) {
             <div>
               <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
               <p className="text-gray-600 mt-1">{t('description')}</p>
-            </div>
-            <div className="flex items-center gap-4 text-gray-900">
-              <div className="mr-6">
-                {/* Leftside: Locale Switcher */}
-                <LocaleSwitcher />
-              </div>
             </div>
           </div>
         </div>

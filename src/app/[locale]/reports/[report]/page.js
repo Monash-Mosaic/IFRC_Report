@@ -9,7 +9,6 @@ import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export async function generateMetadata({ params }) {
   const { locale, report } = await params;
-  setRequestLocale(locale);
   const decodedReport = decodeURIComponent(report);
   const { title, description } = reportsByLocale[locale].reports[decodedReport];
   return {
@@ -55,18 +54,9 @@ export default async function ReportDetailPage({ params }) {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
-        <Link
-          href={'./'}
-          className="flex justify-between items-center gap-2 text-black hover:text-gray-600 mb-8"
-        >
-          <div className="flex items-center gap-2">
-            <ArrowLeft className="w-5 h-5" />
-            <p className="font-semibold">{t('backToDocuments')}</p>
-          </div>
-          <div className="flex items-center gap-4">
-            {/* LocaleSwitcher component */}
-            <LocaleSwitcher />
-          </div>
+        <Link href={'./'} className="flex items-center gap-2 text-black hover:text-gray-600 mb-8">
+          <ArrowLeft className="w-5 h-5" />
+          <p className="font-semibold">{t('backToDocuments')}</p>
         </Link>
 
         {/* Header */}

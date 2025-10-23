@@ -1,7 +1,43 @@
 {
   "Home": {
-    "title": "主页",
-    "welcome": "欢迎来到IFRC报告"
+    "meta": {
+      "title": "国际红十字报告主页",
+      "description": "欢迎来到IFRC报告"
+    },
+    "nav": {
+      "logoAlt": "国际红十字与红新月联合会标志",
+      "brand": "国际红十字报告"
+    },
+    "hero": {
+      "globeAlt": "国际红十字地球仪",
+      "title": "国际红十字报告系统",
+      "description": "国际红十字与红新月联合会的综合文档管理和报告平台。访问、分析和协作人道主义报告和出版物。"
+    },
+    "cta": {
+      "browseDocuments": "浏览文档",
+      "documentsIconAlt": "文档图标"
+    },
+    "features": {
+      "document": {
+        "title": "文档管理",
+        "description": "使用高级过滤和搜索功能组织和分类报告。",
+        "iconAlt": "文档图标"
+      },
+      "global": {
+        "title": "全球访问",
+        "description": "从世界任何地方访问人道主义报告和出版物。",
+        "iconAlt": "全球图标"
+      },
+      "analytics": {
+        "title": "高级分析",
+        "description": "分析全面的人道主义数据中的趋势和洞察。",
+        "iconAlt": "分析图标"
+      }
+    },
+    "footer": {
+      "copyright": "© {year} 国际红十字报告系统。保留所有权利。",
+      "orgFull": "国际红十字与红新月联合会"
+    }
   },
   "ReportListingPage": {
     "meta": {

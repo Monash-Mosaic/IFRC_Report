@@ -7,7 +7,6 @@ import { Link } from '@/i18n/navigation';
 
 export async function generateMetadata({ params }) {
   const { report, chapter, locale } = await params;
-  setRequestLocale(locale);
   const decodedReport = decodeURIComponent(report);
   const decodedChapter = decodeURIComponent(chapter);
   const { title, subtitle } =

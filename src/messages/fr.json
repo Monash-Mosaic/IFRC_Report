@@ -1,7 +1,43 @@
 {
   "Home": {
-    "title": "Page d'accueil",
-    "welcome": "Bienvenue dans le rapport IFRC"
+    "meta": {
+      "title": "Page d'accueil des rapports de l'IFRC",
+      "description": "Bienvenue dans le rapport IFRC"
+    },
+    "nav": {
+      "logoAlt": "Logo de l'IFRC",
+      "brand": "Rapports de l'IFRC"
+    },
+    "hero": {
+      "globeAlt": "Globe de l'IFRC",
+      "title": "Système de rapports de l'IFRC",
+      "description": "Plateforme complète de gestion de documents et de rapports pour la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Accédez, analysez et collaborez sur des rapports et des publications humanitaires."
+    },
+    "cta": {
+      "browseDocuments": "Parcourir les documents",
+      "documentsIconAlt": "Icône des documents"
+    },
+    "features": {
+      "document": {
+        "title": "Gestion des documents",
+        "description": "Organisez et catégorisez les rapports avec des fonctionnalités avancées de filtrage et de recherche.",
+        "iconAlt": "Icône de document"
+      },
+      "global": {
+        "title": "Accès mondial",
+        "description": "Accédez aux rapports et publications humanitaires depuis n'importe où dans le monde.",
+        "iconAlt": "Icône du globe"
+      },
+      "analytics": {
+        "title": "Analyses avancées",
+        "description": "Analysez les tendances et les enseignements tirés de données humanitaires exhaustives.",
+        "iconAlt": "Icône d'analyse"
+      }
+    },
+    "footer": {
+      "copyright": "© {year} Système de rapports de l'IFRC. Tous droits réservés.",
+      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge"
+    }
   },
   "ReportListingPage": {
     "meta": {

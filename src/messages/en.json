@@ -1,7 +1,43 @@
 {
   "Home": {
-    "title": "Home Page",
-    "welcome": "Welcome to the IFRC Report"
+    "meta": {
+      "title": "IFRC Reports Homepage",
+      "description": "Welcome to the IFRC Report"
+    },
+    "nav": {
+      "logoAlt": "IFRC Logo",
+      "brand": "IFRC Reports"
+    },
+    "hero": {
+      "globeAlt": "IFRC Globe",
+      "title": "IFRC Report System",
+      "description": "Comprehensive document management and reporting platform for the International Federation of Red Cross and Red Crescent Societies. Access, analyze, and collaborate on humanitarian reports and publications."
+    },
+    "cta": {
+      "browseDocuments": "Browse Documents",
+      "documentsIconAlt": "Documents icon"
+    },
+    "features": {
+      "document": {
+        "title": "Document Management",
+        "description": "Organize and categorize reports with advanced filtering and search capabilities.",
+        "iconAlt": "Document icon"
+      },
+      "global": {
+        "title": "Global Access",
+        "description": "Access humanitarian reports and publications from anywhere in the world.",
+        "iconAlt": "Global icon"
+      },
+      "analytics": {
+        "title": "Advanced Analytics",
+        "description": "Analyze trends and insights from comprehensive humanitarian data.",
+        "iconAlt": "Analytics icon"
+      }
+    },
+    "footer": {
+      "copyright": "© {year} IFRC Report System. All rights reserved.",
+      "orgFull": "International Federation of Red Cross and Red Crescent Societies"
+    }
   },
   "ReportListingPage": {
     "meta": {
