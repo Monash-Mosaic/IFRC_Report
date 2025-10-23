@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import Image from 'next/image';
+import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
-import LocaleSwitcher from "@/components/LocaleSwitcher";
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export default async function Home() {
   const t = await getTranslations('Home');
@@ -51,12 +51,11 @@ export default async function Home() {
               height={120}
               className="mx-auto mb-6 opacity-80"
             />
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              IFRC Report System
-            </h1>
+            <h1 className="text-5xl font-bold text-gray-900 mb-6">IFRC Report System</h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Comprehensive document management and reporting platform for the International Federation of Red Cross and Red Crescent Societies. 
-              Access, analyze, and collaborate on humanitarian reports and publications.
+              Comprehensive document management and reporting platform for the International
+              Federation of Red Cross and Red Crescent Societies. Access, analyze, and collaborate
+              on humanitarian reports and publications.
             </p>
           </div>
 
@@ -65,12 +64,7 @@ export default async function Home() {
               href="/documents"
               className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-200 flex items-center gap-3 shadow-lg hover:shadow-xl"
             >
-              <Image
-                src="/file.svg"
-                alt="Documents icon"
-                width={24}
-                height={24}
-              />
+              <Image src="/file.svg" alt="Documents icon" width={24} height={24} />
               Browse Documents
             </Link>
             <Link
@@ -94,7 +88,9 @@ export default async function Home() {
                 />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Document Management</h3>
-              <p className="text-gray-600">Organize and categorize reports with advanced filtering and search capabilities.</p>
+              <p className="text-gray-600">
+                Organize and categorize reports with advanced filtering and search capabilities.
+              </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -107,7 +103,9 @@ export default async function Home() {
                 />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Global Access</h3>
-              <p className="text-gray-600">Access humanitarian reports and publications from anywhere in the world.</p>
+              <p className="text-gray-600">
+                Access humanitarian reports and publications from anywhere in the world.
+              </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -120,7 +118,9 @@ export default async function Home() {
                 />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Advanced Analytics</h3>
-              <p className="text-gray-600">Analyze trends and insights from comprehensive humanitarian data.</p>
+              <p className="text-gray-600">
+                Analyze trends and insights from comprehensive humanitarian data.
+              </p>
             </div>
           </div>
         </div>
@@ -131,7 +131,9 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
             <p>&copy; 2025 IFRC Report System. All rights reserved.</p>
-            <p className="mt-2 text-sm">International Federation of Red Cross and Red Crescent Societies</p>
+            <p className="mt-2 text-sm">
+              International Federation of Red Cross and Red Crescent Societies
+            </p>
           </div>
         </div>
       </footer>

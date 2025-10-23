@@ -9,28 +9,28 @@ export const routing = defineRouting({
       fr: '/documents',
       zh: '/文件',
       ar: '/مستندات',
-      ru: '/документы'
+      ru: '/документы',
     },
     '/reports': {
       en: '/reports',
       fr: '/reports',
       zh: '/报告',
       ar: '/تقارير',
-      ru: '/отчеты'
+      ru: '/отчеты',
     },
     '/reports/[report]': {
       en: '/reports/[report]',
       fr: '/reports/[report]',
       zh: '/报告/[report]',
       ar: '/تقارير/[report]',
-      ru: '/отчеты/[report]'
+      ru: '/отчеты/[report]',
     },
     '/reports/[report]/[chapter]': {
       en: '/reports/[report]/[chapter]',
       fr: '/reports/[report]/[chapter]',
       zh: '/报告/[report]/[chapter]',
       ar: '/تقارير/[report]/[chapter]',
-      ru: '/отчеты/[report]/[chapter]'
-    }
-  }
+      ru: '/отчеты/[report]/[chapter]',
+    },
+  },
 });

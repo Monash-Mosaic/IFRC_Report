@@ -20,14 +20,22 @@ export default function LocaleSwitcher() {
     }
   };
   return (
-      <select
-        value={locale}
-        onChange={e => switchLocale(e.target.value)}>
-          <option data-testid="locale-switcher-value-en" value="en">🇬🇧 English</option>
-          <option data-testid="locale-switcher-value-fr"  value="fr">🇫🇷 Français</option>
-          <option data-testid="locale-switcher-value-zh"  value="zh">🇨🇳 中文</option>
-          <option data-testid="locale-switcher-value-ru"  value="ru">🇷🇺 Русский</option>
-          <option data-testid="locale-switcher-value-ar"  value="ar">🇸🇦 العربية</option>
-      </select>  
+    <select value={locale} onChange={(e) => switchLocale(e.target.value)}>
+      <option data-testid="locale-switcher-value-en" value="en">
+        🇬🇧 English
+      </option>
+      <option data-testid="locale-switcher-value-fr" value="fr">
+        🇫🇷 Français
+      </option>
+      <option data-testid="locale-switcher-value-zh" value="zh">
+        🇨🇳 中文
+      </option>
+      <option data-testid="locale-switcher-value-ru" value="ru">
+        🇷🇺 Русский
+      </option>
+      <option data-testid="locale-switcher-value-ar" value="ar">
+        🇸🇦 العربية
+      </option>
+    </select>
   );
 }

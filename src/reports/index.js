@@ -4,7 +4,6 @@ import * as frReports from './fr';
 import * as ruReports from './ru';
 import * as zhReports from './zh';
 
-
 // For simplicity, we will hardcode locale and report and chapter combinations.
 export const reportsByLocale = {
   ar: arReports,

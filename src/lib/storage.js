@@ -1,5 +1,4 @@
-import { db } from "./db";
-
+import { db } from './db';
 
 export async function getBookmarks() {
   const all = await db.bookmarks.toArray();
@@ -7,12 +6,11 @@ export async function getBookmarks() {
 }
 
 export async function toggleBookmark(sectionName) {
-  const existing = await db.bookmarks.where("sectionName").equals(sectionName).first();
+  const existing = await db.bookmarks.where('sectionName').equals(sectionName).first();
 
   if (existing) {
     await db.bookmarks.delete(existing.id);
-  }
-  else {
+  } else {
     await db.bookmarks.add({ sectionName });
   }
   return getBookmarks();

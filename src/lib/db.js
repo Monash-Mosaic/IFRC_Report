@@ -1,12 +1,11 @@
-"use client"
+'use client';
 
 import Dexie from 'dexie';
 
-export const db = new Dexie("ifrcReportDB");
+export const db = new Dexie('ifrcReportDB');
 
 db.version(1).stores({
-    bookmarks: '++id, sectionName',
-
+  bookmarks: '++id, sectionName',
 });
 
 /* TODO:

@@ -1,4 +1,3 @@
-
 /**
  * Determines if the given locale is a right-to-left (RTL) language.
  *

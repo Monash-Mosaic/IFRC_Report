@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 /**
  * Custom MDX components to be used within MDX files.
@@ -37,7 +37,7 @@ const components = {
   // em: (props) => <em {...props} />,
   // del: (props) => <del {...props} />,
   // inlineCode: (props) => <code {...props} />,
-  image: ({ alt, ...props }) => <Image alt={alt} {...props} />
+  image: ({ alt, ...props }) => <Image alt={alt} {...props} />,
 };
 
 export function useMDXComponents() {
