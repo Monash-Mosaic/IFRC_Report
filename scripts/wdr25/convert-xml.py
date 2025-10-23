@@ -71,7 +71,7 @@ class MarkdownBuilder:
     >>>     .paragraph("Links: ")  # Inline link next
     >>>     .link("Homepage", "https://example.com")
     >>> ).to_string()
-    >>>  
+    >>>
     >>> print(doc)
 
     """
@@ -97,7 +97,7 @@ class MarkdownBuilder:
 
     def subtitle(self, text: str) -> "MarkdownBuilder":
         text = _normalise_text(text)
-        self.metadata['subtitle'] = text        
+        self.metadata['subtitle'] = text
         return self
 
     # Headings
@@ -238,6 +238,10 @@ class MarkdownBuilder:
         self.custom_components('Contributors', content)
         return self
 
+    def chapter_quote(self, content: str) -> "MarkdownBuilder":
+        self.custom_components('ChapterQuote', content)
+        return self
+
     def contributor_spotlight(self, name: str, role: str, position: str = None) -> "MarkdownBuilder":
         name = _normalise_text(name)
         role = _normalise_text(role)
@@ -360,7 +364,7 @@ def convert_to_markdown(xml_el: etree._Element) -> Tuple[MarkdownBuilder, set]:
           last_values.append(value)
 
       elif key == 'chapter-quote':
-          builder.quote("".join(value))
+          builder.chapter_quote(value)
       elif key in ['introduction', 'normal']:
           builder.paragraph(re.sub(r'\s+', ' ', "".join(value)))
       elif key in ['h1', 'h1-c1', 'h1c2']:

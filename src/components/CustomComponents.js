@@ -4,7 +4,16 @@
 
 export function Contributors({ children, ...props }) {
   return (
-    <div role="group" aria-label="Contributors" {...props}>
+    <div
+      role="group"
+      aria-label="Contributors"
+      style={{
+        borderBottom: "2px solid #ee2435",
+        paddingBottom: "4px",
+        fontWeight: "600"
+      }}
+      {...props}
+    >
       {children}
     </div>
   );
@@ -12,7 +21,7 @@ export function Contributors({ children, ...props }) {
 
 export function ContributorRole({ children, ...props }) {
   return (
-    <div style={{ fontStyle: 'italic' }} {...props}>
+    <div style={{ fontStyle: "italic" }} {...props}>
       {children}
     </div>
   );
@@ -20,17 +29,33 @@ export function ContributorRole({ children, ...props }) {
 
 export function Spotlight({ children, ...props }) {
   return (
-    <aside
+    <div
       style={{
-        padding: '1rem',
-        border: '1px solid #e5e7eb',
-        borderRadius: 8,
-        background: '#fafafa',
+        display: "grid",
+        gridTemplateColumns: "5% 95%",
+        width: "100%",
+        height: "auto"
       }}
-      {...props}
     >
-      {children}
-    </aside>
+      <div
+        style={{
+          background: "#ee2435",
+          transform: "translateY(20px)"
+        }}
+      ></div>
+      <div
+        style={{
+          alignSelf: "start",
+          paddingLeft: "2vw",
+          background: "#a4def8ff",
+          fontWeight: "700",
+          fontSize: "2.25rem"
+        }}
+        {...props}
+      >
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -38,9 +63,9 @@ export function SideNote({ children, ...props }) {
   return (
     <aside
       style={{
-        padding: '0.75rem',
-        borderLeft: '4px solid #93c5fd',
-        background: '#f8fafc',
+        padding: "0.75rem",
+        borderLeft: "4px solid #ee2435",
+        background: "#f8fafc"
       }}
       {...props}
     >
@@ -53,10 +78,12 @@ export function SmallQuote({ children, ...props }) {
   return (
     <blockquote
       style={{
-        margin: '1rem 0',
-        paddingLeft: '1rem',
-        borderLeft: '4px solid #e5e7eb',
-        fontStyle: 'italic',
+        margin: "1rem 0",
+        fontSize: "1.5rem",
+        fontFamily: "Math",
+        fontWeight: 600,
+        paddingLeft: "1rem",
+        borderLeft: "4px solid #ee2435"
       }}
       {...props}
     >
@@ -67,7 +94,14 @@ export function SmallQuote({ children, ...props }) {
 
 export function SmallQuoteAuthor({ children, ...props }) {
   return (
-    <div style={{ textAlign: 'right', fontWeight: 600 }} {...props}>
+    <div
+      style={{
+        textAlign: "left",
+        fontWeight: 200,
+        borderTop: "2px solid #ee2435"
+      }}
+      {...props}
+    >
       {children}
     </div>
   );
@@ -77,10 +111,10 @@ export function ContributorSpotlight({ children, ...props }) {
   return (
     <section
       style={{
-        padding: '1rem',
-        border: '1px dashed #d1d5db',
+        padding: "1rem",
+        border: "1px dashed #d1d5db",
         borderRadius: 8,
-        background: '#ffffff',
+        background: "#ffffff"
       }}
       {...props}
     >
@@ -99,7 +133,7 @@ export function ContributorSpotlightName({ children, ...props }) {
 
 export function ContributorSpotlightPosition({ children, ...props }) {
   return (
-    <div style={{ color: '#6b7280' }} {...props}>
+    <div style={{ color: "#6b7280" }} {...props}>
       {children}
     </div>
   );
@@ -107,7 +141,15 @@ export function ContributorSpotlightPosition({ children, ...props }) {
 
 export function ContributorSpotlightRole({ children, ...props }) {
   return (
-    <div style={{ fontStyle: 'italic' }} {...props}>
+    <div style={{ fontStyle: "italic" }} {...props}>
+      {children}
+    </div>
+  );
+}
+
+export function ChapterQuote({ children, ...props }) {
+  return (
+    <div style={{ color: "#6b7280", fontStyle: "italic" }} {...props}>
       {children}
     </div>
   );
@@ -118,12 +160,13 @@ const CustomComponents = {
   ContributorRole,
   Spotlight,
   SideNote,
+  ChapterQuote,
   SmallQuote,
   SmallQuoteAuthor,
   ContributorSpotlight,
   ContributorSpotlightName,
   ContributorSpotlightPosition,
-  ContributorSpotlightRole,
+  ContributorSpotlightRole
 };
 
 export default CustomComponents;
