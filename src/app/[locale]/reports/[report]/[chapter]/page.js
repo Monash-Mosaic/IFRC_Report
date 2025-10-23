@@ -1,9 +1,9 @@
-import { ArrowLeft } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { ArrowLeft } from 'lucide-react';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
-import { reportsByLocale } from "@/reports";
-import { Link } from "@/i18n/navigation";
+import { reportsByLocale } from '@/reports';
+import { Link } from '@/i18n/navigation';
 
 export async function generateMetadata({ params }) {
   const { report, chapter, locale } = await params;
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
     reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter];
   return {
     title: title,
-    description: subtitle
+    description: subtitle,
   };
 }
 
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
         params.push({
           locale,
           report: reportKey,
-          chapter: chapterKey
+          chapter: chapterKey,
         });
       }
     }
@@ -48,37 +48,29 @@ export default async function ReportChapterPage({ params }) {
     notFound();
   }
   setRequestLocale(locale);
-  const { chapters, title: reportTile } =
-    reportsByLocale[locale].reports[decodedReport];
+  const { chapters, title: reportTile } = reportsByLocale[locale].reports[decodedReport];
   const {
     component: Chapter,
     title: chapterTitle,
-    subtitle: chapterSubTitle
+    subtitle: chapterSubTitle,
   } = chapters[decodedChapter];
-  const t = await getTranslations("ReportChapterPage", locale);
+  const t = await getTranslations('ReportChapterPage', locale);
 
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="max-w-4xl mx-auto">
-        <Link
-          className="flex items-center gap-2 text-black hover:text-gray-600 mb-8"
-          href={`./`}
-        >
+        <Link className="flex items-center gap-2 text-black hover:text-gray-600 mb-8" href={`./`}>
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-semibold">{t("back")}</span>
+          <span className="font-semibold">{t('back')}</span>
         </Link>
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
         </div>
 
-        <div className="mb-8 text-black text-4xl font-extrabold">
-          {chapterTitle}
-        </div>
+        <div className="mb-8 text-black text-4xl font-extrabold">{chapterTitle}</div>
 
-        <div className="mb-8 text-black text-3xl font-bold">
-          {chapterSubTitle}
-        </div>
+        <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 
         <div className="mb-12">
           <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
