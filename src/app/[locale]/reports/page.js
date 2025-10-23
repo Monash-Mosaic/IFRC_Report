@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 
 import { reportsByLocale } from '@/reports';
 import { Link } from '@/i18n/navigation';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;

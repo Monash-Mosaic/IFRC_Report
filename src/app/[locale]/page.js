@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
+
+import { Link } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export async function generateMetadata({ params }) {
@@ -10,6 +12,10 @@ export async function generateMetadata({ params }) {
     title: t('meta.title'),
     description: t('meta.description'),
   };
+}
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function Home({ params }) {
