@@ -2,7 +2,12 @@
 
 exports[`LocaleSwitcher renders LocaleSwitcher 1`] = `
 <div>
-  <select>
+  <select
+    aria-label="Select language"
+    id="locale-switcher"
+    name="locale"
+    title="Select language"
+  >
     <option
       data-testid="locale-switcher-value-en"
       value="en"

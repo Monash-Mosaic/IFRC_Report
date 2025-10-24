@@ -76,5 +76,9 @@
   },
   "ReportChapterPage": {
     "back": "عودة"
+  },
+  "LocaleSwitcher": {
+    "ariaLabel": "اختر اللغة",
+    "title": "اختر اللغة"
   }
 }

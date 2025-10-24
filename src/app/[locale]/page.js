@@ -82,9 +82,9 @@ export default async function Home({ params }) {
                   className="text-blue-600"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="text-lg font-semibold text-gray-900 mb-2">
                 {t('features.document.title')}
-              </h3>
+              </div>
               <p className="text-gray-600">{t('features.document.description')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -97,9 +97,9 @@ export default async function Home({ params }) {
                   className="text-green-600"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="text-lg font-semibold text-gray-900 mb-2">
                 {t('features.global.title')}
-              </h3>
+              </div>
               <p className="text-gray-600">{t('features.global.description')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
@@ -112,9 +112,9 @@ export default async function Home({ params }) {
                   className="text-purple-600"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="text-lg font-semibold text-gray-900 mb-2">
                 {t('features.analytics.title')}
-              </h3>
+              </div>
               <p className="text-gray-600">{t('features.analytics.description')}</p>
             </div>
           </div>

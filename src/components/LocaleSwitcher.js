@@ -1,12 +1,13 @@
 'use client';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function LocaleSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations('LocaleSwitcher');
 
   /**
    * Switches the application's locale to the specified new locale.
@@ -20,7 +21,14 @@ export default function LocaleSwitcher() {
     }
   };
   return (
-    <select value={locale} onChange={(e) => switchLocale(e.target.value)}>
+    <select
+      id="locale-switcher"
+      name="locale"
+      value={locale}
+      onChange={(e) => switchLocale(e.target.value)}
+      aria-label={t('ariaLabel')}
+      title={t('title')}
+    >
       <option data-testid="locale-switcher-value-en" value="en">
         🇬🇧 English
       </option>

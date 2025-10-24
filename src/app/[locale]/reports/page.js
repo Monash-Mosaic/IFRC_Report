@@ -54,12 +54,20 @@ export default async function ReportListingPage({ params }) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header
+        className="bg-white shadow-sm border-b"
+        aria-labelledby="page-title"
+        aria-describedby="page-description"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-              <p className="text-gray-600 mt-1">{t('description')}</p>
+              <h1 id="page-title" className="text-3xl font-bold text-gray-900">
+                {t('title')}
+              </h1>
+              <p id="page-description" className="text-gray-600 mt-1">
+                {t('description')}
+              </p>
             </div>
           </div>
         </div>
@@ -67,13 +75,17 @@ export default async function ReportListingPage({ params }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <div className="flex flex-wrap gap-4 items-center">
+        <form className="bg-white rounded-lg shadow-md p-6 mb-8" aria-label={t('filter.label')}>
+          <div className="flex flex-wrap gap-4 items-end">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="category-filter" className="block text-sm font-medium text-gray-700 mb-1">
                 {t('filter.label')}
               </label>
-              <select className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select
+                id="category-filter"
+                name="category"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <option value="">{t('filter.all')}</option>
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -82,29 +94,39 @@ export default async function ReportListingPage({ params }) {
                 ))}
               </select>
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="date-range" className="block text-sm font-medium text-gray-700 mb-1">
                 {t('dateRange.label')}
               </label>
-              <select className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select
+                id="date-range"
+                name="dateRange"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
                 <option value="">{t('dateRange.all')}</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
               </select>
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="search-input" className="block text-sm font-medium text-gray-700 mb-1">
                 {t('search.label')}
               </label>
               <input
-                type="text"
+                id="search-input"
+                name="q"
+                type="search"
+                inputMode="search"
+                autoComplete="off"
                 placeholder={t('search.placeholder')}
                 className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
-        </div>
+        </form>
 
         {/* Documents List */}
         <div className="bg-white rounded-lg shadow-md">
