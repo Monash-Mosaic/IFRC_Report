@@ -4,7 +4,18 @@ import createMDX from '@next/mdx';
 const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+  options: {
+    rehypePlugins: [
+      ['rehype-slug', {}],
+      ['rehype-autolink-headings', {
+        behavior: 'wrap',
+        content: {
+          type: 'text',
+          value: ' 🔗',
+        },
+      }],
+    ]
+  }
 });
 
 /** @type {import('next').NextConfig} */
