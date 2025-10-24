@@ -1,0 +1,84 @@
+{
+  "Home": {
+    "meta": {
+      "title": "Page d'accueil des rapports de l'IFRC",
+      "description": "Bienvenue dans le rapport IFRC"
+    },
+    "nav": {
+      "logoAlt": "Logo de l'IFRC",
+      "brand": "Rapports de l'IFRC"
+    },
+    "hero": {
+      "globeAlt": "Globe de l'IFRC",
+      "title": "Système de rapports de l'IFRC",
+      "description": "Plateforme complète de gestion de documents et de rapports pour la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Accédez, analysez et collaborez sur des rapports et des publications humanitaires."
+    },
+    "cta": {
+      "browseDocuments": "Parcourir les documents",
+      "documentsIconAlt": "Icône des documents"
+    },
+    "features": {
+      "document": {
+        "title": "Gestion des documents",
+        "description": "Organisez et catégorisez les rapports avec des fonctionnalités avancées de filtrage et de recherche.",
+        "iconAlt": "Icône de document"
+      },
+      "global": {
+        "title": "Accès mondial",
+        "description": "Accédez aux rapports et publications humanitaires depuis n'importe où dans le monde.",
+        "iconAlt": "Icône du globe"
+      },
+      "analytics": {
+        "title": "Analyses avancées",
+        "description": "Analysez les tendances et les enseignements tirés de données humanitaires exhaustives.",
+        "iconAlt": "Icône d'analyse"
+      }
+    },
+    "footer": {
+      "copyright": "© {year} Système de rapports de l'IFRC. Tous droits réservés.",
+      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge"
+    }
+  },
+  "ReportListingPage": {
+    "meta": {
+      "title": "Rapports et publications",
+      "description": "Accéder aux rapports et publications de l'IFRC"
+    },
+    "title": "Rapports et publications",
+    "description": "Accéder aux rapports et publications de l'IFRC",
+    "filter": {
+      "label": "Catégorie",
+      "all": "Toutes les catégories"
+    },
+    "dateRange": {
+      "label": "Plage de dates",
+      "all": "Toutes les dates"
+    },
+    "search": {
+      "label": "Rechercher",
+      "placeholder": "Rechercher des rapports…"
+    },
+    "docList": {
+      "label": "Tous les rapports",
+      "showing": "{count, plural, =0 {Aucun rapport trouvé} =1 {Affichage de # rapport} other {Affichage de # rapports}}",
+      "download": "Télécharger le rapport",
+      "readInteractiveAlt": "Lire le rapport interactif"
+    }
+  },
+  "ReportDetailPage": {
+    "backToDocuments": "Retour aux rapports",
+    "tableOfContent": "Table des matières",
+    "bookmark": "Marque-page",
+    "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
+    "sections": {
+      "continue": "Continuer"
+    }
+  },
+  "ReportChapterPage": {
+    "back": "Retour"
+  },
+  "LocaleSwitcher": {
+    "ariaLabel": "Sélectionnez la langue",
+    "title": "Sélectionnez la langue"
+  }
+}

@@ -3,7 +3,7 @@
 import { Menu, Bookmark, ChevronDown, ArrowLeft } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { getBookmarks, toggleBookmark } from "../utils/storage"
+import { getBookmarks, toggleBookmark } from "@/lib/storage"
 
 const sections = [
 	{

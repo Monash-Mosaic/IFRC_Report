@@ -1,0 +1,84 @@
+{
+  "Home": {
+    "meta": {
+      "title": "国际红十字报告主页",
+      "description": "欢迎来到IFRC报告"
+    },
+    "nav": {
+      "logoAlt": "国际红十字与红新月联合会标志",
+      "brand": "国际红十字报告"
+    },
+    "hero": {
+      "globeAlt": "国际红十字地球仪",
+      "title": "国际红十字报告系统",
+      "description": "国际红十字与红新月联合会的综合文档管理和报告平台。访问、分析和协作人道主义报告和出版物。"
+    },
+    "cta": {
+      "browseDocuments": "浏览文档",
+      "documentsIconAlt": "文档图标"
+    },
+    "features": {
+      "document": {
+        "title": "文档管理",
+        "description": "使用高级过滤和搜索功能组织和分类报告。",
+        "iconAlt": "文档图标"
+      },
+      "global": {
+        "title": "全球访问",
+        "description": "从世界任何地方访问人道主义报告和出版物。",
+        "iconAlt": "全球图标"
+      },
+      "analytics": {
+        "title": "高级分析",
+        "description": "分析全面的人道主义数据中的趋势和洞察。",
+        "iconAlt": "分析图标"
+      }
+    },
+    "footer": {
+      "copyright": "© {year} 国际红十字报告系统。保留所有权利。",
+      "orgFull": "国际红十字与红新月联合会"
+    }
+  },
+  "ReportListingPage": {
+    "meta": {
+      "title": "报告与出版物",
+      "description": "访问和管理 IFRC 报告与出版物"
+    },
+    "title": "报告与出版物",
+    "description": "访问和管理 IFRC 报告与出版物",
+    "filter": {
+      "label": "类别",
+      "all": "所有类别"
+    },
+    "dateRange": {
+      "label": "日期范围",
+      "all": "全部时间"
+    },
+    "search": {
+      "label": "搜索",
+      "placeholder": "搜索报告…"
+    },
+    "docList": {
+      "label": "所有报告",
+      "showing": "{count, plural, =0 {未找到报告} =1 {显示 # 份报告} other {显示 # 份报告}}",
+      "download": "下载报告",
+      "readInteractiveAlt": "阅读交互式报告"
+    }
+  },
+  "ReportDetailPage": {
+    "backToDocuments": "返回报告",
+    "tableOfContent": "目录",
+    "bookmark": "书签",
+    "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
+    "sections": {
+      "continue": "继续"
+    }
+  },
+  "ReportChapterPage": {
+    "back": "返回"
+  },
+  "LocaleSwitcher": {
+    "ariaLabel": "选择语言",
+    "title": "选择语言"
+  }
+}
