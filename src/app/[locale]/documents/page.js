@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import PDFViewer from '../components/PDFViewer';
+import PDFViewer from '@/components/PDFViewer';
 import { useRouter } from 'next/navigation';
 
 export default function DocumentsPage() {

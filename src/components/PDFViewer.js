@@ -76,13 +76,13 @@ export default function PDFViewer({ fileUrl, onClose }) {
       setCurrentSelection({
         text: text,
         page: currentPage,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       });
 
       // Position the bookmark toolbar near the selection
       setSelectionPosition({
         x: rect.left + rect.width / 2,
-        y: rect.top - 10
+        y: rect.top - 10,
       });
     } else {
       setSelectedText('');
@@ -117,10 +117,10 @@ export default function PDFViewer({ fileUrl, onClose }) {
         note: bookmarkNote,
         page: currentPage,
         timestamp: currentSelection.timestamp,
-        documentUrl: fileUrl
+        documentUrl: fileUrl,
       };
 
-      setBookmarks(prev => [...prev, newBookmark]);
+      setBookmarks((prev) => [...prev, newBookmark]);
       setBookmarkNote('');
       setIsAddingBookmark(false);
       setCurrentSelection(null);
@@ -132,21 +132,21 @@ export default function PDFViewer({ fileUrl, onClose }) {
     if (bookmarkNote.trim()) {
       const newBookmark = {
         id: Date.now(),
-        text: "Manual bookmark",
+        text: 'Manual bookmark',
         note: bookmarkNote,
         page: currentPage,
         timestamp: Date.now(),
-        documentUrl: fileUrl
+        documentUrl: fileUrl,
       };
 
-      setBookmarks(prev => [...prev, newBookmark]);
+      setBookmarks((prev) => [...prev, newBookmark]);
       setBookmarkNote('');
       setShowManualBookmark(false);
     }
   };
 
   const removeBookmark = (bookmarkId) => {
-    setBookmarks(prev => prev.filter(b => b.id !== bookmarkId));
+    setBookmarks((prev) => prev.filter((b) => b.id !== bookmarkId));
   };
 
   const goToBookmark = (bookmark) => {
@@ -156,10 +156,13 @@ export default function PDFViewer({ fileUrl, onClose }) {
     // Try to communicate with the PDF iframe to go to specific page
     if (iframeRef.current) {
       try {
-        iframeRef.current.contentWindow.postMessage({
-          type: 'goToPage',
-          page: bookmark.page
-        }, '*');
+        iframeRef.current.contentWindow.postMessage(
+          {
+            type: 'goToPage',
+            page: bookmark.page,
+          },
+          '*'
+        );
       } catch (error) {
         console.log('Could not communicate with PDF iframe');
       }
@@ -205,7 +208,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
                 setCurrentSelection({
                   text: text,
                   page: currentPage,
-                  timestamp: Date.now()
+                  timestamp: Date.now(),
                 });
                 setSelectionPosition({ x: pageX, y: pageY });
               }
@@ -228,9 +231,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
           <div className="flex items-center gap-4">
             <h2 className="text-lg font-semibold text-gray-900">PDF Viewer</h2>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">
-                Page {currentPage}
-              </span>
+              <span className="text-sm text-gray-600">Page {currentPage}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -239,7 +240,12 @@ export default function PDFViewer({ fileUrl, onClose }) {
               className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
               </svg>
               Add Bookmark
             </button>
@@ -248,7 +254,12 @@ export default function PDFViewer({ fileUrl, onClose }) {
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                />
               </svg>
               Bookmarks ({bookmarks.length})
             </button>
@@ -280,7 +291,7 @@ export default function PDFViewer({ fileUrl, onClose }) {
                 style={{
                   left: `${selectionPosition.x}px`,
                   top: `${selectionPosition.y}px`,
-                  transform: 'translateX(-50%)'
+                  transform: 'translateX(-50%)',
                 }}
               >
                 <div className="flex items-center gap-2">
@@ -338,7 +349,12 @@ export default function PDFViewer({ fileUrl, onClose }) {
                   className="text-gray-500 hover:text-gray-700"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -382,15 +398,28 @@ export default function PDFViewer({ fileUrl, onClose }) {
                   <p className="text-gray-500 text-center py-8">No bookmarks yet</p>
                 ) : (
                   bookmarks.map((bookmark) => (
-                    <div key={bookmark.id} className="bg-white p-3 rounded-lg border border-gray-200">
+                    <div
+                      key={bookmark.id}
+                      className="bg-white p-3 rounded-lg border border-gray-200"
+                    >
                       <div className="flex items-start justify-between mb-2">
                         <span className="text-xs text-gray-500">Page {bookmark.page}</span>
                         <button
                           onClick={() => removeBookmark(bookmark.id)}
                           className="text-red-500 hover:text-red-700 text-sm"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            />
                           </svg>
                         </button>
                       </div>
@@ -417,9 +446,11 @@ export default function PDFViewer({ fileUrl, onClose }) {
           <p className="text-sm text-blue-800 text-center">
             <strong>How to bookmark:</strong>
             <br />
-            <strong>Method 1:</strong> Select text in the PDF by clicking and dragging → Blue Bookmark button appears
+            <strong>Method 1:</strong> Select text in the PDF by clicking and dragging → Blue
+            Bookmark button appears
             <br />
-            <strong>Method 2:</strong> Click &quot;Add Bookmark&ldquot; button to manually add a page bookmark
+            <strong>Method 2:</strong> Click &quot;Add Bookmark&ldquot; button to manually add a
+            page bookmark
             <br />
             <strong>Method 3:</strong> Use Ctrl+A (or Cmd+A) to select all text on a page
             <br />
