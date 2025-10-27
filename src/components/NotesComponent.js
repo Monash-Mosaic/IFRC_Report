@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { StickyNote, X, Save, Trash2, Edit3, Bold, Italic, List, GripVertical } from 'lucide-react'
-import { getNotes, saveNotes, NOTES_KEY } from '../utils/storage'
+import { getNotes, saveNotes, NOTES_KEY } from '../app/utils/storage'
 
 export default function NotesComponent({ sectionSlug: propSectionSlug, currentPage }) {
   console.log('NotesComponent loaded for sectionSlug =', propSectionSlug)

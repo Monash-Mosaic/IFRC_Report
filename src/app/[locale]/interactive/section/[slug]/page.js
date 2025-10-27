@@ -11,7 +11,7 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from 'next-share'
-import NotesComponent from '../../../components/NotesComponent'
+import NotesComponent from '../../../../../components/NotesComponent'
 
 const sectionContent = {
   introduction: {
