@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 
 import { reportsByLocale } from '@/reports';
 import { Link } from '@/i18n/navigation';
+import SidebarPanel from '@/components/SidebarPanel';
 
 export async function generateMetadata({ params }) {
   const { report, chapter, locale } = await params;
@@ -56,25 +57,31 @@ export default async function ReportChapterPage({ params }) {
   const t = await getTranslations('ReportChapterPage', locale);
 
   return (
-    <div className="min-h-screen bg-white p-8">
-      <div className="max-w-4xl mx-auto">
-        <Link className="flex items-center gap-2 text-black hover:text-gray-600 mb-8" href={`./`}>
-          <ArrowLeft className="w-5 h-5" />
-          <span className="font-semibold">{t('back')}</span>
-        </Link>
+    <div className="min-h-screen bg-white flex">
+      {/* Sidebar Panel */}
+      <SidebarPanel chapterTitle={chapterTitle} />
+      
+      {/* Main Content */}
+      <div className="flex-1 p-8">
+        <div className="max-w-4xl mx-auto">
+          <Link className="flex items-center gap-2 text-black hover:text-gray-600 mb-8" href={`./`}>
+            <ArrowLeft className="w-5 h-5" />
+            <span className="font-semibold">{t('back')}</span>
+          </Link>
 
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
-        </div>
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
+          </div>
 
-        <div className="mb-8 text-black text-4xl font-extrabold">{chapterTitle}</div>
+          <div className="mb-8 text-black text-4xl font-extrabold">{chapterTitle}</div>
 
-        <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
+          <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 
-        <div className="mb-12">
-          <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
-            <Chapter />
-          </article>
+          <div className="mb-12">
+            <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
+              <Chapter />
+            </article>
+          </div>
         </div>
       </div>
     </div>
