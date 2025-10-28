@@ -1,51 +1,83 @@
 "use client"
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Menu, FileText, Volume2, Video, ChevronRight, X, ArrowLeft } from 'lucide-react';
+import { loadMediaIndex } from '@/lib/media';
 
-export default function SidebarPanel({ chapterTitle }) {
+export default function SidebarPanel({ chapterTitle, locale, report, chapter }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [activeMediaPanel, setActiveMediaPanel] = useState(null);
+  const [activeMediaPanel, setActiveMediaPanel] = useState(null); // 'audio' | 'videos' | null
   const [selectedTrack, setSelectedTrack] = useState(null);
 
-  const menuItems = [
+  const [loading, setLoading] = useState(false);
+  const [media, setMedia] = useState({ audio: [], videos: [] });
+
+  // Load media for the current chapter
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      setLoading(true);
+      try {
+        const data = await loadMediaIndex({ locale, report, chapter });
+        if (!mounted) return;
+        setMedia(data);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [locale, report, chapter]);
+
+  const menuItems = useMemo(() => ([
     {
       id: 'notes',
       label: 'Notes',
       icon: FileText,
-      color: 'text-blue-600 hover:bg-blue-50',
+      color: 'text-gray-700 hover:bg-blue-50',
       items: ['Chapter Notes', 'My Notes', 'Bookmarks']
     },
     {
       id: 'audio',
       label: 'Audio',
       icon: Volume2,
-      color: 'text-green-600 hover:bg-green-50',
-      items: [
-        { id: 'audio1', name: 'Audio 1', duration: '12:30' },
-        { id: 'audio2', name: 'Audio 2', duration: '8:45' },
-        { id: 'audio3', name: 'Audio 3', duration: '15:20' }
-      ]
+      color: 'text-gray-700 hover:bg-green-50',
+      items: media.audio
     },
     {
       id: 'videos',
       label: 'Videos',
       icon: Video,
-      color: 'text-red-600 hover:bg-red-50',
-      items: [
-        { id: 'video1', name: 'Video 1', duration: '5:30' },
-        { id: 'video2', name: 'Video 2', duration: '10:15' },
-        { id: 'video3', name: 'Video 3', duration: '7:45' }
-      ]
+      color: 'text-gray-700 hover:bg-red-50',
+      items: media.videos
     }
-  ];
+  ]), [media.audio, media.videos]);
 
   const handleMenuItemClick = (menuId) => {
-    if (menuId === 'audio' || menuId === 'videos') {
-      setActiveMediaPanel(menuId);
-      setSelectedTrack(null);
-    } else {
-      console.log(`Clicked ${menuId}`);
+    switch (menuId) {
+      case 'audio': {
+        setActiveMediaPanel('audio');
+        const items = media.audio;
+        setSelectedTrack(items[0] ?? null);
+        break;
+      }
+      case 'videos': {
+        setActiveMediaPanel('videos');
+        const items = media.videos;
+        setSelectedTrack(items[0] ?? null);
+        break;
+      }
+      case 'notes': {
+        // TODO: open notes panel when implemented
+        setActiveMediaPanel(null);
+        setSelectedTrack(null);
+        break;
+      }
+      default: {
+        // Unknown menu id; no action
+        break;
+      }
     }
   };
 
@@ -137,6 +169,7 @@ export default function SidebarPanel({ chapterTitle }) {
       {activeMediaPanel && isExpanded && (
         <MediaPanel
           mediaType={activeMediaPanel}
+          loading={loading}
           mediaItems={menuItems.find(item => item.id === activeMediaPanel)?.items || []}
           selectedTrack={selectedTrack}
           onTrackSelect={handleTrackSelect}
@@ -153,7 +186,7 @@ export default function SidebarPanel({ chapterTitle }) {
 /**
  * Media Panel Component for Audio/Video - Responsive layout
  */
-function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClose }) {
+function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClose, loading }) {
   const isAudio = mediaType === 'audio';
   
   return (
@@ -176,7 +209,13 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         
         {/* Media List */}
         <div className="flex-1 p-4 md:p-6 space-y-2 md:space-y-3 overflow-y-auto">
-          {mediaItems.map((item, index) => (
+          {loading && (
+            <div className="text-white/90">Loading {mediaType}...</div>
+          )}
+          {!loading && mediaItems.length === 0 && (
+            <div className="text-white/90">No {mediaType} available for this chapter.</div>
+          )}
+          {!loading && mediaItems.map((item, index) => (
             <MediaListItem
               key={item.id}
               item={item}
@@ -255,42 +294,32 @@ function MediaPlayer({ track, mediaType }) {
     <div className="text-center max-w-sm md:max-w-md mx-auto w-full">
       {/* Media Display */}
       {isAudio ? (
-        // Audio Player
         <div className="mb-4 md:mb-6">
-          <div className="w-20 h-20 md:w-24 md:h-24 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-            <button className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
-              <div className="w-0 h-0 border-l-[6px] md:border-l-[8px] border-l-gray-700 border-t-[4px] md:border-t-[6px] border-t-transparent border-b-[4px] md:border-b-[6px] border-b-transparent ml-1"></div>
-            </button>
-          </div>
+          <audio key={track.id} controls className="w-full">
+            <source src={track.url} />
+            Your browser does not support the audio element.
+          </audio>
         </div>
       ) : (
-        // Video Player
         <div className="mb-4 md:mb-6">
-          <div className="bg-gray-600 rounded-lg aspect-video w-64 md:w-80 mx-auto mb-3 md:mb-4 flex items-center justify-center relative">
-            <button className="w-12 h-12 md:w-16 md:h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-colors">
-              <div className="w-0 h-0 border-l-[8px] md:border-l-[12px] border-l-gray-700 border-t-[6px] md:border-t-[8px] border-t-transparent border-b-[6px] md:border-b-[8px] border-b-transparent ml-1"></div>
-            </button>
-          </div>
+          <video
+            key={track.id}
+            controls
+            className="w-full max-h-[60vh] bg-black rounded-lg"
+            poster={track.thumbnail || undefined}
+          >
+            <source src={track.url} />
+            Your browser does not support the video tag.
+          </video>
         </div>
       )}
 
       {/* Track Info */}
       <div className="mb-4 md:mb-6">
         <h4 className="text-lg md:text-xl font-semibold text-gray-800 mb-1 md:mb-2">{track.name}</h4>
-        <p className="text-xs md:text-sm text-gray-600">Duration: {track.duration}</p>
-      </div>
-
-      {/* Controls */}
-      <div className="bg-gray-200 rounded-lg p-3 md:p-4">
-        <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-3">
-          <div className="flex-1 bg-gray-400 rounded-full h-2 relative">
-            <div className="bg-blue-500 rounded-full h-2 w-1/4"></div>
-          </div>
-        </div>
-        <div className="flex justify-between items-center text-xs text-gray-600">
-          <span>0:00</span>
-          <span>{track.duration}</span>
-        </div>
+        {track.duration && (
+          <p className="text-xs md:text-sm text-gray-600">Duration: {track.duration}</p>
+        )}
       </div>
     </div>
   );

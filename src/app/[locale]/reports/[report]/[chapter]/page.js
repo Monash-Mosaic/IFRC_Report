@@ -59,7 +59,12 @@ export default async function ReportChapterPage({ params }) {
   return (
     <div className="min-h-screen bg-white flex">
       {/* Sidebar Panel */}
-      <SidebarPanel chapterTitle={chapterTitle} />
+      <SidebarPanel
+        chapterTitle={chapterTitle}
+        locale={locale}
+        report={decodedReport}
+        chapter={decodedChapter}
+      />
       
       {/* Main Content */}
       <div className="flex-1 p-8">
