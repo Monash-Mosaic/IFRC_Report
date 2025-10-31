@@ -1,0 +1,6212 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "So said Ed Murrow, the American broadcaster and correspondent during the Second World War. The principle still holds: truth (accuracy and honesty) and credibility (competency, consistency, reliability) remain essential to building institutional trust. Yet in today’s information landscape, applying this principle has become far more complex and contested in an age shaped by harmful information.",
+          "position": {
+            "start": {
+              "line": 24,
+              "column": 1,
+              "offset": 618
+            },
+            "end": {
+              "line": 24,
+              "column": 397,
+              "offset": 1014
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 24,
+          "column": 1,
+          "offset": 618
+        },
+        "end": {
+          "line": 24,
+          "column": 397,
+          "offset": 1014
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In times of crisis or uncertainty – and these are profoundly uncertain times – people increasingly turn to information sources they perceive as relevant and aligned with their personal and lived experience, rather than those grounded solely in factual accuracy. Truth alone no longer always persuades. Emotion, identity and repetition can entrench misbeliefs in powerful, sometimes harmful ways. In such an environment, even reaching agreement on what constitutes a fact is difficult. For humanitarian organisations, whose access, acceptance and ability to operate depend on trust, navigating this fragmented, emotionally charged information space has become not only an operational challenge, but also a security risk.",
+          "position": {
+            "start": {
+              "line": 26,
+              "column": 1,
+              "offset": 1016
+            },
+            "end": {
+              "line": 26,
+              "column": 720,
+              "offset": 1735
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 26,
+          "column": 1,
+          "offset": 1016
+        },
+        "end": {
+          "line": 26,
+          "column": 720,
+          "offset": 1735
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Incentivised to Hostility",
+          "position": {
+            "start": {
+              "line": 28,
+              "column": 3,
+              "offset": 1739
+            },
+            "end": {
+              "line": 28,
+              "column": 28,
+              "offset": 1764
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 28,
+          "column": 1,
+          "offset": 1737
+        },
+        "end": {
+          "line": 28,
+          "column": 28,
+          "offset": 1764
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "This online dynamic has been described as the filter bubble (Pariser, 2011), a term used to explain how search engines and social media platforms serve content that algorithms think we want to see, based on our searches, likes and clicks. Pariser warned that being confined to such echo chambers reduces exposure to diverse perspectives and increases the risk of isolation in our views or rejection of opposing viewpoints and sources of information due to confirmation bias.",
+          "position": {
+            "start": {
+              "line": 30,
+              "column": 1,
+              "offset": 1766
+            },
+            "end": {
+              "line": 30,
+              "column": 475,
+              "offset": 2240
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 30,
+          "column": 1,
+          "offset": 1766
+        },
+        "end": {
+          "line": 30,
+          "column": 475,
+          "offset": 2240
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Confirmation Bias",
+          "position": {
+            "start": {
+              "line": 32,
+              "column": 3,
+              "offset": 2244
+            },
+            "end": {
+              "line": 32,
+              "column": 20,
+              "offset": 2261
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 32,
+          "column": 1,
+          "offset": 2242
+        },
+        "end": {
+          "line": 32,
+          "column": 20,
+          "offset": 2261
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Although some studies (Pierre) show that users do encounter opposing views online, these interactions often trigger annoyance or hostility rather than reflection or debate. Algorithms reinforce this by amplifying divisive content, since hostility drives engagement, and engagement drives profits for platform companies. As Pariser notes, platforms are effectively “incentivizing us to fight with each other when we are online”. This dynamic is compounded by the online disinhibition effect (Suler), whereby people tend to express opinions more freely online due to factors like anonymity (hidden identities), invisibility (not being seen by others we communicate with) and asynchronicity (not engaging in real time).",
+          "position": {
+            "start": {
+              "line": 39,
+              "column": 1,
+              "offset": 2464
+            },
+            "end": {
+              "line": 39,
+              "column": 717,
+              "offset": 3180
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 39,
+          "column": 1,
+          "offset": 2464
+        },
+        "end": {
+          "line": 39,
+          "column": 717,
+          "offset": 3180
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "These forces contribute to an erosion of shared reality. Increasingly, there are claims that disasters never happened, that scientifically validated medical treatments are unsafe or that documented atrocities are fabricated or exaggerated. This reflects what many describe as a post-trust world – one in which people are especially vulnerable to harmful information and deepening polarisation over what is considered true or false. Such polarisation increases the risk of social unrest, violence and even armed conflict. There is also a secondary level of manipulation in today’s “post-trust” world, where institutions themselves come under scrutiny and their legitimacy is increasingly contested. In some contexts, polarisation between opposing political, social or geopolitical dynamics has created conditions in which public authorities may challenge or overturn established processes or outcomes, despite the absence of clear evidence of interference or wrongdoing. This erosion of institutional credibility poses profound questions for public trust. In turn, as humanitarian actors mandated by public authorities, the National Red Cross and Red Crescent Societies face heightened reputational risks if confidence in governance continues to deteriorate.",
+          "position": {
+            "start": {
+              "line": 41,
+              "column": 1,
+              "offset": 3182
+            },
+            "end": {
+              "line": 41,
+              "column": 1258,
+              "offset": 4439
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 41,
+          "column": 1,
+          "offset": 3182
+        },
+        "end": {
+          "line": 41,
+          "column": 1258,
+          "offset": 4439
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The internet makes it easier than ever to find information that confirms existing beliefs – a phenomenon sometimes referred to as the Google delusion. Online spaces amplify confirmation bias by helping users to find like-minded communities and cite information that reinforces their views while disregarding contradictory information or expert advice. While the internet offers access to vast knowledge, it also accelerates the spread of harmful information, encourages argument over dialogue and conspiracy over evidence.",
+          "position": {
+            "start": {
+              "line": 43,
+              "column": 1,
+              "offset": 4441
+            },
+            "end": {
+              "line": 43,
+              "column": 523,
+              "offset": 4963
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 43,
+          "column": 1,
+          "offset": 4441
+        },
+        "end": {
+          "line": 43,
+          "column": 523,
+          "offset": 4963
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "RAND researchers Kavanagh and Rich (2008) have described this phenomenon as truth decay, defined by a set of four related trends: (1) increasing disagreement about facts and analytical interpretations of facts and data; (2) a blurring of the line between opinion and fact; (3) the increasing relative volume, and resulting influence, of opinion and personal experience over fact; and, (4) declining trust in formerly respected sources of factual information. Instead of using facts to inform our beliefs, information – regardless of its truthfulness – is increasingly used to justify the beliefs already held by individuals and the groups they affiliate with. As they conclude: “We’re no longer willing to agree on something as seemingly fundamental as what counts as evidence, facts, or truth anymore”.",
+          "position": {
+            "start": {
+              "line": 45,
+              "column": 1,
+              "offset": 4965
+            },
+            "end": {
+              "line": 45,
+              "column": 804,
+              "offset": 5768
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 45,
+          "column": 1,
+          "offset": 4965
+        },
+        "end": {
+          "line": 45,
+          "column": 804,
+          "offset": 5768
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Trust: What is Being Lost?",
+          "position": {
+            "start": {
+              "line": 47,
+              "column": 3,
+              "offset": 5772
+            },
+            "end": {
+              "line": 47,
+              "column": 29,
+              "offset": 5798
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 47,
+          "column": 1,
+          "offset": 5770
+        },
+        "end": {
+          "line": 47,
+          "column": 29,
+          "offset": 5798
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Trust is grounded in expectations, involves vulnerability and builds gradually, yet once broken it may be lost completely. Rousseau et al. (1998) define trust as “a psychological state comprising the intention to accept vulnerability based upon positive expectations of the intentions or behaviour of another”. This highlights a key dimension: trust requires accepting vulnerability to those in whom it is placed.",
+          "position": {
+            "start": {
+              "line": 49,
+              "column": 1,
+              "offset": 5800
+            },
+            "end": {
+              "line": 49,
+              "column": 414,
+              "offset": 6213
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 49,
+          "column": 1,
+          "offset": 5800
+        },
+        "end": {
+          "line": 49,
+          "column": 414,
+          "offset": 6213
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "People often trust what aligns with their worldview or community, rather than what is factually accurate. Harmful information campaigns exploit this tendency, distorting truth and diminishing the visibility and influence of credible sources. In contexts where independent media and public trust in institutions remain strong, Ed Murrow’s notion of truth-based credibility still underpins effective communication. But where information is instrumentalised, persuasiveness often relies less on truth and more on emotional resonance, social identity or perceived authority.",
+          "position": {
+            "start": {
+              "line": 51,
+              "column": 1,
+              "offset": 6215
+            },
+            "end": {
+              "line": 51,
+              "column": 571,
+              "offset": 6785
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 51,
+          "column": 1,
+          "offset": 6215
+        },
+        "end": {
+          "line": 51,
+          "column": 571,
+          "offset": 6785
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "SmallQuoteAuthor",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Community Researcher, Zambia",
+              "position": {
+                "start": {
+                  "line": 59,
+                  "column": 19,
+                  "offset": 7069
+                },
+                "end": {
+                  "line": 59,
+                  "column": 47,
+                  "offset": 7097
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 59,
+              "column": 1,
+              "offset": 7051
+            },
+            "end": {
+              "line": 59,
+              "column": 66,
+              "offset": 7116
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 59,
+          "column": 1,
+          "offset": 7051
+        },
+        "end": {
+          "line": 59,
+          "column": 66,
+          "offset": 7116
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Public trust has also been eroded by the widespread perception that governments largely failed to manage crises such as the COVID-19 pandemic and climate change, which has further eroded public trust (Edelman, 2022). This is especially true for vulnerable and marginalised communities, who often view authorities less as providers of needed services, and more as sources of demands (Bavel et al, 2020). Ironically, these are the very people most at risk during crises, yet their lived experiences of exclusion often make them more likely to distrust those offering help.",
+          "position": {
+            "start": {
+              "line": 61,
+              "column": 1,
+              "offset": 7118
+            },
+            "end": {
+              "line": 61,
+              "column": 571,
+              "offset": 7688
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 61,
+          "column": 1,
+          "offset": 7118
+        },
+        "end": {
+          "line": 61,
+          "column": 571,
+          "offset": 7688
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "As psychologist Pierre observes, vaccine hesitancy driven by misinformation “may very well end up being more lethal than any other misbelief in our lifetimes”. Although social media platforms took steps to revise their algorithms to deprioritise some medical misinformation, the damage was already significant.",
+          "position": {
+            "start": {
+              "line": 63,
+              "column": 1,
+              "offset": 7690
+            },
+            "end": {
+              "line": 63,
+              "column": 311,
+              "offset": 8000
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 63,
+          "column": 1,
+          "offset": 7690
+        },
+        "end": {
+          "line": 63,
+          "column": 311,
+          "offset": 8000
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The IFRC’s 2022 World Disasters Report: Trust, Equity and Local Action – Lessons from the COVID-19 pandemic to avert the next global crisis highlights that multiple studies suggest that “trust was one of the best predictors of a country’s success or failure in handling the COVID-19 pandemic”. Many communities had extremely limited access to health education and information (Royston et al, 2020). Information from social media platforms or state news outlets was often distrusted and many people did not understand the rationale behind public health measures. In several countries, governments issued contradictory advice and oversimplified or false beliefs took hold – for example, claims that COVID-19 was only dangerous to the elderly and clinically vulnerable or, in Zimbabwe, that “COVID-19 does not kill black people”. These narratives, compounded by vaccine related disinformation (such as sterility or microchip claims) and entrenched anti-vaccine beliefs, drove harmful behaviours including vaccine refusal and avoidance of life-saving health measures.",
+          "position": {
+            "start": {
+              "line": 65,
+              "column": 1,
+              "offset": 8002
+            },
+            "end": {
+              "line": 65,
+              "column": 1064,
+              "offset": 9065
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 65,
+          "column": 1,
+          "offset": 8002
+        },
+        "end": {
+          "line": 65,
+          "column": 1064,
+          "offset": 9065
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Pierre defines beliefs as “cognitive representations of past, present, and future reality, encompassing our inner experiences, the world around us, and the world beyond.” He models beliefs as probability judgements, emphasising that many of our beliefs are held with excessive conviction, often at the expense of acknowledging appropriate levels of uncertainty. People often tend to adopt an absolute “belief that” stance, even on matters that would more appropriately warrant a more probabilistic “belief in” that acknowledges uncertainty and complexity. Deciding who to trust or mistrust often comes down to assessments of source credibility – based on perceived trustworthiness and expertise. When these perceptions are distorted, the very foundation of humanitarian and public health response is at risk.",
+          "position": {
+            "start": {
+              "line": 67,
+              "column": 1,
+              "offset": 9067
+            },
+            "end": {
+              "line": 67,
+              "column": 809,
+              "offset": 9875
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 67,
+          "column": 1,
+          "offset": 9067
+        },
+        "end": {
+          "line": 67,
+          "column": 809,
+          "offset": 9875
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Spotlight",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Trust, Misinformation and the Power of Local Connection in Crisis Response",
+              "position": {
+                "start": {
+                  "line": 69,
+                  "column": 12,
+                  "offset": 9888
+                },
+                "end": {
+                  "line": 69,
+                  "column": 86,
+                  "offset": 9962
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 69,
+              "column": 1,
+              "offset": 9877
+            },
+            "end": {
+              "line": 69,
+              "column": 98,
+              "offset": 9974
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 69,
+          "column": 1,
+          "offset": 9877
+        },
+        "end": {
+          "line": 69,
+          "column": 98,
+          "offset": 9974
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For over a decade, NGOs have occupied a unique position in the global trust landscape.",
+          "position": {
+            "start": {
+              "line": 71,
+              "column": 1,
+              "offset": 9976
+            },
+            "end": {
+              "line": 71,
+              "column": 87,
+              "offset": 10062
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 71,
+          "column": 1,
+          "offset": 9976
+        },
+        "end": {
+          "line": 71,
+          "column": 87,
+          "offset": 10062
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In today’s increasingly connected world, misinformation, disinformation, and harmful speech pose serious threats to humanitarian access, public health and social cohesion. Understanding how these dynamics take root and evolve is essential for designing effective, community-led programmes and responses.",
+          "position": {
+            "start": {
+              "line": 73,
+              "column": 1,
+              "offset": 10064
+            },
+            "end": {
+              "line": 73,
+              "column": 304,
+              "offset": 10367
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 73,
+          "column": 1,
+          "offset": 10064
+        },
+        "end": {
+          "line": 73,
+          "column": 304,
+          "offset": 10367
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "A powerful example emerged during the COVID-19 pandemic, involving the work of several National Red Cross and Red Crescent Societies with both Indigenous and last mile communities across Latin America. In many remote areas, communities resisted public health interventions due to deep mistrust of authorities and cultural understandings of disease that diverge from medical models. In Peru, for instance, health workers were labelled as “white devils” and accused of bringing the virus into communities. These beliefs were not simply a result of misinformation – they reflected traditional conceptions of illness and were exacerbated by limited access to accurate, culturally relevant information. Often, public health messaging was shared in a single language and failed to reflect the communities’ own perspectives on health and healing. In this vacuum, misinformation spread rapidly by word of mouth and was reinforced by local leaders.",
+          "position": {
+            "start": {
+              "line": 75,
+              "column": 1,
+              "offset": 10369
+            },
+            "end": {
+              "line": 75,
+              "column": 940,
+              "offset": 11308
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 75,
+          "column": 1,
+          "offset": 10369
+        },
+        "end": {
+          "line": 75,
+          "column": 940,
+          "offset": 11308
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "To address these challenges, health authorities turned to the National Society – fostering dialogue to uncover and bridge differences in perceptions of illness and treatment. By engaging trusted religious and community leaders, they were able to counter harmful rumours and promote the value of vaccination in a way that honoured local beliefs and customs.",
+          "position": {
+            "start": {
+              "line": 77,
+              "column": 1,
+              "offset": 11310
+            },
+            "end": {
+              "line": 77,
+              "column": 357,
+              "offset": 11666
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 77,
+          "column": 1,
+          "offset": 11310
+        },
+        "end": {
+          "line": 77,
+          "column": 357,
+          "offset": 11666
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "This experience illustrates that building trust requires more than simply transmitting information. It requires a sincere commitment to listening, understanding cultural perspectives, identifying shared values and communicating transparently throughout the response. Relying on generic messaging or assumptions risks alienating the very communities we aim to support and ignoring the complex realities they face.",
+          "position": {
+            "start": {
+              "line": 79,
+              "column": 1,
+              "offset": 11668
+            },
+            "end": {
+              "line": 79,
+              "column": 413,
+              "offset": 12080
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 79,
+          "column": 1,
+          "offset": 11668
+        },
+        "end": {
+          "line": 79,
+          "column": 413,
+          "offset": 12080
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "One of the persistent challenges for National Societies lies in how they are perceived. Their auxiliary role is often poorly communicated or understood, leading to confusion and mistrust. In politically polarised contexts, a National Society may be viewed either as extensions of the government or as an opposing force – and sometimes both simultaneously. These contradictory perceptions can place volunteers at risk and hinder humanitarian access.",
+          "position": {
+            "start": {
+              "line": 81,
+              "column": 1,
+              "offset": 12082
+            },
+            "end": {
+              "line": 81,
+              "column": 449,
+              "offset": 12530
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 81,
+          "column": 1,
+          "offset": 12082
+        },
+        "end": {
+          "line": 81,
+          "column": 449,
+          "offset": 12530
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "To effectively respond to these challenges, National Societies need targeted training and practical tools to monitor and respond to harmful information. Clear guidelines, shared terminology and stronger coordination within the Movement and with external partners are essential. Documented evidence of the impacts of harmful information on access and safety can also help guide effective mitigation strategies.",
+          "position": {
+            "start": {
+              "line": 83,
+              "column": 1,
+              "offset": 12532
+            },
+            "end": {
+              "line": 83,
+              "column": 410,
+              "offset": 12941
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 83,
+          "column": 1,
+          "offset": 12532
+        },
+        "end": {
+          "line": 83,
+          "column": 410,
+          "offset": 12941
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Ultimately, the most sustainable solutions begin at the community level. Empowering people through digital and information literacy, combined with culturally sensitive engagement, builds the foundation for trust, critical thinking and informed decision-making. Monitoring community trust and reinforcing transparency can help strengthen the relationship between National Societies and the communities they serve.",
+          "position": {
+            "start": {
+              "line": 85,
+              "column": 1,
+              "offset": 12943
+            },
+            "end": {
+              "line": 85,
+              "column": 413,
+              "offset": 13355
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 85,
+          "column": 1,
+          "offset": 12943
+        },
+        "end": {
+          "line": 85,
+          "column": 413,
+          "offset": 13355
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Diana Medina, Asia Pacific Regional Coordinator",
+              "position": {
+                "start": {
+                  "line": 87,
+                  "column": 15,
+                  "offset": 13371
+                },
+                "end": {
+                  "line": 87,
+                  "column": 62,
+                  "offset": 13418
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 87,
+              "column": 1,
+              "offset": 13357
+            },
+            "end": {
+              "line": 87,
+              "column": 77,
+              "offset": 13433
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 87,
+          "column": 1,
+          "offset": 13357
+        },
+        "end": {
+          "line": 87,
+          "column": 77,
+          "offset": 13433
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Community Engagement and Accountability (CEA)",
+              "position": {
+                "start": {
+                  "line": 89,
+                  "column": 15,
+                  "offset": 13449
+                },
+                "end": {
+                  "line": 89,
+                  "column": 60,
+                  "offset": 13494
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 89,
+              "column": 1,
+              "offset": 13435
+            },
+            "end": {
+              "line": 89,
+              "column": 75,
+              "offset": 13509
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 89,
+          "column": 1,
+          "offset": 13435
+        },
+        "end": {
+          "line": 89,
+          "column": 75,
+          "offset": 13509
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "ContributorRole",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "International Federation of Red Cross and Red Crescent Societies",
+              "position": {
+                "start": {
+                  "line": 91,
+                  "column": 18,
+                  "offset": 13528
+                },
+                "end": {
+                  "line": 91,
+                  "column": 82,
+                  "offset": 13592
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 91,
+              "column": 1,
+              "offset": 13511
+            },
+            "end": {
+              "line": 91,
+              "column": 100,
+              "offset": 13610
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 91,
+          "column": 1,
+          "offset": 13511
+        },
+        "end": {
+          "line": 91,
+          "column": 100,
+          "offset": 13610
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Trust in Institutions",
+          "position": {
+            "start": {
+              "line": 93,
+              "column": 3,
+              "offset": 13614
+            },
+            "end": {
+              "line": 93,
+              "column": 24,
+              "offset": 13635
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 93,
+          "column": 1,
+          "offset": 13612
+        },
+        "end": {
+          "line": 93,
+          "column": 24,
+          "offset": 13635
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Trust is critical to the legitimacy, effectiveness and acceptance of humanitarian action. This was strongly emphasised at the 2019 International Conference of the Red Cross and Red Crescent Movement which recognised that trust in principled humanitarian action is indispensable to serving vulnerable people and encouraged all members of the Conference to act to preserve and develop this trust.",
+          "position": {
+            "start": {
+              "line": 95,
+              "column": 1,
+              "offset": 13637
+            },
+            "end": {
+              "line": 95,
+              "column": 395,
+              "offset": 14031
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 95,
+          "column": 1,
+          "offset": 13637
+        },
+        "end": {
+          "line": 95,
+          "column": 395,
+          "offset": 14031
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The decision to place trust on the agenda reflected broader global concerns: the erosion of trust in institutions and governments, growing public scrutiny and rising demands for accountability. Where there is limited understanding of the Movement’s rules and regulations, reputational risks grow and trust declines. As the Commission Report stressed: “Trust is the most critical currency for the future of humanitarian action, and one which stems from humility and being truthful and transparent.” It identified three key priorities:",
+          "position": {
+            "start": {
+              "line": 97,
+              "column": 1,
+              "offset": 14033
+            },
+            "end": {
+              "line": 97,
+              "column": 534,
+              "offset": 14566
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 97,
+          "column": 1,
+          "offset": 14033
+        },
+        "end": {
+          "line": 97,
+          "column": 534,
+          "offset": 14566
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "While harmful information was not yet identified as a central concern, the focus on trust, truth and transparency reflected growing recognition that both the Movement and States needed to do more to earn trust. It also underscored a broader challenge: preserving the space for principled humanitarian action – something the Movement cannot achieve alone. This was reaffirmed in the 2024 Council of Delegates resolution on “respect and support for principled humanitarian action” which recalls collective Movement commitments to strengthen integrity, accountability and trust.",
+          "position": {
+            "start": {
+              "line": 103,
+              "column": 1,
+              "offset": 14707
+            },
+            "end": {
+              "line": 103,
+              "column": 576,
+              "offset": 15282
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 103,
+          "column": 1,
+          "offset": 14707
+        },
+        "end": {
+          "line": 103,
+          "column": 576,
+          "offset": 15282
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Crucially, trust in humanitarian action does not rest solely on humanitarian actors. It also depends on a conducive environment – one in which principled, effective and accountable action is actively supported. Such an environment is shaped by the legal, political and operational frameworks established by states and other actors. This includes respect for humanitarian principles, flexible and needs-based funding, protection of humanitarian access and clear delineation of roles and responsibilities of various actors. As highlighted in Commission III discussions in 2019, states play a decisive role: their policies and practices can either foster trust and enable principled humanitarian action or hinder it. States also have a responsibility to support and facilitate the work of the National Society in their country, in their auxiliary role to public authorities. Cross reference chapter x on auxiliary role.",
+          "position": {
+            "start": {
+              "line": 105,
+              "column": 1,
+              "offset": 15284
+            },
+            "end": {
+              "line": 105,
+              "column": 917,
+              "offset": 16200
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 105,
+          "column": 1,
+          "offset": 15284
+        },
+        "end": {
+          "line": 105,
+          "column": 917,
+          "offset": 16200
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Creating such an environment requires sustained dialogue, shared responsibility and a commitment to removing obstacles that undermine trust. Without these conditions, even well-intentioned humanitarian efforts risk being delayed, politicised or perceived as partial – ultimately eroding the very trust they aim to build. By the time of the 34th International Conference – four years later – harmful information was recognised as part of this deeper crisis of trust.",
+          "position": {
+            "start": {
+              "line": 107,
+              "column": 1,
+              "offset": 16202
+            },
+            "end": {
+              "line": 107,
+              "column": 466,
+              "offset": 16667
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 107,
+          "column": 1,
+          "offset": 16202
+        },
+        "end": {
+          "line": 107,
+          "column": 466,
+          "offset": 16667
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Erosion of trust in non-governmental organisations (NGOs) has been documented in the annual Edelman Trust Barometer, which surveys trust in institutions across 28 countries. An analysis of 25 years of survey data provides valuable insights for humanitarian actors navigating this fragile landscape of shifting perceptions of trust in NGOs.",
+          "position": {
+            "start": {
+              "line": 109,
+              "column": 1,
+              "offset": 16669
+            },
+            "end": {
+              "line": 109,
+              "column": 340,
+              "offset": 17008
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 109,
+          "column": 1,
+          "offset": 16669
+        },
+        "end": {
+          "line": 109,
+          "column": 340,
+          "offset": 17008
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Spotlight",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Earning Trust in an Age of Accountability",
+              "position": {
+                "start": {
+                  "line": 111,
+                  "column": 12,
+                  "offset": 17021
+                },
+                "end": {
+                  "line": 111,
+                  "column": 53,
+                  "offset": 17062
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 111,
+              "column": 1,
+              "offset": 17010
+            },
+            "end": {
+              "line": 111,
+              "column": 65,
+              "offset": 17074
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 111,
+          "column": 1,
+          "offset": 17010
+        },
+        "end": {
+          "line": 111,
+          "column": 65,
+          "offset": 17074
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For over a decade, NGOs have occupied a unique position in the global trust landscape.",
+          "position": {
+            "start": {
+              "line": 113,
+              "column": 1,
+              "offset": 17076
+            },
+            "end": {
+              "line": 113,
+              "column": 87,
+              "offset": 17162
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 113,
+          "column": 1,
+          "offset": 17076
+        },
+        "end": {
+          "line": 113,
+          "column": 87,
+          "offset": 17162
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "According to Edelman’s Trust Barometer data, NGOs were the most trusted institution across 21 markets from 2012 to 2018, only to be matched by business in 2019. In 2021, however, NGOs were overtaken by business which remains the most trusted institution in 2025. Nonetheless, trust in NGOs remains strong, consistently ranking higher than both government and the media.",
+          "position": {
+            "start": {
+              "line": 115,
+              "column": 1,
+              "offset": 17164
+            },
+            "end": {
+              "line": 115,
+              "column": 370,
+              "offset": 17533
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 115,
+          "column": 1,
+          "offset": 17164
+        },
+        "end": {
+          "line": 115,
+          "column": 370,
+          "offset": 17533
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The public’s resilient trust in NGOs may stem from perceptions of moral integrity. Since Edelman began measuring ethics and competence scores in 2020, NGOs have consistently been viewed as the most ethical institution. At the same time, the public is less confident when it comes to an NGO’s ability to deliver results. As of 2025, NGOs rank 15 points below business on competence.",
+          "position": {
+            "start": {
+              "line": 117,
+              "column": 1,
+              "offset": 17535
+            },
+            "end": {
+              "line": 117,
+              "column": 382,
+              "offset": 17916
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 117,
+          "column": 1,
+          "offset": 17535
+        },
+        "end": {
+          "line": 117,
+          "column": 382,
+          "offset": 17916
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "This duality – high ethical standing but perceived operational softness – presents a central challenge: while people believe NGOs are doing the right things, the public doesn’t show the same confidence when it comes to their efficacy.",
+          "position": {
+            "start": {
+              "line": 119,
+              "column": 1,
+              "offset": 17918
+            },
+            "end": {
+              "line": 119,
+              "column": 235,
+              "offset": 18152
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 119,
+          "column": 1,
+          "offset": 17918
+        },
+        "end": {
+          "line": 119,
+          "column": 235,
+          "offset": 18152
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "A similar tension appears in views on treating everyone equally and fairly. Since 2020, a global majority surveyed agree that NGOs are effective agents of positive change, yet only a minority believe NGOs serve the interests of everyone equally and fairly. While the public recognises that NGOs are doing good work, this finding demonstrates concern that the work may not be distributed evenly across society.",
+          "position": {
+            "start": {
+              "line": 121,
+              "column": 1,
+              "offset": 18154
+            },
+            "end": {
+              "line": 121,
+              "column": 410,
+              "offset": 18563
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 121,
+          "column": 1,
+          "offset": 18154
+        },
+        "end": {
+          "line": 121,
+          "column": 410,
+          "offset": 18563
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Such perceived limitations may help explain why trust has shifted toward business, which is seen as more capable of delivering results. Business has also improved its ethical standing, positioned as the institution better equipped to drive impact at scale.",
+          "position": {
+            "start": {
+              "line": 123,
+              "column": 1,
+              "offset": 18565
+            },
+            "end": {
+              "line": 123,
+              "column": 257,
+              "offset": 18821
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 123,
+          "column": 1,
+          "offset": 18565
+        },
+        "end": {
+          "line": 123,
+          "column": 257,
+          "offset": 18821
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For NGOs, maintaining strong public trust for over a decade is a testament to the mission-driven ethos, but in an era of rising stakeholder expectations this must be reinforced through measurable, equitable impact.",
+          "position": {
+            "start": {
+              "line": 125,
+              "column": 1,
+              "offset": 18823
+            },
+            "end": {
+              "line": 125,
+              "column": 215,
+              "offset": 19037
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 125,
+          "column": 1,
+          "offset": 18823
+        },
+        "end": {
+          "line": 125,
+          "column": 215,
+          "offset": 19037
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "To strengthen trust, NGOs can:",
+          "position": {
+            "start": {
+              "line": 127,
+              "column": 1,
+              "offset": 19039
+            },
+            "end": {
+              "line": 127,
+              "column": 31,
+              "offset": 19069
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 127,
+          "column": 1,
+          "offset": 19039
+        },
+        "end": {
+          "line": 127,
+          "column": 31,
+          "offset": 19069
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Edelman Trust Institute",
+              "position": {
+                "start": {
+                  "line": 135,
+                  "column": 15,
+                  "offset": 19669
+                },
+                "end": {
+                  "line": 135,
+                  "column": 38,
+                  "offset": 19692
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 135,
+              "column": 1,
+              "offset": 19655
+            },
+            "end": {
+              "line": 135,
+              "column": 53,
+              "offset": 19707
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 135,
+          "column": 1,
+          "offset": 19655
+        },
+        "end": {
+          "line": 135,
+          "column": 53,
+          "offset": 19707
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Organisation for Economic Co-operation and Development (OECD) research highlights that trust in public institutions rests on two core pillars: competence – the ability to meet expectations through operational efficiency, capacity and sound judgements – and intentions – acting in good faith, guided by values and principles. Trust is dynamic: individuals form and adjust their trust based on personal experiences and the information available to them. By contrast, distrust often arises not from actual performance but from perceptions of bias, cynicism, disengagement or expectations of betrayal.",
+          "position": {
+            "start": {
+              "line": 137,
+              "column": 1,
+              "offset": 19709
+            },
+            "end": {
+              "line": 137,
+              "column": 598,
+              "offset": 20306
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 137,
+          "column": 1,
+          "offset": 19709
+        },
+        "end": {
+          "line": 137,
+          "column": 598,
+          "offset": 20306
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The effectiveness of and even the feasibility of humanitarian action depends on trust across a broad range of stakeholders, including affected populations, governments, non-state actors, donors and technology companies. Without trust, humanitarian action risks losing the access, support and legitimacy it critically needs.",
+          "position": {
+            "start": {
+              "line": 139,
+              "column": 1,
+              "offset": 20308
+            },
+            "end": {
+              "line": 139,
+              "column": 324,
+              "offset": 20631
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 139,
+          "column": 1,
+          "offset": 20308
+        },
+        "end": {
+          "line": 139,
+          "column": 324,
+          "offset": 20631
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "During Lebanon’s recent period of overlapping crises, the Lebanese Red Cross (LRC) with over 12,000 volunteers nationwide, faced significant challenges to provide lifesaving services due to the spread of harmful information. At the height of the COVID-19 pandemic, false claims circulated that LRC volunteers were spreading the virus. Following the 2020 Beirut Port explosion, disinformation suggested that aid distribution was biased. Similarly, rumours falsely alleged that the LRC was selling blood units. During the Cholera outbreak, misleading narratives claimed that vaccines and oral rehydration salts (ORS) were dangerous. These narratives both endangered the volunteers and staff and weakened public trust.",
+          "position": {
+            "start": {
+              "line": 145,
+              "column": 1,
+              "offset": 20746
+            },
+            "end": {
+              "line": 145,
+              "column": 716,
+              "offset": 21461
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 145,
+          "column": 1,
+          "offset": 20746
+        },
+        "end": {
+          "line": 145,
+          "column": 716,
+          "offset": 21461
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Harmful information disrupted humanitarian operations and disproportionately affected vulnerable groups including older people in remote areas, migrants, displaced communities, as well as LRC volunteers. Many had limited access to verified digital information or were disconnected from official communication channels.",
+          "position": {
+            "start": {
+              "line": 147,
+              "column": 1,
+              "offset": 21463
+            },
+            "end": {
+              "line": 147,
+              "column": 319,
+              "offset": 21781
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 147,
+          "column": 1,
+          "offset": 21463
+        },
+        "end": {
+          "line": 147,
+          "column": 319,
+          "offset": 21781
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In response, the LRC drew on its long-standing reputation and deployed targeted communication strategies. During the COVID-19 pandemic response, the LRC launched a non-emergency hotline to address public questions and during the Cholera outbreak, used in-person awareness sessions to counter rumours. Tools such as community rumour tracking, hotline feedback, timely press releases and real-time social media presence proved essential. However, gaps in digital literacy – particularly in remote areas – hindered response effectiveness.",
+          "position": {
+            "start": {
+              "line": 149,
+              "column": 1,
+              "offset": 21783
+            },
+            "end": {
+              "line": 149,
+              "column": 536,
+              "offset": 22318
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 149,
+          "column": 1,
+          "offset": 21783
+        },
+        "end": {
+          "line": 149,
+          "column": 536,
+          "offset": 22318
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "LRC’s impartiality was also questioned in some regions, particularly in areas hosting refugees. When rumours emerged that LRC favoured refugees in aid distributions, the organisation responded swiftly with factual clarifications to reaffirm its impartiality and neutrality.",
+          "position": {
+            "start": {
+              "line": 151,
+              "column": 1,
+              "offset": 22320
+            },
+            "end": {
+              "line": 151,
+              "column": 274,
+              "offset": 22593
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 151,
+          "column": 1,
+          "offset": 22320
+        },
+        "end": {
+          "line": 151,
+          "column": 274,
+          "offset": 22593
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Ultimately, building resilience to harmful information requires more than reactive communication. The LRC recognised status – from the highest authorities to local actors – as a neutral and trusted humanitarian partner was key to maintaining public confidence and operational access. The core humanitarian principles of impartiality, neutrality and independence are increasingly challenged by the spread of false narratives. While communication guidelines are in place, the LRC continues to strengthen and refine specific safeguards to counter harmful content. Above all, its volunteers – trusted and embedded in local communities – remain the organisation’s most effective asset in upholding community trust and ensuring the continuity of principled, life-saving humanitarian response.",
+          "position": {
+            "start": {
+              "line": 153,
+              "column": 1,
+              "offset": 22595
+            },
+            "end": {
+              "line": 153,
+              "column": 787,
+              "offset": 23381
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 153,
+          "column": 1,
+          "offset": 22595
+        },
+        "end": {
+          "line": 153,
+          "column": 787,
+          "offset": 23381
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Georges Kettaneh, Secretary General",
+              "position": {
+                "start": {
+                  "line": 155,
+                  "column": 15,
+                  "offset": 23397
+                },
+                "end": {
+                  "line": 155,
+                  "column": 50,
+                  "offset": 23432
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 155,
+              "column": 1,
+              "offset": 23383
+            },
+            "end": {
+              "line": 155,
+              "column": 65,
+              "offset": 23447
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 155,
+          "column": 1,
+          "offset": 23383
+        },
+        "end": {
+          "line": 155,
+          "column": 65,
+          "offset": 23447
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Lebanese Red Cross",
+              "position": {
+                "start": {
+                  "line": 157,
+                  "column": 15,
+                  "offset": 23463
+                },
+                "end": {
+                  "line": 157,
+                  "column": 33,
+                  "offset": 23481
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 157,
+              "column": 1,
+              "offset": 23449
+            },
+            "end": {
+              "line": 157,
+              "column": 48,
+              "offset": 23496
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 157,
+          "column": 1,
+          "offset": 23449
+        },
+        "end": {
+          "line": 157,
+          "column": 48,
+          "offset": 23496
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The Canadian Red Cross conducts annual survey-based research to better understand what drives trust amongst Canadians and how that trust connects to the organisation’s humanitarian mission and work. This research was designed to move beyond traditional brand strength measurement tools such as familiarity, attitude and remarkability, to gain deeper insights into the factors that sustain trust.",
+          "position": {
+            "start": {
+              "line": 163,
+              "column": 1,
+              "offset": 23619
+            },
+            "end": {
+              "line": 163,
+              "column": 396,
+              "offset": 24014
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 163,
+          "column": 1,
+          "offset": 23619
+        },
+        "end": {
+          "line": 163,
+          "column": 396,
+          "offset": 24014
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In the face of rising levels of harmful information, maintaining high levels of trust is crucial for the Canadian Red Cross to serve as a credible source of information at both the community and partnership levels. In recent years, trust levels have declined across all sectors in Canada, consistent with global trends linked to the rise of harmful information online and the weakening of traditional broadcast and print media.",
+          "position": {
+            "start": {
+              "line": 165,
+              "column": 1,
+              "offset": 24016
+            },
+            "end": {
+              "line": 165,
+              "column": 428,
+              "offset": 24443
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 165,
+          "column": 1,
+          "offset": 24016
+        },
+        "end": {
+          "line": 165,
+          "column": 428,
+          "offset": 24443
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "2025 marked the fourth consecutive year of the research, which also includes pulse surveys following significant issues and emergency responses.",
+          "position": {
+            "start": {
+              "line": 167,
+              "column": 1,
+              "offset": 24445
+            },
+            "end": {
+              "line": 167,
+              "column": 145,
+              "offset": 24589
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 167,
+          "column": 1,
+          "offset": 24445
+        },
+        "end": {
+          "line": 167,
+          "column": 145,
+          "offset": 24589
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Results have consistently shown that, among peer organisations and across sectors, the Canadian Red Cross leads in trust. This strong reputation positions the organisation as a trusted voice in times of crisis at the community level and as a partner of choice within civil society and with the government.",
+          "position": {
+            "start": {
+              "line": 169,
+              "column": 1,
+              "offset": 24591
+            },
+            "end": {
+              "line": 169,
+              "column": 306,
+              "offset": 24896
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 169,
+          "column": 1,
+          "offset": 24591
+        },
+        "end": {
+          "line": 169,
+          "column": 306,
+          "offset": 24896
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Trust research measures three core areas:",
+          "position": {
+            "start": {
+              "line": 171,
+              "column": 1,
+              "offset": 24898
+            },
+            "end": {
+              "line": 171,
+              "column": 42,
+              "offset": 24939
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 171,
+          "column": 1,
+          "offset": 24898
+        },
+        "end": {
+          "line": 171,
+          "column": 42,
+          "offset": 24939
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The collective knowledge, skills and competencies that enable the Canadian Red Cross to deliver services and meet its goals and responsibilities.",
+          "position": {
+            "start": {
+              "line": 173,
+              "column": 1,
+              "offset": 24941
+            },
+            "end": {
+              "line": 173,
+              "column": 146,
+              "offset": 25086
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 173,
+          "column": 1,
+          "offset": 24941
+        },
+        "end": {
+          "line": 173,
+          "column": 146,
+          "offset": 25086
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The degree to which the Canadian Red Cross demonstrates a duty of care and humanity towards all stakeholders.",
+          "position": {
+            "start": {
+              "line": 175,
+              "column": 1,
+              "offset": 25088
+            },
+            "end": {
+              "line": 175,
+              "column": 110,
+              "offset": 25197
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 175,
+          "column": 1,
+          "offset": 25088
+        },
+        "end": {
+          "line": 175,
+          "column": 110,
+          "offset": 25197
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The extent to which the Canadian Red Cross consistently adheres to widely accepted ethical principles and moral values.",
+          "position": {
+            "start": {
+              "line": 177,
+              "column": 1,
+              "offset": 25199
+            },
+            "end": {
+              "line": 177,
+              "column": 120,
+              "offset": 25318
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 177,
+          "column": 1,
+          "offset": 25199
+        },
+        "end": {
+          "line": 177,
+          "column": 120,
+          "offset": 25318
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Understanding what drives trust and how to strengthen and maintain it is now integrated into the Canadian Red Cross’s strategic approach, from the governance level (Board of Directors) through to executive leadership teams in Operations, Stakeholder Relations, Philanthropy and Communications.",
+          "position": {
+            "start": {
+              "line": 179,
+              "column": 1,
+              "offset": 25320
+            },
+            "end": {
+              "line": 179,
+              "column": 294,
+              "offset": 25613
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 179,
+          "column": 1,
+          "offset": 25320
+        },
+        "end": {
+          "line": 179,
+          "column": 294,
+          "offset": 25613
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Nathan Huculak, Head of Communications",
+              "position": {
+                "start": {
+                  "line": 181,
+                  "column": 15,
+                  "offset": 25629
+                },
+                "end": {
+                  "line": 181,
+                  "column": 53,
+                  "offset": 25667
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 181,
+              "column": 1,
+              "offset": 25615
+            },
+            "end": {
+              "line": 181,
+              "column": 68,
+              "offset": 25682
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 181,
+          "column": 1,
+          "offset": 25615
+        },
+        "end": {
+          "line": 181,
+          "column": 68,
+          "offset": 25682
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Canadian Red Cross",
+              "position": {
+                "start": {
+                  "line": 183,
+                  "column": 15,
+                  "offset": 25698
+                },
+                "end": {
+                  "line": 183,
+                  "column": 33,
+                  "offset": 25716
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 183,
+              "column": 1,
+              "offset": 25684
+            },
+            "end": {
+              "line": 183,
+              "column": 48,
+              "offset": 25731
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 183,
+          "column": 1,
+          "offset": 25684
+        },
+        "end": {
+          "line": 183,
+          "column": 48,
+          "offset": 25731
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Integrity, Perception and the Fragile Foundation of Trust",
+          "position": {
+            "start": {
+              "line": 185,
+              "column": 3,
+              "offset": 25735
+            },
+            "end": {
+              "line": 185,
+              "column": 60,
+              "offset": 25792
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 185,
+          "column": 1,
+          "offset": 25733
+        },
+        "end": {
+          "line": 185,
+          "column": 60,
+          "offset": 25792
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Cases of misconduct such as abuse, exploitation, fraud or mismanagement, have severely eroded public trust, especially when humanitarian organisations respond without transparency and empathy. Scandals involving sexual abuse in organisations have shown how quickly confidence can collapse. The politicisation of aid – when governments or armed actors manipulate humanitarian action for political purposes – further undermines perceptions of neutrality and leaves communities sceptical of humanitarian motives.",
+          "position": {
+            "start": {
+              "line": 187,
+              "column": 1,
+              "offset": 25794
+            },
+            "end": {
+              "line": 187,
+              "column": 510,
+              "offset": 26303
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 187,
+          "column": 1,
+          "offset": 25794
+        },
+        "end": {
+          "line": 187,
+          "column": 510,
+          "offset": 26303
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In today’s landscape of digital transparency and constant scrutiny, humanitarian actors are no longer the sole or even primary narrators of their work. They now compete for legitimacy not only with governments and non-state actors but also with communities themselves, who increasingly speak, organise and question responses in real time.",
+          "position": {
+            "start": {
+              "line": 189,
+              "column": 1,
+              "offset": 26305
+            },
+            "end": {
+              "line": 189,
+              "column": 339,
+              "offset": 26643
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 189,
+          "column": 1,
+          "offset": 26305
+        },
+        "end": {
+          "line": 189,
+          "column": 339,
+          "offset": 26643
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Addressing integrity issues is therefore essential. Allegations of partiality, corruption or mismanagement can deflect attention away from life-saving work and damage trust both internally within humanitarian organisations and externally with the public. The overall decline of trust in institutions is reflected in heightened scrutiny of the integrity of National Societies and other Movement components. This demands both the proactive promotion of mandates, principles and activities, and robust, strategic approaches to issues management, reputational challenges and related risks.",
+          "position": {
+            "start": {
+              "line": 191,
+              "column": 1,
+              "offset": 26645
+            },
+            "end": {
+              "line": 191,
+              "column": 586,
+              "offset": 27230
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 191,
+          "column": 1,
+          "offset": 26645
+        },
+        "end": {
+          "line": 191,
+          "column": 586,
+          "offset": 27230
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "At the same time, humanitarian organisations face unprecedented demands for reporting, compliance and proof of impact. Failures must be acknowledged and addressed openly and transparently. In parallel, there must also be concerted efforts across sectors to counter the intentional spread of harmful information, which is both unethical and dangerous.",
+          "position": {
+            "start": {
+              "line": 193,
+              "column": 1,
+              "offset": 27232
+            },
+            "end": {
+              "line": 193,
+              "column": 351,
+              "offset": 27582
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 193,
+          "column": 1,
+          "offset": 27232
+        },
+        "end": {
+          "line": 193,
+          "column": 351,
+          "offset": 27582
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Finally, a lack of, or slow progress in, localising humanitarian aid, has further fuelled mistrust. Many communities perceive humanitarian action as top-down and dominated by international actors with limited local representation or contextual understanding. In some contexts, the sector is often viewed as Western-dominated, a perception reinforced by global standards, codes of conduct and coordination mechanisms developed over decades, as well as by wider global inequalities.",
+          "position": {
+            "start": {
+              "line": 195,
+              "column": 1,
+              "offset": 27584
+            },
+            "end": {
+              "line": 195,
+              "column": 481,
+              "offset": 28064
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 195,
+          "column": 1,
+          "offset": 27584
+        },
+        "end": {
+          "line": 195,
+          "column": 481,
+          "offset": 28064
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In the Sahel, harmful online narratives are undermining the core principles of neutrality, impartiality and independence. Even routine, neutral posts by NGOs – such as announcements about programmes or distributions – are now frequently met with hostile reactions. Between January and June 2025, Insecurity Insight found that over 99% of negative comments (2,029 out of 2,034) in Burkina Faso were in response to neutral posts from institutional or media sources.",
+          "position": {
+            "start": {
+              "line": 201,
+              "column": 1,
+              "offset": 28179
+            },
+            "end": {
+              "line": 201,
+              "column": 464,
+              "offset": 28642
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 201,
+          "column": 1,
+          "offset": 28179
+        },
+        "end": {
+          "line": 201,
+          "column": 464,
+          "offset": 28642
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "On social media, common allegations against the aid sector in the Sahel include accusations of espionage, support for terrorism or fostering dependency. These claims blur distinctions between different mandates in the humanitarian sector making it more difficult to communicate about humanitarian action. For example, following a UNDP donation of motorcycles to Burkina Faso’s gendarmerie, social media users alleged that the motorcycles contained surveillance equipment, labelling the donation as an act of foreign control. Although such development support to the security sector is distinct from humanitarian work, such nuances are ignored and all aid is conflated.",
+          "position": {
+            "start": {
+              "line": 203,
+              "column": 1,
+              "offset": 28644
+            },
+            "end": {
+              "line": 203,
+              "column": 669,
+              "offset": 29312
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 203,
+          "column": 1,
+          "offset": 28644
+        },
+        "end": {
+          "line": 203,
+          "column": 669,
+          "offset": 29312
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Following an armed group’s attack on a military base in Djibo, Burkina Faso, in May 2025, a video circulated online showing the armed group using equipment allegedly taken from an international NGO. Although unverified, the clip triggered numerous comments accusing the NGO of collaborating with armed groups. Comments like “they work with terrorists” illustrate how these narratives, though unfounded, gain traction through repetition and emotional appeal, fostering a climate of suspicion. Such perceptions have real-world implications. In the same town, a staff member was killed in September 2024 further to accusations of collusion, although no formal connection to the online claims was established. Even in the absence of direct causality, repeated associations with contested actors or political agendas erodes community acceptance and heightens risk for humanitarian organisations.",
+          "position": {
+            "start": {
+              "line": 205,
+              "column": 1,
+              "offset": 29314
+            },
+            "end": {
+              "line": 205,
+              "column": 891,
+              "offset": 30204
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 205,
+          "column": 1,
+          "offset": 29314
+        },
+        "end": {
+          "line": 205,
+          "column": 891,
+          "offset": 30204
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "This delegitimisation of aid actors not only increases security risks and undermines acceptance-based protection but also influences government decisions. The shrinking humanitarian space is no longer just a metaphor – it is a measurable, digital phenomenon with direct operational consequences offline.",
+          "position": {
+            "start": {
+              "line": 207,
+              "column": 1,
+              "offset": 30206
+            },
+            "end": {
+              "line": 207,
+              "column": 304,
+              "offset": 30509
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 207,
+          "column": 1,
+          "offset": 30206
+        },
+        "end": {
+          "line": 207,
+          "column": 304,
+          "offset": 30509
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Christina Wille",
+          "position": {
+            "start": {
+              "line": 209,
+              "column": 3,
+              "offset": 30513
+            },
+            "end": {
+              "line": 209,
+              "column": 18,
+              "offset": 30528
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 209,
+          "column": 1,
+          "offset": 30511
+        },
+        "end": {
+          "line": 209,
+          "column": 18,
+          "offset": 30528
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [
+        {
+          "type": "text",
+          "value": "Director",
+          "position": {
+            "start": {
+              "line": 211,
+              "column": 4,
+              "offset": 30533
+            },
+            "end": {
+              "line": 211,
+              "column": 12,
+              "offset": 30541
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 211,
+          "column": 1,
+          "offset": 30530
+        },
+        "end": {
+          "line": 211,
+          "column": 12,
+          "offset": 30541
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Clara de Solages",
+          "position": {
+            "start": {
+              "line": 213,
+              "column": 3,
+              "offset": 30545
+            },
+            "end": {
+              "line": 213,
+              "column": 19,
+              "offset": 30561
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 213,
+          "column": 1,
+          "offset": 30543
+        },
+        "end": {
+          "line": 213,
+          "column": 19,
+          "offset": 30561
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [
+        {
+          "type": "text",
+          "value": "Researcher",
+          "position": {
+            "start": {
+              "line": 215,
+              "column": 4,
+              "offset": 30566
+            },
+            "end": {
+              "line": 215,
+              "column": 14,
+              "offset": 30576
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 215,
+          "column": 1,
+          "offset": 30563
+        },
+        "end": {
+          "line": 215,
+          "column": 14,
+          "offset": 30576
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "Insecurity Insight",
+          "position": {
+            "start": {
+              "line": 217,
+              "column": 5,
+              "offset": 30582
+            },
+            "end": {
+              "line": 217,
+              "column": 23,
+              "offset": 30600
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 217,
+          "column": 1,
+          "offset": 30578
+        },
+        "end": {
+          "line": 217,
+          "column": 23,
+          "offset": 30600
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The current humanitarian “reset” or “renewal” – driven by the unprecedented reduction in humanitarian funding in 2025 and beyond – and resulting in widespread restructuring or programme cuts – is amplifying harmful information. Sudden programme closures, staff layoffs and uncertainty – often communicated inadequately to affected communities – creates a void that harmful information, distrust and political narratives quickly fill. When communities are not meaningfully engaged, or when changes are poorly explained, speculation arises that aid is being politicised, diverted or withdrawn entirely. Critics and bad-faith actors exploit this uncertainty to undermine trust in humanitarian action. Without clear, transparent communication and visible inclusion of local voices, the reset or renewal risks becoming fertile ground for suspicion, polarisation and harmful narratives.",
+          "position": {
+            "start": {
+              "line": 219,
+              "column": 1,
+              "offset": 30602
+            },
+            "end": {
+              "line": 219,
+              "column": 881,
+              "offset": 31482
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 219,
+          "column": 1,
+          "offset": 30602
+        },
+        "end": {
+          "line": 219,
+          "column": 881,
+          "offset": 31482
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Decline of Expertise and its Impact on Trust",
+          "position": {
+            "start": {
+              "line": 221,
+              "column": 3,
+              "offset": 31486
+            },
+            "end": {
+              "line": 221,
+              "column": 47,
+              "offset": 31530
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 221,
+          "column": 1,
+          "offset": 31484
+        },
+        "end": {
+          "line": 221,
+          "column": 47,
+          "offset": 31530
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The erosion of trust in expert knowledge described as the death of expertise (Levitin) has deepened public scepticism toward authoritative information. The internet’s promise of open access and free expression has blurred the line between reliable information and misinformation, enabling both to coexist: one guiding us and the other misleading us. Emotion often shapes belief before evidence is even considered. While questioning claims and evaluating sources is essential, it increasingly occurs outside traditional frameworks of expertise.",
+          "position": {
+            "start": {
+              "line": 223,
+              "column": 1,
+              "offset": 31532
+            },
+            "end": {
+              "line": 223,
+              "column": 544,
+              "offset": 32075
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 223,
+          "column": 1,
+          "offset": 31532
+        },
+        "end": {
+          "line": 223,
+          "column": 544,
+          "offset": 32075
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Humanitarian organisations are generally perceived as expert actors, valued for their technical skills, operational experience and legal and policy knowledge. Yet this legitimacy is not fixed: it depends on context, conduct and how well organisations meet growing expectations around localisation, accountability and effective response.",
+          "position": {
+            "start": {
+              "line": 225,
+              "column": 1,
+              "offset": 32077
+            },
+            "end": {
+              "line": 225,
+              "column": 337,
+              "offset": 32413
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 225,
+          "column": 1,
+          "offset": 32077
+        },
+        "end": {
+          "line": 225,
+          "column": 337,
+          "offset": 32413
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Meanwhile, the information landscape has shifted dramatically. Social media has empowered communities to challenge traditional gatekeepers of knowledge and narrative, elevating peer voices over institutional or credentialed experts. As outlined in The Death of Expertise: “Facts and reason are under siege on multiple fronts”. Notably, Edelman’s 2006 Trust Barometer marked the first time that “a person like me” emerged as one of the most credible sources of information.",
+          "position": {
+            "start": {
+              "line": 227,
+              "column": 1,
+              "offset": 32415
+            },
+            "end": {
+              "line": 227,
+              "column": 473,
+              "offset": 32887
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 227,
+          "column": 1,
+          "offset": 32415
+        },
+        "end": {
+          "line": 227,
+          "column": 473,
+          "offset": 32887
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In this environment, expertise alone is no longer enough. Trust must be continuously earned through transparency, humility and responsiveness. This shift raises critical questions explored in the next section: Where is trust in humanitarian organisations genuinely misplaced – requiring constructive criticism, evaluation and open dialogue? Where is distrust deliberately manufactured to erode trust and legitimacy? And, how can we tell the difference?",
+          "position": {
+            "start": {
+              "line": 229,
+              "column": 1,
+              "offset": 32889
+            },
+            "end": {
+              "line": 229,
+              "column": 453,
+              "offset": 33341
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 229,
+          "column": 1,
+          "offset": 32889
+        },
+        "end": {
+          "line": 229,
+          "column": 453,
+          "offset": 33341
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Spotlight",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Designing Trust ",
+              "position": {
+                "start": {
+                  "line": 231,
+                  "column": 12,
+                  "offset": 33354
+                },
+                "end": {
+                  "line": 231,
+                  "column": 28,
+                  "offset": 33370
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 231,
+              "column": 1,
+              "offset": 33343
+            },
+            "end": {
+              "line": 231,
+              "column": 40,
+              "offset": 33382
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 231,
+          "column": 1,
+          "offset": 33343
+        },
+        "end": {
+          "line": 231,
+          "column": 40,
+          "offset": 33382
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Does trust matter when you’re hungry? When you are focused on being efficient? When your information is backed by science? Diagram to include",
+          "position": {
+            "start": {
+              "line": 233,
+              "column": 1,
+              "offset": 33384
+            },
+            "end": {
+              "line": 233,
+              "column": 142,
+              "offset": 33525
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 233,
+          "column": 1,
+          "offset": 33384
+        },
+        "end": {
+          "line": 233,
+          "column": 142,
+          "offset": 33525
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Yes, it matters, because aid delivered with respect for people’s full capacity builds something that can last beyond funding cycles. It becomes embedded in communities, generates local solutions and avoids antagonism that could increase risks, not reduce them.",
+          "position": {
+            "start": {
+              "line": 235,
+              "column": 1,
+              "offset": 33527
+            },
+            "end": {
+              "line": 235,
+              "column": 261,
+              "offset": 33787
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 235,
+          "column": 1,
+          "offset": 33527
+        },
+        "end": {
+          "line": 235,
+          "column": 261,
+          "offset": 33787
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Too often, conversations about trust in the humanitarian sector focus on external threats – the circumstances outside of the control of humanitarian organisations: malicious actors, polarising algorithms, shrinking aid budgets or shifting societal norms. While it is good to understand these changes and challenges, much of what builds – or erodes trust – lies within our control. We can do a lot ourselves in the sector to warrant trust.",
+          "position": {
+            "start": {
+              "line": 237,
+              "column": 1,
+              "offset": 33789
+            },
+            "end": {
+              "line": 237,
+              "column": 439,
+              "offset": 34227
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 237,
+          "column": 1,
+          "offset": 33789
+        },
+        "end": {
+          "line": 237,
+          "column": 439,
+          "offset": 34227
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Trust is relational, conditional and multi-dimensional. This is why trust can sometimes feel too abstract or too intangible to be actionable. The Trust Framework tries to overcome this. It was developed under the Rooted In Trust project through consultations in more than ten different crisis contexts. It breaks trust down into four core elements – accuracy, proximity, intention and control – each with three sub-elements that shape how people perceive the organisations around them. This framework can reveal disconnects we might otherwise overlook, for instance, that while our information is factually correct, it may come across as too polished and out of touch with the current conversations. It might reveal that people perceive local staff and local partners as “them” and not “us”, as they are not seen as independent enough from the international aid system they are associated with.",
+          "position": {
+            "start": {
+              "line": 239,
+              "column": 1,
+              "offset": 34229
+            },
+            "end": {
+              "line": 239,
+              "column": 895,
+              "offset": 35123
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 239,
+          "column": 1,
+          "offset": 34229
+        },
+        "end": {
+          "line": 239,
+          "column": 895,
+          "offset": 35123
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Designing programming around trust is not about ignoring risks. It is more like a parent watching their child cycle alone to school for the first time: fully aware of the risks but choosing to let them go on their own, so the child can grow in independence. Trust requires a level of independence, space not control, so people can contribute meaningfully, signal gaps, adapt and change course when needed. Because with agency comes responsibility. With trust, far more becomes possible.",
+          "position": {
+            "start": {
+              "line": 241,
+              "column": 1,
+              "offset": 35125
+            },
+            "end": {
+              "line": 241,
+              "column": 487,
+              "offset": 35611
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 241,
+          "column": 1,
+          "offset": 35125
+        },
+        "end": {
+          "line": 241,
+          "column": 487,
+          "offset": 35611
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Stijn Aelbers",
+              "position": {
+                "start": {
+                  "line": 243,
+                  "column": 15,
+                  "offset": 35627
+                },
+                "end": {
+                  "line": 243,
+                  "column": 28,
+                  "offset": 35640
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 243,
+              "column": 1,
+              "offset": 35613
+            },
+            "end": {
+              "line": 243,
+              "column": 43,
+              "offset": 35655
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 243,
+          "column": 1,
+          "offset": 35613
+        },
+        "end": {
+          "line": 243,
+          "column": 43,
+          "offset": 35655
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "ContributorRole",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Humanitarian Consultant",
+              "position": {
+                "start": {
+                  "line": 245,
+                  "column": 18,
+                  "offset": 35674
+                },
+                "end": {
+                  "line": 245,
+                  "column": 41,
+                  "offset": 35697
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 245,
+              "column": 1,
+              "offset": 35657
+            },
+            "end": {
+              "line": 245,
+              "column": 59,
+              "offset": 35715
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 245,
+          "column": 1,
+          "offset": 35657
+        },
+        "end": {
+          "line": 245,
+          "column": 59,
+          "offset": 35715
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Community Engagement: A Bridge to Trust",
+          "position": {
+            "start": {
+              "line": 247,
+              "column": 3,
+              "offset": 35719
+            },
+            "end": {
+              "line": 247,
+              "column": 42,
+              "offset": 35758
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 247,
+          "column": 1,
+          "offset": 35717
+        },
+        "end": {
+          "line": 247,
+          "column": 42,
+          "offset": 35758
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Community Researcher, Bolivia",
+              "position": {
+                "start": {
+                  "line": 260,
+                  "column": 15,
+                  "offset": 36496
+                },
+                "end": {
+                  "line": 260,
+                  "column": 44,
+                  "offset": 36525
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 260,
+              "column": 1,
+              "offset": 36482
+            },
+            "end": {
+              "line": 260,
+              "column": 59,
+              "offset": 36540
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 260,
+          "column": 1,
+          "offset": 36482
+        },
+        "end": {
+          "line": 260,
+          "column": 59,
+          "offset": 36540
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Community Engagement and Accountability (CEA) is a vital bridge to building and sustaining trust. Trust grows through proximity, inclusive participation, timely and transparent communication and shared decision-making with people and communities. wCEA also ensures that communities have access to accurate, relevant and potentially life-saving information – making it essential not only for effective humanitarian response but also for the safety and security of staff and operations.",
+          "position": {
+            "start": {
+              "line": 262,
+              "column": 1,
+              "offset": 36542
+            },
+            "end": {
+              "line": 262,
+              "column": 485,
+              "offset": 37026
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 262,
+          "column": 1,
+          "offset": 36542
+        },
+        "end": {
+          "line": 262,
+          "column": 485,
+          "offset": 37026
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Community engagement",
+          "position": {
+            "start": {
+              "line": 264,
+              "column": 3,
+              "offset": 37030
+            },
+            "end": {
+              "line": 264,
+              "column": 23,
+              "offset": 37050
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 264,
+          "column": 1,
+          "offset": 37028
+        },
+        "end": {
+          "line": 264,
+          "column": 23,
+          "offset": 37050
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Community engagement played a pivotal role in rebuilding trust in the 2018 Ebola outbreak in the Democratic Republic of the Congo (DRC). Fear, rumours and misinformation fuelled mistrust, leading at times to violence against Red Cross teams, particularly those conducting safe and dignified burials. This resistance blocked access to lifesaving care and may have contributed to further transmission of the virus in vulnerable communities.",
+          "position": {
+            "start": {
+              "line": 281,
+              "column": 1,
+              "offset": 38208
+            },
+            "end": {
+              "line": 281,
+              "column": 439,
+              "offset": 38646
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 281,
+          "column": 1,
+          "offset": 38208
+        },
+        "end": {
+          "line": 281,
+          "column": 439,
+          "offset": 38646
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "To respond, the DRC Red Cross placed community engagement at the centre of its strategy. Volunteers maintained daily dialogue with communities to address concerns and rebuild trust. Using a first-of-its-kind feedback system, they collected over 394,000 pieces of community feedback, enabling humanitarian actors to adapt approaches to local realities. Volunteers went door-to-door sharing information on how to prevent, detect and respond to Ebola, hosted radio talk shows, organised mobile cinemas and conducted outreach to vulnerable groups, including people with disabilities, children and women’s associations. This approach had a measurable impact: acceptance of safe and dignified burials rose above 80%, while community resistance dropped from 79% to just 8%. Trust, dialogue and locally driven action proved essential to stopping the spread of Ebola. [Note there is a photo we could potentially use.",
+          "position": {
+            "start": {
+              "line": 283,
+              "column": 1,
+              "offset": 38648
+            },
+            "end": {
+              "line": 283,
+              "column": 908,
+              "offset": 39555
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 283,
+          "column": 1,
+          "offset": 38648
+        },
+        "end": {
+          "line": 283,
+          "column": 908,
+          "offset": 39555
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Spotlight",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Yemen Red Crescent Society Volunteers – Trusted by the Communities They Serve",
+              "position": {
+                "start": {
+                  "line": 285,
+                  "column": 12,
+                  "offset": 39568
+                },
+                "end": {
+                  "line": 285,
+                  "column": 89,
+                  "offset": 39645
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 285,
+              "column": 1,
+              "offset": 39557
+            },
+            "end": {
+              "line": 285,
+              "column": 101,
+              "offset": 39657
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 285,
+          "column": 1,
+          "offset": 39557
+        },
+        "end": {
+          "line": 285,
+          "column": 101,
+          "offset": 39657
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Through consistent and transparent external communication, the Yemen Red Crescent Society (YRCS) has established itself as a trusted organisation within Yemeni communities. With a strong volunteer base across its 22 branches, YRCS relies on individuals who are directly connected to the communities they serve. Typically, one male and one female volunteer are responsible for every 20 households, fostering gender-based engagement and local familiarity.",
+          "position": {
+            "start": {
+              "line": 287,
+              "column": 1,
+              "offset": 39659
+            },
+            "end": {
+              "line": 287,
+              "column": 454,
+              "offset": 40112
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 287,
+          "column": 1,
+          "offset": 39659
+        },
+        "end": {
+          "line": 287,
+          "column": 454,
+          "offset": 40112
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "These volunteers play a key role in selecting new staff and volunteers, helping ensure that individuals’ political, tribal or religious backgrounds do not interfere with their ability to work effectively with community leaders and members. This careful and inclusive election process helps maintain harmonious working relationships and reinforces the community’s trust in YRCS. By adopting community-based programme approaches YRCS ensures its interventions are culturally relevant and locally accepted – critical to effective Disaster Risk Reduction (DRR) and other humanitarian initiatives.",
+          "position": {
+            "start": {
+              "line": 289,
+              "column": 1,
+              "offset": 40114
+            },
+            "end": {
+              "line": 289,
+              "column": 593,
+              "offset": 40706
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 289,
+          "column": 1,
+          "offset": 40114
+        },
+        "end": {
+          "line": 289,
+          "column": 593,
+          "offset": 40706
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Trust is difficult to establish and even harder to rebuild once lost. The IFRC identified trust as one of the strongest predictors of a successful emergency response, making preparedness fundamentally dependent on cultivating trust within communities and societies. To support this, the IFRC developed the Community Trust Index – an evidence-based tool to measure and strengthen trust between National Red Cross and Red Crescent Societies and the communities they serve. The index tracks changes in trust over time and identifies the factors that influence it across different contexts. By uncovering barriers to trust, it guides tailored activities that promote trust-based behaviours, improve community acceptance and enhance programme effectiveness. It also links trust to compliance, governance and inclusive, community-informed decision-making, reinforcing accountability and impact.",
+          "position": {
+            "start": {
+              "line": 291,
+              "column": 1,
+              "offset": 40708
+            },
+            "end": {
+              "line": 291,
+              "column": 889,
+              "offset": 41596
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 291,
+          "column": 1,
+          "offset": 40708
+        },
+        "end": {
+          "line": 291,
+          "column": 889,
+          "offset": 41596
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Spotlight",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Trust in Local Organisations Endures Amid a Shifting Information Landscape",
+              "position": {
+                "start": {
+                  "line": 293,
+                  "column": 12,
+                  "offset": 41609
+                },
+                "end": {
+                  "line": 293,
+                  "column": 86,
+                  "offset": 41683
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 293,
+              "column": 1,
+              "offset": 41598
+            },
+            "end": {
+              "line": 293,
+              "column": 98,
+              "offset": 41695
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 293,
+          "column": 1,
+          "offset": 41598
+        },
+        "end": {
+          "line": 293,
+          "column": 98,
+          "offset": 41695
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "An analysis of Community Trust Index (CTI) data from seven countries, collected between 2022 and 2024, provides important insights into how trust in National Red Cross and Red Crescent Societies is evolving in a world increasingly shaped by misinformation and disinformation. The CTI measures two key dimensions of trust: competence – reflecting perceptions of an organisation’s effectiveness, skills and capacity; and values – encompassing ethics, integrity and alignment with community interests.",
+          "position": {
+            "start": {
+              "line": 295,
+              "column": 1,
+              "offset": 41697
+            },
+            "end": {
+              "line": 295,
+              "column": 499,
+              "offset": 42195
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 295,
+          "column": 1,
+          "offset": 41697
+        },
+        "end": {
+          "line": 295,
+          "column": 499,
+          "offset": 42195
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Overall, communities report high levels of trust in their National Societies, with an average score of 8.15 out of 10. However, a closer look reveals emerging ethical concerns, particularly around transparency, neutrality and openness to community feedback.",
+          "position": {
+            "start": {
+              "line": 297,
+              "column": 1,
+              "offset": 42197
+            },
+            "end": {
+              "line": 297,
+              "column": 258,
+              "offset": 42454
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 297,
+          "column": 1,
+          "offset": 42197
+        },
+        "end": {
+          "line": 297,
+          "column": 258,
+          "offset": 42454
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Transparency is emerging as a significant challenge. In nearly all contexts studied (Figure 1), it ranked as the weakest driver of trust, with an average score of just 6.34 out of 10. Many communities view humanitarian actors as reluctant to openly share mistakes or acknowledge shortcomings – an impression amplified by the digital era’s demand for real-time accountability. This trend is particularly pronounced in Mongolia, Ecuador and Zimbabwe, where gaps in transparent communication may create opportunities for misinformation to spread.",
+          "position": {
+            "start": {
+              "line": 299,
+              "column": 1,
+              "offset": 42456
+            },
+            "end": {
+              "line": 299,
+              "column": 544,
+              "offset": 42999
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 299,
+          "column": 1,
+          "offset": 42456
+        },
+        "end": {
+          "line": 299,
+          "column": 544,
+          "offset": 42999
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [
+        {
+          "type": "text",
+          "value": "Figure 1: Cross-country comparison of the CTI across all measured sub-dimensions in seven countries.",
+          "position": {
+            "start": {
+              "line": 301,
+              "column": 4,
+              "offset": 43004
+            },
+            "end": {
+              "line": 301,
+              "column": 104,
+              "offset": 43104
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 301,
+          "column": 1,
+          "offset": 43001
+        },
+        "end": {
+          "line": 301,
+          "column": 104,
+          "offset": 43104
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "At the same time, perceptions of neutrality are increasingly fragile in today’s polarised and politically charged environments. Political neutrality ranked as the second weakest driver of trust, with an average score of just 7.31 out of 10. In contexts where humanitarian organisations were once broadly regarded as impartial, these assumptions are now being challenged. For example, in Zimbabwe, neutrality scores dropped sharply to 2.2 out of 10 among the general population and just 1.03 among aid recipients. In such settings, the principle of neutrality risks being undermined by contested narratives and politicised messaging, threatening the very foundation of trust.",
+          "position": {
+            "start": {
+              "line": 303,
+              "column": 1,
+              "offset": 43106
+            },
+            "end": {
+              "line": 303,
+              "column": 675,
+              "offset": 43780
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 303,
+          "column": 1,
+          "offset": 43106
+        },
+        "end": {
+          "line": 303,
+          "column": 675,
+          "offset": 43780
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Compounding these concerns is a limited openness to community feedback. While essential for correcting misinformation and fostering dialogue, feedback ranked as the third weakest driver of trust, with an average score of just 7.74 out of 10 – indicating that many communities feel discomfort or hesitation in voicing concerns or complaints. This lack of effective feedback mechanisms hampers the ability of humanitarian actors to respond and adapt to local needs. Without clear, accessible and inclusive channels for engagement, trust becomes more vulnerable to erosion, rumours can take hold and humanitarian organisations risk being perceived as disconnected or unaccountable.",
+          "position": {
+            "start": {
+              "line": 305,
+              "column": 1,
+              "offset": 43782
+            },
+            "end": {
+              "line": 305,
+              "column": 679,
+              "offset": 44460
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 305,
+          "column": 1,
+          "offset": 43782
+        },
+        "end": {
+          "line": 305,
+          "column": 679,
+          "offset": 44460
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Together, these findings underscore that in today’s complex information landscape, delivering aid alone is not enough. To maintain and strengthen trust, humanitarian organisations must commit to transparent, neutral and responsive engagement that meets community expectations and builds resilience against misinformation.",
+          "position": {
+            "start": {
+              "line": 307,
+              "column": 1,
+              "offset": 44462
+            },
+            "end": {
+              "line": 307,
+              "column": 322,
+              "offset": 44783
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 307,
+          "column": 1,
+          "offset": 44462
+        },
+        "end": {
+          "line": 307,
+          "column": 322,
+          "offset": 44783
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Youth and the Trust Gap: A Growing Disconnection",
+          "position": {
+            "start": {
+              "line": 309,
+              "column": 1,
+              "offset": 44785
+            },
+            "end": {
+              "line": 309,
+              "column": 49,
+              "offset": 44833
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 309,
+          "column": 1,
+          "offset": 44785
+        },
+        "end": {
+          "line": 309,
+          "column": 49,
+          "offset": 44833
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Younger respondents (ages 18–30) consistently expressed lower trust in National Societies than older generations. While this may reflect broader generational shifts in how institutional legitimacy is perceived, it also signals a crucial vulnerability: if humanitarian actors are not perceived as trustworthy by youth – who are often more active in digital spaces – misinformation is more likely to fill the vacuum. Younger audiences may be particularly sensitive to perceived hypocrisy, opaque communication or misaligned values and less forgiving of mistakes that go unacknowledged.",
+          "position": {
+            "start": {
+              "line": 311,
+              "column": 1,
+              "offset": 44835
+            },
+            "end": {
+              "line": 311,
+              "column": 584,
+              "offset": 45418
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 311,
+          "column": 1,
+          "offset": 44835
+        },
+        "end": {
+          "line": 311,
+          "column": 584,
+          "offset": 45418
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The Role of Engagement in Countering Distrust",
+          "position": {
+            "start": {
+              "line": 313,
+              "column": 1,
+              "offset": 45420
+            },
+            "end": {
+              "line": 313,
+              "column": 46,
+              "offset": 45465
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 313,
+          "column": 1,
+          "offset": 45420
+        },
+        "end": {
+          "line": 313,
+          "column": 46,
+          "offset": 45465
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "One of the strongest protective factors against erosion of trust is direct engagement. Communities with established relationships to National Societies reported trust levels nearly a full point higher (8.5 vs. 7.8) than those without such connections. This reinforces the view that localised, participatory engagement serves as a buffer against the destabilising effects of harmful information. By contrast, the absence of dialogue or proximity can foster suspicion – leaving humanitarian access, neutrality and security more exposed.",
+          "position": {
+            "start": {
+              "line": 315,
+              "column": 1,
+              "offset": 45467
+            },
+            "end": {
+              "line": 315,
+              "column": 535,
+              "offset": 46001
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 315,
+          "column": 1,
+          "offset": 45467
+        },
+        "end": {
+          "line": 315,
+          "column": 535,
+          "offset": 46001
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Gefra Fulane, Research Coordinator, CEA",
+              "position": {
+                "start": {
+                  "line": 317,
+                  "column": 15,
+                  "offset": 46017
+                },
+                "end": {
+                  "line": 317,
+                  "column": 54,
+                  "offset": 46056
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 317,
+              "column": 1,
+              "offset": 46003
+            },
+            "end": {
+              "line": 317,
+              "column": 69,
+              "offset": 46071
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 317,
+          "column": 1,
+          "offset": 46003
+        },
+        "end": {
+          "line": 317,
+          "column": 69,
+          "offset": 46071
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Facts and Feelings: A Perception Challenge",
+          "position": {
+            "start": {
+              "line": 323,
+              "column": 3,
+              "offset": 46182
+            },
+            "end": {
+              "line": 323,
+              "column": 45,
+              "offset": 46224
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 323,
+          "column": 1,
+          "offset": 46180
+        },
+        "end": {
+          "line": 323,
+          "column": 45,
+          "offset": 46224
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In an era of rising harmful information and public distrust, humanitarian organisations face a growing challenge: principled, fact-based communication often struggles to compete with emotionally charged narratives, polarising content and opinion-driven discourse. Even when – perhaps especially when – grounded in evidence and neutrality, humanitarian messaging is often drowned out by louder, more emotionally resonant voices, particularly online. This creates a significant perception challenge. Trust and integrity may be questioned and principles perceived as detached from realities or seen as lacking empathy.",
+          "position": {
+            "start": {
+              "line": 325,
+              "column": 1,
+              "offset": 46226
+            },
+            "end": {
+              "line": 325,
+              "column": 616,
+              "offset": 46841
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 325,
+          "column": 1,
+          "offset": 46226
+        },
+        "end": {
+          "line": 325,
+          "column": 616,
+          "offset": 46841
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The result is a trust and perception problem: neutrality, facts and rationality are increasingly misunderstood or mistrusted. When emotion and polarisation drive engagement, even well-intentioned communications risk being reframed as political or partial. This distorts how communities perceive humanitarian work and undermines the credibility of those committed to principled humanitarian action. Navigating this landscape requires sustained community engagement, especially offline, where dialogue can build proximity and trust. Online, it may also mean recognising the limits of engagement and, in some cases, closing comment sections or not responding when dialogue cannot be carried out in good faith.",
+          "position": {
+            "start": {
+              "line": 327,
+              "column": 1,
+              "offset": 46843
+            },
+            "end": {
+              "line": 327,
+              "column": 707,
+              "offset": 47549
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 327,
+          "column": 1,
+          "offset": 46843
+        },
+        "end": {
+          "line": 327,
+          "column": 707,
+          "offset": 47549
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Among the seven Fundamental Principles of the Red Cross and Red Crescent, neutrality and impartiality are often the least understood and provoke the most controversy. This is somewhat ironic, given that neutrality’s purpose is precisely to avoid entanglement in controversy. At its core, neutrality is not an end in itself, but a method to preserve trust and access in polarised or politicised environments.",
+          "position": {
+            "start": {
+              "line": 329,
+              "column": 1,
+              "offset": 47551
+            },
+            "end": {
+              "line": 329,
+              "column": 408,
+              "offset": 47958
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 329,
+          "column": 1,
+          "offset": 47551
+        },
+        "end": {
+          "line": 329,
+          "column": 408,
+          "offset": 47958
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Reconciling how to carry out principled humanitarian action lies at the heart of what humanitarianism is – and is not. Critiques of neutrality often argue that “in situations of injustice, neutrality only helps the oppressor, never the victim.” Such critiques serve as warnings against moral or political indifference and silence or passiveness in the face of injustice, violence, oppression or discrimination. At times, accusations of silence or complicity are directed at components of the Movement, especially during armed conflicts. Failing to speak can leave an information vacuum that others may fill, eroding trust. Yet speaking out can be equally fraught, as statements may be perceived as “taking sides” – especially in limited, emotionally charged online comment sections. In this way, humanitarian principles are pulled into political narratives that can distort their purpose. Cross reference Chapter 7 for more on the Fundamental Principles, including dilemmas such as equivalency.",
+          "position": {
+            "start": {
+              "line": 331,
+              "column": 1,
+              "offset": 47960
+            },
+            "end": {
+              "line": 331,
+              "column": 995,
+              "offset": 48954
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 331,
+          "column": 1,
+          "offset": 47960
+        },
+        "end": {
+          "line": 331,
+          "column": 995,
+          "offset": 48954
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Neutrality is often defined by what it is not. Overlooked is that neutrality is not neutral toward suffering. It does not mean moral indifference or denial of injustice. Rather, it means refraining from taking sides in hostilities or engaging in political, racial, religious or ideological controversies. This discipline can enable humanitarian actors to gain the confidence of all parties and access to people in need.",
+          "position": {
+            "start": {
+              "line": 333,
+              "column": 1,
+              "offset": 48956
+            },
+            "end": {
+              "line": 333,
+              "column": 420,
+              "offset": 49375
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 333,
+          "column": 1,
+          "offset": 48956
+        },
+        "end": {
+          "line": 333,
+          "column": 420,
+          "offset": 49375
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In today’s information age, where warring parties actively use online platforms to frame polarising narratives and civilians engage in digital discourse, neutrality also requires refraining from being drawn into a war of words. It must be upheld both online and offline. Ultimately, neutrality is about building trust as a means to an end: enabling the delivery of impartial humanitarian action. To safeguard it, principled humanitarian actors must consistently advocate for the protection of a neutral and impartial humanitarian space, free from political influence. States also have a key role in preserving this humanitarian space. Cross reference to Chapter 5. The ability to protect and assist victims of armed conflicts, in accordance with the 1949 Geneva Conventions and their Additional Protocols, depends on strict adherence to the principles of humanity, impartiality, neutrality and independence. These principles remain the essential tools to access the most vulnerable and to gain their trust.",
+          "position": {
+            "start": {
+              "line": 335,
+              "column": 1,
+              "offset": 49377
+            },
+            "end": {
+              "line": 335,
+              "column": 1007,
+              "offset": 50383
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 335,
+          "column": 1,
+          "offset": 49377
+        },
+        "end": {
+          "line": 335,
+          "column": 1007,
+          "offset": 50383
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "That does not mean that the Movement components always “get it right” in what they say – or choose not to say. Timing, consistency and clarity remain essential and difficult. These dilemmas are explored further in Chapter 7 on the Fundamental Principles.",
+          "position": {
+            "start": {
+              "line": 337,
+              "column": 1,
+              "offset": 50385
+            },
+            "end": {
+              "line": 337,
+              "column": 255,
+              "offset": 50639
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 337,
+          "column": 1,
+          "offset": 50385
+        },
+        "end": {
+          "line": 337,
+          "column": 255,
+          "offset": 50639
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Spotlight",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Principled Humanitarian Action Under Threat",
+              "position": {
+                "start": {
+                  "line": 339,
+                  "column": 12,
+                  "offset": 50652
+                },
+                "end": {
+                  "line": 339,
+                  "column": 55,
+                  "offset": 50695
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 339,
+              "column": 1,
+              "offset": 50641
+            },
+            "end": {
+              "line": 339,
+              "column": 67,
+              "offset": 50707
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 339,
+          "column": 1,
+          "offset": 50641
+        },
+        "end": {
+          "line": 339,
+          "column": 67,
+          "offset": 50707
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The Fundamental Principles of the Red Cross and Red Crescent Movement – humanity, impartiality, neutrality, independence, voluntary service, unity, and universality – form the ethical backbone of principled humanitarian action. Among these, neutrality and impartiality are particularly vital to ensuring trust, access and effectiveness in volatile environments.",
+          "position": {
+            "start": {
+              "line": 341,
+              "column": 1,
+              "offset": 50709
+            },
+            "end": {
+              "line": 341,
+              "column": 362,
+              "offset": 51070
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 341,
+          "column": 1,
+          "offset": 50709
+        },
+        "end": {
+          "line": 341,
+          "column": 362,
+          "offset": 51070
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Neutrality requires that the Movement refrain from taking sides in conflicts or engaging in political, racial, religious, or ideological controversies. This principle is essential for maintaining credibility and securing access to all parties in a crisis. Impartiality, meanwhile, demands that aid be provided solely based on need, without discrimination of any kind. Together, these principles safeguard the Movement’s ability to serve vulnerable populations equitably and without bias.",
+          "position": {
+            "start": {
+              "line": 343,
+              "column": 1,
+              "offset": 51072
+            },
+            "end": {
+              "line": 343,
+              "column": 488,
+              "offset": 51559
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 343,
+          "column": 1,
+          "offset": 51072
+        },
+        "end": {
+          "line": 343,
+          "column": 488,
+          "offset": 51559
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "However, upholding these principles is increasingly difficult. The politicisation of aid, the spread of misinformation, and rising social polarisation have created environments where neutrality and impartiality are often misunderstood or manipulated. Humanitarian actors face difficult dilemmas such as whether to delay aid due to safety concerns, how to respond to conditional funding that excludes host populations, or how to maintain neutrality while engaging with political stakeholders. For example, accepting funding that excludes certain groups can compromise impartiality and give the appearance of political bias. Similarly, a National Society publicly endorsing a political party undermines neutrality, eroding public trust and donor confidence. Even volunteers expressing political views while in uniform – or even privately on social media – may jeopardise the Movement’s perceived neutrality.",
+          "position": {
+            "start": {
+              "line": 345,
+              "column": 1,
+              "offset": 51561
+            },
+            "end": {
+              "line": 345,
+              "column": 906,
+              "offset": 52466
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 345,
+          "column": 1,
+          "offset": 51561
+        },
+        "end": {
+          "line": 345,
+          "column": 906,
+          "offset": 52466
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Navigating these dilemmas requires transparency, sound judgment and unwavering commitment to the seven Fundamental Principles. The Red Cross and Red Crescent Movement must continuously educate stakeholders and the public about the meaning and value of principled humanitarian action, especially in today’s highly complex and polarised world.",
+          "position": {
+            "start": {
+              "line": 347,
+              "column": 1,
+              "offset": 52468
+            },
+            "end": {
+              "line": 347,
+              "column": 342,
+              "offset": 52809
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 347,
+          "column": 1,
+          "offset": 52468
+        },
+        "end": {
+          "line": 347,
+          "column": 342,
+          "offset": 52809
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Lessons Learned:",
+          "position": {
+            "start": {
+              "line": 349,
+              "column": 1,
+              "offset": 52811
+            },
+            "end": {
+              "line": 349,
+              "column": 17,
+              "offset": 52827
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 349,
+          "column": 1,
+          "offset": 52811
+        },
+        "end": {
+          "line": 349,
+          "column": 17,
+          "offset": 52827
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Across the world, there is a growing disregard for the core principles that guide humanitarian action: humanity, neutrality, impartiality and independence.",
+          "position": {
+            "start": {
+              "line": 351,
+              "column": 1,
+              "offset": 52829
+            },
+            "end": {
+              "line": 351,
+              "column": 156,
+              "offset": 52984
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 351,
+          "column": 1,
+          "offset": 52829
+        },
+        "end": {
+          "line": 351,
+          "column": 156,
+          "offset": 52984
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Increasing polarisation, the politicisation of aid, and dehumanising rhetoric, are fuelling distrust, jeopardising access to communities and placing the most vulnerable at greater risk.",
+          "position": {
+            "start": {
+              "line": 353,
+              "column": 1,
+              "offset": 52986
+            },
+            "end": {
+              "line": 353,
+              "column": 186,
+              "offset": 53171
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 353,
+          "column": 1,
+          "offset": 52986
+        },
+        "end": {
+          "line": 353,
+          "column": 186,
+          "offset": 53171
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Saving lives is not a political act: it is a humanitarian imperative, and one that National Red Cross and Red Crescent Societies are mandated by their states to uphold.",
+          "position": {
+            "start": {
+              "line": 355,
+              "column": 1,
+              "offset": 53173
+            },
+            "end": {
+              "line": 355,
+              "column": 169,
+              "offset": 53341
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 355,
+          "column": 1,
+          "offset": 53173
+        },
+        "end": {
+          "line": 355,
+          "column": 169,
+          "offset": 53341
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Neutrality and impartiality are not abstract ideals – they are essential to operating in complex, polarised environments. When these principles are ignored or weakened, the consequences extend beyond endangering aid workers – it endangers the people that rely on protection and assistance.",
+          "position": {
+            "start": {
+              "line": 357,
+              "column": 1,
+              "offset": 53343
+            },
+            "end": {
+              "line": 357,
+              "column": 290,
+              "offset": 53632
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 357,
+          "column": 1,
+          "offset": 53343
+        },
+        "end": {
+          "line": 357,
+          "column": 290,
+          "offset": 53632
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Responding to Harmful Information: Building Trust in Crises",
+          "position": {
+            "start": {
+              "line": 368,
+              "column": 3,
+              "offset": 53947
+            },
+            "end": {
+              "line": 368,
+              "column": 62,
+              "offset": 54006
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 368,
+          "column": 1,
+          "offset": 53945
+        },
+        "end": {
+          "line": 368,
+          "column": 62,
+          "offset": 54006
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Responding to harmful information requires more than increasing the volume of communication or correcting falsehoods. These approaches alone do not build trust and can even backfire, particularly during armed conflicts, political unrest or situations marked by discrimination. Effective responses go beyond countering narratives; they focus on disrupting harmful information and strengthening resilience at both organisational and societal levels. Trust is built through proximity, understanding, access to services and a sense of shared ownership. Crucially, it cannot be created in the middle of a crisis; it must be cultivated over time.",
+          "position": {
+            "start": {
+              "line": 370,
+              "column": 1,
+              "offset": 54008
+            },
+            "end": {
+              "line": 370,
+              "column": 641,
+              "offset": 54648
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 370,
+          "column": 1,
+          "offset": 54008
+        },
+        "end": {
+          "line": 370,
+          "column": 641,
+          "offset": 54648
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "“Trust is the foundation of humanitarian action. Without it, our services cannot reach those who need them most. It enables cooperation, open communication and gives communities the confidence to call on us in times of crisis, knowing we will preserve life and support recovery. In my time as a volunteer and Red Cross Action Team member, I have seen how trust allows us to reach the most vulnerable without resistance, strengthen resilience and encourage participation in rebuilding and preparedness. Saving lives is not only about speed or skill, it is about the depth of trust we have built, because in emergencies, trust is truly transformative.”",
+          "position": {
+            "start": {
+              "line": 372,
+              "column": 1,
+              "offset": 54650
+            },
+            "end": {
+              "line": 372,
+              "column": 651,
+              "offset": 55300
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 372,
+          "column": 1,
+          "offset": 54650
+        },
+        "end": {
+          "line": 372,
+          "column": 651,
+          "offset": 55300
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The COVID-19 pandemic, the most extensive disaster in living memory, exposed deep fractures in trust within and between countries. Harmful information became a major barrier, undermining public health efforts and fuelling social division. Where trust was strong, compliance with public health measures such as social distancing and vaccination was higher. Where trust was weak, these same measures became politicised, contested and fragmented. The experience underscored a critical lesson: trust is foundational to crisis preparedness and response and it emerged as one of the strongest predictors of successful response. Preparedness is inherently local and built through proximity and sustained engagement, and reinforced through transparency long before crisis strikes.",
+          "position": {
+            "start": {
+              "line": 381,
+              "column": 1,
+              "offset": 55507
+            },
+            "end": {
+              "line": 381,
+              "column": 773,
+              "offset": 56279
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 381,
+          "column": 1,
+          "offset": 55507
+        },
+        "end": {
+          "line": 381,
+          "column": 773,
+          "offset": 56279
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Humanitarian scholar Hugo Slim observes that trust in humanitarian action is under pressure and organisations must confront difficult questions: Can parties to conflict trust humanitarians to be neutral and impartial? Can vulnerable people trust humanitarian organisations to deliver aid fairly and treat them with dignity? Can donor governments and generous publics be sure their support will be well spent? Can humanitarian organisations trust each other to work in common cause? Slim argues that humanitarian organisations themselves have contributed to the trust deficit. Research by Grand Challenges Canada also makes this link, noting that a lack of transparent communication, conflicting mandates and failure to protect communities when needed can exacerbate distrust. These shortcomings not only erode public confidence but also create fertile ground for harmful information to thrive – further deepening scepticism and reluctance to trust humanitarian organisations.",
+          "position": {
+            "start": {
+              "line": 383,
+              "column": 1,
+              "offset": 56281
+            },
+            "end": {
+              "line": 383,
+              "column": 976,
+              "offset": 57256
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 383,
+          "column": 1,
+          "offset": 56281
+        },
+        "end": {
+          "line": 383,
+          "column": 976,
+          "offset": 57256
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The 2013 arrest of the then Secretary General of the Uganda Red Cross Society (URCS) over allegations of abuse of office serves as a powerful example of how reputational crises, fueled by information, whether accurate or exaggerated, can severely disrupt trust in a humanitarian organisation. This incident remains the most significant reputational challenge the Uganda Red Cross has faced and provides important insights into how trust can be lost among the public and key stakeholders of a National Society.",
+          "position": {
+            "start": {
+              "line": 390,
+              "column": 1,
+              "offset": 57388
+            },
+            "end": {
+              "line": 390,
+              "column": 510,
+              "offset": 57897
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 390,
+          "column": 1,
+          "offset": 57388
+        },
+        "end": {
+          "line": 390,
+          "column": 510,
+          "offset": 57897
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "When the Secretary General was arrested in connection with alleged irregularities involving the clearance of a truck of goods at the Malaba border, the news quickly circulated through national media. Although the legal proceedings were still ongoing, public outcry and speculation about broader corruption within the National Society erupted. This situation severely undermined public trust in the URCS. Internally, staff and volunteers were demoralised, facing difficult questions from their communities and even their own families. Externally, partners raised concerns over governance, with some withdrawing funding commitments. The perception of leadership misconduct damaged the credibility of the entire organisation. Operations stalled at the National Society level, staff resigned, and volunteers withdrew their engagement.",
+          "position": {
+            "start": {
+              "line": 392,
+              "column": 1,
+              "offset": 57899
+            },
+            "end": {
+              "line": 392,
+              "column": 831,
+              "offset": 58729
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 392,
+          "column": 1,
+          "offset": 57899
+        },
+        "end": {
+          "line": 392,
+          "column": 831,
+          "offset": 58729
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Volunteers and staff members were among the most affected. In some communities, they encountered suspicion due to the loss of trust. The media largely stopped covering Uganda Red Cross activities, citing concerns about promoting an institution perceived to lack financial integrity. Rebuilding confidence took time and sustained effort before the organisation could begin to fully recover.",
+          "position": {
+            "start": {
+              "line": 394,
+              "column": 1,
+              "offset": 58731
+            },
+            "end": {
+              "line": 394,
+              "column": 390,
+              "offset": 59120
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 394,
+          "column": 1,
+          "offset": 58731
+        },
+        "end": {
+          "line": 394,
+          "column": 390,
+          "offset": 59120
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In response, URCS leadership, with support from the International Federation of Red Cross and Red Crescent Societies (IFRC), took a series of difficult actions. Key staff were laid off, and official statements were issued to clarify the situation and reassure both partners and the public. The Governing Board initiated internal investigations and introduced interim governance measures to safeguard operational integrity. New management and Board members were appointed to steer the institution through a structured change process. Over time, URCS strengthened internal accountability mechanisms, improved financial oversight and introduced more rigorous leadership vetting procedures. The National Society also underwent an Organisational Capacity Assessment that resulted in the development of 11 recovery pillars guiding institutional rebuilding.",
+          "position": {
+            "start": {
+              "line": 396,
+              "column": 1,
+              "offset": 59122
+            },
+            "end": {
+              "line": 396,
+              "column": 851,
+              "offset": 59972
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 396,
+          "column": 1,
+          "offset": 59122
+        },
+        "end": {
+          "line": 396,
+          "column": 851,
+          "offset": 59972
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The key lesson from this experience was the critical importance of strong crisis communication, transparent governance and swift institutional response when trust is at risk. In the years that followed, URCS prioritised rebuilding public trust by implementing stricter accountability systems and maintaining close engagement with stakeholders. This incident underscored how leadership-related reputational issues can quickly erode trust and how recovery requires both transparency and institutional reform.",
+          "position": {
+            "start": {
+              "line": 398,
+              "column": 1,
+              "offset": 59974
+            },
+            "end": {
+              "line": 398,
+              "column": 507,
+              "offset": 60480
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 398,
+          "column": 1,
+          "offset": 59974
+        },
+        "end": {
+          "line": 398,
+          "column": 507,
+          "offset": 60480
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For an institution like the Uganda Red Cross, which depends heavily on public goodwill, trust is essential and cannot be compromised. Staff, volunteers and governance bodies receive regular training on their roles and responsibilities, as well as key policies that reinforce institutional accountability. Today, URCS operates with strengthened systems at all levels, including an active Integrity and Compliance Committee, a revised Constitution, and robust policies that uphold a zero-tolerance approach to corruption.",
+          "position": {
+            "start": {
+              "line": 400,
+              "column": 1,
+              "offset": 60482
+            },
+            "end": {
+              "line": 400,
+              "column": 520,
+              "offset": 61001
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 400,
+          "column": 1,
+          "offset": 60482
+        },
+        "end": {
+          "line": 400,
+          "column": 520,
+          "offset": 61001
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Contributors",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Ugandan Red Cross",
+              "position": {
+                "start": {
+                  "line": 402,
+                  "column": 15,
+                  "offset": 61017
+                },
+                "end": {
+                  "line": 402,
+                  "column": 32,
+                  "offset": 61034
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 402,
+              "column": 1,
+              "offset": 61003
+            },
+            "end": {
+              "line": 402,
+              "column": 47,
+              "offset": 61049
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 402,
+          "column": 1,
+          "offset": 61003
+        },
+        "end": {
+          "line": 402,
+          "column": 47,
+          "offset": 61049
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Transparency and Identifiability: Foundations for Trust",
+          "position": {
+            "start": {
+              "line": 404,
+              "column": 3,
+              "offset": 61053
+            },
+            "end": {
+              "line": 404,
+              "column": 58,
+              "offset": 61108
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 404,
+          "column": 1,
+          "offset": 61051
+        },
+        "end": {
+          "line": 404,
+          "column": 58,
+          "offset": 61108
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Online virality is rarely organic; it is often deliberately engineered by a small number of influential accounts that dominate the attention economy, shaping beliefs and behaviours across platforms. As Singer and Brooking noted: “On social media, everyone may be entitled to their own facts, but rarely do they form their own opinions. There’s someone else manufacturing the beliefs that go viral online.” In this environment, identifiability becomes a cornerstone of trust. Trust depends not just on what is said, but on who is saying it – whether an individual, an institution, a troll or an AI system. In particular, “It helps answer some of the questions that trust inspires us to ask: Is there a recognisable and persistent identity to the institutions and individuals behind the myriad websites one might visit?” Identifiability supports reputation, accountability and helps distinguish credible sources from malicious actors.",
+          "position": {
+            "start": {
+              "line": 406,
+              "column": 1,
+              "offset": 61110
+            },
+            "end": {
+              "line": 406,
+              "column": 933,
+              "offset": 62042
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 406,
+          "column": 1,
+          "offset": 61110
+        },
+        "end": {
+          "line": 406,
+          "column": 933,
+          "offset": 62042
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "The Bengio AI Safety Report (cross reference Chapter 1) warns that the rapid spread of AI-generated content could further erode trust in the information environment. General-purpose AI can now produce and spread both accurate and false content – including synthetic media – at an unprecedented scale. This raises the risk that people may begin to distrust information altogether. This dynamic could undermine public debate (and in democracies, democratic processes). Malicious actors can exploit this ambiguity and distrust through the so-called liars dividend – dismissing real evidence as fake. However, societies may adapt over time, developing new norms and tools to evaluate credibility, much as they did with past technologies like image, video and audio editing. But until such norms take hold, uncertainty and distrust are likely to deepen.",
+          "position": {
+            "start": {
+              "line": 408,
+              "column": 1,
+              "offset": 62044
+            },
+            "end": {
+              "line": 408,
+              "column": 849,
+              "offset": 62892
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 408,
+          "column": 1,
+          "offset": 62044
+        },
+        "end": {
+          "line": 408,
+          "column": 849,
+          "offset": 62892
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For humanitarian actors, real-time monitoring of both the information and operational environment – online and offline – is essential to understand the type, narratives, impact and potential harm of harmful information. Yet the accessibility of such tools and systems available for verifying information have not kept pace with the speed and scale of harmful information – particularly given the financial constraints faced by humanitarian actors. Cross reference chapter 1 on monitoring.",
+          "position": {
+            "start": {
+              "line": 410,
+              "column": 1,
+              "offset": 62894
+            },
+            "end": {
+              "line": 410,
+              "column": 489,
+              "offset": 63382
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 410,
+          "column": 1,
+          "offset": 62894
+        },
+        "end": {
+          "line": 410,
+          "column": 489,
+          "offset": 63382
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "mdxJsxTextElement",
+          "name": "Spotlight",
+          "attributes": [],
+          "children": [
+            {
+              "type": "text",
+              "value": "Verifiable Provenance and the Challenge of Trust in the Digital Age",
+              "position": {
+                "start": {
+                  "line": 412,
+                  "column": 12,
+                  "offset": 63395
+                },
+                "end": {
+                  "line": 412,
+                  "column": 79,
+                  "offset": 63462
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 412,
+              "column": 1,
+              "offset": 63384
+            },
+            "end": {
+              "line": 412,
+              "column": 91,
+              "offset": 63474
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 412,
+          "column": 1,
+          "offset": 63384
+        },
+        "end": {
+          "line": 412,
+          "column": 91,
+          "offset": 63474
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In humanitarian crises and beyond, images and videos are essential tools for response coordination, communicating with affected communities, advocacy and accountability. But as synthetic media and manipulated content become more accessible and harder to detect, questions around what and who to trust have never been more urgent.",
+          "position": {
+            "start": {
+              "line": 414,
+              "column": 1,
+              "offset": 63476
+            },
+            "end": {
+              "line": 414,
+              "column": 330,
+              "offset": 63805
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 414,
+          "column": 1,
+          "offset": 63476
+        },
+        "end": {
+          "line": 414,
+          "column": 330,
+          "offset": 63805
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Verifiable provenance can be a key part of a broader toolkit for building digital trust and resilience. It refers to the ability to cryptographically verify the origin, history and integrity of digital content. Initiatives, such as the Coalition for Content Provenance and Authenticity (C2PA), are developing cross-sector open technical standards to attach secure metadata to digital files. These standards can help determine whether an image was altered, who published it, and what tools were used – offering markers for authenticity and digital trust. However, provenance is not a silver bullet. It comes with its own risks, such as exposing sensitive information, enabling surveillance, increasing reliance on major platforms and proprietary tools, or reinforcing a trust gap between content that is verifiable and content that is not. This is why it is necessary to shape the provenance ecosystem – including standards, legislation and implementation – with a focus on privacy, equitable access, power dynamics and the protection of human rights.",
+          "position": {
+            "start": {
+              "line": 416,
+              "column": 1,
+              "offset": 63807
+            },
+            "end": {
+              "line": 416,
+              "column": 1051,
+              "offset": 64857
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 416,
+          "column": 1,
+          "offset": 63807
+        },
+        "end": {
+          "line": 416,
+          "column": 1051,
+          "offset": 64857
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In contexts where Generative AI can hinder humanitarian relief or where digital evidence is critical to justice, verifiable provenance tools can help safeguard the truth. But these tools must be deployed in ways that uphold human rights, reflect local realities and actively support humanitarian response efforts.",
+          "position": {
+            "start": {
+              "line": 418,
+              "column": 1,
+              "offset": 64859
+            },
+            "end": {
+              "line": 418,
+              "column": 314,
+              "offset": 65172
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 418,
+          "column": 1,
+          "offset": 64859
+        },
+        "end": {
+          "line": 418,
+          "column": 314,
+          "offset": 65172
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Transparency is a prerequisite for trust and a core element of the Red Cross and Red Crescent Code of Conduct. (See Chapter 5) It underspins accountability by ensuring clear and honest information flows between humanitarian organisations and affected people. Transparency is embedded in key sectoral standards, including the Sphere Common Standards, which emphasise feedback mechanisms and participation, the Good Humanitarian Donorship Principles and the IFRC’s Guidelines for Emergency Assessment. Cross reference Chapter 5.",
+          "position": {
+            "start": {
+              "line": 431,
+              "column": 1,
+              "offset": 65476
+            },
+            "end": {
+              "line": 431,
+              "column": 527,
+              "offset": 66002
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 431,
+          "column": 1,
+          "offset": 65476
+        },
+        "end": {
+          "line": 431,
+          "column": 527,
+          "offset": 66002
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Accountability refers to the mutual responsibility of all components of the Movement to use their power and resources ethically and responsibly to put the interests of people and communities they aim to serve at the centre of decision-making, thereby ensuring that humanitarian actions lead to the best possible outcomes and results for them, while protecting and preserving their rights and dignity and increasing their resilience to face situations of vulnerability and crisis. This includes people’s rights to equitable access to assistance in proportion to their needs, priorities and preferences, the right to information, and the right to provide feedback and participate in decisions that affect them.",
+          "position": {
+            "start": {
+              "line": 433,
+              "column": 1,
+              "offset": 66004
+            },
+            "end": {
+              "line": 433,
+              "column": 709,
+              "offset": 66712
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 433,
+          "column": 1,
+          "offset": 66004
+        },
+        "end": {
+          "line": 433,
+          "column": 709,
+          "offset": 66712
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Accountability also includes the responsibility to ensure Movement staff and volunteers comply with all legal and ethical obligations to protect and safeguard the integrity and dignity of those it seeks to serve, prevent sexual exploitation and abuse and corruption and misuse of resources, and to take timely and appropriate corrective action to deal with situations that compromise principled humanitarian action. It is also essential to ensure that corrective actions are applied consistently, without double standards – either in the measures themselves or in the expectations placed on National Society conduct. In practice, this can be challenging and is not always straightforward.",
+          "position": {
+            "start": {
+              "line": 435,
+              "column": 1,
+              "offset": 66714
+            },
+            "end": {
+              "line": 435,
+              "column": 689,
+              "offset": 67402
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 435,
+          "column": 1,
+          "offset": 66714
+        },
+        "end": {
+          "line": 435,
+          "column": 689,
+          "offset": 67402
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 1,
+      "children": [
+        {
+          "type": "text",
+          "value": "Concluding Remarks: Trust, Truth and Preparedness",
+          "position": {
+            "start": {
+              "line": 437,
+              "column": 3,
+              "offset": 67406
+            },
+            "end": {
+              "line": 437,
+              "column": 52,
+              "offset": 67455
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 437,
+          "column": 1,
+          "offset": 67404
+        },
+        "end": {
+          "line": 437,
+          "column": 52,
+          "offset": 67455
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "We are already living through an information crisis. Future emergency preparedness must include equitable access to reliable information, supported by early warning and systems that serve all communities, especially the most vulnerable. Harmful information is not only eroding trust in humanitarian action, it is fuelling societal division and undermining cooperation at a time when unity is urgently needed to face global challenges.",
+          "position": {
+            "start": {
+              "line": 439,
+              "column": 1,
+              "offset": 67457
+            },
+            "end": {
+              "line": 439,
+              "column": 435,
+              "offset": 67891
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 439,
+          "column": 1,
+          "offset": 67457
+        },
+        "end": {
+          "line": 439,
+          "column": 435,
+          "offset": 67891
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "As the World Economic Forum (WEF) warned, misinformation and disinformation are no longer just communications problems – they are systemic threats that aggravate nearly every other global risk. The 2025 Global Risks Report underscores that: “Misinformation and disinformation and societal polarisation remain key current risks” and how the accelerating spread of false or misleading information, amplifies other major risks – from state-based armed conflict to extreme weather events.",
+          "position": {
+            "start": {
+              "line": 441,
+              "column": 1,
+              "offset": 67893
+            },
+            "end": {
+              "line": 441,
+              "column": 485,
+              "offset": 68377
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 441,
+          "column": 1,
+          "offset": 67893
+        },
+        "end": {
+          "line": 441,
+          "column": 485,
+          "offset": 68377
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "In such a fragmented and contested information space, the voices of affected populations risk being drowned out, distorted or co-opted. Trust cannot be demanded; it must be built through repeated action, transparency, accountability and integrity. Resilience against harmful information requires more than just correcting falsehoods, it requires sustained engagement, openness and meaningful participation. Humanitarian organisations must also actively communicate who they are, what they do, their impact and why they act – making a clear, compelling case for principled humanitarian action and for the preservation of a neutral and impartial humanitarian space, free from political influence. Despite the barriers posed by polarised perceptions, principled humanitarian organisations can maintain – and even rebuild – trust and acceptance in the face of harmful information. A critical question going forward is whether trust and proximity at the community level can serve as a firewall against the spread or impact of harmful information. Cross reference Chapters 3 and 6 will explore this question.",
+          "position": {
+            "start": {
+              "line": 443,
+              "column": 1,
+              "offset": 68379
+            },
+            "end": {
+              "line": 443,
+              "column": 1103,
+              "offset": 69481
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 443,
+          "column": 1,
+          "offset": 68379
+        },
+        "end": {
+          "line": 443,
+          "column": 1103,
+          "offset": 69481
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [
+        {
+          "type": "text",
+          "value": "Asks, Aims and Recommendations",
+          "position": {
+            "start": {
+              "line": 445,
+              "column": 4,
+              "offset": 69486
+            },
+            "end": {
+              "line": 445,
+              "column": 34,
+              "offset": 69516
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 445,
+          "column": 1,
+          "offset": 69483
+        },
+        "end": {
+          "line": 445,
+          "column": 34,
+          "offset": 69516
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Asks: Place trust at the centre of humanitarian action by ensuring rights, inclusivity, accountability and transparency guide communication, engagement and feedback with communities.",
+          "position": {
+            "start": {
+              "line": 447,
+              "column": 1,
+              "offset": 69518
+            },
+            "end": {
+              "line": 447,
+              "column": 183,
+              "offset": 69700
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 447,
+          "column": 1,
+          "offset": 69518
+        },
+        "end": {
+          "line": 447,
+          "column": 183,
+          "offset": 69700
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "Aims:",
+          "position": {
+            "start": {
+              "line": 449,
+              "column": 5,
+              "offset": 69706
+            },
+            "end": {
+              "line": 449,
+              "column": 10,
+              "offset": 69711
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 449,
+          "column": 1,
+          "offset": 69702
+        },
+        "end": {
+          "line": 449,
+          "column": 10,
+          "offset": 69711
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Reduce uncertainty through timely, transparent and consistent communication and engagement before, during and after crises.",
+          "position": {
+            "start": {
+              "line": 451,
+              "column": 1,
+              "offset": 69713
+            },
+            "end": {
+              "line": 451,
+              "column": 124,
+              "offset": 69836
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 451,
+          "column": 1,
+          "offset": 69713
+        },
+        "end": {
+          "line": 451,
+          "column": 124,
+          "offset": 69836
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Strengthen legitimacy and accountability by aligning with community priorities and tracking trust.",
+          "position": {
+            "start": {
+              "line": 453,
+              "column": 1,
+              "offset": 69838
+            },
+            "end": {
+              "line": 453,
+              "column": 99,
+              "offset": 69936
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 453,
+          "column": 1,
+          "offset": 69838
+        },
+        "end": {
+          "line": 453,
+          "column": 99,
+          "offset": 69936
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Protect staff and volunteers with safeguards, skills and inclusive engagement to operate safely in contested information spaces.",
+          "position": {
+            "start": {
+              "line": 455,
+              "column": 1,
+              "offset": 69938
+            },
+            "end": {
+              "line": 455,
+              "column": 129,
+              "offset": 70066
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 455,
+          "column": 1,
+          "offset": 69938
+        },
+        "end": {
+          "line": 455,
+          "column": 129,
+          "offset": 70066
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "Empower communities: Build two-way feedback and participation systems that allow people to voice concerns, influence decisions and counter harmful narratives.",
+          "position": {
+            "start": {
+              "line": 457,
+              "column": 1,
+              "offset": 70068
+            },
+            "end": {
+              "line": 457,
+              "column": 159,
+              "offset": 70226
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 457,
+          "column": 1,
+          "offset": 70068
+        },
+        "end": {
+          "line": 457,
+          "column": 159,
+          "offset": 70226
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "depth": 2,
+      "children": [
+        {
+          "type": "text",
+          "value": "Recommendations",
+          "position": {
+            "start": {
+              "line": 459,
+              "column": 4,
+              "offset": 70231
+            },
+            "end": {
+              "line": 459,
+              "column": 19,
+              "offset": 70246
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 459,
+          "column": 1,
+          "offset": 70228
+        },
+        "end": {
+          "line": 459,
+          "column": 19,
+          "offset": 70246
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For Governments and Policy-makers",
+          "position": {
+            "start": {
+              "line": 461,
+              "column": 1,
+              "offset": 70248
+            },
+            "end": {
+              "line": 461,
+              "column": 34,
+              "offset": 70281
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 461,
+          "column": 1,
+          "offset": 70248
+        },
+        "end": {
+          "line": 461,
+          "column": 34,
+          "offset": 70281
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For Technology Platforms",
+          "position": {
+            "start": {
+              "line": 469,
+              "column": 1,
+              "offset": 70758
+            },
+            "end": {
+              "line": 469,
+              "column": 25,
+              "offset": 70782
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 469,
+          "column": 1,
+          "offset": 70758
+        },
+        "end": {
+          "line": 469,
+          "column": 25,
+          "offset": 70782
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For Humanitarian Actors",
+          "position": {
+            "start": {
+              "line": 476,
+              "column": 1,
+              "offset": 71179
+            },
+            "end": {
+              "line": 476,
+              "column": 24,
+              "offset": 71202
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 476,
+          "column": 1,
+          "offset": 71179
+        },
+        "end": {
+          "line": 476,
+          "column": 24,
+          "offset": 71202
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "children": [
+        {
+          "type": "text",
+          "value": "For Communities and Local Leaders",
+          "position": {
+            "start": {
+              "line": 484,
+              "column": 1,
+              "offset": 71932
+            },
+            "end": {
+              "line": 484,
+              "column": 34,
+              "offset": 71965
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 484,
+          "column": 1,
+          "offset": 71932
+        },
+        "end": {
+          "line": 484,
+          "column": 34,
+          "offset": 71965
+        }
+      }
+    }
+  ],
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 490,
+      "column": 1,
+      "offset": 72338
+    }
+  }
+}
