@@ -8,6 +8,8 @@ import { mdxToMarkdown } from 'mdast-util-mdx';
 import { paragraph, text, heading, list, listItem, image } from 'mdast-builder';
 import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
+import * as prettier from "prettier";
+
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const DEFAULTS = {
@@ -280,10 +282,12 @@ if (components.size > 0) {
   mdRoot.children.unshift(importEsm('@/components/CustomComponents', [...components]));
 }
 // Build md content with remark and mdx stringifier extensions
-const file = toMarkdown(mdRoot, {
+const prettierrcPath = path.join(__dirname, '..', '..', '.prettierrc');
+const options = await prettier.resolveConfig(prettierrcPath);
+const file = await prettier.format(toMarkdown(mdRoot, {
   listItemIndent: 'one',
   extensions: [mdxToMarkdown({ printWidth: 100 })],
-});
+}), { ...options, parser: "mdx" });
 
 await ensureParentDir(OUTPUT_MDX_PATH);
 await fs.writeFile(OUTPUT_MDX_PATH, file, 'utf8');
