@@ -10,8 +10,7 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write $(git diff --name-only --diff-filter=ACM HEAD | grep -E '\\.(js|jsx|ts|tsx|json|css|md)$')",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "wdr25:convert": "node scripts/wdr25/convert-indesign-xml-to-mdx.js -i scripts/wdr25/data/WDR25-CHAPTER-02-empty.xml -o scripts/wdr25/output/chapter-02.mdx"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

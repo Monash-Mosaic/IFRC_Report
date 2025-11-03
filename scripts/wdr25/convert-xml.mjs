@@ -5,14 +5,7 @@ import { visit } from 'unist-util-visit';
 import flatMap from 'unist-util-flatmap';
 import { toMarkdown } from 'mdast-util-to-markdown';
 import { mdxToMarkdown } from 'mdast-util-mdx';
-import {
-  paragraph,
-  text,
-  heading,
-  list,
-  listItem,
-  image
-} from 'mdast-builder';
+import { paragraph, text, heading, list, listItem, image } from 'mdast-builder';
 import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
 
@@ -21,17 +14,16 @@ const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
   source: 'WDR25-CHAPTER-02-empty.xml',
-  mdx: 'chapter-02.mdx'
+  mdx: 'chapter-02.mdx',
 };
 
 const { values } = parseArgs({
   options: {
     'data-dir': { type: 'string' },
     source: { type: 'string', short: 's' },
-    mdx: { type: 'string', short: 'm' }
-  }
+    mdx: { type: 'string', short: 'm' },
+  },
 });
-
 
 const resolveTargetPath = (root, filePath, fallback) => {
   const target = filePath ?? fallback;
@@ -61,7 +53,7 @@ const mdxJsxEl = (name, attributes = [], children = []) => ({
   type: 'mdxJsxFlowElement',
   name,
   attributes,
-  children
+  children,
 });
 
 /**
@@ -91,10 +83,10 @@ const importEsm = (modelPath, variables = [], defaultValue) => {
         {
           type: 'ImportDeclaration',
           specifiers,
-          source: { type: 'Literal', value: modelPath }
-        }
+          source: { type: 'Literal', value: modelPath },
+        },
       ],
-      sourceType: 'module'
+      sourceType: 'module',
     }).value,
   };
 };
@@ -118,24 +110,24 @@ const exportEsm = (varName, value) => {
               {
                 type: 'VariableDeclarator',
                 id: { type: 'Identifier', name: varName },
-                init: { type: 'Literal', value }
-              }
+                init: { type: 'Literal', value },
+              },
             ],
-            kind: 'const'
+            kind: 'const',
           },
           specifiers: [],
-          source: null
-        }
+          source: null,
+        },
       ],
-      sourceType: 'module'
+      sourceType: 'module',
     }).value.trimEnd('\n'),
   };
 };
 
 /**
  * Normalize the XML AST by removing empty nodes and flattening helpers.
- * @param {import('unist').Node} node 
- * @param {number} index 
+ * @param {import('unist').Node} node
+ * @param {number} index
  * @param {import('unist').Parent} parent
  * @returns  {import('unist').Node[]}
  */
@@ -159,7 +151,10 @@ const normalisedXmlAstFn = (node, index, parent) => {
  * @param {unknown} input value to sanitize
  * @returns {string}
  */
-const normalizedString = (input) => String(input ?? '').replace(/\s+/g, ' ').trim();
+const normalizedString = (input) =>
+  String(input ?? '')
+    .replace(/\s+/g, ' ')
+    .trim();
 /**
  * Normalize a text child node while preserving non-text children.
  * @param {import('unist').Node} child potential text child
@@ -174,20 +169,22 @@ const normaliseChildrenText = (child) => {
  * @param {import('unist').Node & { children?: import('unist').Node[] }} node
  * @returns {import('unist').Literal[]}
  */
-const extractTextChildren = (node) => (node.children || [])
-  .filter((child) => child?.type === 'text')
-  .map(normaliseChildrenText);
+const extractTextChildren = (node) =>
+  (node.children || []).filter((child) => child?.type === 'text').map(normaliseChildrenText);
 /**
  * Convenience helper for flattening text child content into a string.
  * @param {import('unist').Node & { children?: import('unist').Node[] }} node
  * @returns {string}
  */
-const getTextContent = (node) => extractTextChildren(node).map((n) => n.value).join(' ');
+const getTextContent = (node) =>
+  extractTextChildren(node)
+    .map((n) => n.value)
+    .join(' ');
 
 /**
  * Convert XML element nodes into MDX/MD AST nodes expected by the renderer.
- * @param {import('unist').Node} node 
- * @param {number} index 
+ * @param {import('unist').Node} node
+ * @param {number} index
  * @param {import('unist').Parent} parent
  * @returns  {import('unist').Node[]}
  */
@@ -284,7 +281,7 @@ if (components.size > 0) {
 // Build md content with remark and mdx stringifier extensions
 const file = toMarkdown(mdRoot, {
   listItemIndent: 'one',
-  extensions: [mdxToMarkdown({ printWidth: 100 })]
+  extensions: [mdxToMarkdown({ printWidth: 100 })],
 });
 
 await ensureParentDir(OUTPUT_MDX_PATH);
