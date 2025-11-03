@@ -200,8 +200,9 @@ const convertToMDXAst = (node, index, parent) => {
       return [exportEsm('subtitle', getTextContent(node))];
     case 'caption':
       return [mdxJsxEl('Caption', [], extractTextChildren(node))];
-    case 'h1':
     case 'h1-spotlight':
+      return [mdxJsxEl('Spotlight', [], extractTextChildren(node))];
+    case 'h1':
       return [heading(1, extractTextChildren(node))];
     case 'h2':
       return [heading(2, extractTextChildren(node))];
