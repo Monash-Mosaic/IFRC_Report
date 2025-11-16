@@ -7,15 +7,30 @@ const withMDX = createMDX({
   options: {
     rehypePlugins: [
       ['rehype-slug', {}],
-      ['rehype-autolink-headings', {
-        behavior: 'wrap',
-        content: {
-          type: 'text',
-          value: ' 🔗',
+      [
+        'rehype-autolink-headings',
+        {
+          behavior: 'wrap',
+          content: {
+            type: 'text',
+            value: ' 🔗',
+          },
         },
-      }],
-    ]
-  }
+      ],
+      [
+        'rehype-toc',
+        {
+          headings: ['h1'],
+          cssClasses: {
+            toc: 'toc',
+            link: 'toc-link',
+          },
+          // Use the custom marker
+          nav: true,
+        },
+      ],
+    ],
+  },
 });
 
 /** @type {import('next').NextConfig} */
