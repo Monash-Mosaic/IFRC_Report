@@ -1,103 +1,112 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react';
+import { useReducer } from 'react';
+import { useTranslations } from 'next-intl';
+import { YouTubeEmbed } from '@next/third-parties/google';
 import { Menu, FileText, Volume2, Video, ChevronRight, X, ArrowLeft } from 'lucide-react';
-import { loadMediaIndex } from '@/lib/media';
 
-export default function SidebarPanel({ chapterTitle, locale, report, chapter }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [activeMediaPanel, setActiveMediaPanel] = useState(null); // 'audio' | 'videos' | null
-  const [selectedTrack, setSelectedTrack] = useState(null);
+// Helper function to extract YouTube video ID from URL
+function extractYouTubeVideoId(url) {
+  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[7].length === 11) ? match[7] : null;
+}
 
-  const [loading, setLoading] = useState(false);
-  const [media, setMedia] = useState({ audio: [], videos: [] });
+// Action types
+const TOGGLE_SIDEBAR_ACTION = 'TOGGLE_SIDEBAR';
+const SET_ACTIVE_MEDIA_PANEL_ACTION = 'SET_ACTIVE_MEDIA_PANEL';
+const SET_SELECTED_TRACK_ACTION = 'SET_SELECTED_TRACK';
+const CLOSE_MEDIA_PANEL_ACTION = 'CLOSE_MEDIA_PANEL';
+const SET_LOADING_ACTION = 'SET_LOADING';
+const SET_MEDIA_ACTION = 'SET_MEDIA';
+const SET_ACTIVE_NOTES_PANEL_ACTION = 'SET_ACTIVE_NOTES_PANEL';
+const SET_ACTIVE_AUDIOS_PANEL_ACTION = 'SET_ACTIVE_AUDIOS_PANEL';
+const SET_ACTIVE_VIDEOS_PANEL_ACTION = 'SET_ACTIVE_VIDEOS_PANEL';
 
-  // Load media for the current chapter
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      setLoading(true);
-      try {
-        const data = await loadMediaIndex({ locale, report, chapter });
-        if (!mounted) return;
-        setMedia(data);
-      } finally {
-        if (mounted) setLoading(false);
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, [locale, report, chapter]);
+// Initial state
+const initialState = {
+  isExpanded: false,
+  activeMediaPanel: null,
+  selectedTrack: null,
+  loading: false,
+  media: { audios: [], videos: [] },
+};
 
-  const menuItems = useMemo(() => ([
+// Reducer function
+function reducer(state, action) {
+  switch (action.type) {
+    case TOGGLE_SIDEBAR_ACTION:
+      return { ...state, isExpanded: action.payload };
+    case SET_ACTIVE_MEDIA_PANEL_ACTION:
+      return { ...state, activeMediaPanel: action.payload };
+    case SET_SELECTED_TRACK_ACTION:
+      return { ...state, selectedTrack: action.payload };
+    case CLOSE_MEDIA_PANEL_ACTION:
+      return { ...state, activeMediaPanel: null, selectedTrack: null };
+    case SET_LOADING_ACTION:
+      return { ...state, loading: action.payload };
+    case SET_MEDIA_ACTION:
+      return { ...state, media: action.payload };
+    case SET_ACTIVE_NOTES_PANEL_ACTION:
+      return { ...state, activeMediaPanel: null, selectedTrack: null };
+    case SET_ACTIVE_AUDIOS_PANEL_ACTION:
+      return { 
+        ...state, 
+        activeMediaPanel: 'audio', 
+        selectedTrack: state.media.audios[0] ?? null 
+      };
+    case SET_ACTIVE_VIDEOS_PANEL_ACTION:
+      return { 
+        ...state, 
+        activeMediaPanel: 'videos', 
+        selectedTrack: state.media.videos[0] ?? null 
+      };
+    default:
+      return state;
+  }
+}
+
+export default function SidebarPanel({ chapterTitle, locale, report, chapter, audios = [], videos = [] }) {
+  const [state, dispatch] = useReducer(reducer, { ...initialState, media: { audios, videos } });
+  const t = useTranslations('SidebarPanel');
+
+  const { isExpanded, activeMediaPanel, selectedTrack, loading, media } = state;
+
+  const menuItems = [
     {
       id: 'notes',
-      label: 'Notes',
+      label: t('panel.notes') || 'Notes',
       icon: FileText,
       color: 'text-gray-700 hover:bg-blue-50',
-      items: ['Chapter Notes', 'My Notes', 'Bookmarks']
+      items: ['Chapter Notes', 'My Notes', 'Bookmarks'],
+      onClick: () => dispatch({ type: SET_ACTIVE_NOTES_PANEL_ACTION }),
     },
     {
       id: 'audio',
-      label: 'Audio',
+      label: t('panel.audios') || 'Audio',
       icon: Volume2,
       color: 'text-gray-700 hover:bg-green-50',
-      items: media.audio
+      onClick: () => dispatch({ type: SET_ACTIVE_AUDIOS_PANEL_ACTION }),
+      items: media.audios
     },
     {
       id: 'videos',
-      label: 'Videos',
+      label: t('panel.videos') || 'Videos',
       icon: Video,
       color: 'text-gray-700 hover:bg-red-50',
+      onClick: () => dispatch({ type: SET_ACTIVE_VIDEOS_PANEL_ACTION }),
       items: media.videos
     }
-  ]), [media.audio, media.videos]);
-
-  const handleMenuItemClick = (menuId) => {
-    switch (menuId) {
-      case 'audio': {
-        setActiveMediaPanel('audio');
-        const items = media.audio;
-        setSelectedTrack(items[0] ?? null);
-        break;
-      }
-      case 'videos': {
-        setActiveMediaPanel('videos');
-        const items = media.videos;
-        setSelectedTrack(items[0] ?? null);
-        break;
-      }
-      case 'notes': {
-        // TODO: open notes panel when implemented
-        setActiveMediaPanel(null);
-        setSelectedTrack(null);
-        break;
-      }
-      default: {
-        // Unknown menu id; no action
-        break;
-      }
-    }
-  };
-
-  const handleTrackSelect = (track) => {
-    setSelectedTrack(track);
-  };
-
-  const closeMediaPanel = () => {
-    setActiveMediaPanel(null);
-    setSelectedTrack(null);
-  };
+  ];
 
   return (
     <>
       {/* Fixed/Sticky Toggle Button - Only show when sidebar is collapsed */}
       {!isExpanded && (
         <button
-          onClick={() => setIsExpanded(true)}
+          onClick={() => dispatch({ type: TOGGLE_SIDEBAR_ACTION, payload: true })}
           className="fixed top-20 left-4 z-50 w-12 h-12 bg-white border border-gray-200 shadow-lg flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:shadow-xl"
-          aria-label="Expand sidebar"
+          aria-label={t('expandSidebar') || 'Expand sidebar'}
         >
           <Menu className="w-6 h-6" />
         </button>
@@ -110,18 +119,18 @@ export default function SidebarPanel({ chapterTitle, locale, report, chapter }) 
             {/* Back Button */}
             <div className="mb-6">
               <button
-                onClick={() => setIsExpanded(false)}
+                onClick={() => dispatch({ type: TOGGLE_SIDEBAR_ACTION, payload: false })}
                 className="flex items-center gap-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 p-2 rounded-lg transition-colors"
-                aria-label="Close sidebar"
+                aria-label={t('closeSidebar') || 'Close sidebar'}
               >
                 <ArrowLeft className="w-5 h-5" />
-                <span className="text-sm font-medium">Back</span>
+                <span className="text-sm font-medium">{t('back') || 'Back'}</span>
               </button>
             </div>
 
             {/* Header */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-800 mb-2">Resources</h2>
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">{t('resources') || 'Resources'}</h2>
               <p className="text-sm text-gray-600 line-clamp-2" title={chapterTitle}>
                 {chapterTitle}
               </p>
@@ -134,7 +143,7 @@ export default function SidebarPanel({ chapterTitle, locale, report, chapter }) 
                 return (
                   <button
                     key={item.id}
-                    onClick={() => handleMenuItemClick(item.id)}
+                    onClick={item.onClick}
                     className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${item.color}`}
                   >
                     <div className="flex items-center gap-3">
@@ -150,7 +159,7 @@ export default function SidebarPanel({ chapterTitle, locale, report, chapter }) 
             {/* Footer */}
             <div className="mt-8 pt-4 border-t border-gray-200">
               <p className="text-xs text-gray-500 text-center">
-                Chapter Resources Panel
+                {t('chapterResourcesPanel') || 'Chapter Resources Panel'}
               </p>
             </div>
           </div>
@@ -161,7 +170,7 @@ export default function SidebarPanel({ chapterTitle, locale, report, chapter }) 
       {isExpanded && (
         <div 
           className="fixed inset-0 z-30"
-          onClick={() => setIsExpanded(false)}
+          onClick={() => dispatch({ type: TOGGLE_SIDEBAR_ACTION, payload: false })}
         />
       )}
 
@@ -172,8 +181,8 @@ export default function SidebarPanel({ chapterTitle, locale, report, chapter }) 
           loading={loading}
           mediaItems={menuItems.find(item => item.id === activeMediaPanel)?.items || []}
           selectedTrack={selectedTrack}
-          onTrackSelect={handleTrackSelect}
-          onClose={closeMediaPanel}
+          onTrackSelect={(track) => dispatch({ type: SET_SELECTED_TRACK_ACTION, payload: track })}
+          onClose={() => dispatch({ type: CLOSE_MEDIA_PANEL_ACTION })}
         />
       )}
 
@@ -187,6 +196,7 @@ export default function SidebarPanel({ chapterTitle, locale, report, chapter }) 
  * Media Panel Component for Audio/Video - Responsive layout
  */
 function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClose, loading }) {
+  const t = useTranslations('SidebarPanel');
   const isAudio = mediaType === 'audio';
   
   return (
@@ -196,12 +206,12 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         {/* Header */}
         <div className="p-4 md:p-6 border-b border-blue-400 flex items-center justify-between">
           <h3 className="text-white font-semibold text-lg md:text-xl capitalize">
-            {mediaType} {mediaItems.length > 0 ? '1' : ''}
+            {t(mediaType) || mediaType} {mediaItems.length > 0 ? '1' : ''}
           </h3>
           <button
             onClick={onClose}
             className="text-white hover:text-gray-200 transition-colors p-1"
-            aria-label="Close media panel"
+            aria-label={t('closeMediaPanel') || 'Close media panel'}
           >
             <X className="w-6 h-6" />
           </button>
@@ -210,10 +220,10 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         {/* Media List */}
         <div className="flex-1 p-4 md:p-6 space-y-2 md:space-y-3 overflow-y-auto">
           {loading && (
-            <div className="text-white/90">Loading {mediaType}...</div>
+            <div className="text-white/90">{t('loading') || 'Loading'} {t(mediaType) || mediaType}...</div>
           )}
           {!loading && mediaItems.length === 0 && (
-            <div className="text-white/90">No {mediaType} available for this chapter.</div>
+            <div className="text-white/90">{t('noMediaAvailable') || 'No'} {t(mediaType) || mediaType} {t('availableForChapter') || 'available for this chapter'}.</div>
           )}
           {!loading && mediaItems.map((item, index) => (
             <MediaListItem
@@ -232,7 +242,7 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         {/* Player Area */}
         <div className="flex-1 flex items-center justify-center p-4 md:p-8">
           {selectedTrack ? (
-            <MediaPlayer track={selectedTrack} mediaType={mediaType} />
+            <MediaPlayer track={selectedTrack} mediaType={mediaType} t={t} />
           ) : (
             <div className="text-center text-gray-600">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-gray-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -242,7 +252,7 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
                   <Video className="w-8 h-8 md:w-10 md:h-10 text-gray-300" />
                 )}
               </div>
-              <p className="text-base md:text-lg">Select a {mediaType} to play</p>
+              <p className="text-base md:text-lg">{t('selectMediaToPlay') || 'Select a'} {t(mediaType) || mediaType} {t('toPlay') || 'to play'}</p>
             </div>
           )}
         </div>
@@ -250,7 +260,7 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         {/* Footer */}
         <div className="p-3 md:p-4 border-t border-gray-200 bg-gray-100">
           <p className="text-xs text-gray-600 text-center">
-            {mediaType} player for enhanced accessibility
+            {t(mediaType) || mediaType} {t('playerForAccessibility') || 'player for enhanced accessibility'}
           </p>
         </div>
       </div>
@@ -287,7 +297,7 @@ function MediaListItem({ item, index, isSelected, onSelect }) {
 /**
  * Media Player Component - Responsive
  */
-function MediaPlayer({ track, mediaType }) {
+function MediaPlayer({ track, mediaType, t }) {
   const isAudio = mediaType === 'audio';
   
   return (
@@ -302,15 +312,35 @@ function MediaPlayer({ track, mediaType }) {
         </div>
       ) : (
         <div className="mb-4 md:mb-6">
-          <video
-            key={track.id}
-            controls
-            className="w-full max-h-[60vh] bg-black rounded-lg"
-            poster={track.thumbnail || undefined}
-          >
-            <source src={track.url} />
-            Your browser does not support the video tag.
-          </video>
+          {(() => {
+            const youtubeVideoId = extractYouTubeVideoId(track.url);
+            
+            if (youtubeVideoId) {
+              // Use YouTube embed for YouTube URLs
+              return (
+                <div className="w-full rounded-lg overflow-hidden">
+                  <YouTubeEmbed 
+                    videoid={youtubeVideoId} 
+                    height={300}
+                    params="modestbranding=1&rel=0"
+                  />
+                </div>
+              );
+            } else {
+              // Fallback to native HTML video for non-YouTube URLs
+              return (
+                <video
+                  key={track.id}
+                  controls
+                  className="w-full max-h-[60vh] bg-black rounded-lg"
+                  poster={track.thumbnail || undefined}
+                >
+                  <source src={track.url} />
+                  Your browser does not support the video tag.
+                </video>
+              );
+            }
+          })()}
         </div>
       )}
 
@@ -318,7 +348,7 @@ function MediaPlayer({ track, mediaType }) {
       <div className="mb-4 md:mb-6">
         <h4 className="text-lg md:text-xl font-semibold text-gray-800 mb-1 md:mb-2">{track.name}</h4>
         {track.duration && (
-          <p className="text-xs md:text-sm text-gray-600">Duration: {track.duration}</p>
+          <p className="text-xs md:text-sm text-gray-600">{t('duration') || 'Duration'}: {track.duration}</p>
         )}
       </div>
     </div>

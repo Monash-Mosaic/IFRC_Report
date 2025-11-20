@@ -23,3 +23,31 @@ export const chapters = {
     subtitle: Chapter02.subtitle,
   },
 };
+
+export const media = {
+  'глава-02': {
+    audios: [
+      {
+        id: "intro",
+        name: "Глава 02 - Обзор",
+        duration: "02:31",
+        url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+      },
+      {
+        id: "section-1",
+        name: "Раздел 1: Ключевые выводы",
+        duration: "04:12",
+        url: "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
+      }
+    ],
+    videos: [
+      {
+        id: "summary",
+        name: "Краткое изложение главы",
+        duration: "03:45",
+        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM",
+        thumbnail: "/window.svg"
+      }
+    ]
+  }
+};
