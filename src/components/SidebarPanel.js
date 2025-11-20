@@ -305,7 +305,7 @@ function MediaPlayer({ track, mediaType, t }) {
       {/* Media Display */}
       {isAudio ? (
         <div className="mb-4 md:mb-6">
-          <audio key={track.id} controls className="w-full">
+          <audio key={track.id} controls className="w-full" data-testid="audio-player" src={track.url}>
             <source src={track.url} />
             Your browser does not support the audio element.
           </audio>
@@ -334,6 +334,7 @@ function MediaPlayer({ track, mediaType, t }) {
                   controls
                   className="w-full max-h-[60vh] bg-black rounded-lg"
                   poster={track.thumbnail || undefined}
+                  data-testid="video-player"
                 >
                   <source src={track.url} />
                   Your browser does not support the video tag.
