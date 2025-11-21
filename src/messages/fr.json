@@ -80,5 +80,30 @@
   "LocaleSwitcher": {
     "ariaLabel": "Sélectionnez la langue",
     "title": "Sélectionnez la langue"
+  },
+  "SidebarPanel": {
+    "expandSidebar": "Étendre la barre latérale",
+    "closeSidebar": "Fermer la barre latérale",
+    "back": "Retour",
+    "resources": "Ressources",
+    "chapterResourcesPanel": "Panneau des ressources du chapitre",
+    "panel": {
+      "notes": "Notes",
+      "audios": "Audio",
+      "videos": "Vidéos"
+    },
+    "chapterNotes": "Notes du chapitre",
+    "myNotes": "Mes notes",
+    "bookmarks": "Marque-pages",
+    "audio": "Audio",
+    "videos": "Vidéos",
+    "loading": "Chargement",
+    "noMediaAvailable": "Aucun",
+    "availableForChapter": "disponible pour ce chapitre",
+    "selectMediaToPlay": "Sélectionnez un",
+    "toPlay": "à lire",
+    "closeMediaPanel": "Fermer le panneau multimédia",
+    "playerForAccessibility": "lecteur pour une accessibilité améliorée",
+    "duration": "Durée"
   }
 }
