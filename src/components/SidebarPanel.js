@@ -14,11 +14,8 @@ function extractYouTubeVideoId(url) {
 
 // Action types
 const TOGGLE_SIDEBAR_ACTION = 'TOGGLE_SIDEBAR';
-const SET_ACTIVE_MEDIA_PANEL_ACTION = 'SET_ACTIVE_MEDIA_PANEL';
 const SET_SELECTED_TRACK_ACTION = 'SET_SELECTED_TRACK';
 const CLOSE_MEDIA_PANEL_ACTION = 'CLOSE_MEDIA_PANEL';
-const SET_LOADING_ACTION = 'SET_LOADING';
-const SET_MEDIA_ACTION = 'SET_MEDIA';
 const SET_ACTIVE_NOTES_PANEL_ACTION = 'SET_ACTIVE_NOTES_PANEL';
 const SET_ACTIVE_AUDIOS_PANEL_ACTION = 'SET_ACTIVE_AUDIOS_PANEL';
 const SET_ACTIVE_VIDEOS_PANEL_ACTION = 'SET_ACTIVE_VIDEOS_PANEL';
@@ -37,16 +34,10 @@ function reducer(state, action) {
   switch (action.type) {
     case TOGGLE_SIDEBAR_ACTION:
       return { ...state, isExpanded: action.payload };
-    case SET_ACTIVE_MEDIA_PANEL_ACTION:
-      return { ...state, activeMediaPanel: action.payload };
     case SET_SELECTED_TRACK_ACTION:
       return { ...state, selectedTrack: action.payload };
     case CLOSE_MEDIA_PANEL_ACTION:
       return { ...state, activeMediaPanel: null, selectedTrack: null };
-    case SET_LOADING_ACTION:
-      return { ...state, loading: action.payload };
-    case SET_MEDIA_ACTION:
-      return { ...state, media: action.payload };
     case SET_ACTIVE_NOTES_PANEL_ACTION:
       return { ...state, activeMediaPanel: null, selectedTrack: null };
     case SET_ACTIVE_AUDIOS_PANEL_ACTION:
@@ -66,7 +57,7 @@ function reducer(state, action) {
   }
 }
 
-export default function SidebarPanel({ chapterTitle, locale, report, chapter, audios = [], videos = [] }) {
+export default function SidebarPanel({ chapterTitle, audios = [], videos = [] }) {
   const [state, dispatch] = useReducer(reducer, { ...initialState, media: { audios, videos } });
   const t = useTranslations('SidebarPanel');
 

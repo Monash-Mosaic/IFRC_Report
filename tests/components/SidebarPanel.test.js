@@ -70,9 +70,6 @@ const mockVideos = [
 
 const defaultProps = {
   chapterTitle: 'Test Chapter Title',
-  locale: 'en',
-  report: 'test-report',
-  chapter: 'test-chapter',
   audios: mockAudios,
   videos: mockVideos,
 };

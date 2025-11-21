@@ -65,9 +65,6 @@ export default async function ReportChapterPage({ params }) {
       {/* Sidebar Panel */}
       <SidebarPanel
         chapterTitle={chapterTitle}
-        locale={locale}
-        report={decodedReport}
-        chapter={decodedChapter}
         audios={chapterMedia.audios}
         videos={chapterMedia.videos}
       />
