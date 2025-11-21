@@ -25,6 +25,100 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* styles/toc.css */
+.toc {
+  position: fixed;
+  right: 1rem;
+  top: 2rem;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-height: 80vh;
+  overflow-y: auto;
+  font-weight: bold;
+  box-shadow: 0 4px 6px -1px #a4def8ff;
+  z-index: 100;
+}
+
+.toc .toc-item::marker {
+  content: '·';
+  font-weight: bold;
+}
+
+.toc::before {
+  content: "On This Page";
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin-bottom: 0.5rem;
+}
+
+.toc li ul {
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.toc-link {
+  text-decoration: none;
+  color: #495057;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.toc-link:hover {
+  color: #ee2435;
+}
+
+@media (max-width: 1280) and (min-width: 769px) {
+  .toc {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    margin: 0 0 2rem 0;
+    top: auto;
+    right: auto;
+  }
+
+  /* Adjust main content to account for TOC at top */
+  .main-content {
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .toc {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    margin: 0 0 2rem 0;
+    top: auto;
+    right: auto;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .main-content {
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
 /**
   * .locale-{locale} classes for locale-specific styles
   * .locale-{locale} .el is also work
