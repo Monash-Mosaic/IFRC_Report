@@ -17,18 +17,8 @@ const withMDX = createMDX({
           },
         },
       ],
-      [
-        'rehype-toc',
-        {
-          headings: ['h1'],
-          cssClasses: {
-            toc: 'toc',
-            link: 'toc-link',
-          },
-          // Use the custom marker
-          nav: true,
-        },
-      ],
+      ['@stefanprobst/rehype-extract-toc', {}],
+      ['@stefanprobst/rehype-extract-toc/mdx', {}],
     ],
   },
 });

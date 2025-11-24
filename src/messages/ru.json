@@ -75,7 +75,8 @@
     }
   },
   "ReportChapterPage": {
-    "back": "Назад"
+    "back": "Назад",
+    "tocTitle": "На этой странице"
   },
   "LocaleSwitcher": {
     "ariaLabel": "Выберите язык",

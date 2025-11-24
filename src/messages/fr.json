@@ -75,7 +75,8 @@
     }
   },
   "ReportChapterPage": {
-    "back": "Retour"
+    "back": "Retour",
+    "tocTitle": "Sur cette page"
   },
   "LocaleSwitcher": {
     "ariaLabel": "Sélectionnez la langue",

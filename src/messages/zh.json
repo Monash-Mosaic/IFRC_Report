@@ -75,7 +75,8 @@
     }
   },
   "ReportChapterPage": {
-    "back": "返回"
+    "back": "返回",
+    "tocTitle": "在本页面"
   },
   "LocaleSwitcher": {
     "ariaLabel": "选择语言",
