@@ -1,4 +1,6 @@
 export default function TableOfContent({ chapterTableOfContents, title }) {
+  if (!chapterTableOfContents?.length) return null;
+
   return (
     <>
       <div className="text-2xl text-black font-extrabold mb-2">{title}</div>
