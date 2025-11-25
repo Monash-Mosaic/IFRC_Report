@@ -7,15 +7,20 @@ const withMDX = createMDX({
   options: {
     rehypePlugins: [
       ['rehype-slug', {}],
-      ['rehype-autolink-headings', {
-        behavior: 'wrap',
-        content: {
-          type: 'text',
-          value: ' 🔗',
+      [
+        'rehype-autolink-headings',
+        {
+          behavior: 'wrap',
+          content: {
+            type: 'text',
+            value: ' 🔗',
+          },
         },
-      }],
-    ]
-  }
+      ],
+      ['@stefanprobst/rehype-extract-toc', {}],
+      ['@stefanprobst/rehype-extract-toc/mdx', {}],
+    ],
+  },
 });
 
 /** @type {import('next').NextConfig} */
