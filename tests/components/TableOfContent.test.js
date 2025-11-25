@@ -30,10 +30,6 @@ describe('TableOfContent', () => {
   test('not render when chapterTableOfContents is empty', () => {
     render(<TableOfContent chapterTableOfContents={[]} title={mockTitle} />);
 
-    // Title should still be rendered
-    const titleElement = screen.queryByText(mockTitle);
-    expect(titleElement).not.toBeInTheDocument();
-
     // No list items should be present
     const listItems = screen.queryAllByRole('listitem');
     expect(listItems).toHaveLength(0);

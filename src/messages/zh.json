@@ -76,7 +76,7 @@
   },
   "ReportChapterPage": {
     "back": "返回",
-    "tocTitle": "在本页面"
+    "tocTitle": "在本章节"
   },
   "LocaleSwitcher": {
     "ariaLabel": "选择语言",

@@ -76,7 +76,7 @@
   },
   "ReportChapterPage": {
     "back": "Back",
-    "tocTitle": "On This Page"
+    "tocTitle": "On This Chapter"
   },
   "LocaleSwitcher": {
     "ariaLabel": "Select language",
