@@ -30,8 +30,5 @@ exports[`SidebarPanel renders SidebarPanel with collapsed state by default 1`] =
       />
     </svg>
   </button>
-  <div
-    class="hidden md:block transition-all duration-300 ease-in-out w-16"
-  />
 </div>
 `;

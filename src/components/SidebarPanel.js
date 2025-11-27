@@ -177,8 +177,6 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
         />
       )}
 
-      {/* Spacer div to maintain layout when sidebar is collapsed - only on desktop */}
-      <div className={`hidden md:block transition-all duration-300 ease-in-out ${isExpanded ? 'w-0' : 'w-16'}`} />
     </>
   );
 }
