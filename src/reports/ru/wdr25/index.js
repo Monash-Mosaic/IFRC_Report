@@ -21,11 +21,6 @@ export const chapters = {
     component: Chapter02.default,
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
-  },
-};
-
-export const media = {
-  'глава-02': {
     audios: [
       {
         id: "intro",
@@ -48,6 +43,6 @@ export const media = {
         url: "https://www.youtube.com/watch?v=o8NiE3XMPrM",
         thumbnail: "/window.svg"
       }
-    ]
-  }
+    ],
+  },
 };

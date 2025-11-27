@@ -21,11 +21,6 @@ export const chapters = {
     component: Chapter02.default,
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
-  },
-};
-
-export const media = {
-  '章节-02': {
     audios: [
       {
         id: "intro",
@@ -48,6 +43,6 @@ export const media = {
         url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
         thumbnail: "/window.svg"
       }
-    ]
-  }
+    ],
+  },
 };

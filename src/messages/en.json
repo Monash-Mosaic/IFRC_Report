@@ -98,12 +98,19 @@
     "audio": "Audio",
     "videos": "Videos",
     "loading": "Loading",
-    "noMediaAvailable": "No",
-    "availableForChapter": "available for this chapter",
-    "selectMediaToPlay": "Select a",
-    "toPlay": "to play",
+    "noMediaAvailable": {
+      "audio": "No audio available for this chapter",
+      "videos": "No videos available for this chapter"
+    },
+    "selectMediaToPlay": {
+      "audio": "Select an audio to play",
+      "videos": "Select a video to play"
+    },
+    "playerForAccessibility": {
+      "audio": "Audio player for enhanced accessibility",
+      "videos": "Video player for enhanced accessibility"
+    },
     "closeMediaPanel": "Close media panel",
-    "playerForAccessibility": "player for enhanced accessibility",
     "duration": "Duration"
   }
 }

@@ -12,7 +12,7 @@ jest.mock('@next/third-parties/google', () => ({
 
 // Mock next-intl hooks used by the component
 jest.mock('next-intl', () => ({
-  useTranslations: (namespace) => (key) => {
+  useTranslations: (namespace) => (key, params) => {
     const translations = {
       'SidebarPanel.expandSidebar': 'Expand sidebar',
       'SidebarPanel.closeSidebar': 'Close sidebar',
@@ -23,14 +23,16 @@ jest.mock('next-intl', () => ({
       'SidebarPanel.panel.audios': 'Audio',
       'SidebarPanel.panel.videos': 'Videos',
       'SidebarPanel.loading': 'Loading',
-      'SidebarPanel.noMediaAvailable': 'No',
-      'SidebarPanel.availableForChapter': 'available for this chapter',
-      'SidebarPanel.selectMediaToPlay': 'Select a',
-      'SidebarPanel.toPlay': 'to play',
+      'SidebarPanel.noMediaAvailable.audio': 'No audio available for this chapter',
+      'SidebarPanel.noMediaAvailable.videos': 'No videos available for this chapter',
+      'SidebarPanel.selectMediaToPlay.audio': 'Select an audio to play',
+      'SidebarPanel.selectMediaToPlay.videos': 'Select a video to play',
+      'SidebarPanel.playerForAccessibility.audio': 'Audio player for enhanced accessibility',
+      'SidebarPanel.playerForAccessibility.videos': 'Video player for enhanced accessibility',
       'SidebarPanel.closeMediaPanel': 'Close media panel',
-      'SidebarPanel.playerForAccessibility': 'player for enhanced accessibility',
       'SidebarPanel.duration': 'Duration',
     };
+    
     return translations[`${namespace}.${key}`] || key;
   },
 }));
@@ -257,9 +259,9 @@ describe('SidebarPanel', () => {
     fireEvent.click(screen.getByLabelText('Expand sidebar'));
     fireEvent.click(screen.getByText('Audio'));
     
-    // Should show the empty state message parts (using regex pattern)
-    expect(screen.getByText(/No.*audio.*available for this chapter/i)).toBeInTheDocument();
-    expect(screen.getByText(/Select a.*audio.*to play/i)).toBeInTheDocument();
+    // Should show the empty state message parts (using enum-based translations)
+    expect(screen.getByText('No audio available for this chapter')).toBeInTheDocument();
+    expect(screen.getByText('Select an audio to play')).toBeInTheDocument();
   });
 
   it('shows notes panel when notes menu item is clicked', () => {

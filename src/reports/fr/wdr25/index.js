@@ -21,11 +21,6 @@ export const chapters = {
     component: Chapter02.default,
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
-  },
-};
-
-export const media = {
-  'chapitre-02': {
     audios: [
       {
         id: "intro",
@@ -49,5 +44,5 @@ export const media = {
         thumbnail: "/window.svg"
       }
     ]
-  }
+  },
 };

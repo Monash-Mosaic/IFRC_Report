@@ -98,12 +98,19 @@
     "audio": "Audio",
     "videos": "Vidéos",
     "loading": "Chargement",
-    "noMediaAvailable": "Aucun",
-    "availableForChapter": "disponible pour ce chapitre",
-    "selectMediaToPlay": "Sélectionnez un",
-    "toPlay": "à lire",
+    "noMediaAvailable": {
+      "audio": "Aucun audio disponible pour ce chapitre",
+      "videos": "Aucune vidéo disponible pour ce chapitre"
+    },
+    "selectMediaToPlay": {
+      "audio": "Sélectionnez un audio à lire",
+      "videos": "Sélectionnez une vidéo à lire"
+    },
+    "playerForAccessibility": {
+      "audio": "Lecteur audio pour une accessibilité améliorée",
+      "videos": "Lecteur vidéo pour une accessibilité améliorée"
+    },
     "closeMediaPanel": "Fermer le panneau multimédia",
-    "playerForAccessibility": "lecteur pour une accessibilité améliorée",
     "duration": "Durée"
   }
 }

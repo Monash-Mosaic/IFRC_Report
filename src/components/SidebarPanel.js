@@ -66,7 +66,7 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
   const menuItems = [
     {
       id: 'notes',
-      label: t('panel.notes') || 'Notes',
+      label: t('panel.notes'),
       icon: FileText,
       color: 'text-gray-700 hover:bg-blue-50',
       items: ['Chapter Notes', 'My Notes', 'Bookmarks'],
@@ -74,7 +74,7 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
     },
     {
       id: 'audio',
-      label: t('panel.audios') || 'Audio',
+      label: t('panel.audios'),
       icon: Volume2,
       color: 'text-gray-700 hover:bg-green-50',
       onClick: () => dispatch({ type: SET_ACTIVE_AUDIOS_PANEL_ACTION }),
@@ -82,7 +82,7 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
     },
     {
       id: 'videos',
-      label: t('panel.videos') || 'Videos',
+      label: t('panel.videos'),
       icon: Video,
       color: 'text-gray-700 hover:bg-red-50',
       onClick: () => dispatch({ type: SET_ACTIVE_VIDEOS_PANEL_ACTION }),
@@ -97,7 +97,7 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
         <button
           onClick={() => dispatch({ type: TOGGLE_SIDEBAR_ACTION, payload: true })}
           className="fixed top-20 left-4 z-50 w-12 h-12 bg-white border border-gray-200 shadow-lg flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:shadow-xl"
-          aria-label={t('expandSidebar') || 'Expand sidebar'}
+          aria-label={t('expandSidebar')}
         >
           <Menu className="w-6 h-6" />
         </button>
@@ -112,16 +112,16 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
               <button
                 onClick={() => dispatch({ type: TOGGLE_SIDEBAR_ACTION, payload: false })}
                 className="flex items-center gap-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 p-2 rounded-lg transition-colors"
-                aria-label={t('closeSidebar') || 'Close sidebar'}
+                aria-label={t('closeSidebar')}
               >
                 <ArrowLeft className="w-5 h-5" />
-                <span className="text-sm font-medium">{t('back') || 'Back'}</span>
+                <span className="text-sm font-medium">{t('back')}</span>
               </button>
             </div>
 
             {/* Header */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-800 mb-2">{t('resources') || 'Resources'}</h2>
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">{t('resources')}</h2>
               <p className="text-sm text-gray-600 line-clamp-2" title={chapterTitle}>
                 {chapterTitle}
               </p>
@@ -150,7 +150,7 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
             {/* Footer */}
             <div className="mt-8 pt-4 border-t border-gray-200">
               <p className="text-xs text-gray-500 text-center">
-                {t('chapterResourcesPanel') || 'Chapter Resources Panel'}
+                {t('chapterResourcesPanel')}
               </p>
             </div>
           </div>
@@ -197,12 +197,12 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         {/* Header */}
         <div className="p-4 md:p-6 border-b border-blue-400 flex items-center justify-between">
           <h3 className="text-white font-semibold text-lg md:text-xl capitalize">
-            {t(mediaType) || mediaType} {mediaItems.length > 0 ? '1' : ''}
+            {t(mediaType)} {mediaItems.length > 0 ? '1' : ''}
           </h3>
           <button
             onClick={onClose}
             className="text-white hover:text-gray-200 transition-colors p-1"
-            aria-label={t('closeMediaPanel') || 'Close media panel'}
+            aria-label={t('closeMediaPanel')}
           >
             <X className="w-6 h-6" />
           </button>
@@ -211,10 +211,10 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         {/* Media List */}
         <div className="flex-1 p-4 md:p-6 space-y-2 md:space-y-3 overflow-y-auto">
           {loading && (
-            <div className="text-white/90">{t('loading') || 'Loading'} {t(mediaType) || mediaType}...</div>
+            <div className="text-white/90">{t('loading')} {t(mediaType)}...</div>
           )}
           {!loading && mediaItems.length === 0 && (
-            <div className="text-white/90">{t('noMediaAvailable') || 'No'} {t(mediaType) || mediaType} {t('availableForChapter') || 'available for this chapter'}.</div>
+            <div className="text-white/90">{t(`noMediaAvailable.${mediaType}`)}</div>
           )}
           {!loading && mediaItems.map((item, index) => (
             <MediaListItem
@@ -243,7 +243,7 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
                   <Video className="w-8 h-8 md:w-10 md:h-10 text-gray-300" />
                 )}
               </div>
-              <p className="text-base md:text-lg">{t('selectMediaToPlay') || 'Select a'} {t(mediaType) || mediaType} {t('toPlay') || 'to play'}</p>
+              <p className="text-base md:text-lg">{t(`selectMediaToPlay.${mediaType}`)}</p>
             </div>
           )}
         </div>
@@ -251,7 +251,7 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
         {/* Footer */}
         <div className="p-3 md:p-4 border-t border-gray-200 bg-gray-100">
           <p className="text-xs text-gray-600 text-center">
-            {t(mediaType) || mediaType} {t('playerForAccessibility') || 'player for enhanced accessibility'}
+            {t(`playerForAccessibility.${mediaType}`)}
           </p>
         </div>
       </div>
@@ -340,7 +340,7 @@ function MediaPlayer({ track, mediaType, t }) {
       <div className="mb-4 md:mb-6">
         <h4 className="text-lg md:text-xl font-semibold text-gray-800 mb-1 md:mb-2">{track.name}</h4>
         {track.duration && (
-          <p className="text-xs md:text-sm text-gray-600">{t('duration') || 'Duration'}: {track.duration}</p>
+          <p className="text-xs md:text-sm text-gray-600">{t('duration')}: {track.duration}</p>
         )}
       </div>
     </div>

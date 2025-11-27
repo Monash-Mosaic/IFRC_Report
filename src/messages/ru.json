@@ -98,12 +98,19 @@
     "audio": "Аудио",
     "videos": "Видео",
     "loading": "Загрузка",
-    "noMediaAvailable": "Нет",
-    "availableForChapter": "доступно для этой главы",
-    "selectMediaToPlay": "Выберите",
-    "toPlay": "для воспроизведения",
+    "noMediaAvailable": {
+      "audio": "Нет доступного аудио для этой главы",
+      "videos": "Нет доступного видео для этой главы"
+    },
+    "selectMediaToPlay": {
+      "audio": "Выберите аудио для воспроизведения",
+      "videos": "Выберите видео для воспроизведения"
+    },
+    "playerForAccessibility": {
+      "audio": "Аудиоплеер для улучшения доступности",
+      "videos": "Видеоплеер для улучшения доступности"
+    },
     "closeMediaPanel": "Закрыть панель медиа",
-    "playerForAccessibility": "плеер для улучшения доступности",
     "duration": "Длительность"
   }
 }

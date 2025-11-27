@@ -98,12 +98,19 @@
     "audio": "الصوت",
     "videos": "الفيديو",
     "loading": "جاري التحميل",
-    "noMediaAvailable": "لا توجد",
-    "availableForChapter": "متاحة لهذا الفصل",
-    "selectMediaToPlay": "اختر",
-    "toPlay": "للتشغيل",
+    "noMediaAvailable": {
+      "audio": "لا توجد مواد صوتية متاحة لهذا الفصل",
+      "videos": "لا توجد مقاطع فيديو متاحة لهذا الفصل"
+    },
+    "selectMediaToPlay": {
+      "audio": "اختر مادة صوتية للتشغيل",
+      "videos": "اختر مقطع فيديو للتشغيل"
+    },
+    "playerForAccessibility": {
+      "audio": "مشغل صوتي لتحسين إمكانية الوصول",
+      "videos": "مشغل فيديو لتحسين إمكانية الوصول"
+    },
     "closeMediaPanel": "إغلاق لوحة الوسائط",
-    "playerForAccessibility": "مشغل لتحسين إمكانية الوصول",
     "duration": "المدة"
   }
 }

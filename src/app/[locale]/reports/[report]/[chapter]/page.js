@@ -48,16 +48,15 @@ export default async function ReportChapterPage({ params }) {
     notFound();
   }
   setRequestLocale(locale);
-  const { chapters, title: reportTile, media } = reportsByLocale[locale].reports[decodedReport];
+  const { chapters, title: reportTile } = reportsByLocale[locale].reports[decodedReport];
   const {
     component: Chapter,
     title: chapterTitle,
     subtitle: chapterSubTitle,
+    audios = [],
+    videos = [],
   } = chapters[decodedChapter];
 
-  // Extract media for the current chapter
-  const chapterMedia = media?.[decodedChapter] || { audios: [], videos: [] };
-  
   const t = await getTranslations('ReportChapterPage', locale);
 
   return (
@@ -65,8 +64,8 @@ export default async function ReportChapterPage({ params }) {
       {/* Sidebar Panel */}
       <SidebarPanel
         chapterTitle={chapterTitle}
-        audios={chapterMedia.audios}
-        videos={chapterMedia.videos}
+        audios={audios}
+        videos={videos}
       />
       
       {/* Main Content */}
