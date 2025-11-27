@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { reportsByLocale } from '@/reports';
 import { Link } from '@/i18n/navigation';
 import SidebarPanel from '@/components/SidebarPanel';
+import TableOfContent from '@/components/TableOfContent';
 
 export async function generateMetadata({ params }) {
   const { report, chapter, locale } = await params;
@@ -55,6 +56,7 @@ export default async function ReportChapterPage({ params }) {
     subtitle: chapterSubTitle,
     audios = [],
     videos = [],
+    tableOfContents: chapterTableOfContents,
   } = chapters[decodedChapter];
 
   const t = await getTranslations('ReportChapterPage', locale);
@@ -75,7 +77,6 @@ export default async function ReportChapterPage({ params }) {
             <ArrowLeft className="w-5 h-5" />
             <span className="font-semibold">{t('back')}</span>
           </Link>
-
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
           </div>
@@ -84,10 +85,28 @@ export default async function ReportChapterPage({ params }) {
 
           <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 
+          <div className="xl:hidden mb-8">
+            <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+              <TableOfContent
+                chapterTableOfContents={chapterTableOfContents}
+                title={t('tocTitle')}
+              />
+            </div>
+          </div>
+
           <div className="mb-12">
             <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
               <Chapter />
             </article>
+          </div>
+        </div>
+
+        <div className="hidden xl:block w-80 flex-shrink-0">
+          <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto">
+            <TableOfContent
+              chapterTableOfContents={chapterTableOfContents}
+              title={t('tocTitle')}
+            ></TableOfContent>
           </div>
         </div>
       </div>

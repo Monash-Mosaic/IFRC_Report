@@ -21,6 +21,7 @@ export const chapters = {
     component: Chapter02.default,
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
+    tableOfContents: Chapter02.tableOfContents,
     audios: [
       {
         id: "intro",

@@ -75,7 +75,8 @@
     }
   },
   "ReportChapterPage": {
-    "back": "عودة"
+    "back": "عودة",
+    "tocTitle": "في هذا الفصل"
   },
   "LocaleSwitcher": {
     "ariaLabel": "اختر اللغة",
