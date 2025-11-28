@@ -81,5 +81,37 @@
   "LocaleSwitcher": {
     "ariaLabel": "اختر اللغة",
     "title": "اختر اللغة"
+  },
+  "SidebarPanel": {
+    "expandSidebar": "توسيع الشريط الجانبي",
+    "closeSidebar": "إغلاق الشريط الجانبي",
+    "back": "رجوع",
+    "resources": "الموارد",
+    "chapterResourcesPanel": "لوحة موارد الفصل",
+    "panel": {
+      "notes": "الملاحظات",
+      "audios": "الصوت",
+      "videos": "الفيديو"
+    },
+    "chapterNotes": "ملاحظات الفصل",
+    "myNotes": "ملاحظاتي",
+    "bookmarks": "الإشارات المرجعية",
+    "audio": "الصوت",
+    "videos": "الفيديو",
+    "loading": "جاري التحميل",
+    "noMediaAvailable": {
+      "audio": "لا توجد مواد صوتية متاحة لهذا الفصل",
+      "videos": "لا توجد مقاطع فيديو متاحة لهذا الفصل"
+    },
+    "selectMediaToPlay": {
+      "audio": "اختر مادة صوتية للتشغيل",
+      "videos": "اختر مقطع فيديو للتشغيل"
+    },
+    "playerForAccessibility": {
+      "audio": "مشغل صوتي لتحسين إمكانية الوصول",
+      "videos": "مشغل فيديو لتحسين إمكانية الوصول"
+    },
+    "closeMediaPanel": "إغلاق لوحة الوسائط",
+    "duration": "المدة"
   }
 }

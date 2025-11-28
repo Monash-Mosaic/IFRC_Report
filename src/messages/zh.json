@@ -81,5 +81,37 @@
   "LocaleSwitcher": {
     "ariaLabel": "选择语言",
     "title": "选择语言"
+  },
+  "SidebarPanel": {
+    "expandSidebar": "展开侧边栏",
+    "closeSidebar": "关闭侧边栏",
+    "back": "返回",
+    "resources": "资源",
+    "chapterResourcesPanel": "章节资源面板",
+    "panel": {
+      "notes": "笔记",
+      "audios": "音频",
+      "videos": "视频"
+    },
+    "chapterNotes": "章节笔记",
+    "myNotes": "我的笔记",
+    "bookmarks": "书签",
+    "audio": "音频",
+    "videos": "视频",
+    "loading": "加载中",
+    "noMediaAvailable": {
+      "audio": "本章节没有可用音频",
+      "videos": "本章节没有可用视频"
+    },
+    "selectMediaToPlay": {
+      "audio": "选择要播放的音频",
+      "videos": "选择要播放的视频"
+    },
+    "playerForAccessibility": {
+      "audio": "音频播放器以增强可访问性",
+      "videos": "视频播放器以增强可访问性"
+    },
+    "closeMediaPanel": "关闭媒体面板",
+    "duration": "时长"
   }
 }

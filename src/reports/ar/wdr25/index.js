@@ -22,5 +22,29 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
+    audios: [
+      {
+        id: "intro",
+        name: "الفصل 02 - نظرة عامة",
+        duration: "02:31",
+        url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+      },
+      {
+        id: "section-1",
+        name: "القسم 1: النتائج الرئيسية",
+        duration: "04:12",
+        url: "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
+      }
+    ],
+    videos: [
+      {
+        id: "summary",
+        name: "ملخص الفصل",
+        duration: "03:45",
+        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM",
+        thumbnail: "/window.svg"
+      }
+    ],
   },
 };
+

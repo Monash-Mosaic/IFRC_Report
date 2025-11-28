@@ -81,5 +81,37 @@
   "LocaleSwitcher": {
     "ariaLabel": "Выберите язык",
     "title": "Выберите язык"
+  },
+  "SidebarPanel": {
+    "expandSidebar": "Развернуть боковую панель",
+    "closeSidebar": "Закрыть боковую панель",
+    "back": "Назад",
+    "resources": "Ресурсы",
+    "chapterResourcesPanel": "Панель ресурсов главы",
+    "panel": {
+      "notes": "Заметки",
+      "audios": "Аудио",
+      "videos": "Видео"
+    },
+    "chapterNotes": "Заметки главы",
+    "myNotes": "Мои заметки",
+    "bookmarks": "Закладки",
+    "audio": "Аудио",
+    "videos": "Видео",
+    "loading": "Загрузка",
+    "noMediaAvailable": {
+      "audio": "Нет доступного аудио для этой главы",
+      "videos": "Нет доступного видео для этой главы"
+    },
+    "selectMediaToPlay": {
+      "audio": "Выберите аудио для воспроизведения",
+      "videos": "Выберите видео для воспроизведения"
+    },
+    "playerForAccessibility": {
+      "audio": "Аудиоплеер для улучшения доступности",
+      "videos": "Видеоплеер для улучшения доступности"
+    },
+    "closeMediaPanel": "Закрыть панель медиа",
+    "duration": "Длительность"
   }
 }

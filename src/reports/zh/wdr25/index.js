@@ -22,5 +22,28 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
+    audios: [
+      {
+        id: "intro",
+        name: "第02章 - 概述",
+        duration: "02:31",
+        url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+      },
+      {
+        id: "section-1",
+        name: "第1节：主要发现",
+        duration: "04:12",
+        url: "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
+      }
+    ],
+    videos: [
+      {
+        id: "summary",
+        name: "章节摘要",
+        duration: "03:45",
+        url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        thumbnail: "/window.svg"
+      }
+    ],
   },
 };
