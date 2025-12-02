@@ -1,0 +1,24 @@
+{
+  "name": "wdr25",
+  "version": "1.0.0",
+  "description": "parsing XML to Markdown",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "start": "node convert-xml.mjs"
+  },
+  "dependencies": {
+    "estree-util-to-js": "^2.0.0",
+    "mdast-builder": "^1.1.1",
+    "mdast-util-mdx": "^3.0.0",
+    "mdast-util-to-markdown": "^2.1.2",
+    "my-next-app": "file:../..",
+    "remark-stringify": "^11.0.0",
+    "unified": "^11.0.5",
+    "unist-builder": "^4.0.0",
+    "unist-util-flatmap": "^1.0.0",
+    "xast-util-from-xml": "^4.0.0",
+    "xml-js": "^1.6.11"
+  }
+}

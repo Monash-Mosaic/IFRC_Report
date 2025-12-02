@@ -35,10 +35,13 @@
       being confined to such echo chambers reduces exposure to diverse perspectives and increases
       the risk of isolation in our views or rejection of opposing viewpoints and sources of
       information due to confirmation bias. </normal-first>
-    <h1-sidenote-context>Confirmation Bias</h1-sidenote-context>
-    <sidenotes-contributions-first>Confirmation Bias refers to the tendency to seek out, favour and
-      recall information that supports our existing beliefs, while ignoring or dismissing
-      contradictory evidence.</sidenotes-contributions-first>
+    <sidenote>
+      <h1-sidenote-context>Confirmation Bias</h1-sidenote-context>
+      <sidenotes-contributions-first>Confirmation Bias refers to the tendency to seek out, favour
+        and
+        recall information that supports our existing beliefs, while ignoring or dismissing
+        contradictory evidence.</sidenotes-contributions-first>
+    </sidenote>
     <normal>Although some studies (Pierre) show that users do encounter opposing views online, these
       interactions often trigger annoyance or hostility rather than reflection or debate. Algorithms
       reinforce this by amplifying divisive content, since hostility drives engagement, and
@@ -89,10 +92,12 @@
       credibility still underpins effective communication. But where information is
       instrumentalised, persuasiveness often relies less on truth and more on emotional resonance,
       social identity or perceived authority. </normal>
-    <small-quote>“I think the major thing that people lack is they should take time to verify
-      information from the correct sources because in most cases it’s what people see or just hear
-      is what they end up going to redistribute to other people.”</small-quote>
-    <small-quote-author>Community Researcher, Zambia</small-quote-author>
+    <small-quote-group>
+      <small-quote>“I think the major thing that people lack is they should take time to verify
+        information from the correct sources because in most cases it’s what people see or just hear
+        is what they end up going to redistribute to other people.”</small-quote>
+      <small-quote-author>Community Researcher, Zambia</small-quote-author>
+    </small-quote-group>
     <normal>Public trust has also been eroded by the widespread perception that governments largely
       failed to manage crises such as the COVID-19 pandemic and climate change, which has further
       eroded public trust (Edelman, 2022). This is especially true for vulnerable and marginalised
@@ -171,9 +176,11 @@
       engagement, builds the foundation for trust, critical thinking and informed decision-making.
       Monitoring community trust and reinforcing transparency can help strengthen the relationship
       between National Societies and the communities they serve.</normal-spotlight>
-    <h1-contributor>Diana Medina, Asia Pacific Regional Coordinator</h1-contributor>
-    <contributor>Community Engagement and Accountability (CEA)</contributor>
-    <contributor-role>International Federation of Red Cross and Red Crescent Societies</contributor-role>
+    <contributor-group>
+      <h1-contributor>Diana Medina, Asia Pacific Regional Coordinator</h1-contributor>
+      <contributor>Community Engagement and Accountability (CEA)</contributor>
+      <contributor-role>International Federation of Red Cross and Red Crescent Societies</contributor-role>
+    </contributor-group>
     <h1>Trust in Institutions</h1>
     <normal-first>Trust is critical to the legitimacy, effectiveness and acceptance of humanitarian
       action. This was strongly emphasised at the 2019 International Conference of the Red Cross and
@@ -186,9 +193,11 @@
       reputational risks grow and trust declines. As the Commission Report stressed: “Trust is the
       most critical currency for the future of humanitarian action, and one which stems from
       humility and being truthful and transparent.” It identified three key priorities:</normal>
-    <numbered-list>Community engagement and accountability.</numbered-list>
-    <numbered-list>A conducive environment for principled humanitarian action.</numbered-list>
-    <numbered-list>Integrity and risk sharing. </numbered-list>
+    <numbered-list-group>
+      <numbered-list>Community engagement and accountability.</numbered-list>
+      <numbered-list>A conducive environment for principled humanitarian action.</numbered-list>
+      <numbered-list>Integrity and risk sharing. </numbered-list>
+    </numbered-list-group>
     <normal>While harmful information was not yet identified as a central concern, the focus on
       trust, truth and transparency reflected growing recognition that both the Movement and States
       needed to do more to earn trust. It also underscored a broader challenge: preserving the space
@@ -247,17 +256,21 @@
       the mission-driven ethos, but in an era of rising stakeholder expectations this must be
       reinforced through measurable, equitable impact.</normal-spotlight>
     <normal-spotlight>To strengthen trust, NGOs can:</normal-spotlight>
-    <normal-spotlight-bullet-list>Show results clearly. Share not just what the organisation is
-      doing, but what’s working and what impact it’s having.</normal-spotlight-bullet-list>
-    <normal-spotlight-bullet-list>Partner with others. Work closely with businesses, governments,
-      and local groups to combine strengths and reach more people.</normal-spotlight-bullet-list>
-    <normal-spotlight-bullet-list>Build trust locally. Support local leaders and listen to feedback
-      from communities to make sure efforts align with real needs.</normal-spotlight-bullet-list>
-    <normal-spotlight-bullet-list>Tell better stories. Focus on sharing stories of tangible success
-      and impact, not just values.</normal-spotlight-bullet-list>
-    <normal-spotlight-bullet-list>Be flexible and try new things. Keep improving by learning,
-      adapting and testing new ways to solve problems.</normal-spotlight-bullet-list>
-    <contributor>Edelman Trust Institute</contributor>
+    <normal-spotlight-bullet-list-group>
+      <normal-spotlight-bullet-list>Show results clearly. Share not just what the organisation is
+        doing, but what’s working and what impact it’s having.</normal-spotlight-bullet-list>
+      <normal-spotlight-bullet-list>Partner with others. Work closely with businesses, governments,
+        and local groups to combine strengths and reach more people.</normal-spotlight-bullet-list>
+      <normal-spotlight-bullet-list>Build trust locally. Support local leaders and listen to feedback
+        from communities to make sure efforts align with real needs.</normal-spotlight-bullet-list>
+      <normal-spotlight-bullet-list>Tell better stories. Focus on sharing stories of tangible success
+        and impact, not just values.</normal-spotlight-bullet-list>
+      <normal-spotlight-bullet-list>Be flexible and try new things. Keep improving by learning,
+        adapting and testing new ways to solve problems.</normal-spotlight-bullet-list>
+    </normal-spotlight-bullet-list-group>
+    <contributor-group>
+      <contributor>Edelman Trust Institute</contributor>
+    </contributor-group>
     <normal>Organisation for Economic Co-operation and Development (OECD) research highlights that
       trust in public institutions rests on two core pillars: competence – the ability to meet
       expectations through operational efficiency, capacity and sound judgements – and intentions –
@@ -305,8 +318,10 @@
       specific safeguards to counter harmful content. Above all, its volunteers – trusted and
       embedded in local communities – remain the organisation’s most effective asset in upholding
       community trust and ensuring the continuity of principled, life-saving humanitarian response.</normal-spotlight>
-    <h1-contributor>Georges Kettaneh, Secretary General</h1-contributor>
-    <contributor>Lebanese Red Cross</contributor>
+    <contributor>
+      <h1-contributor>Georges Kettaneh, Secretary General</h1-contributor>
+      <contributor>Lebanese Red Cross</contributor>
+    </contributor>
     <toh>p1.28 p1.17 p3.17</toh>
     <h1-spotlight>Canadian Red Cross: Moving Beyond Brand; Measuring Trust in the Face of Harmful
       Information.</h1-spotlight>
@@ -342,8 +357,10 @@
       integrated into the Canadian Red Cross’s strategic approach, from the governance level (Board
       of Directors) through to executive leadership teams in Operations, Stakeholder Relations,
       Philanthropy and Communications.</normal-spotlight>
-    <h1-contributor>Nathan Huculak, Head of Communications</h1-contributor>
-    <contributor>Canadian Red Cross</contributor>
+    <contributor-group>
+      <h1-contributor>Nathan Huculak, Head of Communications</h1-contributor>
+      <contributor>Canadian Red Cross</contributor>
+    </contributor-group>
     <h1>Integrity, Perception and the Fragile Foundation of Trust</h1>
     <normal>Cases of misconduct such as abuse, exploitation, fraud or mismanagement, have severely
       eroded public trust, especially when humanitarian organisations respond without transparency
@@ -469,8 +486,10 @@
       Trust requires a level of independence, space not control, so people can contribute
       meaningfully, signal gaps, adapt and change course when needed. Because with agency comes
       responsibility. With trust, far more becomes possible.</normal-spotlight>
-    <contributor>Stijn Aelbers</contributor>
-    <contributor-role>Humanitarian Consultant</contributor-role>
+    <contributor-group>
+      <contributor>Stijn Aelbers</contributor>
+      <contributor-role>Humanitarian Consultant</contributor-role>
+    </contributor-group>
     <h1>Community Engagement: A Bridge to Trust</h1>
     <chapter-quote>“So then, the advantage we had … is that when we were finally able to go in to
       carry out an assessment and have contact with the community leaders, we would compare the
@@ -480,28 +499,31 @@
       destruction, displaced families, etc., compared to what was being reported… that’s why we
       always made a point of seeking information from the people who were suffering at that moment,
       the ones who were actually facing the emergency.”</chapter-quote>
-    <contributor>Community Researcher, Bolivia</contributor>
+    <contributor-group>
+      <contributor>Community Researcher, Bolivia</contributor>
+    </contributor-group>
     <normal>Community Engagement and Accountability (CEA) is a vital bridge to building and
       sustaining trust. Trust grows through proximity, inclusive participation, timely and
       transparent communication and shared decision-making with people and communities. wCEA also
       ensures that communities have access to accurate, relevant and potentially life-saving
       information – making it essential not only for effective humanitarian response but also for
       the safety and security of staff and operations.</normal>
-    <h1-sidenote-context>Community engagement</h1-sidenote-context>
-    <sidenotes-contributions-2col>Community engagement refers to ways of working collaboratively
-      with people and communities to ensure that Red Cross and Red Crescent actions are effective,
-      inclusive, sustainable and accountable, and that they contribute to supporting and enabling
-      people and communities to lead and shape positive, sustainable changes in their own lives and
-      on their own terms. This includes processes to systematically listen to, engage and
-      communicate with people and communities in order to better understand their diverse needs,
-      vulnerabilities and capacities; to gather, respond to and act on feedback and input about
-      their priorities and preferences; and to provide safe and equitable access and opportunities
-      to actively participate in decisions that affect them. </sidenotes-contributions-2col>
-    <sidenotes-contributions-2col>This also includes the responsibility to communicate transparently
-      and in an appropriate, accessible manner about Movement principles and values, the aims and
-      objectives of Movement action and advocacy, what they can expect from us, and how people and
-      communities can participate in and provide their inputs about issues and decisions that affect
-      them.</sidenotes-contributions-2col>
+      <sidenote>
+        <h1-sidenote-context>Community engagement</h1-sidenote-context>
+        <sidenotes-contributions-first>Community engagement refers to ways of working collaboratively
+          with people and communities to ensure that Red Cross and Red Crescent actions are effective,
+          inclusive, sustainable and accountable, and that they contribute to supporting and enabling
+          people and communities to lead and shape positive, sustainable changes in their own lives and
+          on their own terms. This includes processes to systematically listen to, engage and
+          communicate with people and communities in order to better understand their diverse needs,
+          vulnerabilities and capacities; to gather, respond to and act on feedback and input about
+          their priorities and preferences; and to provide safe and equitable access and opportunities
+          to actively participate in decisions that affect them. This also includes the responsibility to communicate transparently
+          and in an appropriate, accessible manner about Movement principles and values, the aims and
+          objectives of Movement action and advocacy, what they can expect from us, and how people and
+          communities can participate in and provide their inputs about issues and decisions that affect
+          them.</sidenotes-contributions-first>
+      </sidenote>
     <normal-first>Community engagement played a pivotal role in rebuilding trust in the 2018 Ebola
       outbreak in the Democratic Republic of the Congo (DRC). Fear, rumours and misinformation
       fuelled mistrust, leading at times to violence against Red Cross teams, particularly those
@@ -598,8 +620,10 @@
       destabilising effects of harmful information. By contrast, the absence of dialogue or
       proximity can foster suspicion – leaving humanitarian access, neutrality and security more
       exposed.</normal-spotlight>
-    <h1-contributor>Gefra Fulane, Research Coordinator, CEA</h1-contributor>
-    <contributor>International Federation of Red Cross and Red Crescent Societies, Geneva</contributor>
+    <contributor-group>
+      <h1-contributor>Gefra Fulane, Research Coordinator, CEA</h1-contributor>
+      <contributor>International Federation of Red Cross and Red Crescent Societies, Geneva</contributor>
+    </contributor-group>
     <h1>Facts and Feelings: A Perception Challenge</h1>
     <normal>In an era of rising harmful information and public distrust, humanitarian organisations
       face a growing challenge: principled, fact-based communication often struggles to compete with
@@ -692,9 +716,11 @@
       operating in complex, polarised environments. When these principles are ignored or weakened,
       the consequences extend beyond endangering aid workers – it endangers the people that rely on
       protection and assistance.</normal-spotlight>
-    <h1-contributor-spotlight>Anna Bowen, Regional Humanitarian Diplomacy Coordinator</h1-contributor-spotlight>
-    <contributor-name-spotlight>International Federation of Red Cross and Red Crescent Societies,
-      Regional Office for Europe</contributor-name-spotlight>
+    <contributor-group>
+      <h1-contributor-spotlight>Anna Bowen, Regional Humanitarian Diplomacy Coordinator</h1-contributor-spotlight>
+      <contributor-name-spotlight>International Federation of Red Cross and Red Crescent Societies,
+        Regional Office for Europe</contributor-name-spotlight>
+    </contributor-group>
     <h1>Responding to Harmful Information: Building Trust in Crises</h1>
     <normal>Responding to harmful information requires more than increasing the volume of
       communication or correcting falsehoods. These approaches alone do not build trust and can even
@@ -712,8 +738,10 @@
       encourage participation in rebuilding and preparedness. Saving lives is not only about speed
       or skill, it is about the depth of trust we have built, because in emergencies, trust is truly
       transformative.” </normal-spotlight>
-    <h1-contributor-spotlight>Hodan Ismail-Shukry, Volunteer</h1-contributor-spotlight>
-    <contributor-name-spotlight>Kenya Red Cross</contributor-name-spotlight>
+    <contributor-group>
+      <h1-contributor-spotlight>Hodan Ismail-Shukry, Volunteer</h1-contributor-spotlight>
+      <contributor-name-spotlight>Kenya Red Cross</contributor-name-spotlight>
+    </contributor-group>
     <normal>The COVID-19 pandemic, the most extensive disaster in living memory, exposed deep
       fractures in trust within and between countries. Harmful information became a major barrier,
       undermining public health efforts and fuelling social division. Where trust was strong,
@@ -831,9 +859,11 @@
       digital evidence is critical to justice, verifiable provenance tools can help safeguard the
       truth. But these tools must be deployed in ways that uphold human rights, reflect local
       realities and actively support humanitarian response efforts.</normal-spotlight>
-    <h1-contributor-spotlight>Jacobo Castellanos</h1-contributor-spotlight>
-    <contributor-name-spotlight>Coordinator, Technology, Threats and Opportunities</contributor-name-spotlight>
-    <contributor-position-spotlight>WITNESS</contributor-position-spotlight>
+    <contributor-group>
+      <h1-contributor-spotlight>Jacobo Castellanos</h1-contributor-spotlight>
+      <contributor-name-spotlight>Coordinator, Technology, Threats and Opportunities</contributor-name-spotlight>
+      <contributor-position-spotlight>WITNESS</contributor-position-spotlight>
+    </contributor-group>
     <normal>Transparency is a prerequisite for trust and a core element of the Red Cross and Red
       Crescent Code of Conduct. (See Chapter 5) It underspins accountability by ensuring clear and
       honest information flows between humanitarian organisations and affected people. Transparency
@@ -896,44 +926,53 @@
       to voice concerns, influence decisions and counter harmful narratives.</normal>
     <h2>Recommendations</h2>
     <normal>For Governments and Policy-makers</normal>
-    <numbered-list>Develop rights-based policy frameworks that protect reliable information in
-      humanitarian crises.</numbered-list>
-    <numbered-list>Embed trust-building into crisis preparedness and response plans.</numbered-list>
-    <numbered-list>Invest in early-warning and monitoring systems to detect and counter harmful
-      narratives.</numbered-list>
-    <numbered-list>Support National Societies in their auxiliary role ensuring independence,
-      neutrality and integrity are respected.</numbered-list>
-    <numbered-list>Ensure rapid rebuttals of falsehoods that threaten humanitarian access, action
-      and security.</numbered-list>
+    <numbered-list-group>
+      <numbered-list>Develop rights-based policy frameworks that protect reliable information in
+        humanitarian crises.</numbered-list>
+      <numbered-list>Embed trust-building into crisis preparedness and response plans.</numbered-list>
+      <numbered-list>Invest in early-warning and monitoring systems to detect and counter harmful
+        narratives.</numbered-list>
+      <numbered-list>Support National Societies in their auxiliary role ensuring independence,
+        neutrality and integrity are respected.</numbered-list>
+      <numbered-list>Ensure rapid rebuttals of falsehoods that threaten humanitarian access, action
+        and security.</numbered-list>
+    </numbered-list-group>
     <normal>For Technology Platforms</normal>
-    <numbered-list>Detect and mitigate harmful content that undermines humanitarian action and
-      trust.</numbered-list>
-    <numbered-list>Share relevant data and insights safely with humanitarian actors to support
-      real-time response.</numbered-list>
-    <numbered-list>Ensure moderation, fact-checking and AI tools work in low-bandwidth, multilingual
-      environments.</numbered-list>
-    <numbered-list>Collaborate with humanitarian actors on verification and labelling mechanisms to
-      amplify credible content.</numbered-list>
+    <numbered-list-group>
+      <numbered-list>Detect and mitigate harmful content that undermines humanitarian action and
+        trust.</numbered-list>
+      <numbered-list>Share relevant data and insights safely with humanitarian actors to support
+        real-time response.</numbered-list>
+      <numbered-list>Ensure moderation, fact-checking and AI tools work in low-bandwidth, multilingual
+        environments.</numbered-list>
+      <numbered-list>Collaborate with humanitarian actors on verification and labelling mechanisms to
+        amplify credible content.</numbered-list>
+    </numbered-list-group>
     <normal>For Humanitarian Actors</normal>
-    <numbered-list>Develop policies, guidelines, standards and metrics (e.g., Community Trust Index
-      (CTI) and Community Engagement and Accountability (CEA)) to measure and track trust and
-      harmful information, and guide responses. </numbered-list>
-    <numbered-list>Embed trust as an operational asset across preparedness, response and recovery.</numbered-list>
-    <numbered-list>Communicate transparently and inclusively, correcting falsehoods rapidly and
-      co-creating messages with communities.</numbered-list>
-    <numbered-list>Train staff and volunteers in rumour management, digital safety (including
-      protection from online harassment) and culturally sensitive engagement.</numbered-list>
-    <numbered-list>Strengthen real-time analysis of and response to community feedback, adapting
-      visibly to concerns and sharing lessons learned to build collective resilience.</numbered-list>
+    <numbered-list-group>
+      <numbered-list>Develop policies, guidelines, standards and metrics (e.g., Community Trust
+        Index
+        (CTI) and Community Engagement and Accountability (CEA)) to measure and track trust and
+        harmful information, and guide responses. </numbered-list>
+      <numbered-list>Embed trust as an operational asset across preparedness, response and recovery.</numbered-list>
+      <numbered-list>Communicate transparently and inclusively, correcting falsehoods rapidly and
+        co-creating messages with communities.</numbered-list>
+      <numbered-list>Train staff and volunteers in rumour management, digital safety (including
+        protection from online harassment) and culturally sensitive engagement.</numbered-list>
+      <numbered-list>Strengthen real-time analysis of and response to community feedback, adapting
+        visibly to concerns and sharing lessons learned to build collective resilience.</numbered-list>
+    </numbered-list-group>
     <normal>For Communities and Local Leaders</normal>
-    <numbered-list>Act as trusted intermediaries by amplifying verified information and countering
-      rumours.</numbered-list>
-    <numbered-list>Partner with humanitarian actors to co-create rumour-tracking and verification
-      systems.</numbered-list>
-    <numbered-list>Sustain trust through dialogue in schools, faith institutions and community
-      centres.</numbered-list>
-    <numbered-list>Engage in participatory feedback and research to ensure that responses reflect
-      local priorities.</numbered-list>
+    <numbered-list-group>
+      <numbered-list>Act as trusted intermediaries by amplifying verified information and countering
+        rumours.</numbered-list>
+      <numbered-list>Partner with humanitarian actors to co-create rumour-tracking and verification
+        systems.</numbered-list>
+      <numbered-list>Sustain trust through dialogue in schools, faith institutions and community
+        centres.</numbered-list>
+      <numbered-list>Engage in participatory feedback and research to ensure that responses reflect
+        local priorities.</numbered-list>
+    </numbered-list-group>
     <img-4c></img-4c>
   </Story>
 </Root>

@@ -1,24 +1,56 @@
 import {
-  ContributorRole,
-  ContributorSpotlight,
-  ContributorSpotlightName,
-  ContributorSpotlightPosition,
-  ContributorSpotlightRole,
-  Contributors,
-  SideNote,
-  SmallQuote,
+  Caption,
+  ChapterQuote,
+  Introduction,
+  Sidenote,
+  SidenoteContext,
+  SidenotesContributionsFirst,
+  SmallQuoteGroup,
+  SmallQuoteContent,
   SmallQuoteAuthor,
   Spotlight,
+  ContributorGroup,
+  H1Contributor,
+  Contributor,
+  ContributorRole,
+  H1Ebn,
+  Unhandledh1c1,
+  Unhandledh2c1,
+  Unhandledh1c2,
+  Unhandledh2c2,
+  Unhandledh3c2,
+  H1Fig,
+  ContributorName,
+  ContributorPosition,
 } from '@/components/CustomComponents';
+
+![](images/p-SLE1416_fmt.jpg)
+
+![](images/p-SLE1415_fmt.png)
+
+<Caption>
+  April 2015, pre-election tension and related violence erupted in Burundi, resulting in more than
+  600 people being injured, and a number of deaths in the capital of Bujumbura. More than 120,000
+  Burundians have fled to neighbouring countries. ©IFRC
+</Caption>
 
 export const title =
   'Harmful Information and the Erosion of Trust in Humanitarian Response: the Role of Truth, Trust and Technology';
+
 export const subtitle = 'The Shifting Ground of Trust';
 
-> “To be persuasive we must be believable; to be believable we must be credible; to
-> be credible we must be truthful.”
+<ChapterQuote>
+  “To be persuasive we must be believable; to be believable we must be credible; to be credible we
+  must be truthful.”
+</ChapterQuote>
 
-So said Ed Murrow, the American broadcaster and correspondent during the Second World War. The principle still holds: truth (accuracy and honesty) and credibility (competency, consistency, reliability) remain essential to building institutional trust. Yet in today’s information landscape, applying this principle has become far more complex and contested in an age shaped by harmful information.
+<Introduction>
+  So said Ed Murrow, the American broadcaster and correspondent during the Second World War. The
+  principle still holds: truth (accuracy and honesty) and credibility (competency, consistency,
+  reliability) remain essential to building institutional trust. Yet in today’s information
+  landscape, applying this principle has become far more complex and contested in an age shaped by
+  harmful information.
+</Introduction>
 
 In times of crisis or uncertainty – and these are profoundly uncertain times – people increasingly turn to information sources they perceive as relevant and aligned with their personal and lived experience, rather than those grounded solely in factual accuracy. Truth alone no longer always persuades. Emotion, identity and repetition can entrench misbeliefs in powerful, sometimes harmful ways. In such an environment, even reaching agreement on what constitutes a fact is difficult. For humanitarian organisations, whose access, acceptance and ability to operate depend on trust, navigating this fragmented, emotionally charged information space has become not only an operational challenge, but also a security risk.
 
@@ -26,12 +58,15 @@ In times of crisis or uncertainty – and these are profoundly uncertain times �
 
 This online dynamic has been described as the filter bubble (Pariser, 2011), a term used to explain how search engines and social media platforms serve content that algorithms think we want to see, based on our searches, likes and clicks. Pariser warned that being confined to such echo chambers reduces exposure to diverse perspectives and increases the risk of isolation in our views or rejection of opposing viewpoints and sources of information due to confirmation bias.
 
-# Confirmation Bias
+<Sidenote>
+  <SidenoteContext>
+    Confirmation Bias
+  </SidenoteContext>
 
-<SideNote>
-  Confirmation Bias refers to the tendency to seek out, favour and recall information that supports
-  our existing beliefs, while ignoring or dismissing contradictory evidence.
-</SideNote>
+  <SidenotesContributionsFirst>
+    Confirmation Bias refers to the tendency to seek out, favour and recall information that supports our existing beliefs, while ignoring or dismissing contradictory evidence.
+  </SidenotesContributionsFirst>
+</Sidenote>
 
 Although some studies (Pierre) show that users do encounter opposing views online, these interactions often trigger annoyance or hostility rather than reflection or debate. Algorithms reinforce this by amplifying divisive content, since hostility drives engagement, and engagement drives profits for platform companies. As Pariser notes, platforms are effectively “incentivizing us to fight with each other when we are online”. This dynamic is compounded by the online disinhibition effect (Suler), whereby people tend to express opinions more freely online due to factors like anonymity (hidden identities), invisibility (not being seen by others we communicate with) and asynchronicity (not engaging in real time).
 
@@ -47,13 +82,15 @@ Trust is grounded in expectations, involves vulnerability and builds gradually, 
 
 People often trust what aligns with their worldview or community, rather than what is factually accurate. Harmful information campaigns exploit this tendency, distorting truth and diminishing the visibility and influence of credible sources. In contexts where independent media and public trust in institutions remain strong, Ed Murrow’s notion of truth-based credibility still underpins effective communication. But where information is instrumentalised, persuasiveness often relies less on truth and more on emotional resonance, social identity or perceived authority.
 
-<SmallQuote>
-  “I think the major thing that people lack is they should take time to verify information from the
-  correct sources because in most cases it’s what people see or just hear is what they end up going
-  to redistribute to other people.”
-</SmallQuote>
+<SmallQuoteGroup>
+  <SmallQuoteContent>
+    “I think the major thing that people lack is they should take time to verify information from the correct sources because in most cases it’s what people see or just hear is what they end up going to redistribute to other people.”
+  </SmallQuoteContent>
 
-<SmallQuoteAuthor>Community Researcher, Zambia</SmallQuoteAuthor>
+  <SmallQuoteAuthor>
+    Community Researcher, Zambia
+  </SmallQuoteAuthor>
+</SmallQuoteGroup>
 
 Public trust has also been eroded by the widespread perception that governments largely failed to manage crises such as the COVID-19 pandemic and climate change, which has further eroded public trust (Edelman, 2022). This is especially true for vulnerable and marginalised communities, who often view authorities less as providers of needed services, and more as sources of demands (Bavel et al, 2020). Ironically, these are the very people most at risk during crises, yet their lived experiences of exclusion often make them more likely to distrust those offering help.
 
@@ -81,11 +118,17 @@ To effectively respond to these challenges, National Societies need targeted tra
 
 Ultimately, the most sustainable solutions begin at the community level. Empowering people through digital and information literacy, combined with culturally sensitive engagement, builds the foundation for trust, critical thinking and informed decision-making. Monitoring community trust and reinforcing transparency can help strengthen the relationship between National Societies and the communities they serve.
 
-<Contributors>Diana Medina, Asia Pacific Regional Coordinator</Contributors>
+<ContributorGroup>
+  <H1Contributor>
+    Diana Medina, Asia Pacific Regional Coordinator
+  </H1Contributor>
 
-<Contributors>Community Engagement and Accountability (CEA)</Contributors>
+<Contributor>Community Engagement and Accountability (CEA)</Contributor>
 
-<ContributorRole>International Federation of Red Cross and Red Crescent Societies</ContributorRole>
+  <ContributorRole>
+    International Federation of Red Cross and Red Crescent Societies
+  </ContributorRole>
+</ContributorGroup>
 
 # Trust in Institutions
 
@@ -94,7 +137,9 @@ Trust is critical to the legitimacy, effectiveness and acceptance of humanitaria
 The decision to place trust on the agenda reflected broader global concerns: the erosion of trust in institutions and governments, growing public scrutiny and rising demands for accountability. Where there is limited understanding of the Movement’s rules and regulations, reputational risks grow and trust declines. As the Commission Report stressed: “Trust is the most critical currency for the future of humanitarian action, and one which stems from humility and being truthful and transparent.” It identified three key priorities:
 
 1. Community engagement and accountability.
+
 2. A conducive environment for principled humanitarian action.
+
 3. Integrity and risk sharing.
 
 While harmful information was not yet identified as a central concern, the focus on trust, truth and transparency reflected growing recognition that both the Movement and States needed to do more to earn trust. It also underscored a broader challenge: preserving the space for principled humanitarian action – something the Movement cannot achieve alone. This was reaffirmed in the 2024 Council of Delegates resolution on “respect and support for principled humanitarian action” which recalls collective Movement commitments to strengthen integrity, accountability and trust.
@@ -124,12 +169,18 @@ For NGOs, maintaining strong public trust for over a decade is a testament to th
 To strengthen trust, NGOs can:
 
 - Show results clearly. Share not just what the organisation is doing, but what’s working and what impact it’s having.
+
 - Partner with others. Work closely with businesses, governments, and local groups to combine strengths and reach more people.
+
 - Build trust locally. Support local leaders and listen to feedback from communities to make sure efforts align with real needs.
+
 - Tell better stories. Focus on sharing stories of tangible success and impact, not just values.
+
 - Be flexible and try new things. Keep improving by learning, adapting and testing new ways to solve problems.
 
-<Contributors>Edelman Trust Institute</Contributors>
+<ContributorGroup>
+  <Contributor>Edelman Trust Institute</Contributor>
+</ContributorGroup>
 
 Organisation for Economic Co-operation and Development (OECD) research highlights that trust in public institutions rests on two core pillars: competence – the ability to meet expectations through operational efficiency, capacity and sound judgements – and intentions – acting in good faith, guided by values and principles. Trust is dynamic: individuals form and adjust their trust based on personal experiences and the information available to them. By contrast, distrust often arises not from actual performance but from perceptions of bias, cynicism, disengagement or expectations of betrayal.
 
@@ -149,9 +200,15 @@ LRC’s impartiality was also questioned in some regions, particularly in areas 
 
 Ultimately, building resilience to harmful information requires more than reactive communication. The LRC recognised status – from the highest authorities to local actors – as a neutral and trusted humanitarian partner was key to maintaining public confidence and operational access. The core humanitarian principles of impartiality, neutrality and independence are increasingly challenged by the spread of false narratives. While communication guidelines are in place, the LRC continues to strengthen and refine specific safeguards to counter harmful content. Above all, its volunteers – trusted and embedded in local communities – remain the organisation’s most effective asset in upholding community trust and ensuring the continuity of principled, life-saving humanitarian response.
 
-<Contributors>Georges Kettaneh, Secretary General</Contributors>
+<Contributor>
+  <H1Contributor>
+    Georges Kettaneh, Secretary General
+  </H1Contributor>
 
-<Contributors>Lebanese Red Cross</Contributors>
+  <Contributor>
+    Lebanese Red Cross
+  </Contributor>
+</Contributor>
 
 <Spotlight>
   Canadian Red Cross: Moving Beyond Brand; Measuring Trust in the Face of Harmful Information.
@@ -167,17 +224,34 @@ Results have consistently shown that, among peer organisations and across sector
 
 Trust research measures three core areas:
 
+<H1Ebn>
+  Ability (Competence) – “I can rely on the Canadian Red Cross to operate competently and
+  effectively.”
+</H1Ebn>
+
 The collective knowledge, skills and competencies that enable the Canadian Red Cross to deliver services and meet its goals and responsibilities.
 
+<H1Ebn>
+  Benevolence (Goodwill) – “I believe the Canadian Red Cross cares about its stakeholders.”
+</H1Ebn>
+
 The degree to which the Canadian Red Cross demonstrates a duty of care and humanity towards all stakeholders.
+
+<H1Ebn>Integrity (Character) – “I can rely on the Canadian Red Cross to do the right thing.”</H1Ebn>
 
 The extent to which the Canadian Red Cross consistently adheres to widely accepted ethical principles and moral values.
 
 Understanding what drives trust and how to strengthen and maintain it is now integrated into the Canadian Red Cross’s strategic approach, from the governance level (Board of Directors) through to executive leadership teams in Operations, Stakeholder Relations, Philanthropy and Communications.
 
-<Contributors>Nathan Huculak, Head of Communications</Contributors>
+<ContributorGroup>
+  <H1Contributor>
+    Nathan Huculak, Head of Communications
+  </H1Contributor>
 
-<Contributors>Canadian Red Cross</Contributors>
+  <Contributor>
+    Canadian Red Cross
+  </Contributor>
+</ContributorGroup>
 
 # Integrity, Perception and the Fragile Foundation of Trust
 
@@ -192,7 +266,7 @@ At the same time, humanitarian organisations face unprecedented demands for repo
 Finally, a lack of, or slow progress in, localising humanitarian aid, has further fuelled mistrust. Many communities perceive humanitarian action as top-down and dominated by international actors with limited local representation or contextual understanding. In some contexts, the sector is often viewed as Western-dominated, a perception reinforced by global standards, codes of conduct and coordination mechanisms developed over decades, as well as by wider global inequalities.
 
 <Spotlight>
-  Impact on Humanitarian Access, Security and Neutrality, Humanitarian Principles{' '}
+  Impact on Humanitarian Access, Security and Neutrality, Humanitarian Principles
 </Spotlight>
 
 In the Sahel, harmful online narratives are undermining the core principles of neutrality, impartiality and independence. Even routine, neutral posts by NGOs – such as announcements about programmes or distributions – are now frequently met with hostile reactions. Between January and June 2025, Insecurity Insight found that over 99% of negative comments (2,029 out of 2,034) in Burkina Faso were in response to neutral posts from institutional or media sources.
@@ -203,15 +277,15 @@ Following an armed group’s attack on a military base in Djibo, Burkina Faso, i
 
 This delegitimisation of aid actors not only increases security risks and undermines acceptance-based protection but also influences government decisions. The shrinking humanitarian space is no longer just a metaphor – it is a measurable, digital phenomenon with direct operational consequences offline.
 
-# Christina Wille
+<Unhandledh1c1>Christina Wille</Unhandledh1c1>
 
-## Director
+<Unhandledh2c1>Director</Unhandledh2c1>
 
-# Clara de Solages
+<Unhandledh1c2>Clara de Solages</Unhandledh1c2>
 
-## Researcher
+<Unhandledh2c2>Researcher</Unhandledh2c2>
 
-### Insecurity Insight
+<Unhandledh3c2>Insecurity Insight</Unhandledh3c2>
 
 The current humanitarian “reset” or “renewal” – driven by the unprecedented reduction in humanitarian funding in 2025 and beyond – and resulting in widespread restructuring or programme cuts – is amplifying harmful information. Sudden programme closures, staff layoffs and uncertainty – often communicated inadequately to affected communities – creates a void that harmful information, distrust and political narratives quickly fill. When communities are not meaningfully engaged, or when changes are poorly explained, speculation arises that aid is being politicised, diverted or withdrawn entirely. Critics and bad-faith actors exploit this uncertainty to undermine trust in humanitarian action. Without clear, transparent communication and visible inclusion of local voices, the reset or renewal risks becoming fertile ground for suspicion, polarisation and harmful narratives.
 
@@ -225,7 +299,7 @@ Meanwhile, the information landscape has shifted dramatically. Social media has 
 
 In this environment, expertise alone is no longer enough. Trust must be continuously earned through transparency, humility and responsiveness. This shift raises critical questions explored in the next section: Where is trust in humanitarian organisations genuinely misplaced – requiring constructive criticism, evaluation and open dialogue? Where is distrust deliberately manufactured to erode trust and legitimacy? And, how can we tell the difference?
 
-<Spotlight>Designing Trust </Spotlight>
+<Spotlight>Designing Trust</Spotlight>
 
 Does trust matter when you’re hungry? When you are focused on being efficient? When your information is backed by science? Diagram to include
 
@@ -237,45 +311,48 @@ Trust is relational, conditional and multi-dimensional. This is why trust can so
 
 Designing programming around trust is not about ignoring risks. It is more like a parent watching their child cycle alone to school for the first time: fully aware of the risks but choosing to let them go on their own, so the child can grow in independence. Trust requires a level of independence, space not control, so people can contribute meaningfully, signal gaps, adapt and change course when needed. Because with agency comes responsibility. With trust, far more becomes possible.
 
-<Contributors>Stijn Aelbers</Contributors>
+<ContributorGroup>
+  <Contributor>
+    Stijn Aelbers
+  </Contributor>
 
-<ContributorRole>Humanitarian Consultant</ContributorRole>
+  <ContributorRole>
+    Humanitarian Consultant
+  </ContributorRole>
+</ContributorGroup>
 
 # Community Engagement: A Bridge to Trust
 
-> “So then, the advantage we had … is that when we were finally able to go in to
-> carry out an assessment and have contact with the community leaders, we would compare the
-> information coming out in the press or the information sometimes given to us by the
-> municipalities with what the people in the community themselves told us. And without a doubt,
-> we went with what they said, because there were huge differences in terms of losses, impact,
-> destruction, displaced families, etc., compared to what was being reported… that’s why we
-> always made a point of seeking information from the people who were suffering at that moment,
-> the ones who were actually facing the emergency.”
+<ChapterQuote>
+  “So then, the advantage we had … is that when we were finally able to go in to carry out an
+  assessment and have contact with the community leaders, we would compare the information coming
+  out in the press or the information sometimes given to us by the municipalities with what the
+  people in the community themselves told us. And without a doubt, we went with what they said,
+  because there were huge differences in terms of losses, impact, destruction, displaced families,
+  etc., compared to what was being reported… that’s why we always made a point of seeking
+  information from the people who were suffering at that moment, the ones who were actually facing
+  the emergency.”
+</ChapterQuote>
 
-<Contributors>Community Researcher, Bolivia</Contributors>
+<ContributorGroup>
+  <Contributor>Community Researcher, Bolivia</Contributor>
+</ContributorGroup>
 
 Community Engagement and Accountability (CEA) is a vital bridge to building and sustaining trust. Trust grows through proximity, inclusive participation, timely and transparent communication and shared decision-making with people and communities. wCEA also ensures that communities have access to accurate, relevant and potentially life-saving information – making it essential not only for effective humanitarian response but also for the safety and security of staff and operations.
 
-# Community engagement
+<Sidenote>
+  <SidenoteContext>
+    Community engagement
+  </SidenoteContext>
 
-<SideNote>
-  Community engagement refers to ways of working collaboratively with people and communities to
-  ensure that Red Cross and Red Crescent actions are effective, inclusive, sustainable and
-  accountable, and that they contribute to supporting and enabling people and communities to lead
-  and shape positive, sustainable changes in their own lives and on their own terms. This includes
-  processes to systematically listen to, engage and communicate with people and communities in order
-  to better understand their diverse needs, vulnerabilities and capacities; to gather, respond to
-  and act on feedback and input about their priorities and preferences; and to provide safe and
-  equitable access and opportunities to actively participate in decisions that affect them. This
-  also includes the responsibility to communicate transparently and in an appropriate, accessible
-  manner about Movement principles and values, the aims and objectives of Movement action and
-  advocacy, what they can expect from us, and how people and communities can participate in and
-  provide their inputs about issues and decisions that affect them.
-</SideNote>
+  <SidenotesContributionsFirst>
+    Community engagement refers to ways of working collaboratively with people and communities to ensure that Red Cross and Red Crescent actions are effective, inclusive, sustainable and accountable, and that they contribute to supporting and enabling people and communities to lead and shape positive, sustainable changes in their own lives and on their own terms. This includes processes to systematically listen to, engage and communicate with people and communities in order to better understand their diverse needs, vulnerabilities and capacities; to gather, respond to and act on feedback and input about their priorities and preferences; and to provide safe and equitable access and opportunities to actively participate in decisions that affect them. This also includes the responsibility to communicate transparently and in an appropriate, accessible manner about Movement principles and values, the aims and objectives of Movement action and advocacy, what they can expect from us, and how people and communities can participate in and provide their inputs about issues and decisions that affect them.
+  </SidenotesContributionsFirst>
+</Sidenote>
 
 Community engagement played a pivotal role in rebuilding trust in the 2018 Ebola outbreak in the Democratic Republic of the Congo (DRC). Fear, rumours and misinformation fuelled mistrust, leading at times to violence against Red Cross teams, particularly those conducting safe and dignified burials. This resistance blocked access to lifesaving care and may have contributed to further transmission of the virus in vulnerable communities.
 
-To respond, the DRC Red Cross placed community engagement at the centre of its strategy. Volunteers maintained daily dialogue with communities to address concerns and rebuild trust. Using a first-of-its-kind feedback system, they collected over 394,000 pieces of community feedback, enabling humanitarian actors to adapt approaches to local realities. Volunteers went door-to-door sharing information on how to prevent, detect and respond to Ebola, hosted radio talk shows, organised mobile cinemas and conducted outreach to vulnerable groups, including people with disabilities, children and women’s associations. This approach had a measurable impact: acceptance of safe and dignified burials rose above 80%, while community resistance dropped from 79% to just 8%. Trust, dialogue and locally driven action proved essential to stopping the spread of Ebola. [Note there is a photo we could potentially use.
+To respond, the DRC Red Cross placed community engagement at the centre of its strategy. Volunteers maintained daily dialogue with communities to address concerns and rebuild trust. Using a first-of-its-kind feedback system, they collected over 394,000 pieces of community feedback, enabling humanitarian actors to adapt approaches to local realities. Volunteers went door-to-door sharing information on how to prevent, detect and respond to Ebola, hosted radio talk shows, organised mobile cinemas and conducted outreach to vulnerable groups, including people with disabilities, children and women’s associations. This approach had a measurable impact: acceptance of safe and dignified burials rose above 80%, while community resistance dropped from 79% to just 8%. Trust, dialogue and locally driven action proved essential to stopping the spread of Ebola. \[Note there is a photo we could potentially use.
 
 <Spotlight>Yemen Red Crescent Society Volunteers – Trusted by the Communities They Serve</Spotlight>
 
@@ -293,7 +370,10 @@ Overall, communities report high levels of trust in their National Societies, wi
 
 Transparency is emerging as a significant challenge. In nearly all contexts studied (Figure 1), it ranked as the weakest driver of trust, with an average score of just 6.34 out of 10. Many communities view humanitarian actors as reluctant to openly share mistakes or acknowledge shortcomings – an impression amplified by the digital era’s demand for real-time accountability. This trend is particularly pronounced in Mongolia, Ecuador and Zimbabwe, where gaps in transparent communication may create opportunities for misinformation to spread.
 
-## Figure 1: Cross-country comparison of the CTI across all measured sub-dimensions in seven countries.
+<H1Fig>
+  Figure 1: Cross-country comparison of the CTI across all measured sub-dimensions in seven
+  countries.
+</H1Fig>
 
 At the same time, perceptions of neutrality are increasingly fragile in today’s polarised and politically charged environments. Political neutrality ranked as the second weakest driver of trust, with an average score of just 7.31 out of 10. In contexts where humanitarian organisations were once broadly regarded as impartial, these assumptions are now being challenged. For example, in Zimbabwe, neutrality scores dropped sharply to 2.2 out of 10 among the general population and just 1.03 among aid recipients. In such settings, the principle of neutrality risks being undermined by contested narratives and politicised messaging, threatening the very foundation of trust.
 
@@ -309,11 +389,15 @@ The Role of Engagement in Countering Distrust
 
 One of the strongest protective factors against erosion of trust is direct engagement. Communities with established relationships to National Societies reported trust levels nearly a full point higher (8.5 vs. 7.8) than those without such connections. This reinforces the view that localised, participatory engagement serves as a buffer against the destabilising effects of harmful information. By contrast, the absence of dialogue or proximity can foster suspicion – leaving humanitarian access, neutrality and security more exposed.
 
-<Contributors>Gefra Fulane, Research Coordinator, CEA</Contributors>
+<ContributorGroup>
+  <H1Contributor>
+    Gefra Fulane, Research Coordinator, CEA
+  </H1Contributor>
 
-<Contributors>
-  International Federation of Red Cross and Red Crescent Societies, Geneva
-</Contributors>
+  <Contributor>
+    International Federation of Red Cross and Red Crescent Societies, Geneva
+  </Contributor>
+</ContributorGroup>
 
 # Facts and Feelings: A Perception Challenge
 
@@ -351,14 +435,15 @@ Saving lives is not a political act: it is a humanitarian imperative, and one th
 
 Neutrality and impartiality are not abstract ideals – they are essential to operating in complex, polarised environments. When these principles are ignored or weakened, the consequences extend beyond endangering aid workers – it endangers the people that rely on protection and assistance.
 
-<ContributorSpotlight>
-  <ContributorSpotlightName>Anna Bowen, Regional Humanitarian Diplomacy Coordinator</ContributorSpotlightName>
+<ContributorGroup>
+  <H1Contributor>
+    Anna Bowen, Regional Humanitarian Diplomacy Coordinator
+  </H1Contributor>
 
-<ContributorSpotlightRole>
-  International Federation of Red Cross and Red Crescent Societies, Regional Office for Europe
-</ContributorSpotlightRole>
-
-</ContributorSpotlight>
+  <ContributorName>
+    International Federation of Red Cross and Red Crescent Societies, Regional Office for Europe
+  </ContributorName>
+</ContributorGroup>
 
 # Responding to Harmful Information: Building Trust in Crises
 
@@ -366,12 +451,15 @@ Responding to harmful information requires more than increasing the volume of co
 
 “Trust is the foundation of humanitarian action. Without it, our services cannot reach those who need them most. It enables cooperation, open communication and gives communities the confidence to call on us in times of crisis, knowing we will preserve life and support recovery. In my time as a volunteer and Red Cross Action Team member, I have seen how trust allows us to reach the most vulnerable without resistance, strengthen resilience and encourage participation in rebuilding and preparedness. Saving lives is not only about speed or skill, it is about the depth of trust we have built, because in emergencies, trust is truly transformative.”
 
-<ContributorSpotlight>
-  <ContributorSpotlightName>Hodan Ismail-Shukry, Volunteer</ContributorSpotlightName>
+<ContributorGroup>
+  <H1Contributor>
+    Hodan Ismail-Shukry, Volunteer
+  </H1Contributor>
 
-<ContributorSpotlightRole>Kenya Red Cross</ContributorSpotlightRole>
-
-</ContributorSpotlight>
+  <ContributorName>
+    Kenya Red Cross
+  </ContributorName>
+</ContributorGroup>
 
 The COVID-19 pandemic, the most extensive disaster in living memory, exposed deep fractures in trust within and between countries. Harmful information became a major barrier, undermining public health efforts and fuelling social division. Where trust was strong, compliance with public health measures such as social distancing and vaccination was higher. Where trust was weak, these same measures became politicised, contested and fragmented. The experience underscored a critical lesson: trust is foundational to crisis preparedness and response and it emerged as one of the strongest predictors of successful response. Preparedness is inherently local and built through proximity and sustained engagement, and reinforced through transparency long before crisis strikes.
 
@@ -394,7 +482,7 @@ The key lesson from this experience was the critical importance of strong crisis
 
 For an institution like the Uganda Red Cross, which depends heavily on public goodwill, trust is essential and cannot be compromised. Staff, volunteers and governance bodies receive regular training on their roles and responsibilities, as well as key policies that reinforce institutional accountability. Today, URCS operates with strengthened systems at all levels, including an active Integrity and Compliance Committee, a revised Constitution, and robust policies that uphold a zero-tolerance approach to corruption.
 
-<Contributors>Ugandan Red Cross</Contributors>
+<H1Contributor>Ugandan Red Cross</H1Contributor>
 
 # Transparency and Identifiability: Foundations for Trust
 
@@ -412,16 +500,17 @@ Verifiable provenance can be a key part of a broader toolkit for building digita
 
 In contexts where Generative AI can hinder humanitarian relief or where digital evidence is critical to justice, verifiable provenance tools can help safeguard the truth. But these tools must be deployed in ways that uphold human rights, reflect local realities and actively support humanitarian response efforts.
 
-<ContributorSpotlight>
-  <ContributorSpotlightName>Jacobo Castellanos</ContributorSpotlightName>
+<ContributorGroup>
+  <H1Contributor>
+    Jacobo Castellanos
+  </H1Contributor>
 
-<ContributorSpotlightRole>
-  Coordinator, Technology, Threats and Opportunities
-</ContributorSpotlightRole>
+<ContributorName>Coordinator, Technology, Threats and Opportunities</ContributorName>
 
-<ContributorSpotlightPosition>WITNESS</ContributorSpotlightPosition>
-
-</ContributorSpotlight>
+  <ContributorPosition>
+    WITNESS
+  </ContributorPosition>
+</ContributorGroup>
 
 Transparency is a prerequisite for trust and a core element of the Red Cross and Red Crescent Code of Conduct. (See Chapter 5) It underspins accountability by ensuring clear and honest information flows between humanitarian organisations and affected people. Transparency is embedded in key sectoral standards, including the Sphere Common Standards, which emphasise feedback mechanisms and participation, the Good Humanitarian Donorship Principles and the IFRC’s Guidelines for Emergency Assessment. Cross reference Chapter 5.
 
@@ -456,29 +545,43 @@ Empower communities: Build two-way feedback and participation systems that allow
 For Governments and Policy-makers
 
 1. Develop rights-based policy frameworks that protect reliable information in humanitarian crises.
+
 2. Embed trust-building into crisis preparedness and response plans.
+
 3. Invest in early-warning and monitoring systems to detect and counter harmful narratives.
+
 4. Support National Societies in their auxiliary role ensuring independence, neutrality and integrity are respected.
+
 5. Ensure rapid rebuttals of falsehoods that threaten humanitarian access, action and security.
 
 For Technology Platforms
 
 1. Detect and mitigate harmful content that undermines humanitarian action and trust.
+
 2. Share relevant data and insights safely with humanitarian actors to support real-time response.
+
 3. Ensure moderation, fact-checking and AI tools work in low-bandwidth, multilingual environments.
+
 4. Collaborate with humanitarian actors on verification and labelling mechanisms to amplify credible content.
 
 For Humanitarian Actors
 
 1. Develop policies, guidelines, standards and metrics (e.g., Community Trust Index (CTI) and Community Engagement and Accountability (CEA)) to measure and track trust and harmful information, and guide responses.
+
 2. Embed trust as an operational asset across preparedness, response and recovery.
+
 3. Communicate transparently and inclusively, correcting falsehoods rapidly and co-creating messages with communities.
+
 4. Train staff and volunteers in rumour management, digital safety (including protection from online harassment) and culturally sensitive engagement.
+
 5. Strengthen real-time analysis of and response to community feedback, adapting visibly to concerns and sharing lessons learned to build collective resilience.
 
 For Communities and Local Leaders
 
 1. Act as trusted intermediaries by amplifying verified information and countering rumours.
+
 2. Partner with humanitarian actors to co-create rumour-tracking and verification systems.
+
 3. Sustain trust through dialogue in schools, faith institutions and community centres.
+
 4. Engage in participatory feedback and research to ensure that responses reflect local priorities.
