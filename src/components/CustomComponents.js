@@ -155,6 +155,39 @@ export function ChapterQuote({ children, ...props }) {
   );
 }
 
+export function Definition({ children, ...props }) {
+  return (
+    <div
+      style={{
+        fontWeight: 700,
+        borderBottom: '2px solid #030303ff',
+        fontFamily: 'Gill Sans',
+        fontSize: '1.5rem',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function DefinitionDescription({ children, ...props }) {
+  return (
+    <aside
+      style={{
+        padding: '0.75rem',
+        borderLeft: '4px solid #030303ff',
+        background: '#f8fafc',
+        fontFamily: 'Gill Sans',
+        fontSize: '1.25rem',
+      }}
+      {...props}
+    >
+      {children}
+    </aside>
+  );
+}
+
 const CustomComponents = {
   Contributors,
   ContributorRole,
@@ -167,6 +200,8 @@ const CustomComponents = {
   ContributorSpotlightName,
   ContributorSpotlightPosition,
   ContributorSpotlightRole,
+  Definition,
+  DefinitionDescription,
 };
 
 export default CustomComponents;
