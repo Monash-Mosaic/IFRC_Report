@@ -5,7 +5,7 @@ import { visit } from 'unist-util-visit';
 import flatMap from 'unist-util-flatmap';
 import { toMarkdown } from 'mdast-util-to-markdown';
 import { mdxToMarkdown } from 'mdast-util-mdx';
-import { paragraph, text, heading, list, listItem, image, strong } from 'mdast-builder';
+import { paragraph, text, heading, list, listItem, image, strong, emphasis } from 'mdast-builder';
 import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
 import * as prettier from 'prettier';
@@ -25,7 +25,6 @@ const { values } = parseArgs({
     mdx: { type: 'string', short: 'm' },
   },
 });
-
 const resolveTargetPath = (root, filePath, fallback) => {
   const target = filePath ?? fallback;
   return path.isAbsolute(target) ? target : path.join(root, target);
@@ -33,6 +32,8 @@ const resolveTargetPath = (root, filePath, fallback) => {
 
 const SOURCE_XML_PATH = resolveTargetPath(DEFAULTS.sourceDir, values.source, DEFAULTS.source);
 const OUTPUT_MDX_PATH = resolveTargetPath(DEFAULTS.outputDir, values.mdx, DEFAULTS.mdx);
+
+const supportExtractChildren = ['text', 'strong', 'emphasis'];
 
 /**
  * Ensure the destination directory exists before writing files.
@@ -165,13 +166,17 @@ const normaliseChildrenText = (child) => {
   if (child?.type !== 'text') return child;
   return text(normalizedString(child.value));
 };
+
 /**
  * Collect all text children from a node, applying normalization.
  * @param {import('unist').Node & { children?: import('unist').Node[] }} node
  * @returns {import('unist').Literal[]}
  */
 const extractTextChildren = (node) =>
-  (node.children || []).filter((child) => child?.type === 'text').map(normaliseChildrenText);
+  (node.children || [])
+    .filter((child) => supportExtractChildren.includes(child?.type))
+    .map(normaliseChildrenText);
+
 /**
  * Convenience helper for flattening text child content into a string.
  * @param {import('unist').Node & { children?: import('unist').Node[] }} node
@@ -181,6 +186,42 @@ const getTextContent = (node) =>
   extractTextChildren(node)
     .map((n) => n.value)
     .join(' ');
+
+/**
+ * Add whitespace padding between children of paragraph's type
+ * @param {import('unist').Node & { children?: import('unist').Node[] }} tree
+ * @returns {void}
+ */
+const addPaddingParagraphChildren = (tree) => {
+  visit(tree, 'paragraph', (paragraphNode) => {
+    if (!paragraphNode.children || paragraphNode.children.length <= 1) {
+      return;
+    }
+
+    const newChildren = [];
+
+    paragraphNode.children.forEach((child, index) => {
+      newChildren.push(child);
+
+      if (index < paragraphNode.children.length - 1) {
+        newChildren.push({
+          type: 'text',
+          value: ' ',
+        });
+      }
+    });
+
+    paragraphNode.children = newChildren;
+  });
+};
+
+const handleDefinition = (tree) => {
+  visit(tree, 'mdxJsxFlowElement', (paragraphNode) => {
+    if (paragraphNode.name == 'DefinitionDescription') {
+      console.log(paragraphNode.children[1]);
+    }
+  });
+};
 
 /**
  * Convert XML element nodes into MDX/MD AST nodes expected by the renderer.
@@ -226,9 +267,11 @@ const convertToMDXAst = (node, index, parent) => {
     case 'normal-first':
     case 'recommendations':
     case 'normal-2c':
-      return [paragraph(extractTextAndBoldChildren(node))];
+      return [paragraph(extractTextChildren(node))];
     case 'bold':
       return [strong(extractTextChildren(node))];
+    case 'sup':
+      return [emphasis(extractTextChildren(node))];
     case 'numbered-list':
       return [listItem(extractTextChildren(node))];
     case 'numbered-list-group':
@@ -295,20 +338,39 @@ const convertToMDXAst = (node, index, parent) => {
     case 'h1-definition':
       return [mdxJsxEl('Definition', [], extractTextChildren(node))];
     case 'normal-definition-first':
-      return [mdxJsxEl('DefinitionDescription', [], extractTextAndBoldChildren(node))];
+      return [mdxJsxEl('DefinitionDescription', [], extractTextChildren(node))];
     default:
       console.log('Unhandled node:', node.name);
-      return [mdxJsxEl(`Unhandled${node.name.replace('-', '')}`, [], extractTextChildren(node))];
+      return [];
   }
 };
 
-const fileContent = await fs.readFile(SOURCE_XML_PATH, 'utf8');
+const fileContent = await fs.readFile(
+  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\data\\WDR25-C-01c-EN.xml',
+  'utf8'
+);
+
 const xmlAst = fromXml(fileContent);
 const normalizedXmlAst = flatMap(xmlAst, normalisedXmlAstFn);
+
+await fs.writeFile(
+  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\normalizedXMLAst.json',
+  JSON.stringify(normalizedXmlAst, null, 2),
+  'utf8'
+);
 const mdRoot = flatMap(normalizedXmlAst, convertToMDXAst);
+
+await fs.writeFile(
+  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\mdRoot.json',
+  JSON.stringify(mdRoot, null, 2),
+  'utf8'
+);
 
 const components = new Set();
 visit(mdRoot, ['mdxJsxFlowElement'], (node) => components.add(node.name));
+
+addPaddingParagraphChildren(mdRoot);
+// handleDefinition(mdRoot);
 
 if (components.size > 0) {
   mdRoot.children.unshift(importEsm('@/components/CustomComponents', [...components]));
@@ -316,10 +378,17 @@ if (components.size > 0) {
 // Build md content with remark and mdx stringifier extensions
 const prettierrcPath = path.join(__dirname, '..', '..', '.prettierrc');
 const options = await prettier.resolveConfig(prettierrcPath);
-const file = await prettier.format(toMarkdown(mdRoot, {
-  listItemIndent: 'one',
-  extensions: [mdxToMarkdown({ printWidth: 100 })],
-}), { ...options, parser: "mdx" });
+const file = await prettier.format(
+  toMarkdown(mdRoot, {
+    listItemIndent: 'one',
+    extensions: [mdxToMarkdown({ printWidth: 100 })],
+  }),
+  { ...options, parser: 'mdx' }
+);
 
-await ensureParentDir(OUTPUT_MDX_PATH);
-await fs.writeFile(OUTPUT_MDX_PATH, file, 'utf8');
+await ensureParentDir('D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\test.mdx');
+await fs.writeFile(
+  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\test.mdx',
+  file,
+  'utf8'
+);

@@ -2,6 +2,22 @@
 // These are intentionally minimal so pages render without styling dependencies.
 // TODO: Enhance these components with styling as needed.
 
+export function H1Contributor({ children, ...props }) {
+  return (
+    <div
+      aria-label="H1Contributors"
+      style={{
+        borderBottom: '3px solid #ee2435',
+        paddingBottom: '2px',
+        fontWeight: '400',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function Contributors({ children, ...props }) {
   return (
     <div
@@ -189,6 +205,7 @@ export function DefinitionDescription({ children, ...props }) {
 }
 
 const CustomComponents = {
+  H1Contributor,
   Contributors,
   ContributorRole,
   Spotlight,

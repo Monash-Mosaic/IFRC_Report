@@ -135,15 +135,15 @@
             tool to target the Spanish Red Cross. These groups were emotionally affected to varying
             degrees and we estimate that some also experienced a certain loss of trust in the
             organization. </normal-box>
-        <contributor-group>
-            <h1-c1>María Trénor Alvargonzález </h1-c1>
-            <h2-c1>Director of Communications </h2-c1>
-        </contributor-group>
-        <contributor-group>
-            <h1-c2>Kenan Terzic </h1-c2>
-            <h2-c2>Social Media Manager </h2-c2>
-            <h3-c2>Spanish Red Cross </h3-c2>
-        </contributor-group>
+
+        <h1-c1>María Trénor Alvargonzález </h1-c1>
+        <h2-c1>Director of Communications </h2-c1>
+
+
+        <h1-c2>Kenan Terzic </h1-c2>
+        <h2-c2>Social Media Manager </h2-c2>
+        <h3-c2>Spanish Red Cross </h3-c2>
+
 
         <normal>These impacts of harmful information are often felt most acutely at the community
             level, though in some contexts they are being actively fuelled by external actors. This
@@ -197,15 +197,14 @@
         <normal-box>Response: Community ambassadors verified the facts on the ground and corrective
             broadcasts were issued via radio and SMS the next morning. The rapid clarification
             helped resume humanitarian activities and deter further displacement or conflict. </normal-box>
-        <contributor-group>
-            <h1-c1>Anahi Ayala Iacucci, Nabeel Chudasama, Nabeela Jivraj, Zainah Alsamman </h1-c1>
-            <h3-c1>Grand Challenges Canada </h3-c1>
-        </contributor-group>
 
-        <contributor-group>
-            <h1-c2>Christopher Tuckwood </h1-c2>
-            <h3-c2>The Sentinel Project </h3-c2>
-        </contributor-group>
+        <h1-c1>Anahi Ayala Iacucci, Nabeel Chudasama, Nabeela Jivraj, Zainah Alsamman </h1-c1>
+        <h3-c1>Grand Challenges Canada </h3-c1>
+
+
+        <h1-c2>Christopher Tuckwood </h1-c2>
+        <h3-c2>The Sentinel Project </h3-c2>
+
         <normal>The digital information environment &#8211; spanning both digital and cyber domains
             &#8211; has become increasingly complex, contested and politicized. States approach this
             environment from distinct angles. Some focus on <bold>infrastructure</bold> &#8211; the <bold>
@@ -1051,19 +1050,19 @@
             outcomes of disasters and conflict, local advocacy groups such as the Myanmar Internet
             Project and Athan consistently raised alarms about connectivity disruptions, their
             consequences and the harms generated. </normal-box>
-        <contributor-group>
-            <h1-3c-c1>Wai Phyo </h1-3c-c1>
-            <h2-3c-c1>Asia Pacific Policy Analyst </h2-3c-c1>
-        </contributor-group>
-        <contributor-group>
-            <h1-3c-c2>Faiz Naeem </h1-3c-c2>
-            <h2-3c-c2>Asia Pacific Program Associate </h2-3c-c2>
-        </contributor-group>
-        <contributor-group>
-            <h1-3c-c3>Giulio Coppi </h1-3c-c3>
-            <h2-3c-c3>Senior Humanitarian Officer, Europe </h2-3c-c3>
-            <h3-3c-c3>Access Now </h3-3c-c3>
-        </contributor-group>
+
+        <h1-3c-c1>Wai Phyo </h1-3c-c1>
+        <h2-3c-c1>Asia Pacific Policy Analyst </h2-3c-c1>
+
+
+        <h1-3c-c2>Faiz Naeem </h1-3c-c2>
+        <h2-3c-c2>Asia Pacific Program Associate </h2-3c-c2>
+
+
+        <h1-3c-c3>Giulio Coppi </h1-3c-c3>
+        <h2-3c-c3>Senior Humanitarian Officer, Europe </h2-3c-c3>
+        <h3-3c-c3>Access Now </h3-3c-c3>
+
 
         <h1>Analysis and monitoring of harmful information </h1>
         <normal>Analysing harmful information and its risks is essential to understanding the
@@ -1159,11 +1158,11 @@
             under attack. As more internet users turn to generative AI chatbots for information and
             news, such a database can be used to verify whether false claims have contaminated
             AI-generated responses, enabling organizations to respond quickly and strategically. </normal-box>
-        <contributor-group>
-            <h1-span>Chine Labbe </h1-span>
-            <h2-span>Senior Vice President, Partnerships and Managing Editor, Europe and Canada </h2-span>
-            <h3-span>NewsGuard Technologies</h3-span>
-        </contributor-group>
+
+        <h1-span>Chine Labbe </h1-span>
+        <h2-span>Senior Vice President, Partnerships and Managing Editor, Europe and Canada </h2-span>
+        <h3-span>NewsGuard Technologies</h3-span>
+
         <toh-box> </toh-box>
         <h1-box>Securing communication in humanitarian contexts </h1-box>
         <normal-box>In an era where harmful information can spread rapidly and undermine trust in
@@ -1189,17 +1188,16 @@
             enhanced by the <hyperlinks>integration of a secure digital registration system</hyperlinks>
             through SMS and WhatsApp. This collaboration shows how cross-sector partnerships to
             bring aid can be underpinned by secure communication platforms. </normal-box>
-        <contributor-group>
-            <h1-c1>Chiara Kunnie </h1-c1>
-            <h2-c1>New Business Manager </h2-c1>
-            <h3-c1>Social Impact Sales </h3-c1>
-        </contributor-group>
 
-        <contributor-group>
-            <h1-c2>Alexandros Koronakis </h1-c2>
-            <h2-c2>Senior Director, Head of Government, Policy &amp; Regulatory Affairs </h2-c2>
-            <h3-c2>EMEA, Twilio </h3-c2>
-        </contributor-group>
+        <h1-c1>Chiara Kunnie </h1-c1>
+        <h2-c1>New Business Manager </h2-c1>
+        <h3-c1>Social Impact Sales </h3-c1>
+
+
+        <h1-c2>Alexandros Koronakis </h1-c2>
+        <h2-c2>Senior Director, Head of Government, Policy &amp; Regulatory Affairs </h2-c2>
+        <h3-c2>EMEA, Twilio </h3-c2>
+
         <h1>Concluding remarks: harmful information is not background noise </h1>
         <normal>Harmful information is not background noise: it actively shapes how people
             understand crises, who they trust and whether they can access humanitarian assistance
