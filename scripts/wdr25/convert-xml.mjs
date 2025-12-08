@@ -5,11 +5,10 @@ import { visit } from 'unist-util-visit';
 import flatMap from 'unist-util-flatmap';
 import { toMarkdown } from 'mdast-util-to-markdown';
 import { mdxToMarkdown } from 'mdast-util-mdx';
-import { paragraph, text, heading, list, listItem, image } from 'mdast-builder';
+import { paragraph, text, heading, list, listItem, image, strong } from 'mdast-builder';
 import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
-import * as prettier from "prettier";
-
+import * as prettier from 'prettier';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const DEFAULTS = {
@@ -202,8 +201,10 @@ const convertToMDXAst = (node, index, parent) => {
       return [exportEsm('subtitle', getTextContent(node))];
     case 'caption':
       return [mdxJsxEl('Caption', [], extractTextChildren(node))];
+    case 'h1-box':
     case 'h1-spotlight':
       return [mdxJsxEl('Spotlight', [], extractTextChildren(node))];
+    case 'h1-recommendations':
     case 'h1':
       return [heading(1, extractTextChildren(node))];
     case 'h2':
@@ -211,6 +212,8 @@ const convertToMDXAst = (node, index, parent) => {
     case 'h3':
     case 'heading-3':
       return [heading(3, extractTextChildren(node))];
+    case 'h4':
+      return [heading(4, extractTextChildren(node))];
     case 'chapter-quote':
       return [mdxJsxEl('ChapterQuote', [], extractTextChildren(node))];
     case 'introduction':
@@ -218,24 +221,49 @@ const convertToMDXAst = (node, index, parent) => {
     case 'normal-spotlight':
     case 'normal':
     case 'normal-spotlight-first':
+    case 'normal-box':
+    case 'normal-box-alt':
     case 'normal-first':
-      return [paragraph(extractTextChildren(node))];
+    case 'recommendations':
+    case 'normal-2c':
+      return [paragraph(extractTextAndBoldChildren(node))];
+    case 'bold':
+      return [strong(extractTextChildren(node))];
     case 'numbered-list':
       return [listItem(extractTextChildren(node))];
     case 'numbered-list-group':
       return [list('ordered', node.children)];
+    case 'h1-c1':
+    case 'h1-c2':
+    case 'h1-span':
+    case 'h1-3c-c1':
+    case 'h1-3c-c2':
+    case 'h1-3c-c3':
     case 'h1-contributor-spotlight':
       return [mdxJsxEl('H1Contributor', [], extractTextChildren(node))];
     case 'contributor-name-spotlight':
       return [mdxJsxEl('ContributorName', [], extractTextChildren(node))];
     case 'contributor-position-spotlight':
       return [mdxJsxEl('ContributorPosition', [], extractTextChildren(node))];
+    case 'h2-c2':
+    case 'h2-c1':
+    case 'h2-span':
+    case 'h2-3c-c1':
+    case 'h2-3c-c2':
+    case 'h2-3c-c3':
     case 'contributor':
-      return [mdxJsxEl('Contributor', [], node.children)];
+      return [mdxJsxEl('Contributors', [], node.children)];
+    case 'bullet-list-2c':
+    case 'bullet-list':
+    case 'normal-box-bullet-list':
     case 'normal-spotlight-bullet-list':
       return [listItem(extractTextChildren(node))];
-    case 'normal-spotlight-bullet-list-group':
+    case 'bullet-list-group':
       return [list('unordered', node.children)];
+    case 'h3-c1':
+    case 'h3-c2':
+    case 'h3-span':
+    case 'h3-3c-c3':
     case 'contributor-role':
       return [mdxJsxEl('ContributorRole', [], extractTextChildren(node))];
     case 'h1-contributor':
@@ -264,6 +292,10 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('SidenotesContributionsFirst', [], extractTextChildren(node))];
     case 'sidenote':
       return [mdxJsxEl('Sidenote', [], node.children)];
+    case 'h1-definition':
+      return [mdxJsxEl('Definition', [], extractTextChildren(node))];
+    case 'normal-definition-first':
+      return [mdxJsxEl('DefinitionDescription', [], extractTextAndBoldChildren(node))];
     default:
       console.log('Unhandled node:', node.name);
       return [mdxJsxEl(`Unhandled${node.name.replace('-', '')}`, [], extractTextChildren(node))];
