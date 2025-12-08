@@ -21,6 +21,7 @@
     "@types/mdx": "^2.0.13",
     "autoprefixer": "^10.4.21",
     "dexie": "^4.2.0",
+    "geist": "^1.5.1",
     "lucide-react": "^0.542.0",
     "next": "15.5.7",
     "next-intl": "^4.3.12",
