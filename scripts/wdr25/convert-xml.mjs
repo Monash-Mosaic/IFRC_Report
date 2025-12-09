@@ -215,14 +215,6 @@ const addPaddingParagraphChildren = (tree) => {
   });
 };
 
-const handleDefinition = (tree) => {
-  visit(tree, 'mdxJsxFlowElement', (paragraphNode) => {
-    if (paragraphNode.name == 'DefinitionDescription') {
-      console.log(paragraphNode.children[1]);
-    }
-  });
-};
-
 /**
  * Convert XML element nodes into MDX/MD AST nodes expected by the renderer.
  * @param {import('unist').Node} node
