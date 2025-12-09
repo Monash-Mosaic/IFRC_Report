@@ -38,7 +38,7 @@ export default async function Home({ params }) {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Image src="/landing-page/logo.png" alt="Logo" width={128} height={128}/>
+            <Image src="/wdr25/ifrc_logo.png" alt="Logo" width={128} height={128}/>
           </div>
 
           {/* Navigation */}

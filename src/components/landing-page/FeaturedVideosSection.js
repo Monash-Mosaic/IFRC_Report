@@ -75,6 +75,7 @@ function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
           fill
           className="object-cover"
         />
+        
         {/* Play button overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
           <button 
@@ -86,14 +87,6 @@ function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
               <path d="M8 5v14l11-7z"/>
             </svg>
           </button>
-        </div>
-        {/* Logo overlay */}
-        <div className="absolute top-3 left-3 bg-white/90 p-1 rounded">
-          <div className="flex items-center space-x-1">
-            <div className="w-4 h-4 bg-red-600 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">RC</span>
-            </div>
-          </div>
         </div>
       </div>
       

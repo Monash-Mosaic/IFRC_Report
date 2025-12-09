@@ -37,7 +37,7 @@ export default function HeroSection({ reportData, locale = 'en' }) {
       {/* Hero Image */}
       <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-gray-200">
         <Image
-          src="/landing-page/hero.jpg"
+          src="/wdr25/hero.jpg"
           alt="World Disasters Report hero image showing humanitarian workers in action"
           fill
           className="object-cover"

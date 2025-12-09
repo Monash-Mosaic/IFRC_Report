@@ -76,7 +76,7 @@ export const landingPage = {
         id: 1,
         title: "Sous-titre",
         description: "Texte corporel pour tout ce que vous aimeriez ajouter au sous-titre.",
-        thumbnailSrc: "/landing-page/thumbnail1.png",
+        thumbnailSrc: "/wdr25/thumbnail1.png",
         thumbnailAlt: "Miniature vidéo en vedette",
         url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
       },
@@ -84,7 +84,7 @@ export const landingPage = {
         id: 2,
         title: "Sous-titre",
         description: "Texte corporel pour tout ce que vous aimeriez développer sur le point principal.",
-        thumbnailSrc: "/landing-page/thumbnail2.png",
+        thumbnailSrc: "/wdr25/thumbnail2.png",
         thumbnailAlt: "Miniature vidéo en vedette",
         url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       }
@@ -111,6 +111,18 @@ export const landingPage = {
         quote: "J'aimerais avoir une baguette magique qui m'aiderait à distinguer la désinformation et la vérité",
         name: "Olga",
         country: "Russie"
+      },
+      {
+        id: 4,
+        quote: "Les réseaux sociaux diffusent de fausses informations si rapidement qu'il devient difficile de vérifier ce qui est réel avant qu'il ne soit trop tard",
+        name: "Maria S.",
+        country: "Philippines"
+      },
+      {
+        id: 5,
+        quote: "En temps de catastrophe, la désinformation peut être plus dangereuse que la catastrophe elle-même",
+        name: "James K.",
+        country: "Kenya"
       }
     ]
   }

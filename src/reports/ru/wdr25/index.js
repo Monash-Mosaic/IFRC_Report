@@ -76,7 +76,7 @@ export const landingPage = {
         id: 1,
         title: "Подзаголовок",
         description: "Основной текст для всего, что вы хотели бы добавить к подзаголовку.",
-        thumbnailSrc: "/landing-page/thumbnail1.png",
+        thumbnailSrc: "/wdr25/thumbnail1.png",
         thumbnailAlt: "Миниатюра избранного видео",
         url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
       },
@@ -84,7 +84,7 @@ export const landingPage = {
         id: 2,
         title: "Подзаголовок",
         description: "Основной текст для всего, что вы хотели бы расширить по основной теме.",
-        thumbnailSrc: "/landing-page/thumbnail2.png",
+        thumbnailSrc: "/wdr25/thumbnail2.png",
         thumbnailAlt: "Миниатюра избранного видео",
         url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       }
@@ -111,6 +111,18 @@ export const landingPage = {
         quote: "Я бы хотел иметь волшебную палочку, которая помогла бы мне отличить дезинформацию от правды",
         name: "Ольга",
         country: "Россия"
+      },
+      {
+        id: 4,
+        quote: "Социальные сети распространяют ложную информацию так быстро, что становится трудно проверить, что реально, прежде чем станет слишком поздно",
+        name: "Мария С.",
+        country: "Филиппины"
+      },
+      {
+        id: 5,
+        quote: "Во время бедствий дезинформация может быть более опасной, чем само бедствие",
+        name: "Джеймс К.",
+        country: "Кения"
       }
     ]
   }
