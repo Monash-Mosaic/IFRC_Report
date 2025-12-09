@@ -28,6 +28,7 @@ export default function LocaleSwitcher() {
       onChange={(e) => switchLocale(e.target.value)}
       aria-label={t('ariaLabel')}
       title={t('title')}
+      className="px-4 py-2 bg-cyan-200 text-cyan-900 rounded-lg text-sm font-medium hover:bg-cyan-300 transition-colors border border-cyan-300 cursor-pointer"
     >
       <option data-testid="locale-switcher-value-en" value="en">
         🇬🇧 English
