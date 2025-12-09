@@ -76,7 +76,7 @@ export const landingPage = {
         id: 1,
         title: "Subheading",
         description: "Body text for whatever you'd like to add more to the subheading.",
-        thumbnailSrc: "/landing-page/thumbnail1.png",
+        thumbnailSrc: "/wdr25/thumbnail1.png",
         thumbnailAlt: "Featured video thumbnail",
         url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
       },
@@ -84,7 +84,7 @@ export const landingPage = {
         id: 2,
         title: "Subheading", 
         description: "Body text for whatever you'd like to expand on the main point.",
-        thumbnailSrc: "/landing-page/thumbnail2.png",
+        thumbnailSrc: "/wdr25/thumbnail2.png",
         thumbnailAlt: "Featured video thumbnail",
         url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       }
@@ -111,6 +111,18 @@ export const landingPage = {
         quote: "I wish I had a magic wand that would help me to distinguish misinformation and truth",
         name: "Olga",
         country: "Russia"
+      },
+      {
+        id: 4,
+        quote: "Social media spreads false information so quickly that it becomes hard to verify what's real before it's too late",
+        name: "Maria S.",
+        country: "Philippines"
+      },
+      {
+        id: 5,
+        quote: "In times of disaster, misinformation can be more dangerous than the disaster itself",
+        name: "James K.",
+        country: "Kenya"
       }
     ]
   }

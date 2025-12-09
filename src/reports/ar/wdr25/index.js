@@ -76,7 +76,7 @@ export const landingPage = {
         id: 1,
         title: "عنوان فرعي",
         description: "نص الجسم لأي شيء تريد إضافته إلى العنوان الفرعي.",
-        thumbnailSrc: "/landing-page/thumbnail1.png",
+        thumbnailSrc: "/wdr25/thumbnail1.png",
         thumbnailAlt: "صورة مصغرة لفيديو مميز",
         url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
       },
@@ -84,7 +84,7 @@ export const landingPage = {
         id: 2,
         title: "عنوان فرعي",
         description: "نص الجسم لأي شيء تريد توسيعه في النقطة الرئيسية.",
-        thumbnailSrc: "/landing-page/thumbnail2.png",
+        thumbnailSrc: "/wdr25/thumbnail2.png",
         thumbnailAlt: "صورة مصغرة لفيديو مميز",
         url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       }
@@ -111,6 +111,18 @@ export const landingPage = {
         quote: "أتمنى لو كان لدي عصا سحرية تساعدني على التمييز بين المعلومات المضللة والحقيقة",
         name: "أولغا",
         country: "روسيا"
+      },
+      {
+        id: 4,
+        quote: "وسائل التواصل الاجتماعي تنشر المعلومات الخاطئة بسرعة كبيرة لدرجة أنه يصبح من الصعب التحقق من صحة المعلومات قبل فوات الأوان",
+        name: "ماريا س.",
+        country: "الفلبين"
+      },
+      {
+        id: 5,
+        quote: "في أوقات الكوارث، يمكن أن تكون المعلومات المضللة أكثر خطورة من الكارثة نفسها",
+        name: "جيمس ك.",
+        country: "كينيا"
       }
     ]
   }

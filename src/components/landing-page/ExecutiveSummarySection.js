@@ -37,15 +37,11 @@ export default function ExecutiveSummarySection({ reportData, locale = 'en' }) {
       {/* Right Column - Image */}
       <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200">
         <Image
-          src="/landing-page/summary.png"
+          src="/wdr25/summary.png"
           alt="Executive Summary cover featuring a person in humanitarian context"
           fill
           className="object-cover"
         />
-        {/* Resolution overlay */}
-        <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded text-sm font-medium">
-          1280×720
-        </div>
       </div>
     </section>
   );

@@ -76,7 +76,7 @@ export const landingPage = {
         id: 1,
         title: "副标题",
         description: "您想添加到副标题的正文文本。",
-        thumbnailSrc: "/landing-page/thumbnail1.png",
+        thumbnailSrc: "/wdr25/thumbnail1.png",
         thumbnailAlt: "精选视频缩略图",
         url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
       },
@@ -84,7 +84,7 @@ export const landingPage = {
         id: 2,
         title: "副标题",
         description: "您想要扩展主要观点的正文文本。",
-        thumbnailSrc: "/landing-page/thumbnail2.png",
+        thumbnailSrc: "/wdr25/thumbnail2.png",
         thumbnailAlt: "精选视频缩略图",
         url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       }
@@ -111,6 +111,18 @@ export const landingPage = {
         quote: "我希望有一根魔法棒来帮助我区分错误信息和真相",
         name: "奥尔加",
         country: "俄罗斯"
+      },
+      {
+        id: 4,
+        quote: "社交媒体传播虚假信息的速度如此之快，以至于很难在为时太晚之前验证什么是真实的",
+        name: "玛丽亚·S.",
+        country: "菲律宾"
+      },
+      {
+        id: 5,
+        quote: "在灾难时期，错误信息可能比灾难本身更危险",
+        name: "詹姆斯·K.",
+        country: "肯尼亚"
       }
     ]
   }
