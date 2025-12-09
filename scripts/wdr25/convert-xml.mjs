@@ -333,36 +333,21 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('DefinitionDescription', [], extractTextChildren(node))];
     default:
       console.log('Unhandled node:', node.name);
-      return [];
+      return [mdxJsxEl(`Unhandled${node.name.replace('-', '')}`, [], extractTextChildren(node))];
   }
 };
 
-const fileContent = await fs.readFile(
-  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\data\\WDR25-C-01c-EN.xml',
-  'utf8'
-);
+const fileContent = await fs.readFile(SOURCE_XML_PATH, 'utf8');
 
 const xmlAst = fromXml(fileContent);
 const normalizedXmlAst = flatMap(xmlAst, normalisedXmlAstFn);
 
-await fs.writeFile(
-  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\normalizedXMLAst.json',
-  JSON.stringify(normalizedXmlAst, null, 2),
-  'utf8'
-);
 const mdRoot = flatMap(normalizedXmlAst, convertToMDXAst);
-
-await fs.writeFile(
-  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\mdRoot.json',
-  JSON.stringify(mdRoot, null, 2),
-  'utf8'
-);
 
 const components = new Set();
 visit(mdRoot, ['mdxJsxFlowElement'], (node) => components.add(node.name));
 
 addPaddingParagraphChildren(mdRoot);
-// handleDefinition(mdRoot);
 
 if (components.size > 0) {
   mdRoot.children.unshift(importEsm('@/components/CustomComponents', [...components]));
@@ -378,9 +363,5 @@ const file = await prettier.format(
   { ...options, parser: 'mdx' }
 );
 
-await ensureParentDir('D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\test.mdx');
-await fs.writeFile(
-  'D:\\Monash\\MOSAIC\\IFRC_Report\\scripts\\wdr25\\output\\test.mdx',
-  file,
-  'utf8'
-);
+await ensureParentDir(OUTPUT_MDX_PATH);
+await fs.writeFile(OUTPUT_MDX_PATH, file, 'utf8');
