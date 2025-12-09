@@ -6,7 +6,11 @@
     },
     "nav": {
       "logoAlt": "Logo de l'IFRC",
-      "brand": "Rapports de l'IFRC"
+      "brand": "IFRC | académie solferino",
+      "about": "À propos",
+      "games": "Jeux",
+      "bookmarks": "Signets",
+      "download": "Télécharger"
     },
     "hero": {
       "globeAlt": "Globe de l'IFRC",
@@ -35,8 +39,11 @@
       }
     },
     "footer": {
-      "copyright": "© {year} Système de rapports de l'IFRC. Tous droits réservés.",
-      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge"
+      "copyright": "© {year} Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Tous droits réservés.",
+      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge",
+      "privacyPolicy": "Politique de confidentialité",
+      "termsOfService": "Conditions d'utilisation",
+      "contact": "Contact"
     }
   },
   "ReportListingPage": {

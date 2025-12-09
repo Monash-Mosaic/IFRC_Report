@@ -48,3 +48,71 @@ export const chapters = {
   },
 };
 
+export const landingPage = {
+  heroSection: {
+    title: 'تقرير الكوارث العالمي',
+    description: 'تقرير الكوارث العالمي هو المنشور الرائد للاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر، المصمم لدفع التغيير السياسي وتشكيل التفكير وتعزيز الممارسة في القطاع الإنساني. تركز هذه الطبعة على المعلومات الضارة في السياقات الإنسانية.',
+    buttonTexts: {
+      read: 'قراءة التقرير',
+      download: 'تحميل التقرير',
+      share: 'مشاركة'
+    }
+  },
+  
+  executiveSummary: {
+    title: 'الملخص التنفيذي',
+    subtitle: 'في نقطة الأزمة: مواجهة المعلومات الضارة، الدفاع عن الإنسانية',
+    description: 'في نقطة الأزمة: مواجهة المعلومات الضارة، الدفاع عن الإنسانية',
+    buttonTexts: {
+      read: 'قراءة',
+      download: 'تحميل'
+    }
+  },
+
+  featuredVideos: {
+    title: 'مقاطع فيديو مميزة من جميع أنحاء العالم',
+    videos: [
+      {
+        id: 1,
+        title: "عنوان فرعي",
+        description: "نص الجسم لأي شيء تريد إضافته إلى العنوان الفرعي.",
+        thumbnailSrc: "/landing-page/thumbnail1.png",
+        thumbnailAlt: "صورة مصغرة لفيديو مميز",
+        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+      },
+      {
+        id: 2,
+        title: "عنوان فرعي",
+        description: "نص الجسم لأي شيء تريد توسيعه في النقطة الرئيسية.",
+        thumbnailSrc: "/landing-page/thumbnail2.png",
+        thumbnailAlt: "صورة مصغرة لفيديو مميز",
+        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    ]
+  },
+
+  testimonials: {
+    title: "الاقتباسات والتجارب المعيشة",
+    testimonialsList: [
+      {
+        id: 1,
+        quote: "خلال COVID-19، كانت هناك معلومات كثيرة لدرجة أنني شعرت بالضياع ولم أعد أعرف ما أصدق",
+        name: "عبد الله م.",
+        country: "أفغانستان"
+      },
+      {
+        id: 2,
+        quote: "العيش في عصر الذكاء الاصطناعي يخيفني: أين الحقيقة وأين المعلومات المضللة",
+        name: "كلير",
+        country: "المملكة المتحدة"
+      },
+      {
+        id: 3,
+        quote: "أتمنى لو كان لدي عصا سحرية تساعدني على التمييز بين المعلومات المضللة والحقيقة",
+        name: "أولغا",
+        country: "روسيا"
+      }
+    ]
+  }
+};
+
