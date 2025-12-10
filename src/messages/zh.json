@@ -6,7 +6,11 @@
     },
     "nav": {
       "logoAlt": "国际红十字与红新月联合会标志",
-      "brand": "国际红十字报告"
+      "brand": "国际红十字会 | 索尔费里诺学院",
+      "about": "关于",
+      "games": "游戏",
+      "bookmarks": "书签",
+      "download": "下载"
     },
     "hero": {
       "globeAlt": "国际红十字地球仪",
@@ -35,8 +39,11 @@
       }
     },
     "footer": {
-      "copyright": "© {year} 国际红十字报告系统。保留所有权利。",
-      "orgFull": "国际红十字与红新月联合会"
+      "copyright": "© {year} 国际红十字与红新月联合会。保留所有权利。",
+      "orgFull": "国际红十字与红新月联合会",
+      "privacyPolicy": "隐私政策",
+      "termsOfService": "服务条款",
+      "contact": "联系我们"
     }
   },
   "ReportListingPage": {

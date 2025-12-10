@@ -6,7 +6,11 @@
     },
     "nav": {
       "logoAlt": "IFRC Logo",
-      "brand": "IFRC Reports"
+      "brand": "IFRC | solferino academy",
+      "about": "About",
+      "games": "Games", 
+      "bookmarks": "Bookmarks",
+      "download": "Download"
     },
     "hero": {
       "globeAlt": "IFRC Globe",
@@ -35,8 +39,11 @@
       }
     },
     "footer": {
-      "copyright": "© {year} IFRC Report System. All rights reserved.",
-      "orgFull": "International Federation of Red Cross and Red Crescent Societies"
+      "copyright": "© {year} International Federation of Red Cross and Red Crescent Societies. All rights reserved.",
+      "orgFull": "International Federation of Red Cross and Red Crescent Societies",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service", 
+      "contact": "Contact"
     }
   },
   "ReportListingPage": {
