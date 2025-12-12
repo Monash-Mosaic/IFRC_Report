@@ -2,6 +2,46 @@
 // These are intentionally minimal so pages render without styling dependencies.
 // TODO: Enhance these components with styling as needed.
 
+export function ReccomendationsTitle({ children, ...props }) {
+  return (
+    <div
+      aria-label="ReccomendationsTitle"
+      style={{
+        color: '#ee2435',
+        fontSize: '1.5rem',
+        borderBottom: '2px solid #030303ff',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Reccomendations({ children, ...props }) {
+  return (
+    <div aria-label="Reccomendations" style={{ fontWeight: 700 }} {...props}>
+      {children}
+    </div>
+  );
+}
+
+export function H1Contributor({ children, ...props }) {
+  return (
+    <div
+      aria-label="H1Contributors"
+      style={{
+        borderBottom: '3px solid #ee2435',
+        paddingBottom: '2px',
+        fontWeight: '400',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function Contributors({ children, ...props }) {
   return (
     <div
@@ -155,7 +195,41 @@ export function ChapterQuote({ children, ...props }) {
   );
 }
 
+export function Definition({ children, ...props }) {
+  return (
+    <div
+      style={{
+        fontWeight: 700,
+        borderBottom: '2px solid #030303ff',
+        fontFamily: 'Gill Sans',
+        fontSize: '1.5rem',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function DefinitionDescription({ children, ...props }) {
+  return (
+    <aside
+      style={{
+        padding: '0.75rem',
+        borderLeft: '4px solid #030303ff',
+        background: '#f8fafc',
+        fontFamily: 'Gill Sans',
+        fontSize: '1.25rem',
+      }}
+      {...props}
+    >
+      {children}
+    </aside>
+  );
+}
+
 const CustomComponents = {
+  H1Contributor,
   Contributors,
   ContributorRole,
   Spotlight,
@@ -167,6 +241,8 @@ const CustomComponents = {
   ContributorSpotlightName,
   ContributorSpotlightPosition,
   ContributorSpotlightRole,
+  Definition,
+  DefinitionDescription,
 };
 
 export default CustomComponents;
