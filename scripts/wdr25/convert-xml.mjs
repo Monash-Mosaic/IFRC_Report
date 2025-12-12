@@ -260,9 +260,14 @@ const convertToMDXAst = (node, index, parent) => {
     case 'recommendations':
     case 'normal-2c':
       return [paragraph(extractTextChildren(node))];
+    case 'normal-2c':
+      return [mdxJsxEl('ReccomendationsTitle', [], extractTextChildren(node))];
+    case 'recommendations':
+      return [mdxJsxEl('Reccomendations', [], extractTextChildren(node))];
     case 'bold':
       return [strong(extractTextChildren(node))];
     case 'sup':
+    case 'regular-italic':
       return [emphasis(extractTextChildren(node))];
     case 'numbered-list':
       return [listItem(extractTextChildren(node))];
@@ -315,8 +320,9 @@ const convertToMDXAst = (node, index, parent) => {
       return [];
     case 'img':
       return [paragraph([image(node.attributes?.href_fmt || '')])];
+    case 'quote':
     case 'small-quote':
-      return [mdxJsxEl('SmallQuoteContent', [], extractTextChildren(node))];
+      return [mdxJsxEl('SmallQuote', [], extractTextChildren(node))];
     case 'small-quote-group':
       return [mdxJsxEl('SmallQuoteGroup', [], node.children)];
     case 'small-quote-author':
@@ -327,7 +333,7 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('SidenotesContributionsFirst', [], extractTextChildren(node))];
     case 'sidenote':
       return [mdxJsxEl('Sidenote', [], node.children)];
-    case 'h1-definition':
+    case 't1-definition':
       return [mdxJsxEl('Definition', [], extractTextChildren(node))];
     case 'normal-definition-first':
       return [mdxJsxEl('DefinitionDescription', [], extractTextChildren(node))];
@@ -355,13 +361,28 @@ if (components.size > 0) {
 // Build md content with remark and mdx stringifier extensions
 const prettierrcPath = path.join(__dirname, '..', '..', '.prettierrc');
 const options = await prettier.resolveConfig(prettierrcPath);
-const file = await prettier.format(
-  toMarkdown(mdRoot, {
-    listItemIndent: 'one',
-    extensions: [mdxToMarkdown({ printWidth: 100 })],
-  }),
-  { ...options, parser: 'mdx' }
-);
+
+const joinInlineChildren = (left, right, parent, state) => {
+  if (left.type == 'text' && right.type == 'strong') {
+    return 0;
+  }
+  if (left.type == 'strong' && right.type == 'text') {
+    return 0;
+  }
+};
+
+// Create the array
+export const joinFunctions = [joinInlineChildren];
+
+const prePrett = toMarkdown(mdRoot, {
+  listItemIndent: 'one',
+  emphasis: '*',
+  join: joinFunctions,
+  tightDefinitions: true,
+  extensions: [mdxToMarkdown({ printWidth: 100 })],
+});
+
+const file = await prettier.format(prePrett, { ...options, parser: 'mdx' });
 
 await ensureParentDir(OUTPUT_MDX_PATH);
 await fs.writeFile(OUTPUT_MDX_PATH, file, 'utf8');

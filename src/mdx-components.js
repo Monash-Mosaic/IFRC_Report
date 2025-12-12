@@ -15,7 +15,12 @@ const components = {
   h6: (props) => <h6 {...props} />,
   p: (props) => <p {...props} />,
   // a: (props) => <a {...props} />,
-  ul: (props) => <ul className="list-disc pl-12" {...props} />,
+  ul: (props) => (
+    <ul
+      className="list-['—'] pl-12 marker:font-bold  [&>li]:pl-5 marker:text-[#ee2435]"
+      {...props}
+    />
+  ),
   ol: (props) => (
     <ol
       className="list-decimal pl-12 [&>li::marker]:text-[#ee2435] [&>li::marker]:font-bold"

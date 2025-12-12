@@ -2,6 +2,30 @@
 // These are intentionally minimal so pages render without styling dependencies.
 // TODO: Enhance these components with styling as needed.
 
+export function ReccomendationsTitle({ children, ...props }) {
+  return (
+    <div
+      aria-label="ReccomendationsTitle"
+      style={{
+        color: '#ee2435',
+        fontSize: '1.5rem',
+        borderBottom: '2px solid #030303ff',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Reccomendations({ children, ...props }) {
+  return (
+    <div aria-label="Reccomendations" style={{ fontWeight: 700 }} {...props}>
+      {children}
+    </div>
+  );
+}
+
 export function H1Contributor({ children, ...props }) {
   return (
     <div
