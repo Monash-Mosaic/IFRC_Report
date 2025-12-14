@@ -285,6 +285,7 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('ContributorName', [], extractTextChildren(node))];
     case 'contributor-position-spotlight':
       return [mdxJsxEl('ContributorPosition', [], extractTextChildren(node))];
+    case 'h2-c1':
     case 'h2-c2':
     case 'h2-c1':
     case 'h2-span':
@@ -308,8 +309,6 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('ContributorRole', [], extractTextChildren(node))];
     case 'h1-contributor':
       return [mdxJsxEl('H1Contributor', [], extractTextChildren(node))];
-    case 'contributor-group':
-      return [mdxJsxEl('ContributorGroup', [], node.children)];
     case 'h1.fig':
       return [mdxJsxEl('H1Fig', [], extractTextChildren(node))];
     case 'h1-ebn':
@@ -332,7 +331,7 @@ const convertToMDXAst = (node, index, parent) => {
     case 'sidenotes-contributions-first':
       return [mdxJsxEl('SidenotesContributionsFirst', [], extractTextChildren(node))];
     case 'sidenote':
-      return [mdxJsxEl('Sidenote', [], node.children)];
+      return [mdxJsxEl('SideNote', [], node.children)];
     case 't1-definition':
       return [mdxJsxEl('Definition', [], extractTextChildren(node))];
     case 'normal-definition-first':
