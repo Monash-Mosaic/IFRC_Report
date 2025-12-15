@@ -257,8 +257,6 @@ const convertToMDXAst = (node, index, parent) => {
     case 'normal-box':
     case 'normal-box-alt':
     case 'normal-first':
-    case 'recommendations':
-    case 'normal-2c':
       return [paragraph(extractTextChildren(node))];
     case 'normal-2c':
       return [mdxJsxEl('ReccomendationsTitle', [], extractTextChildren(node))];
@@ -287,7 +285,6 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('ContributorPosition', [], extractTextChildren(node))];
     case 'h2-c1':
     case 'h2-c2':
-    case 'h2-c1':
     case 'h2-span':
     case 'h2-3c-c1':
     case 'h2-3c-c2':
@@ -322,8 +319,6 @@ const convertToMDXAst = (node, index, parent) => {
     case 'quote':
     case 'small-quote':
       return [mdxJsxEl('SmallQuote', [], extractTextChildren(node))];
-    case 'small-quote-group':
-      return [mdxJsxEl('SmallQuoteGroup', [], node.children)];
     case 'small-quote-author':
       return [mdxJsxEl('SmallQuoteAuthor', [], extractTextChildren(node))];
     case 'h1-sidenote-context':

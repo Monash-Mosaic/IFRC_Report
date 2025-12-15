@@ -1,3 +1,41 @@
+import localFont from 'next/font/local';
+
+const bespokeSerif = localFont({
+  src: [
+    {
+      path: '../../public/fonts/BespokeSerif-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/BespokeSerif-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/BespokeSerif-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/BespokeSerif-BoldItalic.woff2',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/BespokeSerif-Extrabold.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/BespokeSerif-ExtraboldItalic.woff2',
+      weight: '800',
+      style: 'italic',
+    },
+  ],
+  display: 'swap',
+});
+
 // Lightweight placeholder components used by MDX content.
 // These are intentionally minimal so pages render without styling dependencies.
 // TODO: Enhance these components with styling as needed.
@@ -117,11 +155,11 @@ export function SideNote({ children, ...props }) {
 export function SmallQuote({ children, ...props }) {
   return (
     <blockquote
+      className={bespokeSerif.className}
       style={{
         margin: '1rem 0',
         fontSize: '1.5rem',
-        fontFamily: 'Math',
-        fontWeight: 600,
+        fontWeight: 700,
         paddingLeft: '1rem',
         borderLeft: '4px solid #ee2435',
       }}
@@ -198,10 +236,10 @@ export function ChapterQuote({ children, ...props }) {
 export function Definition({ children, ...props }) {
   return (
     <div
+      className={bespokeSerif.className}
       style={{
         fontWeight: 700,
         borderBottom: '2px solid #030303ff',
-        fontFamily: 'Gill Sans',
         fontSize: '1.5rem',
       }}
       {...props}
@@ -214,11 +252,12 @@ export function Definition({ children, ...props }) {
 export function DefinitionDescription({ children, ...props }) {
   return (
     <aside
+      className={bespokeSerif.className}
       style={{
+        fontWeight: 400,
         padding: '0.75rem',
         borderLeft: '4px solid #030303ff',
         background: '#f8fafc',
-        fontFamily: 'Gill Sans',
         fontSize: '1.25rem',
       }}
       {...props}
