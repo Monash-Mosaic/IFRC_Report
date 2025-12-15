@@ -59,7 +59,8 @@
             of an industry of influencers and conspiracy theorists spreading narratives about the
             dangers of everything from medical treatments and health care professionals to cell
             phone towers.</normal>
-        <h1-definition>Infodemic </h1-definition>
+        <t1-definition>Infodemic
+        </t1-definition>
         <normal-definition-first>An <bold>infodemic</bold> is too much information, including false
             or misleading information, in digital and physical environments during a disease
             outbreak. </normal-definition-first>
@@ -360,10 +361,10 @@
         <normal-box><bold>Four practical action tracks</bold> based on lessons learned </normal-box>
 
         <bullet-list-group>
-            <normal-box-bullet-list><bold>Multi-stakeholder coalitions and action</bold> &#8211;
-                Establish a standing forum of trusted actors, from governments to youth groups, to
-                share information, flag risks and coordinate rapid responses &#8211; especially
-                during elections or public health crises. </normal-box-bullet-list>
+            <normal-box-bullet-list><bold>Multi-stakeholder coalitions and action</bold>Establish a
+                standing forum of trusted actors, from governments to youth groups, to share
+                information, flag risks and coordinate rapid responses &#8211; especially during
+                elections or public health crises. </normal-box-bullet-list>
             <normal-box-bullet-list><bold>Capacity building for resilience</bold> &#8211; Equip
                 journalists, educators, fact-checkers and community leaders with the skills,
                 resources and funding to detect and counter harmful narratives, with a focus on
@@ -842,14 +843,14 @@
             content (see box) but overall, scientific evidence remains limited. Anecdotal reports of
             harm caused by AI-generated fake content is growing, but without better evidence the
             full scale and impact remains difficult to assess.</normal>
-        <h1-definition>
+        <t1-definition>
             <bold>AI-generated fake content </bold>
-        </h1-definition>
+        </t1-definition>
         <normal-definition-first>Audio, text, or visual content, produced by generative AI, that
             depicts people or events in a way that differs from reality in a malicious or deceptive
             way, e.g., showing people doing things they did not do, saying things they did not say,
             changing the location of real events, or depicting events that did not happen.</normal-definition-first>
-        <h1-definition>Deepfake </h1-definition>
+        <t1-definition>Deepfake </t1-definition>
         <normal-definition-first>Synthetic media &#8211; most often video, audio or images &#8211;
             created using artificial intelligence techniques, particularly deep learning, to
             realistically manipulate or generate content that portrays events or people in ways that
