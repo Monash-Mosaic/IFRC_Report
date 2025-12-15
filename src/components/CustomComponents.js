@@ -22,16 +22,6 @@ const bespokeSerif = localFont({
       weight: '700',
       style: 'italic',
     },
-    {
-      path: '../../public/fonts/BespokeSerif-Extrabold.woff2',
-      weight: '800',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/BespokeSerif-ExtraboldItalic.woff2',
-      weight: '800',
-      style: 'italic',
-    },
   ],
   display: 'swap',
 });
