@@ -113,5 +113,15 @@
     },
     "closeMediaPanel": "关闭媒体面板",
     "duration": "时长"
+  },
+  "TohIcons": {
+    "deprivational": "剥夺",
+    "societal": "社会",
+    "digital": "数字",
+    "longitudinal": "纵向",
+    "physical": "身体",
+    "psychological": "心理",
+    "social": "社交",
+    "informational": "信息"
   }
 }
