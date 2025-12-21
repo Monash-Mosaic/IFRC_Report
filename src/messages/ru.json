@@ -113,5 +113,15 @@
     },
     "closeMediaPanel": "Закрыть панель медиа",
     "duration": "Длительность"
+  },
+  "TohIcons": {
+    "deprivational": "Лишения",
+    "societal": "Общественный",
+    "digital": "Цифровой",
+    "longitudinal": "Продольный",
+    "physical": "Физический",
+    "psychological": "Психологический",
+    "social": "Социальный",
+    "informational": "Информационный"
   }
 }

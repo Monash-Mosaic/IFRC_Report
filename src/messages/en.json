@@ -113,5 +113,15 @@
     },
     "closeMediaPanel": "Close media panel",
     "duration": "Duration"
+  },
+  "TohIcons": {
+    "deprivational": "Deprivational",
+    "societal": "Societal",
+    "digital": "Digital",
+    "longitudinal": "Longitudinal",
+    "physical": "Physical",
+    "psychological": "Psychological",
+    "social": "Social",
+    "informational": "Informational"
   }
 }
