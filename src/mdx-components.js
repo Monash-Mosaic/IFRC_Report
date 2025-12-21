@@ -17,7 +17,7 @@ const components = {
   // a: (props) => <a {...props} />,
   ul: (props) => (
     <ul
-      className="list-['—'] pl-12 marker:font-bold  [&>li]:pl-5 marker:text-[#ee2435]"
+      className="list-['—'] pl-12 marker:font-bold  [&>li]:pl-5 marker:text-[#ee2435] text-balance"
       {...props}
     />
   ),

@@ -10,12 +10,14 @@ import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
 import * as prettier from 'prettier';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(1);
+
+console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: 'WDR25-CHAPTER-02-empty.xml',
-  mdx: 'chapter-02.mdx',
+  source: 'test.xml',
+  mdx: 'test.mdx',
 };
 
 const { values } = parseArgs({
@@ -31,6 +33,7 @@ const resolveTargetPath = (root, filePath, fallback) => {
 };
 
 const SOURCE_XML_PATH = resolveTargetPath(DEFAULTS.sourceDir, values.source, DEFAULTS.source);
+
 const OUTPUT_MDX_PATH = resolveTargetPath(DEFAULTS.outputDir, values.mdx, DEFAULTS.mdx);
 
 const supportExtractChildren = ['text', 'strong', 'emphasis'];
@@ -333,7 +336,7 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('DefinitionDescription', [], extractTextChildren(node))];
     default:
       console.log('Unhandled node:', node.name);
-      return [mdxJsxEl(`Unhandled${node.name.replace('-', '')}`, [], extractTextChildren(node))];
+      return [];
   }
 };
 
@@ -341,6 +344,7 @@ const fileContent = await fs.readFile(SOURCE_XML_PATH, 'utf8');
 
 const xmlAst = fromXml(fileContent);
 const normalizedXmlAst = flatMap(xmlAst, normalisedXmlAstFn);
+// console.log(normalizedXmlAst.children[1].children);
 
 const mdRoot = flatMap(normalizedXmlAst, convertToMDXAst);
 
@@ -352,6 +356,7 @@ addPaddingParagraphChildren(mdRoot);
 if (components.size > 0) {
   mdRoot.children.unshift(importEsm('@/components/CustomComponents', [...components]));
 }
+
 // Build md content with remark and mdx stringifier extensions
 const prettierrcPath = path.join(__dirname, '..', '..', '.prettierrc');
 const options = await prettier.resolveConfig(prettierrcPath);
