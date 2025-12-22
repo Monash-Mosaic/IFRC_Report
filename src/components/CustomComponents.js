@@ -1,4 +1,15 @@
 import localFont from 'next/font/local';
+import React from 'react';
+import {
+  Deprivational,
+  Digital,
+  Informational,
+  Longitudinal,
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+} from '@/components/icons/toh';
 
 const bespokeSerif = localFont({
   src: [
@@ -235,6 +246,51 @@ export function Definition({ children, ...props }) {
       {...props}
     >
       {children}
+    </div>
+  );
+}
+
+export function TohInsight({ children, ...props }) {
+  const content = React.Children.toArray(children).toString();
+  const parts = content.toString().trim().split(',');
+  const textMap = {
+    en: 'Contribution Insight',
+    ar: 'نظرة على المساهمات',
+    fr: 'Aperçu des Contributions',
+    zh: '贡献洞察',
+    ru: 'Анализ Вклада',
+  };
+  const svgMap = {
+    Physical: <Physical key={'PHY'} className="w-10 h-10" />,
+    Psychological: <Psychological key={'PSY'} className="w-10 h-10" />,
+    Social: <Social key={'SCL'} className="w-10 h-10" />,
+    Societal: <Societal key={'SCT'} className="w-10 h-10" />,
+    Informational: <Informational key={'INF'} className="w-10 h-10" />,
+    Digital: <Digital key={'DIG'} className="w-10 h-10" />,
+    Deprivational: <Deprivational key={'DEP'} className="w-10 h-10" />,
+    Longitudinal: <Longitudinal key={'LON'} className="w-10 h-10" />,
+  };
+
+  return (
+    <div
+      style={{
+        borderLeft: '2px solid #ee2435',
+        color: '#ee2435',
+        paddingLeft: '2vw',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}
+      {...props}
+    >
+      <span>
+        {textMap[props.locale]} {props.index}
+      </span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {parts.map((code) => {
+          return svgMap[code];
+        })}
+      </div>
     </div>
   );
 }

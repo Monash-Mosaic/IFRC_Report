@@ -37,6 +37,19 @@ const SOURCE_XML_PATH = resolveTargetPath(DEFAULTS.sourceDir, values.source, DEF
 const OUTPUT_MDX_PATH = resolveTargetPath(DEFAULTS.outputDir, values.mdx, DEFAULTS.mdx);
 
 const supportExtractChildren = ['text', 'strong', 'emphasis'];
+const currentLocale = 'en';
+const chapterIndex = 1;
+let insightIndex = 0;
+
+const tagMap = {
+  'p1.3': '{TypologyOfHarm.Physical}',
+  'p3.19': '{TypologyOfHarm.Psychological}',
+  'p1.28': '{TypologyOfHarm.Social}',
+  'p1.17': '{TypologyOfHarm.Societal}',
+  'p3.17': '{TypologyOfHarm.Informational}',
+  'p1.20': '{TypologyOfHarm.Deprivational}',
+  'p3.25': '{TypologyOfHarm.Digital}',
+};
 
 /**
  * Ensure the destination directory exists before writing files.
@@ -218,6 +231,33 @@ const addPaddingParagraphChildren = (tree) => {
   });
 };
 
+const mapTagToENum = (code) => {
+  if (tagMap[code]) {
+    return tagMap[code];
+  } else {
+    console.warn(`Warning: No mapping found for code: ${code}`);
+    return `{Unknown}`;
+  }
+};
+
+const mapTOHIcons = (tree) => {
+  visit(tree, 'mdxJsxFlowElement', (insightNode) => {
+    if (insightNode.name != 'TohInsight') {
+      return;
+    }
+
+    if (insightNode.children.length > 0) {
+      let enumChildren = [];
+      const iconsCode = insightNode.children[0].value.split(' ');
+      iconsCode.forEach((code, index) => {
+        enumChildren.push(mapTagToENum(code));
+      });
+
+      insightNode.children[0].value = enumChildren.join();
+    }
+  });
+};
+
 /**
  * Convert XML element nodes into MDX/MD AST nodes expected by the renderer.
  * @param {import('unist').Node} node
@@ -334,6 +374,19 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('Definition', [], extractTextChildren(node))];
     case 'normal-definition-first':
       return [mdxJsxEl('DefinitionDescription', [], extractTextChildren(node))];
+    case 'toh-body':
+    case 'toh-box':
+      insightIndex += 1;
+      return [
+        mdxJsxEl(
+          'TohInsight',
+          [
+            { name: 'locale', value: currentLocale },
+            { name: 'index', value: `${chapterIndex}.${insightIndex}` },
+          ],
+          extractTextChildren(node)
+        ),
+      ];
     default:
       console.log('Unhandled node:', node.name);
       return [];
@@ -352,6 +405,8 @@ const components = new Set();
 visit(mdRoot, ['mdxJsxFlowElement'], (node) => components.add(node.name));
 
 addPaddingParagraphChildren(mdRoot);
+
+mapTOHIcons(mdRoot);
 
 if (components.size > 0) {
   mdRoot.children.unshift(importEsm('@/components/CustomComponents', [...components]));
