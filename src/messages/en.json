@@ -94,7 +94,7 @@
       "videos": "Videos"
     },
     "chapterNotes": "Chapter Notes",
-    "myNotes": "My Notes", 
+    "myNotes": "My Notes",
     "bookmarks": "Bookmarks",
     "audio": "Audio",
     "videos": "Videos",
@@ -113,6 +113,9 @@
     },
     "closeMediaPanel": "Close media panel",
     "duration": "Duration"
+  },
+  "ContributionInsight": {
+    "title": "Contribution Insight"
   },
   "TohIcons": {
     "deprivational": "Deprivational",

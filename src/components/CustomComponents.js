@@ -10,6 +10,8 @@ import {
   Social,
   Societal,
 } from '@/components/icons/toh';
+import { useTranslations } from 'next-intl';
+import Tooltip from './Tooltip';
 
 const bespokeSerif = localFont({
   src: [
@@ -253,22 +255,50 @@ export function Definition({ children, ...props }) {
 export function TohInsight({ children, ...props }) {
   const content = React.Children.toArray(children).toString();
   const parts = content.toString().trim().split(',');
-  const textMap = {
-    en: 'Contribution Insight',
-    ar: 'نظرة على المساهمات',
-    fr: 'Aperçu des Contributions',
-    zh: '贡献洞察',
-    ru: 'Анализ Вклада',
-  };
+  const c = useTranslations('ContributionInsight');
+  const toh = useTranslations('TohIcons');
+
   const svgMap = {
-    Physical: <Physical key={'PHY'} className="w-10 h-10" />,
-    Psychological: <Psychological key={'PSY'} className="w-10 h-10" />,
-    Social: <Social key={'SCL'} className="w-10 h-10" />,
-    Societal: <Societal key={'SCT'} className="w-10 h-10" />,
-    Informational: <Informational key={'INF'} className="w-10 h-10" />,
-    Digital: <Digital key={'DIG'} className="w-10 h-10" />,
-    Deprivational: <Deprivational key={'DEP'} className="w-10 h-10" />,
-    Longitudinal: <Longitudinal key={'LON'} className="w-10 h-10" />,
+    Physical: (
+      <Tooltip key={'PHY_tip'} tooltipText={toh('physical')} orientation="top">
+        <Physical key={'PHY'} className="w-10 h-10" />
+      </Tooltip>
+    ),
+    Psychological: (
+      <Tooltip key={'PSY_tip'} tooltipText={toh('psychological')} orientation="top">
+        <Psychological key={'PSY'} className="w-10 h-10" />
+      </Tooltip>
+    ),
+    Social: (
+      <Tooltip key={'SCL_tip'} tooltipText={toh('social')} orientation="top">
+        <Social key={'SCL'} className="w-10 h-10" />
+      </Tooltip>
+    ),
+    Societal: (
+      <Tooltip key={'SCT_tip'} tooltipText={toh('societal')} orientation="top">
+        <Societal key={'SCT'} className="w-10 h-10" />
+      </Tooltip>
+    ),
+    Informational: (
+      <Tooltip key={'INF_tip'} tooltipText={toh('informational')} orientation="top">
+        <Informational key={'INF'} className="w-10 h-10" />
+      </Tooltip>
+    ),
+    Digital: (
+      <Tooltip key={'DIG_tip'} tooltipText={toh('digital')} orientation="top">
+        <Digital key={'DIG'} className="w-10 h-10" />
+      </Tooltip>
+    ),
+    Deprivational: (
+      <Tooltip key={'DEP_tip'} tooltipText={toh('deprivational')} orientation="top">
+        <Deprivational key={'DEP'} className="w-10 h-10" />
+      </Tooltip>
+    ),
+    Longitudinal: (
+      <Tooltip key={'LON_tip'} tooltipText={toh('longitudinal')} orientation="top">
+        <Longitudinal key={'LON'} className="w-10 h-10" />
+      </Tooltip>
+    ),
   };
 
   return (
@@ -284,7 +314,7 @@ export function TohInsight({ children, ...props }) {
       {...props}
     >
       <span>
-        {textMap[props.locale]} {props.index}
+        {c('title')} {props.index}
       </span>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         {parts.map((code) => {

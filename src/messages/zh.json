@@ -114,6 +114,9 @@
     "closeMediaPanel": "关闭媒体面板",
     "duration": "时长"
   },
+  "ContributionInsight": {
+    "title": "贡献洞察"
+  },
   "TohIcons": {
     "deprivational": "剥夺",
     "societal": "社会",

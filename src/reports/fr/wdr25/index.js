@@ -1,3 +1,4 @@
+import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
 
 export const title = 'Rapport mondial sur les catastrophes 2025';
@@ -17,6 +18,12 @@ export const reportFile = {
 };
 
 export const chapters = {
+  'chapitre-01': {
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+  },
   'chapitre-02': {
     component: Chapter02.default,
     title: Chapter02.title,
@@ -24,26 +31,26 @@ export const chapters = {
     tableOfContents: Chapter02.tableOfContents,
     audios: [
       {
-        id: "intro",
+        id: 'intro',
         name: "Chapitre 02 - Vue d'ensemble",
-        duration: "02:31",
-        url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+        duration: '02:31',
+        url: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
       },
       {
-        id: "section-1",
-        name: "Section 1 : Principales conclusions",
-        duration: "04:12",
-        url: "https://samplelib.com/lib/preview/mp3/sample-15s.mp3"
-      }
+        id: 'section-1',
+        name: 'Section 1 : Principales conclusions',
+        duration: '04:12',
+        url: 'https://samplelib.com/lib/preview/mp3/sample-15s.mp3',
+      },
     ],
     videos: [
       {
-        id: "summary",
-        name: "Résumé du chapitre",
-        duration: "03:45",
-        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM",
-        thumbnail: "/window.svg"
-      }
+        id: 'summary',
+        name: 'Résumé du chapitre',
+        duration: '03:45',
+        url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
+        thumbnail: '/window.svg',
+      },
     ],
   },
 };

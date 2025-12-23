@@ -114,6 +114,9 @@
     "closeMediaPanel": "Fermer le panneau multimédia",
     "duration": "Durée"
   },
+  "ContributionInsight": {
+    "title": "Aperçu des Contributions"
+  },
   "TohIcons": {
     "deprivational": "Privation",
     "societal": "Sociétal",
