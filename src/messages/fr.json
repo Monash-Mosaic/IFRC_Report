@@ -113,5 +113,18 @@
     },
     "closeMediaPanel": "Fermer le panneau multimédia",
     "duration": "Durée"
+  },
+  "ContributionInsight": {
+    "title": "Aperçu des Contributions"
+  },
+  "TohIcons": {
+    "deprivational": "Privation",
+    "societal": "Sociétal",
+    "digital": "Numérique",
+    "longitudinal": "Longitudinal",
+    "physical": "Physique",
+    "psychological": "Psychologique",
+    "social": "Social",
+    "informational": "Informationnel"
   }
 }

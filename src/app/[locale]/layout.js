@@ -1,19 +1,38 @@
-import { Geist, Geist_Mono } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
-import './globals.css';
 import { getDirection } from '@/i18n/helper';
+import localFont from 'next/font/local';
+import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const bespokeSerif = localFont({
+  src: [
+    {
+      path: './fonts/BespokeSerif-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/BespokeSerif-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/BespokeSerif-Extrabold.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: './fonts/BespokeSerif-ExtraboldItalic.woff2',
+      weight: '800',
+      style: 'italic',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-bespoke-serif', // Add this!
 });
 
 export const metadata = {
@@ -35,7 +54,9 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <html lang={locale} dir={dir}>
-      <body className={`${geistSans.variable} ${geistMono.variable} locale-${locale} antialiased`}>
+      <body
+        className={`${GeistSans.variable} ${GeistMono.variable} ${bespokeSerif.variable} locale-${locale} antialiased`}
+      >
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

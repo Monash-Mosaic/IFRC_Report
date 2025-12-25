@@ -113,5 +113,18 @@
     },
     "closeMediaPanel": "إغلاق لوحة الوسائط",
     "duration": "المدة"
+  },
+  "ContributionInsight": {
+    "title": "نظرة على المساهمات"
+  },
+  "TohIcons": {
+    "deprivational": "الحرمان",
+    "societal": "مجتمعي",
+    "digital": "رقمي",
+    "longitudinal": "طولي",
+    "physical": "بدني",
+    "psychological": "نفسي",
+    "social": "اجتماعي",
+    "informational": "معلوماتي"
   }
 }
