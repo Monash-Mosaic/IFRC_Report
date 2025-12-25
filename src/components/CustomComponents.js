@@ -1,4 +1,3 @@
-import localFont from 'next/font/local';
 import React from 'react';
 import {
   Deprivational,
@@ -12,32 +11,6 @@ import {
 } from '@/components/icons/toh';
 import { useTranslations } from 'next-intl';
 import Tooltip from './Tooltip';
-
-const bespokeSerif = localFont({
-  src: [
-    {
-      path: '../../public/fonts/BespokeSerif-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/BespokeSerif-Italic.woff2',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../../public/fonts/BespokeSerif-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/BespokeSerif-BoldItalic.woff2',
-      weight: '700',
-      style: 'italic',
-    },
-  ],
-  display: 'swap',
-});
 
 // Lightweight placeholder components used by MDX content.
 // These are intentionally minimal so pages render without styling dependencies.
@@ -158,11 +131,11 @@ export function SideNote({ children, ...props }) {
 export function SmallQuote({ children, ...props }) {
   return (
     <blockquote
-      className={bespokeSerif.className}
       style={{
+        fontFamily: 'var(--font-bespoke-serif)',
         margin: '1rem 0',
         fontSize: '1.5rem',
-        fontWeight: 700,
+        fontWeight: 800,
         paddingLeft: '1rem',
         borderLeft: '4px solid #ee2435',
       }}
@@ -239,9 +212,9 @@ export function ChapterQuote({ children, ...props }) {
 export function Definition({ children, ...props }) {
   return (
     <div
-      className={bespokeSerif.className}
       style={{
-        fontWeight: 700,
+        fontFamily: 'var(--font-bespoke-serif)',
+        fontWeight: 800,
         borderBottom: '2px solid #030303ff',
         fontSize: '1.5rem',
       }}
@@ -328,8 +301,8 @@ export function TohInsight({ children, ...props }) {
 export function DefinitionDescription({ children, ...props }) {
   return (
     <aside
-      className={bespokeSerif.className}
       style={{
+        fontFamily: 'var(--font-bespoke-serif)',
         fontWeight: 400,
         padding: '0.75rem',
         borderLeft: '4px solid #030303ff',
