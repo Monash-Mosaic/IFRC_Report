@@ -271,9 +271,22 @@ export default function EngagementPage() {
 
     return () => {
       try {
-        clearHover();
-        clearSelection();
+        const prevHover = hoveredFeatureIdRef.current;
+        if (prevHover != null) {
+          map.setFeatureState(
+            { source: COUNTRY_SOURCE_ID, sourceLayer: COUNTRY_SOURCE_LAYER, id: prevHover },
+            { hover: false }
+          );
+        }
+        const prevSelected = selectedFeatureIdRef.current;
+        if (prevSelected != null) {
+          map.setFeatureState(
+            { source: COUNTRY_SOURCE_ID, sourceLayer: COUNTRY_SOURCE_LAYER, id: prevSelected },
+            { selected: false }
+          );
+        }
       } catch {}
+
       mapRef.current = null;
       hoveredFeatureIdRef.current = null;
       selectedFeatureIdRef.current = null;
@@ -370,7 +383,9 @@ export default function EngagementPage() {
               {/* Map card */}
               <section className="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
                 <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                  <div className="text-sm text-slate-600">Selected: <span className="font-semibold text-slate-900">{selectedLabel}</span></div>
+                  <div className="text-sm text-slate-600">
+                    Selected: <span className="font-semibold text-slate-900">{selectedLabel}</span>
+                  </div>
                   <div className="h-9 w-36 rounded-full bg-slate-800/80 text-white flex items-center justify-center gap-2 text-xs">
                     <span className="opacity-90">Tools</span>
                     <span className="h-4 w-px bg-white/20" />
@@ -408,8 +423,8 @@ export default function EngagementPage() {
                 <div className="p-5">
                   <div className="border-l-4 border-teal-600 pl-4">
                     <p className="text-sm text-slate-700 italic leading-relaxed">
-                      “usually false information runs faster than the real information. Now, the false information
-                      in most cases even reaches different places where the truth barely reaches.”
+                      “usually false information runs faster than the real information. Now, the false information in most cases
+                      even reaches different places where the truth barely reaches.”
                     </p>
                     <div className="mt-3 text-xs text-slate-500">
                       community member, <span className="font-semibold text-slate-600">UGANDA</span>
