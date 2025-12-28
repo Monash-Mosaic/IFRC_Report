@@ -108,6 +108,10 @@ export default function EngagementPage() {
       attributionControl: false,
     });
 
+    // ✅ Force flat world map (no globe)
+    map.setProjection("mercator"); // or "equirectangular"
+
+
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
 
     const clearHover = () => {
