@@ -47,3 +47,83 @@ export const chapters = {
     ],
   },
 };
+
+export const landingPage = {
+  heroSection: {
+    title: '世界灾难报告',
+    description: '世界灾难报告是国际红十字与红新月联合会的旗舰出版物，旨在推动政策变化、塑造思维并加强人道主义部门的实践。本版重点关注人道主义背景下的有害信息。',
+    buttonTexts: {
+      read: '阅读报告',
+      download: '下载报告',
+      share: '分享'
+    }
+  },
+  
+  executiveSummary: {
+    title: '执行摘要',
+    subtitle: '危机时刻：对抗有害信息，捍卫人性',
+    description: '危机时刻：对抗有害信息，捍卫人性',
+    buttonTexts: {
+      read: '阅读',
+      download: '下载'
+    }
+  },
+
+  featuredVideos: {
+    title: '来自世界各地的精选视频',
+    videos: [
+      {
+        id: 1,
+        title: "副标题",
+        description: "您想添加到副标题的正文文本。",
+        thumbnailSrc: "/wdr25/thumbnail1.png",
+        thumbnailAlt: "精选视频缩略图",
+        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+      },
+      {
+        id: 2,
+        title: "副标题",
+        description: "您想要扩展主要观点的正文文本。",
+        thumbnailSrc: "/wdr25/thumbnail2.png",
+        thumbnailAlt: "精选视频缩略图",
+        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    ]
+  },
+
+  testimonials: {
+    title: "引文和生活经验",
+    testimonialsList: [
+      {
+        id: 1,
+        quote: "在COVID-19期间，信息太多了，我感到迷失，不知道该相信什么",
+        name: "阿卜杜勒·M.",
+        country: "阿富汗"
+      },
+      {
+        id: 2,
+        quote: "生活在AI时代让我害怕：哪里是真相，哪里是错误信息",
+        name: "克莱尔",
+        country: "英国"
+      },
+      {
+        id: 3,
+        quote: "我希望有一根魔法棒来帮助我区分错误信息和真相",
+        name: "奥尔加",
+        country: "俄罗斯"
+      },
+      {
+        id: 4,
+        quote: "社交媒体传播虚假信息的速度如此之快，以至于很难在为时太晚之前验证什么是真实的",
+        name: "玛丽亚·S.",
+        country: "菲律宾"
+      },
+      {
+        id: 5,
+        quote: "在灾难时期，错误信息可能比灾难本身更危险",
+        name: "詹姆斯·K.",
+        country: "肯尼亚"
+      }
+    ]
+  }
+};
