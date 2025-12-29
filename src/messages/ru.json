@@ -10,7 +10,8 @@
       "about": "О нас",
       "games": "Игры",
       "bookmarks": "Закладки",
-      "download": "Скачать"
+      "download": "Скачать",
+      "search": "Поиск"
     },
     "hero": {
       "globeAlt": "Глобус IFRC",
@@ -87,7 +88,8 @@
   },
   "LocaleSwitcher": {
     "ariaLabel": "Выберите язык",
-    "title": "Выберите язык"
+    "title": "Выберите язык",
+    "language": "Язык"
   },
   "SidebarPanel": {
     "expandSidebar": "Развернуть боковую панель",

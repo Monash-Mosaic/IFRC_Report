@@ -24,26 +24,29 @@ export default function LocaleSwitcher() {
     <select
       id="locale-switcher"
       name="locale"
-      value={locale}
+      value=""
       onChange={(e) => switchLocale(e.target.value)}
       aria-label={t('ariaLabel')}
       title={t('title')}
-      className="px-4 py-2 bg-cyan-200 text-cyan-900 rounded-lg text-sm font-medium hover:bg-cyan-300 transition-colors border border-cyan-300 cursor-pointer"
+      className="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap focus:outline-none"
     >
-      <option data-testid="locale-switcher-value-en" value="en">
-        🇬🇧 English
+      <option value="" disabled hidden>
+        {t('language')}
       </option>
-      <option data-testid="locale-switcher-value-fr" value="fr">
-        🇫🇷 Français
+      <option data-testid="locale-switcher-value-en" value="en" disabled={locale === 'en'}>
+        English
       </option>
-      <option data-testid="locale-switcher-value-zh" value="zh">
-        🇨🇳 中文
+      <option data-testid="locale-switcher-value-fr" value="fr" disabled={locale === 'fr'}>
+        Francais
       </option>
-      <option data-testid="locale-switcher-value-ru" value="ru">
-        🇷🇺 Русский
+      <option data-testid="locale-switcher-value-zh" value="zh" disabled={locale === 'zh'}>
+        Chinese
       </option>
-      <option data-testid="locale-switcher-value-ar" value="ar">
-        🇸🇦 العربية
+      <option data-testid="locale-switcher-value-ru" value="ru" disabled={locale === 'ru'}>
+        Russian
+      </option>
+      <option data-testid="locale-switcher-value-ar" value="ar" disabled={locale === 'ar'}>
+        Arabic
       </option>
     </select>
   );

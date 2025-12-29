@@ -10,7 +10,8 @@
       "about": "关于",
       "games": "游戏",
       "bookmarks": "书签",
-      "download": "下载"
+      "download": "下载",
+      "search": "搜索"
     },
     "hero": {
       "globeAlt": "国际红十字地球仪",
@@ -87,7 +88,8 @@
   },
   "LocaleSwitcher": {
     "ariaLabel": "选择语言",
-    "title": "选择语言"
+    "title": "选择语言",
+    "language": "语言"
   },
   "SidebarPanel": {
     "expandSidebar": "展开侧边栏",
