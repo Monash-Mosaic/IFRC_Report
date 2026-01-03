@@ -97,7 +97,7 @@ describe('HeroSection', () => {
     
     // Should show all three buttons/links
     expect(screen.getByText('Read Report')).toBeInTheDocument();
-    expect(screen.getByText('Download PDF')).toBeInTheDocument();
+    expect(screen.getAllByText('Download PDF')).toHaveLength(2); // Two instances for mobile/desktop
     expect(screen.getByText('Share Report')).toBeInTheDocument();
     
     // Should show hero image
@@ -149,7 +149,7 @@ describe('HeroSection', () => {
     expect(screen.getByText('Custom Hero Title for Testing Purposes')).toBeInTheDocument();
     expect(screen.getByText('Custom hero description with different content and longer text to test the component rendering capabilities.')).toBeInTheDocument();
     expect(screen.getByText('Lire le Rapport')).toBeInTheDocument();
-    expect(screen.getByText('Télécharger PDF')).toBeInTheDocument();
+    expect(screen.getAllByText('Télécharger PDF')).toHaveLength(2); // Two instances for mobile/desktop
     expect(screen.getByText('Partager Rapport')).toBeInTheDocument();
   });
 
@@ -162,20 +162,21 @@ describe('HeroSection', () => {
     expect(readLink).toHaveAttribute('href', '/reports/wdr25');
     expect(readLink).toHaveTextContent('Read Report');
     
-    // Should have correct Link styling with eye icon
-    expect(readLink).toHaveClass('px-6', 'py-3', 'bg-red-600', 'text-white', 'rounded-lg', 'font-medium', 'hover:bg-red-700', 'transition-colors', 'inline-flex', 'items-center', 'gap-2', 'whitespace-nowrap');
+    // Should have correct Link styling with responsive classes
+    expect(readLink).toHaveClass('flex-1', 'md:flex-none', 'px-3', 'md:px-6', 'py-2', 'md:py-3', 'bg-red-600', 'text-white', 'rounded-lg', 'font-medium', 'hover:bg-red-700', 'transition-colors', 'inline-flex', 'items-center', 'justify-center', 'gap-1', 'md:gap-2', 'whitespace-nowrap');
   });
 
   it('has correct button styling and behavior', () => {
     render(<HeroSection {...defaultProps} />);
     
     // Check download button styling (now using DownloadButton component)
-    const downloadButton = screen.getByText('Download PDF');
-    expect(downloadButton).toHaveClass('border-2', 'border-red-600', 'text-red-600', 'hover:bg-red-600', 'hover:text-white', 'rounded-lg', 'font-medium', 'transition-colors', 'inline-flex', 'items-center', 'gap-2', 'whitespace-nowrap');
+    const downloadButton = screen.getByTestId('mock-download-button');
+    expect(downloadButton).toHaveClass('w-full', 'h-full', 'px-3', 'md:px-6', 'py-2', 'md:py-3', 'text-xs', 'md:text-base');
     
     // Check share button styling
-    const shareButton = screen.getByText('Share Report');
-    expect(shareButton).toHaveClass('px-6', 'py-3', 'text-red-600', 'font-medium', 'transition-colors', 'underline', 'cursor-pointer', 'inline-flex', 'items-center', 'gap-2', 'whitespace-nowrap');
+    const shareSpan = screen.getByText('Share Report');
+    const shareButton = shareSpan.closest('button');
+    expect(shareButton).toHaveClass('w-12', 'md:w-auto', 'px-2', 'md:px-6', 'py-2', 'md:py-3', 'text-red-600', 'font-medium', 'transition-colors', 'cursor-pointer', 'inline-flex', 'items-center', 'justify-center', 'gap-1', 'md:gap-2', 'whitespace-nowrap', 'border-2', 'border-red-600', 'rounded-lg', 'md:border-none', 'md:underline');
     
     // Buttons should be clickable (even though no onClick handlers are defined)
     fireEvent.click(downloadButton);
@@ -197,8 +198,8 @@ describe('HeroSection', () => {
     const textContainer = container.querySelector('.text-left.space-y-6');
     expect(textContainer).toBeInTheDocument();
     
-    // Should have button container with correct flex layout
-    const buttonContainer = container.querySelector('.flex.flex-col.sm\\:flex-row.gap-4.items-start');
+    // Should have button container with correct flex layout (updated classes)
+    const buttonContainer = container.querySelector('.order-2.md\\:order-1.flex.flex-row.gap-2.md\\:gap-4');
     expect(buttonContainer).toBeInTheDocument();
     
     // Should have image container with correct aspect ratio
@@ -287,19 +288,20 @@ describe('HeroSection', () => {
   it('has responsive button layout', () => {
     const { container } = render(<HeroSection {...defaultProps} />);
     
-    // Button container should use responsive flex direction
-    const buttonContainer = container.querySelector('.flex.flex-col.sm\\:flex-row.gap-4.items-start');
+    // Button container should use responsive flex direction (updated classes)
+    const buttonContainer = container.querySelector('.order-2.md\\:order-1.flex.flex-row.gap-2.md\\:gap-4');
     expect(buttonContainer).toBeInTheDocument();
     
-    // Should stack vertically on mobile, horizontally on small screens+
-    expect(buttonContainer).toHaveClass('flex-col', 'sm:flex-row');
+    // Should have proper responsive layout classes
+    expect(buttonContainer).toHaveClass('flex', 'flex-row', 'gap-2', 'md:gap-4');
   });
 
   it('handles click events on buttons', () => {
     render(<HeroSection {...defaultProps} />);
     
-    const downloadButton = screen.getByText('Download PDF');
-    const shareButton = screen.getByText('Share Report');
+    const downloadButton = screen.getByTestId('mock-download-button');
+    const shareSpan = screen.getByText('Share Report');
+    const shareButton = shareSpan.closest('button');
     const readLink = screen.getByText('Read Report');
     
     // Should be able to click all interactive elements without errors

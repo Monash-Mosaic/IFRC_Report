@@ -101,11 +101,11 @@ describe('ExecutiveSummarySection', () => {
     expect(screen.getByText('Read Summary')).toBeInTheDocument();
     expect(screen.getByText('Download PDF')).toBeInTheDocument();
     
-    // Should show image
-    const image = screen.getByTestId('mock-image');
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', '/wdr25/summary.png');
-    expect(image).toHaveAttribute('alt', 'Executive Summary cover featuring a person in humanitarian context');
+    // Should show images (now there are two for responsive design)
+    const images = screen.getAllByTestId('mock-image');
+    expect(images.length).toBe(2); // One for mobile, one for desktop
+    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.png');
+    expect(images[0]).toHaveAttribute('alt', 'Executive Summary cover featuring a person in humanitarian context');
     
     expect(container).toMatchSnapshot();
   });
@@ -179,30 +179,36 @@ describe('ExecutiveSummarySection', () => {
   it('has correct layout structure', () => {
     const { container } = render(<ExecutiveSummarySection {...defaultProps} />);
     
-    // Should have main section with grid layout
+    // Should have main section (layout structure has changed)
     const section = container.querySelector('section');
-    expect(section).toHaveClass('grid', 'grid-cols-1', 'lg:grid-cols-2', 'gap-8', 'lg:gap-12', 'items-center');
+    expect(section).toBeInTheDocument();
+    
+    // Should have main container with flex layout
+    const mainContainer = container.querySelector('.flex.flex-col.space-y-8.lg\\:grid.lg\\:grid-cols-2.lg\\:gap-12.lg\\:items-center.lg\\:space-y-0');
+    expect(mainContainer).toBeInTheDocument();
     
     // Should have text content container
-    const textContainer = container.querySelector('.flex.flex-col.h-full');
+    const textContainer = container.querySelector('.flex.flex-col.space-y-6.lg\\:space-y-0.lg\\:h-full');
     expect(textContainer).toBeInTheDocument();
     
-    // Should have image container with correct aspect ratio
-    const imageContainer = container.querySelector('.relative.aspect-\\[3\\/4\\]');
-    expect(imageContainer).toBeInTheDocument();
-    expect(imageContainer).toHaveClass('rounded-2xl', 'overflow-hidden', 'bg-gray-200');
+    // Should have image container with correct aspect ratio (there are now two)
+    const imageContainers = container.querySelectorAll('.relative.aspect-\\[3\\/4\\]');
+    expect(imageContainers.length).toBe(2); // One for mobile, one for desktop
+    imageContainers.forEach(container => {
+      expect(container).toHaveClass('rounded-2xl', 'overflow-hidden', 'bg-gray-200');
+    });
   });
 
   it('has correct image properties', () => {
     render(<ExecutiveSummarySection {...defaultProps} />);
     
-    const image = screen.getByTestId('mock-image');
+    const images = screen.getAllByTestId('mock-image');
     
-    // Should have correct image attributes
-    expect(image).toHaveAttribute('src', '/wdr25/summary.png');
-    expect(image).toHaveAttribute('alt', 'Executive Summary cover featuring a person in humanitarian context');
-    expect(image).toHaveAttribute('data-fill', 'true');
-    expect(image).toHaveClass('object-cover');
+    // Should have correct image attributes (check first image)
+    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.png');
+    expect(images[0]).toHaveAttribute('alt', 'Executive Summary cover featuring a person in humanitarian context');
+    expect(images[0]).toHaveAttribute('data-fill', 'true');
+    expect(images[0]).toHaveClass('object-cover');
   });
 
   it('handles missing or malformed data gracefully', () => {
@@ -230,8 +236,8 @@ describe('ExecutiveSummarySection', () => {
       render(<ExecutiveSummarySection {...malformedProps} />);
     }).not.toThrow();
     
-    // Image should still render
-    expect(screen.getByTestId('mock-image')).toBeInTheDocument();
+    // Image should still render (there are now two images)
+    expect(screen.getAllByTestId('mock-image')[0]).toBeInTheDocument();
   });
 
   it('has proper semantic HTML structure', () => {
@@ -258,16 +264,16 @@ describe('ExecutiveSummarySection', () => {
   it('uses flexbox layout correctly for content positioning', () => {
     const { container } = render(<ExecutiveSummarySection {...defaultProps} />);
     
-    // Text container should use flex layout
-    const textContainer = container.querySelector('.flex.flex-col.h-full');
+    // Text container should use flex layout (updated classes)
+    const textContainer = container.querySelector('.flex.flex-col.space-y-6.lg\\:space-y-0.lg\\:h-full');
     expect(textContainer).toBeInTheDocument();
     
-    // Content area should have flex-1 to take available space
-    const contentArea = container.querySelector('.space-y-6.flex-1');
+    // Content area should have flex-1 to take available space (updated classes)
+    const contentArea = container.querySelector('.lg\\:flex-1.lg\\:space-y-6.space-y-6');
     expect(contentArea).toBeInTheDocument();
     
-    // Button area should have margin top
-    const buttonArea = container.querySelector('.flex.gap-4.mt-8');
+    // Button area should have margin top (updated classes)
+    const buttonArea = container.querySelector('.flex.gap-4.lg\\:mt-8');
     expect(buttonArea).toBeInTheDocument();
   });
 });
