@@ -31,7 +31,7 @@ describe('DownloadButton', () => {
     // Should have download icon
     const downloadIcon = container.querySelector('svg');
     expect(downloadIcon).toBeInTheDocument();
-    expect(downloadIcon).toHaveAttribute('viewBox', '0 0 16 16');
+    expect(downloadIcon).toHaveAttribute('viewBox', '0 0 24 24'); // lucide-react icons use 24x24 viewBox
     
     // Should have proper aria-label
     const button = screen.getByRole('button');
@@ -266,9 +266,9 @@ describe('DownloadButton', () => {
     expect(icon).toBeInTheDocument();
     expect(icon).toHaveClass('w-5', 'h-5', 'flex-shrink-0');
     
-    // Icon should be Bootstrap download icon
+    // Icon should be lucide-react Download icon
     const paths = icon.querySelectorAll('path');
-    expect(paths).toHaveLength(2); // Download icon has 2 path elements
+    expect(paths).toHaveLength(3); // lucide-react Download icon has 3 path elements
   });
 
   it('handles missing or malformed props gracefully', () => {
@@ -385,10 +385,10 @@ describe('DownloadButton', () => {
     expect(button).toHaveClass('opacity-50', 'cursor-not-allowed');
     expect(button).toBeDisabled();
     
-    // Should have loading spinner
+    // Should have loading spinner (lucide-react LoaderCircle)
     const spinner = button.querySelector('.animate-spin');
     expect(spinner).toBeInTheDocument();
-    expect(spinner).toHaveClass('rounded-full', 'h-5', 'w-5', 'border-b-2', 'border-current');
+    expect(spinner).toHaveClass('lucide', 'lucide-loader-circle', 'animate-spin');
     
     // Wait for completion
     await waitFor(() => {
