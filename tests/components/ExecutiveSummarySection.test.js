@@ -17,6 +17,48 @@ jest.mock('next/image', () => {
   };
 });
 
+// Mock next-intl navigation Link component
+jest.mock('@/i18n/navigation', () => ({
+  Link: ({ href, className, children, ...props }) => (
+    <a
+      href={href}
+      className={className}
+      data-testid="mock-link"
+      {...props}
+    >
+      {children}
+    </a>
+  ),
+}));
+
+// Mock DownloadButton component
+jest.mock('@/components/landing-page/DownloadButton', () => {
+  return function MockDownloadButton({ children, className, variant, size, filePath, fileName, ...props }) {
+    return (
+      <button
+        className={className || 'px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2'}
+        data-testid="mock-download-button"
+        data-file-path={filePath}
+        data-file-name={fileName}
+        {...props}
+      >
+        {children}
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="16" 
+          height="16" 
+          fill="currentColor" 
+          className="w-5 h-5 flex-shrink-0" 
+          viewBox="0 0 16 16"
+        >
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+        </svg>
+      </button>
+    );
+  };
+});
+
 // Sample test data matching the translation structure
 const mockReportData = {
   landingPage: {
@@ -114,13 +156,16 @@ describe('ExecutiveSummarySection', () => {
   it('has correct button styling and behavior', () => {
     render(<ExecutiveSummarySection {...defaultProps} />);
     
-    // Check read button styling
-    const readButton = screen.getByText('Read Summary');
-    expect(readButton).toHaveClass('px-6', 'py-3', 'bg-red-600', 'text-white', 'rounded-lg', 'font-medium', 'hover:bg-red-700', 'transition-colors');
+    // Check read button styling (now a Link component)
+    const readButton = screen.getByTestId('mock-link');
+    expect(readButton).toHaveClass('px-6', 'py-3', 'bg-red-600', 'text-white', 'rounded-lg', 'font-medium', 'hover:bg-red-700', 'transition-colors', 'inline-flex', 'items-center', 'gap-2', 'whitespace-nowrap');
+    expect(readButton).toHaveAttribute('href', '/reports/wdr25/chapter-02');
+    expect(readButton).toHaveTextContent('Read Summary');
     
-    // Check download button styling
-    const downloadButton = screen.getByText('Download PDF');
-    expect(downloadButton).toHaveClass('px-6', 'py-3', 'bg-blue-900', 'text-white', 'rounded-lg', 'font-medium', 'hover:bg-blue-800', 'transition-colors');
+    // Check download button styling (now using DownloadButton component)
+    const downloadButton = screen.getByTestId('mock-download-button');
+    expect(downloadButton).toHaveClass('border-2', 'border-red-600', 'text-red-600', 'hover:bg-red-600', 'hover:text-white', 'rounded-lg', 'font-medium', 'transition-colors', 'inline-flex', 'items-center', 'gap-2', 'whitespace-nowrap');
+    expect(downloadButton).toHaveTextContent('Download PDF');
     
     // Buttons should be clickable (even though no onClick handlers are defined)
     fireEvent.click(readButton);
@@ -199,11 +244,15 @@ describe('ExecutiveSummarySection', () => {
     const h3 = screen.getByRole('heading', { level: 3 });
     expect(h3).toHaveTextContent('Executive Summary Test Subtitle');
     
-    // Should have buttons with proper role
+    // Should have one button (download) and one link (read)
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(2);
-    expect(buttons[0]).toHaveTextContent('Read Summary');
-    expect(buttons[1]).toHaveTextContent('Download PDF');
+    expect(buttons).toHaveLength(1);
+    expect(buttons[0]).toHaveTextContent('Download PDF');
+    
+    const links = screen.getAllByRole('link');
+    expect(links).toHaveLength(1);
+    expect(links[0]).toHaveTextContent('Read Summary');
+    expect(links[0]).toHaveAttribute('href', '/reports/wdr25/chapter-02');
   });
 
   it('uses flexbox layout correctly for content positioning', () => {

@@ -4,40 +4,46 @@ exports[`LocaleSwitcher renders LocaleSwitcher 1`] = `
 <div>
   <select
     aria-label="Select language"
-    class="px-4 py-2 bg-cyan-200 text-cyan-900 rounded-lg text-sm font-medium hover:bg-cyan-300 transition-colors border border-cyan-300 cursor-pointer"
+    class="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap focus:outline-none"
     id="locale-switcher"
     name="locale"
     title="Select language"
   >
     <option
+      disabled=""
+      hidden=""
+      value=""
+    />
+    <option
       data-testid="locale-switcher-value-en"
+      disabled=""
       value="en"
     >
-      🇬🇧 English
+      English
     </option>
     <option
       data-testid="locale-switcher-value-fr"
       value="fr"
     >
-      🇫🇷 Français
+      Francais
     </option>
     <option
       data-testid="locale-switcher-value-zh"
       value="zh"
     >
-      🇨🇳 中文
+      Chinese
     </option>
     <option
       data-testid="locale-switcher-value-ru"
       value="ru"
     >
-      🇷🇺 Русский
+      Russian
     </option>
     <option
       data-testid="locale-switcher-value-ar"
       value="ar"
     >
-      🇸🇦 العربية
+      Arabic
     </option>
   </select>
 </div>
