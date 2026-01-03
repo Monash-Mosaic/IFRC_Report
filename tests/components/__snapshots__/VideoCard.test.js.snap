@@ -43,7 +43,7 @@ exports[`VideoCard renders VideoCard with all content 1`] = `
         Test Video Title
       </h3>
       <p
-        class="text-gray-600 text-sm leading-relaxed"
+        class="text-gray-500 text-sm leading-relaxed"
       >
         This is a test video description that explains the content of the video.
       </p>

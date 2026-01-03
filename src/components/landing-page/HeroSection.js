@@ -16,7 +16,7 @@ export default function HeroSection({ reportData, locale = 'en' }) {
           {heroSectionData.title}
         </h1>
         
-        <p className="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed">
+        <p className="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed font-bold">
           {heroSectionData.description}
         </p>
 

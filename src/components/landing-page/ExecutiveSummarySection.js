@@ -17,11 +17,11 @@ export default function ExecutiveSummarySection({ reportData, locale = 'en' }) {
             {executiveSummaryData.title}
           </h2>
           
-          <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
+          <h3 className="text-xl md:text-2xl text-gray-800">
             {executiveSummaryData.subtitle}
           </h3>
           
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-500 leading-relaxed">
             {executiveSummaryData.description}
           </p>
         </div>

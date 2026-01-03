@@ -14,7 +14,7 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
         World Disasters Report 2025 Test Title
       </h1>
       <p
-        class="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed"
+        class="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed font-bold"
       >
         This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.
       </p>

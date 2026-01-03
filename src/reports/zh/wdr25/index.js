@@ -98,31 +98,36 @@ export const landingPage = {
         id: 1,
         quote: "在COVID-19期间，信息太多了，我感到迷失，不知道该相信什么",
         name: "阿卜杜勒·M.",
-        country: "阿富汗"
+        country: "阿富汗",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
       },
       {
         id: 2,
         quote: "生活在AI时代让我害怕：哪里是真相，哪里是错误信息",
         name: "克莱尔",
-        country: "英国"
+        country: "英国",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
       },
       {
         id: 3,
         quote: "我希望有一根魔法棒来帮助我区分错误信息和真相",
         name: "奥尔加",
-        country: "俄罗斯"
+        country: "俄罗斯",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
       },
       {
         id: 4,
         quote: "社交媒体传播虚假信息的速度如此之快，以至于很难在为时太晚之前验证什么是真实的",
         name: "玛丽亚·S.",
-        country: "菲律宾"
+        country: "菲律宾",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
       },
       {
         id: 5,
         quote: "在灾难时期，错误信息可能比灾难本身更危险",
         name: "詹姆斯·K.",
-        country: "肯尼亚"
+        country: "肯尼亚",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
       }
     ]
   }

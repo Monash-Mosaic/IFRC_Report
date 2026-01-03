@@ -98,31 +98,36 @@ export const landingPage = {
         id: 1,
         quote: "خلال COVID-19، كانت هناك معلومات كثيرة لدرجة أنني شعرت بالضياع ولم أعد أعرف ما أصدق",
         name: "عبد الله م.",
-        country: "أفغانستان"
+        country: "أفغانستان",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
       },
       {
         id: 2,
         quote: "العيش في عصر الذكاء الاصطناعي يخيفني: أين الحقيقة وأين المعلومات المضللة",
         name: "كلير",
-        country: "المملكة المتحدة"
+        country: "المملكة المتحدة",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
       },
       {
         id: 3,
         quote: "أتمنى لو كان لدي عصا سحرية تساعدني على التمييز بين المعلومات المضللة والحقيقة",
         name: "أولغا",
-        country: "روسيا"
+        country: "روسيا",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
       },
       {
         id: 4,
         quote: "وسائل التواصل الاجتماعي تنشر المعلومات الخاطئة بسرعة كبيرة لدرجة أنه يصبح من الصعب التحقق من صحة المعلومات قبل فوات الأوان",
         name: "ماريا س.",
-        country: "الفلبين"
+        country: "الفلبين",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
       },
       {
         id: 5,
         quote: "في أوقات الكوارث، يمكن أن تكون المعلومات المضللة أكثر خطورة من الكارثة نفسها",
         name: "جيمس ك.",
-        country: "كينيا"
+        country: "كينيا",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
       }
     ]
   }

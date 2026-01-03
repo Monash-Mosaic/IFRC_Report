@@ -191,7 +191,7 @@ describe('VideoCard', () => {
     // Check description styling
     const description = screen.getByText('This is a test video description that explains the content of the video.');
     expect(description.tagName).toBe('P');
-    expect(description).toHaveClass('text-gray-600', 'text-sm', 'leading-relaxed');
+    expect(description).toHaveClass('text-gray-500', 'text-sm', 'leading-relaxed');
   });
 
   it('has correct layout structure', () => {

@@ -98,31 +98,36 @@ export const landingPage = {
         id: 1,
         quote: "Во время COVID-19 было так много информации, что я чувствовал себя потерянным и не знал, чему верить",
         name: "Абдул М.",
-        country: "Афганистан"
+        country: "Афганистан",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
       },
       {
         id: 2,
         quote: "Жизнь в эпоху ИИ пугает меня: где правда, а где дезинформация",
         name: "Клэр",
-        country: "Великобритания"
+        country: "Великобритания",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
       },
       {
         id: 3,
         quote: "Я бы хотел иметь волшебную палочку, которая помогла бы мне отличить дезинформацию от правды",
         name: "Ольга",
-        country: "Россия"
+        country: "Россия",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
       },
       {
         id: 4,
         quote: "Социальные сети распространяют ложную информацию так быстро, что становится трудно проверить, что реально, прежде чем станет слишком поздно",
         name: "Мария С.",
-        country: "Филиппины"
+        country: "Филиппины",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
       },
       {
         id: 5,
         quote: "Во время бедствий дезинформация может быть более опасной, чем само бедствие",
         name: "Джеймс К.",
-        country: "Кения"
+        country: "Кения",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
       }
     ]
   }

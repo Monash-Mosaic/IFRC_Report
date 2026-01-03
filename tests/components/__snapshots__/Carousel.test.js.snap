@@ -14,12 +14,10 @@ exports[`Carousel renders Carousel with all content 1`] = `
       class="relative "
     >
       <div
-        class="flex gap-6 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-        style="gap: 24px;"
+        class="flex gap-6 overflow-hidden"
       >
         <div
-          class="flex-shrink-0"
-          style="width: 288px; min-width: 288px;"
+          class="flex-shrink-0 w-[288px]"
         >
           <div
             class="test-card"
@@ -34,8 +32,7 @@ exports[`Carousel renders Carousel with all content 1`] = `
           </div>
         </div>
         <div
-          class="flex-shrink-0"
-          style="width: 288px; min-width: 288px;"
+          class="flex-shrink-0 w-[288px]"
         >
           <div
             class="test-card"
@@ -46,54 +43,6 @@ exports[`Carousel renders Carousel with all content 1`] = `
             </h3>
             <p>
               Second description
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex-shrink-0"
-          style="width: 288px; min-width: 288px;"
-        >
-          <div
-            class="test-card"
-            data-testid="card-3"
-          >
-            <h3>
-              Third Item
-            </h3>
-            <p>
-              Third description
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex-shrink-0"
-          style="width: 288px; min-width: 288px;"
-        >
-          <div
-            class="test-card"
-            data-testid="card-4"
-          >
-            <h3>
-              Fourth Item
-            </h3>
-            <p>
-              Fourth description
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex-shrink-0"
-          style="width: 288px; min-width: 288px;"
-        >
-          <div
-            class="test-card"
-            data-testid="card-5"
-          >
-            <h3>
-              Fifth Item
-            </h3>
-            <p>
-              Fifth description
             </p>
           </div>
         </div>

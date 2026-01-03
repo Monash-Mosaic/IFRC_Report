@@ -98,31 +98,36 @@ export const landingPage = {
         id: 1,
         quote: "Pendant COVID-19, il y avait tellement d'informations que je me sentais perdu et ne savais pas quoi croire",
         name: "Abdul M.",
-        country: "Afghanistan"
+        country: "Afghanistan",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
       },
       {
         id: 2,
         quote: "Vivre à l'ère de l'IA me fait peur : où est la vérité et où est la désinformation",
         name: "Clair",
-        country: "Royaume-Uni"
+        country: "Royaume-Uni",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
       },
       {
         id: 3,
         quote: "J'aimerais avoir une baguette magique qui m'aiderait à distinguer la désinformation et la vérité",
         name: "Olga",
-        country: "Russie"
+        country: "Russie",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
       },
       {
         id: 4,
         quote: "Les réseaux sociaux diffusent de fausses informations si rapidement qu'il devient difficile de vérifier ce qui est réel avant qu'il ne soit trop tard",
         name: "Maria S.",
-        country: "Philippines"
+        country: "Philippines",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
       },
       {
         id: 5,
         quote: "En temps de catastrophe, la désinformation peut être plus dangereuse que la catastrophe elle-même",
         name: "James K.",
-        country: "Kenya"
+        country: "Kenya",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
       }
     ]
   }

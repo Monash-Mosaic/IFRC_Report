@@ -68,12 +68,15 @@ describe('Carousel', () => {
     expect(screen.getByText('Test Carousel')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'Test Carousel' })).toBeInTheDocument();
     
-    // Should render all cards
-    mockItems.forEach((item) => {
-      expect(screen.getByText(item.title)).toBeInTheDocument();
-      expect(screen.getByText(item.description)).toBeInTheDocument();
-      expect(screen.getByTestId(`card-${item.id}`)).toBeInTheDocument();
-    });
+    // Should render only the items per page (2 items with 900px container)
+    // First page shows first 2 items
+    expect(screen.getByText("First Item")).toBeInTheDocument();
+    expect(screen.getByText("Second Item")).toBeInTheDocument();
+    expect(screen.getByTestId("card-1")).toBeInTheDocument();
+    expect(screen.getByTestId("card-2")).toBeInTheDocument();
+    
+    // Third item should not be visible on first page
+    expect(screen.queryByText("Third Item")).not.toBeInTheDocument();
     
     expect(container).toMatchSnapshot();
   });
@@ -87,9 +90,10 @@ describe('Carousel', () => {
     // Should not show carousel's main heading (h2)
     expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
     
-    // Should still render cards (they have h3 headings)
+    // Should render first 2 cards on first page (they have h3 headings)
     expect(screen.getByText('First Item')).toBeInTheDocument();
-    expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(5);
+    expect(screen.getByText('Second Item')).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(2);
   });
 
   it('renders with different carousel configurations', () => {
@@ -110,8 +114,8 @@ describe('Carousel', () => {
     // Should show custom title
     expect(screen.getByText('Custom Carousel Title')).toBeInTheDocument();
     
-    // Should render only 3 cards
-    expect(container.querySelectorAll('.test-card')).toHaveLength(3);
+    // Should render only the visible cards per page (with 320px cards + 32px gap = 352px per card, 900px container fits 2 cards)
+    expect(container.querySelectorAll('.test-card')).toHaveLength(2);
     
     // Should apply custom classes
     expect(container.querySelector('.custom-carousel')).toBeInTheDocument();
@@ -197,14 +201,18 @@ describe('Carousel', () => {
     
     const nextButton = screen.getByLabelText('Next page');
     
+    // Check that First Item is visible initially
+    expect(screen.getByText("First Item")).toBeInTheDocument();
+    expect(screen.queryByText("Third Item")).not.toBeInTheDocument();
+    
     act(() => {
       fireEvent.click(nextButton);
     });
     
-    // Should call scrollTo with correct position for page 1
-    expect(HTMLElement.prototype.scrollTo).toHaveBeenCalledWith({
-      left: expect.any(Number), // Position will be calculated based on itemsPerPage
-      behavior: 'smooth'
+    // Should show next page items
+    await waitFor(() => {
+      expect(screen.getByText("Third Item")).toBeInTheDocument();
+      expect(screen.queryByText("First Item")).not.toBeInTheDocument();
     });
   });
 
@@ -226,19 +234,20 @@ describe('Carousel', () => {
       fireEvent.click(nextButton);
     });
     
-    // Now previous button should be enabled
+    // Now previous button should be enabled and we should see page 2 content
     await waitFor(() => {
       expect(prevButton).toBeEnabled();
+      expect(screen.getByText("Third Item")).toBeInTheDocument();
     });
     
     act(() => {
       fireEvent.click(prevButton);
     });
     
-    // Should call scrollTo to go back to page 0
-    expect(HTMLElement.prototype.scrollTo).toHaveBeenCalledWith({
-      left: 0, // Back to first page
-      behavior: 'smooth'
+    // Should return to first page
+    await waitFor(() => {
+      expect(screen.getByText("First Item")).toBeInTheDocument();
+      expect(screen.queryByText("Third Item")).not.toBeInTheDocument();
     });
   });
 
@@ -257,13 +266,13 @@ describe('Carousel', () => {
     
     if (pageButtons.length > 1) {
       act(() => {
-        fireEvent.click(pageButtons[1]); // Click second page button
+        fireEvent.click(pageButtons[1]); // Click second page button (page 2)
       });
       
-      // Should call scrollTo with correct position for page 1
-      expect(HTMLElement.prototype.scrollTo).toHaveBeenCalledWith({
-        left: expect.any(Number),
-        behavior: 'smooth'
+      // Should show second page content
+      await waitFor(() => {
+        expect(screen.getByText("Third Item")).toBeInTheDocument();
+        expect(screen.queryByText("First Item")).not.toBeInTheDocument();
       });
     }
   });
@@ -339,17 +348,13 @@ describe('Carousel', () => {
   it('has correct card width and gap styling', () => {
     const { container } = render(<Carousel {...defaultProps} />);
     
-    // Check gap styling in scroll container
-    const scrollContainer = container.querySelector('[style*="gap"]');
-    expect(scrollContainer).toHaveStyle('gap: 24px');
+    // Check scroll container uses CSS classes for gap
+    const scrollContainer = container.querySelector('.flex.gap-6');
+    expect(scrollContainer).toBeInTheDocument();
     
-    // Check card width styling
-    const firstCard = container.querySelector('[style*="width: 288px"]');
+    // Check card width uses CSS classes (w-[288px] for default)
+    const firstCard = container.querySelector('.w-\\[288px\\]');
     expect(firstCard).toBeInTheDocument();
-    expect(firstCard).toHaveStyle({
-      'width': '288px',
-      'min-width': '288px'
-    });
   });
 
   it('has correct navigation layout structure', () => {

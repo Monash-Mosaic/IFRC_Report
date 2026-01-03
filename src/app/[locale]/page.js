@@ -45,25 +45,27 @@ export default async function Home({ params }) {
 
         {/* Featured Videos Section */}
         <Carousel
-              title={featuredVideosData.title}
-              items={featuredVideosData.videos}
-              cardComponent={VideoCard}
-              cardWidth={384} // Larger width for video cards (w-96)
-              gap={24}
-              showDots={true}
-              showArrows={true}
-            />
+          title={featuredVideosData.title}
+          items={featuredVideosData.videos}
+          cardComponent={VideoCard}
+          cardType="video"
+          cardWidth={524}
+          gap={24}
+          showDots={true}
+          showArrows={true}
+        />
 
         {/* Citations Section */}
         <Carousel
-              title={title}
-              items={testimonialsList}
-              cardComponent={TestimonialCard}
-              cardWidth={288} // Smaller width for testimonial cards (w-72)
-              gap={24}
-              showDots={true}
-              showArrows={true}
-            />
+          title={title}
+          items={testimonialsList}
+          cardComponent={TestimonialCard}
+          cardType="testimonial"
+          cardWidth={288}
+          gap={24}
+          showDots={true}
+          showArrows={true}
+        />
       </main>
 
       {/* Footer */}

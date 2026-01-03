@@ -23,8 +23,8 @@ describe('TestimonialCard', () => {
   it('renders TestimonialCard with all content', () => {
     const { container } = render(<TestimonialCard {...defaultProps} />);
     
-    // Should show quote text
-    expect(screen.getByText('This is a test testimonial quote that demonstrates the impact of humanitarian work in our community.')).toBeInTheDocument();
+    // Should show quote text with quotation marks
+    expect(screen.getByText('"This is a test testimonial quote that demonstrates the impact of humanitarian work in our community."')).toBeInTheDocument();
     
     // Should show author name
     expect(screen.getByText('John Doe')).toBeInTheDocument();
@@ -47,8 +47,8 @@ describe('TestimonialCard', () => {
     
     render(<TestimonialCard {...customProps} />);
     
-    // Should show custom content
-    expect(screen.getByText('Une citation en français qui démontre l\'importance du travail humanitaire dans notre région.')).toBeInTheDocument();
+    // Should show custom content with quotation marks
+    expect(screen.getByText('"Une citation en français qui démontre l\'importance du travail humanitaire dans notre région."')).toBeInTheDocument();
     expect(screen.getByText('Marie Dubois')).toBeInTheDocument();
     expect(screen.getByText('France')).toBeInTheDocument();
     expect(screen.getByText('MD')).toBeInTheDocument();
@@ -93,8 +93,8 @@ describe('TestimonialCard', () => {
     const card = container.querySelector('.bg-white.rounded-2xl.p-6.shadow-sm.hover\\:shadow-md.transition-shadow.h-full');
     expect(card).toBeInTheDocument();
     
-    // Check quote styling
-    const quote = screen.getByText(mockTestimonialData.quote);
+    // Check quote styling - now with quotation marks
+    const quote = screen.getByText(`"${mockTestimonialData.quote}"`);
     expect(quote.tagName).toBe('BLOCKQUOTE');
     expect(quote).toHaveClass('text-gray-800', 'leading-relaxed', 'mb-6');
     
@@ -103,26 +103,23 @@ describe('TestimonialCard', () => {
     expect(authorContainer).toBeInTheDocument();
   });
 
-  it('has correct avatar color generation', () => {
+  it('has correct avatar styling', () => {
     const { container, rerender } = render(<TestimonialCard {...defaultProps} />);
     
-    // Should have some background color for avatar
+    // Should have gray background for avatar (since no avatar image provided)
     const avatar = container.querySelector('.rounded-full.flex.items-center.justify-center.flex-shrink-0');
     expect(avatar).toBeInTheDocument();
-    expect(avatar).toHaveClass('w-10', 'h-10');
+    expect(avatar).toHaveClass('w-10', 'h-10', 'bg-gray-200');
     
-    // Avatar should have one of the predefined colors
-    const avatarClasses = avatar.className;
-    const hasValidColor = [
-      'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-purple-500',
-      'bg-yellow-500', 'bg-pink-500', 'bg-indigo-500', 'bg-gray-500'
-    ].some(color => avatarClasses.includes(color));
-    expect(hasValidColor).toBe(true);
+    // Should show initials since no avatar image provided
+    const initials = screen.getByText('JD');
+    expect(initials).toBeInTheDocument();
+    expect(initials).toHaveClass('text-gray-700', 'text-sm', 'font-medium');
     
-    // Same name should always generate same color
+    // Same props should render consistently
     rerender(<TestimonialCard {...defaultProps} />);
     const newAvatar = container.querySelector('.rounded-full.flex.items-center.justify-center.flex-shrink-0');
-    expect(newAvatar.className).toBe(avatar.className);
+    expect(newAvatar).toHaveClass('w-10', 'h-10', 'bg-gray-200');
   });
 
   it('has correct layout structure', () => {
@@ -179,8 +176,8 @@ describe('TestimonialCard', () => {
   it('has proper semantic HTML structure', () => {
     render(<TestimonialCard {...defaultProps} />);
     
-    // Should use blockquote for the testimonial
-    const blockquote = screen.getByText(mockTestimonialData.quote);
+    // Should use blockquote for the testimonial with quotes
+    const blockquote = screen.getByText(`"${mockTestimonialData.quote}"`);
     expect(blockquote.tagName).toBe('BLOCKQUOTE');
     
     // Name should be in a div with proper styling
@@ -192,7 +189,7 @@ describe('TestimonialCard', () => {
     expect(countryElement).toHaveClass('text-gray-600', 'text-sm');
   });
 
-  it('uses consistent color generation for same names', () => {
+  it('uses consistent avatar styling for same names', () => {
     const { container: container1 } = render(<TestimonialCard {...defaultProps} />);
     const avatar1 = container1.querySelector('.rounded-full');
     const avatar1Classes = avatar1.className;
@@ -202,15 +199,17 @@ describe('TestimonialCard', () => {
     const avatar2 = container2.querySelector('.rounded-full');
     const avatar2Classes = avatar2.className;
     
-    // Should have same color
+    // Should have same styling (gray background)
     expect(avatar1Classes).toBe(avatar2Classes);
+    expect(avatar1).toHaveClass('bg-gray-200');
+    expect(avatar2).toHaveClass('bg-gray-200');
   });
 
   it('displays avatar initials with correct styling', () => {
     render(<TestimonialCard {...defaultProps} />);
     
     const initials = screen.getByText('JD');
-    expect(initials).toHaveClass('text-white', 'text-sm', 'font-medium');
+    expect(initials).toHaveClass('text-gray-700', 'text-sm', 'font-medium');
     
     // Should be uppercase
     expect(initials.textContent).toBe('JD');

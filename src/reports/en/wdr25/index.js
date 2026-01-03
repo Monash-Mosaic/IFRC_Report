@@ -98,31 +98,36 @@ export const landingPage = {
         id: 1,
         quote: "During COVID-19, there was so much information that I felt lost and did not know what to believe",
         name: "Abdul M.",
-        country: "Afghanistan"
+        country: "Afghanistan",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
       },
       {
         id: 2,
         quote: "Living in the age of AI scares me: where is the truth and where is the misinformation",
         name: "Clair",
-        country: "UK"
+        country: "UK",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
       },
       {
         id: 3,
         quote: "I wish I had a magic wand that would help me to distinguish misinformation and truth",
         name: "Olga",
-        country: "Russia"
+        country: "Russia",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
       },
       {
         id: 4,
         quote: "Social media spreads false information so quickly that it becomes hard to verify what's real before it's too late",
         name: "Maria S.",
-        country: "Philippines"
+        country: "Philippines",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
       },
       {
         id: 5,
         quote: "In times of disaster, misinformation can be more dangerous than the disaster itself",
         name: "James K.",
-        country: "Kenya"
+        country: "Kenya",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
       }
     ]
   }

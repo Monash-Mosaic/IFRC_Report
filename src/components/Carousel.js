@@ -13,6 +13,7 @@ export default function Carousel({
   showArrows = true,
   className = "",
   containerClassName = "",
+  cardType = "default", // "video" or "testimonial" or "default"
   ...cardProps
 }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,6 +27,7 @@ export default function Carousel({
     const calculateItemsPerPage = () => {
       if (containerRef.current) {
         const containerWidth = containerRef.current.clientWidth;
+        // Use a base calculation with the default cardWidth for desktop
         const itemsVisible = Math.floor(containerWidth / (cardWidth + gap));
         const actualItemsPerPage = Math.max(1, itemsVisible);
         
@@ -41,19 +43,23 @@ export default function Carousel({
     return () => window.removeEventListener('resize', calculateItemsPerPage);
   }, [items.length, cardWidth, gap]);
 
+  // Get responsive width classes based on card type
+  const getCardWidthClasses = () => {
+    if (cardType === "video") {
+      return "w-80 sm:w-96 lg:w-[524px]"; // Mobile: 320px, SM: 384px, LG: 524px
+    } else if (cardType === "testimonial") {
+      return "w-72 sm:w-72"; // Mobile & up: 288px
+    }
+    return `w-[${cardWidth}px]`; // Default: use prop value
+  };
+
+  const cardWidthClasses = getCardWidthClasses();
+
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
   const goToPage = (pageIndex) => {
     if (pageIndex >= 0 && pageIndex < totalPages) {
       setCurrentPage(pageIndex);
-      
-      if (scrollContainerRef.current) {
-        const scrollPosition = pageIndex * itemsPerPage * (cardWidth + gap);
-        scrollContainerRef.current.scrollTo({
-          left: scrollPosition,
-          behavior: 'smooth',
-        });
-      }
     }
   };
 
@@ -68,6 +74,9 @@ export default function Carousel({
   const canGoPrev = currentPage > 0;
   const canGoNext = currentPage < totalPages - 1;
 
+  const startIndex = currentPage * itemsPerPage;
+  const visibleItems = items.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <section className={`space-y-8 ${className}`}>
       {title && (
@@ -78,14 +87,12 @@ export default function Carousel({
         {/* Items Container */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-          style={{ gap: `${gap}px` }}
+          className="flex gap-6 overflow-hidden"
         >
-          {items.map((item, index) => (
+          {visibleItems.map((item, index) => (
             <div
-              key={item.id || index}
-              className="flex-shrink-0"
-              style={{ width: `${cardWidth}px`, minWidth: `${cardWidth}px` }}
+              key={item.id || startIndex + index}
+              className={`flex-shrink-0 ${cardWidthClasses}`}
             >
               <CardComponent {...item} {...cardProps} />
             </div>
