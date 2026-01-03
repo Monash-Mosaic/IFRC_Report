@@ -1,6 +1,5 @@
-"use client"
+"use client";
 
-// components/landing-page/FeaturedVideosSection.js
 import Image from 'next/image';
 import { useState } from 'react';
 import { YouTubeEmbed } from '@next/third-parties/google';
@@ -12,8 +11,7 @@ function extractYouTubeVideoId(url) {
   return (match && match[7].length === 11) ? match[7] : null;
 }
 
-// Inline VideoCard component
-function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
+export default function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayClick = () => {
@@ -24,7 +22,7 @@ function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
     const youtubeVideoId = extractYouTubeVideoId(url);
 
     return (
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
+      <div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full">
         {/* YouTube Player */}
         <div className="relative aspect-video bg-gray-900">
           {youtubeVideoId ? (
@@ -66,7 +64,7 @@ function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
   }
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
       {/* Thumbnail */}
       <div className="relative aspect-video bg-gray-200">
         <Image
@@ -100,30 +98,5 @@ function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
         </p>
       </div>
     </div>
-  );
-}
-
-export default function FeaturedVideosSection({ reportData, locale = 'en' }) {
-  const featuredVideosData = reportData.landingPage.featuredVideos;
-
-  return (
-    <section className="space-y-8">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-        {featuredVideosData.title}
-      </h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredVideosData.videos.map((video) => (
-          <VideoCard
-            key={video.id}
-            title={video.title}
-            description={video.description}
-            thumbnailSrc={video.thumbnailSrc}
-            thumbnailAlt={video.thumbnailAlt}
-            url={video.url}
-          />
-        ))}
-      </div>
-    </section>
   );
 }
