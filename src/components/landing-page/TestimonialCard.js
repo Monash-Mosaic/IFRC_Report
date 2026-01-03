@@ -18,7 +18,7 @@ export default function TestimonialCard({ quote, name, country, avatar }) {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full border border-gray-200">
       {/* Quote */}
-      <blockquote className="text-gray-800 leading-relaxed mb-6">"{quote}"</blockquote>
+      <blockquote className="text-gray-800 leading-relaxed mb-6">&quot;{quote}&quot;</blockquote>
 
       {/* Author Info */}
       <div className="flex items-center space-x-3 mt-auto">
