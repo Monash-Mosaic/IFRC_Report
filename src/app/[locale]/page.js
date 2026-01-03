@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
 import { reportsByLocale } from '@/reports';
@@ -69,21 +70,7 @@ export default async function Home({ params }) {
       </main>
 
       {/* Footer */}
-      <footer className="w-full">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <div className="text-center text-sm text-gray-600">
-            <p className="mb-2">
-              {t('footer.copyright', { year })}
-            </p>
-            <div className="flex justify-center space-x-6">
-              <Link href="#privacy" className="hover:text-gray-900">{t('footer.privacyPolicy')}</Link>
-              <Link href="#terms" className="hover:text-gray-900">{t('footer.termsOfService')}</Link>
-              <Link href="#contact" className="hover:text-gray-900">{t('footer.contact')}</Link>
-            </div>
-            <p className="mt-2 text-sm">{t('footer.orgFull')}</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
