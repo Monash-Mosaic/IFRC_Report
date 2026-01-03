@@ -1,50 +1,33 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`LocaleSwitcher renders LocaleSwitcher 1`] = `
+exports[`LocaleSwitcher renders correctly and matches snapshot 1`] = `
 <div>
-  <select
-    aria-label="Select language"
-    class="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap focus:outline-none"
-    id="locale-switcher"
-    name="locale"
-    title="Select language"
+  <div
+    class="relative"
   >
-    <option
-      disabled=""
-      hidden=""
-      value=""
-    />
-    <option
-      data-testid="locale-switcher-value-en"
-      disabled=""
-      value="en"
+    <button
+      aria-label="Select language"
+      class="p-2 md:px-6 md:py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none w-10 h-10 md:w-auto md:h-auto justify-center md:justify-start"
+      title="Select language"
     >
-      English
-    </option>
-    <option
-      data-testid="locale-switcher-value-fr"
-      value="fr"
-    >
-      Francais
-    </option>
-    <option
-      data-testid="locale-switcher-value-zh"
-      value="zh"
-    >
-      Chinese
-    </option>
-    <option
-      data-testid="locale-switcher-value-ru"
-      value="ru"
-    >
-      Russian
-    </option>
-    <option
-      data-testid="locale-switcher-value-ar"
-      value="ar"
-    >
-      Arabic
-    </option>
-  </select>
+      <span
+        class="hidden md:inline"
+      >
+        Language
+      </span>
+      <div
+        class="w-5 h-5 md:hidden text-white"
+        data-testid="globe-icon"
+      >
+        Globe Icon
+      </div>
+      <div
+        class="w-2 h-2 md:w-3 md:h-3 text-white"
+        data-testid="chevron-down-icon"
+      >
+        ChevronDown Icon
+      </div>
+    </button>
+  </div>
 </div>
 `;

@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Header Rendering matches snapshot 1`] = `
+<div>
+  <header
+    class="w-full"
+  >
+    <div
+      class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between"
+    >
+      <div
+        class="flex items-center space-x-2"
+      >
+        <img
+          alt="Logo"
+          height="128"
+          src="/wdr25/ifrc_logo.png"
+          width="128"
+        />
+      </div>
+      <nav
+        class="hidden md:flex items-center transition-all duration-300 ease-in-out space-x-8"
+      >
+        <a
+          class="text-gray-700 hover:text-gray-900 text-sm font-medium"
+          href="#about"
+        >
+          About
+        </a>
+        <a
+          class="text-gray-700 hover:text-gray-900 text-sm font-medium"
+          href="#games"
+        >
+          Games
+        </a>
+        <div
+          data-testid="locale-switcher"
+        >
+          Locale Switcher
+        </div>
+        <div
+          class="flex items-center  "
+        >
+          <div
+            class="relative "
+          >
+            <input
+              class="w-auto px-4 py-2 pr-10 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out"
+              placeholder="Search"
+              type="text"
+            />
+            <div
+              class="absolute right-3 w-5 h-5 top-1/2 transform -translate-y-1/2 text-red-600"
+              data-testid="search-icon"
+            >
+              Search Icon
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div
+        class="md:hidden flex items-center transition-all duration-300 ease-in-out space-x-3"
+      >
+        <div
+          data-testid="locale-switcher"
+        >
+          Locale Switcher
+        </div>
+        <div
+          class="flex items-center  "
+        >
+          <div
+            class="relative "
+          >
+            <input
+              class="w-10 h-10 p-0 pr-0 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out"
+              placeholder=""
+              type="text"
+            />
+            <div
+              class="absolute right-3 w-4 h-4 pointer-events-none top-1/2 transform -translate-y-1/2 text-red-600"
+              data-testid="search-icon"
+            >
+              Search Icon
+            </div>
+          </div>
+        </div>
+        <button
+          aria-label="Toggle mobile menu"
+          class="p-2 text-red-700 hover:text-red-900 transition-colors"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M4 6h16M4 12h16M4 18h16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+</div>
+`;
