@@ -54,7 +54,7 @@ export default async function ReportDetailPage({ params }) {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
-        <Link href={'./'} className="flex items-center gap-2 text-black hover:text-gray-600 mb-8">
+        <Link href={'/'} className="flex items-center gap-2 text-black hover:text-gray-600 mb-8">
           <ArrowLeft className="w-5 h-5" />
           <p className="font-semibold">{t('backToDocuments')}</p>
         </Link>

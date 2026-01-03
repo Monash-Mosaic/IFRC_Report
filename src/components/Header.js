@@ -24,6 +24,10 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
+          <Link href="#about" className="text-gray-700 hover:text-gray-900 text-sm font-medium">
+            {t('nav.about')}
+          </Link>
+
           <Link href="#games" className="text-gray-700 hover:text-gray-900 text-sm font-medium">
             {t('nav.games')}
           </Link>
