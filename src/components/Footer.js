@@ -1,12 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { X, Linkedin, Youtube, Instagram, Facebook, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Footer() {
   const [openSection, setOpenSection] = useState(null);
+  const t = useTranslations('Home');
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
@@ -29,7 +31,7 @@ export default function Footer() {
                   className="md:hidden w-full flex justify-between items-center py-4 border-b border-gray-200 text-left"
                   aria-expanded={openSection === 'chapters'}
                 >
-                  <h4 className="text-lg font-semibold text-gray-900">Report Chapters</h4>
+                  <h4 className="text-lg font-semibold text-gray-900">{t('footer.chapters.title')}</h4>
                   <ChevronDown 
                     size={20} 
                     className={`text-gray-900 transform transition-transform ${openSection === 'chapters' ? 'rotate-180' : ''}`}
@@ -37,23 +39,23 @@ export default function Footer() {
                 </button>
                 
                 {/* Desktop Header */}
-                <h4 className="hidden md:block text-lg font-semibold text-gray-900 mb-6">Report Chapters</h4>
+                <h4 className="hidden md:block text-lg font-semibold text-gray-900 mb-6">{t('footer.chapters.title')}</h4>
                 
                 {/* Content */}
                 <ul className={`space-y-4 md:block ${openSection === 'chapters' ? 'block mt-4' : 'hidden'}`}>
                   <li>
                     <Link href="#chapter1" className="text-gray-600 hover:text-gray-900 transition-colors">
-                      Chapter 1
+                      {t('footer.chapters.chapter1')}
                     </Link>
                   </li>
                   <li>
                     <Link href="#chapter2" className="text-gray-600 hover:text-gray-900 transition-colors">
-                      Chapter 2
+                      {t('footer.chapters.chapter2')}
                     </Link>
                   </li>
                   <li>
                     <Link href="#chapter3" className="text-gray-600 hover:text-gray-900 transition-colors">
-                      Chapter 3
+                      {t('footer.chapters.chapter3')}
                     </Link>
                   </li>
                 </ul>
@@ -67,7 +69,7 @@ export default function Footer() {
                   className="md:hidden w-full flex justify-between items-center py-4 border-b border-gray-200 text-left"
                   aria-expanded={openSection === 'games'}
                 >
-                  <h4 className="text-lg font-semibold text-gray-900">Disinformation Games</h4>
+                  <h4 className="text-lg font-semibold text-gray-900">{t('footer.games.title')}</h4>
                   <ChevronDown 
                     size={20} 
                     className={`text-gray-900 transform transition-transform ${openSection === 'games' ? 'rotate-180' : ''}`}
@@ -75,18 +77,18 @@ export default function Footer() {
                 </button>
                 
                 {/* Desktop Header */}
-                <h4 className="hidden md:block text-lg font-semibold text-gray-900 mb-6">Disinformation Games</h4>
+                <h4 className="hidden md:block text-lg font-semibold text-gray-900 mb-6">{t('footer.games.title')}</h4>
                 
                 {/* Content */}
                 <ul className={`space-y-4 md:block ${openSection === 'games' ? 'block mt-4' : 'hidden'}`}>
                   <li>
                     <Link href="#disinformer" className="text-gray-600 hover:text-gray-900 transition-colors">
-                      Disinformer
+                      {t('footer.games.disinformer')}
                     </Link>
                   </li>
                   <li>
                     <Link href="#ctrl-alt-prebunk" className="text-gray-600 hover:text-gray-900 transition-colors">
-                      Ctrl+Alt+Prebunk
+                      {t('footer.games.ctrlAltPrebunk')}
                     </Link>
                   </li>
                 </ul>
@@ -100,7 +102,7 @@ export default function Footer() {
                   className="md:hidden w-full flex justify-between items-center py-4 border-b border-gray-200 text-left"
                   aria-expanded={openSection === 'contributors'}
                 >
-                  <h4 className="text-lg font-semibold text-gray-900">Contributors</h4>
+                  <h4 className="text-lg font-semibold text-gray-900">{t('footer.contributors.title')}</h4>
                   <ChevronDown 
                     size={20} 
                     className={`text-gray-900 transform transition-transform ${openSection === 'contributors' ? 'rotate-180' : ''}`}
@@ -108,18 +110,18 @@ export default function Footer() {
                 </button>
                 
                 {/* Desktop Header */}
-                <h4 className="hidden md:block text-lg font-semibold text-gray-900 mb-6">Contributors</h4>
+                <h4 className="hidden md:block text-lg font-semibold text-gray-900 mb-6">{t('footer.contributors.title')}</h4>
                 
                 {/* Content */}
                 <ul className={`space-y-4 md:block ${openSection === 'contributors' ? 'block mt-4' : 'hidden'}`}>
                   <li>
                     <Link href="#contributors-page-1" className="text-gray-600 hover:text-gray-900 transition-colors">
-                      Page
+                      {t('footer.contributors.page1')}
                     </Link>
                   </li>
                   <li>
                     <Link href="#contributors-page-2" className="text-gray-600 hover:text-gray-900 transition-colors">
-                      Page
+                      {t('footer.contributors.page2')}
                     </Link>
                   </li>
                 </ul>
@@ -133,7 +135,7 @@ export default function Footer() {
             <div className="space-y-6">
               {/* IFRC Section */}
               <div className="flex flex-col items-center lg:items-start">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">World Disasters Report</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{t('footer.worldDisastersReport')}</h3>
                 <div className="flex items-center space-x-3 mb-4">
                   <Image 
                     src="/wdr25/ifrc_logo.png" 
@@ -162,28 +164,28 @@ export default function Footer() {
                 <Link 
                   href="#facebook" 
                   className="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                  aria-label="Facebook"
+                  aria-label={t('footer.social.facebook')}
                 >
                   <Facebook size={20} />
                 </Link>
                 <Link 
                   href="#linkedin" 
                   className="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                  aria-label="LinkedIn"
+                  aria-label={t('footer.social.linkedin')}
                 >
                   <Linkedin size={20} />
                 </Link>
                 <Link 
                   href="#youtube" 
                   className="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                  aria-label="YouTube"
+                  aria-label={t('footer.social.youtube')}
                 >
                   <Youtube size={20} />
                 </Link>
                 <Link 
                   href="#instagram" 
                   className="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                  aria-label="Instagram"
+                  aria-label={t('footer.social.instagram')}
                 >
                   <Instagram size={20} />
                 </Link>

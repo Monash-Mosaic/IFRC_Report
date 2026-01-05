@@ -40,6 +40,30 @@
       }
     },
     "footer": {
+      "worldDisastersReport": "تقرير الكوارث العالمي",
+      "chapters": {
+        "title": "فصول التقرير",
+        "chapter1": "الفصل الأول",
+        "chapter2": "الفصل الثاني", 
+        "chapter3": "الفصل الثالث"
+      },
+      "games": {
+        "title": "ألعاب المعلومات المضللة",
+        "disinformer": "Disinformer",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
+      },
+      "contributors": {
+        "title": "المساهمون",
+        "page1": "صفحة",
+        "page2": "صفحة"
+      },
+      "social": {
+        "facebook": "فيسبوك",
+        "linkedin": "لينكد إن", 
+        "youtube": "يوتيوب",
+        "instagram": "إنستغرام",
+        "x": "إكس (تويتر)"
+      },
       "copyright": "© {year} الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر. جميع الحقوق محفوظة.",
       "orgFull": "الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر",
       "privacyPolicy": "سياسة الخصوصية",

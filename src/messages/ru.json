@@ -40,6 +40,30 @@
       }
     },
     "footer": {
+      "worldDisastersReport": "Всемирный доклад о бедствиях",
+      "chapters": {
+        "title": "Главы доклада",
+        "chapter1": "Глава 1",
+        "chapter2": "Глава 2", 
+        "chapter3": "Глава 3"
+      },
+      "games": {
+        "title": "Игры о дезинформации",
+        "disinformer": "Disinformer",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
+      },
+      "contributors": {
+        "title": "Участники",
+        "page1": "Страница",
+        "page2": "Страница"
+      },
+      "social": {
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn", 
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "x": "X (Twitter)"
+      },
       "copyright": "© {year} Международная федерация обществ Красного Креста и Красного Полумесяца. Все права защищены.",
       "orgFull": "Международная федерация обществ Красного Креста и Красного Полумесяца",
       "privacyPolicy": "Политика конфиденциальности",

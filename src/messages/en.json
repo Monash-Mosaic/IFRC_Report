@@ -40,6 +40,30 @@
       }
     },
     "footer": {
+      "worldDisastersReport": "World Disasters Report",
+      "chapters": {
+        "title": "Report Chapters",
+        "chapter1": "Chapter 1",
+        "chapter2": "Chapter 2", 
+        "chapter3": "Chapter 3"
+      },
+      "games": {
+        "title": "Disinformation Games",
+        "disinformer": "Disinformer",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
+      },
+      "contributors": {
+        "title": "Contributors",
+        "page1": "Page",
+        "page2": "Page"
+      },
+      "social": {
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn", 
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "x": "X (Twitter)"
+      },
       "copyright": "© {year} International Federation of Red Cross and Red Crescent Societies. All rights reserved.",
       "orgFull": "International Federation of Red Cross and Red Crescent Societies",
       "privacyPolicy": "Privacy Policy",
