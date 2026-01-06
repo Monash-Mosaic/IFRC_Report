@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { YouTubeEmbed } from '@next/third-parties/google';
+import { useTranslations } from 'next-intl';
 
 // Helper function to extract YouTube video ID from URL
 function extractYouTubeVideoId(url) {
@@ -13,6 +14,7 @@ function extractYouTubeVideoId(url) {
 
 export default function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const t = useTranslations('Home.videoCard');
 
   const handlePlayClick = () => {
     setIsPlaying(true);
@@ -56,7 +58,7 @@ export default function VideoCard({ title, description, thumbnailSrc, thumbnailA
             onClick={() => setIsPlaying(false)}
             className="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
           >
-            Back to thumbnail
+            {t('backToThumbnail')}
           </button>
         </div>
       </div>

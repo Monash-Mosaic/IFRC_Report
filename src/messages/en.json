@@ -69,6 +69,35 @@
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service", 
       "contact": "Contact"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "World Disasters Report",
+        "description": "The World Disasters Report is the flagship publication of the International Federation of the Red Cross and Red Crescent Societies (IFRC), designed to drive policy change, shape thinking and strengthen practice across the humanitarian sector. This edition focuses on harmful information in humanitarian contexts.",
+        "buttonTexts": {
+          "read": "Read report",
+          "download": "Download report",
+          "share": "Share"
+        }
+      },
+      "executiveSummary": {
+        "title": "Executive Summary",
+        "subtitle": "At Crisis Point: Countering Harmful Information, Defending Humanity",
+        "description": "At Crisis Point: Countering Harmful Information, Defending Humanity",
+        "buttonTexts": {
+          "read": "Read",
+          "download": "Download"
+        }
+      },
+      "featuredVideos": {
+        "title": "Featured Videos from Around the World"
+      },
+      "testimonials": {
+        "title": "Citations & Lived Experiences"
+      }
+    },
+    "videoCard": {
+      "backToThumbnail": "Back to thumbnail"
     }
   },
   "ReportListingPage": {
@@ -145,6 +174,9 @@
       "videos": "Video player for enhanced accessibility"
     },
     "closeMediaPanel": "Close media panel",
-    "duration": "Duration"
+    "duration": "Duration",
+    "videoCard": {
+      "backToThumbnail": "Back to thumbnail"
+    }
   }
 }

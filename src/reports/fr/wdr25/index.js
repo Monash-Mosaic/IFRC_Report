@@ -16,6 +16,63 @@ export const reportFile = {
   size: 19_389_263,
 };
 
+export const testimonialsList = [
+  {
+    "id": 1,
+    "quote": "Pendant la COVID-19, il y avait tellement d'informations que je me sentais perdu et ne savais pas quoi croire",
+    "name": "Abdul M.",
+    "country": "Afghanistan",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
+  },
+  {
+    "id": 2,
+    "quote": "Vivre à l'ère de l'IA me fait peur : où est la vérité et où est la désinformation",
+    "name": "Claire",
+    "country": "Royaume-Uni",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
+  },
+  {
+    "id": 3,
+    "quote": "J'aimerais avoir une baguette magique qui m'aiderait à distinguer la désinformation de la vérité",
+    "name": "Marie",
+    "country": "France",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
+  },
+  {
+    "id": 4,
+    "quote": "Les réseaux sociaux propagent les fausses informations si rapidement qu'il devient difficile de vérifier ce qui est réel avant qu'il ne soit trop tard",
+    "name": "Maria S.",
+    "country": "Philippines",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
+  },
+  {
+    "id": 5,
+    "quote": "En temps de catastrophe, la désinformation peut être plus dangereuse que la catastrophe elle-même",
+    "name": "James K.",
+    "country": "Kenya",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
+  }
+];
+
+export const featuredVideos = [
+  {
+    "id": 1,
+    "title": "Sous-titre",
+    "description": "Texte de corps pour tout ce que vous aimeriez ajouter au sous-titre.",
+    "thumbnailSrc": "/wdr25/thumbnail1.png",
+    "thumbnailAlt": "Miniature vidéo en vedette",
+    "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+  },
+  {
+    "id": 2,
+    "title": "Sous-titre",
+    "description": "Texte de corps pour tout ce que vous aimeriez développer sur le point principal.",
+    "thumbnailSrc": "/wdr25/thumbnail2.png",
+    "thumbnailAlt": "Miniature vidéo en vedette",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  }
+];
+
 export const chapters = {
   'chapitre-02': {
     component: Chapter02.default,
@@ -46,89 +103,4 @@ export const chapters = {
       }
     ],
   },
-};
-
-export const landingPage = {
-  heroSection: {
-    title: 'Rapport mondial sur les catastrophes',
-    description: 'Le Rapport mondial sur les catastrophes est la publication phare de la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (IFRC), conçue pour impulser le changement politique, façonner la réflexion et renforcer la pratique dans le secteur humanitaire. Cette édition se concentre sur les informations nuisibles dans les contextes humanitaires.',
-    buttonTexts: {
-      read: 'Lire le rapport',
-      download: 'Télécharger le rapport',
-      share: 'Partager'
-    }
-  },
-  
-  executiveSummary: {
-    title: 'Résumé exécutif',
-    subtitle: 'Au point de crise : Lutter contre les informations nuisibles, défendre l\'humanité',
-    description: 'Au point de crise : Lutter contre les informations nuisibles, défendre l\'humanité',
-    buttonTexts: {
-      read: 'Lire',
-      download: 'Télécharger'
-    }
-  },
-
-  featuredVideos: {
-    title: 'Vidéos en vedette du monde entier',
-    videos: [
-      {
-        id: 1,
-        title: "Sous-titre",
-        description: "Texte corporel pour tout ce que vous aimeriez ajouter au sous-titre.",
-        thumbnailSrc: "/wdr25/thumbnail1.png",
-        thumbnailAlt: "Miniature vidéo en vedette",
-        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
-      },
-      {
-        id: 2,
-        title: "Sous-titre",
-        description: "Texte corporel pour tout ce que vous aimeriez développer sur le point principal.",
-        thumbnailSrc: "/wdr25/thumbnail2.png",
-        thumbnailAlt: "Miniature vidéo en vedette",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      }
-    ]
-  },
-
-  testimonials: {
-    title: "Citations et Expériences Vécues",
-    testimonialsList: [
-      {
-        id: 1,
-        quote: "Pendant COVID-19, il y avait tellement d'informations que je me sentais perdu et ne savais pas quoi croire",
-        name: "Abdul M.",
-        country: "Afghanistan",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
-      },
-      {
-        id: 2,
-        quote: "Vivre à l'ère de l'IA me fait peur : où est la vérité et où est la désinformation",
-        name: "Clair",
-        country: "Royaume-Uni",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
-      },
-      {
-        id: 3,
-        quote: "J'aimerais avoir une baguette magique qui m'aiderait à distinguer la désinformation et la vérité",
-        name: "Olga",
-        country: "Russie",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
-      },
-      {
-        id: 4,
-        quote: "Les réseaux sociaux diffusent de fausses informations si rapidement qu'il devient difficile de vérifier ce qui est réel avant qu'il ne soit trop tard",
-        name: "Maria S.",
-        country: "Philippines",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
-      },
-      {
-        id: 5,
-        quote: "En temps de catastrophe, la désinformation peut être plus dangereuse que la catastrophe elle-même",
-        name: "James K.",
-        country: "Kenya",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
-      }
-    ]
-  }
 };

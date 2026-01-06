@@ -69,6 +69,35 @@
       "privacyPolicy": "隐私政策",
       "termsOfService": "服务条款",
       "contact": "联系我们"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "世界灾难报告",
+        "description": "《世界灾难报告》是国际红十字与红新月联合会(IFRC)的旗舰出版物，旨在推动政策变革、塑造思维并加强人道主义部门的实践。本期聚焦于人道主义背景下的有害信息。",
+        "buttonTexts": {
+          "read": "阅读报告",
+          "download": "下载报告",
+          "share": "分享"
+        }
+      },
+      "executiveSummary": {
+        "title": "执行摘要",
+        "subtitle": "关键时刻：对抗有害信息，保护人性",
+        "description": "关键时刻：对抗有害信息，保护人性",
+        "buttonTexts": {
+          "read": "阅读",
+          "download": "下载"
+        }
+      },
+      "featuredVideos": {
+        "title": "全球精选视频"
+      },
+      "testimonials": {
+        "title": "引言与生活经验"
+      }
+    },
+    "videoCard": {
+      "backToThumbnail": "返回缩略图"
     }
   },
   "ReportListingPage": {
@@ -145,6 +174,9 @@
       "videos": "视频播放器以增强可访问性"
     },
     "closeMediaPanel": "关闭媒体面板",
-    "duration": "时长"
+    "duration": "时长",
+    "videoCard": {
+      "backToThumbnail": "返回缩略图"
+    }
   }
 }

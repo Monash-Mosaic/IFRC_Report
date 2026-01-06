@@ -1,11 +1,14 @@
+"use client";
+
 // components/landing-page/ExecutiveSummarySection.js
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import DownloadButton from './DownloadButton';
 import { Eye } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-export default function ExecutiveSummarySection({ reportData, locale = 'en' }) {
-  const executiveSummaryData = reportData.landingPage.executiveSummary;
+export default function ExecutiveSummarySection({ locale = 'en' }) {
+  const t = useTranslations('Home.landingPage.executiveSummary');
 
   return (
     <section>
@@ -19,7 +22,7 @@ export default function ExecutiveSummarySection({ reportData, locale = 'en' }) {
           <div className="lg:flex-1 lg:space-y-6 space-y-6">
             {/* Title */}
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              {executiveSummaryData.title}
+              {t('title')}
             </h2>
             
             {/* Image - Mobile: After title | Desktop: Hidden (appears in right column) */}
@@ -34,12 +37,12 @@ export default function ExecutiveSummarySection({ reportData, locale = 'en' }) {
             
             {/* Subtitle */}
             <h3 className="text-xl md:text-2xl font-semibold md:font-normal text-gray-800">
-              {executiveSummaryData.subtitle}
+              {t('subtitle')}
             </h3>
             
             {/* Description */}
             <p className="text-gray-500 leading-relaxed">
-              {executiveSummaryData.description}
+              {t('description')}
             </p>
           </div>
 
@@ -49,7 +52,7 @@ export default function ExecutiveSummarySection({ reportData, locale = 'en' }) {
               href="/reports/wdr25/chapter-02" 
               className="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap"
             >
-              {executiveSummaryData.buttonTexts.read}
+              {t('buttonTexts.read')}
               <Eye className="w-5 h-5 flex-shrink-0" />
             </Link>
             <DownloadButton 
@@ -58,7 +61,7 @@ export default function ExecutiveSummarySection({ reportData, locale = 'en' }) {
               variant="outline"
               size="md"
             >
-              {executiveSummaryData.buttonTexts.download}
+              {t('buttonTexts.download')}
             </DownloadButton>
           </div>
         </div>

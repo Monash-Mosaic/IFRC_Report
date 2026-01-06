@@ -1,6 +1,20 @@
 import HeroSection from '@/components/landing-page/HeroSection';
 import { render, screen, fireEvent } from '@testing-library/react';
 
+// Mock next-intl hooks used by the component
+jest.mock('next-intl', () => ({
+  useTranslations: (namespace) => (key) => {
+    const translations = {
+      'Home.landingPage.heroSection.title': 'World Disasters Report 2025 Test Title',
+      'Home.landingPage.heroSection.description': 'This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.',
+      'Home.landingPage.heroSection.buttonTexts.read': 'Read Report',
+      'Home.landingPage.heroSection.buttonTexts.download': 'Download PDF',
+      'Home.landingPage.heroSection.buttonTexts.share': 'Share Report'
+    };
+    return translations[`${namespace}.${key}`] || key;
+  },
+}));
+
 // Mock Next.js Image component
 jest.mock('next/image', () => {
   return function MockImage({ src, alt, fill, className, priority, ...props }) {
@@ -60,23 +74,7 @@ jest.mock('@/components/landing-page/DownloadButton', () => {
   };
 });
 
-// Sample test data matching the translation structure
-const mockReportData = {
-  landingPage: {
-    heroSection: {
-      title: 'World Disasters Report 2025 Test Title',
-      description: 'This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.',
-      buttonTexts: {
-        read: 'Read Report',
-        download: 'Download PDF',
-        share: 'Share Report'
-      }
-    }
-  }
-};
-
 const defaultProps = {
-  reportData: mockReportData,
   locale: 'en'
 };
 
