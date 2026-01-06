@@ -11,6 +11,24 @@ jest.mock('next-intl', () => ({
       'Home.landingPage.heroSection.buttonTexts.download': 'Download PDF',
       'Home.landingPage.heroSection.buttonTexts.share': 'Share Report'
     };
+    
+    // Check if we're testing with French locale (for custom content test)
+    if (key === 'title' && mockHeroSection?.customContent?.title) {
+      return mockHeroSection.customContent.title;
+    }
+    if (key === 'description' && mockHeroSection?.customContent?.description) {
+      return mockHeroSection.customContent.description;
+    }
+    if (key === 'buttonTexts.read' && mockHeroSection?.customContent?.buttonTexts?.read) {
+      return mockHeroSection.customContent.buttonTexts.read;
+    }
+    if (key === 'buttonTexts.download' && mockHeroSection?.customContent?.buttonTexts?.download) {
+      return mockHeroSection.customContent.buttonTexts.download;
+    }
+    if (key === 'buttonTexts.share' && mockHeroSection?.customContent?.buttonTexts?.share) {
+      return mockHeroSection.customContent.buttonTexts.share;
+    }
+    
     return translations[`${namespace}.${key}`] || key;
   },
 }));
@@ -78,8 +96,12 @@ const defaultProps = {
   locale: 'en'
 };
 
+// Global variable to control custom content in tests
+let mockHeroSection = null;
+
 describe('HeroSection', () => {
   beforeEach(() => {
+    mockHeroSection = null;
     // Reset any mocks before each test
     jest.clearAllMocks();
   });
@@ -122,22 +144,20 @@ describe('HeroSection', () => {
   });
 
   it('renders with custom report data', () => {
-    const customReportData = {
-      landingPage: {
-        heroSection: {
-          title: 'Custom Hero Title for Testing Purposes',
-          description: 'Custom hero description with different content and longer text to test the component rendering capabilities.',
-          buttonTexts: {
-            read: 'Lire le Rapport',
-            download: 'Télécharger PDF',
-            share: 'Partager Rapport'
-          }
+    // Set up custom mock content
+    mockHeroSection = {
+      customContent: {
+        title: 'Custom Hero Title for Testing Purposes',
+        description: 'Custom hero description with different content and longer text to test the component rendering capabilities.',
+        buttonTexts: {
+          read: 'Lire le Rapport',
+          download: 'Télécharger PDF',
+          share: 'Partager Rapport'
         }
       }
     };
 
     const customProps = {
-      reportData: customReportData,
       locale: 'fr'
     };
     

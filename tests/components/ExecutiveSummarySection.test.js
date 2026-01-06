@@ -1,6 +1,38 @@
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
 import { render, screen, fireEvent } from '@testing-library/react';
 
+// Mock next-intl hooks used by the component
+jest.mock('next-intl', () => ({
+  useTranslations: (namespace) => (key) => {
+    const translations = {
+      'Home.landingPage.executiveSummary.title': 'Executive Summary',
+      'Home.landingPage.executiveSummary.subtitle': 'Key Findings from the Report',
+      'Home.landingPage.executiveSummary.description': 'This comprehensive analysis presents the most critical findings from our research on global disaster response and humanitarian aid effectiveness.',
+      'Home.landingPage.executiveSummary.buttonTexts.read': 'Read Full Report',
+      'Home.landingPage.executiveSummary.buttonTexts.download': 'Download PDF'
+    };
+    
+    // Check if we're testing with custom content
+    if (key === 'title' && mockExecutiveSummary?.customContent?.title) {
+      return mockExecutiveSummary.customContent.title;
+    }
+    if (key === 'subtitle' && mockExecutiveSummary?.customContent?.subtitle) {
+      return mockExecutiveSummary.customContent.subtitle;
+    }
+    if (key === 'description' && mockExecutiveSummary?.customContent?.description) {
+      return mockExecutiveSummary.customContent.description;
+    }
+    if (key === 'buttonTexts.read' && mockExecutiveSummary?.customContent?.buttonTexts?.read) {
+      return mockExecutiveSummary.customContent.buttonTexts.read;
+    }
+    if (key === 'buttonTexts.download' && mockExecutiveSummary?.customContent?.buttonTexts?.download) {
+      return mockExecutiveSummary.customContent.buttonTexts.download;
+    }
+    
+    return translations[`${namespace}.${key}`] || key;
+  },
+}));
+
 // Mock Next.js Image component
 jest.mock('next/image', () => {
   return function MockImage({ src, alt, fill, className, ...props }) {
@@ -75,30 +107,33 @@ const mockReportData = {
 };
 
 const defaultProps = {
-  reportData: mockReportData,
   locale: 'en'
 };
+
+// Global variable to control custom content in tests
+let mockExecutiveSummary = null;
 
 describe('ExecutiveSummarySection', () => {
   beforeEach(() => {
     // Reset any mocks before each test
     jest.clearAllMocks();
+    mockExecutiveSummary = null;
   });
 
   it('renders ExecutiveSummarySection with all content', () => {
     const { container } = render(<ExecutiveSummarySection {...defaultProps} />);
     
     // Should show title
-    expect(screen.getByText('Executive Summary Test Title')).toBeInTheDocument();
+    expect(screen.getByText('Executive Summary')).toBeInTheDocument();
     
     // Should show subtitle
-    expect(screen.getByText('Executive Summary Test Subtitle')).toBeInTheDocument();
+    expect(screen.getByText('Key Findings from the Report')).toBeInTheDocument();
     
     // Should show description
-    expect(screen.getByText('This is a test description for the executive summary section that provides detailed information about the content.')).toBeInTheDocument();
+    expect(screen.getByText('This comprehensive analysis presents the most critical findings from our research on global disaster response and humanitarian aid effectiveness.')).toBeInTheDocument();
     
     // Should show both buttons
-    expect(screen.getByText('Read Summary')).toBeInTheDocument();
+    expect(screen.getByText('Read Full Report')).toBeInTheDocument();
     expect(screen.getByText('Download PDF')).toBeInTheDocument();
     
     // Should show images (now there are two for responsive design)
@@ -118,28 +153,26 @@ describe('ExecutiveSummarySection', () => {
     
     render(<ExecutiveSummarySection {...frenchProps} />);
     
-    // Should still render content (locale is passed but doesn't affect rendering directly)
-    expect(screen.getByText('Executive Summary Test Title')).toBeInTheDocument();
-    expect(screen.getByText('Executive Summary Test Subtitle')).toBeInTheDocument();
+    // Should still render content (locale is passed but doesn't affect rendering directly in this test)
+    expect(screen.getByText('Executive Summary')).toBeInTheDocument();
+    expect(screen.getByText('Key Findings from the Report')).toBeInTheDocument();
   });
 
   it('renders with custom report data', () => {
-    const customReportData = {
-      landingPage: {
-        executiveSummary: {
-          title: 'Custom Title for Testing',
-          subtitle: 'Custom Subtitle with Different Content',
-          description: 'Custom description that is much longer and contains different information about the executive summary.',
-          buttonTexts: {
-            read: 'Lire le Résumé',
-            download: 'Télécharger PDF'
-          }
+    // Set up custom mock content
+    mockExecutiveSummary = {
+      customContent: {
+        title: 'Custom Title for Testing',
+        subtitle: 'Custom Subtitle with Different Content',
+        description: 'Custom description that is much longer and contains different information about the executive summary.',
+        buttonTexts: {
+          read: 'Lire le Résumé',
+          download: 'Télécharger PDF'
         }
       }
     };
 
     const customProps = {
-      reportData: customReportData,
       locale: 'fr'
     };
     
@@ -160,7 +193,7 @@ describe('ExecutiveSummarySection', () => {
     const readButton = screen.getByTestId('mock-link');
     expect(readButton).toHaveClass('px-6', 'py-3', 'bg-red-600', 'text-white', 'rounded-lg', 'font-medium', 'hover:bg-red-700', 'transition-colors', 'inline-flex', 'items-center', 'gap-2', 'whitespace-nowrap');
     expect(readButton).toHaveAttribute('href', '/reports/wdr25/chapter-02');
-    expect(readButton).toHaveTextContent('Read Summary');
+    expect(readButton).toHaveTextContent('Read Full Report');
     
     // Check download button styling (now using DownloadButton component)
     const downloadButton = screen.getByTestId('mock-download-button');
@@ -245,10 +278,10 @@ describe('ExecutiveSummarySection', () => {
     
     // Should use proper heading hierarchy
     const h2 = screen.getByRole('heading', { level: 2 });
-    expect(h2).toHaveTextContent('Executive Summary Test Title');
+    expect(h2).toHaveTextContent('Executive Summary');
     
     const h3 = screen.getByRole('heading', { level: 3 });
-    expect(h3).toHaveTextContent('Executive Summary Test Subtitle');
+    expect(h3).toHaveTextContent('Key Findings from the Report');
     
     // Should have one button (download) and one link (read)
     const buttons = screen.getAllByRole('button');
@@ -257,7 +290,7 @@ describe('ExecutiveSummarySection', () => {
     
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(1);
-    expect(links[0]).toHaveTextContent('Read Summary');
+    expect(links[0]).toHaveTextContent('Read Full Report');
     expect(links[0]).toHaveAttribute('href', '/reports/wdr25/chapter-02');
   });
 
