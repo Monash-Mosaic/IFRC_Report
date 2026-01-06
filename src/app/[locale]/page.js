@@ -1,8 +1,5 @@
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
@@ -27,17 +24,15 @@ export async function generateStaticParams() {
 export default async function Home({ params }) {
   const { locale } = await params;
   const t = await getTranslations('Home', locale);
-  const year = new Date().getFullYear();
-  
+
   // Get the report data for the current locale
   const reportModule = reportsByLocale[locale]?.reports?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-  
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <Header />
 
       <main className="max-w-6xl mx-auto px-4 space-y-16 py-8">
         <HeroSection locale={locale} />

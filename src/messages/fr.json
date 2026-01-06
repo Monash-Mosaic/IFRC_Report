@@ -8,43 +8,17 @@
       "logoAlt": "Logo de l'IFRC",
       "brand": "IFRC | académie solferino",
       "about": "À propos",
-      "games": "Jeux",
       "bookmarks": "Signets",
       "download": "Télécharger",
-      "search": "Recherche"
-    },
-    "hero": {
-      "globeAlt": "Globe de l'IFRC",
-      "title": "Système de rapports de l'IFRC",
-      "description": "Plateforme complète de gestion de documents et de rapports pour la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Accédez, analysez et collaborez sur des rapports et des publications humanitaires."
-    },
-    "cta": {
-      "browseDocuments": "Parcourir les documents",
-      "documentsIconAlt": "Icône des documents"
-    },
-    "features": {
-      "document": {
-        "title": "Gestion des documents",
-        "description": "Organisez et catégorisez les rapports avec des fonctionnalités avancées de filtrage et de recherche.",
-        "iconAlt": "Icône de document"
-      },
-      "global": {
-        "title": "Accès mondial",
-        "description": "Accédez aux rapports et publications humanitaires depuis n'importe où dans le monde.",
-        "iconAlt": "Icône du globe"
-      },
-      "analytics": {
-        "title": "Analyses avancées",
-        "description": "Analysez les tendances et les enseignements tirés de données humanitaires exhaustives.",
-        "iconAlt": "Icône d'analyse"
-      }
+      "search": "Recherche",
+      "contributors": "Contributeurs"
     },
     "footer": {
       "worldDisastersReport": "Rapport mondial sur les catastrophes",
       "chapters": {
         "title": "Chapitres du rapport",
         "chapter1": "Chapitre 1",
-        "chapter2": "Chapitre 2", 
+        "chapter2": "Chapitre 2",
         "chapter3": "Chapitre 3"
       },
       "games": {
@@ -52,14 +26,9 @@
         "disinformer": "Disinformer",
         "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
       },
-      "contributors": {
-        "title": "Contributeurs",
-        "page1": "Page",
-        "page2": "Page"
-      },
       "social": {
         "facebook": "Facebook",
-        "linkedin": "LinkedIn", 
+        "linkedin": "LinkedIn",
         "youtube": "YouTube",
         "instagram": "Instagram",
         "x": "X (Twitter)"
@@ -72,13 +41,14 @@
     },
     "landingPage": {
       "heroSection": {
-        "title": "Rapport mondial sur les catastrophes",
+        "title": "Rapport mondial sur les catastrophes 2025",
         "description": "Le Rapport mondial sur les catastrophes est la publication phare de la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (FICR), conçue pour impulser le changement des politiques, façonner la réflexion et renforcer la pratique dans le secteur humanitaire. Cette édition se concentre sur les informations nuisibles dans les contextes humanitaires.",
         "buttonTexts": {
           "read": "Lire le rapport",
           "download": "Télécharger le rapport",
           "share": "Partager"
-        }
+        },
+        "heroAlt": "Image principale du Rapport sur les catastrophes dans le monde montrant des travailleurs humanitaires en action"
       },
       "executiveSummary": {
         "title": "Résumé exécutif",
@@ -87,7 +57,8 @@
         "buttonTexts": {
           "read": "Lire",
           "download": "Télécharger"
-        }
+        },
+        "summaryAlt": "Couverture du Résumé exécutif mettant en scène une personne dans un contexte humanitaire"
       },
       "featuredVideos": {
         "title": "Vidéos en vedette du monde entier",
@@ -115,7 +86,8 @@
       }
     },
     "videoCard": {
-      "backToThumbnail": "Retour à la miniature"
+      "backToThumbnail": "Retour à la miniature",
+      "videoAriaLabel": "Lire la vidéo"
     }
   },
   "ReportListingPage": {

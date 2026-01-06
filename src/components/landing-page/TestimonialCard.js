@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 
 export default function TestimonialCard({ quote, name, country, avatar }) {
   const [imageError, setImageError] = useState(false);
-  
+
   const initials = name
     .split(' ')
     .map((n) => n[0])
@@ -25,10 +25,10 @@ export default function TestimonialCard({ quote, name, country, avatar }) {
         {/* Avatar */}
         <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
           {!imageError && avatar ? (
-            <img 
-              src={avatar} 
-              alt={`${name}'s avatar`} 
-              className="w-full h-full rounded-full object-cover" 
+            <Image
+              src={avatar}
+              alt={`${name}'s avatar`}
+              className="w-full h-full rounded-full object-cover"
               onError={handleImageError}
             />
           ) : (

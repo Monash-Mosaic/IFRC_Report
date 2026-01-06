@@ -1,16 +1,12 @@
-"use client";
+'use client';
 
 import Image from 'next/image';
 import { useState } from 'react';
 import { YouTubeEmbed } from '@next/third-parties/google';
+import { extractYouTubeVideoId } from '@/utils/video_util';
 import { useTranslations } from 'next-intl';
 
 // Helper function to extract YouTube video ID from URL
-function extractYouTubeVideoId(url) {
-  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[7].length === 11) ? match[7] : null;
-}
 
 export default function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -28,10 +24,7 @@ export default function VideoCard({ title, description, thumbnailSrc, thumbnailA
         {/* YouTube Player */}
         <div className="relative aspect-video bg-gray-900">
           {youtubeVideoId ? (
-            <YouTubeEmbed 
-              videoid={youtubeVideoId} 
-              params="autoplay=1&rel=0"
-            />
+            <YouTubeEmbed videoid={youtubeVideoId} params="autoplay=1&rel=0" />
           ) : (
             // Fallback to native HTML video for non-YouTube URLs
             <video
@@ -45,16 +38,12 @@ export default function VideoCard({ title, description, thumbnailSrc, thumbnailA
             </video>
           )}
         </div>
-        
+
         {/* Content */}
         <div className="p-6 space-y-3">
-          <h3 className="text-lg font-semibold text-gray-900">
-            {title}
-          </h3>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            {description}
-          </p>
-          <button 
+          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+          <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+          <button
             onClick={() => setIsPlaying(false)}
             className="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
           >
@@ -69,35 +58,26 @@ export default function VideoCard({ title, description, thumbnailSrc, thumbnailA
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
       {/* Thumbnail */}
       <div className="relative aspect-video bg-gray-200">
-        <Image
-          src={thumbnailSrc}
-          alt={thumbnailAlt}
-          fill
-          className="object-cover"
-        />
-        
+        <Image src={thumbnailSrc} alt={thumbnailAlt} fill className="object-cover" />
+
         {/* Play button overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <button 
+          <button
             onClick={handlePlayClick}
             className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="Play video"
+            aria-label={t('videoAriaLabel')}
           >
             <svg className="w-6 h-6 text-gray-800 ml-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
+              <path d="M8 5v14l11-7z" />
             </svg>
           </button>
         </div>
       </div>
-      
+
       {/* Content */}
       <div className="p-6 space-y-3">
-        <h3 className="text-lg font-semibold text-gray-900">
-          {title}
-        </h3>
-        <p className="text-gray-500 text-sm leading-relaxed">
-          {description}
-        </p>
+        <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
+        <p className="text-gray-500 text-lg leading-relaxed">{description}</p>
       </div>
     </div>
   );

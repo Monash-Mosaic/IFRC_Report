@@ -8,43 +8,17 @@
       "logoAlt": "IFRC Logo",
       "brand": "IFRC | solferino academy",
       "about": "About",
-      "games": "Games", 
       "bookmarks": "Bookmarks",
       "download": "Download",
-      "search": "Search"
-    },
-    "hero": {
-      "globeAlt": "IFRC Globe",
-      "title": "IFRC Report System",
-      "description": "Comprehensive document management and reporting platform for the International Federation of Red Cross and Red Crescent Societies. Access, analyze, and collaborate on humanitarian reports and publications."
-    },
-    "cta": {
-      "browseDocuments": "Browse Documents",
-      "documentsIconAlt": "Documents icon"
-    },
-    "features": {
-      "document": {
-        "title": "Document Management",
-        "description": "Organize and categorize reports with advanced filtering and search capabilities.",
-        "iconAlt": "Document icon"
-      },
-      "global": {
-        "title": "Global Access",
-        "description": "Access humanitarian reports and publications from anywhere in the world.",
-        "iconAlt": "Global icon"
-      },
-      "analytics": {
-        "title": "Advanced Analytics",
-        "description": "Analyze trends and insights from comprehensive humanitarian data.",
-        "iconAlt": "Analytics icon"
-      }
+      "search": "Search",
+      "contributors": "Contributors"
     },
     "footer": {
       "worldDisastersReport": "World Disasters Report",
       "chapters": {
         "title": "Report Chapters",
         "chapter1": "Chapter 1",
-        "chapter2": "Chapter 2", 
+        "chapter2": "Chapter 2",
         "chapter3": "Chapter 3"
       },
       "games": {
@@ -52,14 +26,9 @@
         "disinformer": "Disinformer",
         "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
       },
-      "contributors": {
-        "title": "Contributors",
-        "page1": "Page",
-        "page2": "Page"
-      },
       "social": {
         "facebook": "Facebook",
-        "linkedin": "LinkedIn", 
+        "linkedin": "LinkedIn",
         "youtube": "YouTube",
         "instagram": "Instagram",
         "x": "X (Twitter)"
@@ -67,18 +36,19 @@
       "copyright": "© {year} International Federation of Red Cross and Red Crescent Societies. All rights reserved.",
       "orgFull": "International Federation of Red Cross and Red Crescent Societies",
       "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Terms of Service", 
+      "termsOfService": "Terms of Service",
       "contact": "Contact"
     },
     "landingPage": {
       "heroSection": {
-        "title": "World Disasters Report",
+        "title": "World Disasters Report 2025",
         "description": "The World Disasters Report is the flagship publication of the International Federation of the Red Cross and Red Crescent Societies (IFRC), designed to drive policy change, shape thinking and strengthen practice across the humanitarian sector. This edition focuses on harmful information in humanitarian contexts.",
         "buttonTexts": {
           "read": "Read report",
           "download": "Download report",
           "share": "Share"
-        }
+        },
+        "heroAlt": "World Disasters Report hero image showing humanitarian workers in action"
       },
       "executiveSummary": {
         "title": "Executive Summary",
@@ -87,7 +57,8 @@
         "buttonTexts": {
           "read": "Read",
           "download": "Download"
-        }
+        },
+        "summaryAlt": "Executive Summary cover featuring a person in humanitarian context"
       },
       "featuredVideos": {
         "title": "Featured Videos from Around the World"
@@ -97,7 +68,8 @@
       }
     },
     "videoCard": {
-      "backToThumbnail": "Back to thumbnail"
+      "backToThumbnail": "Back to thumbnail",
+      "videoAriaLabel": "Play video"
     }
   },
   "ReportListingPage": {
@@ -156,7 +128,7 @@
       "videos": "Videos"
     },
     "chapterNotes": "Chapter Notes",
-    "myNotes": "My Notes", 
+    "myNotes": "My Notes",
     "bookmarks": "Bookmarks",
     "audio": "Audio",
     "videos": "Videos",

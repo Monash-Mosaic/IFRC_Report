@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Globe, ChevronDown } from 'lucide-react';
 
@@ -9,7 +9,6 @@ export default function LocaleSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale();
   const router = useRouter();
-  const pathname = usePathname();
   const t = useTranslations('LocaleSwitcher');
 
   const languages = [
@@ -17,7 +16,7 @@ export default function LocaleSwitcher() {
     { code: 'fr', name: 'Français' },
     { code: 'zh', name: 'Chinese' },
     { code: 'ru', name: 'Russian' },
-    { code: 'ar', name: 'Arabic' }
+    { code: 'ar', name: 'Arabic' },
   ];
 
   /**
@@ -27,7 +26,7 @@ export default function LocaleSwitcher() {
    */
   const switchLocale = (newLocale) => {
     if (newLocale !== locale) {
-      router.replace(pathname, { locale: newLocale });
+      router.replace('/', { locale: newLocale });
       router.refresh();
     }
     setIsOpen(false);
@@ -54,8 +53,8 @@ export default function LocaleSwitcher() {
               onClick={() => switchLocale(lang.code)}
               disabled={locale === lang.code}
               className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${
-                locale === lang.code 
-                  ? 'text-gray-400 cursor-not-allowed' 
+                locale === lang.code
+                  ? 'text-gray-400 cursor-not-allowed'
                   : 'text-gray-700 hover:text-gray-900'
               }`}
             >

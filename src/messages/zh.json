@@ -8,43 +8,17 @@
       "logoAlt": "国际红十字与红新月联合会标志",
       "brand": "国际红十字会 | 索尔费里诺学院",
       "about": "关于",
-      "games": "游戏",
       "bookmarks": "书签",
       "download": "下载",
-      "search": "搜索"
-    },
-    "hero": {
-      "globeAlt": "国际红十字地球仪",
-      "title": "国际红十字报告系统",
-      "description": "国际红十字与红新月联合会的综合文档管理和报告平台。访问、分析和协作人道主义报告和出版物。"
-    },
-    "cta": {
-      "browseDocuments": "浏览文档",
-      "documentsIconAlt": "文档图标"
-    },
-    "features": {
-      "document": {
-        "title": "文档管理",
-        "description": "使用高级过滤和搜索功能组织和分类报告。",
-        "iconAlt": "文档图标"
-      },
-      "global": {
-        "title": "全球访问",
-        "description": "从世界任何地方访问人道主义报告和出版物。",
-        "iconAlt": "全球图标"
-      },
-      "analytics": {
-        "title": "高级分析",
-        "description": "分析全面的人道主义数据中的趋势和洞察。",
-        "iconAlt": "分析图标"
-      }
+      "search": "搜索",
+      "contributors": "贡献者"
     },
     "footer": {
       "worldDisastersReport": "世界灾害报告",
       "chapters": {
         "title": "报告章节",
         "chapter1": "第一章",
-        "chapter2": "第二章", 
+        "chapter2": "第二章",
         "chapter3": "第三章"
       },
       "games": {
@@ -52,14 +26,9 @@
         "disinformer": "Disinformer",
         "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
       },
-      "contributors": {
-        "title": "贡献者",
-        "page1": "页面",
-        "page2": "页面"
-      },
       "social": {
         "facebook": "Facebook",
-        "linkedin": "LinkedIn", 
+        "linkedin": "LinkedIn",
         "youtube": "YouTube",
         "instagram": "Instagram",
         "x": "X (Twitter)"
@@ -72,13 +41,14 @@
     },
     "landingPage": {
       "heroSection": {
-        "title": "世界灾难报告",
+        "title": "世界灾难报告 2025",
         "description": "《世界灾难报告》是国际红十字与红新月联合会(IFRC)的旗舰出版物，旨在推动政策变革、塑造思维并加强人道主义部门的实践。本期聚焦于人道主义背景下的有害信息。",
         "buttonTexts": {
           "read": "阅读报告",
           "download": "下载报告",
           "share": "分享"
-        }
+        },
+        "heroAlt": "《世界灾难报告》主题图片，展示人道主义工作者正在行动"
       },
       "executiveSummary": {
         "title": "执行摘要",
@@ -87,7 +57,8 @@
         "buttonTexts": {
           "read": "阅读",
           "download": "下载"
-        }
+        },
+        "summaryAlt": "报告摘要封面，呈现人道主义背景下的个人"
       },
       "featuredVideos": {
         "title": "全球精选视频"
@@ -97,7 +68,8 @@
       }
     },
     "videoCard": {
-      "backToThumbnail": "返回缩略图"
+      "backToThumbnail": "返回缩略图",
+      "videoAriaLabel": "播放视频"
     }
   },
   "ReportListingPage": {
