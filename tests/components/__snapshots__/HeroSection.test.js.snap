@@ -11,7 +11,22 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
       <h1
         class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight text-right md:text-left"
       >
-        World Disasters Report 2025 Test Title
+        <span
+          class="md:hidden"
+          style="white-space: pre-line;"
+        >
+          World
+Disasters
+Report
+2025
+Test
+Title
+        </span>
+        <span
+          class="hidden md:inline"
+        >
+          World Disasters Report 2025 Test Title
+        </span>
       </h1>
       <p
         class="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed font-bold"

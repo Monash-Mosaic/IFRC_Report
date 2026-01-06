@@ -109,8 +109,8 @@ describe('HeroSection', () => {
   it('renders HeroSection with all content', () => {
     const { container } = render(<HeroSection {...defaultProps} />);
     
-    // Should show title
-    expect(screen.getByText('World Disasters Report 2025 Test Title')).toBeInTheDocument();
+    // Should show title (appears twice now - mobile and desktop versions)
+    expect(screen.getAllByText('World Disasters Report 2025 Test Title')).toHaveLength(2);
     
     // Should show description
     expect(screen.getByText('This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.')).toBeInTheDocument();
@@ -139,7 +139,7 @@ describe('HeroSection', () => {
     render(<HeroSection {...frenchProps} />);
     
     // Should still render content (locale is passed but doesn't affect rendering directly)
-    expect(screen.getByText('World Disasters Report 2025 Test Title')).toBeInTheDocument();
+    expect(screen.getAllByText('World Disasters Report 2025 Test Title')).toHaveLength(2);
     expect(screen.getByText('This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.')).toBeInTheDocument();
   });
 
@@ -163,8 +163,8 @@ describe('HeroSection', () => {
     
     render(<HeroSection {...customProps} />);
     
-    // Should show custom content
-    expect(screen.getByText('Custom Hero Title for Testing Purposes')).toBeInTheDocument();
+    // Should show custom content (appears twice now - mobile and desktop versions)
+    expect(screen.getAllByText('Custom Hero Title for Testing Purposes')).toHaveLength(2);
     expect(screen.getByText('Custom hero description with different content and longer text to test the component rendering capabilities.')).toBeInTheDocument();
     expect(screen.getByText('Lire le Rapport')).toBeInTheDocument();
     expect(screen.getAllByText('Télécharger PDF')).toHaveLength(2); // Two instances for mobile/desktop

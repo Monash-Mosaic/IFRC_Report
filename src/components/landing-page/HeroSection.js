@@ -16,7 +16,12 @@ export default function HeroSection({ locale = 'en' }) {
       {/* Text Content */}
       <div className="text-left space-y-6">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight text-right md:text-left">
-          {t('title')}
+          <span className="md:hidden" style={{ whiteSpace: 'pre-line' }}>
+            {t('title').split(' ').join('\n')}
+          </span>
+          <span className="hidden md:inline">
+            {t('title')}
+          </span>
         </h1>
         
         <p className="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed font-bold">
