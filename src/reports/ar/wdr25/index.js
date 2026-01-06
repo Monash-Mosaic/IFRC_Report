@@ -16,6 +16,63 @@ export const reportFile = {
   size: 19_389_263,
 };
 
+export const testimonialsList = [
+  {
+    "id": 1,
+    "quote": "خلال كوفيد-19، كانت هناك معلومات كثيرة جداً لدرجة أنني شعرت بالضياع ولم أعرف ماذا أصدق",
+    "name": "عبد الرحمن م.",
+    "country": "أفغانستان",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
+  },
+  {
+    "id": 2,
+    "quote": "العيش في عصر الذكاء الاصطناعي يخيفني: أين الحقيقة وأين المعلومات المضللة",
+    "name": "كلير",
+    "country": "المملكة المتحدة",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
+  },
+  {
+    "id": 3,
+    "quote": "أتمنى لو كان لدي عصا سحرية تساعدني على التمييز بين المعلومات المضللة والحقيقة",
+    "name": "فاطمة",
+    "country": "مصر",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
+  },
+  {
+    "id": 4,
+    "quote": "وسائل التواصل الاجتماعي تنشر المعلومات الخاطئة بسرعة كبيرة لدرجة أنه يصبح من الصعب التحقق مما هو حقيقي قبل فوات الأوان",
+    "name": "ماريا س.",
+    "country": "الفلبين",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
+  },
+  {
+    "id": 5,
+    "quote": "في أوقات الكوارث، يمكن أن تكون المعلومات المضللة أكثر خطورة من الكارثة نفسها",
+    "name": "جيمس ك.",
+    "country": "كينيا",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
+  }
+];
+
+export const featuredVideos = [
+  {
+    "id": 1,
+    "title": "عنوان فرعي",
+    "description": "نص أساسي لكل ما تريد إضافته إلى العنوان الفرعي.",
+    "thumbnailSrc": "/wdr25/thumbnail1.png",
+    "thumbnailAlt": "صورة مصغرة للفيديو المميز",
+    "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+  },
+  {
+    "id": 2,
+    "title": "عنوان فرعي",
+    "description": "نص أساسي لكل ما تريد توسيعه في النقطة الرئيسية.",
+    "thumbnailSrc": "/wdr25/thumbnail2.png",
+    "thumbnailAlt": "صورة مصغرة للفيديو المميز",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  }
+];
+
 export const chapters = {
   'الفصل-02': {
     component: Chapter02.default,
@@ -47,89 +104,3 @@ export const chapters = {
     ],
   },
 };
-
-export const landingPage = {
-  heroSection: {
-    title: 'تقرير الكوارث العالمي',
-    description: 'تقرير الكوارث العالمي هو المنشور الرائد للاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر، المصمم لدفع التغيير السياسي وتشكيل التفكير وتعزيز الممارسة في القطاع الإنساني. تركز هذه الطبعة على المعلومات الضارة في السياقات الإنسانية.',
-    buttonTexts: {
-      read: 'قراءة التقرير',
-      download: 'تحميل التقرير',
-      share: 'مشاركة'
-    }
-  },
-  
-  executiveSummary: {
-    title: 'الملخص التنفيذي',
-    subtitle: 'في نقطة الأزمة: مواجهة المعلومات الضارة، الدفاع عن الإنسانية',
-    description: 'في نقطة الأزمة: مواجهة المعلومات الضارة، الدفاع عن الإنسانية',
-    buttonTexts: {
-      read: 'قراءة',
-      download: 'تحميل'
-    }
-  },
-
-  featuredVideos: {
-    title: 'مقاطع فيديو مميزة من جميع أنحاء العالم',
-    videos: [
-      {
-        id: 1,
-        title: "عنوان فرعي",
-        description: "نص الجسم لأي شيء تريد إضافته إلى العنوان الفرعي.",
-        thumbnailSrc: "/wdr25/thumbnail1.png",
-        thumbnailAlt: "صورة مصغرة لفيديو مميز",
-        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
-      },
-      {
-        id: 2,
-        title: "عنوان فرعي",
-        description: "نص الجسم لأي شيء تريد توسيعه في النقطة الرئيسية.",
-        thumbnailSrc: "/wdr25/thumbnail2.png",
-        thumbnailAlt: "صورة مصغرة لفيديو مميز",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      }
-    ]
-  },
-
-  testimonials: {
-    title: "الاقتباسات والتجارب المعيشة",
-    testimonialsList: [
-      {
-        id: 1,
-        quote: "خلال COVID-19، كانت هناك معلومات كثيرة لدرجة أنني شعرت بالضياع ولم أعد أعرف ما أصدق",
-        name: "عبد الله م.",
-        country: "أفغانستان",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
-      },
-      {
-        id: 2,
-        quote: "العيش في عصر الذكاء الاصطناعي يخيفني: أين الحقيقة وأين المعلومات المضللة",
-        name: "كلير",
-        country: "المملكة المتحدة",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
-      },
-      {
-        id: 3,
-        quote: "أتمنى لو كان لدي عصا سحرية تساعدني على التمييز بين المعلومات المضللة والحقيقة",
-        name: "أولغا",
-        country: "روسيا",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
-      },
-      {
-        id: 4,
-        quote: "وسائل التواصل الاجتماعي تنشر المعلومات الخاطئة بسرعة كبيرة لدرجة أنه يصبح من الصعب التحقق من صحة المعلومات قبل فوات الأوان",
-        name: "ماريا س.",
-        country: "الفلبين",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
-      },
-      {
-        id: 5,
-        quote: "في أوقات الكوارث، يمكن أن تكون المعلومات المضللة أكثر خطورة من الكارثة نفسها",
-        name: "جيمس ك.",
-        country: "كينيا",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
-      }
-    ]
-  }
-};
-

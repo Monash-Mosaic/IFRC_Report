@@ -1,6 +1,16 @@
 import VideoCard from '@/components/landing-page/VideoCard';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
+// Mock next-intl hooks used by the component
+jest.mock('next-intl', () => ({
+  useTranslations: (namespace) => (key) => {
+    const translations = {
+      'Home.videoCard.backToThumbnail': 'Back to thumbnail'
+    };
+    return translations[`${namespace}.${key}`] || key;
+  },
+}));
+
 // Mock Next.js Image component
 jest.mock('next/image', () => {
   return function MockImage({ src, alt, fill, className, ...props }) {

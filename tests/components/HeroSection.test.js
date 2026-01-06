@@ -1,6 +1,38 @@
 import HeroSection from '@/components/landing-page/HeroSection';
 import { render, screen, fireEvent } from '@testing-library/react';
 
+// Mock next-intl hooks used by the component
+jest.mock('next-intl', () => ({
+  useTranslations: (namespace) => (key) => {
+    const translations = {
+      'Home.landingPage.heroSection.title': 'World Disasters Report 2025 Test Title',
+      'Home.landingPage.heroSection.description': 'This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.',
+      'Home.landingPage.heroSection.buttonTexts.read': 'Read Report',
+      'Home.landingPage.heroSection.buttonTexts.download': 'Download PDF',
+      'Home.landingPage.heroSection.buttonTexts.share': 'Share Report'
+    };
+    
+    // Check if we're testing with French locale (for custom content test)
+    if (key === 'title' && mockHeroSection?.customContent?.title) {
+      return mockHeroSection.customContent.title;
+    }
+    if (key === 'description' && mockHeroSection?.customContent?.description) {
+      return mockHeroSection.customContent.description;
+    }
+    if (key === 'buttonTexts.read' && mockHeroSection?.customContent?.buttonTexts?.read) {
+      return mockHeroSection.customContent.buttonTexts.read;
+    }
+    if (key === 'buttonTexts.download' && mockHeroSection?.customContent?.buttonTexts?.download) {
+      return mockHeroSection.customContent.buttonTexts.download;
+    }
+    if (key === 'buttonTexts.share' && mockHeroSection?.customContent?.buttonTexts?.share) {
+      return mockHeroSection.customContent.buttonTexts.share;
+    }
+    
+    return translations[`${namespace}.${key}`] || key;
+  },
+}));
+
 // Mock Next.js Image component
 jest.mock('next/image', () => {
   return function MockImage({ src, alt, fill, className, priority, ...props }) {
@@ -60,28 +92,16 @@ jest.mock('@/components/landing-page/DownloadButton', () => {
   };
 });
 
-// Sample test data matching the translation structure
-const mockReportData = {
-  landingPage: {
-    heroSection: {
-      title: 'World Disasters Report 2025 Test Title',
-      description: 'This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.',
-      buttonTexts: {
-        read: 'Read Report',
-        download: 'Download PDF',
-        share: 'Share Report'
-      }
-    }
-  }
-};
-
 const defaultProps = {
-  reportData: mockReportData,
   locale: 'en'
 };
 
+// Global variable to control custom content in tests
+let mockHeroSection = null;
+
 describe('HeroSection', () => {
   beforeEach(() => {
+    mockHeroSection = null;
     // Reset any mocks before each test
     jest.clearAllMocks();
   });
@@ -89,8 +109,8 @@ describe('HeroSection', () => {
   it('renders HeroSection with all content', () => {
     const { container } = render(<HeroSection {...defaultProps} />);
     
-    // Should show title
-    expect(screen.getByText('World Disasters Report 2025 Test Title')).toBeInTheDocument();
+    // Should show title (appears twice now - mobile and desktop versions)
+    expect(screen.getAllByText('World Disasters Report 2025 Test Title')).toHaveLength(2);
     
     // Should show description
     expect(screen.getByText('This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.')).toBeInTheDocument();
@@ -119,34 +139,32 @@ describe('HeroSection', () => {
     render(<HeroSection {...frenchProps} />);
     
     // Should still render content (locale is passed but doesn't affect rendering directly)
-    expect(screen.getByText('World Disasters Report 2025 Test Title')).toBeInTheDocument();
+    expect(screen.getAllByText('World Disasters Report 2025 Test Title')).toHaveLength(2);
     expect(screen.getByText('This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.')).toBeInTheDocument();
   });
 
   it('renders with custom report data', () => {
-    const customReportData = {
-      landingPage: {
-        heroSection: {
-          title: 'Custom Hero Title for Testing Purposes',
-          description: 'Custom hero description with different content and longer text to test the component rendering capabilities.',
-          buttonTexts: {
-            read: 'Lire le Rapport',
-            download: 'Télécharger PDF',
-            share: 'Partager Rapport'
-          }
+    // Set up custom mock content
+    mockHeroSection = {
+      customContent: {
+        title: 'Custom Hero Title for Testing Purposes',
+        description: 'Custom hero description with different content and longer text to test the component rendering capabilities.',
+        buttonTexts: {
+          read: 'Lire le Rapport',
+          download: 'Télécharger PDF',
+          share: 'Partager Rapport'
         }
       }
     };
 
     const customProps = {
-      reportData: customReportData,
       locale: 'fr'
     };
     
     render(<HeroSection {...customProps} />);
     
-    // Should show custom content
-    expect(screen.getByText('Custom Hero Title for Testing Purposes')).toBeInTheDocument();
+    // Should show custom content (appears twice now - mobile and desktop versions)
+    expect(screen.getAllByText('Custom Hero Title for Testing Purposes')).toHaveLength(2);
     expect(screen.getByText('Custom hero description with different content and longer text to test the component rendering capabilities.')).toBeInTheDocument();
     expect(screen.getByText('Lire le Rapport')).toBeInTheDocument();
     expect(screen.getAllByText('Télécharger PDF')).toHaveLength(2); // Two instances for mobile/desktop

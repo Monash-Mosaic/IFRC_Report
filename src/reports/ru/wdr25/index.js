@@ -16,6 +16,63 @@ export const reportFile = {
   size: 19_389_263,
 };
 
+export const testimonialsList = [
+  {
+    "id": 1,
+    "quote": "Во время COVID-19 было так много информации, что я чувствовал себя потерянным и не знал, чему верить",
+    "name": "Абдул М.",
+    "country": "Афганистан",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
+  },
+  {
+    "id": 2,
+    "quote": "Жизнь в эпоху ИИ пугает меня: где правда, а где дезинформация",
+    "name": "Клэр",
+    "country": "Великобритания",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
+  },
+  {
+    "id": 3,
+    "quote": "Хотелось бы иметь волшебную палочку, которая помогла бы мне отличить дезинформацию от правды",
+    "name": "Ольга",
+    "country": "Россия",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
+  },
+  {
+    "id": 4,
+    "quote": "Социальные сети распространяют ложную информацию так быстро, что становится трудно проверить, что правда, прежде чем станет слишком поздно",
+    "name": "Мария С.",
+    "country": "Филиппины",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
+  },
+  {
+    "id": 5,
+    "quote": "Во время катастроф дезинформация может быть опаснее самой катастрофы",
+    "name": "Джеймс К.",
+    "country": "Кения",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
+  }
+];
+
+export const featuredVideos = [
+  {
+    "id": 1,
+    "title": "Подзаголовок",
+    "description": "Основной текст для всего, что вы хотели бы добавить к подзаголовку.",
+    "thumbnailSrc": "/wdr25/thumbnail1.png",
+    "thumbnailAlt": "Миниатюра избранного видео",
+    "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+  },
+  {
+    "id": 2,
+    "title": "Подзаголовок",
+    "description": "Основной текст для всего, что вы хотели бы расширить в основном пункте.",
+    "thumbnailSrc": "/wdr25/thumbnail2.png",
+    "thumbnailAlt": "Миниатюра избранного видео",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  }
+];
+
 export const chapters = {
   'глава-02': {
     component: Chapter02.default,
@@ -48,87 +105,3 @@ export const chapters = {
   },
 };
 
-export const landingPage = {
-  heroSection: {
-    title: 'Всемирный отчет о катастрофах',
-    description: 'Всемирный отчет о катастрофах является флагманской публикацией Международной федерации обществ Красного Креста и Красного Полумесяца, предназначенной для стимулирования политических изменений, формирования мышления и укрепления практики в гуманитарном секторе. Это издание сосредоточено на вредной информации в гуманитарных контекстах.',
-    buttonTexts: {
-      read: 'Читать отчет',
-      download: 'Скачать отчет',
-      share: 'Поделиться'
-    }
-  },
-  
-  executiveSummary: {
-    title: 'Исполнительное резюме',
-    subtitle: 'В критической точке: Противодействие вредной информации, защита человечества',
-    description: 'В критической точке: Противодействие вредной информации, защита человечества',
-    buttonTexts: {
-      read: 'Читать',
-      download: 'Скачать'
-    }
-  },
-
-  featuredVideos: {
-    title: 'Избранные видео со всего мира',
-    videos: [
-      {
-        id: 1,
-        title: "Подзаголовок",
-        description: "Основной текст для всего, что вы хотели бы добавить к подзаголовку.",
-        thumbnailSrc: "/wdr25/thumbnail1.png",
-        thumbnailAlt: "Миниатюра избранного видео",
-        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
-      },
-      {
-        id: 2,
-        title: "Подзаголовок",
-        description: "Основной текст для всего, что вы хотели бы расширить по основной теме.",
-        thumbnailSrc: "/wdr25/thumbnail2.png",
-        thumbnailAlt: "Миниатюра избранного видео",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      }
-    ]
-  },
-
-  testimonials: {
-    title: "Цитаты и Жизненный Опыт",
-    testimonialsList: [
-      {
-        id: 1,
-        quote: "Во время COVID-19 было так много информации, что я чувствовал себя потерянным и не знал, чему верить",
-        name: "Абдул М.",
-        country: "Афганистан",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
-      },
-      {
-        id: 2,
-        quote: "Жизнь в эпоху ИИ пугает меня: где правда, а где дезинформация",
-        name: "Клэр",
-        country: "Великобритания",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
-      },
-      {
-        id: 3,
-        quote: "Я бы хотел иметь волшебную палочку, которая помогла бы мне отличить дезинформацию от правды",
-        name: "Ольга",
-        country: "Россия",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
-      },
-      {
-        id: 4,
-        quote: "Социальные сети распространяют ложную информацию так быстро, что становится трудно проверить, что реально, прежде чем станет слишком поздно",
-        name: "Мария С.",
-        country: "Филиппины",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
-      },
-      {
-        id: 5,
-        quote: "Во время бедствий дезинформация может быть более опасной, чем само бедствие",
-        name: "Джеймс К.",
-        country: "Кения",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
-      }
-    ]
-  }
-};

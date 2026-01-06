@@ -16,6 +16,63 @@ export const reportFile = {
   size: 19_389_263,
 };
 
+export const testimonialsList = [
+  {
+    "id": 1,
+    "quote": "在COVID-19期间，信息太多了，我感到迷茫，不知道该相信什么",
+    "name": "阿卜杜勒 M.",
+    "country": "阿富汗",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
+  },
+  {
+    "id": 2,
+    "quote": "在AI时代生活让我害怕：哪里是真相，哪里是错误信息",
+    "name": "克莱尔",
+    "country": "英国",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
+  },
+  {
+    "id": 3,
+    "quote": "我希望有一根魔法棒能帮助我区分错误信息和真相",
+    "name": "王丽",
+    "country": "中国",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Wang&backgroundColor=ffdfbf&clothesColor=929598"
+  },
+  {
+    "id": 4,
+    "quote": "社交媒体传播虚假信息如此之快，以至于在为时已晚之前很难验证什么是真的",
+    "name": "玛丽亚 S.",
+    "country": "菲律宾",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
+  },
+  {
+    "id": 5,
+    "quote": "在灾难期间，错误信息可能比灾难本身更危险",
+    "name": "詹姆斯 K.",
+    "country": "肯尼亚",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
+  }
+];
+
+export const featuredVideos = [
+  {
+    "id": 1,
+    "title": "副标题",
+    "description": "您想要添加到副标题中的所有内容的正文。",
+    "thumbnailSrc": "/wdr25/thumbnail1.png",
+    "thumbnailAlt": "精选视频缩略图",
+    "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+  },
+  {
+    "id": 2,
+    "title": "副标题",
+    "description": "您想要在要点中详细说明的所有内容的正文。",
+    "thumbnailSrc": "/wdr25/thumbnail2.png",
+    "thumbnailAlt": "精选视频缩略图",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  }
+];
+
 export const chapters = {
   '章节-02': {
     component: Chapter02.default,
@@ -46,89 +103,4 @@ export const chapters = {
       }
     ],
   },
-};
-
-export const landingPage = {
-  heroSection: {
-    title: '世界灾难报告',
-    description: '世界灾难报告是国际红十字与红新月联合会的旗舰出版物，旨在推动政策变化、塑造思维并加强人道主义部门的实践。本版重点关注人道主义背景下的有害信息。',
-    buttonTexts: {
-      read: '阅读报告',
-      download: '下载报告',
-      share: '分享'
-    }
-  },
-  
-  executiveSummary: {
-    title: '执行摘要',
-    subtitle: '危机时刻：对抗有害信息，捍卫人性',
-    description: '危机时刻：对抗有害信息，捍卫人性',
-    buttonTexts: {
-      read: '阅读',
-      download: '下载'
-    }
-  },
-
-  featuredVideos: {
-    title: '来自世界各地的精选视频',
-    videos: [
-      {
-        id: 1,
-        title: "副标题",
-        description: "您想添加到副标题的正文文本。",
-        thumbnailSrc: "/wdr25/thumbnail1.png",
-        thumbnailAlt: "精选视频缩略图",
-        url: "https://www.youtube.com/watch?v=o8NiE3XMPrM"
-      },
-      {
-        id: 2,
-        title: "副标题",
-        description: "您想要扩展主要观点的正文文本。",
-        thumbnailSrc: "/wdr25/thumbnail2.png",
-        thumbnailAlt: "精选视频缩略图",
-        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      }
-    ]
-  },
-
-  testimonials: {
-    title: "引文和生活经验",
-    testimonialsList: [
-      {
-        id: 1,
-        quote: "在COVID-19期间，信息太多了，我感到迷失，不知道该相信什么",
-        name: "阿卜杜勒·M.",
-        country: "阿富汗",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Abdul&backgroundColor=b6e3f4&clothesColor=262e33"
-      },
-      {
-        id: 2,
-        quote: "生活在AI时代让我害怕：哪里是真相，哪里是错误信息",
-        name: "克莱尔",
-        country: "英国",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Clair&backgroundColor=ffd93d&clothesColor=3c4f5c"
-      },
-      {
-        id: 3,
-        quote: "我希望有一根魔法棒来帮助我区分错误信息和真相",
-        name: "奥尔加",
-        country: "俄罗斯",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Olga&backgroundColor=ffdfbf&clothesColor=929598"
-      },
-      {
-        id: 4,
-        quote: "社交媒体传播虚假信息的速度如此之快，以至于很难在为时太晚之前验证什么是真实的",
-        name: "玛丽亚·S.",
-        country: "菲律宾",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria&backgroundColor=c0aede&clothesColor=65c9ff"
-      },
-      {
-        id: 5,
-        quote: "在灾难时期，错误信息可能比灾难本身更危险",
-        name: "詹姆斯·K.",
-        country: "肯尼亚",
-        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=a7f3d0&clothesColor=83d0c9"
-      }
-    ]
-  }
 };

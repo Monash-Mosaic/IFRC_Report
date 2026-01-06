@@ -69,6 +69,53 @@
       "privacyPolicy": "Politique de confidentialité",
       "termsOfService": "Conditions d'utilisation",
       "contact": "Contact"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "Rapport mondial sur les catastrophes",
+        "description": "Le Rapport mondial sur les catastrophes est la publication phare de la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (FICR), conçue pour impulser le changement des politiques, façonner la réflexion et renforcer la pratique dans le secteur humanitaire. Cette édition se concentre sur les informations nuisibles dans les contextes humanitaires.",
+        "buttonTexts": {
+          "read": "Lire le rapport",
+          "download": "Télécharger le rapport",
+          "share": "Partager"
+        }
+      },
+      "executiveSummary": {
+        "title": "Résumé exécutif",
+        "subtitle": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
+        "description": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
+        "buttonTexts": {
+          "read": "Lire",
+          "download": "Télécharger"
+        }
+      },
+      "featuredVideos": {
+        "title": "Vidéos en vedette du monde entier",
+        "videos": [
+          {
+            "id": 1,
+            "title": "Sous-titre",
+            "description": "Texte du corps pour tout ce que vous souhaitez ajouter au sous-titre.",
+            "thumbnailSrc": "/wdr25/thumbnail1.png",
+            "thumbnailAlt": "Miniature de la vidéo en vedette",
+            "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+          },
+          {
+            "id": 2,
+            "title": "Sous-titre",
+            "description": "Texte du corps pour tout ce que vous souhaitez développer sur le point principal.",
+            "thumbnailSrc": "/wdr25/thumbnail2.png",
+            "thumbnailAlt": "Miniature de la vidéo en vedette",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Citations et expériences vécues"
+      }
+    },
+    "videoCard": {
+      "backToThumbnail": "Retour à la miniature"
     }
   },
   "ReportListingPage": {
@@ -145,6 +192,9 @@
       "videos": "Lecteur vidéo pour une accessibilité améliorée"
     },
     "closeMediaPanel": "Fermer le panneau multimédia",
-    "duration": "Durée"
+    "duration": "Durée",
+    "videoCard": {
+      "backToThumbnail": "Retour à la miniature"
+    }
   }
 }

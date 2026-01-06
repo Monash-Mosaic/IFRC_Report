@@ -1,23 +1,31 @@
+"use client";
+
 // components/landing-page/HeroSection.js
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import DownloadButton from './DownloadButton';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-export default function HeroSection({ reportData, locale = 'en' }) {
-  const heroSectionData = reportData.landingPage.heroSection;
+export default function HeroSection({ locale = 'en' }) {
+  const t = useTranslations('Home.landingPage.heroSection');
 
   return (
     <section className="space-y-8">
       {/* Text Content */}
       <div className="text-left space-y-6">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight text-right md:text-left">
-          {heroSectionData.title}
+          <span className="md:hidden" style={{ whiteSpace: 'pre-line' }}>
+            {t('title').split(' ').join('\n')}
+          </span>
+          <span className="hidden md:inline">
+            {t('title')}
+          </span>
         </h1>
         
         <p className="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed font-bold">
-          {heroSectionData.description}
+          {t('description')}
         </p>
       </div>
 
@@ -29,7 +37,7 @@ export default function HeroSection({ reportData, locale = 'en' }) {
             href="/reports/wdr25" 
             className="flex-1 md:flex-none px-3 md:px-6 py-2 md:py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap"
           >
-            <span className="text-xs md:text-base">{heroSectionData.buttonTexts.read}</span>
+            <span className="text-xs md:text-base">{t('buttonTexts.read')}</span>
             <Eye className="w-3 h-3 md:w-5 md:h-5 flex-shrink-0" />
           </Link>
           
@@ -41,13 +49,13 @@ export default function HeroSection({ reportData, locale = 'en' }) {
               size="md"
               className="w-full h-full px-3 md:px-6 py-2 md:py-3 text-xs md:text-base"
             >
-              <span className="hidden sm:inline">{heroSectionData.buttonTexts.download}</span>
-              <span className="sm:hidden">{heroSectionData.buttonTexts.download}</span>
+              <span className="hidden sm:inline">{t('buttonTexts.download')}</span>
+              <span className="sm:hidden">{t('buttonTexts.download')}</span>
             </DownloadButton>
           </div>
           
           <button className="w-12 md:w-auto px-2 md:px-6 py-2 md:py-3 text-red-600 font-medium transition-colors cursor-pointer inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap border-2 border-red-600 rounded-lg md:border-none md:underline">
-            <span className="hidden md:inline text-xs md:text-base">{heroSectionData.buttonTexts.share}</span>
+            <span className="hidden md:inline text-xs md:text-base">{t('buttonTexts.share')}</span>
             <Share className="w-4 h-4 md:w-4 md:h-4" />
           </button>
         </div>

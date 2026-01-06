@@ -29,11 +29,10 @@ export default async function Home({ params }) {
   const t = await getTranslations('Home', locale);
   const year = new Date().getFullYear();
   
-  // Get the report data for the current locale and serialize it
+  // Get the report data for the current locale
   const reportModule = reportsByLocale[locale]?.reports?.wdr25;
-  const reportData = reportModule ? JSON.parse(JSON.stringify(reportModule)) : null;
-  const { title, testimonialsList } = reportData.landingPage.testimonials;
-  const featuredVideosData = reportData.landingPage.featuredVideos;
+  const testimonialsList = reportModule?.testimonialsList || [];
+  const featuredVideos = reportModule?.featuredVideos || [];
   
   return (
     <div className="min-h-screen bg-white">
@@ -41,13 +40,13 @@ export default async function Home({ params }) {
       <Header />
 
       <main className="max-w-6xl mx-auto px-4 space-y-16 py-8">
-        <HeroSection reportData={reportData} locale={locale} />
-        <ExecutiveSummarySection reportData={reportData} locale={locale} />
+        <HeroSection locale={locale} />
+        <ExecutiveSummarySection locale={locale} />
 
         {/* Featured Videos Section */}
         <Carousel
-          title={featuredVideosData.title}
-          items={featuredVideosData.videos}
+          title={t('landingPage.featuredVideos.title')}
+          items={featuredVideos}
           cardComponent={VideoCard}
           cardType="video"
           cardWidth={524}
@@ -58,7 +57,7 @@ export default async function Home({ params }) {
 
         {/* Citations Section */}
         <Carousel
-          title={title}
+          title={t('landingPage.testimonials.title')}
           items={testimonialsList}
           cardComponent={TestimonialCard}
           cardType="testimonial"
