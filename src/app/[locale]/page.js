@@ -29,11 +29,10 @@ export default async function Home({ params }) {
   const t = await getTranslations('Home', locale);
   const year = new Date().getFullYear();
   
-  // Get the report data for the current locale and serialize it (following reportsByLocale pattern)
+  // Get the report data for the current locale
   const reportModule = reportsByLocale[locale]?.reports?.wdr25;
-  const reportData = reportModule ? JSON.parse(JSON.stringify(reportModule)) : null;
-  const { testimonialsList } = reportData;
-  const { featuredVideos } = reportData;
+  const testimonialsList = reportModule?.testimonialsList || [];
+  const featuredVideos = reportModule?.featuredVideos || [];
   
   return (
     <div className="min-h-screen bg-white">
