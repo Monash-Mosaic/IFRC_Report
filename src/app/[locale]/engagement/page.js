@@ -23,10 +23,13 @@ export default function EngagementPage() {
   const [expandedChapters, setExpandedChapters] = useState({});
   const [isShuffleTag, setIsShuffleTag] = useState(false);
   const [expandedTags, setExpandedTags] = useState(true);
+  const [selectedProgress, setSelectedProgress] = useState([]);
 
   const tag_combo = [
     { erosion: true, safety: true },
+    { erosion: true, rumour: true },
     { access: true, rumour: true },
+    { safety: true, rumour: true },
   ];
 
   const tags = [
@@ -50,14 +53,18 @@ export default function EngagementPage() {
         {
           title: 'Defining Misinformation',
           slug: 'what-is-misinformation',
-          tags: ['access', 'rumour', 'affected'],
+          tags: ['access', 'rumour', 'affected', 'dialogue'],
         },
         {
           title: 'Types of False Information',
           slug: 'types-of-false-info',
-          tags: ['erosion', 'affected'],
+          tags: ['erosion', 'affected', 'dialogue'],
         },
-        { title: 'Historical Context', slug: 'historical-context', tags: ['safety', 'combat'] },
+        {
+          title: 'Historical Context',
+          slug: 'historical-context',
+          tags: ['safety', 'combat', 'dialogue'],
+        },
       ],
     },
     {
@@ -95,6 +102,21 @@ export default function EngagementPage() {
       id: 'combat',
       stat: '63.5%',
       text: 'have seen groups organize to combat false and misleading info, online or offline',
+    },
+  ];
+
+  const progressData = [
+    {
+      id: 'dialogue',
+      rank: 1,
+      text: 'Dialogue and community participation',
+      percentage: 64.2,
+    },
+    {
+      id: 'leadership',
+      rank: 2,
+      text: 'Strong local leadership',
+      percentage: 61.0,
     },
   ];
 
@@ -139,6 +161,12 @@ export default function EngagementPage() {
     setIsShuffleTag(!isShuffleTag);
   };
 
+  const toggleProgress = (progressId) => {
+    setSelectedProgress((prev) =>
+      prev.includes(progressId) ? prev.filter((id) => id !== progressId) : [...prev, progressId]
+    );
+  };
+
   // Filter your content based on both selectedTag and selectedStats
   const getFilteredChapter = () => {
     let filteredContent = chapters; // Your content array
@@ -153,7 +181,7 @@ export default function EngagementPage() {
       });
     }
 
-    return filteredContent;
+    return filteredContent.filter((chapter) => chapter.sections.length > 0);
   };
 
   return (
@@ -166,7 +194,7 @@ export default function EngagementPage() {
       )}
       <aside
         className={`
-        fixed top-0 left-0 h-screen w-110 bg-white shadow-2xl z-50
+        fixed top-0 left-0 h-screen w-100 bg-white shadow-2xl z-50
         transition-transform duration-300 ease-out overflow-y-auto
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         border-r border-stone-200
@@ -184,11 +212,11 @@ export default function EngagementPage() {
           <div className="mb-6 animate-slide-in">
             <div className="flex justify-start gap-2 text-stone-800">
               <BookOpen size={30}></BookOpen>
-              <h2 className="text-2xl font-bold mb-2">Contributions Reading List</h2>
+              <h2 className="text-xl font-bold mb-2">Contributions Reading List</h2>
             </div>
             <div className="h-1 w-90 bg-gradient-to-r from-red-600 to-orange-500 rounded-full" />
           </div>
-          <div className="ml-5 text-xl font-bold text-[#ee2435]">
+          <div className="ml-5 text-lg font-bold text-[#ee2435]">
             {getFilteredChapter().reduce((total, chapter) => total + chapter.sections.length, 0)}{' '}
             Contributions
           </div>
@@ -203,9 +231,9 @@ export default function EngagementPage() {
             >
               <button
                 onClick={() => toggleChapter(chapter.id)}
-                className="px-6 py-3 h-30 flex items-center justify-between text-left border-1 rounded-lg border-stone-400"
+                className="px-6 py-3 h-20 flex items-center justify-between text-left border-1 rounded-lg border-stone-400"
               >
-                <span className="text-base font-semibold text-stone-800 flex-1 pr-2">
+                <span className="text-sm font-semibold text-stone-800 flex-1 pr-2">
                   {chapter.title}
                 </span>
                 <span className="text-base font-semibold text-stone-400 pr-2">
@@ -231,7 +259,7 @@ export default function EngagementPage() {
                     <a
                       key={sectionIndex}
                       href={`/report/chapter-${String(chapter.id).padStart(2, '0')}#${section.slug}`}
-                      className="section-link block py-2 text-base text-stone-600 hover:text-red-600"
+                      className="section-link block py-2 text-sm text-stone-600 hover:text-red-600"
                       style={{ animationDelay: `${index * 0.05 + sectionIndex * 0.03}s` }}
                     >
                       {section.title}
@@ -251,7 +279,7 @@ export default function EngagementPage() {
             {/* Left Side - Filter Label */}
             <div className="flex items-center gap-2">
               <Funnel size={28} className="text-[#ee2435]" />
-              <span className="text-lg font-bold text-stone-700 uppercase ">
+              <span className="text- font-bold text-stone-700 uppercase ">
                 Explore Content By Tags
               </span>
             </div>
@@ -287,7 +315,7 @@ export default function EngagementPage() {
                     key={tag.id}
                     onClick={() => handleSelectionTag(tag.id)}
                     className={`
-                tag-btn px-5 py-2.5 rounded-xl text-lg font-medium transition-all duration-200
+                tag-btn px-5 py-2.5 rounded-xl text-base font-medium transition-all duration-200
                 ${
                   selectedTag[tag.id]
                     ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white border-2'
@@ -353,12 +381,99 @@ export default function EngagementPage() {
                 {/* Content Container */}
                 <div className="flex flex-col items-center text-center space-y-4 mt-2">
                   <div className="p-3 bg-red-50 rounded-full">{getIcon(item.id)}</div>
-                  <div className="text-4xl font-bold text-stone-800">{item.stat}</div>
-                  <p className="text-lg text-stone-600 leading-relaxed">{item.text}</p>
+                  <div className="text-2xl font-bold text-stone-800">{item.stat}</div>
+                  <p className="text-base text-stone-600 leading-relaxed">{item.text}</p>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+        {/* Main Container */}
+        <div className="max-w-5xl mx-auto space-y-6">
+          {progressData.map((item, index) => (
+            <div
+              key={item.id}
+              className={`
+              relative bg-white rounded-lg border-2 p-6
+              transition-all duration-300 hover:shadow-lg
+              ${
+                selectedTag[item.id]
+                  ? 'border-red-500 shadow-lg shadow-red-500/20 bg-red-50'
+                  : 'border-stone-200 hover:border-red-300'
+              }
+            `}
+              style={{
+                animationDelay: `${index * 0.1}s`,
+                animation: 'fade-in 0.5s ease-out forwards',
+              }}
+            >
+              {/* Main Container */}
+              <div className="flex items-center gap-4">
+                {/* Rank Number on the Left */}
+                <div className="flex-shrink-0">
+                  <div
+                    className={`
+                  w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold
+                  ${
+                    selectedProgress.includes(item.id)
+                      ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white'
+                      : 'bg-stone-100 text-stone-700'
+                  }
+                `}
+                  >
+                    #{item.rank}
+                  </div>
+                </div>
+
+                {/* Progress Bar Container */}
+                <div className="flex-grow">
+                  {/* Text and Percentage on top */}
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-stone-700">{item.text}</span>
+                    <span className="text-sm font-bold text-stone-800 ml-4">
+                      {item.percentage}%
+                    </span>
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                    <div
+                      className={`
+                      h-full rounded-full transition-all duration-1000 ease-out
+                      ${
+                        selectedProgress.includes(item.id)
+                          ? 'bg-gradient-to-r from-red-600 to-orange-500'
+                          : 'bg-gradient-to-r from-red-500 to-orange-400'
+                      }
+                    `}
+                      style={{
+                        width: `${item.percentage}%`,
+                        animationDelay: `${index * 0.2}s`,
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Heart Button on the Right */}
+                <button
+                  onClick={() => handleSelectionTag(item.id)}
+                  className="flex-shrink-0 transition-all duration-200 hover:scale-110 ml-2"
+                  aria-label="Toggle filter"
+                >
+                  <Heart
+                    size={28}
+                    className={`
+                    ${
+                      selectedProgress.includes(item.id)
+                        ? 'fill-red-500 text-red-500'
+                        : 'text-stone-400 hover:text-red-400'
+                    }
+                  `}
+                  />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </main>
 
