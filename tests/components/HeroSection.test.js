@@ -12,7 +12,7 @@ jest.mock('next-intl', () => ({
       'Home.landingPage.heroSection.buttonTexts.download': 'Download PDF',
       'Home.landingPage.heroSection.buttonTexts.share': 'Share Report',
       'Home.landingPage.heroSection.heroAlt':
-        'World Disasters Report hero image showing humanitarian workers in action',
+        'World Disasters Report 2025 hero image',
     };
 
     // Check if we're testing with French locale (for custom content test)
@@ -103,6 +103,16 @@ jest.mock('@/components/landing-page/DownloadButton', () => {
 
 const defaultProps = {
   locale: 'en',
+  messages: {
+    title: 'World Disasters Report 2025',
+    description: 'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.',
+    buttonTexts: {
+      read: 'Read Report',
+      download: 'Download PDF',
+      share: 'Share Report',
+    },
+    heroAlt: 'World Disasters Report 2025 hero image',
+  },
 };
 
 // Global variable to control custom content in tests
@@ -121,13 +131,13 @@ describe('HeroSection', () => {
     // Should show description
     expect(
       screen.getByText(
-        'This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.'
+        'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.'
       )
     ).toBeInTheDocument();
 
     // Should show all three buttons/links
     expect(screen.getByText('Read Report')).toBeInTheDocument();
-    expect(screen.getAllByText('Download PDF')).toHaveLength(2); // Two instances for mobile/desktop
+    expect(screen.getAllByText('Download PDF')).toHaveLength(1); // One instance
     expect(screen.getByText('Share Report')).toBeInTheDocument();
 
     // Should show hero image
@@ -136,7 +146,7 @@ describe('HeroSection', () => {
     expect(image).toHaveAttribute('src', '/wdr25/hero.jpg');
     expect(image).toHaveAttribute(
       'alt',
-      'World Disasters Report hero image showing humanitarian workers in action'
+      'World Disasters Report 2025 hero image'
     );
     expect(image).toHaveAttribute('data-priority', 'true');
 
@@ -154,28 +164,24 @@ describe('HeroSection', () => {
     // Should still render content (locale is passed but doesn't affect rendering directly)
     expect(
       screen.getByText(
-        'This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.'
+        'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.'
       )
     ).toBeInTheDocument();
   });
 
   it('renders with custom report data', () => {
-    // Set up custom mock content
-    mockHeroSection = {
-      customContent: {
+    const customProps = {
+      locale: 'fr',
+      messages: {
         title: 'Custom Hero Title for Testing Purposes',
-        description:
-          'Custom hero description with different content and longer text to test the component rendering capabilities.',
+        description: 'Custom hero description with different content and longer text to test the component rendering capabilities.',
         buttonTexts: {
           read: 'Lire le Rapport',
           download: 'Télécharger PDF',
           share: 'Partager Rapport',
         },
+        heroAlt: 'Custom hero alt text for testing',
       },
-    };
-
-    const customProps = {
-      locale: 'fr',
     };
 
     render(<HeroSection {...customProps} />);
@@ -186,7 +192,7 @@ describe('HeroSection', () => {
       )
     ).toBeInTheDocument();
     expect(screen.getByText('Lire le Rapport')).toBeInTheDocument();
-    expect(screen.getAllByText('Télécharger PDF')).toHaveLength(2); // Two instances for mobile/desktop
+    expect(screen.getAllByText('Télécharger PDF')).toHaveLength(1); // Only one instance now
     expect(screen.getByText('Partager Rapport')).toBeInTheDocument();
   });
 
@@ -225,18 +231,29 @@ describe('HeroSection', () => {
   it('has correct button styling and behavior', () => {
     render(<HeroSection {...defaultProps} />);
 
-    // Check download button styling (now using DownloadButton component)
-    const downloadButton = screen.getByTestId('mock-download-button');
-    expect(downloadButton).toHaveClass(
+    // Check download button styling (now using anchor tag)
+    const downloadLink = screen.getByText('Download PDF').closest('a');
+    expect(downloadLink).toHaveClass(
       'w-full',
       'h-full',
       'px-3',
       'md:px-6',
       'py-2',
       'md:py-3',
-      'text-xs',
-      'md:text-base'
+      'border-2',
+      'border-red-600',
+      'text-red-600',
+      'hover:bg-red-600',
+      'hover:text-white',
+      'rounded-lg',
+      'font-medium',
+      'transition-colors',
+      'inline-flex',
+      'items-center',
+      'justify-center'
     );
+    expect(downloadLink).toHaveAttribute('target', '_blank');
+    expect(downloadLink).toHaveTextContent('Download PDF');
 
     // Check share button styling
     const shareSpan = screen.getByText('Share Report');
@@ -266,11 +283,11 @@ describe('HeroSection', () => {
     );
 
     // Buttons should be clickable (even though no onClick handlers are defined)
-    fireEvent.click(downloadButton);
+    fireEvent.click(downloadLink);
     fireEvent.click(shareButton);
 
     // Should not crash when clicked
-    expect(downloadButton).toBeInTheDocument();
+    expect(downloadLink).toBeInTheDocument();
     expect(shareButton).toBeInTheDocument();
   });
 
@@ -282,7 +299,7 @@ describe('HeroSection', () => {
     expect(section).toHaveClass('space-y-8');
 
     // Should have text content container
-    const textContainer = container.querySelector('.text-left.space-y-6');
+    const textContainer = container.querySelector('.space-y-6');
     expect(textContainer).toBeInTheDocument();
 
     // Should have button container with correct flex layout (updated classes)
@@ -306,7 +323,7 @@ describe('HeroSection', () => {
     expect(image).toHaveAttribute('src', '/wdr25/hero.jpg');
     expect(image).toHaveAttribute(
       'alt',
-      'World Disasters Report hero image showing humanitarian workers in action'
+      'World Disasters Report 2025 hero image'
     );
     expect(image).toHaveAttribute('data-fill', 'true');
     expect(image).toHaveAttribute('data-priority', 'true');
@@ -314,23 +331,18 @@ describe('HeroSection', () => {
   });
 
   it('handles missing or malformed data gracefully', () => {
-    const malformedData = {
-      landingPage: {
-        heroSection: {
-          title: '',
-          description: '',
-          buttonTexts: {
-            read: '',
-            download: '',
-            share: '',
-          },
-        },
-      },
-    };
-
     const malformedProps = {
-      reportData: malformedData,
       locale: 'en',
+      messages: {
+        title: '',
+        description: '',
+        buttonTexts: {
+          read: '',
+          download: '',
+          share: '',
+        },
+        heroAlt: '',
+      },
     };
 
     // Should not crash with empty strings
@@ -350,7 +362,7 @@ describe('HeroSection', () => {
 
     // Should use proper heading hierarchy
     const h1 = screen.getByRole('heading', { level: 1 });
-    expect(h1).toHaveTextContent('World Disasters Report 2025 Test Title');
+    expect(h1).toHaveTextContent('World Disasters Report 2025');
     expect(h1).toHaveClass(
       'text-5xl',
       'md:text-7xl',
@@ -359,16 +371,18 @@ describe('HeroSection', () => {
       'leading-tight'
     );
 
-    // Should have buttons with proper role
+    // Should have buttons with proper role (only Share button, Download is now a link)
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(2); // Download and Share buttons (Read is a Link)
-    expect(buttons[0]).toHaveTextContent('Download PDF');
-    expect(buttons[1]).toHaveTextContent('Share Report');
+    expect(buttons).toHaveLength(1); // Only Share button (Download is now a link, Read is a Link)
+    expect(buttons[0]).toHaveTextContent('Share Report');
 
-    // Should have link with proper role
-    const link = screen.getByRole('link');
-    expect(link).toHaveTextContent('Read Report');
-    expect(link).toHaveAttribute('href', '/reports/wdr25');
+    // Should have links with proper role (Read and Download)
+    const links = screen.getAllByRole('link');
+    expect(links).toHaveLength(2); // Read and Download links
+    const readLink = links.find(link => link.textContent.includes('Read Report'));
+    const downloadLink = links.find(link => link.textContent.includes('Download PDF'));
+    expect(readLink).toBeInTheDocument();
+    expect(downloadLink).toBeInTheDocument();
   });
 
   it('has responsive text sizing', () => {
@@ -379,7 +393,7 @@ describe('HeroSection', () => {
     expect(title).toHaveClass('text-5xl', 'md:text-7xl');
 
     // Description should have responsive classes
-    const description = screen.getByText(/This is a comprehensive test description/);
+    const description = screen.getByText(/Explore the most comprehensive analysis/);
     expect(description).toHaveClass(
       'text-lg',
       'md:text-xl',
@@ -405,20 +419,20 @@ describe('HeroSection', () => {
   it('handles click events on buttons', () => {
     render(<HeroSection {...defaultProps} />);
 
-    const downloadButton = screen.getByTestId('mock-download-button');
+    const downloadLink = screen.getByText('Download PDF').closest('a');
     const shareSpan = screen.getByText('Share Report');
     const shareButton = shareSpan.closest('button');
     const readLink = screen.getByText('Read Report');
 
     // Should be able to click all interactive elements without errors
     expect(() => {
-      fireEvent.click(downloadButton);
+      fireEvent.click(downloadLink);
       fireEvent.click(shareButton);
       fireEvent.click(readLink);
     }).not.toThrow();
 
     // Elements should still be in document after clicking
-    expect(downloadButton).toBeInTheDocument();
+    expect(downloadLink).toBeInTheDocument();
     expect(shareButton).toBeInTheDocument();
     expect(readLink).toBeInTheDocument();
   });

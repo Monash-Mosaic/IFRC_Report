@@ -121,6 +121,16 @@ const mockReportData = {
 
 const defaultProps = {
   locale: 'en',
+  messages: {
+    title: 'Executive Summary',
+    subtitle: 'Key Findings from the Report',
+    description: 'This comprehensive analysis presents the most critical findings from our research on global disaster response and humanitarian aid effectiveness.',
+    buttonTexts: {
+      read: 'Read Full Report',
+      download: 'Download PDF',
+    },
+    summaryAlt: 'Executive Summary cover featuring a person in humanitarian context',
+  },
 };
 
 // Global variable to control custom content in tests
@@ -179,22 +189,18 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('renders with custom report data', () => {
-    // Set up custom mock content
-    mockExecutiveSummary = {
-      customContent: {
+    const customProps = {
+      locale: 'fr',
+      messages: {
         title: 'Custom Title for Testing',
         subtitle: 'Custom Subtitle with Different Content',
-        description:
-          'Custom description that is much longer and contains different information about the executive summary.',
+        description: 'Custom description that is much longer and contains different information about the executive summary.',
         buttonTexts: {
           read: 'Lire le Résumé',
           download: 'Télécharger PDF',
         },
+        summaryAlt: 'Custom alt text for testing',
       },
-    };
-
-    const customProps = {
-      locale: 'fr',
     };
 
     render(<ExecutiveSummarySection {...customProps} />);
@@ -233,9 +239,9 @@ describe('ExecutiveSummarySection', () => {
     expect(readButton).toHaveAttribute('href', '/reports/wdr25/chapter-02');
     expect(readButton).toHaveTextContent('Read Full Report');
 
-    // Check download button styling (now using DownloadButton component)
-    const downloadButton = screen.getByTestId('mock-download-button');
-    expect(downloadButton).toHaveClass(
+    // Check download button styling (now using anchor tag with download styling)
+    const downloadLink = screen.getByText('Download PDF').closest('a');
+    expect(downloadLink).toHaveClass(
       'border-2',
       'border-red-600',
       'text-red-600',
@@ -249,15 +255,17 @@ describe('ExecutiveSummarySection', () => {
       'gap-2',
       'whitespace-nowrap'
     );
-    expect(downloadButton).toHaveTextContent('Download PDF');
+    expect(downloadLink).toHaveAttribute('target', '_blank');
+    expect(downloadLink).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(downloadLink).toHaveTextContent('Download PDF');
 
     // Buttons should be clickable (even though no onClick handlers are defined)
     fireEvent.click(readButton);
-    fireEvent.click(downloadButton);
+    fireEvent.click(downloadLink);
 
     // Should not crash when clicked
     expect(readButton).toBeInTheDocument();
-    expect(downloadButton).toBeInTheDocument();
+    expect(downloadLink).toBeInTheDocument();
   });
 
   it('has correct layout structure', () => {
@@ -303,23 +311,18 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('handles missing or malformed data gracefully', () => {
-    const malformedData = {
-      landingPage: {
-        executiveSummary: {
-          title: '',
-          subtitle: '',
-          description: '',
-          buttonTexts: {
-            read: '',
-            download: '',
-          },
-        },
-      },
-    };
-
     const malformedProps = {
-      reportData: malformedData,
       locale: 'en',
+      messages: {
+        title: '',
+        subtitle: '',
+        description: '',
+        buttonTexts: {
+          read: '',
+          download: '',
+        },
+        summaryAlt: '',
+      },
     };
 
     // Should not crash with empty strings
@@ -341,15 +344,19 @@ describe('ExecutiveSummarySection', () => {
     const h3 = screen.getByRole('heading', { level: 3 });
     expect(h3).toHaveTextContent('Key Findings from the Report');
 
-    // Should have one button (download) and one link (read)
-    const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(1);
-    expect(buttons[0]).toHaveTextContent('Download PDF');
-
+    // Should have two links (read and download)
     const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(1);
-    expect(links[0]).toHaveTextContent('Read Full Report');
-    expect(links[0]).toHaveAttribute('href', '/reports/wdr25/chapter-02');
+    expect(links).toHaveLength(2);
+    
+    // Read link
+    const readLink = links.find(link => link.textContent.includes('Read Full Report'));
+    expect(readLink).toBeInTheDocument();
+    expect(readLink).toHaveAttribute('href', '/reports/wdr25/chapter-02');
+    
+    // Download link
+    const downloadLink = links.find(link => link.textContent.includes('Download PDF'));
+    expect(downloadLink).toBeInTheDocument();
+    expect(downloadLink).toHaveAttribute('target', '_blank');
   });
 
   it('uses flexbox layout correctly for content positioning', () => {

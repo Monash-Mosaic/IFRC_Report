@@ -6,32 +6,29 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
     class="space-y-8"
   >
     <div
-      class="text-left space-y-6"
+      class="space-y-6"
     >
       <h1
-        class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight text-right md:text-left"
+        class="text-5xl md:text-7xl font-bold text-gray-900 leading-tight text-right md:text-left"
       >
         <span
-          class="md:hidden"
-          style="white-space: pre-line;"
+          class="md:hidden whitespace-pre-line"
         >
           World
 Disasters
 Report
 2025
-Test
-Title
         </span>
         <span
           class="hidden md:inline"
         >
-          World Disasters Report 2025 Test Title
+          World Disasters Report 2025
         </span>
       </h1>
       <p
         class="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed font-bold"
       >
-        This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.
+        Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.
       </p>
     </div>
     <div
@@ -76,38 +73,42 @@ Title
         <div
           class="flex-1 md:flex-none"
         >
-          <button
-            class="w-full h-full px-3 md:px-6 py-2 md:py-3 text-xs md:text-base"
-            data-file-name="WDR25-EN.pdf"
-            data-file-path="pdfs/wdr25/WDR25-EN.pdf"
-            data-testid="mock-download-button"
+          <a
+            alt="alt text"
+            class="w-full h-full px-3 md:px-6 py-2 md:py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none"
+            href="https://www.dfat.gov.au/sites/default/files/vic-cef.pdf"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <span
-              class="hidden sm:inline"
-            >
-              Download PDF
-            </span>
-            <span
-              class="sm:hidden"
+              class="text-xs md:text-base"
             >
               Download PDF
             </span>
             <svg
-              class="w-5 h-5 flex-shrink-0"
-              fill="currentColor"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
+              aria-hidden="true"
+              class="lucide lucide-download w-3 h-3 md:w-5 md:h-5 flex-shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
+                d="M12 15V3"
               />
               <path
-                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
+                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+              />
+              <path
+                d="m7 10 5 5 5-5"
               />
             </svg>
-          </button>
+          </a>
         </div>
         <button
           class="w-12 md:w-auto px-2 md:px-6 py-2 md:py-3 text-red-600 font-medium transition-colors cursor-pointer inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap border-2 border-red-600 rounded-lg md:border-none md:underline"
@@ -146,7 +147,7 @@ Title
         class="order-1 md:order-2 relative w-full aspect-video rounded-2xl overflow-hidden bg-gray-200"
       >
         <img
-          alt="World Disasters Report hero image showing humanitarian workers in action"
+          alt="World Disasters Report 2025 hero image"
           class="object-cover"
           data-fill="true"
           data-priority="true"
