@@ -30,13 +30,36 @@ export default async function Home({ params }) {
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
 
+  // Executive Summary translations
+  const executiveSummary = {
+    title: t('landingPage.executiveSummary.title'),
+    summaryAlt: t('landingPage.executiveSummary.summaryAlt'),
+    subtitle: t('landingPage.executiveSummary.subtitle'),
+    description: t('landingPage.executiveSummary.description'),
+    buttonTexts: {
+      read: t('landingPage.executiveSummary.buttonTexts.read'),
+      download: t('landingPage.executiveSummary.buttonTexts.download')
+    }
+  };
+
+  // Hero Section translations
+  const heroMessage = {
+    title: t('landingPage.heroSection.title'),
+    description: t('landingPage.heroSection.description'),
+    heroAlt: t('landingPage.heroSection.heroAlt'),
+    buttonTexts: {
+      read: t('landingPage.heroSection.buttonTexts.read'),
+      download: t('landingPage.heroSection.buttonTexts.download'),
+      share: t('landingPage.heroSection.buttonTexts.share')
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
 
       <main className="max-w-6xl mx-auto px-4 space-y-16 py-8">
-        <HeroSection locale={locale} />
-        <ExecutiveSummarySection locale={locale} />
+        <HeroSection locale={locale} messages={heroMessage} />
+        <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
 
         {/* Featured Videos Section */}
         <Carousel

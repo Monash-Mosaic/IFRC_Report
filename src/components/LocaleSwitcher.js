@@ -14,9 +14,9 @@ export default function LocaleSwitcher() {
   const languages = [
     { code: 'en', name: 'English' },
     { code: 'fr', name: 'Français' },
-    { code: 'zh', name: 'Chinese' },
-    { code: 'ru', name: 'Russian' },
-    { code: 'ar', name: 'Arabic' },
+    { code: 'zh', name: '中文' },
+    { code: 'ru', name: 'Русский' },
+    { code: 'ar', name: 'العربية' },
   ];
 
   /**
