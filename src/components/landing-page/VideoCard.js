@@ -1,83 +1,39 @@
 'use client';
-
-import Image from 'next/image';
-import { useState } from 'react';
-import { YouTubeEmbed } from '@next/third-parties/google';
 import { extractYouTubeVideoId } from '@/utils/video_util';
+
+import { YouTubeEmbed } from '@next/third-parties/google';
 import { useTranslations } from 'next-intl';
 
 // Helper function to extract YouTube video ID from URL
 
-export default function VideoCard({ title, description, thumbnailSrc, thumbnailAlt, url }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function VideoCard({ title, description, url }) {
   const t = useTranslations('Home.videoCard');
-
-  const handlePlayClick = () => {
-    setIsPlaying(true);
-  };
-
-  if (isPlaying) {
-    const youtubeVideoId = extractYouTubeVideoId(url);
-
-    return (
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full">
-        {/* YouTube Player */}
-        <div className="relative aspect-video bg-gray-900">
-          {youtubeVideoId ? (
-            <YouTubeEmbed videoid={youtubeVideoId} params="autoplay=1&rel=0" />
-          ) : (
-            // Fallback to native HTML video for non-YouTube URLs
-            <video
-              className="w-full h-full object-cover"
-              controls
-              autoPlay
-              onEnded={() => setIsPlaying(false)}
-            >
-              <source src={url} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-        </div>
-
-        {/* Content */}
-        <div className="p-6 space-y-3">
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-          <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
-          <button
-            onClick={() => setIsPlaying(false)}
-            className="mt-4 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
-          >
-            {t('backToThumbnail')}
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const youtubeVideoId = extractYouTubeVideoId(url);
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
-      {/* Thumbnail */}
-      <div className="relative aspect-video bg-gray-200">
-        <Image src={thumbnailSrc} alt={thumbnailAlt} fill className="object-cover" />
-
-        {/* Play button overlay */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <button
-            onClick={handlePlayClick}
-            className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label={t('videoAriaLabel')}
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full">
+      {/* YouTube Player */}
+      <div className="relative aspect-video bg-gray-900">
+        {youtubeVideoId ? (
+          <YouTubeEmbed videoid={youtubeVideoId} params="autoplay=1&rel=0" />
+        ) : (
+          // Fallback to native HTML video for non-YouTube URLs
+          <video
+            className="w-full h-full object-cover"
+            controls
+            autoPlay
+            onEnded={() => setIsPlaying(false)}
           >
-            <svg className="w-6 h-6 text-gray-800 ml-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </button>
-        </div>
+            <source src={url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
       </div>
 
       {/* Content */}
       <div className="p-6 space-y-3">
-        <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
-        <p className="text-gray-500 text-lg leading-relaxed">{description}</p>
+        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
       </div>
     </div>
   );
