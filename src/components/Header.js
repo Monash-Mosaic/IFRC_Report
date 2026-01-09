@@ -1,59 +1,24 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
-import { Search, X, Mic } from 'lucide-react';
+import SearchInput from './SearchInput';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
-  const searchInputRef = useRef(null);
+
   const t = useTranslations('Home');
 
   // CSS class constants for reusability
   const buttonClasses = 'p-2 text-red-700 hover:text-red-900 transition-colors';
-  const iconClasses = 'w-5 h-5 text-red-600';
   const searchTransition = 'transition-all duration-300 ease-in-out';
-
-  // Utility function for conditional classes
-  const getSearchInputClasses = (isMobile, isSearchExpanded) => {
-    const baseClasses =
-      'border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400';
-
-    const sizeClasses = isMobile
-      ? isSearchExpanded
-        ? 'w-full pl-12 pr-12 py-2 h-10'
-        : 'w-10 h-10 p-0 pr-0'
-      : isSearchExpanded
-        ? 'w-full pl-12 pr-4 py-2'
-        : 'w-auto px-4 py-2 pr-10';
-
-    return `${sizeClasses} ${baseClasses} ${searchTransition}`;
-  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const handleSearchFocus = () => {
-    setIsSearchExpanded(true);
-    // Ensure focus remains on the input after expansion
-    setTimeout(() => {
-      if (searchInputRef.current) {
-        searchInputRef.current.focus();
-      }
-    }, 0);
-  };
-
-  const handleCloseSearch = () => {
-    setIsSearchExpanded(false);
-  };
-
-  const handleMicClick = (e) => {
-    // No functionality yet - placeholder for future voice search
   };
 
   // Navigation links data to avoid duplication
@@ -61,55 +26,6 @@ export default function Header() {
     { href: '/about', label: t('nav.about') },
     { href: '/contributors', label: t('nav.contributors') },
   ];
-
-  // Search bar component with unified mobile/desktop logic
-  const SearchInput = ({ isMobile = false }) => {
-    const containerClasses = `flex items-center ${
-      isMobile && isSearchExpanded ? 'flex-1' : !isMobile && isSearchExpanded ? 'w-full' : ''
-    } ${isSearchExpanded ? 'gap-3' : ''}`;
-
-    const searchIconClasses = `absolute ${
-      isMobile ? 'right-3 w-4 h-4 pointer-events-none' : 'right-3 w-5 h-5'
-    } top-1/2 transform -translate-y-1/2 text-red-600`;
-
-    return (
-      <div className={containerClasses}>
-        <div
-          className={`relative ${
-            isMobile && isSearchExpanded ? 'flex-1' : !isMobile && isSearchExpanded ? 'flex-1' : ''
-          }`}
-        >
-          <input
-            ref={searchInputRef}
-            type="text"
-            placeholder={isSearchExpanded ? '' : isMobile ? '' : t('nav.search')}
-            onFocus={handleSearchFocus}
-            className={getSearchInputClasses(isMobile, isSearchExpanded)}
-          />
-          {isSearchExpanded ? (
-            <>
-              <Search
-                className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${iconClasses}`}
-              />
-              <Mic
-                className={`mic-icon absolute right-3 top-1/2 transform -translate-y-1/2 ${iconClasses} cursor-pointer hover:text-red-700 transition-colors`}
-                onClick={handleMicClick}
-                onMouseDown={(e) => e.preventDefault()}
-              />
-            </>
-          ) : (
-            <Search className={searchIconClasses} />
-          )}
-        </div>
-        {isSearchExpanded && (
-          <X
-            className={`${iconClasses} cursor-pointer hover:text-red-700 transition-colors flex-shrink-0`}
-            onClick={handleCloseSearch}
-          />
-        )}
-      </div>
-    );
-  };
 
   // Navigation links component to avoid duplication
   const NavLinks = ({ isMobile = false }) => (
@@ -154,7 +70,11 @@ export default function Header() {
             </>
           )}
 
-          <SearchInput />
+          <SearchInput
+            isMobile={isMobileMenuOpen}
+            isSearchExpanded={isSearchExpanded}
+            setIsSearchExpanded={setIsSearchExpanded}
+          />
         </nav>
 
         {/* Mobile Locale Switcher and Search */}
@@ -164,7 +84,11 @@ export default function Header() {
           }`}
         >
           {!isSearchExpanded && <LocaleSwitcher />}
-          <SearchInput isMobile />
+          <SearchInput
+            isMobile={isMobileMenuOpen}
+            isSearchExpanded={isSearchExpanded}
+            setIsSearchExpanded={setIsSearchExpanded}
+          />
           {!isSearchExpanded && (
             <button
               onClick={toggleMobileMenu}

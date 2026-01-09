@@ -1,15 +1,15 @@
 // components/landing-page/HeroSection.js
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import DownloadButton from './DownloadButton';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
 
 export default function HeroSection({ locale = 'en', messages }) {
-
-  {/* Placehodler */}
-  const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;  
+  {
+    /* Placehodler */
+  }
+  const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
 
   return (
     <section className="space-y-8">
@@ -19,11 +19,9 @@ export default function HeroSection({ locale = 'en', messages }) {
           <span className="md:hidden whitespace-pre-line">
             {messages.title.split(' ').join('\n')}
           </span>
-          <span className="hidden md:inline">
-            {messages.title}
-          </span>
+          <span className="hidden md:inline">{messages.title}</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-700 max-w-4xl leading-relaxed font-bold">
+        <p className="text-4xl text-gray-900 max-w-80 text-balance md:max-w-4xl md:text-wrap leading-relaxed font-bold">
           {messages.description}
         </p>
       </div>
@@ -54,14 +52,22 @@ export default function HeroSection({ locale = 'en', messages }) {
           </div>
 
           <button className="w-12 md:w-auto px-2 md:px-6 py-2 md:py-3 text-red-600 font-medium transition-colors cursor-pointer inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap border-2 border-red-600 rounded-lg md:border-none md:underline">
-            <span className="hidden md:inline text-xs md:text-base">{messages.buttonTexts.share}</span>
+            <span className="hidden md:inline text-xs md:text-base">
+              {messages.buttonTexts.share}
+            </span>
             <Share className="w-4 h-4 md:w-4 md:h-4" />
           </button>
         </div>
 
         {/* Hero Image */}
         <div className="order-1 md:order-2 relative w-full aspect-video rounded-2xl overflow-hidden bg-gray-200">
-          <Image src="/wdr25/hero.jpg" alt={messages.heroAlt} fill className="object-cover" priority />
+          <Image
+            src="/wdr25/hero.jpg"
+            alt={messages.heroAlt}
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
       </div>
     </section>

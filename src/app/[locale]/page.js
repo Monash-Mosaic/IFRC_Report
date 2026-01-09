@@ -1,6 +1,5 @@
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import Footer from '@/components/Footer';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
 import { reportsByLocale } from '@/reports';
@@ -85,9 +84,6 @@ export default async function Home({ params }) {
           showArrows={true}
         />
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
