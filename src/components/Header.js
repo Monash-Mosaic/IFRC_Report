@@ -71,7 +71,6 @@ export default function Header() {
           )}
 
           <SearchInput
-            isMobile={isMobileMenuOpen}
             isSearchExpanded={isSearchExpanded}
             setIsSearchExpanded={setIsSearchExpanded}
           />
@@ -85,7 +84,7 @@ export default function Header() {
         >
           {!isSearchExpanded && <LocaleSwitcher />}
           <SearchInput
-            isMobile={isMobileMenuOpen}
+            isMobile
             isSearchExpanded={isSearchExpanded}
             setIsSearchExpanded={setIsSearchExpanded}
           />
