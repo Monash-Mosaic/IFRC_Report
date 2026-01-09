@@ -1,6 +1,7 @@
 import * as Chapter02 from './chapter-02.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as ExecSummary from './exec-summary.mdx';
+import * as Foreword from './WDR26-Foreword-EN.mdx';
 
 export const title = 'World Disaster Report 2025';
 
@@ -19,6 +20,12 @@ export const reportFile = {
 };
 
 export const chapters = {
+  'fore-word': {
+    component: Foreword.default,
+    title: Foreword.title,
+    subtitle: Foreword.subtitle,
+    tableOfContents: Foreword.tableOfContents,
+  },
   'exec-summary': {
     component: ExecSummary.default,
     title: ExecSummary.title,

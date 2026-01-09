@@ -64,8 +64,16 @@ export default function ImageSlider({
         onTouchEnd={handleMouseUp}
         onTouchMove={handleTouchMove}
       >
-        {/* Right Layer: Image with Red Overlay */}
-        <div className="absolute inset-0">
+        <Image
+          src={imagePath}
+          alt={alt}
+          title={title}
+          fill
+          className="object-cover"
+          draggable={false}
+          priority
+        />
+        {/* <div className="absolute inset-0">
           <Image
             src={imagePath}
             alt={alt}
@@ -82,10 +90,9 @@ export default function ImageSlider({
               opacity: overlayOpacity,
             }}
           />
-        </div>
+        </div> */}
 
-        {/* Left Layer: Original Image (clipped) */}
-        <div
+        {/* <div
           className="absolute inset-0 overflow-hidden"
           style={{
             clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
@@ -100,10 +107,10 @@ export default function ImageSlider({
             draggable={false}
             priority
           />
-        </div>
+        </div> */}
 
         {/* Slider Line and Handle */}
-        <div
+        {/* <div
           className="absolute top-0 bottom-0 pointer-events-none transition-opacity duration-200"
           style={{
             left: `${sliderPosition}%`,
@@ -111,11 +118,11 @@ export default function ImageSlider({
           }}
         >
           {/* Vertical Line */}
-          <div
+        {/* <div
             className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg"
             style={{ transform: 'translateX(-50%)' }}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

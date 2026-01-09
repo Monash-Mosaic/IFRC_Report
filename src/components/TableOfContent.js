@@ -16,6 +16,9 @@ export default function TableOfContent({
   title,
   maxDepth = Number.POSITIVE_INFINITY,
 }) {
+  const renderTitle = (items, title) => {
+    if (!items.length) return null;
+  };
   /**
    * Recursively render the nested `<ul>` structure respecting the maxDepth limit.
    * @param {TocEntry[]} items
@@ -43,7 +46,9 @@ export default function TableOfContent({
   };
   return (
     <>
-      <div className="text-2xl text-black font-extrabold mb-2">{title}</div>
+      <div className="text-2xl text-black font-extrabold mb-2">
+        {chapterTableOfContents.length > 0 ? title : ''}
+      </div>
       <div className="border-l-3 border-l-[#ee2435]">{renderItems(chapterTableOfContents)}</div>
     </>
   );

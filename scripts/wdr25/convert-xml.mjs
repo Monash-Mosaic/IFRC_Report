@@ -16,8 +16,8 @@ console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: 'test.xml',
-  mdx: 'test.mdx',
+  source: 'WDR26-Executive-Summary-EN.xml',
+  mdx: 'WDR26-Executive-Summary-EN.mdx',
 };
 
 const { values } = parseArgs({
@@ -300,6 +300,9 @@ const convertToMDXAst = (node, index, parent) => {
     case 'normal-box':
     case 'normal-box-alt':
     case 'normal-first':
+    case 'normal-expanded':
+    case 'normal-tight':
+    case 'normal-10':
       return [paragraph(extractTextChildren(node))];
     case 'normal-2c':
       return [mdxJsxEl('ReccomendationsTitle', [], extractTextChildren(node))];
