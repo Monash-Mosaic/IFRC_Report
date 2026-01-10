@@ -5,27 +5,37 @@ import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
 
-export default function HeroSection({ locale = 'en', messages }) {
+export default function HeroSection({ messages }) {
   {
     /* Placehodler */
   }
   const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
 
   return (
-    <section className="space-y-8">
-      {/* Text Content */}
-      <div className="space-y-6">
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight text-right md:text-left">
-          <span className="md:hidden whitespace-pre-line">
-            {messages.title.split(' ').join('\n')}
-          </span>
-          <span className="hidden md:inline">{messages.title}</span>
-        </h1>
-        <p className="text-4xl text-gray-900 max-w-80 text-balance md:max-w-4xl md:text-wrap leading-relaxed font-bold">
-          {messages.description}
-        </p>
+    <section className=" space-y-8">
+      <div className="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg ">
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/wdr25/hero.jpg"
+            alt={messages.heroAlt}
+            fill
+            className="object-cover object-[25%_75%] md:object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
+        <div className="relative z-10 space-y-8">
+          <div className="space-y-6">
+            <h1 className="text-5xl md:text-7xl/18  font-bold text-white leading-tight text-end">
+              <span className="whitespace-pre-line">{messages.title.split(' ').join('\n')}</span>
+              <div className="mt-8">2026</div>
+            </h1>
+            <p className="text-4xl text-white max-w-90 text-balance md:text-balance leading-tight font-bold">
+              {messages.description}
+            </p>
+          </div>
+        </div>
       </div>
-
       {/* Responsive Layout Container */}
       <div className="flex flex-col gap-8">
         {/* Action Buttons - will reorder based on screen size */}
@@ -34,8 +44,8 @@ export default function HeroSection({ locale = 'en', messages }) {
             href="/reports/wdr25"
             className="flex-1 md:flex-none px-3 md:px-6 py-2 md:py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap"
           >
-            <span className="text-xs md:text-base">{messages.buttonTexts.read}</span>
-            <Eye className="w-3 h-3 md:w-5 md:h-5 flex-shrink-0" />
+            <span className="text-xs font-bold md:text-base">{messages.buttonTexts.read}</span>
+            <Eye className="w-3 h-3 font-bold md:w-5 md:h-5 flex-shrink-0" />
           </Link>
 
           <div className="flex-1 md:flex-none">
@@ -43,11 +53,13 @@ export default function HeroSection({ locale = 'en', messages }) {
               href={reportDownloadLink}
               alt="alt text"
               target="_blank"
-              className="w-full h-full px-3 md:px-6 py-2 md:py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none"
+              className="w-full h-full px-3 md:px-6 py-2 md:py-3 border-2 border-red-600 text-red-600 bg-[] hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none"
               rel="noopener noreferrer"
             >
-              <span className="text-xs md:text-base">{messages.buttonTexts.download}</span>
-              <Download className="w-3 h-3 md:w-5 md:h-5 flex-shrink-0" />
+              <span className="text-xs font-bold md:text-base">
+                {messages.buttonTexts.download}
+              </span>
+              <Download className="w-3 h-3 font-bold md:w-5 md:h-5 flex-shrink-0" />
             </a>
           </div>
 
@@ -57,17 +69,6 @@ export default function HeroSection({ locale = 'en', messages }) {
             </span>
             <Share className="w-4 h-4 md:w-4 md:h-4" />
           </button>
-        </div>
-
-        {/* Hero Image */}
-        <div className="order-1 md:order-2 relative w-full aspect-video rounded-2xl overflow-hidden bg-gray-200">
-          <Image
-            src="/wdr25/hero.jpg"
-            alt={messages.heroAlt}
-            fill
-            className="object-cover"
-            priority
-          />
         </div>
       </div>
     </section>

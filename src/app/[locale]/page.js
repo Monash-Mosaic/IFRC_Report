@@ -37,8 +37,8 @@ export default async function Home({ params }) {
     description: t('landingPage.executiveSummary.description'),
     buttonTexts: {
       read: t('landingPage.executiveSummary.buttonTexts.read'),
-      download: t('landingPage.executiveSummary.buttonTexts.download')
-    }
+      download: t('landingPage.executiveSummary.buttonTexts.download'),
+    },
   };
 
   // Hero Section translations
@@ -49,14 +49,13 @@ export default async function Home({ params }) {
     buttonTexts: {
       read: t('landingPage.heroSection.buttonTexts.read'),
       download: t('landingPage.heroSection.buttonTexts.download'),
-      share: t('landingPage.heroSection.buttonTexts.share')
-    }
+      share: t('landingPage.heroSection.buttonTexts.share'),
+    },
   };
 
   return (
     <div className="min-h-screen bg-white">
-
-      <main className="max-w-6xl mx-auto px-4 space-y-16 py-8">
+      <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
         <HeroSection locale={locale} messages={heroMessage} />
         <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
 

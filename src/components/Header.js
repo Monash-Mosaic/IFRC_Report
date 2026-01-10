@@ -49,7 +49,7 @@ export default function Header() {
 
   return (
     <header className="w-full bg-white">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-9/10 md:max-w-8/10 mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <Link href={'/'}>
