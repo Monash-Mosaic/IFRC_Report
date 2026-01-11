@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function TestimonialCard({ quote, name, country, avatar }) {
   const [imageError, setImageError] = useState(false);
@@ -25,9 +26,11 @@ export default function TestimonialCard({ quote, name, country, avatar }) {
         {/* Avatar */}
         <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
           {!imageError && avatar ? (
-            <img
+            <Image
               src={avatar}
               alt={`${name}'s avatar`}
+              width={10}
+              height={10}
               className="w-full h-full rounded-full object-cover"
               onError={handleImageError}
             />

@@ -1,27 +1,56 @@
+'use client';
 // components/landing-page/HeroSection.js
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 
 export default function HeroSection({ messages }) {
-  {
-    /* Placehodler */
-  }
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+      duration: 20,
+    },
+    [Autoplay({ delay: 5000, stopOnInteraction: false })]
+  );
+
+  const heroImages = [
+    {
+      src: '/wdr25/hero.jpg',
+      alt: 'Hero image 1',
+    },
+    {
+      src: '/wdr25/hero-2.jpg',
+      alt: 'Hero image 2',
+    },
+    {
+      src: '/wdr25/hero-3.jpg',
+      alt: 'Hero image 3',
+    },
+    // Add more images as needed
+  ];
   const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
 
   return (
     <section className=" space-y-8">
       <div className="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg ">
-        <div className="absolute inset-0 w-full h-full">
-          <Image
-            src="/wdr25/hero.jpg"
-            alt={messages.heroAlt}
-            fill
-            className="object-cover object-[25%_75%] md:object-center"
-            priority
-          />
+        <div className="absolute inset-0 w-full h-full" ref={emblaRef}>
+          <div className="flex h-full">
+            {heroImages.map((image, index) => (
+              <div key={index} className="flex-[0_0_100%] min-w-0 relative">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover object-[35%_75%] md:object-[25%_35%]"
+                  priority={index === 0}
+                />
+              </div>
+            ))}
+          </div>
           <div className="absolute inset-0 bg-black/30" />
         </div>
         <div className="relative z-10 space-y-8">
