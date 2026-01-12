@@ -4,10 +4,11 @@ import { Link } from '@/i18n/navigation';
 import { Download } from 'lucide-react';
 import { Eye } from 'lucide-react';
 
-export default function ExecutiveSummarySection({ locale = 'en', messages }) {
-
-  {/* Placehodler */}
-  const reportDownloadLink = `https://www.heritage.vic.gov.au/__data/assets/pdf_file/0022/512275/Victorias-framework-of-historical-themes-Heritage-Council-of-Victoria,-Victorian-Aboriginal-Heritage-Council-2009.pdf`;  
+export default function ExecutiveSummarySection({ messages }) {
+  {
+    /* Placehodler */
+  }
+  const reportDownloadLink = `https://www.heritage.vic.gov.au/__data/assets/pdf_file/0022/512275/Victorias-framework-of-historical-themes-Heritage-Council-of-Victoria,-Victorian-Aboriginal-Heritage-Council-2009.pdf`;
 
   return (
     <section>
@@ -22,7 +23,12 @@ export default function ExecutiveSummarySection({ locale = 'en', messages }) {
 
             {/* Image - Mobile: After title | Desktop: Hidden (appears in right column) */}
             <div className="lg:hidden relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200">
-              <Image src="/wdr25/summary.png" alt={messages.summaryAlt} fill className="object-cover" />
+              <Image
+                src="/wdr25/summary.png"
+                alt={messages.summaryAlt}
+                fill
+                className="object-cover"
+              />
             </div>
 
             {/* Subtitle */}
