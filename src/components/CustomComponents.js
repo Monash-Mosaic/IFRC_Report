@@ -9,7 +9,7 @@ import {
   Social,
   Societal,
 } from '@/components/icons/toh';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Tooltip from './Tooltip';
 
 // Lightweight placeholder components used by MDX content.
@@ -225,11 +225,11 @@ export function Definition({ children, ...props }) {
   );
 }
 
-export function TohInsight({ children, ...props }) {
+export async function TohInsight({ children, ...props }) {
   const content = React.Children.toArray(children).toString();
   const parts = content.toString().trim().split(',');
-  const c = useTranslations('ContributionInsight');
-  const toh = useTranslations('TohIcons');
+  const c = await getTranslations('ContributionInsight');
+  const toh = await getTranslations('TohIcons');
 
   const svgMap = {
     Physical: (

@@ -20,7 +20,7 @@ export const reportFile = {
 };
 
 export const chapters = {
-  'fore-word': {
+  'foreword': {
     component: Foreword.default,
     title: Foreword.title,
     subtitle: Foreword.subtitle,
