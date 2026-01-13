@@ -34,14 +34,110 @@ export default function EngagementPage() {
 
   const tags = [
     {
-      id: 'erosion',
-      label: 'Erosion of trust in humanitarian actors; Stigmatization and dehumanization',
+      id: 'erosion_trust',
+      label: 'Erosion of trust in humanitarian actors',
+      type: 'harm_category',
     },
-    { id: 'safety', label: 'Safety and security of staff and volunteers' },
-    { id: 'debunking', label: 'Debunking and corrective communication' },
-    { id: 'life-threat', label: 'Life-threatening Misinformation' },
-    { id: 'access', label: 'Access constraints and acceptance risks' },
-    { id: 'rumour', label: 'Rumour tracking and early warning' },
+    {
+      id: 'incitement_violence',
+      label: 'Incitement to violence or social unrest',
+      type: 'harm_category',
+    },
+    {
+      id: 'life_threatening_misinfo',
+      label: 'Life-threatening misinformation',
+      type: 'harm_category',
+    },
+    {
+      id: 'psychological_social_harm',
+      label: 'Psychological and social harm',
+      type: 'harm_category',
+    },
+    {
+      id: 'social_division_stigma',
+      label: 'Social division and stigma',
+      type: 'harm_category',
+    },
+    {
+      id: 'stigmatization_dehumanization',
+      label: 'Stigmatization and dehumanization',
+      type: 'harm_category',
+    },
+    {
+      id: 'access_constraints',
+      label: 'Access constraints and acceptance risks',
+      type: 'operational_impact',
+    },
+    {
+      id: 'distorted_needs',
+      label: 'Distorted needs and demand signals',
+      type: 'operational_impact',
+    },
+    {
+      id: 'programme_effectiveness',
+      label: 'Programme effectiveness and accountability',
+      type: 'operational_impact',
+    },
+    {
+      id: 'safety_security',
+      label: 'Safety and security of staff and volunteers',
+      type: 'operational_impact',
+    },
+    {
+      id: 'community_engagement',
+      label: 'Community engagement and accountability',
+      type: 'response_strategy',
+    },
+    {
+      id: 'community_engagement_retained',
+      label: 'Community engagement and accountability (retained)',
+      type: 'response_strategy',
+    },
+    {
+      id: 'debunking',
+      label: 'Debunking and corrective communication',
+      type: 'response_strategy',
+    },
+    {
+      id: 'information_aid',
+      label: 'Information as aid',
+      type: 'response_strategy',
+    },
+    {
+      id: 'prebunking',
+      label: 'Prebunking and narrative resilience',
+      type: 'response_strategy',
+    },
+    {
+      id: 'rumour_tracking',
+      label: 'Rumour tracking and early warning',
+      type: 'response_strategy',
+    },
+    {
+      id: 'trusted_messengers',
+      label: 'Trusted messengers and local intermediaries',
+      type: 'response_strategy',
+    },
+    {
+      id: 'freedom_expression',
+      label: 'Freedom of expression and information rights',
+      type: 'governance',
+    },
+    {
+      id: 'humanitarian_principles',
+      label: 'Humanitarian principles and neutrality',
+      type: 'governance',
+    },
+    {
+      id: 'regulation_policy',
+      label: 'Regulation and public policy frameworks',
+      type: 'governance',
+    },
+    {
+      id: 'technology_governance',
+      label: 'Technology governance and platform accountability',
+      type: 'governance',
+    },
   ];
 
   const chapters = [
@@ -159,12 +255,6 @@ export default function EngagementPage() {
       setSelectedTag({});
     }
     setIsShuffleTag(!isShuffleTag);
-  };
-
-  const toggleProgress = (progressId) => {
-    setSelectedProgress((prev) =>
-      prev.includes(progressId) ? prev.filter((id) => id !== progressId) : [...prev, progressId]
-    );
   };
 
   // Filter your content based on both selectedTag and selectedStats
