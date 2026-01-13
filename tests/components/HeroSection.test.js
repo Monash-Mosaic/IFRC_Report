@@ -53,7 +53,33 @@ jest.mock('next/image', () => {
   };
 });
 
-// No need to mock next/dynamic - we're using native HTML video element
+// Mock HeroVideo client component
+jest.mock('@/components/landing-page/HeroVideo', () => {
+  return function MockHeroVideo({ heroAlt }) {
+    return (
+      <>
+        <img
+          src="/wdr25/hero/poster.jpg"
+          alt={heroAlt}
+          data-testid="mock-image"
+          className="object-cover object-center transition-opacity duration-500 z-10"
+        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/wdr25/hero/poster.jpg"
+          preload="auto"
+          className="w-full h-full object-cover object-center"
+          data-testid="hero-video"
+          src="/wdr25/hero/mp4/720p.mp4"
+        >
+        </video>
+      </>
+    );
+  };
+});
 
 // Mock next-intl navigation Link component
 jest.mock('@/i18n/navigation', () => ({
@@ -113,22 +139,21 @@ describe('HeroSection', () => {
     expect(screen.getAllByText('Download PDF')).toHaveLength(1); // One instance
     expect(screen.getByText('Share Report')).toBeInTheDocument();
 
-    // Should show poster image
-    const image = screen.getByTestId('mock-image');
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', '/wdr25/hero/poster.jpg');
-    expect(image).toHaveAttribute(
-      'alt',
-      'World Disasters Report 2025 hero image'
-    );
-    expect(image).toHaveAttribute('data-priority', 'true');
+    // Should show poster image (from HeroVideo component)
+    const images = screen.getAllByTestId('mock-image');
+    expect(images.length).toBeGreaterThan(0);
+    const posterImage = images.find(img => img.getAttribute('src') === '/wdr25/hero/poster.jpg');
+    expect(posterImage).toBeInTheDocument();
+    expect(posterImage).toHaveAttribute('alt', 'World Disasters Report 2025 hero image');
 
-    // Should show native HTML video element with default 720p MP4 (when Network API unavailable)
+    // Should show native HTML video element with MP4 src (default 720p when Network API unavailable)
     const video = container.querySelector('video');
     expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/720p.mp4');
     // Video should have className for styling
     expect(video).toHaveClass('w-full', 'h-full', 'object-cover', 'object-center');
+    
+    // Check for MP4 src attribute on video element
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/720p.mp4');
 
     expect(container).toMatchSnapshot();
   });
@@ -297,143 +322,17 @@ describe('HeroSection', () => {
   it('has correct image properties', () => {
     render(<HeroSection {...defaultProps} />);
 
-    const image = screen.getByTestId('mock-image');
+    const images = screen.getAllByTestId('mock-image');
+    const posterImage = images.find(img => img.getAttribute('src') === '/wdr25/hero/poster.jpg');
 
-    // Should have correct image attributes (poster image)
-    expect(image).toHaveAttribute('src', '/wdr25/hero/poster.jpg');
-    expect(image).toHaveAttribute(
-      'alt',
-      'World Disasters Report 2025 hero image'
-    );
-    expect(image).toHaveAttribute('data-fill', 'true');
-    expect(image).toHaveAttribute('data-priority', 'true');
-    expect(image).toHaveClass('object-cover');
+    // Should have correct image attributes (poster image from HeroVideo)
+    expect(posterImage).toBeInTheDocument();
+    expect(posterImage).toHaveAttribute('alt', 'World Disasters Report 2025 hero image');
+    expect(posterImage).toHaveClass('object-cover');
   });
 
-  it('uses 240p MP4 when saveData is enabled', () => {
-    // Mock navigator.connection with saveData enabled
-    global.navigator.connection = {
-      saveData: true,
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
-  });
-
-  it('uses 240p MP4 when connection is 2g', () => {
-    // Mock navigator.connection with 2g connection
-    global.navigator.connection = {
-      effectiveType: '2g',
-      saveData: false,
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
-  });
-
-  it('uses 240p MP4 when connection is slow-2g', () => {
-    // Mock navigator.connection with slow-2g connection
-    global.navigator.connection = {
-      effectiveType: 'slow-2g',
-      saveData: false,
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
-  });
-
-  it('uses 360p MP4 when connection is 3g', () => {
-    // Mock navigator.connection with 3g connection
-    global.navigator.connection = {
-      effectiveType: '3g',
-      saveData: false,
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/360p.mp4');
-  });
-
-  it('uses 480p MP4 when 4g connection has low downlink', () => {
-    // Mock navigator.connection with 4g but low bandwidth
-    global.navigator.connection = {
-      effectiveType: '4g',
-      saveData: false,
-      downlink: 1.2, // Less than 1.5 Mbps
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/480p.mp4');
-  });
-
-  it('uses 1080p MP4 when 4g connection has high downlink', () => {
-    // Mock navigator.connection with 4g and good bandwidth
-    global.navigator.connection = {
-      effectiveType: '4g',
-      saveData: false,
-      downlink: 2.5, // 1.5 Mbps or higher
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/1080p.mp4');
-  });
-
-  it('uses 1080p MP4 when 4g connection has no downlink info', () => {
-    // Mock navigator.connection with 4g but no downlink
-    global.navigator.connection = {
-      effectiveType: '4g',
-      saveData: false,
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/1080p.mp4');
-  });
-
-  it('uses 720p MP4 by default when network info is unavailable', () => {
-    // No connection object
-    delete global.navigator.connection;
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/720p.mp4');
-  });
-
-  it('prioritizes saveData over effectiveType', () => {
-    // Mock navigator.connection with saveData enabled and 4g
-    global.navigator.connection = {
-      effectiveType: '4g',
-      saveData: true,
-      downlink: 5.0,
-    };
-
-    const { container } = render(<HeroSection {...defaultProps} />);
-
-    const video = container.querySelector('video');
-    // Should use 240p MP4 even though connection is 4g
-    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
-  });
+  // Note: Network-based quality selection tests are now in HeroVideo.test.js
+  // HeroSection is a server component and delegates video logic to HeroVideo client component
 
   it('handles missing or malformed data gracefully', () => {
     const malformedProps = {
@@ -455,8 +354,9 @@ describe('HeroSection', () => {
       render(<HeroSection {...malformedProps} />);
     }).not.toThrow();
 
-    // Image should still render
-    expect(screen.getByTestId('mock-image')).toBeInTheDocument();
+    // Images should still render (poster and fallback)
+    const images = screen.getAllByTestId('mock-image');
+    expect(images.length).toBeGreaterThan(0);
 
     // Link should still render (even with empty text)
     expect(screen.getByTestId('mock-link')).toBeInTheDocument();

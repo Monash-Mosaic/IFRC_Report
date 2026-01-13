@@ -14,19 +14,18 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
         <img
           alt="World Disasters Report 2025 hero image"
           class="object-cover object-center transition-opacity duration-500 z-10"
-          data-fill="true"
-          data-priority="true"
           data-testid="mock-image"
-          sizes="100vw"
           src="/wdr25/hero/poster.jpg"
         />
         <video
           autoplay=""
           class="w-full h-full object-cover object-center"
+          data-testid="hero-video"
           loop=""
           playsinline=""
+          poster="/wdr25/hero/poster.jpg"
+          preload="auto"
           src="/wdr25/hero/mp4/720p.mp4"
-          style="height: 100%; width: auto;"
         />
         <div
           class="absolute inset-0 bg-black/30 z-20"

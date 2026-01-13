@@ -1,93 +1,24 @@
-'use client';
 // components/landing-page/HeroSection.js
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
+import HeroVideo from './HeroVideo';
 
+/**
+ * Server Component for Hero Section
+ * Handles static content and layout
+ * Video playback is handled by client component HeroVideo
+ */
 export default function HeroSection({ messages }) {
   const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
-  const [videoReady, setVideoReady] = useState(false);
-  const [videoUrl, setVideoUrl] = useState('/wdr25/hero/mp4/720p.mp4');
-
-  // Network-based conditional loading
-  useEffect(() => {
-    if (typeof navigator !== 'undefined') {
-      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      
-      if (connection) {
-        const effectiveType = connection.effectiveType;
-        const saveData = !!connection.saveData;
-        const downlink = connection.downlink; // Mbps
-
-        // Priority 1: Check saveData flag (data saver mode)
-        if (saveData) {
-          setVideoUrl('/wdr25/hero/mp4/240p.mp4');
-          return;
-        }
-
-        // Priority 2: Check effectiveType for 2G/slow-2G
-        if (effectiveType === '2g' || effectiveType === 'slow-2g') {
-          setVideoUrl('/wdr25/hero/mp4/240p.mp4');
-          return;
-        }
-
-        // Priority 3: Check effectiveType for 3G
-        if (effectiveType === '3g') {
-          setVideoUrl('/wdr25/hero/mp4/480p.mp4');
-          return;
-        }
-
-        // Priority 4: Check effectiveType for 4G with downlink bandwidth
-        if (effectiveType === '4g') {
-          if (downlink && downlink < 1.5) {
-            // Low 4G (less than 1.5 Mbps)
-            // setVideoUrl('/wdr25/hero/mp4/480p.mp4');
-            setVideoUrl('/wdr25/hero/mp4/720p.mp4');
-          } else {
-            // Full 4G (1.5 Mbps or higher)
-            setVideoUrl('/wdr25/hero/mp4/1080p.mp4');
-          }
-          return;
-        }
-      }
-    }
-    // Default: Use 720p (balanced quality) if Network API unavailable or unknown connection
-  }, []);
-
-  const HeroImage = () => {
-    return (
-      <Image
-        src="/wdr25/hero/poster.jpg"
-        alt={messages.heroAlt}
-        fill
-        priority
-        sizes="100vw"
-        className={`object-cover object-center transition-opacity duration-500 z-10`}
-      />
-    );
-  };
 
   return (
     <section className=" space-y-8">
       <div className="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg min-h-[500px] md:min-h-[600px] ">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {/* Poster image - shown immediately, fades out when video is ready */}
-          {!videoReady && <HeroImage />}
-          
-          {/* Background video player - native HTML video element */}
-          <video
-            src={videoUrl}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover object-center"
-            style={{ height: '100%', width: 'auto' }}
-            onPlaying={() => setVideoReady(true)}
-          />
+          {/* Client component handles video with network-based quality selection */}
+          <HeroVideo heroAlt={messages.heroAlt} />
           
           <div className="absolute inset-0 bg-black/30 z-20" />
         </div>

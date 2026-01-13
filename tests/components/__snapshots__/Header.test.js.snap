@@ -3,35 +3,39 @@
 exports[`Header Rendering matches snapshot 1`] = `
 <div>
   <header
-    class="w-full"
+    class="w-full bg-white"
   >
     <div
-      class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between"
+      class="max-w-9/10 md:max-w-8/10 mx-auto px-4 py-4 flex items-center justify-between"
     >
       <div
         class="flex items-center space-x-2"
       >
-        <img
-          alt="Logo"
-          height="128"
-          src="/wdr25/ifrc_logo.png"
-          width="128"
-        />
+        <a
+          href="/"
+        >
+          <img
+            alt="Logo"
+            height="80"
+            src="/wdr25/ifrc_logo.jpg"
+            width="80"
+          />
+        </a>
       </div>
       <nav
         class="hidden md:flex items-center transition-all duration-300 ease-in-out space-x-8"
       >
         <a
           class="text-gray-700 hover:text-gray-900 text-sm font-medium"
-          href="#about"
+          href="/about"
         >
           About
         </a>
         <a
           class="text-gray-700 hover:text-gray-900 text-sm font-medium"
-          href="#games"
+          href="/acknowledgement"
         >
-          Games
+          nav.acknowledgement
         </a>
         <div
           data-testid="locale-switcher"
