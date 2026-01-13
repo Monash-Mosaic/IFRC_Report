@@ -11,7 +11,7 @@
       "bookmarks": "Signets",
       "download": "Télécharger",
       "search": "Recherche",
-      "contributors": "Contributeurs"
+      "acknowledgement": "Reconnaissance"
     },
     "footer": {
       "worldDisastersReport": "Rapport mondial sur les catastrophes",
@@ -41,8 +41,8 @@
     },
     "landingPage": {
       "heroSection": {
-        "title": "Rapport mondial sur les catastrophes",
-        "description": "Vérité, confiance et action humanitaire à l'ère de l'information nuisible",
+        "title": "Rapport sur les\ncatastrophes\ndans le monde",
+        "description": "Vérité, confiance\net action\nhumanitaire à l'ère\ndes informations\npréjudiciables",
         "buttonTexts": {
           "read": "Lire le rapport",
           "download": "Télécharger le rapport",

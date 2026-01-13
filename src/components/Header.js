@@ -24,7 +24,7 @@ export default function Header() {
   // Navigation links data to avoid duplication
   const navigationLinks = [
     { href: '/about', label: t('nav.about') },
-    { href: '/contributors', label: t('nav.contributors') },
+    { href: '/acknowledgement', label: t('nav.acknowledgement') },
   ];
 
   // Navigation links component to avoid duplication

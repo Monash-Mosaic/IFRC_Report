@@ -1,0 +1,154 @@
+{
+  "Home": {
+    "meta": {
+      "title": "Página de inicio de Informes de la FICR",
+      "description": "Bienvenido/a al Informe de la FICR"
+    },
+    "nav": {
+      "logoAlt": "Logotipo de la FICR",
+      "brand": "FICR | Academia Solferino",
+      "about": "Acerca de",
+      "bookmarks": "Marcadores",
+      "download": "Descargar",
+      "search": "Buscar",
+      "acknowledgement": "Agradecimientos"
+    },
+    "footer": {
+      "worldDisastersReport": "Informe Mundial sobre Desastres",
+      "chapters": {
+        "title": "Capítulos del Informe",
+        "chapter1": "Capítulo 1",
+        "chapter2": "Capítulo 2",
+        "chapter3": "Capítulo 3"
+      },
+      "games": {
+        "title": "Juegos sobre Desinformación",
+        "disinformer": "Desinformador",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
+      },
+      "social": {
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "x": "X (Twitter)"
+      },
+      "copyright": "© {year} Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja. Todos los derechos reservados.",
+      "orgFull": "Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja",
+      "privacyPolicy": "Política de Privacidad",
+      "termsOfService": "Términos de Servicio",
+      "contact": "Contacto"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "Informe\nMundial sobre\nDesastres",
+        "description": "Verdad, confianza y\nacción humanitaria\nen la era de la\ninformación danina",
+        "buttonTexts": {
+          "read": "Leer informe",
+          "download": "Descargar informe",
+          "share": "Compartir"
+        },
+        "heroAlt": "Imagen principal del Informe Mundial sobre Desastres mostrando a trabajadores humanitarios en acción"
+      },
+      "executiveSummary": {
+        "title": "Resumen Ejecutivo",
+        "subtitle": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
+        "description": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
+        "buttonTexts": {
+          "read": "Leer",
+          "download": "Descargar"
+        },
+        "summaryAlt": "Portada del Resumen Ejecutivo con una persona en un contexto humanitario"
+      },
+      "featuredVideos": {
+        "title": "Videos Destacados de Todo el Mundo"
+      },
+      "testimonials": {
+        "title": "Citas y Experiencias de Vida"
+      }
+    },
+    "videoCard": {
+      "backToThumbnail": "Volver a la miniatura",
+      "videoAriaLabel": "Reproducir video"
+    }
+  },
+  "ReportListingPage": {
+    "meta": {
+      "title": "Informes y Publicaciones",
+      "description": "Accede y gestiona informes y publicaciones de la FICR"
+    },
+    "title": "Informes y Publicaciones",
+    "description": "Accede y gestiona informes y publicaciones de la FICR",
+    "filter": {
+      "label": "Categoría",
+      "all": "Todas las Categorías"
+    },
+    "dateRange": {
+      "label": "Rango de Fechas",
+      "all": "Todo el Tiempo"
+    },
+    "search": {
+      "label": "Buscar",
+      "placeholder": "Buscar informes..."
+    },
+    "docList": {
+      "label": "Todos los Informes",
+      "showing": "{count, plural, =0 {No se encontró ningún informe} =1 {Mostrando # informe} other {Mostrando # informes}}",
+      "download": "Descargar Informe",
+      "readInteractiveAlt": "Leer Informe Interactivo"
+    }
+  },
+  "ReportDetailPage": {
+    "backToDocuments": "Volver a Informes",
+    "tableOfContent": "Tabla de Contenidos",
+    "bookmark": "Marcador",
+    "bookmarkAria": "{action, select, add {Añadir marcador} remove {Eliminar marcador} other {Desconocido}} para {section}",
+    "sections": {
+      "continue": "Continuar"
+    }
+  },
+  "ReportChapterPage": {
+    "back": "Atrás",
+    "tocTitle": "En Este Capítulo"
+  },
+  "LocaleSwitcher": {
+    "ariaLabel": "Seleccionar idioma",
+    "title": "Seleccionar idioma",
+    "language": "Idioma"
+  },
+  "SidebarPanel": {
+    "expandSidebar": "Expandir barra lateral",
+    "closeSidebar": "Cerrar barra lateral",
+    "back": "Atrás",
+    "resources": "Recursos",
+    "chapterResourcesPanel": "Panel de Recursos del Capítulo",
+    "panel": {
+      "notes": "Notas",
+      "audios": "Audio",
+      "videos": "Videos"
+    },
+    "chapterNotes": "Notas del Capítulo",
+    "myNotes": "Mis Notas",
+    "bookmarks": "Marcadores",
+    "audio": "Audio",
+    "videos": "Videos",
+    "loading": "Cargando",
+    "noMediaAvailable": {
+      "audio": "No hay audio disponible para este capítulo",
+      "videos": "No hay videos disponibles para este capítulo"
+    },
+    "selectMediaToPlay": {
+      "audio": "Selecciona un audio para reproducir",
+      "videos": "Selecciona un video para reproducir"
+    },
+    "playerForAccessibility": {
+      "audio": "Reproductor de audio para mejorar la accesibilidad",
+      "videos": "Reproductor de video para mejorar la accesibilidad"
+    },
+    "closeMediaPanel": "Cerrar panel de medios",
+    "duration": "Duración",
+    "videoCard": {
+      "backToThumbnail": "Volver a la miniatura"
+    }
+  }
+}

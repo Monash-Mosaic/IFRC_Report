@@ -26,13 +26,13 @@ export default function HeroSection({ messages }) {
         </div>
         <div className="relative z-10 space-y-8">
           <div className="space-y-6">
-            <h1 className="text-5xl md:text-7xl/18  font-bold text-white leading-tight text-end">
-              <span className="whitespace-pre-line">{messages.title.split(' ').join('\n')}</span>
+            <h1 className="text-4xl md:text-7xl/18 font-bold text-white leading-tight text-end">
+              <span className="whitespace-pre-line">{messages.title}</span>
               <div className="mt-8">2026</div>
             </h1>
-            <p className="text-4xl text-white max-w-90 text-balance md:text-balance leading-tight font-bold">
-              {messages.description}
-            </p>
+            <div className="text-4xl md:text-5xl text-white leading-tight font-bold">
+              <span className="whitespace-pre-line">{messages.description}</span>
+            </div>
           </div>
         </div>
       </div>

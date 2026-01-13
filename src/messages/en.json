@@ -11,7 +11,7 @@
       "bookmarks": "Bookmarks",
       "download": "Download",
       "search": "Search",
-      "contributors": "Contributors"
+      "acknowledgement": "Acknowledgement"
     },
     "footer": {
       "worldDisastersReport": "World Disasters Report",
@@ -41,8 +41,8 @@
     },
     "landingPage": {
       "heroSection": {
-        "title": "World Disasters Report",
-        "description": "Truth, trust and humanitarian action in the age of Harmful Information",
+        "title": "World\nDisasters\nReport",
+        "description": "Truth, Trust and\nHumanitarian\nAction in the\nAge of Harmful\nInformation",
         "buttonTexts": {
           "read": "Read report",
           "download": "Download report",

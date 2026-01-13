@@ -17,6 +17,7 @@ export default function LocaleSwitcher() {
     { code: 'zh', name: '中文' },
     { code: 'ru', name: 'Русский' },
     { code: 'ar', name: 'العربية' },
+    { code: 'es', name: 'Espanol' },
   ];
 
   /**
