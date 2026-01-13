@@ -86,7 +86,6 @@ export default function HeroVideo({ heroAlt }) {
         aria-label={heroAlt}
         role="img"
         className="w-full h-full object-cover object-center"
-        style={{ height: '100%', width: 'auto' }}
         onPlaying={() => setVideoReady(true)}
       />
     </>
