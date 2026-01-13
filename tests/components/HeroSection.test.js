@@ -53,34 +53,7 @@ jest.mock('next/image', () => {
   };
 });
 
-// Mock next/dynamic
-jest.mock('next/dynamic', () => {
-  return jest.fn(() => {
-    return function MockReactPlayer({ src, url, playing, loop, muted, playsinline, playsInline, onReady, onPlaying, ...props }) {
-      // Use src (v3) or url (fallback) for ReactPlayer
-      const playlistUrl = src || url;
-      // Call onReady/onPlaying after a short delay to simulate player loading
-      if (onReady || onPlaying) {
-        setTimeout(() => {
-          if (onReady) onReady();
-          if (onPlaying) onPlaying();
-        }, 0);
-      }
-      return (
-        <div
-          data-testid="mock-react-player"
-          data-url={playlistUrl}
-          data-src={playlistUrl}
-          data-playing={playing}
-          data-loop={loop}
-          data-muted={muted}
-          data-playsinline={playsinline || playsInline}
-          {...props}
-        />
-      );
-    };
-  });
-});
+// No need to mock next/dynamic - we're using native HTML video element
 
 // Mock next-intl navigation Link component
 jest.mock('@/i18n/navigation', () => ({
@@ -150,13 +123,12 @@ describe('HeroSection', () => {
     );
     expect(image).toHaveAttribute('data-priority', 'true');
 
-    // Should show ReactPlayer with master playlist by default (when Network API unavailable)
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toBeInTheDocument();
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/master.m3u8');
-    expect(player).toHaveAttribute('data-playing', 'true');
-    expect(player).toHaveAttribute('data-loop', 'true');
-    expect(player).toHaveAttribute('data-muted', 'true');
+    // Should show native HTML video element with default 720p MP4 (when Network API unavailable)
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/720p.mp4');
+    // Video should have className for styling
+    expect(video).toHaveClass('w-full', 'h-full', 'object-cover', 'object-center');
 
     expect(container).toMatchSnapshot();
   });
@@ -338,58 +310,62 @@ describe('HeroSection', () => {
     expect(image).toHaveClass('object-cover');
   });
 
-  it('uses save_data playlist when saveData is enabled', () => {
+  it('uses 240p MP4 when saveData is enabled', () => {
     // Mock navigator.connection with saveData enabled
     global.navigator.connection = {
       saveData: true,
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/save_data.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
   });
 
-  it('uses 2g playlist when connection is 2g', () => {
+  it('uses 240p MP4 when connection is 2g', () => {
     // Mock navigator.connection with 2g connection
     global.navigator.connection = {
       effectiveType: '2g',
       saveData: false,
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/2g.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
   });
 
-  it('uses 2g playlist when connection is slow-2g', () => {
+  it('uses 240p MP4 when connection is slow-2g', () => {
     // Mock navigator.connection with slow-2g connection
     global.navigator.connection = {
       effectiveType: 'slow-2g',
       saveData: false,
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/2g.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
   });
 
-  it('uses 3g playlist when connection is 3g', () => {
+  it('uses 360p MP4 when connection is 3g', () => {
     // Mock navigator.connection with 3g connection
     global.navigator.connection = {
       effectiveType: '3g',
       saveData: false,
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/3g.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/360p.mp4');
   });
 
-  it('uses low4g playlist when 4g connection has low downlink', () => {
+  it('uses 480p MP4 when 4g connection has low downlink', () => {
     // Mock navigator.connection with 4g but low bandwidth
     global.navigator.connection = {
       effectiveType: '4g',
@@ -397,13 +373,14 @@ describe('HeroSection', () => {
       downlink: 1.2, // Less than 1.5 Mbps
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/low4g.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/480p.mp4');
   });
 
-  it('uses 4g playlist when 4g connection has high downlink', () => {
+  it('uses 1080p MP4 when 4g connection has high downlink', () => {
     // Mock navigator.connection with 4g and good bandwidth
     global.navigator.connection = {
       effectiveType: '4g',
@@ -411,33 +388,36 @@ describe('HeroSection', () => {
       downlink: 2.5, // 1.5 Mbps or higher
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/4g.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/1080p.mp4');
   });
 
-  it('uses 4g playlist when 4g connection has no downlink info', () => {
+  it('uses 1080p MP4 when 4g connection has no downlink info', () => {
     // Mock navigator.connection with 4g but no downlink
     global.navigator.connection = {
       effectiveType: '4g',
       saveData: false,
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/4g.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/1080p.mp4');
   });
 
-  it('uses master playlist by default when network info is unavailable', () => {
+  it('uses 720p MP4 by default when network info is unavailable', () => {
     // No connection object
     delete global.navigator.connection;
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/master.m3u8');
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/720p.mp4');
   });
 
   it('prioritizes saveData over effectiveType', () => {
@@ -448,11 +428,11 @@ describe('HeroSection', () => {
       downlink: 5.0,
     };
 
-    render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection {...defaultProps} />);
 
-    const player = screen.getByTestId('mock-react-player');
-    // Should use save_data playlist even though connection is 4g
-    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/save_data.m3u8');
+    const video = container.querySelector('video');
+    // Should use 240p MP4 even though connection is 4g
+    expect(video).toHaveAttribute('src', '/wdr25/hero/mp4/240p.mp4');
   });
 
   it('handles missing or malformed data gracefully', () => {
@@ -489,7 +469,7 @@ describe('HeroSection', () => {
     const h1 = screen.getByRole('heading', { level: 1 });
     expect(h1).toHaveTextContent('World Disasters Report 2025');
     expect(h1).toHaveClass(
-      'text-5xl',
+      'text-4xl',
       'md:text-7xl/18',
       'font-bold',
       'text-white',
@@ -516,16 +496,14 @@ describe('HeroSection', () => {
 
     // Title should have responsive classes
     const title = screen.getByRole('heading', { level: 1 });
-    expect(title).toHaveClass('text-5xl', 'md:text-7xl/18');
+    expect(title).toHaveClass('text-4xl', 'md:text-7xl/18');
 
     // Description should have responsive classes
     const description = screen.getByText(/Explore the most comprehensive analysis/);
-    expect(description).toHaveClass(
+    expect(description.closest('div')).toHaveClass(
       'text-4xl',
+      'md:text-5xl',
       'text-white',
-      'max-w-90',
-      'text-balance',
-      'md:text-balance',
       'leading-tight',
       'font-bold'
     );

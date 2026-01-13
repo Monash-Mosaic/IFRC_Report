@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Hero Video Assets
 
-The hero section uses HLS (HTTP Live Streaming) video for network-friendly playback. To generate the required assets:
+The hero section uses native HTML video with MP4 files for network-friendly playback. The component automatically selects the appropriate video quality based on the user's network conditions.
 
 ### Prerequisites
 
@@ -56,8 +56,19 @@ Install `ffmpeg`:
 
 This will generate:
 - `public/wdr25/hero/poster.jpg` - First frame as poster image
-- `public/wdr25/hero/fallback-muted.mp4` - Muted MP4 fallback
-- `public/wdr25/hero/hls/480p.m3u8` + segments - 480p HLS variant
-- `public/wdr25/hero/hls/1080p.m3u8` + segments - 1080p HLS variant
-- `public/wdr25/hero/hls/master.m3u8` - ABR master playlist
-- `public/wdr25/hero/hls/480p_only.m3u8` - 480p-only playlist for low bandwidth
+- `public/wdr25/hero/mp4/240p.mp4` - Ultra-low bandwidth (426x240, 15fps, ~350kbps)
+- `public/wdr25/hero/mp4/360p.mp4` - Low bandwidth (640x360, 30fps, ~750kbps)
+- `public/wdr25/hero/mp4/480p.mp4` - Medium-low bandwidth (854x480, 30fps, ~1200kbps)
+- `public/wdr25/hero/mp4/720p.mp4` - Medium-high bandwidth (1280x720, 30fps, ~3000kbps)
+- `public/wdr25/hero/mp4/1080p.mp4` - High bandwidth (1920x1080, 30fps, ~5250kbps)
+
+### Network-Based Video Selection
+
+The component automatically selects video quality based on network conditions:
+
+- **Data Saver Mode** → 240p.mp4
+- **2G / slow-2G** → 240p.mp4
+- **3G** → 360p.mp4
+- **4G (low bandwidth < 1.5 Mbps)** → 480p.mp4
+- **4G (high bandwidth ≥ 1.5 Mbps)** → 1080p.mp4
+- **Default / Unknown** → 720p.mp4 (balanced quality)

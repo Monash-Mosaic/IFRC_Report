@@ -1,20 +1,16 @@
 'use client';
 // components/landing-page/HeroSection.js
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
 
-// Dynamically import ReactPlayer (client-only, no SSR)
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
-
 export default function HeroSection({ messages }) {
   const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
   const [videoReady, setVideoReady] = useState(false);
-  const [playlistUrl, setPlaylistUrl] = useState('/wdr25/hero/hls/master.m3u8');
+  const [videoUrl, setVideoUrl] = useState('/wdr25/hero/mp4/720p.mp4');
 
   // Network-based conditional loading
   useEffect(() => {
@@ -28,19 +24,19 @@ export default function HeroSection({ messages }) {
 
         // Priority 1: Check saveData flag (data saver mode)
         if (saveData) {
-          setPlaylistUrl('/wdr25/hero/hls/save_data.m3u8');
+          setVideoUrl('/wdr25/hero/mp4/240p.mp4');
           return;
         }
 
         // Priority 2: Check effectiveType for 2G/slow-2G
         if (effectiveType === '2g' || effectiveType === 'slow-2g') {
-          setPlaylistUrl('/wdr25/hero/hls/2g.m3u8');
+          setVideoUrl('/wdr25/hero/mp4/240p.mp4');
           return;
         }
 
         // Priority 3: Check effectiveType for 3G
         if (effectiveType === '3g') {
-          setPlaylistUrl('/wdr25/hero/hls/3g.m3u8');
+          setVideoUrl('/wdr25/hero/mp4/480p.mp4');
           return;
         }
 
@@ -48,16 +44,17 @@ export default function HeroSection({ messages }) {
         if (effectiveType === '4g') {
           if (downlink && downlink < 1.5) {
             // Low 4G (less than 1.5 Mbps)
-            setPlaylistUrl('/wdr25/hero/hls/low4g.m3u8');
+            // setVideoUrl('/wdr25/hero/mp4/480p.mp4');
+            setVideoUrl('/wdr25/hero/mp4/720p.mp4');
           } else {
             // Full 4G (1.5 Mbps or higher)
-            setPlaylistUrl('/wdr25/hero/hls/4g.m3u8');
+            setVideoUrl('/wdr25/hero/mp4/1080p.mp4');
           }
           return;
         }
       }
     }
-    // Default: Use master playlist (full ABR) if Network API unavailable or unknown connection
+    // Default: Use 720p (balanced quality) if Network API unavailable or unknown connection
   }, []);
 
   const HeroImage = () => {
@@ -79,20 +76,19 @@ export default function HeroSection({ messages }) {
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {/* Poster image - shown immediately, fades out when video is ready */}
           {!videoReady && <HeroImage />}
-          <div className={`w-full h-full overflow-hidden`} >
-            <ReactPlayer
-                src={playlistUrl}
-                playing
-                loop
-                muted
-                disableRemotePlayback
-                pip={false}
-                preload="auto"
-                playsInline
-                style={{ height: '100%', width: 'auto' }}
-                onPlaying={() => setVideoReady(true)}
-              />
-          </div>
+          
+          {/* Background video player - native HTML video element */}
+          <video
+            src={videoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover object-center"
+            style={{ height: '100%', width: 'auto' }}
+            onPlaying={() => setVideoReady(true)}
+          />
+          
           <div className="absolute inset-0 bg-black/30 z-20" />
         </div>
         <div className="relative z-10 space-y-8">

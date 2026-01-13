@@ -9,7 +9,7 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
       class="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg min-h-[500px] md:min-h-[600px] "
     >
       <div
-        class="absolute inset-0 w-full h-full"
+        class="absolute inset-0 w-full h-full overflow-hidden"
       >
         <img
           alt="World Disasters Report 2025 hero image"
@@ -20,21 +20,13 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
           sizes="100vw"
           src="/wdr25/hero/poster.jpg"
         />
-        <div
-          config="[object Object]"
-          data-loop="true"
-          data-muted="true"
-          data-playing="true"
-          data-playsinline="true"
-          data-src="/wdr25/hero/hls/master.m3u8"
-          data-testid="mock-react-player"
-          data-url="/wdr25/hero/hls/master.m3u8"
-          disableremoteplayback=""
-          fallback="[object Object]"
-          height="100%"
-          preload="auto"
-          style="position: absolute; top: 0px; left: 0px;"
-          width="100%"
+        <video
+          autoplay=""
+          class="w-full h-full object-cover object-center"
+          loop=""
+          playsinline=""
+          src="/wdr25/hero/mp4/720p.mp4"
+          style="height: 100%; width: auto;"
         />
         <div
           class="absolute inset-0 bg-black/30 z-20"
@@ -47,7 +39,7 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
           class="space-y-6"
         >
           <h1
-            class="text-5xl md:text-7xl/18  font-bold text-white leading-tight text-end"
+            class="text-4xl md:text-7xl/18  font-bold text-white leading-tight text-end"
           >
             <span
               class="whitespace-pre-line"
@@ -60,11 +52,15 @@ exports[`HeroSection renders HeroSection with all content 1`] = `
               2026
             </div>
           </h1>
-          <p
-            class="text-4xl text-white max-w-90 text-balance md:text-balance leading-tight font-bold"
+          <div
+            class="text-4xl md:text-5xl text-white leading-tight font-bold"
           >
-            Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.
-          </p>
+            <span
+              class="whitespace-pre-line"
+            >
+              Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.
+            </span>
+          </div>
         </div>
       </div>
     </div>
