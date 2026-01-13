@@ -10,7 +10,7 @@ export default function HeroSection({ messages }) {
 
   return (
     <section className=" space-y-8">
-      <div className="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg ">
+      <div className="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg min-h-[500px] md:min-h-[600px] ">
         <div className="absolute inset-0 w-full h-full">
           <video
             autoPlay
