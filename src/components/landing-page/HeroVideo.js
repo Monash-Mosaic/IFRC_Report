@@ -88,17 +88,7 @@ export default function HeroVideo({ heroAlt }) {
         className="w-full h-full object-cover object-center"
         style={{ height: '100%', width: 'auto' }}
         onPlaying={() => setVideoReady(true)}
-      >
-        {/* Fallback image if video fails to load */}
-        <Image
-          src="/wdr25/hero/poster.jpg"
-          alt={heroAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center transition-opacity duration-500 z-10"
-        />
-      </video>
+      />
     </>
   );
 }
