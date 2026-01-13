@@ -53,7 +53,7 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <Link href={'/'}>
-            <Image src="/wdr25/ifrc_logo.png" alt="Logo" width={128} height={128} />
+            <Image src="/wdr25/ifrc_logo.jpg" alt="Logo" width={80} height={80} />
           </Link>
         </div>
 
