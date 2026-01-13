@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Hero Video Assets
+
+The hero section uses HLS (HTTP Live Streaming) video for network-friendly playback. To generate the required assets:
+
+### Prerequisites
+
+Install `ffmpeg`:
+- **macOS**: `brew install ffmpeg`
+- **Linux**: `sudo apt-get install ffmpeg`
+- **Windows**: Download from [https://www.gyan.dev/ffmpeg/builds/](https://www.gyan.dev/ffmpeg/builds/)
+
+### Generating Assets
+
+1. Ensure your source MP4 video exists at: `public/wdr25/wdr_hero_video.mp4`
+2. Run the generation script:
+   ```bash
+   npm run hero:assets
+   ```
+
+This will generate:
+- `public/wdr25/hero/poster.jpg` - First frame as poster image
+- `public/wdr25/hero/fallback-muted.mp4` - Muted MP4 fallback
+- `public/wdr25/hero/hls/480p.m3u8` + segments - 480p HLS variant
+- `public/wdr25/hero/hls/1080p.m3u8` + segments - 1080p HLS variant
+- `public/wdr25/hero/hls/master.m3u8` - ABR master playlist
+- `public/wdr25/hero/hls/480p_only.m3u8` - 480p-only playlist for low bandwidth

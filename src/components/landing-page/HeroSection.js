@@ -1,32 +1,103 @@
 'use client';
 // components/landing-page/HeroSection.js
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
 
+// Dynamically import ReactPlayer (client-only, no SSR)
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
+
 export default function HeroSection({ messages }) {
   const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
+  const [videoReady, setVideoReady] = useState(false);
+  const [playlistUrl, setPlaylistUrl] = useState('/wdr25/hero/hls/master.m3u8');
+
+  // Network-based conditional loading
+  useEffect(() => {
+    if (typeof navigator !== 'undefined') {
+      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      
+      if (connection) {
+        const effectiveType = connection.effectiveType;
+        const saveData = !!connection.saveData;
+        const downlink = connection.downlink; // Mbps
+
+        // Priority 1: Check saveData flag (data saver mode)
+        if (saveData) {
+          setPlaylistUrl('/wdr25/hero/hls/save_data.m3u8');
+          return;
+        }
+
+        // Priority 2: Check effectiveType for 2G/slow-2G
+        if (effectiveType === '2g' || effectiveType === 'slow-2g') {
+          setPlaylistUrl('/wdr25/hero/hls/2g.m3u8');
+          return;
+        }
+
+        // Priority 3: Check effectiveType for 3G
+        if (effectiveType === '3g') {
+          setPlaylistUrl('/wdr25/hero/hls/3g.m3u8');
+          return;
+        }
+
+        // Priority 4: Check effectiveType for 4G with downlink bandwidth
+        if (effectiveType === '4g') {
+          if (downlink && downlink < 1.5) {
+            // Low 4G (less than 1.5 Mbps)
+            setPlaylistUrl('/wdr25/hero/hls/low4g.m3u8');
+          } else {
+            // Full 4G (1.5 Mbps or higher)
+            setPlaylistUrl('/wdr25/hero/hls/4g.m3u8');
+          }
+          return;
+        }
+      }
+    }
+    // Default: Use master playlist (full ABR) if Network API unavailable or unknown connection
+  }, []);
+
+  const HeroImage = () => {
+    return (
+      <Image
+        src="/wdr25/hero/poster.jpg"
+        alt={messages.heroAlt}
+        fill
+        priority
+        sizes="100vw"
+        className={`object-cover object-center transition-opacity duration-500 z-10`}
+      />
+    );
+  };
 
   return (
     <section className=" space-y-8">
       <div className="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg min-h-[500px] md:min-h-[600px] ">
-        <div className="absolute inset-0 w-full h-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover object-center md:object-center"
-          >
-            <source src="/wdr25/wdr_hero_video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Poster image - shown immediately, fades out when video is ready */}
+          {!videoReady && <HeroImage />}
+          <div className={`w-full h-full overflow-hidden`} >
+            <ReactPlayer
+                src={playlistUrl}
+                playing
+                loop
+                muted
+                disableRemotePlayback
+                pip={false}
+                preload="auto"
+                playsInline
+                style={{ height: '100%', width: 'auto' }}
+                onPlaying={() => setVideoReady(true)}
+              />
+          </div>
+          <div className="absolute inset-0 bg-black/30 z-20" />
         </div>
         <div className="relative z-10 space-y-8">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-7xl/18 font-bold text-white leading-tight text-end">
+            <h1 className="text-4xl md:text-7xl/18  font-bold text-white leading-tight text-end">
               <span className="whitespace-pre-line">{messages.title}</span>
               <div className="mt-8">2026</div>
             </h1>

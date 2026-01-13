@@ -53,6 +53,35 @@ jest.mock('next/image', () => {
   };
 });
 
+// Mock next/dynamic
+jest.mock('next/dynamic', () => {
+  return jest.fn(() => {
+    return function MockReactPlayer({ src, url, playing, loop, muted, playsinline, playsInline, onReady, onPlaying, ...props }) {
+      // Use src (v3) or url (fallback) for ReactPlayer
+      const playlistUrl = src || url;
+      // Call onReady/onPlaying after a short delay to simulate player loading
+      if (onReady || onPlaying) {
+        setTimeout(() => {
+          if (onReady) onReady();
+          if (onPlaying) onPlaying();
+        }, 0);
+      }
+      return (
+        <div
+          data-testid="mock-react-player"
+          data-url={playlistUrl}
+          data-src={playlistUrl}
+          data-playing={playing}
+          data-loop={loop}
+          data-muted={muted}
+          data-playsinline={playsinline || playsInline}
+          {...props}
+        />
+      );
+    };
+  });
+});
+
 // Mock next-intl navigation Link component
 jest.mock('@/i18n/navigation', () => ({
   Link: ({ href, className, children, ...props }) => (
@@ -61,45 +90,6 @@ jest.mock('@/i18n/navigation', () => ({
     </a>
   ),
 }));
-
-// Mock DownloadButton component
-jest.mock('@/components/landing-page/DownloadButton', () => {
-  return function MockDownloadButton({
-    children,
-    className,
-    variant,
-    size,
-    filePath,
-    fileName,
-    ...props
-  }) {
-    return (
-      <button
-        className={
-          className ||
-          'px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
-        }
-        data-testid="mock-download-button"
-        data-file-path={filePath}
-        data-file-name={fileName}
-        {...props}
-      >
-        {children}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="w-5 h-5 flex-shrink-0"
-          viewBox="0 0 16 16"
-        >
-          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-        </svg>
-      </button>
-    );
-  };
-});
 
 const defaultProps = {
   locale: 'en',
@@ -119,10 +109,20 @@ const defaultProps = {
 let mockHeroSection = null;
 
 describe('HeroSection', () => {
+  // Store original navigator
+  const originalNavigator = global.navigator;
+
   beforeEach(() => {
     mockHeroSection = null;
     // Reset any mocks before each test
     jest.clearAllMocks();
+    // Reset navigator mock
+    delete global.navigator;
+    global.navigator = { ...originalNavigator };
+  });
+
+  afterEach(() => {
+    global.navigator = originalNavigator;
   });
 
   it('renders HeroSection with all content', () => {
@@ -140,15 +140,23 @@ describe('HeroSection', () => {
     expect(screen.getAllByText('Download PDF')).toHaveLength(1); // One instance
     expect(screen.getByText('Share Report')).toBeInTheDocument();
 
-    // Should show hero image
+    // Should show poster image
     const image = screen.getByTestId('mock-image');
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', '/wdr25/hero.jpg');
+    expect(image).toHaveAttribute('src', '/wdr25/hero/poster.jpg');
     expect(image).toHaveAttribute(
       'alt',
       'World Disasters Report 2025 hero image'
     );
     expect(image).toHaveAttribute('data-priority', 'true');
+
+    // Should show ReactPlayer with master playlist by default (when Network API unavailable)
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toBeInTheDocument();
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/master.m3u8');
+    expect(player).toHaveAttribute('data-playing', 'true');
+    expect(player).toHaveAttribute('data-loop', 'true');
+    expect(player).toHaveAttribute('data-muted', 'true');
 
     expect(container).toMatchSnapshot();
   });
@@ -308,10 +316,10 @@ describe('HeroSection', () => {
     );
     expect(buttonContainer).toBeInTheDocument();
 
-    // Should have image container with correct aspect ratio
-    const imageContainer = container.querySelector('.relative.w-full.aspect-video');
-    expect(imageContainer).toBeInTheDocument();
-    expect(imageContainer).toHaveClass('rounded-2xl', 'overflow-hidden', 'bg-gray-200');
+    // Should have video container with correct styling
+    const videoContainer = container.querySelector('.relative.pt-8.pb-8');
+    expect(videoContainer).toBeInTheDocument();
+    expect(videoContainer).toHaveClass('overflow-hidden', 'rounded-lg');
   });
 
   it('has correct image properties', () => {
@@ -319,8 +327,8 @@ describe('HeroSection', () => {
 
     const image = screen.getByTestId('mock-image');
 
-    // Should have correct image attributes
-    expect(image).toHaveAttribute('src', '/wdr25/hero.jpg');
+    // Should have correct image attributes (poster image)
+    expect(image).toHaveAttribute('src', '/wdr25/hero/poster.jpg');
     expect(image).toHaveAttribute(
       'alt',
       'World Disasters Report 2025 hero image'
@@ -328,6 +336,123 @@ describe('HeroSection', () => {
     expect(image).toHaveAttribute('data-fill', 'true');
     expect(image).toHaveAttribute('data-priority', 'true');
     expect(image).toHaveClass('object-cover');
+  });
+
+  it('uses save_data playlist when saveData is enabled', () => {
+    // Mock navigator.connection with saveData enabled
+    global.navigator.connection = {
+      saveData: true,
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/save_data.m3u8');
+  });
+
+  it('uses 2g playlist when connection is 2g', () => {
+    // Mock navigator.connection with 2g connection
+    global.navigator.connection = {
+      effectiveType: '2g',
+      saveData: false,
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/2g.m3u8');
+  });
+
+  it('uses 2g playlist when connection is slow-2g', () => {
+    // Mock navigator.connection with slow-2g connection
+    global.navigator.connection = {
+      effectiveType: 'slow-2g',
+      saveData: false,
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/2g.m3u8');
+  });
+
+  it('uses 3g playlist when connection is 3g', () => {
+    // Mock navigator.connection with 3g connection
+    global.navigator.connection = {
+      effectiveType: '3g',
+      saveData: false,
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/3g.m3u8');
+  });
+
+  it('uses low4g playlist when 4g connection has low downlink', () => {
+    // Mock navigator.connection with 4g but low bandwidth
+    global.navigator.connection = {
+      effectiveType: '4g',
+      saveData: false,
+      downlink: 1.2, // Less than 1.5 Mbps
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/low4g.m3u8');
+  });
+
+  it('uses 4g playlist when 4g connection has high downlink', () => {
+    // Mock navigator.connection with 4g and good bandwidth
+    global.navigator.connection = {
+      effectiveType: '4g',
+      saveData: false,
+      downlink: 2.5, // 1.5 Mbps or higher
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/4g.m3u8');
+  });
+
+  it('uses 4g playlist when 4g connection has no downlink info', () => {
+    // Mock navigator.connection with 4g but no downlink
+    global.navigator.connection = {
+      effectiveType: '4g',
+      saveData: false,
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/4g.m3u8');
+  });
+
+  it('uses master playlist by default when network info is unavailable', () => {
+    // No connection object
+    delete global.navigator.connection;
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/master.m3u8');
+  });
+
+  it('prioritizes saveData over effectiveType', () => {
+    // Mock navigator.connection with saveData enabled and 4g
+    global.navigator.connection = {
+      effectiveType: '4g',
+      saveData: true,
+      downlink: 5.0,
+    };
+
+    render(<HeroSection {...defaultProps} />);
+
+    const player = screen.getByTestId('mock-react-player');
+    // Should use save_data playlist even though connection is 4g
+    expect(player).toHaveAttribute('data-url', '/wdr25/hero/hls/save_data.m3u8');
   });
 
   it('handles missing or malformed data gracefully', () => {
@@ -365,10 +490,11 @@ describe('HeroSection', () => {
     expect(h1).toHaveTextContent('World Disasters Report 2025');
     expect(h1).toHaveClass(
       'text-5xl',
-      'md:text-7xl',
+      'md:text-7xl/18',
       'font-bold',
-      'text-gray-900',
-      'leading-tight'
+      'text-white',
+      'leading-tight',
+      'text-end'
     );
 
     // Should have buttons with proper role (only Share button, Download is now a link)
@@ -390,16 +516,18 @@ describe('HeroSection', () => {
 
     // Title should have responsive classes
     const title = screen.getByRole('heading', { level: 1 });
-    expect(title).toHaveClass('text-5xl', 'md:text-7xl');
+    expect(title).toHaveClass('text-5xl', 'md:text-7xl/18');
 
     // Description should have responsive classes
     const description = screen.getByText(/Explore the most comprehensive analysis/);
     expect(description).toHaveClass(
-      'text-lg',
-      'md:text-xl',
-      'text-gray-700',
-      'max-w-4xl',
-      'leading-relaxed'
+      'text-4xl',
+      'text-white',
+      'max-w-90',
+      'text-balance',
+      'md:text-balance',
+      'leading-tight',
+      'font-bold'
     );
   });
 
