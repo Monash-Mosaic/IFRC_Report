@@ -8,7 +8,7 @@ import Image from 'next/image';
  * Handles network-based quality selection and renders the video element
  * 
  * @param {Object} props
- * @param {string} props.heroAlt - Alt text for the video fallback image
+ * @param {string} props.heroAlt - Alt text for the video fallback image and ARIA label
  * @returns {JSX.Element}
  */
 export default function HeroVideo({ heroAlt }) {
@@ -80,7 +80,11 @@ export default function HeroVideo({ heroAlt }) {
         loop
         muted
         playsInline
+        disablePictureInPicture
+        disableRemotePlayback
         preload="auto"
+        aria-label={heroAlt}
+        role="img"
         className="w-full h-full object-cover object-center"
         style={{ height: '100%', width: 'auto' }}
         onPlaying={() => setVideoReady(true)}
