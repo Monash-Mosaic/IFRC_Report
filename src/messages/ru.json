@@ -113,5 +113,18 @@
     },
     "closeMediaPanel": "Закрыть панель медиа",
     "duration": "Длительность"
+  },
+  "ContributionInsight": {
+    "title": "Анализ Вклада"
+  },
+  "TohIcons": {
+    "deprivational": "Лишения",
+    "societal": "Общественный",
+    "digital": "Цифровой",
+    "longitudinal": "Продольный",
+    "physical": "Физический",
+    "psychological": "Психологический",
+    "social": "Социальный",
+    "informational": "Информационный"
   }
 }
