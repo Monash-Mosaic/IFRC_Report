@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Funnel } from 'lucide-react';
 
@@ -106,3 +107,6 @@ export default function TagContainer({ selectedTag, handleSelectionTag }) {
     </div>
   );
 }
+=======
+export default function TagContainer() {}
+>>>>>>> 608e85d (SurveyInsight)
