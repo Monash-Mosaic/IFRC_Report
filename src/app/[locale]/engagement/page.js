@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import {
   ChevronDown,
-  Menu,
   X,
   BookOpen,
   BookText,
@@ -12,10 +11,12 @@ import {
   CircleCheck,
   Heart,
   AlertTriangle,
-  Users,
   Shield,
   User,
 } from 'lucide-react';
+
+import QuoteMap from '@/components/engagement/QuoteMap';
+import ProgressBar from '@/components/engagement/ProgressBar';
 
 export default function EngagementPage() {
   const [selectedTag, setSelectedTag] = useState({});
@@ -23,7 +24,6 @@ export default function EngagementPage() {
   const [expandedChapters, setExpandedChapters] = useState({});
   const [isShuffleTag, setIsShuffleTag] = useState(false);
   const [expandedTags, setExpandedTags] = useState(true);
-  const [selectedProgress, setSelectedProgress] = useState([]);
 
   const tag_combo = [
     { erosion: true, safety: true },
@@ -47,96 +47,6 @@ export default function EngagementPage() {
       id: 'life_threatening_misinfo',
       label: 'Life-threatening misinformation',
       type: 'harm_category',
-    },
-    {
-      id: 'psychological_social_harm',
-      label: 'Psychological and social harm',
-      type: 'harm_category',
-    },
-    {
-      id: 'social_division_stigma',
-      label: 'Social division and stigma',
-      type: 'harm_category',
-    },
-    {
-      id: 'stigmatization_dehumanization',
-      label: 'Stigmatization and dehumanization',
-      type: 'harm_category',
-    },
-    {
-      id: 'access_constraints',
-      label: 'Access constraints and acceptance risks',
-      type: 'operational_impact',
-    },
-    {
-      id: 'distorted_needs',
-      label: 'Distorted needs and demand signals',
-      type: 'operational_impact',
-    },
-    {
-      id: 'programme_effectiveness',
-      label: 'Programme effectiveness and accountability',
-      type: 'operational_impact',
-    },
-    {
-      id: 'safety_security',
-      label: 'Safety and security of staff and volunteers',
-      type: 'operational_impact',
-    },
-    {
-      id: 'community_engagement',
-      label: 'Community engagement and accountability',
-      type: 'response_strategy',
-    },
-    {
-      id: 'community_engagement_retained',
-      label: 'Community engagement and accountability (retained)',
-      type: 'response_strategy',
-    },
-    {
-      id: 'debunking',
-      label: 'Debunking and corrective communication',
-      type: 'response_strategy',
-    },
-    {
-      id: 'information_aid',
-      label: 'Information as aid',
-      type: 'response_strategy',
-    },
-    {
-      id: 'prebunking',
-      label: 'Prebunking and narrative resilience',
-      type: 'response_strategy',
-    },
-    {
-      id: 'rumour_tracking',
-      label: 'Rumour tracking and early warning',
-      type: 'response_strategy',
-    },
-    {
-      id: 'trusted_messengers',
-      label: 'Trusted messengers and local intermediaries',
-      type: 'response_strategy',
-    },
-    {
-      id: 'freedom_expression',
-      label: 'Freedom of expression and information rights',
-      type: 'governance',
-    },
-    {
-      id: 'humanitarian_principles',
-      label: 'Humanitarian principles and neutrality',
-      type: 'governance',
-    },
-    {
-      id: 'regulation_policy',
-      label: 'Regulation and public policy frameworks',
-      type: 'governance',
-    },
-    {
-      id: 'technology_governance',
-      label: 'Technology governance and platform accountability',
-      type: 'governance',
     },
   ];
 
@@ -198,21 +108,6 @@ export default function EngagementPage() {
       id: 'combat',
       stat: '63.5%',
       text: 'have seen groups organize to combat false and misleading info, online or offline',
-    },
-  ];
-
-  const progressData = [
-    {
-      id: 'dialogue',
-      rank: 1,
-      text: 'Dialogue and community participation',
-      percentage: 64.2,
-    },
-    {
-      id: 'leadership',
-      rank: 2,
-      text: 'Strong local leadership',
-      percentage: 61.0,
     },
   ];
 
@@ -478,93 +373,11 @@ export default function EngagementPage() {
             ))}
           </div>
         </div>
-        {/* Main Container */}
-        <div className="max-w-5xl mx-auto space-y-6">
-          {progressData.map((item, index) => (
-            <div
-              key={item.id}
-              className={`
-              relative bg-white rounded-lg border-2 p-6
-              transition-all duration-300 hover:shadow-lg
-              ${
-                selectedTag[item.id]
-                  ? 'border-red-500 shadow-lg shadow-red-500/20 bg-red-50'
-                  : 'border-stone-200 hover:border-red-300'
-              }
-            `}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animation: 'fade-in 0.5s ease-out forwards',
-              }}
-            >
-              {/* Main Container */}
-              <div className="flex items-center gap-4">
-                {/* Rank Number on the Left */}
-                <div className="flex-shrink-0">
-                  <div
-                    className={`
-                  w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold
-                  ${
-                    selectedProgress.includes(item.id)
-                      ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white'
-                      : 'bg-stone-100 text-stone-700'
-                  }
-                `}
-                  >
-                    #{item.rank}
-                  </div>
-                </div>
-
-                {/* Progress Bar Container */}
-                <div className="flex-grow">
-                  {/* Text and Percentage on top */}
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-stone-700">{item.text}</span>
-                    <span className="text-sm font-bold text-stone-800 ml-4">
-                      {item.percentage}%
-                    </span>
-                  </div>
-
-                  {/* Progress Bar */}
-                  <div className="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
-                    <div
-                      className={`
-                      h-full rounded-full transition-all duration-1000 ease-out
-                      ${
-                        selectedProgress.includes(item.id)
-                          ? 'bg-gradient-to-r from-red-600 to-orange-500'
-                          : 'bg-gradient-to-r from-red-500 to-orange-400'
-                      }
-                    `}
-                      style={{
-                        width: `${item.percentage}%`,
-                        animationDelay: `${index * 0.2}s`,
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Heart Button on the Right */}
-                <button
-                  onClick={() => handleSelectionTag(item.id)}
-                  className="flex-shrink-0 transition-all duration-200 hover:scale-110 ml-2"
-                  aria-label="Toggle filter"
-                >
-                  <Heart
-                    size={28}
-                    className={`
-                    ${
-                      selectedProgress.includes(item.id)
-                        ? 'fill-red-500 text-red-500'
-                        : 'text-stone-400 hover:text-red-400'
-                    }
-                  `}
-                  />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ProgressBar
+          selectedTag={selectedTag}
+          handleSelectionTag={handleSelectionTag}
+        ></ProgressBar>
+        <QuoteMap></QuoteMap>
       </main>
 
       {/* Mobile Toggle Button */}
