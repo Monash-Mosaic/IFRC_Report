@@ -71,7 +71,6 @@ export default function ActiveHeadingTracker({
       return true;
     };
 
-    // Try now, otherwise wait until headings exist
     if (!setup()) {
       const mo = new MutationObserver(() => {
         if (disposed) return;

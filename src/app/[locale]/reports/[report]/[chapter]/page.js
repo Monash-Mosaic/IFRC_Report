@@ -98,17 +98,22 @@ export default async function ReportChapterPage({ params }) {
               </div>
             </div>
 
-            <div className="mb-12">
-              <ActiveHeadingTracker containerSelector="article" />
-              
+          <div className="mb-12">
+            <div className="relative" id="highlight-layer-root">
+              <ActiveHeadingTracker containerSelector="#highlight-layer-root" />
+
               <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
                 <Chapter />
               </article>
 
-              <HighlightToolbar hashtag="#IFRC" whatsappSeparator="\n" containerSelector="article" />
-
-
+              <HighlightToolbar
+                hashtag="#IFRC"
+                whatsappSeparator="\n"
+                containerSelector="#highlight-layer-root"
+              />
             </div>
+          </div>
+
           </div>
 
           <div className="hidden xl:block w-80 flex-shrink-0">
