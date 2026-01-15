@@ -50,6 +50,7 @@ export default function QuoteMap({ selectedTag, handleSelectionTag }) {
   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
   const selectedLabel = useMemo(() => {
+    console.log(selectedCountry);
     if (!selectedCountry) return 'Click a country';
     return selectedCountry.name || selectedCountry.iso || 'Selected country';
   }, [selectedCountry]);
@@ -290,6 +291,7 @@ export default function QuoteMap({ selectedTag, handleSelectionTag }) {
         }
 
         selectedFeatureIdRef.current = featureId;
+        console.log(selectedFeatureIdRef);
         map.setFeatureState(
           { source: COUNTRY_SOURCE_ID, sourceLayer: COUNTRY_SOURCE_LAYER, id: featureId },
           { selected: true }
