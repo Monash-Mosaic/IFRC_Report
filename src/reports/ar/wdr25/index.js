@@ -58,19 +58,17 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'عنوان فرعي',
-    description: 'نص أساسي لكل ما تريد إضافته إلى العنوان الفرعي.',
-    thumbnailSrc: '/wdr25/thumbnail1.png',
-    thumbnailAlt: 'صورة مصغرة للفيديو المميز',
-    url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
+    title: 'دليل سريع لتطبيق Limitless',
+    description:
+      'هل تواجه مشكلة في التقديم على برنامج Limitless؟ هل لا تعرف من أين تبدأ؟ لا تقلق. Zikomo هنا لتخبرك بكيفية ومكان التقديم لأكاديمية IFRC Limitless للابتكار الشبابي 2024',
+    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
   },
   {
     id: 2,
-    title: 'عنوان فرعي',
-    description: 'نص أساسي لكل ما تريد توسيعه في النقطة الرئيسية.',
-    thumbnailSrc: '/wdr25/thumbnail2.png',
-    thumbnailAlt: 'صورة مصغرة للفيديو المميز',
-    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    title: 'الغوص في محلية المساعدات - مبادرة شاملة',
+    description:
+      'في هذه الحلقة، تناقش فيكتوار من الصليب الأحمر الكاميروني أهمية إشراك السكان المحليين في تنفيذ العمل الإنساني في المجتمعات الضعيفة من خلال مشاركة السكان المحليين.',
+    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
   },
 ];
 

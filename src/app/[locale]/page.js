@@ -64,10 +64,7 @@ export default async function Home({ params }) {
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.featuredVideos.title')}
           </h2>
-          <EmblaCarousel
-            slideWidth={524}
-            loop={false}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {featuredVideos.map((video, index) => (
               <VideoCard
                 key={index}
@@ -76,7 +73,7 @@ export default async function Home({ params }) {
                 url={video.url}
               />
             ))}
-          </EmblaCarousel>
+          </div>
         </div>
 
         {/* Citations Section */}
@@ -84,10 +81,7 @@ export default async function Home({ params }) {
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.testimonials.title')}
           </h2>
-          <EmblaCarousel
-            slideWidth={284}
-            loop={false}
-          >
+          <EmblaCarousel slideWidth={284} loop={false}>
             {testimonialsList.map((testimonial, index) => (
               <TestimonialCard
                 key={index}

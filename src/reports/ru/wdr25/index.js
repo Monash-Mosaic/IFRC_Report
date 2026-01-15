@@ -60,19 +60,17 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Подзаголовок',
-    description: 'Основной текст для всего, что вы хотели бы добавить к подзаголовку.',
-    thumbnailSrc: '/wdr25/thumbnail1.png',
-    thumbnailAlt: 'Миниатюра избранного видео',
-    url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
+    title: 'Краткое руководство по подаче заявки в Limitless',
+    description:
+      'У вас возникли проблемы с подачей заявки на программу Limitless? Не знаете, с чего начать? Не беспокойтесь. Zikomo расскажет вам, как, почему и куда подавать заявку в Академию инноваций для молодежи IFRC Limitless 2024',
+    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
   },
   {
     id: 2,
-    title: 'Подзаголовок',
-    description: 'Основной текст для всего, что вы хотели бы расширить в основном пункте.',
-    thumbnailSrc: '/wdr25/thumbnail2.png',
-    thumbnailAlt: 'Миниатюра избранного видео',
-    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    title: 'Погружение в локализацию помощи — Инклюзивная инициатива',
+    description:
+      'В этом эпизоде Виктуар из Красного Креста Камеруна обсуждает важность вовлечения местного населения в реализацию гуманитарных действий в уязвимых сообществах через участие местных жителей.',
+    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
   },
 ];
 

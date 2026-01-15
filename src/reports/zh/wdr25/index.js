@@ -57,19 +57,17 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: '副标题',
-    description: '您想要添加到副标题中的所有内容的正文。',
-    thumbnailSrc: '/wdr25/thumbnail1.png',
-    thumbnailAlt: '精选视频缩略图',
-    url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
+    title: 'Limitless 申请快速指南',
+    description:
+      '申请 Limitless 遇到问题了吗？不知道从哪里开始？别担心。Zikomo 在这里告诉你如何、为什么以及在哪里申请 2024 年 IFRC Limitless 青年创新学院',
+    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
   },
   {
     id: 2,
-    title: '副标题',
-    description: '您想要在要点中详细说明的所有内容的正文。',
-    thumbnailSrc: '/wdr25/thumbnail2.png',
-    thumbnailAlt: '精选视频缩略图',
-    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    title: '深入探讨援助本地化——一项包容性倡议',
+    description:
+      '在本期节目中，喀麦隆红十字会的 Victoire 讨论了通过当地人民的参与，让当地人民参与在脆弱社区实施人道主义行动的重要性。',
+    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
   },
 ];
 

@@ -61,19 +61,17 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Subtítulo',
-    description: 'Texto del cuerpo para añadir más información al subtítulo.',
-    thumbnailSrc: '/wdr25/thumbnail1.png',
-    thumbnailAlt: 'Miniatura del video destacado',
-    url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
+    title: 'Guía Rápida para tu Aplicación Limitless',
+    description:
+      '¿Tienes problemas para solicitar Limitless? ¿No sabes por dónde empezar? No te preocupes. Zikomo está aquí para contarte cómo, por qué y dónde solicitar la Academia de Innovación Juvenil IFRC Limitless 2024',
+    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
   },
   {
     id: 2,
-    title: 'Subtítulo',
-    description: 'Texto del cuerpo para desarrollar el punto principal.',
-    thumbnailSrc: '/wdr25/thumbnail2.png',
-    thumbnailAlt: 'Miniatura del video destacado',
-    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    title: 'Sumérgete en la localización de la ayuda — Una iniciativa inclusiva',
+    description:
+      'En este episodio, Victoire de la Cruz Roja de Camerún analiza la importancia de involucrar a la población local en la implementación de acciones humanitarias en comunidades vulnerables a través de la participación de la población local.',
+    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
   },
 ];
 
