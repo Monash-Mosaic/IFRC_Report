@@ -3,7 +3,7 @@ import { routing } from '@/i18n/routing';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
 import { reportsByLocale } from '@/reports';
-import Carousel from '@/components/Carousel';
+import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
 
@@ -60,28 +60,45 @@ export default async function Home({ params }) {
         <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
 
         {/* Featured Videos Section */}
-        <Carousel
-          title={t('landingPage.featuredVideos.title')}
-          items={featuredVideos}
-          cardComponent={VideoCard}
-          cardType="video"
-          cardWidth={524}
-          gap={24}
-          showDots={true}
-          showArrows={true}
-        />
+        <div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
+            {t('landingPage.featuredVideos.title')}
+          </h2>
+          <EmblaCarousel
+            slideWidth={524}
+            loop={false}
+          >
+            {featuredVideos.map((video, index) => (
+              <VideoCard
+                key={index}
+                title={video.title}
+                description={video.description}
+                url={video.url}
+              />
+            ))}
+          </EmblaCarousel>
+        </div>
 
         {/* Citations Section */}
-        <Carousel
-          title={t('landingPage.testimonials.title')}
-          items={testimonialsList}
-          cardComponent={TestimonialCard}
-          cardType="testimonial"
-          cardWidth={288}
-          gap={24}
-          showDots={true}
-          showArrows={true}
-        />
+        <div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
+            {t('landingPage.testimonials.title')}
+          </h2>
+          <EmblaCarousel
+            slideWidth={284}
+            loop={false}
+          >
+            {testimonialsList.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                quote={testimonial.quote}
+                name={testimonial.name}
+                country={testimonial.country}
+                avatar={testimonial.avatar}
+              />
+            ))}
+          </EmblaCarousel>
+        </div>
       </main>
     </div>
   );
