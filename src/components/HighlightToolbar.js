@@ -40,7 +40,7 @@ function normalizeNewlines(s) {
 
 function shareToWhatsApp({ url, text, separator }) {
   const sep = normalizeNewlines(separator || '\n');
-  const message = `${text}${sep}${url}`.trim(); // URL last (like you want)
+  const message = `${text}${sep}${url}`.trim();
   const wa = `https://wa.me/?text=${encodeURIComponent(message)}`;
   window.open(wa, '_blank', 'noopener,noreferrer');
 }
@@ -275,18 +275,20 @@ export default function HighlightToolbar({
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
-  // When not null: we are in "remove highlight" mode (this holds groupId as string)
   const [activeHighlightGroupId, setActiveHighlightGroupId] = useState(null);
 
   const hideTimer = useRef(null);
 
-  // IMPORTANT: prevents mouseup selection toolbar from overriding the delete toolbar
   const suppressSelectionToolbarRef = useRef(false);
 
-  const containerEl = useMemo(() => {
-    if (typeof window === 'undefined') return null;
-    return document.querySelector(containerSelector) || document.body;
+  const [containerEl, setContainerEl] = useState(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const el = document.querySelector(containerSelector) || document.body;
+    setContainerEl(el);
   }, [containerSelector]);
+
 
   const getSelectionRangeSafe = () => {
     const sel = window.getSelection();
@@ -310,17 +312,31 @@ export default function HighlightToolbar({
     const TOOLBAR_HEIGHT_EST = 52;
     const GAP = 12;
 
-    const x = rect.left + rect.width / 2;
+    // rect is viewport-based; convert to page coords
+    const scrollX = window.scrollX || window.pageXOffset;
+    const scrollY = window.scrollY || window.pageYOffset;
 
-    // Prefer above:
-    let y = rect.top - TOOLBAR_HEIGHT_EST - GAP;
-    if (y < 8) y = rect.bottom + GAP;
+    const xPage = rect.left + rect.width / 2 + scrollX;
 
-    setPos({
-      x: clamp(x, 16, window.innerWidth - 16),
-      y: clamp(y, 8, window.innerHeight - 8),
-    });
+    // prefer above selection
+    let yPage = rect.top + scrollY - TOOLBAR_HEIGHT_EST - GAP;
+
+    // if too close to top, put below selection
+    if (rect.top - TOOLBAR_HEIGHT_EST - GAP < 8) {
+      yPage = rect.bottom + scrollY + GAP;
+    }
+
+    // convert page coords -> container coords
+    const containerRect = containerEl.getBoundingClientRect();
+    const containerLeft = containerRect.left + scrollX;
+    const containerTop = containerRect.top + scrollY;
+
+    const x = xPage - containerLeft;
+    const y = yPage - containerTop;
+
+    setPos({ x, y });
   };
+
 
   // Restore highlights on mount
   useEffect(() => {
@@ -328,12 +344,6 @@ export default function HighlightToolbar({
     rerenderHighlights(containerEl);
   }, [containerEl]);
 
-  /**
-   * CRITICAL FIX:
-   * Capture pointerdown on highlight spans BEFORE mouseup fires.
-   * This prevents the general mouseup handler from showing the color toolbar
-   * when we are about to show the delete toolbar for an existing highlight.
-   */
   useEffect(() => {
     if (!containerEl) return;
 
@@ -365,43 +375,33 @@ export default function HighlightToolbar({
       e.preventDefault();
       e.stopPropagation();
 
-      const groupId = span.getAttribute('data-group-id') || span.getAttribute('data-highlight-id');
-      if (!groupId) return;
-
-      // Select the span contents (so copy/share uses it)
+      // select highlight text
       const r = document.createRange();
       r.selectNodeContents(span);
       const sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(r);
 
-      // Sync URL hash to heading
-      const r2 = document.createRange();
-      r2.selectNodeContents(span);
-      const headingId = findNearestHeadingIdForRange(r2, containerEl);
-      if (headingId) setUrlHash(headingId);
-
-      const rect = span.getBoundingClientRect();
+      // show delete toolbar
       setSelectedText(sel.toString().trim());
-      setActiveHighlightGroupId(groupId);
-      setToolbarPositionFromRect(rect);
-      setIsVisible(true);
+      setActiveHighlightGroupId(
+        span.getAttribute('data-group-id') ||
+        span.getAttribute('data-highlight-id')
+      );
 
-      // Let suppression fall back after this interaction
-      setTimeout(() => {
-        suppressSelectionToolbarRef.current = false;
-      }, 0);
+      setToolbarPositionFromRect(span.getBoundingClientRect());
+      setIsVisible(true);
     };
 
     containerEl.addEventListener('click', onClick);
     return () => containerEl.removeEventListener('click', onClick);
   }, [containerEl]);
 
+
   // General selection detection (shows highlight UI)
   useEffect(() => {
     const onMouseUp = () => {
       if (suppressSelectionToolbarRef.current) {
-        // consume suppression for this interaction
         suppressSelectionToolbarRef.current = false;
         return;
       }
@@ -450,7 +450,6 @@ export default function HighlightToolbar({
       document.removeEventListener('keyup', onKeyUp);
       if (hideTimer.current) clearTimeout(hideTimer.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerEl]);
 
   const shareUrl = useMemo(() => {
@@ -609,7 +608,7 @@ export default function HighlightToolbar({
 
   return (
     <div
-      className="fixed z-50"
+      className="absolute z-50"
       style={{
         left: `${pos.x}px`,
         top: `${pos.y}px`,
