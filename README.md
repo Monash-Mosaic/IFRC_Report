@@ -61,3 +61,15 @@ This will generate:
 - `public/wdr25/hero/hls/1080p.m3u8` + segments - 1080p HLS variant
 - `public/wdr25/hero/hls/master.m3u8` - ABR master playlist
 - `public/wdr25/hero/hls/480p_only.m3u8` - 480p-only playlist for low bandwidth
+
+## Deploy on Infomaniak (Node.js Hosting)
+
+Infomaniak Node.js hosting expects a build step and a Node entry point you can start with a `PORT` set by the platform. Follow the Node.js site creation steps in their guide, then use these settings for the custom method:
+
+- **Build command:** `npm install && npm run build`
+- **Start command:** `npm run start`
+- **Entry point:** `server.js`
+- **Port:** use the `PORT` environment variable (already handled in `server.js`)
+- **Node version:** choose a supported Node 18+ runtime
+
+Reference: [Create a Node.js site at Infomaniak](https://www.infomaniak.com/en/support/faq/2537/create-a-nodejs-site-at-infomaniak)
