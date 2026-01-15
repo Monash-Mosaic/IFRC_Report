@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import AutoPlay from 'embla-carousel-autoplay';
 
 // Constants
 const GAP_SIZE = 24; // Match gap-6 class (24px)
@@ -13,16 +12,13 @@ const MAX_VISIBLE_PAGES = 5; // Maximum dots to show
 export default function EmblaCarousel({
   title,
   children,
-  className = "",
-  containerClassName = "",
-  slideClassName = "",
-  slideWidth = "auto",
+  className = '',
+  containerClassName = '',
+  slideClassName = '',
+  slideWidth = 'auto',
   showArrows = true,
-  showDots = true,
-  autoPlay = false,
-  autoPlayDelay = 3000,
   loop = true,
-  align = 'start'
+  align = 'start',
 }) {
   // State
   const [itemsPerPage, setItemsPerPage] = useState(1);
@@ -32,8 +28,7 @@ export default function EmblaCarousel({
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Embla setup
-  const plugins = autoPlay ? [AutoPlay({ delay: autoPlayDelay })] : [];
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align, loop, slidesToScroll: 1 }, plugins);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align, loop, slidesToScroll: 1 });
 
   // Navigation callbacks
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
@@ -48,7 +43,7 @@ export default function EmblaCarousel({
     const containerWidth = containerElement.clientWidth;
     const totalChildren = Array.isArray(children) ? children.length : 1;
 
-    if (slideWidth !== "auto" && slideWidth > 0) {
+    if (slideWidth !== 'auto' && slideWidth > 0) {
       const itemsVisible = Math.floor(containerWidth / (slideWidth + GAP_SIZE));
       const actualItemsPerPage = Math.max(1, itemsVisible);
       setItemsPerPage(actualItemsPerPage);
@@ -70,9 +65,9 @@ export default function EmblaCarousel({
   useEffect(() => {
     calculateItemsPerPage();
     const timer = setTimeout(calculateItemsPerPage, CALCULATION_DELAY);
-    
+
     window.addEventListener('resize', calculateItemsPerPage);
-    
+
     if (emblaApi) {
       emblaApi.on('init', calculateItemsPerPage);
     }
@@ -88,7 +83,7 @@ export default function EmblaCarousel({
 
   useEffect(() => {
     if (!emblaApi) return;
-    
+
     emblaApi.on('select', onSelect);
     onSelect();
 
@@ -105,17 +100,18 @@ export default function EmblaCarousel({
 
   // Slide styles
   const getSlideStyles = () => ({
-    width: slideWidth === "auto" ? "auto" : `${slideWidth}px`,
-    minWidth: slideWidth === "auto" ? "auto" : `${slideWidth}px`
+    width: slideWidth === 'auto' ? 'auto' : `${slideWidth}px`,
+    minWidth: slideWidth === 'auto' ? 'auto' : `${slideWidth}px`,
   });
 
   // Navigation helpers
   const renderNavigationButton = (direction, onClick, disabled, ariaLabel) => {
     const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
-    const baseClasses = "w-10 h-10 rounded-full shadow-md border flex items-center justify-center transition-all duration-200 focus:outline-none";
-    const enabledClasses = "bg-red-100 hover:bg-red-200 border-red-200 cursor-pointer";
-    const disabledClasses = "bg-red-50 border-gray-200 cursor-not-allowed";
-    
+    const baseClasses =
+      'w-10 h-10 rounded-full shadow-md border flex items-center justify-center transition-all duration-200 focus:outline-none';
+    const enabledClasses = 'bg-red-100 hover:bg-red-200 border-red-200 cursor-pointer';
+    const disabledClasses = 'bg-red-50 border-gray-200 cursor-not-allowed';
+
     return (
       <button
         onClick={onClick}
@@ -130,7 +126,7 @@ export default function EmblaCarousel({
 
   const generatePageNumbers = () => {
     const pages = [];
-    
+
     if (totalPages <= MAX_VISIBLE_PAGES) {
       for (let i = 0; i < totalPages; i++) {
         pages.push(i);
@@ -148,10 +144,18 @@ export default function EmblaCarousel({
         }
         pages.push(totalPages - 3, totalPages - 2, totalPages - 1);
       } else {
-        pages.push(0, 'ellipsis1', currentPage - 1, currentPage, currentPage + 1, 'ellipsis2', totalPages - 1);
+        pages.push(
+          0,
+          'ellipsis1',
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          'ellipsis2',
+          totalPages - 1
+        );
       }
     }
-    
+
     return pages;
   };
 
@@ -163,12 +167,13 @@ export default function EmblaCarousel({
         </span>
       );
     }
-    
+
     const isActive = page === currentPage;
-    const baseClasses = "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200 focus:outline-none";
-    const activeClasses = "bg-red-100 text-red-800 shadow-md border-2 border-red-500";
-    const inactiveClasses = "bg-red-50 text-red-600 hover:bg-red-100 border border-red-100";
-    
+    const baseClasses =
+      'w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200 focus:outline-none';
+    const activeClasses = 'bg-red-100 text-red-800 shadow-md border-2 border-red-500';
+    const inactiveClasses = 'bg-red-50 text-red-600 hover:bg-red-100 border border-red-100';
+
     return (
       <button
         key={page}
@@ -182,28 +187,19 @@ export default function EmblaCarousel({
   };
 
   const renderSlide = (child, index) => (
-    <div 
-      key={index} 
-      className={`flex-shrink-0 ${slideClassName}`}
-      style={getSlideStyles()}
-    >
+    <div key={index} className={`flex-shrink-0 ${slideClassName}`} style={getSlideStyles()}>
       {child}
     </div>
   );
 
   return (
     <section className={`space-y-8 ${className}`}>
-      {title && (
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{title}</h2>
-      )}
+      {title && <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{title}</h2>}
 
       <div className={`relative ${containerClassName}`}>
         <div className="overflow-hidden embla__viewport" ref={emblaRef}>
           <div className="flex gap-6">
-            {Array.isArray(children) 
-              ? children.map(renderSlide)
-              : renderSlide(children, 0)
-            }
+            {Array.isArray(children) ? children.map(renderSlide) : renderSlide(children, 0)}
           </div>
         </div>
       </div>
