@@ -10,14 +10,21 @@ const COUNTRY_SOURCE_LAYER = 'country_boundaries';
 const COUNTRY_FILL_LAYER_ID = 'country-fills';
 const COUNTRY_BORDER_LAYER_ID = 'country-borders';
 
-export default function QuoteMap() {
+export default function QuoteMap({ selectedTag, handleSelectionTag }) {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const hoveredFeatureIdRef = useRef(null);
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const selectedFeatureIdRef = useRef({
+    current: 'GB',
+  });
+  const [selectedCountry, setSelectedCountry] = useState({
+    name: 'United Kingdom',
+    iso: 'GB',
+  });
   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
   const selectedLabel = useMemo(() => {
+    console.log(selectedCountry);
     if (!selectedCountry) return 'Click a country';
     return selectedCountry.name || selectedCountry.iso || 'Selected country';
   }, [selectedCountry]);
@@ -180,6 +187,7 @@ export default function QuoteMap() {
         }
 
         selectedFeatureIdRef.current = featureId;
+        console.log(selectedFeatureIdRef);
         map.setFeatureState(
           { source: COUNTRY_SOURCE_ID, sourceLayer: COUNTRY_SOURCE_LAYER, id: featureId },
           { selected: true }
@@ -226,18 +234,18 @@ export default function QuoteMap() {
     };
   }, [accessToken]);
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6">
       {/* Map card */}
       <section className="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex items-center justify-between">
           <div className="text-sm text-slate-600">
             Selected: <span className="font-semibold text-slate-900">{selectedLabel}</span>
           </div>
-          <div className="h-9 w-36 rounded-full bg-slate-800/80 text-white flex items-center justify-center gap-2 text-xs">
+          {/* <div className="h-9 w-36 rounded-full bg-slate-800/80 text-white flex items-center justify-center gap-2 text-xs">
             <span className="opacity-90">Tools</span>
             <span className="h-4 w-px bg-white/20" />
             <span className="opacity-90">Legend</span>
-          </div>
+          </div> */}
         </div>
 
         <div className="relative">
@@ -249,33 +257,48 @@ export default function QuoteMap() {
       <section className="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-5 border-b border-slate-100 flex items-start justify-between gap-4">
           <div className="flex items-start gap-2">
-            <div className="text-teal-600">
+            <div className="text-red-500">
               <QuoteIcon className="h-5 w-5" />
             </div>
             <div>
-              <div className="font-semibold text-slate-900">Uganda</div>
+              <div className="font-semibold text-slate-900">UK</div>
               <div className="text-xs text-slate-500 mt-0.5">1 quote</div>
             </div>
           </div>
 
           <button
             type="button"
+            onClick={() => handleSelectionTag('regulation')}
             className="h-9 w-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-50"
             aria-label="Save quote"
           >
-            <Heart className="h-4 w-4" />
+            <Heart
+              size={12}
+              className={`
+                    ${
+                      selectedTag['regulation']
+                        ? 'fill-red-500 text-red-500'
+                        : 'text-stone-400 hover:text-red-400'
+                    }
+                  `}
+            />
           </button>
         </div>
 
         <div className="p-5">
-          <div className="border-l-4 border-teal-600 pl-4">
+          <div className="border-l-4 border-red-500 pl-4">
             <p className="text-sm text-slate-700 italic leading-relaxed">
-              “usually false information runs faster than the real information. Now, the false
-              information in most cases even reaches different places where the truth barely
-              reaches.”
+              “You know, there's a lot of kind of, I don't think the law has caught up with social
+              media and being able to kind of hold people to account for the information that
+              they've been putting up there. And I think, you know, sometimes it can be, you know,
+              we've got a right to kind of free speech, you know. So there's a big, there's a
+              conflict there, isn't there? To a certain extent, you know, he can say anything he
+              likes, but it could be false, you know. And then there's the information that people
+              have a right to know what the truth is. So I think there's a difficult balance to get
+              between the laws and free speech. ”
             </p>
             <div className="mt-3 text-xs text-slate-500">
-              community member, <span className="font-semibold text-slate-600">UGANDA</span>
+              INTL - Interview <span className="font-semibold text-slate-600">United Kingdom</span>
             </div>
           </div>
         </div>
