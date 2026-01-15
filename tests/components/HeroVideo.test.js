@@ -57,8 +57,13 @@ describe('HeroVideo', () => {
   it('renders poster image and video element', () => {
     const { container } = render(<HeroVideo alt="Hero alt text" />);
 
-    expect(screen.getByAltText('Hero alt text')).toBeInTheDocument();
-    expect(container.querySelector('video')).toBeInTheDocument();
+    const image = screen.getByTestId('mock-image');
+    expect(image).toHaveAttribute('src', '/wdr25/hero/poster.webp');
+    expect(image).toHaveAttribute('alt', 'Hero alt text');
+
+    const video = container.querySelector('video');
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute('poster', '/wdr25/hero/poster.webp');
   });
 
   it('uses native HLS when supported', async () => {

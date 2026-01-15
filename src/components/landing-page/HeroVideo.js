@@ -78,21 +78,22 @@ export default function HeroVideo({ alt }) {
 
   return (
     <>
-      {/* Poster image - shown until video is ready */}
-      {!videoReady && (
-        <Image
-          src="/wdr25/hero/poster.jpg"
-          alt={alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center transition-opacity duration-500 z-10"
-        />
-      )}
+      {/* Poster image - fades out when video is ready */}
+      <Image
+        src="/wdr25/hero/poster.webp"
+        alt={alt}
+        fill
+        priority
+        sizes="100vw"
+        className={`object-cover object-center transition-opacity duration-500 z-10 ${
+          videoReady ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
 
       {/* Background video player - native HTML video element */}
       <video
         ref={videoRef}
+        poster="/wdr25/hero/poster.webp"
         autoPlay
         loop
         muted

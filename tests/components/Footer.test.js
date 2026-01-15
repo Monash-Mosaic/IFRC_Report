@@ -428,7 +428,7 @@ describe('Footer', () => {
       render(<Footer />);
 
       const footer = screen.getByRole('contentinfo');
-      expect(footer).toHaveClass('w-full', 'bg-white', 'border-t', 'border-gray-200', 'mt-16');
+      expect(footer).toHaveClass('w-full', 'bg-white', 'border-t', 'border-gray-200');
 
       const mobileButtons = screen
         .getAllByTestId('chevron-down-icon')

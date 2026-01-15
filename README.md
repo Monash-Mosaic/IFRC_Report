@@ -55,7 +55,7 @@ Install `ffmpeg`:
    ```
 
 This will generate:
-- `public/wdr25/hero/poster.jpg` - First frame as poster image
+- `public/wdr25/hero/poster.webp` - First frame as poster image
 - `public/wdr25/hero/fallback-muted.mp4` - Muted MP4 fallback
 - `public/wdr25/hero/hls/480p.m3u8` + segments - 480p HLS variant
 - `public/wdr25/hero/hls/1080p.m3u8` + segments - 1080p HLS variant

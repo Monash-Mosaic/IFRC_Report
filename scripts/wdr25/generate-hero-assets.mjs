@@ -18,7 +18,7 @@
  *   public/wdr25/wdr_hero_video.mp4
  * 
  * Output:
- *   public/wdr25/hero/poster.jpg
+ *   public/wdr25/hero/poster.webp
  *   public/wdr25/hero/fallback-muted.mp4
  *   public/wdr25/hero/hls/240p.m3u8 + segments
  *   public/wdr25/hero/hls/360p.m3u8 + segments
@@ -213,7 +213,7 @@ async function main() {
   try {
     // 1. Extract first frame as poster
     runFFmpeg(
-      `ffmpeg -y -i "${SOURCE_VIDEO}" -vf "select=eq(n\\,0)" -frames:v 1 -update 1 -q:v 2 "${join(OUTPUT_DIR, 'poster.jpg')}"`,
+      `ffmpeg -y -i "${SOURCE_VIDEO}" -vf "select=eq(n\\,0)" -frames:v 1 -update 1 "${join(OUTPUT_DIR, 'poster.webp')}"`,
       'Extracting poster image (first frame)'
     );
 
@@ -270,7 +270,7 @@ async function main() {
     log('\n=== Asset Generation Complete ===\n', 'green');
     log(`All assets have been generated in: ${OUTPUT_DIR}`, 'blue');
     log('\nGenerated files:', 'blue');
-    log('  - poster.jpg', 'blue');
+    log('  - poster.webp', 'blue');
     log('  - fallback-muted.mp4', 'blue');
     log('  - hls/240p.m3u8 + segments', 'blue');
     log('  - hls/360p.m3u8 + segments', 'blue');

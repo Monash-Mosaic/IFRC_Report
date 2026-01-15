@@ -69,9 +69,10 @@ describe('LocaleSwitcher', () => {
     // Dropdown should be open with language options
     expect(screen.getByText('English')).toBeInTheDocument();
     expect(screen.getByText('Français')).toBeInTheDocument();
-    expect(screen.getByText('Chinese')).toBeInTheDocument();
-    expect(screen.getByText('Russian')).toBeInTheDocument();
-    expect(screen.getByText('Arabic')).toBeInTheDocument();
+    expect(screen.getByText('中文')).toBeInTheDocument();
+    expect(screen.getByText('Русский')).toBeInTheDocument();
+    expect(screen.getByText('العربية')).toBeInTheDocument();
+    expect(screen.getByText('Espanol')).toBeInTheDocument();
   });
 
   it('switches locale when option is selected', () => {

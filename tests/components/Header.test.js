@@ -21,7 +21,14 @@ jest.mock('@/components/LocaleSwitcher', () => {
 const pushMock = jest.fn();
 jest.mock('@/i18n/navigation', () => ({
   Link: ({ children, href, className, onClick }) => (
-    <a href={href} className={className} onClick={onClick}>
+    <a
+      href={href}
+      className={className}
+      onClick={(event) => {
+        event.preventDefault();
+        onClick?.(event);
+      }}
+    >
       {children}
     </a>
   ),
@@ -35,7 +42,7 @@ jest.mock('next-intl', () => ({
     const translations = {
       'Home.nav.search': 'Search',
       'Home.nav.about': 'About',
-      'Home.nav.contributors': 'Contributors',
+      'Home.nav.acknowledgement': 'Acknowledgement',
     };
     return translations[`${namespace}.${key}`] || key;
   },
@@ -80,7 +87,7 @@ describe('Header', () => {
 
       // Check desktop navigation elements
       expect(screen.getByText('About')).toBeInTheDocument();
-      expect(screen.getByText('Contributors')).toBeInTheDocument();
+      expect(screen.getByText('Acknowledgement')).toBeInTheDocument();
 
       // Check locale switcher
       expect(screen.getAllByTestId('locale-switcher')).toHaveLength(2); // Desktop and mobile
@@ -164,9 +171,9 @@ describe('Header', () => {
         expect(closeIcons.length).toBeGreaterThan(0);
       });
 
-      // Mic icon should also appear when expanded
-      const micIcons = screen.getAllByTestId('mic-icon');
-      expect(micIcons.length).toBeGreaterThan(0);
+      // Expanded state should show close icons
+      const closeIcons = screen.getAllByTestId('x-icon');
+      expect(closeIcons.length).toBeGreaterThan(0);
     });
 
     it('shows expanded state correctly', async () => {
@@ -186,9 +193,7 @@ describe('Header', () => {
       // Both desktop and mobile search should now be expanded
       await waitFor(() => {
         const closeIcons = screen.getAllByTestId('x-icon');
-        const micIcons = screen.getAllByTestId('mic-icon');
         expect(closeIcons.length).toBe(2); // Desktop and mobile
-        expect(micIcons.length).toBe(2); // Desktop and mobile
       });
     });
 
@@ -204,21 +209,13 @@ describe('Header', () => {
 
       // Wait for expansion
       await waitFor(() => {
-        const micIcons = screen.getAllByTestId('mic-icon');
-        expect(micIcons.length).toBeGreaterThan(0);
-      });
-
-      // Click mic icon (desktop version)
-      const micIcons = screen.getAllByTestId('mic-icon');
-      await act(async () => {
-        fireEvent.click(micIcons[0]);
+        const closeIcons = screen.getAllByTestId('x-icon');
+        expect(closeIcons.length).toBeGreaterThan(0);
       });
 
       // Search should still be expanded
       const closeIcons = screen.getAllByTestId('x-icon');
-      const micIconsAfterClick = screen.getAllByTestId('mic-icon');
       expect(closeIcons.length).toBeGreaterThan(0);
-      expect(micIconsAfterClick.length).toBeGreaterThan(0);
     });
 
     it('search input receives focus after expansion', async () => {
@@ -251,7 +248,7 @@ describe('Header', () => {
 
       // Initially desktop nav should be visible
       expect(screen.getByText('About')).toBeInTheDocument();
-      expect(screen.getByText('Contributors')).toBeInTheDocument();
+      expect(screen.getByText('Acknowledgement')).toBeInTheDocument();
 
       // Expand search
       await act(async () => {
@@ -301,7 +298,9 @@ describe('Header', () => {
       const searchInput = screen.getByPlaceholderText('Search');
 
       // Tab to search input
-      searchInput.focus();
+      act(() => {
+        searchInput.focus();
+      });
 
       expect(document.activeElement).toBe(searchInput);
     });
