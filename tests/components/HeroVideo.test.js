@@ -107,4 +107,16 @@ describe('HeroVideo', () => {
       expect(video.src).toContain('/wdr25/hero/hls/4g.m3u8');
     });
   });
+
+  it('selects low4g stream when bandwidth is limited', async () => {
+    HTMLMediaElement.prototype.canPlayType = jest.fn(() => 'probably');
+    global.navigator.connection = { effectiveType: '4g', saveData: false, downlink: 1.0 };
+
+    const { container } = render(<HeroVideo alt="Hero alt text" />);
+    const video = container.querySelector('video');
+
+    await waitFor(() => {
+      expect(video.src).toContain('/wdr25/hero/hls/low4g.m3u8');
+    });
+  });
 });

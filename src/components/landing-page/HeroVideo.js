@@ -95,7 +95,8 @@ export default function HeroVideo({ alt }) {
         src="/wdr25/hero/poster.webp"
         alt={alt}
         fill
-        priority
+        priority={true}
+        fetchPriority="high"
         sizes="100vw"
         placeholder="blur"
         blurDataURL={HERO_POSTER_BLUR_DATA_URL}
