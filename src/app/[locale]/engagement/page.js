@@ -4,6 +4,9 @@ import { useState } from 'react';
 import TagContainer from '@/components/engagement/TagContainer';
 import QuotesSection from '@/components/engagement/QuotesSection';
 
+import QuoteMap from '@/components/engagement/QuoteMap';
+import ProgressBar from '@/components/engagement/ProgressBar';
+
 export default function EngagementPage() {
   const [selectedTag, setSelectedTag] = useState({});
 
