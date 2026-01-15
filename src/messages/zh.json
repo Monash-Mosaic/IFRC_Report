@@ -6,37 +6,70 @@
     },
     "nav": {
       "logoAlt": "国际红十字与红新月联合会标志",
-      "brand": "国际红十字报告"
-    },
-    "hero": {
-      "globeAlt": "国际红十字地球仪",
-      "title": "国际红十字报告系统",
-      "description": "国际红十字与红新月联合会的综合文档管理和报告平台。访问、分析和协作人道主义报告和出版物。"
-    },
-    "cta": {
-      "browseDocuments": "浏览文档",
-      "documentsIconAlt": "文档图标"
-    },
-    "features": {
-      "document": {
-        "title": "文档管理",
-        "description": "使用高级过滤和搜索功能组织和分类报告。",
-        "iconAlt": "文档图标"
-      },
-      "global": {
-        "title": "全球访问",
-        "description": "从世界任何地方访问人道主义报告和出版物。",
-        "iconAlt": "全球图标"
-      },
-      "analytics": {
-        "title": "高级分析",
-        "description": "分析全面的人道主义数据中的趋势和洞察。",
-        "iconAlt": "分析图标"
-      }
+      "brand": "国际红十字会 | 索尔费里诺学院",
+      "about": "关于",
+      "bookmarks": "书签",
+      "download": "下载",
+      "search": "搜索",
+      "acknowledgement": "鸣谢"
     },
     "footer": {
-      "copyright": "© {year} 国际红十字报告系统。保留所有权利。",
-      "orgFull": "国际红十字与红新月联合会"
+      "worldDisastersReport": "世界灾害报告",
+      "chapters": {
+        "title": "报告章节",
+        "chapter1": "第一章",
+        "chapter2": "第二章",
+        "chapter3": "第三章"
+      },
+      "games": {
+        "title": "虚假信息游戏",
+        "disinformer": "Disinformer",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
+      },
+      "social": {
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "x": "X (Twitter)"
+      },
+      "copyright": "© {year} 国际红十字与红新月联合会。保留所有权利。",
+      "orgFull": "国际红十字与红新月联合会",
+      "privacyPolicy": "隐私政策",
+      "termsOfService": "服务条款",
+      "contact": "联系我们"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "世界\n灾难\n报告",
+        "description": "真相、信任与有害信息时代的人道行动",
+        "buttonTexts": {
+          "read": "阅读报告",
+          "download": "下载报告",
+          "share": "分享"
+        },
+        "heroAlt": "《世界灾难报告》主题图片，展示人道主义工作者正在行动"
+      },
+      "executiveSummary": {
+        "title": "执行摘要",
+        "subtitle": "关键时刻：对抗有害信息，保护人性",
+        "description": "关键时刻：对抗有害信息，保护人性",
+        "buttonTexts": {
+          "read": "阅读",
+          "download": "下载"
+        },
+        "summaryAlt": "报告摘要封面，呈现人道主义背景下的个人"
+      },
+      "featuredVideos": {
+        "title": "全球精选视频"
+      },
+      "testimonials": {
+        "title": "引言与生活经验"
+      }
+    },
+    "videoCard": {
+      "backToThumbnail": "返回缩略图",
+      "videoAriaLabel": "播放视频"
     }
   },
   "ReportListingPage": {
@@ -80,7 +113,8 @@
   },
   "LocaleSwitcher": {
     "ariaLabel": "选择语言",
-    "title": "选择语言"
+    "title": "选择语言",
+    "language": "语言"
   },
   "SidebarPanel": {
     "expandSidebar": "展开侧边栏",
@@ -112,6 +146,9 @@
       "videos": "视频播放器以增强可访问性"
     },
     "closeMediaPanel": "关闭媒体面板",
-    "duration": "时长"
+    "duration": "时长",
+    "videoCard": {
+      "backToThumbnail": "返回缩略图"
+    }
   }
 }

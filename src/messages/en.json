@@ -6,37 +6,70 @@
     },
     "nav": {
       "logoAlt": "IFRC Logo",
-      "brand": "IFRC Reports"
-    },
-    "hero": {
-      "globeAlt": "IFRC Globe",
-      "title": "IFRC Report System",
-      "description": "Comprehensive document management and reporting platform for the International Federation of Red Cross and Red Crescent Societies. Access, analyze, and collaborate on humanitarian reports and publications."
-    },
-    "cta": {
-      "browseDocuments": "Browse Documents",
-      "documentsIconAlt": "Documents icon"
-    },
-    "features": {
-      "document": {
-        "title": "Document Management",
-        "description": "Organize and categorize reports with advanced filtering and search capabilities.",
-        "iconAlt": "Document icon"
-      },
-      "global": {
-        "title": "Global Access",
-        "description": "Access humanitarian reports and publications from anywhere in the world.",
-        "iconAlt": "Global icon"
-      },
-      "analytics": {
-        "title": "Advanced Analytics",
-        "description": "Analyze trends and insights from comprehensive humanitarian data.",
-        "iconAlt": "Analytics icon"
-      }
+      "brand": "IFRC | solferino academy",
+      "about": "About",
+      "bookmarks": "Bookmarks",
+      "download": "Download",
+      "search": "Search",
+      "acknowledgement": "Acknowledgement"
     },
     "footer": {
-      "copyright": "© {year} IFRC Report System. All rights reserved.",
-      "orgFull": "International Federation of Red Cross and Red Crescent Societies"
+      "worldDisastersReport": "World Disasters Report",
+      "chapters": {
+        "title": "Report Chapters",
+        "chapter1": "Chapter 1",
+        "chapter2": "Chapter 2",
+        "chapter3": "Chapter 3"
+      },
+      "games": {
+        "title": "Disinformation Games",
+        "disinformer": "Disinformer",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
+      },
+      "social": {
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "x": "X (Twitter)"
+      },
+      "copyright": "© {year} International Federation of Red Cross and Red Crescent Societies. All rights reserved.",
+      "orgFull": "International Federation of Red Cross and Red Crescent Societies",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "contact": "Contact"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "World\nDisasters\nReport",
+        "description": "Truth, Trust and\nHumanitarian\nAction in the\nAge of Harmful\nInformation",
+        "buttonTexts": {
+          "read": "Read report",
+          "download": "Download report",
+          "share": "Share"
+        },
+        "heroAlt": "World Disasters Report hero image showing humanitarian workers in action"
+      },
+      "executiveSummary": {
+        "title": "Executive Summary",
+        "subtitle": "At Crisis Point: Countering Harmful Information, Defending Humanity",
+        "description": "At Crisis Point: Countering Harmful Information, Defending Humanity",
+        "buttonTexts": {
+          "read": "Read",
+          "download": "Download"
+        },
+        "summaryAlt": "Executive Summary cover featuring a person in humanitarian context"
+      },
+      "featuredVideos": {
+        "title": "Featured Videos from Around the World"
+      },
+      "testimonials": {
+        "title": "Citations & Lived Experiences"
+      }
+    },
+    "videoCard": {
+      "backToThumbnail": "Back to thumbnail",
+      "videoAriaLabel": "Play video"
     }
   },
   "ReportListingPage": {
@@ -80,7 +113,8 @@
   },
   "LocaleSwitcher": {
     "ariaLabel": "Select language",
-    "title": "Select language"
+    "title": "Select language",
+    "language": "Language"
   },
   "SidebarPanel": {
     "expandSidebar": "Expand sidebar",
@@ -94,7 +128,7 @@
       "videos": "Videos"
     },
     "chapterNotes": "Chapter Notes",
-    "myNotes": "My Notes", 
+    "myNotes": "My Notes",
     "bookmarks": "Bookmarks",
     "audio": "Audio",
     "videos": "Videos",
@@ -112,6 +146,9 @@
       "videos": "Video player for enhanced accessibility"
     },
     "closeMediaPanel": "Close media panel",
-    "duration": "Duration"
+    "duration": "Duration",
+    "videoCard": {
+      "backToThumbnail": "Back to thumbnail"
+    }
   }
 }

@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ExecutiveSummarySection renders ExecutiveSummarySection with all content 1`] = `
+<div>
+  <section>
+    <div
+      class="flex flex-col space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center lg:space-y-0"
+    >
+      <div
+        class="flex flex-col space-y-6 lg:space-y-0 lg:h-full"
+      >
+        <div
+          class="lg:flex-1 lg:space-y-6 space-y-6"
+        >
+          <h2
+            class="text-3xl md:text-4xl font-extrabold text-gray-900"
+          >
+            Executive Summary
+          </h2>
+          <div
+            class="lg:hidden relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200"
+          >
+            <img
+              alt="Executive Summary cover featuring a person in humanitarian context"
+              class="object-cover"
+              data-fill="true"
+              data-testid="mock-image"
+              src="/wdr25/summary.png"
+            />
+          </div>
+          <h3
+            class="text-xl md:text-3xl md:max-w-90 font-semibold md:font-normal text-gray-800"
+          >
+            Key Findings from the Report
+          </h3>
+          <p
+            class="text-xl text-gray-500 leading-relaxed"
+          >
+            This comprehensive analysis presents the most critical findings from our research on global disaster response and humanitarian aid effectiveness.
+          </p>
+        </div>
+        <div
+          class="flex gap-4 lg:mt-8"
+        >
+          <a
+            class="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+            data-testid="mock-link"
+            href="/reports/wdr25/chapter-02"
+          >
+            Read Full Report
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-eye w-5 h-5 flex-shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+              />
+            </svg>
+          </a>
+          <a
+            alt="alt text"
+            class="px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+            href="https://www.heritage.vic.gov.au/__data/assets/pdf_file/0022/512275/Victorias-framework-of-historical-themes-Heritage-Council-of-Victoria,-Victorian-Aboriginal-Heritage-Council-2009.pdf"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Download PDF
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-download w-5 h-5 flex-shrink-0"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 15V3"
+              />
+              <path
+                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+              />
+              <path
+                d="m7 10 5 5 5-5"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div
+        class="hidden lg:block relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200"
+      >
+        <img
+          alt="Executive Summary cover featuring a person in humanitarian context"
+          class="object-cover"
+          data-fill="true"
+          data-testid="mock-image"
+          src="/wdr25/summary.png"
+        />
+      </div>
+    </div>
+  </section>
+</div>
+`;

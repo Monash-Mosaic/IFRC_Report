@@ -3,6 +3,7 @@ import * as enReports from './en';
 import * as frReports from './fr';
 import * as ruReports from './ru';
 import * as zhReports from './zh';
+import * as esReports from './es';
 
 // For simplicity, we will hardcode locale and report and chapter combinations.
 export const reportsByLocale = {
@@ -11,4 +12,5 @@ export const reportsByLocale = {
   fr: frReports,
   ru: ruReports,
   zh: zhReports,
+  es: esReports,
 };

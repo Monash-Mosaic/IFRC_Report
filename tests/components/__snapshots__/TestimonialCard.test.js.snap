@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`TestimonialCard renders TestimonialCard with all content 1`] = `
+<div>
+  <div
+    class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full border border-gray-200"
+  >
+    <blockquote
+      class="text-gray-800 leading-relaxed mb-6"
+    >
+      "
+      This is a test testimonial quote that demonstrates the impact of humanitarian work in our community.
+      "
+    </blockquote>
+    <div
+      class="flex items-center space-x-3 mt-auto"
+    >
+      <div
+        class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0"
+      >
+        <span
+          class="text-gray-700 text-sm font-medium"
+        >
+          JD
+        </span>
+      </div>
+      <div>
+        <div
+          class="font-medium text-gray-900 text-sm"
+        >
+          John Doe
+        </div>
+        <div
+          class="text-gray-600 text-sm"
+        >
+          United States
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

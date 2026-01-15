@@ -6,37 +6,88 @@
     },
     "nav": {
       "logoAlt": "Logo de l'IFRC",
-      "brand": "Rapports de l'IFRC"
-    },
-    "hero": {
-      "globeAlt": "Globe de l'IFRC",
-      "title": "Système de rapports de l'IFRC",
-      "description": "Plateforme complète de gestion de documents et de rapports pour la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Accédez, analysez et collaborez sur des rapports et des publications humanitaires."
-    },
-    "cta": {
-      "browseDocuments": "Parcourir les documents",
-      "documentsIconAlt": "Icône des documents"
-    },
-    "features": {
-      "document": {
-        "title": "Gestion des documents",
-        "description": "Organisez et catégorisez les rapports avec des fonctionnalités avancées de filtrage et de recherche.",
-        "iconAlt": "Icône de document"
-      },
-      "global": {
-        "title": "Accès mondial",
-        "description": "Accédez aux rapports et publications humanitaires depuis n'importe où dans le monde.",
-        "iconAlt": "Icône du globe"
-      },
-      "analytics": {
-        "title": "Analyses avancées",
-        "description": "Analysez les tendances et les enseignements tirés de données humanitaires exhaustives.",
-        "iconAlt": "Icône d'analyse"
-      }
+      "brand": "IFRC | académie solferino",
+      "about": "À propos",
+      "bookmarks": "Signets",
+      "download": "Télécharger",
+      "search": "Recherche",
+      "acknowledgement": "Reconnaissance"
     },
     "footer": {
-      "copyright": "© {year} Système de rapports de l'IFRC. Tous droits réservés.",
-      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge"
+      "worldDisastersReport": "Rapport mondial sur les catastrophes",
+      "chapters": {
+        "title": "Chapitres du rapport",
+        "chapter1": "Chapitre 1",
+        "chapter2": "Chapitre 2",
+        "chapter3": "Chapitre 3"
+      },
+      "games": {
+        "title": "Jeux de désinformation",
+        "disinformer": "Disinformer",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
+      },
+      "social": {
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "x": "X (Twitter)"
+      },
+      "copyright": "© {year} Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Tous droits réservés.",
+      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge",
+      "privacyPolicy": "Politique de confidentialité",
+      "termsOfService": "Conditions d'utilisation",
+      "contact": "Contact"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "Rapport sur les\ncatastrophes\ndans le monde",
+        "description": "Vérité, confiance\net action\nhumanitaire à l'ère\ndes informations\npréjudiciables",
+        "buttonTexts": {
+          "read": "Lire le rapport",
+          "download": "Télécharger le rapport",
+          "share": "Partager"
+        },
+        "heroAlt": "Image principale du Rapport sur les catastrophes dans le monde montrant des travailleurs humanitaires en action"
+      },
+      "executiveSummary": {
+        "title": "Résumé exécutif",
+        "subtitle": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
+        "description": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
+        "buttonTexts": {
+          "read": "Lire",
+          "download": "Télécharger"
+        },
+        "summaryAlt": "Couverture du Résumé exécutif mettant en scène une personne dans un contexte humanitaire"
+      },
+      "featuredVideos": {
+        "title": "Vidéos en vedette du monde entier",
+        "videos": [
+          {
+            "id": 1,
+            "title": "Sous-titre",
+            "description": "Texte du corps pour tout ce que vous souhaitez ajouter au sous-titre.",
+            "thumbnailSrc": "/wdr25/thumbnail1.png",
+            "thumbnailAlt": "Miniature de la vidéo en vedette",
+            "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+          },
+          {
+            "id": 2,
+            "title": "Sous-titre",
+            "description": "Texte du corps pour tout ce que vous souhaitez développer sur le point principal.",
+            "thumbnailSrc": "/wdr25/thumbnail2.png",
+            "thumbnailAlt": "Miniature de la vidéo en vedette",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Citations et expériences vécues"
+      }
+    },
+    "videoCard": {
+      "backToThumbnail": "Retour à la miniature",
+      "videoAriaLabel": "Lire la vidéo"
     }
   },
   "ReportListingPage": {
@@ -80,7 +131,8 @@
   },
   "LocaleSwitcher": {
     "ariaLabel": "Sélectionnez la langue",
-    "title": "Sélectionnez la langue"
+    "title": "Sélectionnez la langue",
+    "language": "Langue"
   },
   "SidebarPanel": {
     "expandSidebar": "Étendre la barre latérale",
@@ -112,6 +164,9 @@
       "videos": "Lecteur vidéo pour une accessibilité améliorée"
     },
     "closeMediaPanel": "Fermer le panneau multimédia",
-    "duration": "Durée"
+    "duration": "Durée",
+    "videoCard": {
+      "backToThumbnail": "Retour à la miniature"
+    }
   }
 }

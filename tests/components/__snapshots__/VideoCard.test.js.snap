@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`VideoCard renders VideoCard with title and description 1`] = `
+<div>
+  <div
+    class="bg-white rounded-2xl overflow-hidden shadow-sm h-full"
+  >
+    <div
+      class="relative aspect-video bg-gray-900"
+    >
+      <div
+        data-params="rel=0"
+        data-testid="mock-youtube-embed"
+        data-videoid="dQw4w9WgXcQ"
+      >
+        YouTube Player: 
+        dQw4w9WgXcQ
+      </div>
+    </div>
+    <div
+      class="p-6 space-y-3"
+    >
+      <h3
+        class="text-lg font-semibold text-gray-900"
+      >
+        Test Video Title
+      </h3>
+      <p
+        class="text-gray-600 text-sm leading-relaxed"
+      >
+        This is a test video description that explains the content of the video.
+      </p>
+    </div>
+  </div>
+</div>
+`;
