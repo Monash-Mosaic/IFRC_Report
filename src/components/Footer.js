@@ -131,7 +131,7 @@ export default function Footer() {
                 </h3>
                 <div className="flex items-center space-x-3 mb-4">
                   <Image
-                    src="/wdr25/ifrc_logo.png"
+                    src="/wdr25/ifrc_logo.jpg"
                     alt="IFRC"
                     width={120}
                     height={40}
