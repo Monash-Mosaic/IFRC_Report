@@ -3,13 +3,24 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
+const HERO_POSTER_BLUR_DATA_URL =
+  'data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAABwAQCdASoQAAkAA4BaJbACdAF1AAD+8O872VgmO+GIE7A8zCl7SO3C/7Ar1nPhn+XoMqAA';
+
 export default function HeroVideo({ alt }) {
   const [videoReady, setVideoReady] = useState(false);
+  /** @type {React.RefObject<HTMLVideoElement>} */
   const videoRef = useRef(null);
+  /** @type {React.RefObject<HTMLImageElement>} */
+  const imageRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
+    const image = imageRef.current;
     if (!video) return;
+    // replace image with video poster when finished loading
+    if (image && image.complete && video) {
+      video.poster = image.src;
+    }
 
     let hls;
     let cancelled = false;
@@ -80,11 +91,14 @@ export default function HeroVideo({ alt }) {
     <>
       {/* Poster image - fades out when video is ready */}
       <Image
+        ref={imageRef}
         src="/wdr25/hero/poster.webp"
         alt={alt}
         fill
         priority
         sizes="100vw"
+        placeholder="blur"
+        blurDataURL={HERO_POSTER_BLUR_DATA_URL}
         className={`object-cover object-center transition-opacity duration-500 z-10 ${
           videoReady ? 'opacity-0' : 'opacity-100'
         }`}
@@ -93,7 +107,6 @@ export default function HeroVideo({ alt }) {
       {/* Background video player - native HTML video element */}
       <video
         ref={videoRef}
-        poster="/wdr25/hero/poster.webp"
         autoPlay
         loop
         muted
