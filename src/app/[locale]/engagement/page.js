@@ -9,14 +9,10 @@ import {
   Shuffle,
   Circle,
   CircleCheck,
-  Heart,
-  AlertTriangle,
-  Shield,
-  User,
 } from 'lucide-react';
 
 import QuoteMap from '@/components/engagement/QuoteMap';
-import ProgressBar from '@/components/engagement/ProgressBar';
+import SurveyInsight from '@/components/engagement/SurveyInsight';
 
 export default function EngagementPage() {
   const [selectedTag, setSelectedTag] = useState({});
@@ -92,37 +88,6 @@ export default function EngagementPage() {
       ],
     },
   ];
-
-  const statsData = [
-    {
-      id: 'affected',
-      stat: '73.3%',
-      text: 'have been personally affected by harmful information',
-    },
-    {
-      id: 'reject',
-      stat: '55.0%',
-      text: 'have seen people rejecting aid due to false or misleading info',
-    },
-    {
-      id: 'combat',
-      stat: '63.5%',
-      text: 'have seen groups organize to combat false and misleading info, online or offline',
-    },
-  ];
-
-  const getIcon = (id) => {
-    switch (id) {
-      case 'affected':
-        return <AlertTriangle size={48} className="text-red-600" />;
-      case 'reject':
-        return <User size={48} className="text-red-600" />;
-      case 'combat':
-        return <Shield size={48} className="text-red-600" />;
-      default:
-        return <Shield size={48} className="text-red-600" />;
-    }
-  };
 
   const toggleChapter = (chapterId) => {
     setExpandedChapters((prev) => ({
@@ -325,58 +290,10 @@ export default function EngagementPage() {
           </div>
         </div>
 
-        {/* Stats Section */}
-        <div className="w-full my-12  px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {statsData.map((item, index) => (
-              <div
-                key={item.id}
-                className={`
-                relative bg-white rounded-lg border-2 p-6
-                transition-all duration-300 hover:shadow-lg
-                ${
-                  selectedTag[item.id]
-                    ? 'border-red-500 shadow-lg shadow-red-500/20 bg-red-50'
-                    : 'border-stone-200 hover:border-red-300'
-                }
-              `}
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animation: 'fade-in 0.5s ease-out forwards',
-                }}
-              >
-                {/* Heart Button */}
-                <button
-                  onClick={() => handleSelectionTag(item.id)}
-                  className="absolute top-4 right-4 transition-all duration-200 hover:scale-110"
-                  aria-label="Toggle filter"
-                >
-                  <Heart
-                    size={24}
-                    className={`
-                    ${
-                      selectedTag[item.id]
-                        ? 'fill-red-500 text-red-500'
-                        : 'text-stone-400 hover:text-red-400'
-                    }
-                  `}
-                  />
-                </button>
-
-                {/* Content Container */}
-                <div className="flex flex-col items-center text-center space-y-4 mt-2">
-                  <div className="p-3 bg-red-50 rounded-full">{getIcon(item.id)}</div>
-                  <div className="text-2xl font-bold text-stone-800">{item.stat}</div>
-                  <p className="text-base text-stone-600 leading-relaxed">{item.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <ProgressBar
+        <SurveyInsight
           selectedTag={selectedTag}
           handleSelectionTag={handleSelectionTag}
-        ></ProgressBar>
+        ></SurveyInsight>
         <QuoteMap></QuoteMap>
       </main>
 
