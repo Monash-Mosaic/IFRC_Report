@@ -14,7 +14,7 @@ const withMDX = createMDX({
           behavior: 'wrap',
           content: {
             type: 'text',
-            value: ' 🔗',
+            value: '',
           },
         },
       ],
