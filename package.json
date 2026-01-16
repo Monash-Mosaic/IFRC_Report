@@ -21,6 +21,7 @@
     "@types/mdx": "^2.0.13",
     "autoprefixer": "^10.4.21",
     "dexie": "^4.2.0",
+    "geist": "^1.5.1",
     "embla-carousel-react": "^8.6.0",
     "hls.js": "^1.6.15",
     "lucide-react": "^0.542.0",
