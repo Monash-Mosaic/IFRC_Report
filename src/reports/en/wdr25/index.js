@@ -1,6 +1,7 @@
 import * as Chapter02 from './chapter-02.mdx';
+import * as Synthesis from './exec-summary.mdx';
 
-export const title = 'World Disaster Report 2025';
+export const title = 'World Disaster Report 2026';
 
 export const description =
   "The International Federation of Red Cross and Red Crescent Societies' Annual Report for 2025, detailing global disaster response and humanitarian efforts.";
@@ -74,6 +75,12 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
+  synthesis: {
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+  },
   'chapter-02': {
     metadata: {
       chapterKey: 'chapter-02',
