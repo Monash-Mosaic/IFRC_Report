@@ -1,3 +1,4 @@
+import Image from 'next/image';
 // Lightweight placeholder components used by MDX content.
 // These are intentionally minimal so pages render without styling dependencies.
 // TODO: Enhance these components with styling as needed.
@@ -78,6 +79,7 @@ export function SmallQuote({ children, ...props }) {
   return (
     <blockquote
       style={{
+        fontFamily: 'var(--font-bespoke-serif)',
         margin: '1rem 0',
         fontSize: '1.5rem',
         fontFamily: 'Math',
@@ -239,8 +241,7 @@ export function ChapterImage({
   return (
     <div className="w-full">
       <div
-        ref={containerRef}
-        className="relative overflow-hidden cursor-ew-resize select-none w-full rounded-lg"
+        className="relative overflow-hidden  select-none w-full rounded-lg"
         style={{
           maxWidth: width,
           aspectRatio: `${width} / ${height}`,
