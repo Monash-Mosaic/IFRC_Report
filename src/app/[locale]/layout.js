@@ -8,6 +8,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getDirection } from '@/i18n/helper';
 import { routing } from '@/i18n/routing';
 import './globals.css';
+import localFont from 'next/font/local';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -22,6 +23,33 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+
+const bespokeSerif = localFont({
+  src: [
+    {
+      path: './fonts/BespokeSerif-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/BespokeSerif-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/BespokeSerif-Extrabold.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: './fonts/BespokeSerif-ExtraboldItalic.woff2',
+      weight: '800',
+      style: 'italic',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-bespoke-serif', // Add this!
+});
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
