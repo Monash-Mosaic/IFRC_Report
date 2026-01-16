@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
 import './globals.css';
 import { getDirection } from '@/i18n/helper';
+import localFont from 'next/font/local';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -13,6 +14,33 @@ export const metadata = {
   title: 'IFRC Reports',
   description: 'Welcome to the IFRC Report',
 };
+
+const bespokeSerif = localFont({
+  src: [
+    {
+      path: './fonts/BespokeSerif-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/BespokeSerif-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/BespokeSerif-Extrabold.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: './fonts/BespokeSerif-ExtraboldItalic.woff2',
+      weight: '800',
+      style: 'italic',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-bespoke-serif', // Add this!
+});
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,7 +56,9 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <html lang={locale} dir={dir}>
-      <body className={`${GeistSans.variable} ${GeistMono.variable} locale-${locale} antialiased`}>
+      <body
+        className={`${GeistSans.variable} ${GeistMono.variable} ${bespokeSerif.variable} locale-${locale} antialiased`}
+      >
         <NextIntlClientProvider>
           <Header />
           {children}
