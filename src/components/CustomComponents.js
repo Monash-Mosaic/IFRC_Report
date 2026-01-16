@@ -155,6 +155,104 @@ export function ChapterQuote({ children, ...props }) {
   );
 }
 
+export function ReccomendationsTitle({ children, ...props }) {
+  return (
+    <div
+      aria-label="ReccomendationsTitle"
+      style={{
+        color: '#ee2435',
+        fontSize: '1.5rem',
+        borderBottom: '2px solid #030303ff',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Reccomendations({ children, ...props }) {
+  return (
+    <div aria-label="Reccomendations" style={{ fontWeight: 700 }} {...props}>
+      {children}
+    </div>
+  );
+}
+
+export function H1Contributor({ children, ...props }) {
+  return (
+    <div
+      aria-label="H1Contributors"
+      style={{
+        borderBottom: '3px solid #ee2435',
+        paddingBottom: '2px',
+        fontWeight: '400',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Definition({ children, ...props }) {
+  return (
+    <div
+      style={{
+        fontFamily: 'var(--font-bespoke-serif)',
+        fontWeight: 800,
+        borderBottom: '2px solid #030303ff',
+        fontSize: '1.5rem',
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function DefinitionDescription({ children, ...props }) {
+  return (
+    <aside
+      style={{
+        fontFamily: 'var(--font-bespoke-serif)',
+        fontWeight: 400,
+        padding: '0.75rem',
+        borderLeft: '4px solid #030303ff',
+        background: '#f8fafc',
+        fontSize: '1.25rem',
+      }}
+      {...props}
+    >
+      {children}
+    </aside>
+  );
+}
+
+export function ChapterImage({
+  imagePath,
+  alt = 'Alt',
+  title = 'Title',
+  width = 900,
+  height = 700,
+}) {
+  return (
+    <div className="w-full">
+      <div
+        ref={containerRef}
+        className="relative overflow-hidden cursor-ew-resize select-none w-full rounded-lg"
+        style={{
+          maxWidth: width,
+          aspectRatio: `${width} / ${height}`,
+          margin: '0 auto',
+        }}
+      >
+        <Image src={imagePath} alt={alt} title={title} fill className="object-cover" priority />
+      </div>
+    </div>
+  );
+}
+
 const CustomComponents = {
   Contributors,
   ContributorRole,
@@ -167,6 +265,12 @@ const CustomComponents = {
   ContributorSpotlightName,
   ContributorSpotlightPosition,
   ContributorSpotlightRole,
+  ChapterImage,
+  Definition,
+  DefinitionDescription,
+  H1Contributor,
+  Reccomendations,
+  ReccomendationsTitle,
 };
 
 export default CustomComponents;
