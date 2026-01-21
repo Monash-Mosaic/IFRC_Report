@@ -66,7 +66,8 @@
           "read": "Leer",
           "download": "Descargar"
         },
-        "summaryAlt": "Portada del Resumen Ejecutivo con una persona en un contexto humanitario"
+        "summaryAlt": "Portada del Resumen Ejecutivo con una persona en un contexto humanitario",
+        "url": "síntesis"
       },
       "featuredVideos": {
         "title": "Videos Destacados de Todo el Mundo"

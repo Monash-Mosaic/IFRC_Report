@@ -5,18 +5,19 @@ import { visit } from 'unist-util-visit';
 import flatMap from 'unist-util-flatmap';
 import { toMarkdown } from 'mdast-util-to-markdown';
 import { mdxToMarkdown } from 'mdast-util-mdx';
-import { paragraph, text, heading, list, listItem, image } from 'mdast-builder';
+import { paragraph, text, heading, list, listItem, image, strong, emphasis } from 'mdast-builder';
 import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
-import * as prettier from "prettier";
+import * as prettier from 'prettier';
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(1);
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: 'WDR25-CHAPTER-02-empty.xml',
-  mdx: 'chapter-02.mdx',
+  source: 'test.xml',
+  mdx: 'WDR26-Executive-Summary-EN.mdx',
 };
 
 const { values } = parseArgs({
@@ -26,14 +27,16 @@ const { values } = parseArgs({
     mdx: { type: 'string', short: 'm' },
   },
 });
-
 const resolveTargetPath = (root, filePath, fallback) => {
   const target = filePath ?? fallback;
   return path.isAbsolute(target) ? target : path.join(root, target);
 };
 
 const SOURCE_XML_PATH = resolveTargetPath(DEFAULTS.sourceDir, values.source, DEFAULTS.source);
+
 const OUTPUT_MDX_PATH = resolveTargetPath(DEFAULTS.outputDir, values.mdx, DEFAULTS.mdx);
+
+const supportExtractChildren = ['text', 'strong', 'emphasis', 'element'];
 
 /**
  * Ensure the destination directory exists before writing files.
@@ -166,13 +169,17 @@ const normaliseChildrenText = (child) => {
   if (child?.type !== 'text') return child;
   return text(normalizedString(child.value));
 };
+
 /**
  * Collect all text children from a node, applying normalization.
  * @param {import('unist').Node & { children?: import('unist').Node[] }} node
  * @returns {import('unist').Literal[]}
  */
 const extractTextChildren = (node) =>
-  (node.children || []).filter((child) => child?.type === 'text').map(normaliseChildrenText);
+  (node.children || [])
+    .filter((child) => supportExtractChildren.includes(child?.type))
+    .map(normaliseChildrenText);
+
 /**
  * Convenience helper for flattening text child content into a string.
  * @param {import('unist').Node & { children?: import('unist').Node[] }} node
@@ -182,6 +189,59 @@ const getTextContent = (node) =>
   extractTextChildren(node)
     .map((n) => n.value)
     .join(' ');
+
+/**
+ * Add whitespace padding between children of paragraph's type
+ * @param {import('unist').Node & { children?: import('unist').Node[] }} tree
+ * @returns {void}
+ */
+const addPaddingParagraphChildren = (tree) => {
+  visit(tree, 'paragraph', (paragraphNode) => {
+    if (!paragraphNode.children || paragraphNode.children.length <= 1) {
+      return;
+    }
+
+    const newChildren = [];
+
+    paragraphNode.children.forEach((child, index) => {
+      newChildren.push(child);
+
+      if (index < paragraphNode.children.length - 1) {
+        newChildren.push({
+          type: 'text',
+          value: ' ',
+        });
+      }
+    });
+
+    paragraphNode.children = newChildren;
+  });
+};
+
+export function generateFullPath(pathVariable, chapter, report = 'wdr25') {
+  // Extract fileName from path like "/images/[fileName]"
+  const fileNameMatch = pathVariable.match(/\/([^\/]+)$/);
+  const fileName = fileNameMatch ? fileNameMatch[1] : '';
+
+  // Remove any existing extension
+  const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, '');
+
+  // Return formatted path: /[report]/[chapter]/[filename].png
+  const s = `/${report}/${chapter}/${fileNameWithoutExt}.jpg`;
+  return s;
+}
+
+// Function 2: Extract filename only from path
+export function extractFileName(pathVariable) {
+  // Extract the last part of the path
+  const fileNameMatch = pathVariable.match(/\/([^\/]+)$/);
+  const fileName = fileNameMatch ? fileNameMatch[1] : '';
+
+  // Remove extension if present
+  const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, '');
+
+  return fileNameWithoutExt;
+}
 
 /**
  * Convert XML element nodes into MDX/MD AST nodes expected by the renderer.
@@ -202,8 +262,10 @@ const convertToMDXAst = (node, index, parent) => {
       return [exportEsm('subtitle', getTextContent(node))];
     case 'caption':
       return [mdxJsxEl('Caption', [], extractTextChildren(node))];
+    case 'h1-box':
     case 'h1-spotlight':
       return [mdxJsxEl('Spotlight', [], extractTextChildren(node))];
+    case 'h1-recommendations':
     case 'h1':
       return [heading(1, extractTextChildren(node))];
     case 'h2':
@@ -211,6 +273,8 @@ const convertToMDXAst = (node, index, parent) => {
     case 'h3':
     case 'heading-3':
       return [heading(3, extractTextChildren(node))];
+    case 'h4':
+      return [heading(4, extractTextChildren(node))];
     case 'chapter-quote':
       return [mdxJsxEl('ChapterQuote', [], extractTextChildren(node))];
     case 'introduction':
@@ -218,30 +282,61 @@ const convertToMDXAst = (node, index, parent) => {
     case 'normal-spotlight':
     case 'normal':
     case 'normal-spotlight-first':
+    case 'normal-box':
+    case 'normal-box-alt':
     case 'normal-first':
+    case 'normal-expanded':
+    case 'normal-tight':
+    case 'normal-10':
       return [paragraph(extractTextChildren(node))];
+    case 'normal-2c':
+      return [mdxJsxEl('ReccomendationsTitle', [], extractTextChildren(node))];
+    case 'recommendations':
+      return [mdxJsxEl('Reccomendations', [], extractTextChildren(node))];
+    case 'bold':
+      return [strong(extractTextChildren(node))];
+    case 'sup':
+    case 'regular-italic':
+      return [emphasis(extractTextChildren(node))];
     case 'numbered-list':
       return [listItem(extractTextChildren(node))];
     case 'numbered-list-group':
       return [list('ordered', node.children)];
+    case 'h1-c1':
+    case 'h1-c2':
+    case 'h1-span':
+    case 'h1-3c-c1':
+    case 'h1-3c-c2':
+    case 'h1-3c-c3':
     case 'h1-contributor-spotlight':
       return [mdxJsxEl('H1Contributor', [], extractTextChildren(node))];
     case 'contributor-name-spotlight':
       return [mdxJsxEl('ContributorName', [], extractTextChildren(node))];
     case 'contributor-position-spotlight':
       return [mdxJsxEl('ContributorPosition', [], extractTextChildren(node))];
+    case 'h2-c1':
+    case 'h2-c2':
+    case 'h2-span':
+    case 'h2-3c-c1':
+    case 'h2-3c-c2':
+    case 'h2-3c-c3':
     case 'contributor':
-      return [mdxJsxEl('Contributor', [], node.children)];
+      return [mdxJsxEl('Contributors', [], node.children)];
+    case 'bullet-list-2c':
+    case 'bullet-list':
+    case 'normal-box-bullet-list':
     case 'normal-spotlight-bullet-list':
       return [listItem(extractTextChildren(node))];
-    case 'normal-spotlight-bullet-list-group':
+    case 'bullet-list-group':
       return [list('unordered', node.children)];
+    case 'h3-c1':
+    case 'h3-c2':
+    case 'h3-span':
+    case 'h3-3c-c3':
     case 'contributor-role':
       return [mdxJsxEl('ContributorRole', [], extractTextChildren(node))];
     case 'h1-contributor':
       return [mdxJsxEl('H1Contributor', [], extractTextChildren(node))];
-    case 'contributor-group':
-      return [mdxJsxEl('ContributorGroup', [], node.children)];
     case 'h1.fig':
       return [mdxJsxEl('H1Fig', [], extractTextChildren(node))];
     case 'h1-ebn':
@@ -252,10 +347,9 @@ const convertToMDXAst = (node, index, parent) => {
       return [];
     case 'img':
       return [paragraph([image(node.attributes?.href_fmt || '')])];
+    case 'quote':
     case 'small-quote':
-      return [mdxJsxEl('SmallQuoteContent', [], extractTextChildren(node))];
-    case 'small-quote-group':
-      return [mdxJsxEl('SmallQuoteGroup', [], node.children)];
+      return [mdxJsxEl('SmallQuote', [], extractTextChildren(node))];
     case 'small-quote-author':
       return [mdxJsxEl('SmallQuoteAuthor', [], extractTextChildren(node))];
     case 'h1-sidenote-context':
@@ -263,31 +357,74 @@ const convertToMDXAst = (node, index, parent) => {
     case 'sidenotes-contributions-first':
       return [mdxJsxEl('SidenotesContributionsFirst', [], extractTextChildren(node))];
     case 'sidenote':
-      return [mdxJsxEl('Sidenote', [], node.children)];
+      return [mdxJsxEl('SideNote', [], node.children)];
+    case 't1-definition':
+      return [mdxJsxEl('Definition', [], extractTextChildren(node))];
+    case 'normal-definition-first':
+      return [mdxJsxEl('DefinitionDescription', [], extractTextChildren(node))];
+    case 'fig':
+      return [
+        mdxJsxEl(
+          'ChapterImage',
+          [
+            { name: 'imagePath', value: generateFullPath(node.attributes?.href, 'synthesis') },
+            { name: 'title', value: extractFileName(node.attributes?.href) },
+          ],
+          extractTextChildren(node)
+        ),
+      ];
+    case 'endnotes-ref':
+      return [mdxJsxEl('RefPlaceHolder', [], extractTextChildren(node))];
     default:
       console.log('Unhandled node:', node.name);
-      return [mdxJsxEl(`Unhandled${node.name.replace('-', '')}`, [], extractTextChildren(node))];
+      return [];
   }
 };
 
 const fileContent = await fs.readFile(SOURCE_XML_PATH, 'utf8');
+
 const xmlAst = fromXml(fileContent);
 const normalizedXmlAst = flatMap(xmlAst, normalisedXmlAstFn);
+console.log(normalizedXmlAst.children[1]);
+
 const mdRoot = flatMap(normalizedXmlAst, convertToMDXAst);
 
 const components = new Set();
 visit(mdRoot, ['mdxJsxFlowElement'], (node) => components.add(node.name));
 
+addPaddingParagraphChildren(mdRoot);
+
 if (components.size > 0) {
   mdRoot.children.unshift(importEsm('@/components/CustomComponents', [...components]));
 }
+
 // Build md content with remark and mdx stringifier extensions
 const prettierrcPath = path.join(__dirname, '..', '..', '.prettierrc');
 const options = await prettier.resolveConfig(prettierrcPath);
-const file = await prettier.format(toMarkdown(mdRoot, {
+
+const joinInlineChildren = (left, right, parent, state) => {
+  if (left.type == 'text' && right.type == 'strong') {
+    return 0;
+  }
+  if (left.type == 'strong' && right.type == 'text') {
+    return 0;
+  }
+};
+
+// Create the array
+export const joinFunctions = [joinInlineChildren];
+
+const prePrett = toMarkdown(mdRoot, {
   listItemIndent: 'one',
+  emphasis: '*',
+  join: joinFunctions,
+  tightDefinitions: true,
   extensions: [mdxToMarkdown({ printWidth: 100 })],
-}), { ...options, parser: "mdx" });
+});
+
+console.log(prePrett);
+
+const file = await prettier.format(prePrett, { ...options, parser: 'mdx' });
 
 await ensureParentDir(OUTPUT_MDX_PATH);
 await fs.writeFile(OUTPUT_MDX_PATH, file, 'utf8');

@@ -1,11 +1,17 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 import createMDX from '@next/mdx';
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import rehypeRemoveFootnoteHeading from './rehype-remove-footnote-heading.js';
 
 const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
   options: {
+    remarkPlugins: [
+      ['remark-gfm', { firstLineBlank: true }], // Add this for footnote support
+    ],
     rehypePlugins: [
       ['rehype-slug', {}],
       [
@@ -20,6 +26,18 @@ const withMDX = createMDX({
       ],
       ['@stefanprobst/rehype-extract-toc', {}],
       ['@stefanprobst/rehype-extract-toc/mdx', {}],
+      () => (tree) => {
+        visit(tree, 'element', (node) => {
+          if (
+            node.properties?.dataFootnotes === true ||
+            node.properties?.className?.includes('footnotes')
+          ) {
+            if (node.children[0]?.tagName === 'h2') {
+              node.children.shift();
+            }
+          }
+        });
+      },
     ],
   },
 });

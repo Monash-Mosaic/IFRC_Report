@@ -50,7 +50,8 @@
     "react-dom": "^19.2.4",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
-    "stopwords-en": "^0.3.0"
+    "stopwords-en": "^0.3.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
