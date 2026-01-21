@@ -248,6 +248,10 @@ export function ChapterImage({ imagePath, alt = 'Alt', width = 900, height = 700
   );
 }
 
+export function RefPlaceHolder({ children, ...props }) {
+  return <div>children</div>;
+}
+
 const CustomComponents = {
   Contributors,
   ContributorRole,
@@ -266,6 +270,7 @@ const CustomComponents = {
   H1Contributor,
   Reccomendations,
   ReccomendationsTitle,
+  RefPlaceHolder,
 };
 
 export default CustomComponents;
