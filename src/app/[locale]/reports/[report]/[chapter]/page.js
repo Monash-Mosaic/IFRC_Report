@@ -62,12 +62,12 @@ export default async function ReportChapterPage({ params }) {
   const t = await getTranslations('ReportChapterPage', locale);
 
   return (
-    <div className="min-h-screen bg-white flex  pl-8 pr-0 py-8">
+    <div className="min-h-screen bg-white flex  pr-0 py-8">
       {/* Sidebar Panel */}
       <SidebarPanel chapterTitle={chapterTitle} audios={audios} videos={videos} />
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-6">
         <div className="max-w-7xl mx-auto flex gap-6">
           <div className="flex-1 max-w-4xl mx-auto">
             <Link

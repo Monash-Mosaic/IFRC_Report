@@ -1,5 +1,5 @@
 import * as Chapter02 from './chapter-02.mdx';
-
+import * as Synthesis from './exec-summary.mdx';
 export const title = 'Informe Mundial sobre Desastres 2025';
 
 export const description =
@@ -76,6 +76,12 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
+  síntesis: {
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+  },
   'chapter-02': {
     component: Chapter02.default,
     title: Chapter02.title,

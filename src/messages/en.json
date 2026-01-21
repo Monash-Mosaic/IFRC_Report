@@ -58,7 +58,8 @@
           "read": "Read",
           "download": "Download"
         },
-        "summaryAlt": "Executive Summary cover featuring a person in humanitarian context"
+        "summaryAlt": "Executive Summary cover featuring a person in humanitarian context",
+        "url": "synthesis"
       },
       "featuredVideos": {
         "title": "Featured Videos from Around the World"

@@ -43,7 +43,7 @@ export default function ExecutiveSummarySection({ messages }) {
           {/* Action Buttons - Desktop: At bottom | Mobile: After content */}
           <div className="flex gap-4 lg:mt-8">
             <Link
-              href="/reports/wdr25/synthesis"
+              href={`/reports/wdr25/${messages.url}`}
               className="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap"
             >
               {messages.buttonTexts.read}
