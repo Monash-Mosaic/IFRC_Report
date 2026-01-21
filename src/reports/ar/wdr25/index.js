@@ -1,5 +1,5 @@
 import * as Chapter02 from './chapter-02.mdx';
-
+import * as Synthesis from './exec-summary.mdx';
 export const title = 'تقرير الكوارث العالمي 2025';
 
 export const description =
@@ -73,6 +73,12 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
+  synthesis: {
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+  },
   'الفصل-02': {
     metadata: {
       chapterKey: 'chapter-02',

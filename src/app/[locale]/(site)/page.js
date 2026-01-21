@@ -9,7 +9,6 @@ import TestimonialCard from '@/components/landing-page/TestimonialCard';
 import { getPathname } from '@/i18n/navigation';
 import { getBaseUrl } from '@/lib/base-url';
 
-
 /** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -134,8 +133,8 @@ export default async function Home({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
-        <HeroSection locale={locale} messages={heroMessage} />
-        <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
+        <HeroSection messages={heroMessage} />
+        <ExecutiveSummarySection messages={executiveSummary} />
 
         {/* Featured Videos Section */}
         <div>

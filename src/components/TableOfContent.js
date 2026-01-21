@@ -43,9 +43,7 @@ export default function TableOfContent({
   };
   return (
     <>
-      <div className="text-2xl text-black font-extrabold mb-2">
-        {chapterTableOfContents.length > 0 ? title : ''}
-      </div>
+      <div className="text-2xl text-black font-extrabold mb-2">{title}</div>
       <div className="border-l-3 border-l-[#ee2435]">{renderItems(chapterTableOfContents)}</div>
     </>
   );
