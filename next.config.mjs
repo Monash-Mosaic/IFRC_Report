@@ -9,9 +9,7 @@ const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [
-      ['remark-gfm', { firstLineBlank: true }], // Add this for footnote support
-    ],
+    remarkPlugins: [['remark-gfm', { firstLineBlank: true }]],
     rehypePlugins: [
       ['rehype-slug', {}],
       [
@@ -26,18 +24,7 @@ const withMDX = createMDX({
       ],
       ['@stefanprobst/rehype-extract-toc', {}],
       ['@stefanprobst/rehype-extract-toc/mdx', {}],
-      () => (tree) => {
-        visit(tree, 'element', (node) => {
-          if (
-            node.properties?.dataFootnotes === true ||
-            node.properties?.className?.includes('footnotes')
-          ) {
-            if (node.children[0]?.tagName === 'h2') {
-              node.children.shift();
-            }
-          }
-        });
-      },
+      ['rehype-remove-footnote-heading', {}],
     ],
   },
 });
