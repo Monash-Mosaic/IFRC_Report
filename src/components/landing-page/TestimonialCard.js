@@ -9,9 +9,6 @@ export default function TestimonialCard({ quote, name, country, avatar }) {
 
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full border border-gray-200">
-      {/* Quote */}
-      <blockquote className="text-gray-800 leading-relaxed mb-6">&quot;{quote}&quot;</blockquote>
-
       {/* Author Info */}
       <div className="flex items-center space-x-3 mt-auto">
         {/* Avatar */}
@@ -28,13 +25,11 @@ export default function TestimonialCard({ quote, name, country, avatar }) {
             <span className="text-gray-700 text-sm font-medium">{initials}</span>
           )}
         </div>
-
-        {/* Name and Country */}
-        <div>
-          <div className="font-medium text-gray-900 text-sm">{name}</div>
-          <div className="text-gray-600 text-sm">{country}</div>
-        </div>
       </div>
+      {/* Quote */}
+      <blockquote className="text-gray-800 leading-relaxed mb-6 mt-6">
+        &quot;{quote}&quot;
+      </blockquote>
     </div>
   );
 }

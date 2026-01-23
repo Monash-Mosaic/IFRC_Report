@@ -20,40 +20,41 @@ export const testimonialsList = [
   {
     id: 1,
     quote:
-      'Durante la COVID-19, había tanta información que me sentí perdido y no sabía en qué creer',
+      'False information is particularly effective when it originates within the circle of people you trust, a serious problem since the very ties that bind communities together can make them susceptible to misinformation and its harmful consequences.',
     name: 'Abdul M.',
-    country: 'Afganistán',
+    country: 'Afghanistan',
     avatar: '/avatar/avatar-1.svg',
   },
   {
     id: 2,
-    quote: 'Vivir en la era de la IA me asusta: ¿dónde está la verdad y dónde la desinformación?',
+    quote:
+      'Trust is anchored on CEA pillars. when communities have a way of reaching out to people passing information for their views and perspectives to be heard and corrected, it slowly builds trust on the messengers.',
     name: 'Clair',
-    country: 'Reino Unido',
+    country: 'UK',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 3,
     quote:
-      'Ojalá tuviera una varita mágica que me ayudara a distinguir la desinformación de la verdad',
+      'You need to understand that when we are dealing with false information, it means that some real disaster situations are being ignored, and people who truly need rescue are being neglected. This is an extremely serious issue.',
     name: 'Olga',
-    country: 'Rusia',
+    country: 'Russia',
     avatar: '/avatar/avatar-1.svg',
   },
   {
     id: 4,
     quote:
-      'Las redes sociales difunden información falsa tan rápido que es difícil verificar qué es real antes de que sea demasiado tarde',
-    name: 'María S.',
-    country: 'Filipinas',
+      'Moi, je pense que le canal qui peut être le plus favorable pour faire passer un message dans notre communauté, c’est de face à face, aller au pied des gens, les rencontrer en personne, parce que c’est difficile de rassembler les personnes dans notre communauté, comme les gens sont généralement occupés. Et même au niveau de la télé, tout le monde ne regarde pas les informations, certains se divertissent tout simplement. Je pense que c’est mieux d’aller au pied des gens, les rencontrer dans les différentes maisons et leur faire passer l’information.',
+    name: 'Maria S.',
+    country: 'Philippines',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 5,
     quote:
-      'En tiempos de desastre, la desinformación puede ser más peligrosa que el propio desastre',
+      'Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
     name: 'James K.',
-    country: 'Kenia',
+    country: 'Kenya',
     avatar: '/avatar/avatar-1.svg',
   },
 ];
