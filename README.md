@@ -73,3 +73,83 @@ Infomaniak Node.js hosting expects a build step and a Node entry point you can s
 - **Node version:** choose a supported Node 18+ runtime
 
 Reference: [Create a Node.js site at Infomaniak](https://www.infomaniak.com/en/support/faq/2537/create-a-nodejs-site-at-infomaniak)
+
+### Automated Deployment via GitHub Actions
+
+This project includes automated deployment to Infomaniak via GitHub Actions. Deployments are triggered **only** when a git tag matching the pattern `v*.*.*` (e.g., `v1.2.3`) is pushed to the repository, and the tag must be reachable from the `main` branch.
+
+#### Prerequisites
+
+1. **Create a git tag on main branch:**
+   ```bash
+   git checkout main
+   git pull origin main
+   git tag v1.0.0  # Use semantic versioning (vX.Y.Z)
+   git push origin v1.0.0
+   ```
+
+2. **Configure GitHub Secrets:**
+   
+   Go to your repository settings → Secrets and variables → Actions, and add the following secrets:
+
+   **Required SFTP Secrets:**
+   - `SFTP_HOST` - Your Infomaniak SFTP hostname
+   - `SFTP_PORT` - SFTP port (default: 22)
+   - `SFTP_USER` - SFTP username
+   - `SFTP_PASSWORD` - SFTP password (or use `SFTP_SSH_KEY` instead)
+   - `SFTP_SSH_KEY` - Private SSH key for SFTP (alternative to password)
+   - `SFTP_REMOTE_PATH` - Remote deployment path (default: `~/sites/wdr26.org`)
+
+   **Required SSH Secrets (for post-deployment commands):**
+   - `SSH_HOST` - SSH hostname (can be same as `SFTP_HOST`)
+   - `SSH_PORT` - SSH port (default: 22, can be same as `SFTP_PORT`)
+   - `SSH_USER` - SSH username (can be same as `SFTP_USER`)
+   - `SSH_PASSWORD` - SSH password (or use `SSH_KEY` instead)
+   - `SSH_KEY` - Private SSH key for SSH (alternative to password, can be same as `SFTP_SSH_KEY`)
+
+   **Note:** If SSH credentials are the same as SFTP, you can omit the `SSH_*` secrets and the workflow will use `SFTP_*` values.
+
+#### Deployment Process
+
+When you push a tag matching `v*.*.*`:
+
+1. **Validation:** The workflow verifies the tag exists on the `main` branch
+2. **Build:** Installs dependencies and builds the Next.js application using Node.js 25
+3. **Upload:** Deploys files via SFTP to the configured remote path
+4. **Post-deploy:** Installs production dependencies on the server
+
+**Important:** After deployment, restart your application via the Infomaniak dashboard or their provided restart mechanism. The workflow does not automatically restart the Node.js process as Infomaniak manages this through their platform.
+
+#### Deployment Exclusions
+
+The following files/directories are excluded from deployment:
+- `.git`, `.github` - Version control
+- `node_modules` - Dependencies (installed on server)
+- `.next/cache` - Build cache
+- `tests`, `*.test.js`, `*.test.js.snap` - Test files
+- Development config files (`.gitignore`, `.prettierrc`, `eslint.config.mjs`, etc.)
+- `scripts` - Development scripts
+- `README.md` - Documentation
+
+#### Troubleshooting
+
+- **Tag not found on main:** Ensure the tag is created on a commit that exists in the `main` branch history
+- **SFTP connection failed:** Verify your SFTP credentials and hostname in GitHub Secrets
+- **Build fails:** Check the GitHub Actions logs for build errors
+- **Application not restarting:** Manually restart via Infomaniak dashboard after deployment
+
+## Benchmarking (Load Test)
+
+You can benchmark a deployed host (or localhost) using the built-in `autocannon` script.
+
+```bash
+# Deployed host
+npm run benchmark -- --url https://your-domain.example --connections 100 --duration 30
+
+# Localhost (in another terminal run: npm run dev OR npm run build && npm run start)
+npm run benchmark -- --url http://localhost:3000 --connections 50 --duration 20
+```
+
+Notes:
+- By default it tests: `/`, `/en`, `/en/reports/wdr25`, `/en/reports/wdr25/chapter-02` (override with `--paths /,/en/wdr25/chapter-02`)
+- It does not fail the process on HTTP non-2xx by default (use `--fail-on-non2xx` if desired)
