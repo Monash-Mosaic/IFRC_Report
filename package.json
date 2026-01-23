@@ -13,6 +13,7 @@
     "test:watch": "jest --watch"
   },
   "workspaces": [
+    "packages/*",
     "scripts/wdr25"
   ],
   "dependencies": {
