@@ -231,13 +231,7 @@ export function DefinitionDescription({ children, ...props }) {
   );
 }
 
-export function ChapterImage({
-  imagePath,
-  alt = 'Alt',
-  title = 'Title',
-  width = 900,
-  height = 700,
-}) {
+export function ChapterImage({ imagePath, alt = 'Alt', width = 900, height = 700 }) {
   return (
     <div className="w-full">
       <div
@@ -248,7 +242,7 @@ export function ChapterImage({
           margin: '0 auto',
         }}
       >
-        <Image src={imagePath} alt={alt} title={title} fill className="object-cover" priority />
+        <Image src={imagePath} alt={alt} fill className="object-cover" priority />
       </div>
     </div>
   );
