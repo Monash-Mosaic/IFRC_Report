@@ -1,7 +1,7 @@
 import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
 
-export const title = 'World Disaster Report 2026';
+export const title = 'World \n Disaster\n Report\n\n 2026';
 
 export const description =
   "The International Federation of Red Cross and Red Crescent Societies' Annual Report for 2025, detailing global disaster response and humanitarian efforts.";
