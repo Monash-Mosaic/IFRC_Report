@@ -20,21 +20,23 @@ export const testimonialsList = [
   {
     id: 1,
     quote:
-      'During COVID-19, there was so much information that I felt lost and did not know what to believe',
+      'False information is particularly effective when it originates within the circle of people you trust, a serious problem since the very ties that bind communities together can make them susceptible to misinformation and its harmful consequences.',
     name: 'Abdul M.',
     country: 'Afghanistan',
     avatar: '/avatar/avatar-1.svg',
   },
   {
     id: 2,
-    quote: 'Living in the age of AI scares me: where is the truth and where is the misinformation',
+    quote:
+      'Trust is anchored on CEA pillars. when communities have a way of reaching out to people passing information for their views and perspectives to be heard and corrected, it slowly builds trust on the messengers.',
     name: 'Clair',
     country: 'UK',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 3,
-    quote: 'I wish I had a magic wand that would help me to distinguish misinformation and truth',
+    quote:
+      'You need to understand that when we are dealing with false information, it means that some real disaster situations are being ignored, and people who truly need rescue are being neglected. This is an extremely serious issue.',
     name: 'Olga',
     country: 'Russia',
     avatar: '/avatar/avatar-1.svg',
@@ -42,14 +44,15 @@ export const testimonialsList = [
   {
     id: 4,
     quote:
-      "Social media spreads false information so quickly that it becomes hard to verify what's real before it's too late",
+      'Moi, je pense que le canal qui peut être le plus favorable pour faire passer un message dans notre communauté, c’est de face à face, aller au pied des gens, les rencontrer en personne, parce que c’est difficile de rassembler les personnes dans notre communauté, comme les gens sont généralement occupés. Et même au niveau de la télé, tout le monde ne regarde pas les informations, certains se divertissent tout simplement. Je pense que c’est mieux d’aller au pied des gens, les rencontrer dans les différentes maisons et leur faire passer l’information.',
     name: 'Maria S.',
     country: 'Philippines',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 5,
-    quote: 'In times of disaster, misinformation can be more dangerous than the disaster itself',
+    quote:
+      'Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
     name: 'James K.',
     country: 'Kenya',
     avatar: '/avatar/avatar-1.svg',

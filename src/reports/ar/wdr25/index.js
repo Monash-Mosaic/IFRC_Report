@@ -19,38 +19,42 @@ export const reportFile = {
 export const testimonialsList = [
   {
     id: 1,
-    quote: 'خلال كوفيد-19، كانت هناك معلومات كثيرة جداً لدرجة أنني شعرت بالضياع ولم أعرف ماذا أصدق',
-    name: 'عبد الرحمن م.',
-    country: 'أفغانستان',
+    quote:
+      'False information is particularly effective when it originates within the circle of people you trust, a serious problem since the very ties that bind communities together can make them susceptible to misinformation and its harmful consequences.',
+    name: 'Abdul M.',
+    country: 'Afghanistan',
     avatar: '/avatar/avatar-1.svg',
   },
   {
     id: 2,
-    quote: 'العيش في عصر الذكاء الاصطناعي يخيفني: أين الحقيقة وأين المعلومات المضللة',
-    name: 'كلير',
-    country: 'المملكة المتحدة',
+    quote:
+      'Trust is anchored on CEA pillars. when communities have a way of reaching out to people passing information for their views and perspectives to be heard and corrected, it slowly builds trust on the messengers.',
+    name: 'Clair',
+    country: 'UK',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 3,
-    quote: 'أتمنى لو كان لدي عصا سحرية تساعدني على التمييز بين المعلومات المضللة والحقيقة',
-    name: 'فاطمة',
-    country: 'مصر',
+    quote:
+      'You need to understand that when we are dealing with false information, it means that some real disaster situations are being ignored, and people who truly need rescue are being neglected. This is an extremely serious issue.',
+    name: 'Olga',
+    country: 'Russia',
     avatar: '/avatar/avatar-1.svg',
   },
   {
     id: 4,
     quote:
-      'وسائل التواصل الاجتماعي تنشر المعلومات الخاطئة بسرعة كبيرة لدرجة أنه يصبح من الصعب التحقق مما هو حقيقي قبل فوات الأوان',
-    name: 'ماريا س.',
-    country: 'الفلبين',
+      'Moi, je pense que le canal qui peut être le plus favorable pour faire passer un message dans notre communauté, c’est de face à face, aller au pied des gens, les rencontrer en personne, parce que c’est difficile de rassembler les personnes dans notre communauté, comme les gens sont généralement occupés. Et même au niveau de la télé, tout le monde ne regarde pas les informations, certains se divertissent tout simplement. Je pense que c’est mieux d’aller au pied des gens, les rencontrer dans les différentes maisons et leur faire passer l’information.',
+    name: 'Maria S.',
+    country: 'Philippines',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 5,
-    quote: 'في أوقات الكوارث، يمكن أن تكون المعلومات المضللة أكثر خطورة من الكارثة نفسها',
-    name: 'جيمس ك.',
-    country: 'كينيا',
+    quote:
+      'I Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
+    name: 'James K.',
+    country: 'Kenya',
     avatar: '/avatar/avatar-1.svg',
   },
 ];
