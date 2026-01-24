@@ -9,15 +9,37 @@ import { paragraph, text, heading, list, listItem, image, strong, emphasis } fro
 import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
 import * as prettier from 'prettier';
+import { gfmFootnoteToMarkdown } from 'mdast-util-gfm-footnote';
 
+let identifierIndex = 0;
 const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(1);
 
+class FootnoteReference {
+  static type = 'footnoteReference';
+
+  constructor(identifier, label = identifier) {
+    this.type = FootnoteReference.type;
+    this.identifier = identifier;
+    this.label = label;
+  }
+}
+
+class FootnoteDefinition {
+  static type = 'footnoteDefinition';
+
+  constructor(identifier, content) {
+    this.type = FootnoteDefinition.type;
+    this.identifier = identifier;
+    this.children = content;
+  }
+}
 console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: 'test.xml',
+  source: 'WDR26-Executive-Summary-EN.with-links.xml',
   mdx: 'WDR26-Executive-Summary-EN.mdx',
+  endnotesSource: 'endnotes.json',
 };
 
 const { values } = parseArgs({
@@ -34,9 +56,15 @@ const resolveTargetPath = (root, filePath, fallback) => {
 
 const SOURCE_XML_PATH = resolveTargetPath(DEFAULTS.sourceDir, values.source, DEFAULTS.source);
 
+const ENDNOTE_JSON_PATH = resolveTargetPath(
+  DEFAULTS.sourceDir,
+  values.source,
+  DEFAULTS.endnotesSource
+);
+
 const OUTPUT_MDX_PATH = resolveTargetPath(DEFAULTS.outputDir, values.mdx, DEFAULTS.mdx);
 
-const supportExtractChildren = ['text', 'strong', 'emphasis', 'element'];
+const supportExtractChildren = ['text', 'strong', 'emphasis'];
 
 /**
  * Ensure the destination directory exists before writing files.
@@ -151,6 +179,7 @@ const normalisedXmlAstFn = (node, index, parent) => {
   }
   return [node];
 };
+
 /**
  * Remove extra spaces and new lines from arbitrary text input.
  * @param {unknown} input value to sanitize
@@ -216,6 +245,26 @@ const addPaddingParagraphChildren = (tree) => {
 
     paragraphNode.children = newChildren;
   });
+};
+
+/**
+ * Handle paragraph children while preserving footnoteReference nodes in their original positions.
+ * @param {import('unist').Node & { children?: import('unist').Node[] }} node
+ * @returns {import('unist').Node[]}
+ */
+const handleParagraphChildren = (node) => {
+  return (node.children || [])
+    .filter(
+      (child) => supportExtractChildren.includes(child?.type) || child?.type === 'footnoteReference'
+    )
+    .map((child) => {
+      // Preserve footnoteReference nodes as-is
+      if (child?.type === 'footnoteReference') {
+        return { ...child };
+      }
+      // Apply normal text normalization for other children
+      return normaliseChildrenText(child);
+    });
 };
 
 export function generateFullPath(pathVariable, chapter, report = 'wdr25') {
@@ -288,7 +337,7 @@ const convertToMDXAst = (node, index, parent) => {
     case 'normal-expanded':
     case 'normal-tight':
     case 'normal-10':
-      return [paragraph(extractTextChildren(node))];
+      return [paragraph(handleParagraphChildren(node))];
     case 'normal-2c':
       return [mdxJsxEl('ReccomendationsTitle', [], extractTextChildren(node))];
     case 'recommendations':
@@ -374,7 +423,8 @@ const convertToMDXAst = (node, index, parent) => {
         ),
       ];
     case 'endnotes-ref':
-      return [mdxJsxEl('RefPlaceHolder', [], extractTextChildren(node))];
+      identifierIndex += 1;
+      return [new FootnoteReference(identifierIndex, identifierIndex)];
     default:
       console.log('Unhandled node:', node.name);
       return [];
@@ -385,7 +435,18 @@ const fileContent = await fs.readFile(SOURCE_XML_PATH, 'utf8');
 
 const xmlAst = fromXml(fileContent);
 const normalizedXmlAst = flatMap(xmlAst, normalisedXmlAstFn);
-console.log(normalizedXmlAst.children[1]);
+
+try {
+  const endNoteContent = await fs.readFile(ENDNOTE_JSON_PATH, 'utf-8');
+  const endNoteJson = JSON.parse(endNoteContent);
+  endNoteJson['endnotes'].forEach((note) => {
+    normalizedXmlAst.children.push(
+      new FootnoteDefinition(note.n.toString(), [paragraph([text(note.text)])])
+    );
+  });
+} catch (error) {
+  console.log('Endnotes parsing error json found', error);
+}
 
 const mdRoot = flatMap(normalizedXmlAst, convertToMDXAst);
 
@@ -419,10 +480,8 @@ const prePrett = toMarkdown(mdRoot, {
   emphasis: '*',
   join: joinFunctions,
   tightDefinitions: true,
-  extensions: [mdxToMarkdown({ printWidth: 100 })],
+  extensions: [mdxToMarkdown({ printWidth: 100 }), gfmFootnoteToMarkdown()],
 });
-
-console.log(prePrett);
 
 const file = await prettier.format(prePrett, { ...options, parser: 'mdx' });
 
