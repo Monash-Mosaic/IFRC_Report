@@ -116,6 +116,21 @@
     "title": "Select language",
     "language": "Language"
   },
+  "SearchPage": {
+    "meta": {
+      "title": "Search Results",
+      "description": "Search results for IFRC reports"
+    },
+    "breadcrumb": {
+      "ariaLabel": "Breadcrumb navigation",
+      "home": "Home Page",
+      "searchPage": "Search page"
+    },
+    "results": {
+      "ariaLabel": "Search results",
+      "noResults": "No results found. Try a different search term."
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "Expand sidebar",
     "closeSidebar": "Close sidebar",

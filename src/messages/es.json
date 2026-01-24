@@ -116,6 +116,21 @@
     "title": "Seleccionar idioma",
     "language": "Idioma"
   },
+  "SearchPage": {
+    "meta": {
+      "title": "Resultados de búsqueda",
+      "description": "Resultados de búsqueda de informes de la FICR"
+    },
+    "breadcrumb": {
+      "ariaLabel": "Navegación de migas de pan",
+      "home": "Página de inicio",
+      "searchPage": "Página de búsqueda"
+    },
+    "results": {
+      "ariaLabel": "Resultados de búsqueda",
+      "noResults": "No se encontraron resultados. Intenta con otro término de búsqueda."
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "Expandir barra lateral",
     "closeSidebar": "Cerrar barra lateral",

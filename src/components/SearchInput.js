@@ -1,11 +1,14 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Search, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useRouter } from '@/i18n/navigation';
 
 export default function SearchInput({ isMobile = false, isSearchExpanded, setIsSearchExpanded }) {
   const searchInputRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const t = useTranslations('Home');
+  const router = useRouter();
 
   const iconClasses = 'w-5 h-5 text-red-600';
   const containerClasses = `flex items-center ${
@@ -46,11 +49,24 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
 
   const handleCloseSearch = () => {
     setIsSearchExpanded(false);
+    setSearchQuery('');
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Navigate to search page with query
+    router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+    setIsSearchExpanded(false);
+  };
+
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   return (
     <div className={containerClasses}>
-      <div
+      <form
+        onSubmit={handleSearchSubmit}
         className={`relative ${
           isMobile && isSearchExpanded ? 'flex-1' : !isMobile && isSearchExpanded ? 'flex-1' : ''
         }`}
@@ -58,6 +74,8 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
         <input
           ref={searchInputRef}
           type="text"
+          value={searchQuery}
+          onChange={handleInputChange}
           placeholder={isSearchExpanded ? '' : isMobile ? '' : t('nav.search')}
           onFocus={handleSearchFocus}
           className={getSearchInputClasses(isMobile, isSearchExpanded)}
@@ -71,7 +89,7 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
         ) : (
           <Search className={searchIconClasses} />
         )}
-      </div>
+      </form>
       {isSearchExpanded && (
         <X
           className={`${iconClasses} cursor-pointer hover:text-red-700 transition-colors flex-shrink-0`}
