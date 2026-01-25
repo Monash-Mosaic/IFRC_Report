@@ -1,4 +1,5 @@
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter01 from './chapter-01.mdx';
 
 export const title = 'تقرير الكوارث العالمي 2025';
 
@@ -17,6 +18,14 @@ export const reportFile = {
 };
 
 export const chapters = {
+  'الفصل-01': {
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    audios: [],
+    videos: [],
+  },
   'الفصل-02': {
     component: Chapter02.default,
     title: Chapter02.title,

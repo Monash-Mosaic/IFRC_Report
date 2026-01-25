@@ -189,7 +189,13 @@ describe('CustomComponents async components', () => {
 
     render(element);
 
-    expect(screen.getByText('Box Heading')).toBeInTheDocument();
+    const heading = screen.getByRole('heading', {
+      level: 2,
+      name: 'Box Heading',
+    });
+
+    expect(heading).toBeInTheDocument();
+    expect(heading).not.toHaveAttribute('id');
     expect(screen.getByText('Box body')).toBeInTheDocument();
     expect(screen.getByText('Contributor Tag')).toBeInTheDocument();
     expect(document.querySelector('#insight-1')).toBeInTheDocument();

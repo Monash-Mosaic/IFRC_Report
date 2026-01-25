@@ -15,7 +15,7 @@ import Tooltip from './Tooltip';
 // Lightweight placeholder components used by MDX content.
 // These are intentionally minimal so pages render without styling dependencies.
 // TODO: Enhance these components with styling as needed.
-
+          <div className="[border-inline-start:1px_solid_#ee2435]" />
 export function ReccomendationsTitle({ children, ...props }) {
   return (
     <div
@@ -61,21 +61,19 @@ export function Contributor( { children, ...props }) {
     <div
       {...props}
     >
-      {name}
-      {entity}
-      {role}
+      <div>{name}</div>
+      <div>{entity}</div>
+      <div>{role}</div>
     </div>
   );
 }
 
 export function ContributorEntity({ children, ...props }) {
   return (
-    <div>
-      <div 
-        className='inline-block text-sm font-bold border-b-1 border-[#ee2435]' 
-      {...props}>
-        {children}
-      </div>
+    <div 
+      className='inline-block text-sm font-bold border-b-1 border-[#ee2435]' 
+    {...props}>
+      {children}
     </div>
   );
 }
@@ -128,35 +126,13 @@ export function ContributorRole({ children, ...props }) {
     </div>
   );
 }
-
 export function Spotlight({ children, ...props }) {
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '5% 95%',
-        width: '100%',
-        height: 'auto',
-      }}
-      className="border-l-1 border-l-[#ee2435]"
-    >
+    // <div className="grid grid-cols-[5%_95%] w-full h-auto border-l border-l-[#ee2435]">
+    <div className="grid grid-cols-[5%_95%] w-full h-auto [border-inline-start:1px_solid_#ee2435]">
+      <div className="bg-[#ee2435] translate-y-5 w-full [margin-inline-start:-1px]"></div>
       <div
-        style={{
-          background: '#ee2435',
-          transform: 'translateY(20px)',
-          marginLeft: '-1px',
-          width: 'calc(100% - 0px)', // NOT A BUG: to align with border
-        }}
-      ></div>
-      <div
-        style={{
-          alignSelf: 'start',
-          background: '#b3ffff',
-          fontWeight: '700',
-          fontSize: '2.25rem',
-          marginLeft: '-1px',
-        }}
-        className="p-6"
+        className="self-start bg-[#b3ffff] font-bold text-4xl p-6 [margin-inline-start:-1px]"
         {...props}
       >
         {children}
@@ -361,71 +337,35 @@ export const Box = async ({ children, ...props }) => {
     <div id={anchorId}>
       <div>
         <div
-          style={{
-            color: '#ee2435',
-            display: 'grid',
-            gridTemplateColumns: '5% 95%',
-            width: '100%',
-            height: 'auto',
-          }}
+          className="text-[#ee2435] grid grid-cols-[5%_95%] w-full h-auto"
           {...props}
         >
-          <div
-            style={{
-              borderLeft: '1px solid #ee2435',
-            }}
-          />
-          <div
-            style={{    
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              paddingTop: '16px',
-              paddingBottom: '16px',
-            }}
-          >
-            <span>
-              {c('title')} {props.index}
-            </span>
-            {props.types && (
-              <TohInsight types={props.types} />
-            )}
+          <div className="[border-inline-start:1px_solid_#ee2435]" />
+          <div className="flex items-center justify-between pt-4 pb-4">
+            <span>{c('title')} {props.index}</span>
+            {props.types && <TohInsight types={props.types} />}
           </div>
         </div>
         {<Spotlight>{h2WithoutId}</Spotlight>}
       </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '5% 95%',
-          width: '100%',
-          height: 'auto',
-        }}
-      >
-        <div className='border-r-1 border-r-[#ee2435]'></div>
+      <div className="grid grid-cols-[5%_95%] w-full h-auto">
+        <div className="[border-inline-end:1px_solid_#ee2435]" />
         <div
-        className="grid grid-cols-1 gap-8 pl-6 pt-[20px] pb-[calc(var(--spacing)*8)]"
+          className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem]"
           {...props}
         >
           {rest}
         </div>
       </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '5% 95%',
-          width: '100%',
-          height: 'auto',
-        }}
-      >
-        <div className='border-r-1 border-r-[#ee2435]'></div>
+      <div className="grid grid-cols-[5%_95%] w-full h-auto">
+        <div className="[border-inline-end:1px_solid_#ee2435]" />
         <div
-          className="grid grid-cols-1 gap-8 pl-6 border-l-4 border-l-[#ee2435] [&_div]:ml-[-2px]"
+          className="grid grid-cols-1 gap-8 [padding-inline-start:1.5rem] [border-inline-start:4px_solid_#ee2435] [&_div]:[margin-inline-start:-2px]"
           {...props}
         >
           {contributorTag}
         </div>
-      </div> 
+      </div>
     </div>
   );
 }
