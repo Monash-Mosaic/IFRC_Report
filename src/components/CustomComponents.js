@@ -11,6 +11,7 @@ import {
 } from '@/components/icons/toh';
 import { getTranslations } from 'next-intl/server';
 import Tooltip from './Tooltip';
+import Image, { getImageProps } from 'next/image';
 
 // Lightweight placeholder components used by MDX content.
 // These are intentionally minimal so pages render without styling dependencies.
@@ -226,6 +227,48 @@ export function ChapterQuote({ children, ...props }) {
   );
 }
 
+export function Anchor({ children, meta, ...props }) {
+  return (
+    <div className="grid grid-cols-[5%_95%] w-full h-auto pt-4 pb-4 items-center">
+      <div className="text-sm text-[#fe4d60] text-end">{meta}</div>
+      <div
+        className="[padding-inline-start:1.5rem] font-bold text-2xl"
+        {...props}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export function ColumParagraphs({ children, count = 2, ...props }) {
+  return (
+    <div
+      className={`grid gap-6 md:grid-cols-${count}`}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function ColumParagraph({ children, ...props }) {
+  return (
+    <div className="space-y-4" {...props}>
+      {children}
+    </div>
+  );
+}
+
+export function FeatureImage({ src, description, ...props }) {
+  return (
+    <figure>
+      <Image className="w-full mb-4" alt={description} src={src} {...props} />
+      {description && <figcaption className='text-xs font-medium'>{description} <span className='text-red-500'>@IFRC</span></figcaption>}
+    </figure>
+  );
+}
+
 export function Definition({ children, ...props }) {
   return (
     <div
@@ -302,6 +345,32 @@ export function DefinitionDescription({ children, ...props }) {
   );
 }
 
+function chunkByPredicate(array, predicate) {
+  const chunkedArray = [];
+  if (!array || array.length === 0) {
+    return chunkedArray;
+  }
+
+  let currentChunk = [array[0]];
+  chunkedArray.push(currentChunk);
+
+  for (let i = 1; i < array.length; i++) {
+    const currentElement = array[i];
+    const previousElement = array[i - 1];
+
+    // If the predicate condition changes between the current and previous element
+    if (predicate(currentElement) !== predicate(previousElement)) {
+      currentChunk = [currentElement];
+      chunkedArray.push(currentChunk);
+    } else {
+      // Otherwise, add to the current chunk
+      currentChunk.push(currentElement);
+    }
+  }
+
+  return chunkedArray;
+}
+
 export const Box = async ({ children, ...props }) => {
   const c = await getTranslations('ContributionInsight');
   const [h2, ...rest] = Children.toArray(children);
@@ -310,6 +379,7 @@ export const Box = async ({ children, ...props }) => {
   const h2WithoutId = React.cloneElement(h2, { id: undefined });
   const contributorTagIndex = rest.findIndex((child => child.type === ContributorTag));
   const contributorTag = rest.splice(contributorTagIndex, 1); // extract ContributorTag if exists
+  const splittedByAnchor = chunkByPredicate(rest, (child) => child.type === Anchor);
   return (
     <div id={anchorId}>
       <div>
@@ -325,15 +395,20 @@ export const Box = async ({ children, ...props }) => {
         </div>
         {<Spotlight>{h2WithoutId}</Spotlight>}
       </div>
-      <div className="grid grid-cols-[5%_95%] w-full h-auto">
-        <div className="[border-inline-end:1px_solid_#ee2435]" />
-        <div
-          className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem]"
-          {...props}
-        >
-          {rest}
-        </div>
-      </div>
+      {splittedByAnchor.map((chunk, index) => {
+          if (chunk[0].type === Anchor) {
+            return chunk[0];
+          }
+          return (
+          <div key={index} className="grid grid-cols-[5%_95%] w-full h-auto">
+            <div className="[border-inline-end:1px_solid_#ee2435]" />
+            <div
+              className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem]"
+            >
+              {chunk}
+            </div>
+          </div>
+        );})}
       <div className="grid grid-cols-[5%_95%] w-full h-auto">
         <div className="[border-inline-end:1px_solid_#ee2435]" />
         <div
@@ -355,6 +430,10 @@ const CustomComponents = {
   Spotlight,
   SideNote,
   ChapterQuote,
+  Anchor,
+  ColumParagraphs,
+  ColumParagraph,
+  FeatureImage,
   SmallQuote,
   SmallQuoteAuthor,
   ContributorSpotlight,

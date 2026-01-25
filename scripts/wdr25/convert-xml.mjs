@@ -40,6 +40,7 @@ const supportExtractChildren = ['text', 'strong', 'emphasis'];
 const currentLocale = 'en';
 const chapterIndex = 1;
 let insightIndex = 0;
+let figIndex = 0;
 
 const tagMap = {
   'p1.3': '{TypologyOfHarm.Physical}',
@@ -499,6 +500,11 @@ const convertToMDXAst = (node, index, parent) => {
       return [exportEsm('title', getTextContent(node))];
     case 'subchapter-title':
       return [exportEsm('subtitle', getTextContent(node))];
+    case 'anchor':
+      figIndex += 1;
+      return [mdxJsxEl('Anchor', [
+        { name: 'meta', value: `Fig ${chapterIndex}.${figIndex}` }
+      ], extractTextChildren(node))];
     case 'caption':
       return [mdxJsxEl('Caption', [], extractTextChildren(node))];
     case 'box':

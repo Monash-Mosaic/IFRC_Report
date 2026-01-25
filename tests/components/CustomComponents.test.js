@@ -23,6 +23,8 @@ import CustomComponents, {
   DefinitionDescription,
   TohInsight,
   Box,
+  ColumParagraphs,
+  ColumParagraph,
 } from '@/components/CustomComponents';
 
 jest.mock('next-intl/server', () => ({
@@ -161,6 +163,19 @@ describe('CustomComponents primitives', () => {
 
     expect(screen.getByText('Definition')).toBeInTheDocument();
     expect(screen.getByText('Description').closest('aside')).toBeInTheDocument();
+  });
+
+  it('renders column paragraph layout', () => {
+    const { container } = render(
+      <ColumParagraphs count={2}>
+        <ColumParagraph>First column</ColumParagraph>
+        <ColumParagraph>Second column</ColumParagraph>
+      </ColumParagraphs>,
+    );
+
+    expect(container.firstChild).toHaveClass('md:grid-cols-2');
+    expect(screen.getByText('First column')).toBeInTheDocument();
+    expect(screen.getByText('Second column')).toBeInTheDocument();
   });
 });
 
