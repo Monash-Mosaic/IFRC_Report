@@ -159,14 +159,7 @@ export function SideNote({ children, ...props }) {
 export function SmallQuote({ children, ...props }) {
   return (
     <blockquote
-      style={{
-        fontFamily: 'var(--font-bespoke-serif)',
-        margin: '1rem 0',
-        fontSize: '1.5rem',
-        fontWeight: 800,
-        paddingLeft: '1rem',
-        borderLeft: '4px solid #ee2435',
-      }}
+      className="font-[var(--font-bespoke-serif)] my-4 text-2xl font-extrabold [padding-inline-start:1rem] [border-inline-start:4px_solid_#ee2435]"
       {...props}
     >
       {children}
@@ -177,11 +170,7 @@ export function SmallQuote({ children, ...props }) {
 export function SmallQuoteAuthor({ children, ...props }) {
   return (
     <div
-      style={{
-        textAlign: 'left',
-        fontWeight: 200,
-        borderTop: '2px solid #ee2435',
-      }}
+      className="text-start font-extralight border-t-2 border-[#ee2435]"
       {...props}
     >
       {children}
@@ -240,12 +229,7 @@ export function ChapterQuote({ children, ...props }) {
 export function Definition({ children, ...props }) {
   return (
     <div
-      style={{
-        fontFamily: 'var(--font-bespoke-serif)',
-        fontWeight: 800,
-        borderBottom: '2px solid #030303ff',
-        fontSize: '1.5rem',
-      }}
+      className="font-[var(--font-bespoke-serif)] font-extrabold border-b-2 border-[#030303ff] text-2xl"
       {...props}
     >
       {children}
@@ -310,14 +294,7 @@ export async function TohInsight({ children, types = [], ...props }) {
 export function DefinitionDescription({ children, ...props }) {
   return (
     <aside
-      style={{
-        fontFamily: 'var(--font-bespoke-serif)',
-        fontWeight: 400,
-        padding: '0.75rem',
-        borderLeft: '4px solid #030303ff',
-        background: '#f8fafc',
-        fontSize: '1.25rem',
-      }}
+      className="font-[var(--font-bespoke-serif)] font-normal [padding-inline:0.75rem] [padding-block:0.75rem] [border-inline-start:4px_solid_#030303ff] bg-slate-50 text-xl"
       {...props}
     >
       {children}
