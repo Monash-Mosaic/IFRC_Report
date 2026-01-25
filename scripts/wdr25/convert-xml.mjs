@@ -10,7 +10,7 @@ import { toJs } from 'estree-util-to-js';
 import { parseArgs } from 'node:util';
 import * as prettier from 'prettier';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname).slice(1);
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 console.log(__dirname);
 const DEFAULTS = {
@@ -141,6 +141,230 @@ const exportEsm = (varName, value) => {
     }).value.trimEnd('\n'),
   };
 };
+
+// section: box and contributor wrapping
+
+const contributorTagNames = new Set([
+  'h1-c1',
+  'h2-c1',
+  'h3-c1',
+  'h1-c2',
+  'h2-c2',
+  'h3-c2',
+  'h1-span',
+  'h2-span',
+  'h3-span',
+  'h1-3c-c1',
+  'h2-3c-c1',
+  'h3-3c-c1',
+  'h1-3c-c2',
+  'h2-3c-c2',
+  'h3-3c-c2',
+  'h1-3c-c3',
+  'h2-3c-c3',
+  'h3-3c-c3',
+]);
+
+const isElement = (node) => node?.type === 'element';
+const isText = (node) => node?.type === 'text';
+const isWhitespaceText = (node) => isText(node) && /^[\s\r\n\t]*$/.test(node.value ?? '');
+
+const isContributorNode = (node) =>
+  isElement(node) &&
+  (contributorTagNames.has(node.name) || node.name === 'contributor' || node.name === 'contributor-tag');
+const isBoxTagName = (name) => typeof name === 'string' && name.includes('-box');
+
+const isAllowedBeforeContributors = (node) => {
+  if (!node) return false;
+  if (isWhitespaceText(node)) return true;
+  if (!isElement(node)) return false;
+  if (node.name === 'box') return false;
+  if (isBoxTagName(node.name)) return true;
+  if (node.name === 'bullet-list-group') return true;
+  if (node.name === 'anchor') return true;
+  if (node.name === 'contributor-tag') return true;
+  if (node.name === 'contributor') return true;
+  return false;
+};
+
+const isAllowedAfterContributors = (node) => {
+  if (!node) return false;
+  if (isWhitespaceText(node)) return true;
+  return isContributorNode(node);
+};
+
+const wrapBoxRuns = (node) => {
+  if (!node || !Array.isArray(node.children)) return;
+  if (isElement(node) && node.name === 'box') return;
+
+  const children = node.children;
+  const out = [];
+
+  for (let i = 0; i < children.length; i += 1) {
+    const child = children[i];
+
+    if (isElement(child) && child.name === 'toh-box') {
+      const group = [child];
+      let j = i + 1;
+      let seenContributor = false;
+
+      while (j < children.length) {
+        const next = children[j];
+
+        if (!seenContributor) {
+          if (isContributorNode(next)) {
+            seenContributor = true;
+            group.push(next);
+            j += 1;
+            continue;
+          }
+          if (isAllowedBeforeContributors(next)) {
+            group.push(next);
+            j += 1;
+            continue;
+          }
+          break;
+        }
+
+        if (isAllowedAfterContributors(next)) {
+          group.push(next);
+          j += 1;
+          continue;
+        }
+        break;
+      }
+
+      if (!seenContributor) {
+        out.push(child);
+        continue;
+      }
+
+      out.push({
+        type: 'element',
+        name: 'box',
+        attributes: {},
+        children: group,
+      });
+
+      i = j - 1;
+      continue;
+    }
+
+    if (isElement(child) && Array.isArray(child.children)) {
+      wrapBoxRuns(child);
+    }
+
+    out.push(child);
+  }
+
+  node.children = out;
+};
+
+const nextNonWhitespaceIndex = (nodes, startIndex) => {
+  for (let i = startIndex; i < nodes.length; i += 1) {
+    const current = nodes[i];
+    if (!isWhitespaceText(current)) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+const getContributorKey = (name) => {
+  if (typeof name !== 'string') return null;
+  if (name.includes('-3c-')) {
+    const match = name.match(/-3c-(c\d)$/);
+    return match ? match[1] : name;
+  }
+  const match = name.match(/-(c\d|span)$/);
+  return match ? match[1] : name;
+};
+
+const wrapContributorGroups = (node) => {
+  if (!node || !Array.isArray(node.children)) return;
+
+  const children = node.children;
+  const out = [];
+
+  for (let i = 0; i < children.length; i += 1) {
+    const child = children[i];
+
+    if (isElement(child) && child.name === 'contributor-tag') {
+      out.push(child);
+      continue;
+    }
+
+    if (isContributorNode(child)) {
+      const contributors = [];
+      let currentGroup = null;
+      let currentKey = null;
+      let j = i;
+
+      const flushGroup = () => {
+        if (!currentGroup) return;
+        contributors.push({
+          type: 'element',
+          name: 'contributor',
+          attributes: {},
+          children: currentGroup,
+        });
+        currentGroup = null;
+        currentKey = null;
+      };
+
+      while (j < children.length) {
+        const current = children[j];
+
+        if (isContributorNode(current)) {
+          const key = getContributorKey(current.name);
+          if (!currentGroup || key !== currentKey) {
+            flushGroup();
+            currentGroup = [];
+            currentKey = key;
+          }
+          currentGroup.push(current);
+          j += 1;
+          continue;
+        }
+
+        if (isWhitespaceText(current)) {
+          const nextIndex = nextNonWhitespaceIndex(children, j + 1);
+          if (nextIndex !== -1 && isContributorNode(children[nextIndex])) {
+            if (currentGroup) {
+              currentGroup.push(current);
+            }
+            j += 1;
+            continue;
+          }
+        }
+
+        break;
+      }
+
+      flushGroup();
+
+      out.push({
+        type: 'element',
+        name: 'contributor-tag',
+        attributes: {},
+        children: contributors,
+      });
+
+      i = j - 1;
+      continue;
+    }
+
+    if (isElement(child) && Array.isArray(child.children)) {
+      wrapContributorGroups(child);
+    }
+
+    out.push(child);
+  }
+
+  node.children = out;
+};
+
+// section: end
 
 /**
  * Normalize the XML AST by removing empty nodes and flattening helpers.
@@ -277,9 +501,18 @@ const convertToMDXAst = (node, index, parent) => {
       return [exportEsm('subtitle', getTextContent(node))];
     case 'caption':
       return [mdxJsxEl('Caption', [], extractTextChildren(node))];
+    case 'box':
+      insightIndex += 1;
+      const tohIndex = node.children.findIndex((n => n.type === 'mdxJsxFlowElement' && n.name === 'TohInsight'));
+      const toh = node.children.splice(tohIndex, 1);
+      const tohAttr = toh[0]?.attributes.find(attr => attr.name === 'types');
+      return [mdxJsxEl('Box', [
+            { name: 'index', value: `${chapterIndex}.${insightIndex}` },
+            tohAttr
+          ], node.children)];
     case 'h1-box':
     case 'h1-spotlight':
-      return [mdxJsxEl('Spotlight', [], extractTextChildren(node))];
+      return [heading(2, extractTextChildren(node))];
     case 'h1-recommendations':
     case 'h1':
       return [heading(1, extractTextChildren(node))];
@@ -317,26 +550,35 @@ const convertToMDXAst = (node, index, parent) => {
       return [listItem(extractTextChildren(node))];
     case 'numbered-list-group':
       return [list('ordered', node.children)];
+    case 'contributor-tag':
+      return [mdxJsxEl('ContributorTag', [], node.children)];
+    case 'contributor':
+      return [mdxJsxEl('Contributor', [], node.children)];
     case 'h1-c1':
     case 'h1-c2':
     case 'h1-span':
     case 'h1-3c-c1':
     case 'h1-3c-c2':
     case 'h1-3c-c3':
-    case 'h1-contributor-spotlight':
-      return [mdxJsxEl('H1Contributor', [], extractTextChildren(node))];
-    case 'contributor-name-spotlight':
       return [mdxJsxEl('ContributorName', [], extractTextChildren(node))];
-    case 'contributor-position-spotlight':
-      return [mdxJsxEl('ContributorPosition', [], extractTextChildren(node))];
     case 'h2-c1':
     case 'h2-c2':
     case 'h2-span':
     case 'h2-3c-c1':
     case 'h2-3c-c2':
     case 'h2-3c-c3':
-    case 'contributor':
-      return [mdxJsxEl('Contributors', [], node.children)];
+      return [mdxJsxEl('ContributorEntity', [], node.children)];
+    case 'h3-c1':
+    case 'h3-c2':
+    case 'h3-span':
+    case 'h3-3c-c3':
+      return [mdxJsxEl('ContributorRole', [], extractTextChildren(node))];
+    case 'h1-contributor-spotlight':
+      return [mdxJsxEl('H1Contributor', [], extractTextChildren(node))];
+    case 'contributor-name-spotlight':
+      return [mdxJsxEl('ContributorName', [], extractTextChildren(node))];
+    case 'contributor-position-spotlight':
+      return [mdxJsxEl('ContributorPosition', [], extractTextChildren(node))];
     case 'bullet-list-2c':
     case 'bullet-list':
     case 'normal-box-bullet-list':
@@ -344,10 +586,6 @@ const convertToMDXAst = (node, index, parent) => {
       return [listItem(extractTextChildren(node))];
     case 'bullet-list-group':
       return [list('unordered', node.children)];
-    case 'h3-c1':
-    case 'h3-c2':
-    case 'h3-span':
-    case 'h3-3c-c3':
     case 'contributor-role':
       return [mdxJsxEl('ContributorRole', [], extractTextChildren(node))];
     case 'h1-contributor':
@@ -379,16 +617,20 @@ const convertToMDXAst = (node, index, parent) => {
       return [mdxJsxEl('DefinitionDescription', [], extractTextChildren(node))];
     case 'toh-body':
     case 'toh-box':
-      insightIndex += 1;
+      const tohInsightTypesAttr = { 
+        type: "mdxJsxAttribute",
+        name: 'types',
+        value: {
+          type: 'mdxJsxAttributeValueExpression',
+          value: `[${(extractTextChildren(node)[0]?.value || '')
+            .split(' ')
+            .filter(e => e)
+            .map(mapTagToENum)
+            .map(e => e.replace(/{|}/g, '')).join(', ')}]`,
+        }
+      };
       return [
-        mdxJsxEl(
-          'TohInsight',
-          [
-            { name: 'locale', value: currentLocale },
-            { name: 'index', value: `${chapterIndex}.${insightIndex}` },
-          ],
-          extractTextChildren(node)
-        ),
+        mdxJsxEl('TohInsight', [tohInsightTypesAttr], []),
       ];
     default:
       console.log('Unhandled node:', node.name);
@@ -399,6 +641,10 @@ const convertToMDXAst = (node, index, parent) => {
 const fileContent = await fs.readFile(SOURCE_XML_PATH, 'utf8');
 
 const xmlAst = fromXml(fileContent);
+
+wrapContributorGroups(xmlAst);
+wrapBoxRuns(xmlAst);
+
 const normalizedXmlAst = flatMap(xmlAst, normalisedXmlAstFn);
 // console.log(normalizedXmlAst.children[1].children);
 
@@ -411,8 +657,10 @@ addPaddingParagraphChildren(mdRoot);
 
 mapTOHIcons(mdRoot);
 
+mdRoot.children.unshift(importEsm('@/types/TypologyOfHarm', ['TypologyOfHarm']));
 if (components.size > 0) {
-  mdRoot.children.unshift(importEsm('@/components/CustomComponents', [...components]));
+  const importNames = Array.from(components).sort();
+  mdRoot.children.unshift(importEsm('@/components/CustomComponents', importNames));
 }
 
 // Build md content with remark and mdx stringifier extensions

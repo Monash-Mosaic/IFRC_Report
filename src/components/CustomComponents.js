@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import {
   Deprivational,
   Digital,
@@ -40,6 +40,54 @@ export function Reccomendations({ children, ...props }) {
   );
 }
 
+export function ContributorTag({ children, ...props }) {
+  const numberOfContributors = React.Children.count(children);
+  return (
+    <div
+      className={`grid grid-cols-1 md:grid-cols-${numberOfContributors} gap-4`}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Contributor( { children, ...props }) {
+  // this component only accept ContributorName, ContributorRole, and ContributorEntity as children
+  const childrenArray = React.Children.toArray(children);
+  const name = childrenArray.find((child) => child.type === ContributorName);
+  const role = childrenArray.find((child) => child.type === ContributorRole);
+  const entity = childrenArray.find((child) => child.type === ContributorEntity);
+  return (
+    <div
+      {...props}
+    >
+      {name}
+      {entity}
+      {role}
+    </div>
+  );
+}
+
+export function ContributorEntity({ children, ...props }) {
+  return (
+    <div>
+      <div 
+        className='inline-block text-sm font-bold border-b-1 border-[#ee2435]' 
+      {...props}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export function ContributorName({ children, ...props }) {
+  return (
+    <div {...props} className='inline-block text-sm font-medium border-b-2 border-[#ee2435]'>
+        {children}
+    </div>
+  );
+}
+
 export function H1Contributor({ children, ...props }) {
   return (
     <div
@@ -75,7 +123,7 @@ export function Contributors({ children, ...props }) {
 
 export function ContributorRole({ children, ...props }) {
   return (
-    <div style={{ fontStyle: 'italic' }} {...props}>
+    <div className='text-sm' {...props}>
       {children}
     </div>
   );
@@ -90,21 +138,25 @@ export function Spotlight({ children, ...props }) {
         width: '100%',
         height: 'auto',
       }}
+      className="border-l-1 border-l-[#ee2435]"
     >
       <div
         style={{
           background: '#ee2435',
           transform: 'translateY(20px)',
+          marginLeft: '-1px',
+          width: 'calc(100% - 0px)', // NOT A BUG: to align with border
         }}
       ></div>
       <div
         style={{
           alignSelf: 'start',
-          paddingLeft: '2vw',
-          background: '#a4def8ff',
+          background: '#b3ffff',
           fontWeight: '700',
           fontSize: '2.25rem',
+          marginLeft: '-1px',
         }}
+        className="p-6"
         {...props}
       >
         {children}
@@ -225,75 +277,56 @@ export function Definition({ children, ...props }) {
   );
 }
 
-export async function TohInsight({ children, ...props }) {
-  const content = React.Children.toArray(children).toString();
-  const parts = content.toString().trim().split(',');
-  const c = await getTranslations('ContributionInsight');
+export async function TohInsight({ children, types = [], ...props }) {
   const toh = await getTranslations('TohIcons');
 
   const svgMap = {
     Physical: (
       <Tooltip key={'PHY_tip'} tooltipText={toh('physical')} orientation="top">
-        <Physical key={'PHY'} className="w-10 h-10" />
+        <Physical key={'PHY'} className="w-5 h-5" />
       </Tooltip>
     ),
     Psychological: (
       <Tooltip key={'PSY_tip'} tooltipText={toh('psychological')} orientation="top">
-        <Psychological key={'PSY'} className="w-10 h-10" />
+        <Psychological key={'PSY'} className="w-5 h-5" />
       </Tooltip>
     ),
     Social: (
       <Tooltip key={'SCL_tip'} tooltipText={toh('social')} orientation="top">
-        <Social key={'SCL'} className="w-10 h-10" />
+        <Social key={'SCL'} className="w-5 h-5" />
       </Tooltip>
     ),
     Societal: (
       <Tooltip key={'SCT_tip'} tooltipText={toh('societal')} orientation="top">
-        <Societal key={'SCT'} className="w-10 h-10" />
+        <Societal key={'SCT'} className="w-5 h-5" />
       </Tooltip>
     ),
     Informational: (
       <Tooltip key={'INF_tip'} tooltipText={toh('informational')} orientation="top">
-        <Informational key={'INF'} className="w-10 h-10" />
+        <Informational key={'INF'} className="w-5 h-5" />
       </Tooltip>
     ),
     Digital: (
       <Tooltip key={'DIG_tip'} tooltipText={toh('digital')} orientation="top">
-        <Digital key={'DIG'} className="w-10 h-10" />
+        <Digital key={'DIG'} className="w-5 h-5" />
       </Tooltip>
     ),
     Deprivational: (
       <Tooltip key={'DEP_tip'} tooltipText={toh('deprivational')} orientation="top">
-        <Deprivational key={'DEP'} className="w-10 h-10" />
+        <Deprivational key={'DEP'} className="w-5 h-5" />
       </Tooltip>
     ),
     Longitudinal: (
       <Tooltip key={'LON_tip'} tooltipText={toh('longitudinal')} orientation="top">
-        <Longitudinal key={'LON'} className="w-10 h-10" />
+        <Longitudinal key={'LON'} className="w-5 h-5" />
       </Tooltip>
     ),
   };
-
   return (
-    <div
-      style={{
-        borderLeft: '2px solid #ee2435',
-        color: '#ee2435',
-        paddingLeft: '2vw',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-      {...props}
-    >
-      <span>
-        {c('title')} {props.index}
-      </span>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        {parts.map((code) => {
-          return svgMap[code];
-        })}
-      </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      {types.map((code) => {
+        return svgMap[code];
+      })}
     </div>
   );
 }
@@ -316,7 +349,89 @@ export function DefinitionDescription({ children, ...props }) {
   );
 }
 
+export const Box = async ({ children, ...props }) => {
+  const c = await getTranslations('ContributionInsight');
+  const [h2, ...rest] = Children.toArray(children);
+  const anchorId = h2.props.id; // move id to wrapper div
+  // clone h2 without id to avoid duplicate ids
+  const h2WithoutId = React.cloneElement(h2, { id: undefined });
+  const contributorTagIndex = rest.findIndex((child => child.type === ContributorTag));
+  const contributorTag = rest.splice(contributorTagIndex, 1); // extract ContributorTag if exists
+  return (
+    <div id={anchorId}>
+      <div>
+        <div
+          style={{
+            color: '#ee2435',
+            display: 'grid',
+            gridTemplateColumns: '5% 95%',
+            width: '100%',
+            height: 'auto',
+          }}
+          {...props}
+        >
+          <div
+            style={{
+              borderLeft: '1px solid #ee2435',
+            }}
+          />
+          <div
+            style={{    
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingTop: '16px',
+              paddingBottom: '16px',
+            }}
+          >
+            <span>
+              {c('title')} {props.index}
+            </span>
+            {props.types && (
+              <TohInsight types={props.types} />
+            )}
+          </div>
+        </div>
+        {<Spotlight>{h2WithoutId}</Spotlight>}
+      </div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '5% 95%',
+          width: '100%',
+          height: 'auto',
+        }}
+      >
+        <div className='border-r-1 border-r-[#ee2435]'></div>
+        <div
+        className="grid grid-cols-1 gap-8 pl-6 pt-[20px] pb-[calc(var(--spacing)*8)]"
+          {...props}
+        >
+          {rest}
+        </div>
+      </div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '5% 95%',
+          width: '100%',
+          height: 'auto',
+        }}
+      >
+        <div className='border-r-1 border-r-[#ee2435]'></div>
+        <div
+          className="grid grid-cols-1 gap-8 pl-6 border-l-4 border-l-[#ee2435] [&_div]:ml-[-2px]"
+          {...props}
+        >
+          {contributorTag}
+        </div>
+      </div> 
+    </div>
+  );
+}
+
 const CustomComponents = {
+  Box,
   H1Contributor,
   Contributors,
   ContributorRole,
