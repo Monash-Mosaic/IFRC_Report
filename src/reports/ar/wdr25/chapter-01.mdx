@@ -18,6 +18,17 @@ import {
   TohInsight,
 } from '@/components/CustomComponents';
 
+import {
+  Deprivational,
+  Digital,
+  Informational,
+  Longitudinal,
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+} from '@/components/icons/toh';
+
 import { TypologyOfHarm } from '@/types/TypologyOfHarm';
 
 export const title =
@@ -509,7 +520,108 @@ export const subtitle = '';
 
 تدعم القوانين والسياسات والخطط جميع جوانب إدارة مخاطر الكوارث (DRM)، وتحمي المجتمعات وتُعدّها حول العالم. لذا تُعد الأطر القانونية والسياساتية المتينة جزءًا حاسمًا من الحل لتعزيز نزاهة المعلومات والتصدي للتحديات التي تطرحها المعلومات الضارة في إدارة مخاطر الكوارث. وللاستجابة بفعالية، يجب على الفاعلين الإنسانيين فهم كيف تعطل المعلومات الضارة جهود الاستجابة. إن وجود تصنيف لأنماط الضرر مهم لبناء قاعدة أدلة تدعم الجهود الرامية إلى تحديد هذه الآثار وقياسها والتخفيف منها. وكل نوع من أنواع الضرر التالية يمكن أن يقوض العمل الإنساني بشكل كبير، ويجب فهمها ورصدها ومعالجتها بشكل أفضل.
 
-# أنماط الضرر
+<table class="w-full table-auto border-separate border-spacing-2">
+  <caption class="caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
+    تصنيف أنواع الضرر
+  </caption>
+  <colgroup>
+    <col className='w-[15%] md:w-[10%]'/>
+    <col className='w-[35%] md:w-[20%]'/>
+    <col className="w-[50%] md:w-[70%]" />
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th class="border-t-[2px] font-bold text-2xl p-2 text-start" colSpan={2}>نوع الضرر</th>
+      <th class="border-t-[2px] font-bold text-2xl p-2 text-start">أمثلة على الضرر</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top"><Physical/></td>
+      <td className="border-t-[1px] font-medium p-2 align-top">بدني</td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">إصابة جسدية أو فقدان الحياة أو التحريض على العنف أو الذعر أو السلوكيات غير الآمنة أو تجنب العلاج. هجمات جسدية على المركبات والمنشآت أو المكاتب الإنسانية.</td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Psychological/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        نفسي
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        الصدمات النفسية والعاطفية أو الخوف والقلق واللبس والتمييز والعار وعدم الثقة والتلاعب والمضايقة والمراقبة والتحرش.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Social/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        اجتماعي
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        تعطيل التماسك الاجتماعي والثقة داخل المجتمعات وتآكل العلاقات والوصمة والتفتت الاجتماعي والانقسامات والاستقطاب. النزوح القسري أو المستحث للسكان مما يؤدي إلى فصل الأسر وفقدان الروابط المجتمعية وضعف نظم الدعم الجماعية.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Societal/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        مجتمعي
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        تضييق المساحة للعمل الإنساني وتقويض الثقة بالمؤسسات والضرر بالسمعة والتعطل التشغيلي وضعف تقديم الخدمات وإسكات فئات من المجتمع وتآكل الحقوق والوصول المقيد للمعلومات والاستبعاد وقيود حرية التعبير. استخدام المعلومات الضارة لتبرير الاضطهاد القانوني أو تجريم الكلام أو إساءة استخدام الأنظمة القضائية.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Informational/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        معلوماتي
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        تشويه أو قمع أو تلاعب بالمعلومات وفقدان الوصول للمعلومات الدقيقة والمناسبة والموثوقة والإشباع بالأكاذيب (فرط المعلومات) وتآكل الفهم المشترك اللازم لاتخاذ القرارات.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Deprivational/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        الحرمان / مالي / اقتصادي
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        تعطيل سبل العيش وفقدان اقتصادي وفقدان الوصول للموارد أو الخدمات الأساسية والخسائر المالية والسرقة والنهب والاحتيال والرسائل المخادعة وتحويل الموارد والعجز عن تأمين الضروريات وقيود التمويل والابتزاز وفقدان السمعة وفقدان دعم المانحين.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Digital/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        رقمي / تكنولوجي
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        الهجمات على الهوية الرقمية والتعريض العلني وتضخيم المحتوى الضار بواسطة الخوارزمية والفيديوهات المزيفة والإساءة المدفوعة بالروبوتات والتلاعب بالمنصات (انظر المسرد والصندوق الخاص بالفيديوهات المزيفة أدناه للحصول على تعاريف المصطلحات).
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Longitudinal/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        طولي / بين الأجيال (بعد مستقطع)
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        التأثيرات الطويلة الأجل على الأطفال المعرضين للسرديات الضارة وتفكك الثقة بين الأجيال والاستمرار في الصور النمطية أو الصدمة وفقدان الأمل.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <Box
   index="1.8"

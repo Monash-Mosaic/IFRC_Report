@@ -18,6 +18,16 @@ import {
   TohInsight,
 } from '@/components/CustomComponents';
 
+import {
+  Deprivational,
+  Digital,
+  Informational,
+  Longitudinal,
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+} from '@/components/icons/toh';
 import { TypologyOfHarm } from '@/types/TypologyOfHarm';
 
 export const title =
@@ -514,7 +524,123 @@ The IFRC is concerned that some donors have given undue weight to rumours instea
 
 Laws, policies and plans underpin all aspects of disaster risk management (DRM), protecting and preparing communities all around the world. Robust legal and policy frameworks are therefore a crucial piece of the puzzle for promoting information integrity and addressing the challenges posed by harmful information in DRM. To respond effectively, humanitarian actors must understand how harmful information disrupts response efforts. A typology of harm is important in building an evidence base that supports efforts to identify, measure and mitigate these effects. Each of the following types of harm can significantly undermine humanitarian action and all must be better understood, monitored and addressed.
 
-# Typology of harm
+<table class="w-full table-auto border-separate border-spacing-2">
+  <caption class="caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
+    Typology of harm
+  </caption>
+  <colgroup>
+    <col className='w-[15%] md:w-[10%]'/>
+    <col className='w-[35%] md:w-[20%]'/>
+    <col className="w-[50%] md:w-[70%]" />
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th class="border-t-[2px] font-bold text-2xl p-2 text-start" colSpan={2}>Type of harm</th>
+      <th class="border-t-[2px] font-bold text-2xl p-2 text-start">Examples of harm</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top"><Physical/></td>
+      <td className="border-t-[1px] font-medium p-2 align-top">Physical</td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">Physical injury, loss of life, or incitement to violence, panic or unsafe behaviours, treatment avoidance. Physical attacks on humanitarian vehicles, facilities or offices.</td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Psychological/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Psychological
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Emotional or mental trauma, fear, anxiety, disorientation, discrimination, shame, distrust,
+        manipulation, bullying, stalking, harassment.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Social/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Social
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Disruption to social cohesion and trust within communities, erosion of relationships, stigma,
+        social fragmentation, divisions, polarization. Forced or induced displacement of
+        populations leading to family separation, loss of community bonds and weakening of
+        collective support systems.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Societal/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Societal
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Shrinking space for humanitarian action, undermining trust in institutions, reputational
+        damage, operational disruption, impaired service delivery, silencing of sectors of society,
+        erosion of rights, restricted access to information, exclusion, limits to freedom of
+        expression. Use of harmful information to justify legal persecution, criminalization of
+        speech, or abuse of judicial systems.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Informational/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Informational
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Distortion, suppression or manipulation of information; loss of access to accurate, timely
+        or trustworthy information; saturation with falsehoods (information overload); erosion of
+        the shared understanding needed for decision-making.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Deprivational/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Deprivational / financial / economic
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Livelihood disruption, economic loss, loss of access to essential resources or services,
+        financial losses, theft, looting, fraud, scams, diversion of resources, inability to procure
+        necessities, restrictions on funding, extortion, loss of reputation, loss of donor support.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Digital/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Digital / technological
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Attacks on digital identity, doxing, algorithmic amplification of harmful content, deepfakes,
+        bot-driven abuse, platform manipulation (see Glossary and box on deepfakes below for
+        definitions of terms).
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Longitudinal/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Longitudinal / intergenerational (cross-cutting dimension)
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Lasting effects on children exposed to harmful narratives, breakdown of intergenerational
+        trust, perpetuation of stereotypes or trauma, loss of hope.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <Box
   index="1.8"
