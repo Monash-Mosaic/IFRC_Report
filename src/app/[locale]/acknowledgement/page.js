@@ -43,7 +43,7 @@ export default function AcknowledgementsPage() {
                 { src: '/contributors/cruz-roja.svg', alt: 'Spanish Red Cross' },
                 { src: '/contributors/swedish-rc.svg', alt: 'Swedish Red Cross' },
                 { src: '/contributors/gdpc.svg', alt: 'Global Disaster Preparedness Center' },
-
+                { src: '/contributors/American_Red_Cross_logo.svg', alt: 'American Red Cross' },
                 { src: '/contributors/chinese-rc.svg', alt: 'Chinese Red Cross' },
                 { src: '/contributors/canadian-rc.svg', alt: 'Canadian Red Cross' },
                 { src: '/contributors/italian-rc.svg', alt: 'Italian Red Cross' },
