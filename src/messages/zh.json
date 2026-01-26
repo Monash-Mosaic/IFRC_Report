@@ -150,5 +150,62 @@
     "videoCard": {
       "backToThumbnail": "返回缩略图"
     }
+  },
+  "NotFound": {
+    "title": "页面未找到",
+    "description": "您要查找的页面不存在。",
+    "backHome": "返回首页"
+  },
+  
+  "About": {
+    "breadcrumbHome": "首页",
+    "breadcrumbCurrent": "关于",
+    "pageTitle": "关于我们",
+    "topicHeading": "红十字会与红新月会国际联合会",
+    "body": "红十字会与红新月会国际联合会（IFRC）是全球最大的 гуманитар（人道主义）网络，拥有191个国家红十字会与红新月会，并有约1500万名志愿者。我们的志愿者在危机或灾害发生前、发生时以及发生后都扎根社区开展工作。我们在世界上最难抵达、最复杂的环境中开展行动，拯救生命并弘扬人类尊严。我们支持社区变得更强大、更具韧性，使人们能够安全健康地生活，并拥有发展与繁荣的机会。",
+    "coverPhotoTitle": "封面照片",
+    "coverPhotoText": "黎巴嫩布尔杰·巴拉杰内难民营，2025年9月10日。\n以人为本的方式降低了获取服务的障碍与犹豫，同时在艰难环境中维护尊严、信任与护理连续性。\nLama Chidiac，IFRC。",
+    "insidePhotosTitle": "内页图片",
+    "insidePhotosText": "Syrian Arab Red Crescent • Lama Chidiac, IFRC • Aki Kolehmainen, Finnish Red Cross • Syrian Arab Red Crescent • Lama Chidiac, IFRC • IFRC • Paul Wu, IFRC • IFRC and Ecuadorean Red Cross • Pakistan Red Crescent • IFRC",
+    "contactUsTitle": "联系我们",
+    "contactUsText": "如需商业用途复制，请联系 IFRC 秘书处：",
+    "addressTitle": "地址",
+    "addressText": "Chemin des Crêts 17, Petit-Saconnex, 1209 Geneva, Switzerland",
+    "postalAddressTitle": "邮寄地址",
+    "postalAddressText": "P.O. Box 303, 1211 Geneva 19, Switzerland",
+    "contactLine": "T: +41 (0) 22 730 42 22 | F: +41 (0) 22 730 42 00 | E: secretariat@ifrc.org | W: ifrc.org",
+    "copyrightTitle": "© 红十字会与红新月会国际联合会，日内瓦，2026",
+    "copyrightText": "在清楚注明来源的前提下，本出版物的任何部分均可引用、复制、翻译为其他语言或为满足当地需求而进行改编，无需事先获得许可。",
+    "isbnTitle": "ISBN",
+    "isbnText": "978-2-9701289-8-4",
+    "pdfUrlTitle": "PDF 链接",
+    "pdfUrlText": "www.ifrc.org/document/IFRC-Worlds-Disasters-Report-2026",
+    "webUrlTitle": "网页版链接",
+    "webUrlText": "www.ifrcwdr26.com"
+  },
+   "Acknowledgements": {
+    "breadcrumbHome": "主页",
+    "breadcrumbCurrent": "致谢",
+    "pageTitle": "致谢",
+
+    "intro": "国际红十字会与红新月会联合会（IFRC）谨此感谢以下组织对《IFRC 2026 年世界灾害报告》的编制和出版所提供的支持：",
+
+    "translation": "俄文版和中文版的翻译费用由俄罗斯红十字会学院和中国国际红十字学院慷慨资助。",
+
+    "leadEditorLabel": "主编及作者：",
+    "leadEditor": "Charlotte Lindsey Curtet",
+
+    "designerLabel": "设计：",
+    "designer": "Yann le Floch",
+
+    "projectManagerLabel": "项目经理：",
+    "projectManager": "Heather Marie Leson",
+
+    "copyeditorLabel": "文字编辑：",
+    "copyeditor": "Jen Claydon",
+
+    "contributions": "《2026 年世界灾害报告》收录了来自人道主义领域以及政府、学术界和公民社会等多个领域的 60 多位实践者和研究人员撰写的 100 余篇书面贡献。这些内容以“贡献者洞见”框的形式贯穿全书，明确标注了个人作者及其所属机构。",
+
+    "research": "IFRC 索尔费里诺学院牵头开展了一项为期两个月的快速社区情报研究，来自 10 个国家红会的 40 名志愿者和工作人员参与其中。作为社区研究人员，他们采访了 132 名受人道主义危机影响的志愿者和社区成员。研究结果由密歇根大学、诺森比亚大学和 Open Lab（纽卡斯尔大学）的志愿学者进行综合整理，确保充分保留地方背景和细微差异。精选引述贯穿于整份报告之中。"
   }
 }
