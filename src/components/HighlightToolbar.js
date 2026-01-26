@@ -12,8 +12,8 @@ import {
 import {
   FacebookShareButton,
   FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
   WhatsappIcon,
 } from 'next-share';
 
@@ -653,13 +653,17 @@ export default function HighlightToolbar({
         </button>
 
         {/* Social share icons */}
-        <FacebookShareButton url={shareUrl} quote={selectedText} hashtag={hashtag}>
+        <FacebookShareButton url={shareUrl} hashtag={hashtag}>
           <FacebookIcon size={iconSize} round={round} />
         </FacebookShareButton>
 
-        <TwitterShareButton url={shareUrl} title={selectedText}>
-          <TwitterIcon size={iconSize} round={round} />
-        </TwitterShareButton>
+        <LinkedinShareButton
+            url={shareUrl}
+            title={selectedText}
+            summary={selectedText}
+        >
+          <LinkedinIcon size={iconSize} round={round} />
+        </LinkedinShareButton>  
 
         {/* WhatsApp: keep icon, custom handler */}
         <button
