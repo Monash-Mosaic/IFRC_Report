@@ -25,6 +25,7 @@ const withMDX = createMDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   // Ensure testing works with ESM packages
   // ref: https://github.com/vercel/next.js/issues/40183#issuecomment-3063588870
   transpilePackages: ['next-intl', 'use-intl'],
