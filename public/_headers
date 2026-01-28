@@ -1,0 +1,6 @@
+/_next/static/*
+  Cache-Control: public,max-age=14400,immutable
+/wdr25/*
+  Cache-Control: public,max-age=14400,immutable
+/avatar/*
+  Cache-Control: public,max-age=14400,immutable

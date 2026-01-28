@@ -29,11 +29,32 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Cloudflare Workers (OpenNext)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is configured to run on Cloudflare Workers via OpenNext.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Local development
+
+- `npm run dev` for standard Next.js development.
+- `npm run preview` to run the Worker locally (builds via OpenNext and launches a local Workers runtime).
+
+### Deploy
+
+- `npm run deploy` to build and deploy to Cloudflare.
+- `npm run upload` to upload a version for gradual deployments.
+
+### Workers Builds (recommended CI)
+
+In Cloudflare Workers Builds, set:
+
+- **Build command:** `npx @opennextjs/cloudflare build`
+- **Deploy command:** `npx @opennextjs/cloudflare deploy`
+
+### Notes
+
+- The Worker uses the Node.js runtime; do not use `export const runtime = "edge"` in app code.
+- Static asset caching is configured in public/_headers.
+- Optional: add an R2 binding named `NEXT_INC_CACHE_R2_BUCKET` to enable ISR caching.
 
 ## Hero Video Assets
 
@@ -62,81 +83,6 @@ This will generate:
 - `public/wdr25/hero/hls/master.m3u8` - ABR master playlist
 - `public/wdr25/hero/hls/480p_only.m3u8` - 480p-only playlist for low bandwidth
 
-## Deploy on Infomaniak (Node.js Hosting)
-
-Infomaniak Node.js hosting expects a build step and a Node entry point you can start with a `PORT` set by the platform. Follow the Node.js site creation steps in their guide, then use these settings for the custom method:
-
-- **Build command:** `npm install && npm run build`
-- **Start command:** `npm run start`
-- **Entry point:** `server.js`
-- **Port:** use the `PORT` environment variable (already handled in `server.js`)
-- **Node version:** choose a supported Node 18+ runtime
-
-Reference: [Create a Node.js site at Infomaniak](https://www.infomaniak.com/en/support/faq/2537/create-a-nodejs-site-at-infomaniak)
-
-### Automated Deployment via GitHub Actions
-
-This project includes automated deployment to Infomaniak via GitHub Actions. Deployments are triggered **only** when a git tag matching the pattern `v*.*.*` (e.g., `v1.2.3`) is pushed to the repository, and the tag must be reachable from the `main` branch.
-
-#### Prerequisites
-
-1. **Create a git tag on main branch:**
-   ```bash
-   git checkout main
-   git pull origin main
-   git tag v1.0.0  # Use semantic versioning (vX.Y.Z)
-   git push origin v1.0.0
-   ```
-
-2. **Configure GitHub Secrets:**
-   
-   Go to your repository settings → Secrets and variables → Actions, and add the following secrets:
-
-   **Required SFTP Secrets:**
-   - `SFTP_HOST` - Your Infomaniak SFTP hostname
-   - `SFTP_PORT` - SFTP port (default: 22)
-   - `SFTP_USER` - SFTP username
-   - `SFTP_PASSWORD` - SFTP password (or use `SFTP_SSH_KEY` instead)
-   - `SFTP_SSH_KEY` - Private SSH key for SFTP (alternative to password)
-   - `SFTP_REMOTE_PATH` - Remote deployment path (default: `~/sites/wdr26.org`)
-
-   **Required SSH Secrets (for post-deployment commands):**
-   - `SSH_HOST` - SSH hostname (can be same as `SFTP_HOST`)
-   - `SSH_PORT` - SSH port (default: 22, can be same as `SFTP_PORT`)
-   - `SSH_USER` - SSH username (can be same as `SFTP_USER`)
-   - `SSH_PASSWORD` - SSH password (or use `SSH_KEY` instead)
-   - `SSH_KEY` - Private SSH key for SSH (alternative to password, can be same as `SFTP_SSH_KEY`)
-
-   **Note:** If SSH credentials are the same as SFTP, you can omit the `SSH_*` secrets and the workflow will use `SFTP_*` values.
-
-#### Deployment Process
-
-When you push a tag matching `v*.*.*`:
-
-1. **Validation:** The workflow verifies the tag exists on the `main` branch
-2. **Build:** Installs dependencies and builds the Next.js application using Node.js 25
-3. **Upload:** Deploys files via SFTP to the configured remote path
-4. **Post-deploy:** Installs production dependencies on the server
-
-**Important:** After deployment, restart your application via the Infomaniak dashboard or their provided restart mechanism. The workflow does not automatically restart the Node.js process as Infomaniak manages this through their platform.
-
-#### Deployment Exclusions
-
-The following files/directories are excluded from deployment:
-- `.git`, `.github` - Version control
-- `node_modules` - Dependencies (installed on server)
-- `.next/cache` - Build cache
-- `tests`, `*.test.js`, `*.test.js.snap` - Test files
-- Development config files (`.gitignore`, `.prettierrc`, `eslint.config.mjs`, etc.)
-- `scripts` - Development scripts
-- `README.md` - Documentation
-
-#### Troubleshooting
-
-- **Tag not found on main:** Ensure the tag is created on a commit that exists in the `main` branch history
-- **SFTP connection failed:** Verify your SFTP credentials and hostname in GitHub Secrets
-- **Build fails:** Check the GitHub Actions logs for build errors
-- **Application not restarting:** Manually restart via Infomaniak dashboard after deployment
 
 ## Benchmarking (Load Test)
 

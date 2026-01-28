@@ -1,5 +1,6 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 import createMDX from '@next/mdx';
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
 
 const nextIntlPlugin = createNextIntlPlugin();
 
@@ -38,3 +39,5 @@ const nextConfig = {
 };
 
 export default nextIntlPlugin(withMDX(nextConfig));
+
+initOpenNextCloudflareForDev();
