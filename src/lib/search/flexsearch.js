@@ -1,12 +1,12 @@
-import { Document, Charset, Encoder } from 'flexsearch';
-import EnglishPreset from "flexsearch/lang/en";
+import { Document, Charset, Encoder, Resolver } from 'flexsearch';
+import stopword from 'stopwords-en';
 
 const SAMPLE_DOCS = {
   en: [
     {
       id: 'wdr25-chapter-02-en-1',
       title:
-        'Confirmation Bias',
+        'Chapter 02 > Confirmation Bias',
       excerpt: `Confirmation Bias refers to the tendency to seek out, favour and recall information that supports
 our existing beliefs, while ignoring or dismissing contradictory evidence.
 
@@ -21,13 +21,13 @@ RAND researchers Kavanagh and Rich (2008) have described this phenomenon as trut
     },
     {
       id: 'wdr25-chapter-02-en-4',
-      title: 'Incentivised to Hostility',
+      title: 'Chapter 02 > Incentivised to Hostility',
       excerpt: `This online dynamic has been described as the filter bubble, which reduces exposure to diverse perspectives and increases the risk of isolation in our views or rejection of opposing viewpoints.`,
       href: '/reports/wdr25/chapter-02#incentivised-to-hostility',
     },
     {
       id: 'wdr25-chapter-02-en-5',
-      title: 'Trust in Institutions',
+      title: 'Chapter 02 > Trust in Institutions',
       excerpt:
         `Trust is critical to the legitimacy, effectiveness and acceptance of humanitarian action. This was strongly emphasised at the 2019 International Conference of the Red Cross and Red Crescent Movement which recognised that trust in principled humanitarian action is indispensable to serving vulnerable people and encouraged all members of the Conference to act to preserve and develop this trust.
 
@@ -48,7 +48,7 @@ Erosion of trust in non-governmental organisations (NGOs) has been documented in
     },
     {
       id: 'wdr25-chapter-02-en-6',
-      title: 'Integrity, Perception and the Fragile Foundation of Trust',
+      title: 'Chapter 02 > Integrity, Perception and the Fragile Foundation of Trust',
       excerpt: `Cases of misconduct such as abuse, exploitation, fraud or mismanagement, have severely eroded public trust, especially when humanitarian organisations respond without transparency and empathy. Scandals involving sexual abuse in organisations have shown how quickly confidence can collapse. The politicisation of aid – when governments or armed actors manipulate humanitarian action for political purposes – further undermines perceptions of neutrality and leaves communities sceptical of humanitarian motives.
 
 In today’s landscape of digital transparency and constant scrutiny, humanitarian actors are no longer the sole or even primary narrators of their work. They now compete for legitimacy not only with governments and non-state actors but also with communities themselves, who increasingly speak, organise and question responses in real time.
@@ -62,10 +62,22 @@ Finally, a lack of, or slow progress in, localising humanitarian aid, has furthe
     },
     {
       id: 'wdr25-chapter-02-en-7',
-      title: 'Community Engagement: A Bridge to Trust',
-      excerpt: `Community Engagement and Accountability (CEA) is a vital bridge to building and sustaining trust. Trust grows through proximity, inclusive participation, timely and transparent communication and shared decision-making with people and communities. wCEA also ensures that communities have access to accurate, relevant and potentially life-saving information – making it essential not only for effective humanitarian response but also for the safety and security of staff and operations.`,
+      title: 'Chapter 02 > Community Engagement: A Bridge to Trust',
+      excerpt: `Community Engagement and Accountability (CEA) is a vital bridge to building and sustaining trust. Trust grows through proximity, inclusive participation, timely and transparent communication and shared decision-making with people and communities. CEA also ensures that communities have access to accurate, relevant and potentially life-saving information – making it essential not only for effective humanitarian response but also for the safety and security of staff and operations.`,
       href: '/reports/wdr25/chapter-02#community-engagement-a-bridge-to-trust',
     },
+    {
+      id: 'wdr25-chapter-02-en-8',
+      title: 'Chapter 02: Harmful Information and the Erosion of Trust in Humanitarian Response: the Role of Truth, Trust and Technology',
+      excerpt: `The Shifting Ground of Trust
+“To be persuasive we must be believable; to be believable we must be credible; to be credible we must be truthful.”
+
+So said Ed Murrow, the American broadcaster and correspondent during the Second World War. The principle still holds: truth (accuracy and honesty) and credibility (competency, consistency, reliability) remain essential to building institutional trust. Yet in today’s information landscape, applying this principle has become far more complex and contested in an age shaped by harmful information.
+
+In times of crisis or uncertainty – and these are profoundly uncertain times – people increasingly turn to information sources they perceive as relevant and aligned with their personal and lived experience, rather than those grounded solely in factual accuracy. Truth alone no longer always persuades. Emotion, identity and repetition can entrench misbeliefs in powerful, sometimes harmful ways. In such an environment, even reaching agreement on what constitutes a fact is difficult. For humanitarian organisations, whose access, acceptance and ability to operate depend on trust, navigating this fragmented, emotionally charged information space has become not only an operational challenge, but also a security risk.`,
+      href: '/reports/wdr25/chapter-02',
+    },
+    
   ],
 };
 
@@ -84,7 +96,8 @@ function createIndex() {
           {
               field:  "excerpt",
               tokenize: "forward",
-              encoder: Charset.LatinSoundex,
+              encoder: new Encoder(Charset.LatinSoundex, { filter: stopword }),
+              context: true,
           }
         ],
       },
@@ -100,7 +113,7 @@ async function ensureIndex(locale) {
   }
 
   const index = createIndex();
-  const docs = SAMPLE_DOCS.en;
+  const docs = SAMPLE_DOCS.en || [];
   docs.forEach((doc) => {
     index.add(doc['id'], doc);
   });
@@ -112,9 +125,14 @@ async function ensureIndex(locale) {
 export async function searchDocuments({ locale, query, limit = 10 }) {
   const safeQuery = query?.trim();
   if (!safeQuery) return [];
-
+  
+  // TODO: Making this function faster would improve overall search performance
+  console.time(`ensureIndex for ${locale}`);
   const index = await ensureIndex(locale);
-  const rawResults = index.searchCache({
+  console.timeEnd(`ensureIndex for ${locale}`);
+
+  console.time(`searchCache for ${safeQuery}`);
+  const rawResults = await index.searchCacheAsync({
     query: safeQuery,
     limit,
     enrich: true,
@@ -128,7 +146,8 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
     suggest: true,
     pluck: "excerpt",
   });
-  
+  console.timeEnd(`searchCache for ${safeQuery}`);
+
   return rawResults.map((result) => ({
     id: result.doc.id,
     title: result.doc.title,
