@@ -10,7 +10,6 @@ export function convertHighlightsReactComponent(text) {
   return text.split(testEm).map((part, index) => {
     if (testEm.test(part)) {
       return (
-        // eslint-disable-next-line react/jsx-key
         <mark key={index} className="font-normal">
           {part.replace(/<\/?em>/g, '')}
         </mark>
