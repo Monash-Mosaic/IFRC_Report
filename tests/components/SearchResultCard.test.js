@@ -1,4 +1,4 @@
-import SearchResultCard from '@/components/SearchResultCard';
+import SearchResultCard, { convertHighlightsReactComponent } from '@/components/SearchResultCard';
 import { render, screen } from '@testing-library/react';
 
 // Mock next-intl navigation Link component
@@ -16,6 +16,20 @@ const defaultProps = {
     'This is a test excerpt that provides a brief description of the chapter content. It should be truncated if too long...',
   href: '/reports/wdr25/chapter-02',
 };
+
+describe('convertHighlightsReactComponent', () => {
+  it('correctly converts highlighted text with <em> tags', () => {
+    const input = 'This is a <em>highlighted</em> word in the text.';
+    const result = convertHighlightsReactComponent(input);
+    render(<>{result}</>);
+    const highlightedElement = screen.getByText('highlighted');
+    // Should return an array of React nodes
+    expect(Array.isArray(result)).toBe(true);
+    expect(result).toHaveLength(3);
+    expect(highlightedElement).toBeInTheDocument()
+  });
+
+});
 
 describe('SearchResultCard', () => {
   beforeEach(() => {
