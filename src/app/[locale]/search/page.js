@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 import SearchResultCard from '@/components/SearchResultCard';
 import Breadcrumb from '@/components/Breadcrumb';
 import { searchDocuments } from '@/lib/search/flexsearch';
@@ -16,15 +17,12 @@ export const dynamic = 'force-dynamic';
 
 export default async function SearchEngineResultPage({ params, searchParams }) {
   const { locale } = await params;
+  const { q: query = '', limit = '20' } = await searchParams;
   const t = await getTranslations('SearchPage', locale);
-
-  // Get search query from URL params (for display purposes)
-  const query = decodeURIComponent((await searchParams)?.q?.trim() || '');
-
   const searchResults = await searchDocuments({
         locale,
-        query,
-        limit: 20,
+        query: decodeURIComponent(query.trim()),
+        limit: parseInt(limit, 10),
       });
 
   return (
@@ -50,7 +48,7 @@ export default async function SearchEngineResultPage({ params, searchParams }) {
             ))}
           </div>
 
-          {searchResults.length === 0 && query && (
+          {searchResults.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500">{t('results.noResults')}</p>
             </div>
