@@ -32,7 +32,7 @@ export default async function AppleIcon() {
           width={metadata.width}
           height={metadata.height}
           style={{
-            objectFit: 'fit',
+            objectFit: 'contain',
           }}
           alt="IFRC Logo"
         />
