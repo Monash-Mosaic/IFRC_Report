@@ -30,4 +30,5 @@ export const routing = defineRouting({
     },
   },
   alternateLinks: false, // We handle alternate links manually in HTML head
+  localeCookie: false, // Use URL to determine locale avoid international regulations on cookie issues
 });
