@@ -6,13 +6,25 @@ import { reportsByLocale } from '@/reports';
 import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
+import { getPathname } from '@/i18n/navigation';
 
+/** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations('Home', locale);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   return {
     title: t('meta.title'),
     description: t('meta.description'),
+    alternates: {
+      canonical: new URL(getPathname({ locale, href: '/' }), siteUrl).toString(),
+      languages: Object.fromEntries(
+        routing.locales.map((loc) => [
+          loc,
+          new URL(getPathname({ locale: loc, href: '/' }), siteUrl).toString(),
+        ])
+      ),
+    },
   };
 }
 

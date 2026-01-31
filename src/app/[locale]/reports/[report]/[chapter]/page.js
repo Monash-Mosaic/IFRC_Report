@@ -3,19 +3,70 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 import { reportsByLocale } from '@/reports';
-import { Link } from '@/i18n/navigation';
+import { getPathname, Link } from '@/i18n/navigation';
 import SidebarPanel from '@/components/SidebarPanel';
 import TableOfContent from '@/components/TableOfContent';
+import { routing } from '@/i18n/routing';
+
 
 export async function generateMetadata({ params }) {
-  const { report, chapter, locale } = await params;
+  const { locale, report, chapter } = await params;
   const decodedReport = decodeURIComponent(report);
   const decodedChapter = decodeURIComponent(chapter);
   const { title, subtitle } =
     reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter];
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
+    /\/+$/,
+    ''
+  );
+  const chapterNumberMatch = decodedChapter.match(/\d+/);
+  const chapterNumber = chapterNumberMatch ? chapterNumberMatch[0] : null;
+
+  const getLocalizedChapterKey = (loc) => {
+    const localizedReport = reportsByLocale[loc]?.reports?.[decodedReport];
+    if (!localizedReport) {
+      return null;
+    }
+    if (localizedReport.chapters?.[decodedChapter]) {
+      return decodedChapter;
+    }
+    if (chapterNumber) {
+      return (
+        Object.keys(localizedReport.chapters || {}).find((key) => key.includes(chapterNumber)) ||
+        null
+      );
+    }
+    return null;
+  };
+
+  const buildHref = (chapterKey) => ({
+    pathname: '/reports/[report]/[chapter]',
+    params: { report: decodedReport, chapter: chapterKey },
+  });
+
+  const canonicalHref = buildHref(decodedChapter);
+  const canonicalUrl = new URL(getPathname({ locale, href: canonicalHref }), siteUrl).toString();
   return {
     title: title,
     description: subtitle,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: Object.fromEntries(
+        routing.locales
+          .map((loc) => {
+            const chapterKey = getLocalizedChapterKey(loc);
+            if (!chapterKey) {
+              return null;
+            }
+            const href = buildHref(chapterKey);
+            return [
+              loc,
+              new URL(getPathname({ locale: loc, href }), siteUrl).toString(),
+            ];
+          })
+          .filter(Boolean)
+      ),
+    },
   };
 }
 

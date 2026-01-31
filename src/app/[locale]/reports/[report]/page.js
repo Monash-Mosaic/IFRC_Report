@@ -3,17 +3,33 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
-import { Link } from '@/i18n/navigation';
+import { Link, getPathname } from '@/i18n/navigation';
 import { reportsByLocale } from '@/reports';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
+import { routing } from '@/i18n/routing';
 
 export async function generateMetadata({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
   const { title, description } = reportsByLocale[locale].reports[decodedReport];
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   return {
     title: title,
     description: description,
+    alternates: {
+      canonical: new URL(
+        getPathname({ locale, href: `reports/${decodedReport}` }),
+        siteUrl
+      ).toString(),
+      languages: Object.fromEntries(
+        routing.locales.map((loc) => [
+          loc,
+          new URL(
+            getPathname({ locale: loc, href: `reports/${decodedReport}` }),
+            siteUrl
+          ).toString(),
+        ])
+      ),
+    },
   };
 }
 
