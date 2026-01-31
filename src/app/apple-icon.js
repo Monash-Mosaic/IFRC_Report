@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { getBaseUrl } from '@/lib/base-url';
+import { getLocalImageDataUri } from '@/lib/image-data-uri';
 
 export const size = {
   width: 180,
@@ -8,8 +8,10 @@ export const size = {
 
 export const contentType = 'image/png';
 
-export default function AppleIcon() {
-  const baseUrl = getBaseUrl();
+export default async function AppleIcon() {
+  const { default: metadata } = await import(`../../public/wdr25/ifrc_logo.jpg`);
+  const dataUri = await getLocalImageDataUri('public/wdr25/ifrc_logo.jpg');
+
   return new ImageResponse(
     (
       <div
@@ -26,10 +28,9 @@ export default function AppleIcon() {
         }}
       >
         <img
-          src={new URL('wdr25/ifrc_logo.jpg', baseUrl).toString()}
-          type="image/jpeg"
-          width={180}
-          height={180}
+          src={dataUri}
+          width={metadata.width}
+          height={metadata.height}
           style={{
             objectFit: 'fit',
           }}
