@@ -40,6 +40,7 @@ export async function generateMetadata({ params }) {
   return {
     title: title,
     description: description,
+    metadataBase: new URL(siteUrl),
     alternates: {
       canonical: new URL(
         getPathname({ locale, href: `reports/${decodedReport}` }),

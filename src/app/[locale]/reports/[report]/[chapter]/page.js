@@ -44,6 +44,7 @@ export async function generateMetadata({ params }) {
   return {
     title: title,
     description: subtitle,
+    metadataBase: new URL(siteUrl),
     alternates: {
       canonical: new URL(getPathname({ locale, href: buildHref(decodedChapter) }), siteUrl).toString(),
       languages: Object.fromEntries(languages),
