@@ -7,7 +7,8 @@ export const size = {
 
 export const contentType = 'image/png';
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   return new ImageResponse(
     (
       <div
@@ -17,14 +18,19 @@ export default function OpenGraphImage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#0b1f3a',
-          color: '#ffffff',
-          fontSize: 72,
-          fontWeight: 700,
-          letterSpacing: '-0.02em',
+          background: '',
         }}
       >
-        IFRC Reports
+        <img
+          src={new URL('wdr25/ifrc_logo.jpg', baseUrl).toString()}
+          type="image/jpeg"
+          width={520}
+          height={260}
+          style={{
+            objectFit: 'contain',
+          }}
+          alt="IFRC Logo"
+        />
       </div>
     ),
     size

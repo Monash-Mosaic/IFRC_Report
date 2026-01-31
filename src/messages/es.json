@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Informe Mundial sobre Desastres 2026 de la FICR"
+  },
   "Home": {
     "meta": {
       "title": "Página de inicio de Informes de la FICR",

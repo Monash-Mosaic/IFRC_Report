@@ -73,6 +73,11 @@ export const featuredVideos = [
 
 export const chapters = {
   '章节-02': {
+    metadata: {
+      chapterKey: '章节-02',
+      chapterNumber: 2,
+      chapterPrefix: '第02章',
+    },
     component: Chapter02.default,
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,

@@ -12,20 +12,42 @@ import { getPathname } from '@/i18n/navigation';
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations('Home', locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const title = t('meta.title');
+  const description = t('meta.description');
+  const canonical = getPathname({ locale, href: '/' });
   const languages = routing.locales.map((loc) => [
           loc,
-          new URL(getPathname({ locale: loc, href: '/' }), siteUrl).toString(),
+          getPathname({ locale: loc, href: '/' }),
         ]);
-  languages.push(['x-default', new URL(siteUrl).toString()]);
+  languages.push(['x-default', '/']);
 
   return {
-    title: t('meta.title'),
-    description: t('meta.description'),
-    metadataBase: new URL(siteUrl),
+    title,
+    description,
     alternates: {
-      canonical: new URL(getPathname({ locale, href: '/' }), siteUrl).toString(),
+      canonical,
       languages: Object.fromEntries(languages),
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      locale,
+      url: canonical,
+      images: [
+        {
+          url: '/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/twitter-image'],
     },
   };
 }
@@ -37,6 +59,11 @@ export async function generateStaticParams() {
 export default async function Home({ params }) {
   const { locale } = await params;
   const t = await getTranslations('Home', locale);
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
+    /\/+$/,
+    ''
+  );
+  const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
 
   // Get the report data for the current locale
   const reportModule = getVisibleReports(locale)?.wdr25;
@@ -67,8 +94,21 @@ export default async function Home({ params }) {
     },
   };
 
+  const homeJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: t('meta.title'),
+    description: t('meta.description'),
+    url: toAbsolute(getPathname({ locale, href: '/' })),
+    inLanguage: locale,
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
         <HeroSection locale={locale} messages={heroMessage} />
         <ExecutiveSummarySection locale={locale} messages={executiveSummary} />

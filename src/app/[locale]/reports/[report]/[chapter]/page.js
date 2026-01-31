@@ -18,10 +18,13 @@ export async function generateMetadata({ params }) {
   if (!reportData || !chapterData || !isReportReleased(locale, decodedReport)) {
     return {
       title: 'Chapter unavailable',
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
-  const { title, subtitle } = chapterData;
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000');
+  const { metadata: { chapterPrefix }, title, subtitle } = chapterData;
   const reportKey = reportUriMap.uri[locale][decodedReport];
   const chapterKey = reportUriMap[reportKey].chapters.uri[locale][decodedChapter];
 
@@ -34,20 +37,44 @@ export async function generateMetadata({ params }) {
             const href = buildHref(uri);
             return [
               loc,
-              new URL(getPathname({ locale: loc, href }), siteUrl).toString(),
+              getPathname({ locale: loc, href }),
             ];
           });
   languages.push([
     'x-default',
-    languages.find(([loc, url]) => loc === routing.defaultLocale)[1].replace(`/${routing.defaultLocale}/`, '/'),
+    languages
+        .find(([loc, url]) => loc === routing.defaultLocale)[1]
+        .replace(`/${routing.defaultLocale}/`, '/'),
   ]);
+  const metaTitle = chapterPrefix ? `${chapterPrefix} > ${title}` : title;
+  const canonical = getPathname({ locale, href: buildHref(decodedChapter) });
   return {
-    title: title,
+    title: metaTitle,
     description: subtitle,
-    metadataBase: new URL(siteUrl),
     alternates: {
-      canonical: new URL(getPathname({ locale, href: buildHref(decodedChapter) }), siteUrl).toString(),
+      canonical,
       languages: Object.fromEntries(languages),
+    },
+    openGraph: {
+      title: metaTitle,
+      description: subtitle,
+      type: 'article',
+      locale,
+      url: canonical,
+      images: [
+        {
+          url: '/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: metaTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle,
+      description: subtitle,
+      images: ['/twitter-image'],
     },
   };
 }
@@ -74,6 +101,11 @@ export default async function ReportChapterPage({ params }) {
   const { report, chapter, locale } = await params;
   const decodedReport = decodeURIComponent(report);
   const decodedChapter = decodeURIComponent(chapter);
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
+    /\/+$/,
+    ''
+  );
+  const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   if (
     !reportsByLocale[locale] ||
     !reportsByLocale[locale].reports[decodedReport] ||
@@ -83,7 +115,8 @@ export default async function ReportChapterPage({ params }) {
     notFound();
   }
   setRequestLocale(locale);
-  const { chapters, title: reportTile } = reportsByLocale[locale].reports[decodedReport];
+  const reportData = reportsByLocale[locale].reports[decodedReport];
+  const { chapters, title: reportTile, description, author, releaseDate } = reportData;
   const {
     component: Chapter,
     title: chapterTitle,
@@ -93,10 +126,39 @@ export default async function ReportChapterPage({ params }) {
     tableOfContents: chapterTableOfContents,
   } = chapters[decodedChapter];
 
+  const chapterJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: chapterTitle,
+    description: chapterSubTitle,
+    inLanguage: locale,
+    datePublished: releaseDate ? new Date(releaseDate).toISOString().split('T')[0] : undefined,
+    author: author ? { '@type': 'Organization', name: author } : undefined,
+    isPartOf: {
+      '@type': 'Report',
+      name: reportTile,
+      description,
+      url: toAbsolute(getPathname({ locale, href: `/reports/${decodedReport}` })),
+    },
+    url: toAbsolute(
+      getPathname({
+        locale,
+        href: {
+          pathname: '/reports/[report]/[chapter]',
+          params: { report: decodedReport, chapter: decodedChapter },
+        },
+      })
+    ),
+  };
+
   const t = await getTranslations('ReportChapterPage', locale);
 
   return (
     <div className="min-h-screen bg-white flex  pl-8 pr-0 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(chapterJsonLd) }}
+      />
       {/* Sidebar Panel */}
       <SidebarPanel chapterTitle={chapterTitle} audios={audios} videos={videos} />
 

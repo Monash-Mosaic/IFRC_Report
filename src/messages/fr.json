@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Rapport mondial sur les catastrophes 2026 de l'IFRC"
+  },
   "Home": {
     "meta": {
       "title": "Page d'accueil des rapports de l'IFRC",

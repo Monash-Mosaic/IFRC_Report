@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "IFRC 世界灾害报告 2026"
+  },
   "Home": {
     "meta": {
       "title": "国际红十字报告主页",

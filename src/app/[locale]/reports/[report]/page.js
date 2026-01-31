@@ -14,24 +14,25 @@ export async function generateMetadata({ params }) {
   if (!reportData || !isReportReleased(locale, decodedReport)) {
     return {
       title: 'Report unavailable',
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
   const { title, description } = reportData;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const canonical = getPathname({ locale, href: `/reports/${decodedReport}` });
   const reportKey = reportUriMap.uri[locale][decodedReport];
   const reportUrls = reportUriMap[reportKey];
   const languages = Object.entries(reportUrls.languages).map(([loc, uri]) => [
           loc,
-          new URL(
-            getPathname({
+          getPathname({
               locale: loc,
               href: {
                 pathname: '/reports/[report]',
                 params: { report: uri },
               },
             }),
-            siteUrl
-          ).toString(),
         ]);
   languages.push([
     'x-default',
@@ -40,13 +41,30 @@ export async function generateMetadata({ params }) {
   return {
     title: title,
     description: description,
-    metadataBase: new URL(siteUrl),
     alternates: {
-      canonical: new URL(
-        getPathname({ locale, href: `reports/${decodedReport}` }),
-        siteUrl
-      ).toString(),
+      canonical,
       languages: Object.fromEntries(languages),
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      locale,
+      url: canonical,
+      images: [
+        {
+          url: '/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/twitter-image'],
     },
   };
 }
@@ -64,6 +82,11 @@ export async function generateStaticParams() {
 export default async function ReportDetailPage({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
+    /\/+$/,
+    ''
+  );
+  const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   if (
     !hasLocale(Object.keys(reportsByLocale), locale) ||
     !reportsByLocale[locale].reports[decodedReport] ||
@@ -72,7 +95,20 @@ export default async function ReportDetailPage({ params }) {
     notFound();
   }
   setRequestLocale(locale);
-  const { chapters, title: reportTile } = reportsByLocale[locale].reports[decodedReport];
+  const reportData = reportsByLocale[locale].reports[decodedReport];
+  const { chapters, title: reportTile, description, author, releaseDate, reportFile } = reportData;
+  const reportJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Report',
+    name: reportTile,
+    description,
+    inLanguage: locale,
+    datePublished: releaseDate ? new Date(releaseDate).toISOString().split('T')[0] : undefined,
+    author: author ? { '@type': 'Organization', name: author } : undefined,
+    url: toAbsolute(getPathname({ locale, href: `/reports/${decodedReport}` })),
+    fileFormat: reportFile?.url ? 'application/pdf' : undefined,
+    contentUrl: reportFile?.url ? toAbsolute(reportFile.url) : undefined,
+  };
   const expandedSections = new Set();
   const bookmarkedSections = new Set();
   const activeMenu = 'toc';
@@ -87,6 +123,10 @@ export default async function ReportDetailPage({ params }) {
 
   return (
     <div className="min-h-screen bg-white p-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reportJsonLd) }}
+      />
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <Link href={'/'} className="flex items-center gap-2 text-black hover:text-gray-600 mb-8">

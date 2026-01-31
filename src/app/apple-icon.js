@@ -8,6 +8,7 @@ export const size = {
 export const contentType = 'image/png';
 
 export default function AppleIcon() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   return new ImageResponse(
     (
       <div
@@ -17,13 +18,22 @@ export default function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#0b1f3a',
+          background: 'white',
           color: '#ffffff',
           fontSize: 64,
           fontWeight: 700,
         }}
       >
-        IFRC
+        <img
+          src={new URL('wdr25/ifrc_logo.jpg', baseUrl).toString()}
+          type="image/jpeg"
+          width={180}
+          height={180}
+          style={{
+            objectFit: 'fit',
+          }}
+          alt="IFRC Logo"
+        />
       </div>
     ),
     size

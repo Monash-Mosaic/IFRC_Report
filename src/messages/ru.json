@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Всемирный доклад о бедствиях IFRC 2026"
+  },
   "Home": {
     "meta": {
       "title": "Главная страница отчетов IFRC",

@@ -8,6 +8,7 @@ export const size = {
 export const contentType = 'image/png';
 
 export default function Icon() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   return new ImageResponse(
     (
       <div
@@ -17,13 +18,22 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#0b1f3a',
+          background: 'white',
           color: '#ffffff',
           fontSize: 160,
           fontWeight: 700,
         }}
       >
-        IFRC
+        <img
+          src={new URL('wdr25/ifrc_logo.jpg', baseUrl).toString()}
+          type="image/jpeg"
+          width={520}
+          height={260}
+          style={{
+            objectFit: 'contain',
+          }}
+          alt="IFRC Logo"
+        />
       </div>
     ),
     size
