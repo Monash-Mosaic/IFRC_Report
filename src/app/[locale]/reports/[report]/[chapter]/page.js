@@ -2,70 +2,51 @@ import { ArrowLeft } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-import { reportsByLocale } from '@/reports';
+import { getVisibleReports, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
 import { getPathname, Link } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
 import SidebarPanel from '@/components/SidebarPanel';
 import TableOfContent from '@/components/TableOfContent';
-import { routing } from '@/i18n/routing';
 
 
 export async function generateMetadata({ params }) {
   const { locale, report, chapter } = await params;
   const decodedReport = decodeURIComponent(report);
   const decodedChapter = decodeURIComponent(chapter);
-  const { title, subtitle } =
-    reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter];
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
-    /\/+$/,
-    ''
-  );
-  const chapterNumberMatch = decodedChapter.match(/\d+/);
-  const chapterNumber = chapterNumberMatch ? chapterNumberMatch[0] : null;
-
-  const getLocalizedChapterKey = (loc) => {
-    const localizedReport = reportsByLocale[loc]?.reports?.[decodedReport];
-    if (!localizedReport) {
-      return null;
-    }
-    if (localizedReport.chapters?.[decodedChapter]) {
-      return decodedChapter;
-    }
-    if (chapterNumber) {
-      return (
-        Object.keys(localizedReport.chapters || {}).find((key) => key.includes(chapterNumber)) ||
-        null
-      );
-    }
-    return null;
-  };
+  const reportData = reportsByLocale[locale]?.reports?.[decodedReport];
+  const chapterData = reportData?.chapters?.[decodedChapter];
+  if (!reportData || !chapterData || !isReportReleased(locale, decodedReport)) {
+    return {
+      title: 'Chapter unavailable',
+    };
+  }
+  const { title, subtitle } = chapterData;
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000');
+  const reportKey = reportUriMap.uri[locale][decodedReport];
+  const chapterKey = reportUriMap[reportKey].chapters.uri[locale][decodedChapter];
 
   const buildHref = (chapterKey) => ({
     pathname: '/reports/[report]/[chapter]',
     params: { report: decodedReport, chapter: chapterKey },
   });
-
-  const canonicalHref = buildHref(decodedChapter);
-  const canonicalUrl = new URL(getPathname({ locale, href: canonicalHref }), siteUrl).toString();
-  return {
-    title: title,
-    description: subtitle,
-    alternates: {
-      canonical: canonicalUrl,
-      languages: Object.fromEntries(
-        routing.locales
-          .map((loc) => {
-            const chapterKey = getLocalizedChapterKey(loc);
-            if (!chapterKey) {
-              return null;
-            }
-            const href = buildHref(chapterKey);
+  const languages = Object.entries(reportUriMap[reportKey].chapters[chapterKey].languages)
+          .map(([loc, uri]) => {
+            const href = buildHref(uri);
             return [
               loc,
               new URL(getPathname({ locale: loc, href }), siteUrl).toString(),
             ];
-          })
-          .filter(Boolean)
-      ),
+          });
+  languages.push([
+    'x-default',
+    languages.find(([loc, url]) => loc === routing.defaultLocale)[1].replace(`/${routing.defaultLocale}/`, '/'),
+  ]);
+  return {
+    title: title,
+    description: subtitle,
+    alternates: {
+      canonical: new URL(getPathname({ locale, href: buildHref(decodedChapter) }), siteUrl).toString(),
+      languages: Object.fromEntries(languages),
     },
   };
 }
@@ -73,7 +54,7 @@ export async function generateMetadata({ params }) {
 export async function generateStaticParams() {
   const params = [];
   for (const locale of Object.keys(reportsByLocale)) {
-    const reports = reportsByLocale[locale].reports;
+    const reports = getVisibleReports(locale);
     for (const reportKey of Object.keys(reports)) {
       const report = reports[reportKey];
       for (const chapterKey of Object.keys(report.chapters)) {
@@ -95,7 +76,8 @@ export default async function ReportChapterPage({ params }) {
   if (
     !reportsByLocale[locale] ||
     !reportsByLocale[locale].reports[decodedReport] ||
-    !reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter]
+    !reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter] ||
+    !isReportReleased(locale, decodedReport)
   ) {
     notFound();
   }

@@ -4,14 +4,39 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import { Link, getPathname } from '@/i18n/navigation';
-import { reportsByLocale } from '@/reports';
+import { getVisibleReports, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
 import { routing } from '@/i18n/routing';
 
 export async function generateMetadata({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
-  const { title, description } = reportsByLocale[locale].reports[decodedReport];
+  const reportData = reportsByLocale[locale]?.reports?.[decodedReport];
+  if (!reportData || !isReportReleased(locale, decodedReport)) {
+    return {
+      title: 'Report unavailable',
+    };
+  }
+  const { title, description } = reportData;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const reportKey = reportUriMap.uri[locale][decodedReport];
+  const reportUrls = reportUriMap[reportKey];
+  const languages = Object.entries(reportUrls.languages).map(([loc, uri]) => [
+          loc,
+          new URL(
+            getPathname({
+              locale: loc,
+              href: {
+                pathname: '/reports/[report]',
+                params: { report: uri },
+              },
+            }),
+            siteUrl
+          ).toString(),
+        ]);
+  languages.push([
+    'x-default',
+    languages.find(([loc, url]) => loc === routing.defaultLocale)[1].replace(`/${routing.defaultLocale}/`, '/'),
+  ]);
   return {
     title: title,
     description: description,
@@ -20,22 +45,14 @@ export async function generateMetadata({ params }) {
         getPathname({ locale, href: `reports/${decodedReport}` }),
         siteUrl
       ).toString(),
-      languages: Object.fromEntries(
-        routing.locales.map((loc) => [
-          loc,
-          new URL(
-            getPathname({ locale: loc, href: `reports/${decodedReport}` }),
-            siteUrl
-          ).toString(),
-        ])
-      ),
+      languages: Object.fromEntries(languages),
     },
   };
 }
 
 export async function generateStaticParams() {
   return Object.keys(reportsByLocale).reduce((params, locale) => {
-    const reports = reportsByLocale[locale].reports;
+    const reports = getVisibleReports(locale);
     Object.keys(reports).forEach((reportKey) => {
       params.push({ locale, report: reportKey });
     });
@@ -48,7 +65,8 @@ export default async function ReportDetailPage({ params }) {
   const decodedReport = decodeURIComponent(report);
   if (
     !hasLocale(Object.keys(reportsByLocale), locale) ||
-    !reportsByLocale[locale].reports[decodedReport]
+    !reportsByLocale[locale].reports[decodedReport] ||
+    !isReportReleased(locale, decodedReport)
   ) {
     notFound();
   }

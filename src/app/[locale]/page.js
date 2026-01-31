@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
-import { reportsByLocale } from '@/reports';
+import { getVisibleReports } from '@/reports';
 import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
@@ -13,17 +13,18 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations('Home', locale);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const languages = routing.locales.map((loc) => [
+          loc,
+          new URL(getPathname({ locale: loc, href: '/' }), siteUrl).toString(),
+        ]);
+  languages.push(['x-default', new URL(siteUrl).toString()]);
+
   return {
     title: t('meta.title'),
     description: t('meta.description'),
     alternates: {
       canonical: new URL(getPathname({ locale, href: '/' }), siteUrl).toString(),
-      languages: Object.fromEntries(
-        routing.locales.map((loc) => [
-          loc,
-          new URL(getPathname({ locale: loc, href: '/' }), siteUrl).toString(),
-        ])
-      ),
+      languages: Object.fromEntries(languages),
     },
   };
 }
@@ -37,7 +38,7 @@ export default async function Home({ params }) {
   const t = await getTranslations('Home', locale);
 
   // Get the report data for the current locale
-  const reportModule = reportsByLocale[locale]?.reports?.wdr25;
+  const reportModule = getVisibleReports(locale)?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
 

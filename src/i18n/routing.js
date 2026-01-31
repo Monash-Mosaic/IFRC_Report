@@ -29,4 +29,5 @@ export const routing = defineRouting({
       es: '/reportaje/[report]/[chapter]',
     },
   },
+  alternateLinks: false, // We handle alternate links manually in HTML head
 });

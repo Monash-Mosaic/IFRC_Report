@@ -1,6 +1,12 @@
 import { getPathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
-import { reportsByLocale } from '@/reports';
+import {
+  getVisibleReports,
+  isLocaleReleased,
+  isReportReleased,
+  reportsByLocale,
+  reportUriMap,
+} from '@/reports';
 
 /**
  * 
@@ -26,7 +32,7 @@ export default async function sitemap() {
   const getLatestReleaseDate = (locales) => {
     const dates = [];
     locales.forEach((locale) => {
-      const reports = reportsByLocale[locale]?.reports || {};
+      const reports = getVisibleReports(locale);
       Object.values(reports).forEach((report) => {
         if (report?.releaseDate) {
           dates.push(new Date(report.releaseDate).getTime());
@@ -42,41 +48,63 @@ export default async function sitemap() {
   const items = [];
   const locales = routing.locales;
   const defaultLocale = routing.defaultLocale;
+  const releasedLocales = locales.filter((locale) => isLocaleReleased(locale));
+  const effectiveLocales = releasedLocales.length ? releasedLocales : [defaultLocale];
+  const defaultReleasedLocale = effectiveLocales.includes(defaultLocale)
+    ? defaultLocale
+    : effectiveLocales[0];
 
-  const homeLastModified = getLatestReleaseDate(locales);
+  const homeLastModified = getLatestReleaseDate(effectiveLocales);
   items.push({
-    url: `${host}${getPathname({ locale: defaultLocale, href: '/' })}`,
+    url: `${host}${getPathname({ locale: defaultReleasedLocale, href: '/' })}`,
     ...(homeLastModified ? { lastModified: homeLastModified } : {}),
-    alternates: buildAlternates('/', undefined, locales),
+    alternates: buildAlternates('/', undefined, effectiveLocales),
   });
 
-  const reportsLastModified = getLatestReleaseDate(locales);
+  const reportsLastModified = getLatestReleaseDate(effectiveLocales);
   items.push({
-    url: `${host}${getPathname({ locale: defaultLocale, href: '/reports' })}`,
+    url: `${host}${getPathname({ locale: defaultReleasedLocale, href: '/reports' })}`,
     ...(reportsLastModified ? { lastModified: reportsLastModified } : {}),
-    alternates: buildAlternates('/reports', undefined, locales),
+    alternates: buildAlternates('/reports', undefined, effectiveLocales),
   });
 
   const reportKeys = new Set();
-  locales.forEach((locale) => {
-    Object.keys(reportsByLocale[locale]?.reports || {}).forEach((key) => reportKeys.add(key));
+  effectiveLocales.forEach((locale) => {
+    Object.keys(getVisibleReports(locale)).forEach((key) => reportKeys.add(key));
   });
 
   reportKeys.forEach((reportKey) => {
-    const localesWithReport = locales.filter(
-      (locale) => reportsByLocale[locale]?.reports?.[reportKey]
+    const localesWithReport = effectiveLocales.filter(
+      (locale) => isReportReleased(locale, reportKey)
     );
     if (!localesWithReport.length) {
       return;
     }
     const reportLastModified = getLatestReleaseDate(localesWithReport);
+    const reportLanguages = reportUriMap[reportKey]?.languages || {};
+    const reportSlugForLocale = (locale) => reportLanguages[locale] || reportKey;
+    const reportAlternates = {
+      languages: Object.fromEntries(
+        localesWithReport.map((locale) => [
+          locale,
+          `${host}${getPathname({
+            locale,
+            href: buildHref('/reports/[report]', {
+              report: reportSlugForLocale(locale),
+            }),
+          })}`,
+        ])
+      ),
+    };
     items.push({
       url: `${host}${getPathname({
-        locale: defaultLocale,
-        href: buildHref('/reports/[report]', { report: reportKey }),
+        locale: defaultReleasedLocale,
+        href: buildHref('/reports/[report]', {
+          report: reportSlugForLocale(defaultReleasedLocale),
+        }),
       })}`,
       ...(reportLastModified ? { lastModified: reportLastModified } : {}),
-      alternates: buildAlternates('/reports/[report]', { report: reportKey }, localesWithReport),
+      alternates: reportAlternates,
     });
 
     const chapterKeys = new Set();
@@ -92,20 +120,33 @@ export default async function sitemap() {
       if (!localesWithChapter.length) {
         return;
       }
+      const chapterLanguages =
+        reportUriMap[reportKey]?.chapters?.[chapterKey]?.languages || {};
+      const chapterSlugForLocale = (locale) => chapterLanguages[locale] || chapterKey;
+      const chapterAlternates = {
+        languages: Object.fromEntries(
+          localesWithChapter.map((locale) => [
+            locale,
+            `${host}${getPathname({
+              locale,
+              href: buildHref('/reports/[report]/[chapter]', {
+                report: reportSlugForLocale(locale),
+                chapter: chapterSlugForLocale(locale),
+              }),
+            })}`,
+          ])
+        ),
+      };
       items.push({
         url: `${host}${getPathname({
-          locale: defaultLocale,
+          locale: defaultReleasedLocale,
           href: buildHref('/reports/[report]/[chapter]', {
-            report: reportKey,
-            chapter: chapterKey,
+            report: reportSlugForLocale(defaultReleasedLocale),
+            chapter: chapterSlugForLocale(defaultReleasedLocale),
           }),
         })}`,
         ...(reportLastModified ? { lastModified: reportLastModified } : {}),
-        alternates: buildAlternates(
-          '/reports/[report]/[chapter]',
-          { report: reportKey, chapter: chapterKey },
-          localesWithChapter
-        ),
+        alternates: chapterAlternates,
       });
     });
   });
