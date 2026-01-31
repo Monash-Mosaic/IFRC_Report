@@ -24,7 +24,8 @@ export async function generateMetadata({ params }) {
       },
     };
   }
-  const { metadata: { chapterPrefix }, title, subtitle } = chapterData;
+  const { title: reportTitle } = reportData;
+  const { metadata: { chapterPrefix }, title: chapterTitle } = chapterData;
   const reportKey = reportUriMap.uri[locale][decodedReport];
   const chapterKey = reportUriMap[reportKey].chapters.uri[locale][decodedChapter];
 
@@ -46,18 +47,18 @@ export async function generateMetadata({ params }) {
         .find(([loc, url]) => loc === routing.defaultLocale)[1]
         .replace(`/${routing.defaultLocale}/`, '/'),
   ]);
-  const metaTitle = chapterPrefix ? `${chapterPrefix} > ${title}` : title;
+  const metaTitle = `${reportTitle} > ${chapterPrefix}`;
   const canonical = getPathname({ locale, href: buildHref(decodedChapter) });
   return {
     title: metaTitle,
-    description: subtitle,
+    description: chapterTitle,
     alternates: {
       canonical,
       languages: Object.fromEntries(languages),
     },
     openGraph: {
       title: metaTitle,
-      description: subtitle,
+      description: chapterTitle,
       type: 'article',
       locale,
       url: canonical,
@@ -73,7 +74,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: 'summary_large_image',
       title: metaTitle,
-      description: subtitle,
+      description: chapterTitle,
       images: ['/twitter-image'],
     },
   };

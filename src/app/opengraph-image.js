@@ -18,7 +18,7 @@ export default async function OpenGraphImage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '',
+          background: 'white',
         }}
       >
         <img
