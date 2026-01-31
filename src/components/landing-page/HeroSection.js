@@ -2,30 +2,18 @@ import { Link } from '@/i18n/navigation';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
-import HeroVideo from './HeroVideo';
+import HeroMediaBlock from './HeroMediaBlock';
 
 export default function HeroSection({ messages }) {
   const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
 
   return (
     <section className=" space-y-8">
-      <div className="relative pt-8 pb-8 px-4 md:px-20 overflow-hidden rounded-lg min-h-[500px] md:min-h-[600px] ">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <HeroVideo alt={messages.heroAlt} />
-          <div className="absolute inset-0 bg-black/20 z-20" />
-        </div>
-        <div className="relative z-10 space-y-8">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-7xl/18  font-bold text-white leading-tight text-end">
-              <span className="whitespace-pre-line">{messages.title}</span>
-              <div className="mt-8">2026</div>
-            </h1>
-            <div className="text-4xl md:text-5xl text-white leading-tight font-bold">
-              <span className="whitespace-pre-line">{messages.description}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeroMediaBlock
+        title={messages.title}
+        description={messages.description}
+        heroAlt={messages.heroAlt}
+      />
       {/* Responsive Layout Container */}
       <div className="flex flex-col gap-8">
         {/* Action Buttons - will reorder based on screen size */}

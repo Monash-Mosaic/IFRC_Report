@@ -60,11 +60,7 @@ export async function generateStaticParams() {
 export default async function Home({ params }) {
   const { locale } = await params;
   const t = await getTranslations('Home', locale);
-  const baseUrl = (getBaseUrl() ?? '').replace(
-    /\/+$/,
-    ''
-  );
-  const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
+  const baseUrl = getBaseUrl();
 
   // Get the report data for the current locale
   const reportModule = getVisibleReports(locale)?.wdr25;
@@ -100,7 +96,7 @@ export default async function Home({ params }) {
     '@type': 'WebSite',
     name: t('meta.title'),
     description: t('meta.description'),
-    url: toAbsolute(getPathname({ locale, href: '/' })),
+    url: new URL(getPathname({ locale, href: '/' }), baseUrl).toString(),
     inLanguage: locale,
   };
 

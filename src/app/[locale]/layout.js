@@ -5,8 +5,6 @@ import { hasLocale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { getDirection } from '@/i18n/helper';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { routing } from '@/i18n/routing';
 import './globals.css';
 
@@ -37,9 +35,7 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale} dir={dir}>
       <body className={`${GeistSans.variable} ${GeistMono.variable} locale-${locale} antialiased`}>
         <NextIntlClientProvider>
-          <Header />
           {children}
-          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
