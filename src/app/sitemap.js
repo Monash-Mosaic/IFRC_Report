@@ -1,5 +1,6 @@
 import { getPathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
+import { getBaseUrl } from '@/lib/base-url';
 import {
   getVisibleReports,
   isLocaleReleased,
@@ -13,10 +14,7 @@ import {
  * @returns {Promise<import('next').MetadataRoute.Sitemap>}
  */
 export default async function sitemap() {
-  const host = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
-    /\/+$/,
-    ''
-  );
+  const host = getBaseUrl();
 
   const buildHref = (href, params) => (params ? { pathname: href, params } : href);
 

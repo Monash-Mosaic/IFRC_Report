@@ -6,6 +6,7 @@ import { hasLocale } from 'next-intl';
 import { Link, getPathname } from '@/i18n/navigation';
 import { getVisibleReports, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
 import { routing } from '@/i18n/routing';
+import { getBaseUrl } from '@/lib/base-url';
 
 export async function generateMetadata({ params }) {
   const { locale, report } = await params;
@@ -82,7 +83,7 @@ export async function generateStaticParams() {
 export default async function ReportDetailPage({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
+  const baseUrl = (getBaseUrl() ?? '').replace(
     /\/+$/,
     ''
   );

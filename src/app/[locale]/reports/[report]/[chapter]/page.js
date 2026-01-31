@@ -7,6 +7,7 @@ import { getPathname, Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import SidebarPanel from '@/components/SidebarPanel';
 import TableOfContent from '@/components/TableOfContent';
+import { getBaseUrl } from '@/lib/base-url';
 
 
 export async function generateMetadata({ params }) {
@@ -102,7 +103,7 @@ export default async function ReportChapterPage({ params }) {
   const { report, chapter, locale } = await params;
   const decodedReport = decodeURIComponent(report);
   const decodedChapter = decodeURIComponent(chapter);
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
+  const baseUrl = (getBaseUrl() ?? '').replace(
     /\/+$/,
     ''
   );

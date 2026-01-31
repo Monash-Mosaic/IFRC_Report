@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { getBaseUrl } from '@/lib/base-url';
 
 export const size = {
   width: 1200,
@@ -8,7 +9,7 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function OpenGraphImage() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const baseUrl = getBaseUrl();
   return new ImageResponse(
     (
       <div
