@@ -22,18 +22,23 @@
     "binding": "IMAGES"
   },
   "vars": {
-    "ENVIRONMENT": "development"
+    "ENVIRONMENT": "staging"
   },
-  "env": {
-    "staging": {
-      "vars": {
-        "ENVIRONMENT": "staging"
-      },
+  "preview_urls": true,
+  "workers_dev": true,
+  "observability": {
+    "enabled": false,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
     },
-    "production": {
-      "vars": {
-        "ENVIRONMENT": "production"
-      },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1
     }
   }
 }
