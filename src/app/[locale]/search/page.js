@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { Link } from '@/i18n/navigation';
 import SearchResultCard from '@/components/SearchResultCard';
-import { Home, ChevronRight } from 'lucide-react';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -13,9 +12,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export async function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+export const dynamic = 'force-dynamic'
 
 // Mock search results data - same results regardless of search input
 const mockSearchResults = [
@@ -23,21 +20,21 @@ const mockSearchResults = [
     id: 1,
     title:
       'Harmful Information and the Erosion of Trust in Humanitarian Response: the Role of Truth, Trust ...',
-    excerpt:
+    highlight:
       'Confirmation Bias – Confirmation Bias refers to the tendency to seek out, favour and recall information that supports our existing beliefs, while ignoring or dismissing contradictory ...',
     href: '/reports/wdr25/chapter-02',
   },
   {
     id: 2,
     title: 'Trust: What is being lost',
-    excerpt:
+    highlight:
       'Trust: What is being lost – Trust is grounded in expectations, involves vulnerability and builds gradually, yet once broken it may be lost completely. Rousseau et al. (1998) define trust as ...',
     href: '/reports/wdr25/chapter-02',
   },
   {
     id: 3,
     title: 'Trust, Misinformation and the Power of Local Connection in Crisis Response',
-    excerpt:
+    highlight:
       "Misinformation – In today's increasingly connected world, misinformation, disinformation, and harmful speech pose serious threats to humanitarian access, public health and social cohesion. Understanding ...",
     href: '/reports/wdr25/chapter-02',
   },
@@ -48,31 +45,17 @@ export default async function SearchPage({ params, searchParams }) {
   const t = await getTranslations('SearchPage', locale);
 
   // Get search query from URL params (for display purposes)
-  const query = (await searchParams)?.q || '';
+  const query = decodeURIComponent((await searchParams)?.q || '');
 
   return (
     <div className="min-h-screen bg-white">
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4">
         {/* Breadcrumb */}
-        <nav aria-label={t('breadcrumb.ariaLabel')} className="mb-6">
-          <ol className="flex items-center space-x-2 text-sm">
-            <li>
-              <Link
-                href="/"
-                className="text-red-600 hover:text-red-700 transition-colors flex items-center gap-1"
-              >
-                <Home className="w-4 h-4" />
-                {t('breadcrumb.home')}
-              </Link>
-            </li>
-            <li>
-              <ChevronRight className="w-4 h-4 text-gray-400" />
-            </li>
-            <li>
-              <span className="text-red-600 font-medium">{t('breadcrumb.searchPage')}</span>
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumb
+          ariaLabel={t('breadcrumb.ariaLabel')}
+          homeLabel={t('breadcrumb.home')}
+          items={[{ label: t('breadcrumb.searchPage') }]}
+        />
 
         {/* Search Results */}
         <section aria-label={t('results.ariaLabel')}>
@@ -81,7 +64,7 @@ export default async function SearchPage({ params, searchParams }) {
               <SearchResultCard
                 key={result.id}
                 title={result.title}
-                excerpt={result.excerpt}
+                highlight={result.highlight}
                 href={result.href}
               />
             ))}
