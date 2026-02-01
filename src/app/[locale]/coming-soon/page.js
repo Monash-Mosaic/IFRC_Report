@@ -3,6 +3,8 @@ import { routing } from '@/i18n/routing';
 import { getPathname } from '@/i18n/navigation';
 import HeroMediaBlock from '@/components/landing-page/HeroMediaBlock';
 
+export const dynamic = 'force-static';
+
 /** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -42,6 +44,10 @@ export async function generateMetadata({ params }) {
       follow: false,
     },
   };
+}
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function ComingSoonPage({ params }) {

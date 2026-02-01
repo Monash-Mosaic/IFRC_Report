@@ -1,6 +1,11 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
+
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function ComingSoonLayout({ children, params }) {
   const { locale } = await params;
