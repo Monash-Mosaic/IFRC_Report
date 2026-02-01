@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom';
 
+process.env.NODE_ENV = 'test';
+
 // Mock fetch for testing environment
 global.fetch = jest.fn();
 
