@@ -142,7 +142,10 @@ export default async function ReportChapterPage({ params }) {
     ),
   };
 
-  const t = await getTranslations('ReportChapterPage', locale);
+  const t = await getTranslations({
+    namespace: 'ReportChapterPage',
+    locale
+  });
 
   return (
     <div className="min-h-screen bg-white flex  pl-8 pr-0 py-8">

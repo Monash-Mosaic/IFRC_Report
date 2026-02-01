@@ -10,7 +10,10 @@ import './globals.css';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations('Metadata', locale);
+  const t = await getTranslations({
+    namespace: 'Metadata',
+    locale,
+  });
   return {
     title: {
       default: t('defaultTitle'),

@@ -9,7 +9,10 @@ export async function generateStaticParams() {
 
 export default async function ComingSoonLayout({ children, params }) {
   const { locale } = await params;
-  const t = await getTranslations('Home', locale);
+  const t = await getTranslations({
+    namespace: 'Home',
+    locale,
+  });
   return (
     <>
       <header className="w-full bg-white">

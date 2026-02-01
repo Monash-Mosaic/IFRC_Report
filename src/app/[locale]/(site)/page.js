@@ -12,7 +12,10 @@ import { getBaseUrl } from '@/lib/base-url';
 /** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations('Home', locale);
+  const t = await getTranslations({
+    namespace: 'Home',
+    locale,
+  });
   const title = t('meta.title');
   const description = t('meta.description');
   const canonical = getPathname({ locale, href: '/' });
@@ -58,7 +61,10 @@ export async function generateStaticParams() {
 
 export default async function Home({ params }) {
   const { locale } = await params;
-  const t = await getTranslations('Home', locale);
+  const t = await getTranslations({
+    namespace: 'Home',
+    locale,
+  });
   const baseUrl = getBaseUrl();
 
   // Get the report data for the current locale

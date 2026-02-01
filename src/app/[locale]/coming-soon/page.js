@@ -8,7 +8,10 @@ export const dynamic = 'force-static';
 /** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations('ComingSoon', locale);
+  const t = await getTranslations({
+    namespace: 'ComingSoon',
+    locale,
+  });
   const title = t('meta.title');
   const description = t('meta.description');
   const canonical = getPathname({ locale, href: '/coming-soon' });
@@ -52,7 +55,10 @@ export async function generateStaticParams() {
 
 export default async function ComingSoonPage({ params }) {
   const { locale } = await params;
-  const t = await getTranslations('Home', locale);
+  const t = await getTranslations({
+    namespace: 'Home',
+    locale,
+  });
   const message = {
     title: t('landingPage.heroSection.title'),
     description: t('landingPage.heroSection.description'),

@@ -104,7 +104,10 @@ export default async function ReportDetailPage({ params }) {
   const expandedSections = new Set();
   const bookmarkedSections = new Set();
   const activeMenu = 'toc';
-  const t = await getTranslations('ReportDetailPage', locale);
+  const t = await getTranslations({
+    namespace: 'ReportDetailPage',
+    locale,
+  });
 
   const displayedSections = Object.entries(chapters).map(([chapterKey, chapter]) => ({
     name: chapter.title,

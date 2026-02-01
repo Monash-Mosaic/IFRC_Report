@@ -84,7 +84,7 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const previewUrl = `https://${{ steps.deploy.outputs.preview_url }}`.replace('/*', '');
+            const previewUrl = `${{ steps.deploy.outputs.preview_url }}`;
             const marker = '<!-- preview-url -->';
             const body = `${marker}\nPreview URL: ${previewUrl}`;
 
