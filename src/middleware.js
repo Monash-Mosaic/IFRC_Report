@@ -9,14 +9,23 @@ const handleI18nRouting = createMiddleware(routing);
 
 export default function middleware(request) {
   const { pathname } = request.nextUrl;
-  const localeFromPath = routing.locales.find((locale) => pathname.startsWith(`/${locale}`));
-  const locale = localeFromPath || routing.defaultLocale;
+  const locale = routing.locales
+        .find((locale) => pathname.startsWith(`/${locale}`)) || routing.defaultLocale;
   const comingSoonPath = getPathname({ locale, href: '/coming-soon' });
-  const isComingSoon = pathname === comingSoonPath || pathname === `${comingSoonPath}/`;
+  const isComingSoon = pathname === comingSoonPath;
+  const homePath = getPathname({ locale, href: '/' });
+  const isHome = pathname === homePath;
 
   if (!isLocaleReleased(locale) && !isComingSoon) {
     const url = request.nextUrl.clone();
     url.pathname = comingSoonPath;
+    url.search = '';
+    return NextResponse.redirect(url);
+  }
+
+  if (isLocaleReleased(locale) && isComingSoon && !isHome) {
+    const url = request.nextUrl.clone();
+    url.pathname = homePath;
     url.search = '';
     return NextResponse.redirect(url);
   }

@@ -23,8 +23,6 @@ export default async function Icon() {
           justifyContent: 'center',
           background: 'white',
           color: '#ffffff',
-          fontSize: 160,
-          fontWeight: 700,
         }}
       >
         <img
@@ -32,6 +30,8 @@ export default async function Icon() {
           width={metadata.width}
           height={metadata.height}
           style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
             objectFit: 'contain',
           }}
           alt="IFRC Logo"

@@ -30,6 +30,8 @@ export default async function OpenGraphImage() {
           width={metadata.width}
           height={metadata.height}
           style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
             objectFit: 'contain',
           }}
           alt="IFRC Logo"
