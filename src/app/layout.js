@@ -7,8 +7,14 @@ export const metadata = {
     template: '%s | IFRC',
   },
   icons: {
-    icon: '/icon',
-    apple: '/apple-icon',
+    icon: '/icon.jpg',
+    apple: '/apple-icon.jpg',
+  },
+  openGraph: {
+    images: ['/wdr25/ifrc_logo.jpg'],
+  },
+  twitter: {
+    images: ['/wdr25/ifrc_logo.jpg'],
   },
 };
 

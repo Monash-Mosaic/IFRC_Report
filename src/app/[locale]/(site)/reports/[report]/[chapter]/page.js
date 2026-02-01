@@ -57,7 +57,7 @@ export async function generateMetadata({ params }) {
       url: canonical,
       images: [
         {
-          url: '/opengraph-image',
+          url: '/wdr25/ifrc_logo.jpg',
           width: 1200,
           height: 630,
           alt: metaTitle,
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: metaTitle,
       description: chapterTitle,
-      images: ['/twitter-image'],
+      images: ['/wdr25/ifrc_logo.jpg'],
     },
   };
 }

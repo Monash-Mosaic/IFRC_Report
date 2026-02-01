@@ -37,9 +37,9 @@ const nextConfig = {
   },
 };
 
+export default nextIntlPlugin(withMDX(nextConfig));
+
 // Workaround this issues: https://github.com/opennextjs/opennextjs-cloudflare/issues/923
 if (process.env.NODE_ENV !== 'test') {
   initOpenNextCloudflareForDev();
 }
-
-export default nextIntlPlugin(withMDX(nextConfig));
