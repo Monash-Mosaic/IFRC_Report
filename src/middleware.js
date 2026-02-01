@@ -13,7 +13,7 @@ export default function middleware(request) {
         .find((locale) => pathname.startsWith(`/${locale}`)) || routing.defaultLocale;
   const comingSoonPath = getPathname({ locale, href: '/coming-soon' });
   const isComingSoon = pathname === comingSoonPath;
-  const homePath = getPathname({ locale, href: '/' });
+  const homePath = `/${locale}`;
   const isHome = pathname === homePath;
 
   if (!isLocaleReleased(locale) && !isComingSoon) {
