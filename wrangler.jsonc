@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ifrc-report",
+  "name": "ifrc-wdr-playbook",
   "main": ".open-next/worker.js",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": [
@@ -15,14 +15,14 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "ifrc-report"
+      "service": "ifrc-wdr-playbook"
     }
   ],
   "images": {
     "binding": "IMAGES"
   },
   "vars": {
-    "ENVIRONMENT": "dev"
+    "ENVIRONMENT": "development"
   },
   "env": {
     "staging": {

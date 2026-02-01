@@ -56,6 +56,47 @@ In Cloudflare Workers Builds, set:
 - Static asset caching is configured in public/_headers.
 - Optional: add an R2 binding named `NEXT_INC_CACHE_R2_BUCKET` to enable ISR caching.
 
+## CI/CD and DevSecOps (GitHub Actions)
+
+This repository uses GitHub Actions for CI/CD and DevSecOps checks, aligned with Cloudflare Workers deployments.
+
+### Workflows
+
+- CI workflow for pull requests: [.github/workflows/ci.yml](.github/workflows/ci.yml)
+- CodeQL security scanning: [.github/workflows/codeql.yml](.github/workflows/codeql.yml)
+- Production deploy on published releases: [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
+- Staging deploy on published releases: [.github/workflows/deploy-staging.yml](.github/workflows/deploy-staging.yml)
+
+### Release flow
+
+1. Create a version tag and publish a GitHub Release.
+2. Both staging and production workflows run on published releases.
+3. Production deploy requires GitHub Environment approval.
+
+### Required GitHub Environments
+
+Create these environments with required reviewers:
+
+- staging
+- production
+
+Add the following secrets to each environment:
+
+- CLOUDFLARE_API_TOKEN
+- CLOUDFLARE_ACCOUNT_ID
+
+### Security gates
+
+Deployments are blocked unless these checks pass:
+
+- Linting
+- Unit tests
+- Dependency audit
+
+### Notes on Cloudflare accounts
+
+Use separate Cloudflare API tokens per environment to enforce account boundaries.
+
 ## Hero Video Assets
 
 The hero section uses HLS (HTTP Live Streaming) video for network-friendly playback. To generate the required assets:
