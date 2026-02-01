@@ -29,13 +29,11 @@
       "vars": {
         "ENVIRONMENT": "staging"
       },
-      "route": "staging.wdr26.org/*"
     },
     "production": {
       "vars": {
         "ENVIRONMENT": "production"
       },
-      "route": "wdr26.org/*"
     }
   }
 }
