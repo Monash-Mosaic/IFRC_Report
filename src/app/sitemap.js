@@ -52,18 +52,27 @@ export default async function sitemap() {
     ? defaultLocale
     : effectiveLocales[0];
 
+  const stripDefaultLocale = (path) => {
+    if (defaultReleasedLocale !== defaultLocale) {
+      return path;
+    }
+    if (path === `/${defaultLocale}`) {
+      return '/';
+    }
+    return path.replace(`/${defaultLocale}/`, '/');
+  };
+
+  const buildDefaultUrl = (href, params) =>
+    `${host}${stripDefaultLocale(
+      getPathname({ locale: defaultReleasedLocale, href: buildHref(href, params) })
+    )}`;
+
   const homeLastModified = getLatestReleaseDate(effectiveLocales);
   items.push({
-    url: `${host}${getPathname({ locale: defaultReleasedLocale, href: '/' })}`,
+    url: buildDefaultUrl('/'),
     ...(homeLastModified ? { lastModified: homeLastModified } : {}),
     alternates: buildAlternates('/', undefined, effectiveLocales),
-  });
-
-  const reportsLastModified = getLatestReleaseDate(effectiveLocales);
-  items.push({
-    url: `${host}${getPathname({ locale: defaultReleasedLocale, href: '/reports' })}`,
-    ...(reportsLastModified ? { lastModified: reportsLastModified } : {}),
-    alternates: buildAlternates('/reports', undefined, effectiveLocales),
+    priority: 1.0,
   });
 
   const reportKeys = new Set();
@@ -95,14 +104,12 @@ export default async function sitemap() {
       ),
     };
     items.push({
-      url: `${host}${getPathname({
-        locale: defaultReleasedLocale,
-        href: buildHref('/reports/[report]', {
-          report: reportSlugForLocale(defaultReleasedLocale),
-        }),
-      })}`,
+      url: buildDefaultUrl('/reports/[report]', {
+        report: reportSlugForLocale(defaultReleasedLocale),
+      }),
       ...(reportLastModified ? { lastModified: reportLastModified } : {}),
       alternates: reportAlternates,
+      priority: 0.7,
     });
 
     const chapterKeys = new Set();
@@ -136,15 +143,13 @@ export default async function sitemap() {
         ),
       };
       items.push({
-        url: `${host}${getPathname({
-          locale: defaultReleasedLocale,
-          href: buildHref('/reports/[report]/[chapter]', {
-            report: reportSlugForLocale(defaultReleasedLocale),
-            chapter: chapterSlugForLocale(defaultReleasedLocale),
-          }),
-        })}`,
+        url: buildDefaultUrl('/reports/[report]/[chapter]', {
+          report: reportSlugForLocale(defaultReleasedLocale),
+          chapter: chapterSlugForLocale(defaultReleasedLocale),
+        }),
         ...(reportLastModified ? { lastModified: reportLastModified } : {}),
         alternates: chapterAlternates,
+        priority: 0.6,
       });
     });
   });

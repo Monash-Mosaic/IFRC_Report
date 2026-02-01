@@ -2,7 +2,7 @@ import { ArrowLeft } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-import { getVisibleReports, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
+import { getVisibleReports, isLocaleReleased, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
 import { getPathname, Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import SidebarPanel from '@/components/SidebarPanel';
@@ -35,19 +35,20 @@ export async function generateMetadata({ params }) {
     params: { report: decodedReport, chapter: chapterKey },
   });
   const languages = Object.entries(reportUriMap[reportKey].chapters[chapterKey].languages)
-          .map(([loc, uri]) => {
-            const href = buildHref(uri);
+    .filter(([loc]) => isLocaleReleased(loc))
+    .map(([loc, uri]) => {
+      const href = buildHref(uri);
             return [
               loc,
               getPathname({ locale: loc, href }),
             ];
-          });
-  languages.push([
-    'x-default',
+    });
+    languages.push([
+      'x-default',
     languages
         .find(([loc, url]) => loc === routing.defaultLocale)[1]
         .replace(`/${routing.defaultLocale}/`, '/'),
-  ]);
+    ]);
   const metaTitle = `${reportTitle} > ${chapterPrefix}`;
   const canonical = getPathname({ locale, href: buildHref(decodedChapter) });
   return {

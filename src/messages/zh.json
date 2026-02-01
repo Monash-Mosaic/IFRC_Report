@@ -121,6 +121,12 @@
     "title": "选择语言",
     "language": "语言"
   },
+  "ComingSoon": {
+    "meta": {
+      "title": "即将上线",
+      "description": "IFRC《世界灾难报告》数字体验即将上线。"
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "展开侧边栏",
     "closeSidebar": "关闭侧边栏",

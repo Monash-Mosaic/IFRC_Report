@@ -155,5 +155,11 @@
     "videoCard": {
       "backToThumbnail": "Volver a la miniatura"
     }
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "Próximamente",
+      "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
+    }
   }
 }

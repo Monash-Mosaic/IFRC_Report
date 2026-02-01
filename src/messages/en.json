@@ -121,6 +121,12 @@
     "title": "Select language",
     "language": "Language"
   },
+  "ComingSoon": {
+    "meta": {
+      "title": "Coming soon",
+      "description": "The IFRC World Disasters Report experience is launching soon."
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "Expand sidebar",
     "closeSidebar": "Close sidebar",

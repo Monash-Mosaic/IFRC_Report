@@ -11,10 +11,10 @@ export default function middleware(request) {
   const { pathname } = request.nextUrl;
   const locale = routing.locales
         .find((locale) => pathname.startsWith(`/${locale}`)) || routing.defaultLocale;
-  const comingSoonPath = getPathname({ locale, href: '/coming-soon' });
-  const isComingSoon = pathname === comingSoonPath;
   const homePath = `/${locale}`;
   const isHome = pathname === homePath;
+  const comingSoonPath = `${homePath}/coming-soon`;
+  const isComingSoon = pathname === comingSoonPath;
 
   if (!isLocaleReleased(locale) && !isComingSoon) {
     const url = request.nextUrl.clone();

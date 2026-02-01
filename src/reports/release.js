@@ -16,7 +16,7 @@ export const isLocaleReleased = (locale, environment = getEnvironment()) => {
     return false;
   }
   if (environment === 'production') {
-    return release.production !== false;
+    return !!release.production;
   }
-  return release.preview !== false;
+  return !!release.preview;
 };

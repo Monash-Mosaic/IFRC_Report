@@ -139,6 +139,12 @@
     "title": "Sélectionnez la langue",
     "language": "Langue"
   },
+  "ComingSoon": {
+    "meta": {
+      "title": "Bientôt disponible",
+      "description": "L’expérience du Rapport mondial sur les catastrophes de l’IFRC arrive bientôt."
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "Étendre la barre latérale",
     "closeSidebar": "Fermer la barre latérale",

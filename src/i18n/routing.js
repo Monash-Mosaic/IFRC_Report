@@ -28,14 +28,6 @@ export const routing = defineRouting({
       ru: '/отчеты/[report]/[chapter]',
       es: '/reportaje/[report]/[chapter]',
     },
-    '/coming-soon': {
-      en: '/coming-soon',
-      fr: '/à-venir',
-      zh: '/敬请期待',
-      ar: '/قريباً',
-      ru: '/скоро',
-      es: '/próximamente',
-    },
   },
   alternateLinks: false, // We handle alternate links manually in HTML head
   localeCookie: false, // Use URL to determine locale avoid international regulations on cookie issues

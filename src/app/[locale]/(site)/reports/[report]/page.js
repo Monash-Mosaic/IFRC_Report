@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import { Link, getPathname } from '@/i18n/navigation';
-import { getVisibleReports, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
+import { getVisibleReports, isLocaleReleased, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
 import { routing } from '@/i18n/routing';
 import { getBaseUrl } from '@/lib/base-url';
 
@@ -25,19 +25,22 @@ export async function generateMetadata({ params }) {
   const canonical = getPathname({ locale, href: `/reports/${decodedReport}` });
   const reportKey = reportUriMap.uri[locale][decodedReport];
   const reportUrls = reportUriMap[reportKey];
-  const languages = Object.entries(reportUrls.languages).map(([loc, uri]) => [
-          loc,
-          getPathname({
-              locale: loc,
-              href: {
-                pathname: '/reports/[report]',
-                params: { report: uri },
-              },
-            }),
-        ]);
+  const languages = Object.entries(reportUrls.languages)
+    .filter(([loc]) => isLocaleReleased(loc))
+    .map(([loc, uri]) => [
+      loc,
+      getPathname({
+        locale: loc,
+        href: {
+          pathname: '/reports/[report]',
+          params: { report: uri },
+        },
+      }),
+    ]);
   languages.push([
     'x-default',
-    languages.find(([loc, url]) => loc === routing.defaultLocale)[1].replace(`/${routing.defaultLocale}/`, '/'),
+    languages.find(([loc, url]) => loc === routing.defaultLocale)[1]
+    .replace(`/${routing.defaultLocale}/`, '/'),
   ]);
   return {
     title: title,

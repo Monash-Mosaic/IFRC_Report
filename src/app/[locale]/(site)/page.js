@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
-import { getVisibleReports } from '@/reports';
+import { getVisibleReports, isLocaleReleased } from '@/reports';
 import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
@@ -16,10 +16,9 @@ export async function generateMetadata({ params }) {
   const title = t('meta.title');
   const description = t('meta.description');
   const canonical = getPathname({ locale, href: '/' });
-  const languages = routing.locales.map((loc) => [
-          loc,
-          getPathname({ locale: loc, href: '/' }),
-        ]);
+  const languages = routing.locales
+    .filter((loc) => isLocaleReleased(loc))
+    .map((loc) => [loc, getPathname({ locale: loc, href: '/' })]);
   languages.push(['x-default', '/']);
 
   return {
