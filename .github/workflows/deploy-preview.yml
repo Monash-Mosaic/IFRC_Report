@@ -3,9 +3,12 @@ name: Deploy to Cloudflare (PR Preview)
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
 
 permissions:
   contents: read
+  statuses: write
   pull-requests: write
 
 jobs:
@@ -31,7 +34,7 @@ jobs:
         run: npm run lint
 
       - name: Test
-        run: npm run test
+        run: npm run ci:test
 
       - name: Dependency audit
         run: npm audit --audit-level=high
@@ -45,10 +48,10 @@ jobs:
       - name: Compute preview name and route
         id: preview
         run: |
-          RAW_BRANCH="${{ github.head_ref }}"
+          RAW_BRANCH="${{ github.head_ref || github.ref_name }}"
           BRANCH_SLUG=$(echo "$RAW_BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | cut -c1-40)
           if [ -z "$BRANCH_SLUG" ]; then
-            BRANCH_SLUG="pr-${{ github.event.pull_request.number }}"
+            BRANCH_SLUG="${{ github.event.pull_request.number && format('pr-{0}', github.event.pull_request.number) || 'main' }}"
           fi
           echo "branch_slug=$BRANCH_SLUG" >> "$GITHUB_OUTPUT"
 
@@ -71,13 +74,19 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          WRANGLER_ENV: staging
         run: |
-          LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} 2>&1 | tee /dev/stderr)
-          URL=$(echo "$LOG" | grep -oE 'Version Preview Alias URL: https?://[^[:space:]]+' | awk '{print $5}')
-          echo "preview_url=$URL" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} 2>&1 | tee /dev/stderr)
+            URL=$(echo "$LOG" | grep -oE 'Version Preview Alias URL: https?://[^[:space:]]+' | awk '{print $5}')
+            echo "preview_url=$URL" >> "$GITHUB_OUTPUT"
+          else
+            LOG=$(npm run upload 2>&1 | tee /dev/stderr)
+            VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
+            npx wrangler versions deploy -y "$VERSION_ID"
+          fi
 
       - name: Comment preview URL on PR
+        if: ${{ github.event_name == 'pull_request' }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -110,3 +119,26 @@ jobs:
                 body,
               });
             }
+
+      - name: Update deployment status
+        if: ${{ always() }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const sha = context.eventName === 'pull_request'
+              ? context.payload.pull_request.head.sha
+              : context.sha;
+            const state = '${{ job.status }}' === 'success' ? 'success' : 'failure';
+            const previewUrl = `${{ steps.deploy.outputs.preview_url }}`;
+
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha,
+              state,
+              context: 'deploy/preview',
+              description: state === 'success' ? 'Preview deployed' : 'Preview deploy failed',
+              target_url: previewUrl || undefined,
+            });
