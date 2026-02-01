@@ -12,15 +12,6 @@ export async function generateMetadata({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
   const reportData = reportsByLocale[locale]?.reports?.[decodedReport];
-  if (!reportData || !isReportReleased(locale, decodedReport)) {
-    return {
-      title: 'Report unavailable',
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
-  }
   const { title, description } = reportData;
   const canonical = getPathname({ locale, href: `/reports/${decodedReport}` });
   const reportKey = reportUriMap.uri[locale][decodedReport];

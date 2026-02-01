@@ -16,15 +16,6 @@ export async function generateMetadata({ params }) {
   const decodedChapter = decodeURIComponent(chapter);
   const reportData = reportsByLocale[locale]?.reports?.[decodedReport];
   const chapterData = reportData?.chapters?.[decodedChapter];
-  if (!reportData || !chapterData || !isReportReleased(locale, decodedReport)) {
-    return {
-      title: 'Chapter unavailable',
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
-  }
   const { title: reportTitle } = reportData;
   const { metadata: { chapterPrefix }, title: chapterTitle } = chapterData;
   const reportKey = reportUriMap.uri[locale][decodedReport];
