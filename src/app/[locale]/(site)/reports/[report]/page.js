@@ -77,10 +77,7 @@ export async function generateStaticParams() {
 export default async function ReportDetailPage({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
-  const baseUrl = (getBaseUrl() ?? '').replace(
-    /\/+$/,
-    ''
-  );
+  const baseUrl = getBaseUrl();
   const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   if (
     !hasLocale(Object.keys(reportsByLocale), locale) ||

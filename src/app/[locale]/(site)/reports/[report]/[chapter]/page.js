@@ -95,10 +95,7 @@ export default async function ReportChapterPage({ params }) {
   const { report, chapter, locale } = await params;
   const decodedReport = decodeURIComponent(report);
   const decodedChapter = decodeURIComponent(chapter);
-  const baseUrl = (getBaseUrl() ?? '').replace(
-    /\/+$/,
-    ''
-  );
+  const baseUrl = getBaseUrl();
   const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   if (
     !reportsByLocale[locale] ||
