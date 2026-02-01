@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
 // Mock search results data - same results regardless of search input
 const mockSearchResults = [

@@ -14,7 +14,7 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
   // Get the localized search pathname
   const pathname = getPathname({
     locale,
-    href: '/search'
+    href: '/search',
   });
 
   const iconClasses = 'w-5 h-5 text-red-600';
@@ -55,12 +55,7 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
         {isSearchExpanded && (
           <div className="fixed inset-0 z-50 bg-white">
             <div className="flex items-center gap-3 p-4 border-b border-gray-200">
-              <Form
-                action={pathname}
-                replace={true}
-                role="search"
-                className="flex-1 relative"
-              >
+              <Form action={pathname} replace={true} role="search" className="flex-1 relative">
                 <input
                   ref={searchInputRef}
                   type="search"
@@ -82,7 +77,9 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
                 className="p-2"
                 aria-label="Close search"
               >
-                <X className={`${iconClasses} cursor-pointer hover:text-red-700 transition-colors`} />
+                <X
+                  className={`${iconClasses} cursor-pointer hover:text-red-700 transition-colors`}
+                />
               </button>
             </div>
           </div>
@@ -98,9 +95,7 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
     const baseClasses =
       'border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out';
 
-    const sizeClasses = isSearchExpanded
-      ? 'w-full pl-12 pr-4 py-2'
-      : 'w-auto px-4 py-2 pr-10';
+    const sizeClasses = isSearchExpanded ? 'w-full pl-12 pr-4 py-2' : 'w-auto px-4 py-2 pr-10';
 
     return `${sizeClasses} ${baseClasses}`;
   };
@@ -127,9 +122,7 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
           spellCheck="true"
         />
         {isSearchExpanded ? (
-          <Search
-            className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${iconClasses}`}
-          />
+          <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${iconClasses}`} />
         ) : (
           <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
             <Search className="w-5 h-5 text-red-600" />

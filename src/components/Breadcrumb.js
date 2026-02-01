@@ -27,10 +27,7 @@ export default function Breadcrumb({ ariaLabel, homeLabel, items = [] }) {
           <li key={index} className="flex items-center space-x-2">
             <ChevronRight className="w-4 h-4 text-gray-400" />
             {item.href ? (
-              <Link
-                href={item.href}
-                className="text-red-600 hover:text-red-700 transition-colors"
-              >
+              <Link href={item.href} className="text-red-600 hover:text-red-700 transition-colors">
                 {item.label}
               </Link>
             ) : (
