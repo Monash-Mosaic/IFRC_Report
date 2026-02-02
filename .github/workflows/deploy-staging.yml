@@ -53,6 +53,10 @@ jobs:
           # Combine existing and new notes
           UPDATED_BODY="$NEW_NOTES
           $EXISTING_BODY"
-
+          # Save metadata.json and upload it to the release
+          cat <<'EOF' > metadata.json
+          {"version_id":"${{ steps.deploy.outputs.version_id }}","preview_url":"${{ steps.deploy.outputs.preview_url }}","branch_preview_url":"${{ steps.deploy.outputs.branch_preview_url }}"}
+          EOF
+          gh release upload "$TAG" metadata.json --repo="$GITHUB_REPOSITORY" --clobber
           # Edit the release with the updated notes
           gh release edit "$TAG" --repo="$GITHUB_REPOSITORY" --body "$UPDATED_BODY"
