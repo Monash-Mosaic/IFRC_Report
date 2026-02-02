@@ -90,10 +90,10 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} 2>&1 | tee /dev/stderr)
-            VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $3}')
+            VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
             PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview URL: https?://[^[:space:]]+' | awk '{print $4}')
             BRANCH_PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview Alias URL: https?://[^[:space:]]+' | awk '{print $5}')
-            echo "version_id=$VERSON_ID" >> "$GITHUB_OUTPUT"
+            echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
             echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
             echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
           else
