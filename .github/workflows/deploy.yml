@@ -1,13 +1,19 @@
 name: Deploy to Cloudflare (Production)
 
+# on:
+#   # TODO: enable when ready
+#   # release:
+#   #   types: [published]
+#   push:
+#     branches: [main, feat/production-setup]
+#     # tags:
+#     #   - '*' # Triggers for any tag name
+
 on:
-  # TODO: enable when ready
-  # release:
-  #   types: [published]
+  pull_request:
+    types: [opened, synchronize, reopened]
   push:
-    # branches: [main, feat/production-setup]
-    tags:
-      - '*' # Triggers for any tag name
+    branches: [main]
 
 jobs:
   validate_release:
