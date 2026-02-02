@@ -62,16 +62,15 @@ This repository uses GitHub Actions for CI/CD and DevSecOps checks, aligned with
 
 ### Workflows
 
-- CI workflow for pull requests: [.github/workflows/ci.yml](.github/workflows/ci.yml)
 - CodeQL security scanning: [.github/workflows/codeql.yml](.github/workflows/codeql.yml)
 - Production deploy on published releases: [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
-- Staging deploy on published releases: [.github/workflows/deploy-staging.yml](.github/workflows/deploy-staging.yml)
+- Staging deploy on Produciton Preview Url: [.github/workflows/deploy-staging.yml](.github/workflows/deploy-staging.yml)
 
 ### Release flow
 
 1. Create a version tag and publish a GitHub Release.
-2. Both staging and production workflows run on published releases.
-3. Production deploy requires GitHub Environment approval.
+2. Both staging workflows run on published releases.
+3. Production deploy requires Manual Deployment Through Github Actions.
 
 ### Required GitHub Environments
 

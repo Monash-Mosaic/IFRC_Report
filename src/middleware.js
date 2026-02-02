@@ -2,7 +2,6 @@ import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 
 import { routing } from './i18n/routing';
-import { getPathname } from './i18n/navigation';
 import { isLocaleReleased } from './reports/release';
 
 const handleI18nRouting = createMiddleware(routing);
