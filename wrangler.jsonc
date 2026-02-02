@@ -23,30 +23,53 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "ifrc-wdr-playbook",
+      "service": "ifrc-wdr-playbook"
     }
   ],
   "images": {
     "binding": "IMAGES"
   },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true
+    },
+  },
   "vars": {
     "ENVIRONMENT": "production"
   },
+  // Using worker.dev domain for staging (production preview) environment
+  "preview_urls": true,
+  "workers_dev": true,
   "env": {
     "preview": {
       "vars": {
-        "ENVIRONMENT": "development",
+        "ENVIRONMENT": "development"
       },
       "preview_urls": true,
       "workers_dev": true,
       "services": [
         {
           "binding": "WORKER_SELF_REFERENCE",
-          "service": "ifrc-wdr-playbook-preview",
+          "service": "ifrc-wdr-playbook-preview"
         }
       ],
       "images": {
-        "binding": "IMAGES",
+        "binding": "IMAGES"
+      },
+      "observability": {
+        "enabled": true,
+        "logs": {
+          "enabled": true,
+          "invocation_logs": true
+        },
+        "traces": {
+          "enabled": true
+        },
       },
     }
   }
