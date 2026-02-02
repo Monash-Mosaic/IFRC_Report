@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
-
-process.env.NODE_ENV = 'test';
+import { loadEnvConfig } from '@next/env';
 
 // Mock fetch for testing environment
 global.fetch = jest.fn();
@@ -16,3 +15,10 @@ Object.defineProperty(window, 'URL', {
   },
   writable: true,
 });
+
+// ref: https://nextjs.org/docs/app/guides/environment-variables#test-environment-variables
+// eslint-disable-next-line import/no-anonymous-default-export
+export default async () => {
+  const projectDir = process.cwd()
+  loadEnvConfig(projectDir)
+}

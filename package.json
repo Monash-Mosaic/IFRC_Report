@@ -16,6 +16,7 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write $(git diff --name-only --diff-filter=ACM HEAD | grep -E '\\.(js|jsx|ts|tsx|json|css|md)$')",
     "test": "jest",
+    "ci:build": "opennextjs-cloudflare build",
     "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions",
     "test:watch": "jest --watch"
   },

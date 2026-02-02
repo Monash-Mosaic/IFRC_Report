@@ -1,4 +1,12 @@
 {
+  /**
+    * Wrangler configuration file for Cloudflare Workers
+    * For more information, see: https://developers.cloudflare.com/workers/platform/sites/configuration
+    IMPORTANT:
+     - Root wrangler configuration file is for production environment.
+     - Preview (a.k.a Development) environment configuration is under the "env" key.
+    */
+
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ifrc-wdr-playbook",
   "main": ".open-next/worker.js",
@@ -15,30 +23,31 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "ifrc-wdr-playbook"
+      "service": "ifrc-wdr-playbook",
     }
   ],
   "images": {
     "binding": "IMAGES"
   },
   "vars": {
-    "ENVIRONMENT": "staging"
+    "ENVIRONMENT": "production"
   },
-  "preview_urls": true,
-  "workers_dev": true,
-  "observability": {
-    "enabled": false,
-    "head_sampling_rate": 1,
-    "logs": {
-      "enabled": true,
-      "head_sampling_rate": 1,
-      "persist": true,
-      "invocation_logs": true
-    },
-    "traces": {
-      "enabled": false,
-      "persist": true,
-      "head_sampling_rate": 1
+  "env": {
+    "preview": {
+      "vars": {
+        "ENVIRONMENT": "development",
+      },
+      "preview_urls": true,
+      "workers_dev": true,
+      "services": [
+        {
+          "binding": "WORKER_SELF_REFERENCE",
+          "service": "ifrc-wdr-playbook-preview",
+        }
+      ],
+      "images": {
+        "binding": "IMAGES",
+      },
     }
   }
 }
