@@ -77,7 +77,7 @@ export const featuredVideos = [
 export const chapters = {
   'глава-02': {
     metadata: {
-      chapterKey: 'глава-02',
+      chapterKey: 'chapter-02',
       chapterNumber: 2,
       chapterPrefix: 'Глава 02',
     },
