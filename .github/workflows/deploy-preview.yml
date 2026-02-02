@@ -97,7 +97,14 @@ jobs:
             echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
             echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
           else
+            # For pushes to main branch, deploy without preview alias
+            echo "Update Preview URL for main branch deployment"
             LOG=$(npm run upload 2>&1 | tee /dev/stderr)
+            VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
+            npx wrangler versions deploy -y "$VERSION_ID"
+
+            echo "Update Production on Preview Environment (account)"
+            LOG=$(npm run upload -- --env="" 2>&1 | tee /dev/stderr)
             VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
             npx wrangler versions deploy -y "$VERSION_ID"
           fi
