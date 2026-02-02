@@ -121,7 +121,7 @@ jobs:
             const previewUrl = `${{ steps.deploy.outputs.preview_url }}`;
             const branchPreviewUrl = `${{ steps.deploy.outputs.branch_preview_url }}`;
             const marker = '<!-- preview-url -->';
-            const body = `${marker}\n| Version ID | ${versionId} |\n| Preview URL | ${previewUrl} |\n| Branch Preview URL | ${branchPreviewUrl} |`;
+            const body = `${marker}\n| Key | Value |\n|---|---|\n| Cloudflare Worker Version ID | ${versionId} |\n| Preview URL | ${previewUrl} |\n| Branch Preview URL | ${branchPreviewUrl} |`;
 
             const { data: comments } = await github.rest.issues.listComments({
               owner,

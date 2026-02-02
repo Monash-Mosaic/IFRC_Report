@@ -1,13 +1,8 @@
 name: Deploy to Cloudflare (Production)
 
 on:
-  # TODO: enable when ready
   release:
     types: [published]
-#   push:
-#     branches: [main, feat/production-setup]
-#     # tags:
-#     #   - '*' # Triggers for any tag name
 
 permissions:
   contents: write # Required to edit releases
@@ -41,7 +36,7 @@ jobs:
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
           PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview URL: https?://[^[:space:]]+' | awk '{print $5}')
           BRANCH_PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview Alias URL: https?://[^[:space:]]+' | awk '{print $5}')
-          echo "version_id=$VERSON_ID" >> "$GITHUB_OUTPUT"
+          echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
           echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
           echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
           npx wrangler versions deploy -y "$VERSION_ID"
@@ -50,7 +45,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.event.release.tag_name }}
-          NEW_NOTES: $'\n\n| Cloudflare Worker Version ID | '"${{ steps.deploy.outputs.version_id }}"' |\n| Preview URL | '"${{ steps.deploy.outputs.preview_url }}"' |\n| Branch Preview URL | '"${{ steps.deploy.outputs.branch_preview_url }}"' |'
+          NEW_NOTES: $'\n\n<!-- preview-url -->\n| Key | Value |\n|---|---|\n| Cloudflare Worker Version ID | '"${{ steps.deploy.outputs.version_id }}"' |\n| Preview URL | '"${{ steps.deploy.outputs.preview_url }}"' |\n| Branch Preview URL | '"${{ steps.deploy.outputs.branch_preview_url }}"' |'
         run: |
           # Get the existing body of the release
           EXISTING_BODY=$(gh release view "$TAG" --repo="$GITHUB_REPOSITORY" --json body --jq .body)

@@ -1,18 +1,6 @@
 name: Deploy to Cloudflare (Production)
 
-# on:
-#   # TODO: enable when ready
-#   # release:
-#   #   types: [published]
-#   push:
-#     branches: [main, feat/production-setup]
-#     # tags:
-#     #   - '*' # Triggers for any tag name
-
 on:
-  push:
-    tags:
-      - 'v*.*.*' # Triggers for semver tags like v1.2.3, v1.2.3-rc.1
   workflow_dispatch:
     inputs:
       tag:
@@ -24,6 +12,9 @@ jobs:
   deploy_production:
     runs-on: ubuntu-latest
     environment: production
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout code
@@ -41,18 +32,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Resolve version id from tag
+      - name: Resolve version id from release notes
         id: version
-        run: |
-          TAG_NAME="${{ inputs.tag }}"
-          echo "Resolving version_id from tag: $TAG_NAME"
-          TAG_BODY=$(git cat-file -p "refs/tags/$TAG_NAME" | sed -n '1,/^$/!p')
-          VERSION_ID=$(echo "$TAG_BODY" | grep -oE 'version_id:[[:space:]]*[0-9a-f-]+' | awk '{print $2}')
-          if [ -z "$VERSION_ID" ]; then
-            echo "Error: version_id not found in tag annotation. Expected 'version_id: <uuid>'."
-            exit 1
-          fi
-          echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = '${{ inputs.tag }}';
+            const { owner, repo } = context.repo;
+            const release = await github.rest.repos.getReleaseByTag({ owner, repo, tag });
+            const body = release.data.body || '';
+            const match = body.match(/Cloudflare Worker Version ID\s*\|\s*["']?([0-9a-f-]+)["']?\s*\|/i);
+
+            if (!match) {
+              core.setFailed("version_id not found in release notes. Expected 'version_id: <uuid>'.");
+              return;
+            }
+            core.setOutput('version_id', match[1]);
 
       - name: Deploy to Cloudflare (production)
         env:
