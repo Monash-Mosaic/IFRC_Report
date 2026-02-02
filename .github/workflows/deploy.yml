@@ -10,95 +10,27 @@ name: Deploy to Cloudflare (Production)
 #     #   - '*' # Triggers for any tag name
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
   push:
     tags:
-      - 'v*.*.*' # Triggers for semver tags like v1.2.3, 1.2.3-rc.1
+      - 'v*.*.*' # Triggers for semver tags like v1.2.3, v1.2.3-rc.1
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to deploy to production (e.g., v1.2.3)'
+        required: true
+        type: string
 
 jobs:
-  validate_release:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-          fetch-depth: 0
-
-      - name: Verify tag is on main branch
-        run: |
-          if [ "${{ github.ref_type }}" != "tag" ]; then
-            echo "Not a tag ref; skipping tag validation."
-            exit 0
-          fi
-
-          TAG_NAME="${{ github.ref_name }}"
-          echo "Validating tag name: $TAG_NAME"
-
-          if [[ ! "$TAG_NAME" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
-            echo "Error: Tag '$TAG_NAME' is not a valid semver tag (e.g., v1.2.3, 1.2.3-rc.1)."
-            exit 1
-          fi
-
-          echo "✓ Tag $TAG_NAME is valid"
-
-  deploy_staging:
-    runs-on: ubuntu-latest
-    environment: production
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-          lfs: true
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Deploy to Cloudflare (staging)
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          LOG=$(npm run upload -- --preview-alias staging 2>&1 | tee /dev/stderr)
-          VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
-          echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
-
   deploy_production:
     runs-on: ubuntu-latest
-    needs: deploy_staging
     environment: production
-    if: success() # Only proceed if deploying_staging job succeeds
-
-    permissions:
-      issues: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ inputs.tag }}
           lfs: true
-
-      - uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ github.TOKEN }}
-          approvers: "@Monash-Mosaic/tech-leads"
-          minimum-approvals: 1
-          issue-title: "Deploying ${{ github.ref_name }} to prod from staging"
-          issue-body: "Please approve or deny the deployment of version ${{ github.ref_name }}."
-          exclude-workflow-initiator-as-approver: false
-          fail-on-denial: true
-          polling-interval-seconds: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -108,12 +40,25 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Resolve version id from tag
+        id: version
+        run: |
+          TAG_NAME="${{ inputs.tag }}"
+          echo "Resolving version_id from tag: $TAG_NAME"
+          TAG_BODY=$(git cat-file -p "refs/tags/$TAG_NAME" | sed -n '1,/^$/!p')
+          VERSION_ID=$(echo "$TAG_BODY" | grep -oE 'version_id:[[:space:]]*[0-9a-f-]+' | awk '{print $2}')
+          if [ -z "$VERSION_ID" ]; then
+            echo "Error: version_id not found in tag annotation. Expected 'version_id: <uuid>'."
+            exit 1
+          fi
+          echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to Cloudflare (production)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          VERSION_ID: ${{ needs.deploy_staging.outputs.version_id }}
+          VERSION_ID: ${{ steps.version.outputs.version_id }}
         run: npx wrangler versions deploy -y "$VERSION_ID"
 
       - name: Purge Cloudflare CDN cache
