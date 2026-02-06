@@ -43,6 +43,7 @@ jest.mock('next-intl', () => ({
 jest.mock('next/image', () => {
   return function MockImage({ src, alt, fill, className, ...props }) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
         alt={alt}

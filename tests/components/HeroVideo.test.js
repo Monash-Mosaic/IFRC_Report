@@ -23,8 +23,9 @@ jest.mock('hls.js/dist/hls.light.js', () => ({
 }));
 
 jest.mock('next/image', () => {
-  return function MockImage({ src, alt, fill, className, priority, ...props }) {
+  return function MockImage({ src, alt, fill, className, priority, blurDataURL, ...props }) {
     return (
+      /* eslint-disable-next-line @next/next/no-img-element */
       <img
         src={src}
         alt={alt}
@@ -32,6 +33,7 @@ jest.mock('next/image', () => {
         data-testid="mock-image"
         data-fill={fill}
         data-priority={priority}
+        data-blurdataurl={blurDataURL}
         {...props}
       />
     );
@@ -61,7 +63,7 @@ describe('HeroVideo', () => {
     expect(image).toHaveAttribute('src', '/wdr25/hero/poster.webp');
     expect(image).toHaveAttribute('alt', 'Hero alt text');
     expect(image).toHaveAttribute('placeholder', 'blur');
-    expect(image).toHaveAttribute('blurdataurl');
+    expect(image).toHaveAttribute('data-blurdataurl');
 
     const video = container.querySelector('video');
     expect(video).toBeInTheDocument();

@@ -76,7 +76,12 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
-  'chapter-02': {
+  'capitulo-02': {
+    metadata: {
+      chapterKey: 'chapter-02',
+      chapterNumber: 2,
+      chapterPrefix: 'Capítulo 02',
+    },
     component: Chapter02.default,
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,

@@ -2,17 +2,25 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
-import { routing } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
-import './globals.css';
 import { getDirection } from '@/i18n/helper';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { routing } from '@/i18n/routing';
+import './globals.css';
 
-export const metadata = {
-  title: 'IFRC Reports',
-  description: 'Welcome to the IFRC Report',
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({
+    namespace: 'Metadata',
+    locale,
+  });
+  return {
+    title: {
+      default: t('defaultTitle'),
+      template: t('titleTemplate'),
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -30,9 +38,7 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale} dir={dir}>
       <body className={`${GeistSans.variable} ${GeistMono.variable} locale-${locale} antialiased`}>
         <NextIntlClientProvider>
-          <Header />
           {children}
-          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

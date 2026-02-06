@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Всемирный доклад о бедствиях IFRC 2026"
+  },
   "Home": {
     "meta": {
       "title": "Главная страница отчетов IFRC",
@@ -13,6 +17,7 @@
       "search": "Поиск",
       "acknowledgement": "Благодарность"
     },
+    "comingSoonLabel": "Скоро",
     "footer": {
       "worldDisastersReport": "Всемирный доклад о бедствиях",
       "chapters": {
@@ -115,6 +120,12 @@
     "ariaLabel": "Выберите язык",
     "title": "Выберите язык",
     "language": "Язык"
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "Скоро",
+      "description": "Цифровая версия Всемирного доклада о бедствиях IFRC скоро будет доступна."
+    }
   },
   "SidebarPanel": {
     "expandSidebar": "Развернуть боковую панель",
