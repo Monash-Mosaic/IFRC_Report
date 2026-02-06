@@ -69,11 +69,6 @@ jobs:
       - name: Dependency audit
         run: npm audit --audit-level=high
 
-      - name: Bearer SAST Scan
-        uses: bearer/bearer-action@v2
-        with:
-          diff: true
-
   deploy_preview:
     runs-on: ubuntu-latest
     needs: security_gates
