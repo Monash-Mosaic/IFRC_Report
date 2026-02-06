@@ -168,5 +168,63 @@
     "videoCard": {
       "backToThumbnail": "Retour à la miniature"
     }
+  },
+  "NotFound": {
+    "title": "Page non trouvée",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  
+  "About": {
+    "breadcrumbHome": "Page d'accueil",
+    "breadcrumbCurrent": "À propos",
+    "pageTitle": "À propos de nous",
+    "topicHeading": "La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge",
+    "body": "La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (IFRC) est le plus grand réseau humanitaire au monde, avec 191 Sociétés nationales de la Croix-Rouge et du Croissant-Rouge et environ 15 millions de volontaires. Nos volontaires sont présents dans les communautés avant, pendant et après une crise ou une catastrophe. Nous travaillons dans les contextes les plus difficiles d’accès et les plus complexes au monde, en sauvant des vies et en promouvant la dignité humaine. Nous aidons les communautés à devenir plus fortes et plus résilientes, afin que les personnes puissent vivre en sécurité et en bonne santé et puissent s’épanouir.",
+    "coverPhotoTitle": "Photo de couverture",
+    "coverPhotoText": "Camp de Bourj el-Barajneh au Liban, 10 septembre 2025.\nCette approche centrée sur les personnes réduit les obstacles d’accès et les réticences tout en préservant la dignité, la confiance et la continuité des soins dans un contexte difficile.\nLama Chidiac, IFRC.",
+    "insidePhotosTitle": "Photos intérieures",
+    "insidePhotosText": "Syrian Arab Red Crescent • Lama Chidiac, IFRC • Aki Kolehmainen, Finnish Red Cross • Syrian Arab Red Crescent • Lama Chidiac, IFRC • IFRC • Paul Wu, IFRC • IFRC et Croix-Rouge équatorienne • Pakistan Red Crescent • IFRC",
+    "contactUsTitle": "Nous contacter",
+    "contactUsText": "Les demandes de reproduction commerciale doivent être adressées au secrétariat de l’IFRC :",
+    "addressTitle": "Adresse",
+    "addressText": "Chemin des Crêts 17, Petit-Saconnex, 1209 Genève, Suisse",
+    "postalAddressTitle": "Adresse postale",
+    "postalAddressText": "P.O. Box 303, 1211 Genève 19, Suisse",
+    "contactLine": "T : +41 (0) 22 730 42 22 | F : +41 (0) 22 730 42 00 | E : secretariat@ifrc.org | W : ifrc.org",
+    "copyrightTitle": "© Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge, Genève, 2026",
+    "copyrightText": "Toute partie de cette publication peut être citée, copiée, traduite dans d’autres langues ou adaptée aux besoins locaux sans autorisation préalable, à condition que la source soit clairement indiquée.",
+    "isbnTitle": "ISBN",
+    "isbnText": "978-2-9701289-8-4",
+    "pdfUrlTitle": "URL PDF",
+    "pdfUrlText": "www.ifrc.org/document/IFRC-Worlds-Disasters-Report-2026",
+    "webUrlTitle": "URL de la version web",
+    "webUrlText": "www.ifrcwdr26.com"
+  },
+  "Acknowledgements": {
+    "breadcrumbHome": "Page d’accueil",
+    "breadcrumbCurrent": "Remerciements",
+    "pageTitle": "Remerciements",
+
+    "intro": "La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (IFRC) remercie chaleureusement les organisations suivantes pour le soutien apporté à la production et à la publication du Rapport mondial sur les catastrophes de l’IFRC 2026 :",
+
+    "translation": "Les coûts de traduction des éditions russe et chinoise ont été généreusement pris en charge par l’Académie de la Croix-Rouge russe et l’Académie internationale de la Croix-Rouge en Chine.",
+
+    "leadEditorLabel": "Rédactrice en chef et auteure :",
+    "leadEditor": "Charlotte Lindsey Curtet",
+
+    "designerLabel": "Concepteur :",
+    "designer": "Yann le Floch",
+
+    "projectManagerLabel": "Cheffe de projet :",
+    "projectManager": "Heather Marie Leson",
+
+    "copyeditorLabel": "Révision éditoriale :",
+    "copyeditor": "Jen Claydon",
+
+    "contributions": "Le Rapport mondial sur les catastrophes 2026 comprend plus de 100 contributions écrites provenant de plus de 60 praticiens et chercheurs du secteur humanitaire, ainsi que de gouvernements, du milieu universitaire, de la société civile et d’autres acteurs. Ces contributions apparaissent tout au long du rapport dans des encadrés « Contributor Insight », reconnaissant les auteurs individuels et leurs organisations respectives.",
+
+    "research": "L’Académie Solferino de l’IFRC a mené une étude rapide d’intelligence communautaire de deux mois avec 40 volontaires et membres du personnel issus de 10 Sociétés nationales. Agissant en tant que chercheurs communautaires, ils ont interrogé 132 volontaires et membres de communautés touchées par des crises humanitaires. Les résultats ont été synthétisés par des universitaires bénévoles de l’Université du Michigan, de l’Université de Northumbria et d’Open Lab (Université de Newcastle), garantissant la préservation des nuances locales. Des citations sélectionnées figurent tout au long du rapport."
   }
+
 }
