@@ -5,6 +5,7 @@ const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
   options: {
+    remarkPlugins: [['remark-gfm', { firstLineBlank: true }]],
     rehypePlugins: [
       ['rehype-slug', {}],
       [
@@ -13,12 +14,13 @@ const withMDX = createMDX({
           behavior: 'wrap',
           content: {
             type: 'text',
-            value: ' 🔗',
+            value: '',
           },
         },
       ],
       ['@stefanprobst/rehype-extract-toc', {}],
       ['@stefanprobst/rehype-extract-toc/mdx', {}],
+      ['rehype-remove-footnote-heading', {}],
     ],
   },
 });

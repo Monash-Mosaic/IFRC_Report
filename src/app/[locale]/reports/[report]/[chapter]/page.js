@@ -66,12 +66,12 @@ export default async function ReportChapterPage({ params }) {
   const t = await getTranslations('ReportChapterPage', locale);
 
   return (
-    <div className="min-h-screen bg-white flex  pl-8 pr-0 py-8">
+    <div className="min-h-screen bg-white flex  pr-0 py-8">
       {/* Sidebar Panel */}
       <SidebarPanel chapterTitle={chapterTitle} audios={audios} videos={videos} />
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-6">
         <div className="max-w-7xl mx-auto flex gap-6">
           <div className="flex-1 max-w-4xl mx-auto">
             <Link
@@ -82,12 +82,16 @@ export default async function ReportChapterPage({ params }) {
               <span className="font-semibold">{t('back')}</span>
             </Link>
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
+              <h1 className="text-3xl font-bold text-black mb-6 whitespace-pre-line text-end">
+                {reportTile}
+              </h1>
             </div>
 
-            <div className="mb-8 text-black text-4xl font-extrabold">{chapterTitle}</div>
+            <div className="mb-8 text-black text-4xl font-extrabold text-end">{chapterTitle}</div>
 
-            <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
+            <div className="mb-8 text-black text-3xl font-bold whitespace-pre-line text-start">
+              {chapterSubTitle}
+            </div>
 
             <div className="xl:hidden mb-8">
               <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">

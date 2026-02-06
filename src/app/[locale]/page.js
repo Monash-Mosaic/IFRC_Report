@@ -39,6 +39,7 @@ export default async function Home({ params }) {
       read: t('landingPage.executiveSummary.buttonTexts.read'),
       download: t('landingPage.executiveSummary.buttonTexts.download'),
     },
+    url: t('landingPage.executiveSummary.url'),
   };
 
   // Hero Section translations
@@ -56,8 +57,8 @@ export default async function Home({ params }) {
   return (
     <div className="min-h-screen bg-white">
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
-        <HeroSection locale={locale} messages={heroMessage} />
-        <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
+        <HeroSection messages={heroMessage} />
+        <ExecutiveSummarySection messages={executiveSummary} />
 
         {/* Featured Videos Section */}
         <div>
