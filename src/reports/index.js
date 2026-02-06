@@ -110,10 +110,9 @@ const buildReportUriMap = (reportsByLocaleMap) => {
           chapterKeyMap[chapterKey] &&
           chapterKeyMap[chapterKey] !== canonicalSlug
         ) {
-          console.warn(
+          throw new Error(
             `Duplicate canonical chapter key "${chapterKey}" in report "${reportKey}".`
           );
-          return;
         }
         chapterKeyMap[chapterKey] = canonicalSlug;
 
@@ -122,10 +121,9 @@ const buildReportUriMap = (reportsByLocaleMap) => {
           chapterNumberMap[chapterNumber] &&
           chapterNumberMap[chapterNumber] !== canonicalSlug
         ) {
-          console.warn(
+          throw new Error(
             `Duplicate canonical chapter number "${chapterNumber}" in report "${reportKey}".`
           );
-          return;
         }
         if (chapterNumber != null) {
           chapterNumberMap[chapterNumber] = canonicalSlug;
@@ -142,10 +140,9 @@ const buildReportUriMap = (reportsByLocaleMap) => {
     Object.entries(localeReports).forEach(([reportKey, report]) => {
       const reportSlug = reportKey;
       if (reportUriMap.uri[locale][reportSlug]) {
-        console.warn(
+        throw new Error(
           `Duplicate report slug "${reportSlug}" for locale "${locale}".`
         );
-        return;
       }
       reportUriMap.uri[locale][reportSlug] = reportKey;
 
@@ -182,10 +179,9 @@ const buildReportUriMap = (reportsByLocaleMap) => {
         }
 
         if (reportChapters.uri[locale][localizedSlug]) {
-          console.warn(
+          throw new Error(
             `Duplicate chapter slug "${localizedSlug}" for locale "${locale}" in report "${reportKey}".`
           );
-          return;
         }
         reportChapters.uri[locale][localizedSlug] = canonicalSlug;
 
@@ -210,10 +206,9 @@ const buildReportUriMap = (reportsByLocaleMap) => {
           reportChapters[canonicalSlug].languages[locale] &&
           reportChapters[canonicalSlug].languages[locale] !== localizedSlug
         ) {
-          console.warn(
+          throw new Error(
             `Duplicate chapter slug mapping for locale "${locale}" in report "${reportKey}".`
           );
-          return;
         }
 
         reportChapters[canonicalSlug].languages[locale] = localizedSlug;

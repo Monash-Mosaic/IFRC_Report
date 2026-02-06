@@ -58,7 +58,7 @@ describe('report release helpers', () => {
   });
 });
 
-describe('reportUriMap warning branches', () => {
+describe('reportUriMap error branches', () => {
   const createChapter = (chapterKey, chapterNumber) => ({
     metadata: { chapterKey, chapterNumber },
   });
@@ -90,9 +90,7 @@ describe('reportUriMap warning branches', () => {
     jest.dontMock('../../src/reports/es');
   });
 
-  it('warns on duplicate canonical chapter metadata', () => {
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
-
+  it('throws on duplicate canonical chapter metadata', () => {
     const enModule = buildMockLocaleModule({
       'chapter-01': createChapter('chapter-01', 1),
       'chapter-02': createChapter('chapter-02', 1),
@@ -108,24 +106,15 @@ describe('reportUriMap warning branches', () => {
       es: enModule,
     };
 
-    jest.isolateModules(() => {
-      mockLocaleModules(localeModules);
-      require('../../src/reports');
-    });
-
-    expect(warnSpy).toHaveBeenCalledWith(
-      'Duplicate canonical chapter number "1" in report "wdr25".'
-    );
-    expect(warnSpy).toHaveBeenCalledWith(
-      'Duplicate canonical chapter key "chapter-01" in report "wdr25".'
-    );
-
-    warnSpy.mockRestore();
+    expect(() => {
+      jest.isolateModules(() => {
+        mockLocaleModules(localeModules);
+        require('../../src/reports');
+      });
+    }).toThrow('Duplicate canonical chapter number "1" in report "wdr25".');
   });
 
-  it('warns and skips duplicate locale chapter mappings', () => {
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
-
+  it('throws on duplicate locale chapter mappings', () => {
     const enModule = buildMockLocaleModule({
       'chapter-01': createChapter('chapter-01', 1),
     });
@@ -144,20 +133,14 @@ describe('reportUriMap warning branches', () => {
       es: enModule,
     };
 
-    let mockedReportUriMap;
-    jest.isolateModules(() => {
-      mockLocaleModules(localeModules);
-      ({ reportUriMap: mockedReportUriMap } = require('../../src/reports'));
-    });
-
-    expect(warnSpy).toHaveBeenCalledWith(
+    expect(() => {
+      jest.isolateModules(() => {
+        mockLocaleModules(localeModules);
+        require('../../src/reports');
+      });
+    }).toThrow(
       'Duplicate chapter slug mapping for locale "fr" in report "wdr25".'
     );
-    expect(mockedReportUriMap.wdr25.chapters['chapter-01'].languages.fr).toBe(
-      'chapitre-01'
-    );
-
-    warnSpy.mockRestore();
   });
 
   it('skips chapters without canonical mapping', () => {
