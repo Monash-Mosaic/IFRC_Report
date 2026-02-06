@@ -7,6 +7,10 @@ import { Link } from '@/i18n/navigation';
 import SidebarPanel from '@/components/SidebarPanel';
 import TableOfContent from '@/components/TableOfContent';
 
+import HighlightToolbar from '@/components/HighlightToolbar';
+
+import ActiveHeadingTracker from '@/components/ActiveHeadingTracker';
+
 export async function generateMetadata({ params }) {
   const { report, chapter, locale } = await params;
   const decodedReport = decodeURIComponent(report);
@@ -94,11 +98,22 @@ export default async function ReportChapterPage({ params }) {
               </div>
             </div>
 
-            <div className="mb-12">
+          <div className="mb-12">
+            <div className="relative" id="highlight-layer-root">
+              <ActiveHeadingTracker containerSelector="#highlight-layer-root" />
+
               <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
                 <Chapter />
               </article>
+
+              <HighlightToolbar
+                hashtag="#IFRC"
+                whatsappSeparator="\n"
+                containerSelector="#highlight-layer-root"
+              />
             </div>
+          </div>
+
           </div>
 
           <div className="hidden xl:block w-80 flex-shrink-0">
