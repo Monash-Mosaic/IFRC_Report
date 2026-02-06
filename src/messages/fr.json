@@ -134,6 +134,21 @@
     "title": "Sélectionnez la langue",
     "language": "Langue"
   },
+  "SearchPage": {
+    "meta": {
+      "title": "Résultats de recherche",
+      "description": "Résultats de recherche pour les rapports de l'IFRC"
+    },
+    "breadcrumb": {
+      "ariaLabel": "Navigation par fil d'Ariane",
+      "home": "Page d'accueil",
+      "searchPage": "Page de recherche"
+    },
+    "results": {
+      "ariaLabel": "Résultats de recherche",
+      "noResults": "Aucun résultat trouvé. Essayez un autre terme de recherche."
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "Étendre la barre latérale",
     "closeSidebar": "Fermer la barre latérale",

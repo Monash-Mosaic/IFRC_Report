@@ -116,6 +116,21 @@
     "title": "选择语言",
     "language": "语言"
   },
+  "SearchPage": {
+    "meta": {
+      "title": "搜索结果",
+      "description": "IFRC报告搜索结果"
+    },
+    "breadcrumb": {
+      "ariaLabel": "面包屑导航",
+      "home": "首页",
+      "searchPage": "搜索页面"
+    },
+    "results": {
+      "ariaLabel": "搜索结果",
+      "noResults": "未找到结果。请尝试其他搜索词。"
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "展开侧边栏",
     "closeSidebar": "关闭侧边栏",

@@ -116,6 +116,21 @@
     "title": "اختر اللغة",
     "language": "اللغة"
   },
+  "SearchPage": {
+    "meta": {
+      "title": "نتائج البحث",
+      "description": "نتائج البحث في تقارير الاتحاد الدولي"
+    },
+    "breadcrumb": {
+      "ariaLabel": "التنقل بين المسارات",
+      "home": "الصفحة الرئيسية",
+      "searchPage": "صفحة البحث"
+    },
+    "results": {
+      "ariaLabel": "نتائج البحث",
+      "noResults": "لم يتم العثور على نتائج. جرب مصطلح بحث مختلف."
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "توسيع الشريط الجانبي",
     "closeSidebar": "إغلاق الشريط الجانبي",
