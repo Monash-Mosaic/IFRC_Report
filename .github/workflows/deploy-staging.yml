@@ -39,7 +39,6 @@ jobs:
           echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
           echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
           echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
-          npx wrangler versions deploy -y "$VERSION_ID"
 
       - name: Adding Version ID to Release Notes
         env:
