@@ -7,6 +7,7 @@ import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
 
+
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const t = await getTranslations('Home', locale);
