@@ -1,5 +1,5 @@
 export const localeRelease = {
-  en: { production: false, preview: true },
+  en: { production: true, preview: true },
   fr: { production: false, preview: true },
   zh: { production: false, preview: true },
   ar: { production: false, preview: true },
@@ -7,6 +7,10 @@ export const localeRelease = {
   es: { production: false, preview: false },
 };
 
+/**
+ *
+ * @returns {string}
+ */
 export const getEnvironment = () =>
   process.env.ENVIRONMENT || process.env.NEXT_PUBLIC_ENVIRONMENT || 'development';
 
@@ -15,6 +19,7 @@ export const isLocaleReleased = (locale, environment = getEnvironment()) => {
   if (!release) {
     return false;
   }
+
   if (environment === 'production') {
     return !!release.production;
   }

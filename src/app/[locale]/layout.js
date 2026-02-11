@@ -1,3 +1,4 @@
+import { GoogleTagManager } from '@next/third-parties/google';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { notFound } from 'next/navigation';
@@ -37,9 +38,8 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={locale} dir={dir}>
       <body className={`${GeistSans.variable} ${GeistMono.variable} locale-${locale} antialiased`}>
-        <NextIntlClientProvider>
-          {children}
-        </NextIntlClientProvider>
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

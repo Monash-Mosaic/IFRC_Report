@@ -4,10 +4,21 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import { Link, getPathname } from '@/i18n/navigation';
-import { getVisibleReports, isLocaleReleased, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
+import {
+  getVisibleReports,
+  isLocaleReleased,
+  isReportReleased,
+  reportsByLocale,
+  reportUriMap,
+} from '@/reports';
 import { routing } from '@/i18n/routing';
 import { getBaseUrl } from '@/lib/base-url';
 
+/**
+ *
+ * @param {PageProps<'/[locale]/reports/[report]'>} param0
+ * @returns {Promise<import('next').Metadata>}
+ */
 export async function generateMetadata({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
@@ -30,8 +41,9 @@ export async function generateMetadata({ params }) {
     ]);
   languages.push([
     'x-default',
-    languages.find(([loc, url]) => loc === routing.defaultLocale)[1]
-    .replace(`/${routing.defaultLocale}/`, '/'),
+    languages
+      .find(([loc, url]) => loc === routing.defaultLocale)[1]
+      .replace(`/${routing.defaultLocale}/`, '/'),
   ]);
   return {
     title: title,
@@ -74,6 +86,11 @@ export async function generateStaticParams() {
   }, []);
 }
 
+/**
+ *
+ * @param {PageProps<'/[locale]/reports/[report]'>} param0
+ * @returns {Promise<import('react').ReactElement>}
+ */
 export default async function ReportDetailPage({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
