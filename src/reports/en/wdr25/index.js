@@ -84,6 +84,7 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
+    downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
     audios: [
       {
         id: 'intro',

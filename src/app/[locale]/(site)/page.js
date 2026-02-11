@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
-import { getVisibleReports, isLocaleReleased } from '@/reports';
+import { getVisibleReports, isLocaleReleased, reportUriMap } from '@/reports';
 import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
@@ -71,7 +71,7 @@ export default async function Home({ params }) {
   const reportModule = getVisibleReports(locale)?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-
+  const chapterSlug = reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
   // Executive Summary translations
   const executiveSummary = {
     title: t('landingPage.executiveSummary.title'),
@@ -82,6 +82,17 @@ export default async function Home({ params }) {
       read: t('landingPage.executiveSummary.buttonTexts.read'),
       download: t('landingPage.executiveSummary.buttonTexts.download'),
     },
+    url: getPathname({
+      locale,
+      href: {
+        pathname: '/reports/[report]/[chapter]',
+        params: {
+          report: reportUriMap['wdr25'].languages[locale],
+          chapter: chapterSlug,
+        },
+      },
+    }),
+    downloadLink: reportModule.chapters[chapterSlug].downloadLink,
   };
 
   // Hero Section translations
@@ -94,6 +105,16 @@ export default async function Home({ params }) {
       download: t('landingPage.heroSection.buttonTexts.download'),
       share: t('landingPage.heroSection.buttonTexts.share'),
     },
+    url: getPathname({
+      locale,
+      href: {
+        pathname: '/reports/[report]',
+        params: {
+          report: reportUriMap['wdr25'].languages[locale],
+        },
+      },
+    }),
+    downloadLink: reportModule.chapters[chapterSlug].downloadLink,
   };
 
   const homeJsonLd = {

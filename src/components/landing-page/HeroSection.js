@@ -1,12 +1,10 @@
-import { Link } from '@/i18n/navigation';
+import Link from 'next/link';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
 import HeroMediaBlock from './HeroMediaBlock';
 
 export default function HeroSection({ messages }) {
-  const reportDownloadLink = `https://www.dfat.gov.au/sites/default/files/vic-cef.pdf`;
-
   return (
     <section className=" space-y-8">
       <HeroMediaBlock
@@ -19,7 +17,7 @@ export default function HeroSection({ messages }) {
         {/* Action Buttons - will reorder based on screen size */}
         <div className="order-2 md:order-1 flex flex-row gap-2 md:gap-4">
           <Link
-            href="/reports/wdr25"
+            href={messages.url}
             className="flex-1 md:flex-none px-3 md:px-6 py-2 md:py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap"
           >
             <span className="text-xs font-bold md:text-base">{messages.buttonTexts.read}</span>
@@ -28,7 +26,7 @@ export default function HeroSection({ messages }) {
 
           <div className="flex-1 md:flex-none">
             <a
-              href={reportDownloadLink}
+              href={messages.downloadLink}
               alt="alt text"
               target="_blank"
               className="w-full h-full px-3 md:px-6 py-2 md:py-3 border-2 border-red-600 text-red-600 bg-[] hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none"
