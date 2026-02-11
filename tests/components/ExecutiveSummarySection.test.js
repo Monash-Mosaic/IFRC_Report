@@ -56,7 +56,17 @@ jest.mock('next/image', () => {
   };
 });
 
-// Mock next-intl navigation Link component
+// Mock next/link component
+jest.mock('next/link', () => ({
+  __esModule: true,
+  default: ({ href, className, children, ...props }) => (
+    <a href={href} className={className} data-testid="mock-link" {...props}>
+      {children}
+    </a>
+  ),
+}));
+
+// Mock localized navigation Link component
 jest.mock('@/i18n/navigation', () => ({
   Link: ({ href, className, children, ...props }) => (
     <a href={href} className={className} data-testid="mock-link" {...props}>
@@ -94,7 +104,16 @@ const defaultProps = {
     },
     summaryAlt: 'Executive Summary cover featuring a person in humanitarian context',
   },
+  url: '/reports/wdr25/chapter-02',
+  downloadLink:
+    'https://www.heritage.vic.gov.au/__data/assets/pdf_file/0022/512275/Victorias-framework-of-historical-themes-Heritage-Council-of-Victoria,-Victorian-Aboriginal-Heritage-Council-2009.pdf',
 };
+
+const buildExecutiveMessages = (props) => ({
+  ...props.messages,
+  url: props.url,
+  downloadLink: props.downloadLink,
+});
 
 // Global variable to control custom content in tests
 let mockExecutiveSummary = null;
@@ -107,7 +126,9 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('renders ExecutiveSummarySection with all content', () => {
-    const { container } = render(<ExecutiveSummarySection {...defaultProps} />);
+    const { container } = render(
+      <ExecutiveSummarySection messages={buildExecutiveMessages(defaultProps)} />
+    );
 
     // Should show title
     expect(screen.getByText('Executive Summary')).toBeInTheDocument();
@@ -144,7 +165,7 @@ describe('ExecutiveSummarySection', () => {
       locale: 'fr',
     };
 
-    render(<ExecutiveSummarySection {...frenchProps} />);
+    render(<ExecutiveSummarySection messages={buildExecutiveMessages(frenchProps)} />);
 
     // Should still render content (locale is passed but doesn't affect rendering directly in this test)
     expect(screen.getByText('Executive Summary')).toBeInTheDocument();
@@ -164,9 +185,11 @@ describe('ExecutiveSummarySection', () => {
         },
         summaryAlt: 'Custom alt text for testing',
       },
+      url: '/reports/custom-report/chapter-02',
+      downloadLink: '/reports/custom-report.pdf',
     };
 
-    render(<ExecutiveSummarySection {...customProps} />);
+    render(<ExecutiveSummarySection messages={buildExecutiveMessages(customProps)} />);
 
     // Should show custom content
     expect(screen.getByText('Custom Title for Testing')).toBeInTheDocument();
@@ -181,7 +204,7 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('has correct button styling and behavior', () => {
-    render(<ExecutiveSummarySection {...defaultProps} />);
+    render(<ExecutiveSummarySection messages={buildExecutiveMessages(defaultProps)} />);
 
     // Check read button styling (now a Link component)
     const readButton = screen.getByTestId('mock-link');
@@ -232,7 +255,9 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('has correct layout structure', () => {
-    const { container } = render(<ExecutiveSummarySection {...defaultProps} />);
+    const { container } = render(
+      <ExecutiveSummarySection messages={buildExecutiveMessages(defaultProps)} />
+    );
 
     // Should have main section (layout structure has changed)
     const section = container.querySelector('section');
@@ -259,7 +284,7 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('has correct image properties', () => {
-    render(<ExecutiveSummarySection {...defaultProps} />);
+    render(<ExecutiveSummarySection messages={buildExecutiveMessages(defaultProps)} />);
 
     const images = screen.getAllByTestId('mock-image');
 
@@ -286,11 +311,13 @@ describe('ExecutiveSummarySection', () => {
         },
         summaryAlt: '',
       },
+      url: '',
+      downloadLink: '',
     };
 
     // Should not crash with empty strings
     expect(() => {
-      render(<ExecutiveSummarySection {...malformedProps} />);
+      render(<ExecutiveSummarySection messages={buildExecutiveMessages(malformedProps)} />);
     }).not.toThrow();
 
     // Image should still render (there are now two images)
@@ -298,7 +325,7 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('has proper semantic HTML structure', () => {
-    render(<ExecutiveSummarySection {...defaultProps} />);
+    render(<ExecutiveSummarySection messages={buildExecutiveMessages(defaultProps)} />);
 
     // Should use proper heading hierarchy
     const h2 = screen.getByRole('heading', { level: 2 });
@@ -323,7 +350,9 @@ describe('ExecutiveSummarySection', () => {
   });
 
   it('uses flexbox layout correctly for content positioning', () => {
-    const { container } = render(<ExecutiveSummarySection {...defaultProps} />);
+    const { container } = render(
+      <ExecutiveSummarySection messages={buildExecutiveMessages(defaultProps)} />
+    );
 
     // Text container should use flex layout (updated classes)
     const textContainer = container.querySelector(
