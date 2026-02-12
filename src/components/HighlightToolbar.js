@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Copy, Share2 } from 'lucide-react';
 import {
   addHighlight,
@@ -281,16 +281,13 @@ export default function HighlightToolbar({
 
   const suppressSelectionToolbarRef = useRef(false);
 
-  const [containerEl, setContainerEl] = useState(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const el = document.querySelector(containerSelector) || document.body;
-    setContainerEl(el);
+  const containerEl = useMemo(() => {
+    if (typeof document === 'undefined') return null;
+    return document.querySelector(containerSelector) || document.body;
   }, [containerSelector]);
 
 
-  const getSelectionRangeSafe = () => {
+  const getSelectionRangeSafe = useCallback(() => {
     const sel = window.getSelection();
     if (!sel || sel.rangeCount === 0) return null;
     const r = sel.getRangeAt(0);
@@ -306,9 +303,11 @@ export default function HighlightToolbar({
     }
 
     return r;
-  };
+  }, [containerEl]);
 
-  const setToolbarPositionFromRect = (rect) => {
+  const setToolbarPositionFromRect = useCallback((rect) => {
+    if (!containerEl) return;
+
     const TOOLBAR_HEIGHT_EST = 52;
     const GAP = 12;
 
@@ -335,7 +334,7 @@ export default function HighlightToolbar({
     const y = yPage - containerTop;
 
     setPos({ x, y });
-  };
+  }, [containerEl]);
 
 
   // Restore highlights on mount
@@ -395,7 +394,7 @@ export default function HighlightToolbar({
 
     containerEl.addEventListener('click', onClick);
     return () => containerEl.removeEventListener('click', onClick);
-  }, [containerEl]);
+  }, [containerEl, setToolbarPositionFromRect]);
 
 
   // General selection detection (shows highlight UI)
@@ -450,12 +449,12 @@ export default function HighlightToolbar({
       document.removeEventListener('keyup', onKeyUp);
       if (hideTimer.current) clearTimeout(hideTimer.current);
     };
-  }, [containerEl]);
+  }, [containerEl, getSelectionRangeSafe, setToolbarPositionFromRect]);
 
   const shareUrl = useMemo(() => {
     if (typeof window === 'undefined') return '';
     return window.location.href;
-  }, [selectedText]);
+  }, []);
 
   const onCopy = async () => {
     if (!selectedText) return;
@@ -527,6 +526,13 @@ export default function HighlightToolbar({
       overlaps(offsets.start, offsets.end, h.startAbs, h.endAbs)
     );
 
+    const nextCreatedAt =
+      existing.reduce(
+        (max, h) =>
+          Math.max(max, Number(h.createdAt) || 0, Number(h.groupId) || 0, Number(h.id) || 0),
+        0
+      ) + 1;
+
     // Split any highlight that fully contains the new selection
     for (const h of overlapping) {
       const contains = h.startAbs < offsets.start && h.endAbs > offsets.end;
@@ -542,7 +548,7 @@ export default function HighlightToolbar({
           color: h.color,
           startAbs: h.startAbs,
           endAbs: offsets.start,
-          createdAt: Date.now(),
+          createdAt: h.createdAt ?? h.id ?? nextCreatedAt,
           groupId: h.groupId ?? h.id,
         });
       }
@@ -555,7 +561,7 @@ export default function HighlightToolbar({
           color: h.color,
           startAbs: offsets.end,
           endAbs: h.endAbs,
-          createdAt: Date.now(),
+          createdAt: h.createdAt ?? h.id ?? nextCreatedAt,
           groupId: h.groupId ?? h.id,
         });
       }
@@ -568,14 +574,14 @@ export default function HighlightToolbar({
     }
 
     // Add the new highlight (new group)
-    const groupId = Date.now();
+    const groupId = nextCreatedAt;
     await addHighlight({
       urlKey,
       quote,
       color: colorKey,
       startAbs: offsets.start,
       endAbs: offsets.end,
-      createdAt: Date.now(),
+      createdAt: nextCreatedAt,
       groupId,
     });
 

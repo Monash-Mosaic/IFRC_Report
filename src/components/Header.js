@@ -21,32 +21,15 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   // Navigation links data to avoid duplication
   const navigationLinks = [
     { href: '/about', label: t('nav.about') },
     { href: '/acknowledgement', label: t('nav.acknowledgement') },
   ];
-
-  // Navigation links component to avoid duplication
-  const NavLinks = ({ isMobile = false }) => (
-    <>
-      {navigationLinks.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={
-            isMobile
-              ? 'block text-gray-700 hover:text-gray-900 text-sm font-medium py-2 border-b border-gray-100'
-              : 'text-gray-700 hover:text-gray-900 text-sm font-medium'
-          }
-           prefetch={false}
-          onClick={isMobile ? () => setIsMobileMenuOpen(false) : undefined}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </>
-  );
 
   return (
     <header className="w-full bg-white">
@@ -66,7 +49,16 @@ export default function Header() {
         >
           {!isSearchExpanded && (
             <>
-              <NavLinks />
+              {navigationLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-700 hover:text-gray-900 text-sm font-medium"
+                  prefetch={false}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <LocaleSwitcher />
             </>
           )}
@@ -112,7 +104,17 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
           <nav className="max-w-6xl mx-auto px-4 py-4 space-y-4">
-            <NavLinks isMobile />
+            {navigationLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="block text-gray-700 hover:text-gray-900 text-sm font-medium py-2 border-b border-gray-100"
+                prefetch={false}
+                onClick={closeMobileMenu}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </div>
       )}

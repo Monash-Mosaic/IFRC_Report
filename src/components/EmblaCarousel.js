@@ -63,7 +63,6 @@ export default function EmblaCarousel({
 
   // Effects
   useEffect(() => {
-    calculateItemsPerPage();
     const timer = setTimeout(calculateItemsPerPage, CALCULATION_DELAY);
 
     window.addEventListener('resize', calculateItemsPerPage);
@@ -85,9 +84,10 @@ export default function EmblaCarousel({
     if (!emblaApi) return;
 
     emblaApi.on('select', onSelect);
-    onSelect();
+    const timer = setTimeout(onSelect, 0);
 
     return () => {
+      clearTimeout(timer);
       emblaApi.off('select', onSelect);
     };
   }, [emblaApi, onSelect]);
