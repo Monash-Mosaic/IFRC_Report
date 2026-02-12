@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare (Production)
+name: Deploy to Cloudflare (Staging)
 
 on:
   release:
