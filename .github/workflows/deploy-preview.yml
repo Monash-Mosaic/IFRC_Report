@@ -131,7 +131,7 @@ jobs:
 
       - name: Comment preview URL on PR
         if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
@@ -168,7 +168,7 @@ jobs:
 
       - name: Update deployment status
         if: ${{ always() }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const owner = context.repo.owner;
