@@ -63,7 +63,7 @@
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "3.6.2",
     "schema-dts": "^1.1.5",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^4.1.18",
     "ts-node": "^10.9.2",
     "typescript": "5.9.2",
     "wrangler": "^4.64.0"
