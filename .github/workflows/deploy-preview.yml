@@ -106,6 +106,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_ENV: preview
+          NEXT_PUBLIC_SITE_URL: ${{ format('{0}-{1}.{2}.workers.dev', steps.preview.outputs.branch_slug, vars.CLOUDFLARE_WORKER_NAME, vars.CLOUDFLARE_WORKERS_SUBDOMAIN) }}
         run: |
           LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} 2>&1 | tee /dev/stderr)
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
@@ -123,10 +124,10 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           echo "Update Preview URL for main branch deployment"
-          npm run deploy -- --env="preview"
+          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_PREVIEW_SITE_URL }} npm run deploy -- --env="preview"
 
           echo "Update Production on Preview Environment (account)"
-          npm run deploy -- --env=""
+          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }} npm run deploy -- --env=""
 
       - name: Comment preview URL on PR
         if: ${{ github.event_name == 'pull_request' }}
