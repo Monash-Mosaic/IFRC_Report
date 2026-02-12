@@ -46,14 +46,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.event.release.tag_name }}
-          NEW_NOTES: \n\n<!-- preview-url -->\n| Key | Value |\n|---|---|\n| Cloudflare Worker Version ID | ${{ steps.deploy.outputs.version_id }} |\n| Preview URL | ${{ steps.deploy.outputs.preview_url }} |\n| Branch Preview URL | ${{ steps.deploy.outputs.branch_preview_url }} |
+          NEW_NOTES: |
+            <!-- preview-url -->
+            | Key | Value |
+            |---|---|
+            | Cloudflare Worker Version ID | ${{ steps.deploy.outputs.version_id }} |
+            | Preview URL | ${{ steps.deploy.outputs.preview_url }} |
+            | Branch Preview URL | ${{ steps.deploy.outputs.branch_preview_url }} |
         run: |
           # Get the existing body of the release
           EXISTING_BODY=$(gh release view "$TAG" --repo="$GITHUB_REPOSITORY" --json body --jq .body)
           
           # Combine existing and new notes
-          UPDATED_BODY="$NEW_NOTES
-          $EXISTING_BODY"
+          UPDATED_BODY="$NEW_NOTES"$'\n\n'"$EXISTING_BODY"
           # Save metadata.json and upload it to the release
           cat <<'EOF' > metadata.json
           {"version_id":"${{ steps.deploy.outputs.version_id }}","preview_url":"${{ steps.deploy.outputs.preview_url }}","branch_preview_url":"${{ steps.deploy.outputs.branch_preview_url }}"}
