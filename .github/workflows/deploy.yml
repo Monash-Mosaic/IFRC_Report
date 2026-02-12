@@ -21,16 +21,11 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: ${{ inputs.tag }}
-          lfs: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
 
       - name: Resolve version id from metadata.json asset
         id: version
@@ -72,7 +67,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           VERSION_ID: ${{ steps.version.outputs.version_id }}
-        run: npx wrangler versions deploy -y "$VERSION_ID"
+        run: npx --yes wrangler@4 versions deploy -y "$VERSION_ID"
 
       - name: Purge Cloudflare CDN cache
         if: ${{ vars.CLOUDFLARE_ZONE_ID != '' }}
