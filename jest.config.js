@@ -9,11 +9,16 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 const config = {
   coverageProvider: 'v8',
+  collectCoverageFrom: [
+    '<rootDir>/src/components/**/*.{js,jsx,ts,tsx}',
+    '<rootDir>/src/lib/**/*.{js,jsx,ts,tsx}',
+  ],
   testEnvironment: 'jsdom',
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '\\.(mdx)$': '<rootDir>/tests/__mocks__/mdxMock.js',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // Telling Jest to transform these ESM modules

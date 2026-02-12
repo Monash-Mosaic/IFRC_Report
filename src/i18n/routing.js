@@ -29,4 +29,6 @@ export const routing = defineRouting({
       es: '/reportaje/[report]/[chapter]',
     },
   },
+  alternateLinks: false, // We handle alternate links manually in HTML head
+  localeCookie: false, // Use URL to determine locale avoid international regulations on cookie issues
 });

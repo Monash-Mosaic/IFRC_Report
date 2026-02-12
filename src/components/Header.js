@@ -39,6 +39,7 @@ export default function Header() {
               ? 'block text-gray-700 hover:text-gray-900 text-sm font-medium py-2 border-b border-gray-100'
               : 'text-gray-700 hover:text-gray-900 text-sm font-medium'
           }
+           prefetch={false}
           onClick={isMobile ? () => setIsMobileMenuOpen(false) : undefined}
         >
           {link.label}

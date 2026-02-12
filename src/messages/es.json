@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Informe Mundial sobre Desastres 2026 de la FICR"
+  },
   "Home": {
     "meta": {
       "title": "Página de inicio de Informes de la FICR",
@@ -13,6 +17,7 @@
       "search": "Buscar",
       "acknowledgement": "Agradecimientos"
     },
+    "comingSoonLabel": "Próximamente",
     "footer": {
       "worldDisastersReport": "Informe Mundial sobre Desastres",
       "chapters": {
@@ -149,6 +154,12 @@
     "duration": "Duración",
     "videoCard": {
       "backToThumbnail": "Volver a la miniatura"
+    }
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "Próximamente",
+      "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
     }
   }
 }

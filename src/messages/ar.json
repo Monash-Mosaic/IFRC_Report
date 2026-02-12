@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "تقرير الكوارث العالمي 2026 للاتحاد الدولي"
+  },
   "Home": {
     "meta": {
       "title": "الصفحة الرئيسية لتقارير الاتحاد الدولي",
@@ -13,6 +17,7 @@
       "search": "بحث",
       "acknowledgement": "شكر وتقدير"
     },
+    "comingSoonLabel": "قريبًا",
     "footer": {
       "worldDisastersReport": "تقرير الكوارث العالمي",
       "chapters": {
@@ -149,6 +154,12 @@
     "duration": "المدة",
     "videoCard": {
       "backToThumbnail": "العودة إلى الصورة المصغرة"
+    }
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "قريبًا",
+      "description": "تجربة تقرير الكوارث العالمي للاتحاد الدولي ستنطلق قريبًا."
     }
   }
 }

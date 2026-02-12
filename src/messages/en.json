@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "IFRC World Disasters Report 2026"
+  },
   "Home": {
     "meta": {
       "title": "IFRC Reports Homepage",
@@ -13,6 +17,7 @@
       "search": "Search",
       "acknowledgement": "Acknowledgement"
     },
+    "comingSoonLabel": "Coming soon",
     "footer": {
       "worldDisastersReport": "World Disasters Report",
       "chapters": {
@@ -115,6 +120,12 @@
     "ariaLabel": "Select language",
     "title": "Select language",
     "language": "Language"
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "Coming soon",
+      "description": "The IFRC World Disasters Report experience is launching soon."
+    }
   },
   "SidebarPanel": {
     "expandSidebar": "Expand sidebar",

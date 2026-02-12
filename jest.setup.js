@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { loadEnvConfig } from '@next/env';
 
 // Mock fetch for testing environment
 global.fetch = jest.fn();
@@ -6,11 +7,9 @@ global.fetch = jest.fn();
 // Mock window.alert
 global.alert = jest.fn();
 
-// Mock window.URL
-Object.defineProperty(window, 'URL', {
-  value: {
-    createObjectURL: jest.fn(() => 'mock-object-url'),
-    revokeObjectURL: jest.fn(),
-  },
-  writable: true,
-});
+// ref: https://nextjs.org/docs/app/guides/environment-variables#test-environment-variables
+// eslint-disable-next-line import/no-anonymous-default-export
+export default async () => {
+  const projectDir = process.cwd()
+  loadEnvConfig(projectDir)
+}
