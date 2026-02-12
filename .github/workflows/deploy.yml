@@ -18,13 +18,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.tag }}
           lfs: true
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
@@ -34,7 +34,7 @@ jobs:
 
       - name: Resolve version id from metadata.json asset
         id: version
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const tag = '${{ inputs.tag }}';
@@ -76,7 +76,7 @@ jobs:
 
       - name: Purge Cloudflare CDN cache
         if: ${{ vars.CLOUDFLARE_ZONE_ID != '' }}
-        uses: nathanvaughn/actions-cloudflare-purge@master
+        uses: nathanvaughn/actions-cloudflare-purge@v4
         with:
           cf_zone: ${{ vars.CLOUDFLARE_ZONE_ID }}
           cf_auth: ${{ secrets.CLOUDFLARE_API_TOKEN }}
