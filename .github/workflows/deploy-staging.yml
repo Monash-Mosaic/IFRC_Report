@@ -36,7 +36,7 @@ jobs:
         run: |
           LOG=$(npm run upload -- --env="" --preview-alias staging 2>&1 | tee /dev/stderr)
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
-          PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview URL: https?://[^[:space:]]+' | awk '{print $5}')
+          PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview URL: https?://[^[:space:]]+' | awk '{print $4}')
           BRANCH_PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview Alias URL: https?://[^[:space:]]+' | awk '{print $5}')
           echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
           echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
@@ -60,4 +60,4 @@ jobs:
           EOF
           gh release upload "$TAG" metadata.json --repo="$GITHUB_REPOSITORY" --clobber
           # Edit the release with the updated notes
-          gh release edit "$TAG" --repo="$GITHUB_REPOSITORY" --body "$UPDATED_BODY"
+          gh release edit "$TAG" --repo="$GITHUB_REPOSITORY" --notes "$UPDATED_BODY"
