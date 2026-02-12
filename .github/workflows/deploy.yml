@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag to deploy to production (e.g., v1.2.3)'
-        required: true
+        description: 'Optional release tag to deploy (e.g., v1.2.3). If empty, deploy latest stable (non-prerelease) release.'
+        required: false
         type: string
 
 jobs:
@@ -17,29 +17,42 @@ jobs:
       contents: read
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-        with:
-          ref: ${{ inputs.tag }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-
       - name: Resolve version id from metadata.json asset
         id: version
         uses: actions/github-script@v8
         with:
           script: |
-            const tag = '${{ inputs.tag }}';
+            const requestedTag = `${{ inputs.tag }}`.trim();
             const { owner, repo } = context.repo;
+            let release;
 
-            const release = await github.rest.repos.getReleaseByTag({ owner, repo, tag });
+            if (requestedTag) {
+              const byTag = await github.rest.repos.getReleaseByTag({
+                owner,
+                repo,
+                tag: requestedTag,
+              });
+              release = byTag.data;
+            } else {
+              const { data: releases } = await github.rest.repos.listReleases({
+                owner,
+                repo,
+                per_page: 100,
+              });
+              release = releases.find((r) => !r.draft && !r.prerelease);
+              if (!release) {
+                core.setFailed('No stable (non-prerelease) release found.');
+                return;
+              }
+            }
+
+            const resolvedTag = release.tag_name;
+            core.info(`Deploying release tag: ${resolvedTag}`);
+            core.setOutput('tag', resolvedTag);
             const assets = await github.rest.repos.listReleaseAssets({
               owner,
               repo,
-              release_id: release.data.id,
+              release_id: release.id,
             });
 
             const asset = assets.data.find(a => a.name === 'metadata.json');
@@ -61,6 +74,16 @@ jobs:
             }
 
             core.setOutput('version_id', versionId);
+
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ steps.version.outputs.tag }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
 
       - name: Deploy to Cloudflare (production)
         env:
