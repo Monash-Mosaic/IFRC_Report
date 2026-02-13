@@ -3,23 +3,82 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
-import { Link } from '@/i18n/navigation';
-import { reportsByLocale } from '@/reports';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
+import { Link, getPathname } from '@/i18n/navigation';
+import {
+  getVisibleReports,
+  isLocaleReleased,
+  isReportReleased,
+  reportsByLocale,
+  reportUriMap,
+} from '@/reports';
+import { routing } from '@/i18n/routing';
+import { getBaseUrl } from '@/lib/base-url';
 
+/**
+ *
+ * @param {PageProps<'/[locale]/reports/[report]'>} param0
+ * @returns {Promise<import('next').Metadata>}
+ */
 export async function generateMetadata({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
-  const { title, description } = reportsByLocale[locale].reports[decodedReport];
+  const reportData = reportsByLocale[locale]?.reports?.[decodedReport];
+  const { title, description } = reportData;
+  const canonical = getPathname({ locale, href: `/reports/${decodedReport}` });
+  const reportKey = reportUriMap.uri[locale][decodedReport];
+  const reportUrls = reportUriMap[reportKey];
+  const languages = Object.entries(reportUrls.languages)
+    .filter(([loc]) => isLocaleReleased(loc))
+    .map(([loc, uri]) => [
+      loc,
+      getPathname({
+        locale: loc,
+        href: {
+          pathname: '/reports/[report]',
+          params: { report: uri },
+        },
+      }),
+    ]);
+  languages.push([
+    'x-default',
+    languages
+      .find(([loc, url]) => loc === routing.defaultLocale)[1]
+      .replace(`/${routing.defaultLocale}/`, '/'),
+  ]);
   return {
     title: title,
     description: description,
+    alternates: {
+      canonical,
+      languages: Object.fromEntries(languages),
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      locale,
+      url: canonical,
+      images: [
+        {
+          url: '/wdr25/ifrc_logo.jpg',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/wdr25/ifrc_logo.jpg'],
+    },
   };
 }
 
 export async function generateStaticParams() {
   return Object.keys(reportsByLocale).reduce((params, locale) => {
-    const reports = reportsByLocale[locale].reports;
+    const reports = getVisibleReports(locale);
     Object.keys(reports).forEach((reportKey) => {
       params.push({ locale, report: reportKey });
     });
@@ -27,21 +86,45 @@ export async function generateStaticParams() {
   }, []);
 }
 
+/**
+ *
+ * @param {PageProps<'/[locale]/reports/[report]'>} param0
+ * @returns {Promise<import('react').ReactElement>}
+ */
 export default async function ReportDetailPage({ params }) {
   const { locale, report } = await params;
   const decodedReport = decodeURIComponent(report);
+  const baseUrl = getBaseUrl();
+  const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   if (
     !hasLocale(Object.keys(reportsByLocale), locale) ||
-    !reportsByLocale[locale].reports[decodedReport]
+    !reportsByLocale[locale].reports[decodedReport] ||
+    !isReportReleased(locale, decodedReport)
   ) {
     notFound();
   }
   setRequestLocale(locale);
-  const { chapters, title: reportTile } = reportsByLocale[locale].reports[decodedReport];
+  const reportData = reportsByLocale[locale].reports[decodedReport];
+  const { chapters, title: reportTile, description, author, releaseDate, reportFile } = reportData;
+  const reportJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Report',
+    name: reportTile,
+    description,
+    inLanguage: locale,
+    datePublished: releaseDate ? new Date(releaseDate).toISOString().split('T')[0] : undefined,
+    author: author ? { '@type': 'Organization', name: author } : undefined,
+    url: toAbsolute(getPathname({ locale, href: `/reports/${decodedReport}` })),
+    fileFormat: reportFile?.url ? 'application/pdf' : undefined,
+    contentUrl: reportFile?.url ? toAbsolute(reportFile.url) : undefined,
+  };
   const expandedSections = new Set();
   const bookmarkedSections = new Set();
   const activeMenu = 'toc';
-  const t = await getTranslations('ReportDetailPage', locale);
+  const t = await getTranslations({
+    namespace: 'ReportDetailPage',
+    locale,
+  });
 
   const displayedSections = Object.entries(chapters).map(([chapterKey, chapter]) => ({
     name: chapter.title,
@@ -52,6 +135,10 @@ export default async function ReportDetailPage({ params }) {
 
   return (
     <div className="min-h-screen bg-white p-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reportJsonLd) }}
+      />
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <Link href={'/'} className="flex items-center gap-2 text-black hover:text-gray-600 mb-8">

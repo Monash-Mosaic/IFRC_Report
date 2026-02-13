@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "IFRC 世界灾害报告 2026"
+  },
   "Home": {
     "meta": {
       "title": "国际红十字报告主页",
@@ -13,6 +17,7 @@
       "search": "搜索",
       "acknowledgement": "鸣谢"
     },
+    "comingSoonLabel": "即将上线",
     "footer": {
       "worldDisastersReport": "世界灾害报告",
       "chapters": {
@@ -115,6 +120,12 @@
     "ariaLabel": "选择语言",
     "title": "选择语言",
     "language": "语言"
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "即将上线",
+      "description": "IFRC《世界灾难报告》数字体验即将上线。"
+    }
   },
   "SidebarPanel": {
     "expandSidebar": "展开侧边栏",

@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Rapport mondial sur les catastrophes 2026 de l'IFRC"
+  },
   "Home": {
     "meta": {
       "title": "Page d'accueil des rapports de l'IFRC",
@@ -13,6 +17,7 @@
       "search": "Recherche",
       "acknowledgement": "Reconnaissance"
     },
+    "comingSoonLabel": "Bientôt disponible",
     "footer": {
       "worldDisastersReport": "Rapport mondial sur les catastrophes",
       "chapters": {
@@ -133,6 +138,12 @@
     "ariaLabel": "Sélectionnez la langue",
     "title": "Sélectionnez la langue",
     "language": "Langue"
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "Bientôt disponible",
+      "description": "L’expérience du Rapport mondial sur les catastrophes de l’IFRC arrive bientôt."
+    }
   },
   "SidebarPanel": {
     "expandSidebar": "Étendre la barre latérale",

@@ -2,18 +2,57 @@ import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import HeroSection from '@/components/landing-page/HeroSection';
 import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummarySection';
-import { reportsByLocale } from '@/reports';
+import { getVisibleReports, isLocaleReleased, reportUriMap } from '@/reports';
 import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
+import { getPathname } from '@/i18n/navigation';
+import { getBaseUrl } from '@/lib/base-url';
 
 
+/** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations('Home', locale);
+  const t = await getTranslations({
+    namespace: 'Home',
+    locale,
+  });
+  const title = t('meta.title');
+  const description = t('meta.description');
+  const canonical = getPathname({ locale, href: '/' });
+  const languages = routing.locales
+    .filter((loc) => isLocaleReleased(loc))
+    .map((loc) => [loc, getPathname({ locale: loc, href: '/' })]);
+  languages.push(['x-default', '/']);
+
   return {
-    title: t('meta.title'),
-    description: t('meta.description'),
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: Object.fromEntries(languages),
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      locale,
+      url: canonical,
+      images: [
+        {
+          url: '/wdr25/ifrc_logo.jpg',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/wdr25/ifrc_logo.jpg'],
+    },
   };
 }
 
@@ -23,13 +62,17 @@ export async function generateStaticParams() {
 
 export default async function Home({ params }) {
   const { locale } = await params;
-  const t = await getTranslations('Home', locale);
+  const t = await getTranslations({
+    namespace: 'Home',
+    locale,
+  });
+  const baseUrl = getBaseUrl();
 
   // Get the report data for the current locale
-  const reportModule = reportsByLocale[locale]?.reports?.wdr25;
+  const reportModule = getVisibleReports(locale)?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-
+  const chapterSlug = reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
   // Executive Summary translations
   const executiveSummary = {
     title: t('landingPage.executiveSummary.title'),
@@ -40,6 +83,17 @@ export default async function Home({ params }) {
       read: t('landingPage.executiveSummary.buttonTexts.read'),
       download: t('landingPage.executiveSummary.buttonTexts.download'),
     },
+    url: getPathname({
+      locale,
+      href: {
+        pathname: '/reports/[report]/[chapter]',
+        params: {
+          report: reportUriMap['wdr25'].languages[locale],
+          chapter: chapterSlug,
+        },
+      },
+    }),
+    downloadLink: reportModule.chapters[chapterSlug].downloadLink,
   };
 
   // Hero Section translations
@@ -52,10 +106,33 @@ export default async function Home({ params }) {
       download: t('landingPage.heroSection.buttonTexts.download'),
       share: t('landingPage.heroSection.buttonTexts.share'),
     },
+    url: getPathname({
+      locale,
+      href: {
+        pathname: '/reports/[report]',
+        params: {
+          report: reportUriMap['wdr25'].languages[locale],
+        },
+      },
+    }),
+    downloadLink: reportModule.chapters[chapterSlug].downloadLink,
+  };
+
+  const homeJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: t('meta.title'),
+    description: t('meta.description'),
+    url: new URL(getPathname({ locale, href: '/' }), baseUrl).toString(),
+    inLanguage: locale,
   };
 
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
         <HeroSection locale={locale} messages={heroMessage} />
         <ExecutiveSummarySection locale={locale} messages={executiveSummary} />

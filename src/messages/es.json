@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Informe Mundial sobre Desastres 2026 de la FICR"
+  },
   "Home": {
     "meta": {
       "title": "Página de inicio de Informes de la FICR",
@@ -13,6 +17,7 @@
       "search": "Buscar",
       "acknowledgement": "Agradecimientos"
     },
+    "comingSoonLabel": "Próximamente",
     "footer": {
       "worldDisastersReport": "Informe Mundial sobre Desastres",
       "chapters": {
@@ -156,7 +161,6 @@
     "description": "La página que buscas no existe.",
     "backHome": "Ir inicio"
   },
-  
   "About": {
     "breadcrumbHome": "Página principal",
     "breadcrumbCurrent": "Acerca de",
@@ -207,5 +211,11 @@
     "contributions": "El Informe Mundial sobre Desastres 2026 incluye más de 100 contribuciones escritas de más de 60 profesionales e investigadores del sector humanitario, así como de gobiernos, el ámbito académico, la sociedad civil y otros sectores. Estas contribuciones aparecen a lo largo del informe en recuadros de análisis de colaboradores, reconociendo a los autores individuales y a sus respectivas organizaciones.",
 
     "research": "La Academia Solferino de la IFRC llevó a cabo un estudio rápido de inteligencia comunitaria de dos meses con 40 voluntarios y miembros del personal de 10 Sociedades Nacionales. Actuando como investigadores comunitarios, entrevistaron a 132 voluntarios y miembros de comunidades afectadas por crisis humanitarias. Los hallazgos fueron sintetizados por académicos voluntarios de la Universidad de Michigan, la Universidad de Northumbria y Open Lab (Universidad de Newcastle), garantizando que se preservaran los matices locales. Citas seleccionadas aparecen a lo largo del informe."
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "Próximamente",
+      "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
+    }
   }
 }
