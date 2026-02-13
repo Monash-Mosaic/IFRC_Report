@@ -75,6 +75,16 @@ export default async function sitemap() {
     priority: 1.0,
   });
 
+  const staticPageEntries = ['/about', '/acknowledgement'];
+  staticPageEntries.forEach((pathname) => {
+    items.push({
+      url: buildDefaultUrl(pathname),
+      ...(homeLastModified ? { lastModified: homeLastModified } : {}),
+      alternates: buildAlternates(pathname, undefined, effectiveLocales),
+      priority: 0.5,
+    });
+  });
+
   const reportKeys = new Set();
   effectiveLocales.forEach((locale) => {
     Object.keys(getVisibleReports(locale)).forEach((key) => reportKeys.add(key));

@@ -9,6 +9,7 @@ import TestimonialCard from '@/components/landing-page/TestimonialCard';
 import { getPathname } from '@/i18n/navigation';
 import { getBaseUrl } from '@/lib/base-url';
 
+
 /** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
