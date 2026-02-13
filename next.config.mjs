@@ -1,10 +1,6 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 import createMDX from '@next/mdx';
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import rehypeRemoveFootnoteHeading from './rehype-remove-footnote-heading.js';
-
 const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
