@@ -83,7 +83,7 @@ jobs:
         id: preview
         run: |
           RAW_BRANCH="${{ github.head_ref || github.ref_name }}"
-          BRANCH_SLUG=$(echo "$RAW_BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | cut -c1-40)
+          BRANCH_SLUG=$(echo "$RAW_BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z]+/-/g' | sed -E 's/^-+|-+$//g' | cut -c1-40)
           if [ -z "$BRANCH_SLUG" ]; then
             BRANCH_SLUG="${{ github.event.pull_request.number && format('pr-{0}', github.event.pull_request.number) || 'main' }}"
           fi
