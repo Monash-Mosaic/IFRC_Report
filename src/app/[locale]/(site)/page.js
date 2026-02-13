@@ -161,13 +161,7 @@ export default async function Home({ params }) {
           </h2>
           <EmblaCarousel slideWidth={284} loop={false}>
             {testimonialsList.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                quote={testimonial.quote}
-                name={testimonial.name}
-                country={testimonial.country}
-                avatar={testimonial.avatar}
-              />
+              <TestimonialCard key={index} quote={testimonial.quote} />
             ))}
           </EmblaCarousel>
         </div>

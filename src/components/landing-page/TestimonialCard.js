@@ -1,29 +1,13 @@
-import Image from 'next/image';
+import { CircleUserIcon } from 'lucide-react';
 
-export default function TestimonialCard({ quote, name, country, avatar }) {
-  const initials = name
-    .split(' ')
-    .map((n) => n[0])
-    .join('')
-    .toUpperCase();
-
+export default function TestimonialCard({ quote }) {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full border border-gray-200">
       {/* Author Info */}
       <div className="flex items-center space-x-3 mt-auto">
         {/* Avatar */}
         <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-          {avatar ? (
-            <Image
-              src={avatar}
-              alt={`${name}'s avatar`}
-              width={40}
-              height={40}
-              className="w-full h-full rounded-full object-cover"
-            />
-          ) : (
-            <span className="text-gray-700 text-sm font-medium">{initials}</span>
-          )}
+          <CircleUserIcon size={40} className="stroke-[1.5] bg-white text-red-600"></CircleUserIcon>
         </div>
       </div>
       {/* Quote */}
