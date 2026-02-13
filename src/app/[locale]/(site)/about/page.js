@@ -1,13 +1,80 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { getPathname } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
+import { getBaseUrl } from '@/lib/base-url';
+import { isLocaleReleased } from '@/reports/release';
 
-// Enable static generation
-export const dynamic = 'force-static';
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
-export default function AboutPage() {
-  const t = useTranslations('About');
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({
+    namespace: 'About',
+    locale,
+  });
+  const title = t('pageTitle');
+  const description = t('topicHeading');
+  const canonical = getPathname({ locale, href: '/about' });
+  const languages = routing.locales
+    .filter((loc) => isLocaleReleased(loc))
+    .map((loc) => [loc, getPathname({ locale: loc, href: '/about' })]);
+  languages.push(['x-default', '/about']);
+  const image = new URL('/wdr25/ifrc_logo.jpg', getBaseUrl()).toString();
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: Object.fromEntries(languages),
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      locale,
+      url: canonical,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
+
+export default async function AboutPage({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({
+    namespace: 'About',
+    locale,
+  });
+  const aboutJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: t('pageTitle'),
+    description: t('topicHeading'),
+    inLanguage: locale,
+    url: new URL(getPathname({ locale, href: '/about' }), getBaseUrl()).toString(),
+  };
 
   return (
     <div className="bg-white text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+      />
       {/* Page title */}
       <section className="max-w-6xl mx-auto px-4 pt-12 pb-8">
         <h1 className="text-4xl md:text-6xl font-bold text-center">

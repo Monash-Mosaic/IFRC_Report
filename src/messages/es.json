@@ -161,6 +161,12 @@
     "description": "La página que buscas no existe.",
     "backHome": "Ir inicio"
   },
+  "Error": {
+    "title": "Algo salió mal",
+    "description": "Ocurrió un error inesperado. Inténtalo de nuevo.",
+    "message": "Detalles del error: {message}",
+    "backHome": "Ir inicio"
+  },
   "About": {
     "breadcrumbHome": "Página principal",
     "breadcrumbCurrent": "Acerca de",
@@ -188,11 +194,15 @@
     "webUrlText": "www.ifrcwdr26.com"
   },
   "Acknowledgements": {
+    "meta": {
+      "title": "Agradecimientos y colaboradores",
+      "description": "Reconocimiento a las organizaciones y personas que apoyaron la producción, traducción y publicación del Informe Mundial sobre Desastres de la IFRC 2026."
+    },
     "breadcrumbHome": "Página de inicio",
     "breadcrumbCurrent": "Agradecimientos",
     "pageTitle": "Agradecimientos",
 
-    "intro": "La Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja (IFRC) agradece sinceramente el apoyo brindado por las siguientes organizaciones para la producción y publicación del Informe Mundial sobre Desastres de la IFRC 2026:",
+    "intro": "La <bold>Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja</bold> (IFRC) agradece sinceramente el apoyo brindado por las siguientes organizaciones para la producción y publicación del Informe Mundial sobre Desastres de la IFRC 2026:",
 
     "translation": "Los costos de traducción de las ediciones en ruso y chino fueron generosamente cubiertos por la Academia de la Cruz Roja Rusa y la Academia Internacional de la Cruz Roja en China.",
 
@@ -210,7 +220,7 @@
 
     "contributions": "El Informe Mundial sobre Desastres 2026 incluye más de 100 contribuciones escritas de más de 60 profesionales e investigadores del sector humanitario, así como de gobiernos, el ámbito académico, la sociedad civil y otros sectores. Estas contribuciones aparecen a lo largo del informe en recuadros de análisis de colaboradores, reconociendo a los autores individuales y a sus respectivas organizaciones.",
 
-    "research": "La Academia Solferino de la IFRC llevó a cabo un estudio rápido de inteligencia comunitaria de dos meses con 40 voluntarios y miembros del personal de 10 Sociedades Nacionales. Actuando como investigadores comunitarios, entrevistaron a 132 voluntarios y miembros de comunidades afectadas por crisis humanitarias. Los hallazgos fueron sintetizados por académicos voluntarios de la Universidad de Michigan, la Universidad de Northumbria y Open Lab (Universidad de Newcastle), garantizando que se preservaran los matices locales. Citas seleccionadas aparecen a lo largo del informe."
+    "research": "<bold>La Academia Solferino de la IFRC</bold> llevó a cabo un estudio rápido de inteligencia comunitaria de dos meses con 40 voluntarios y miembros del personal de 10 Sociedades Nacionales. Actuando como investigadores comunitarios, entrevistaron a 132 voluntarios y miembros de comunidades afectadas por crisis humanitarias. Los hallazgos fueron sintetizados por académicos voluntarios de la Universidad de Michigan, la Universidad de Northumbria y Open Lab (Universidad de Newcastle), garantizando que se preservaran los matices locales. Citas seleccionadas aparecen a lo largo del informe."
   },
   "ComingSoon": {
     "meta": {

@@ -166,6 +166,12 @@
     "title": "Page not found",
     "description": "The page you are looking for does not exist or has been moved.",
     "backHome": "Go to home"},
+  "Error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again.",
+    "message": "Error details: {message}",
+    "backHome": "Go to home"
+  },
   
   "About": {
     "breadcrumbHome": "Home Page",
@@ -194,11 +200,15 @@
     "webUrlText": "www.ifrcwdr26.com"
   },
   "Acknowledgements": {
+    "meta": {
+      "title": "Acknowledgements and Contributors",
+      "description": "Recognition of the organizations and individuals who supported the production, translation, and publication of the IFRC World Disasters Report 2026."
+    },
     "breadcrumbHome": "Home Page",
     "breadcrumbCurrent": "Acknowledgements",
     "pageTitle": "Acknowledgements",
 
-    "intro": "The International Federation of Red Cross and Red Crescent Societies (IFRC) gratefully acknowledges the support provided by the following organizations for the production and publication of the IFRC World Disasters Report 2026:",
+    "intro": "The <bold>International Federation of Red Cross and Red Crescent Societies</bold> (IFRC) gratefully acknowledges the support provided by the following organizations for the production and publication of the IFRC World Disasters Report 2026:",
 
     "translation": "Translation costs for the Russian and Chinese editions were generously provided by the Academy of the Russian Red Cross and the International Academy of the Red Cross in China.",
 
@@ -216,6 +226,6 @@
 
     "contributions": "The World Disasters Report 2026 features over 100 written contributions from more than 60 practitioners and researchers across the humanitarian sector, as well as from governments, academia, civil society and beyond. These contributions appear throughout the report in Contributor Insight boxes, acknowledging the individual authors and their respective organizations.",
 
-    "research": "The IFRC Solferino Academy led a two-month rapid community intelligence study with 40 volunteers and staff from 10 National Societies. Acting as community researchers, they interviewed 132 volunteers and community members affected by humanitarian crises. Findings were synthesised by volunteer academics from the University of Michigan, Northumbria University and Open Lab (Newcastle University), ensuring that local nuance was preserved. Selected quotes appear throughout the report."
+    "research": "The <bold>IFRC Solferino Academy</bold> led a two-month rapid community intelligence study with 40 volunteers and staff from 10 National Societies. Acting as community researchers, they interviewed 132 volunteers and community members affected by humanitarian crises. Findings were synthesised by volunteer academics from the University of Michigan, Northumbria University and Open Lab (Newcastle University), ensuring that local nuance was preserved. Selected quotes appear throughout the report."
   }
 }
