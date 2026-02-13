@@ -20,39 +20,41 @@ export const testimonialsList = [
   {
     id: 1,
     quote:
-      'Во время COVID-19 было так много информации, что я чувствовал себя потерянным и не знал, чему верить',
-    name: 'Абдул М.',
-    country: 'Афганистан',
+      'False information is particularly effective when it originates within the circle of people you trust, a serious problem since the very ties that bind communities together can make them susceptible to misinformation and its harmful consequences.',
+    name: 'Abdul M.',
+    country: 'Afghanistan',
     avatar: '/avatar/avatar-1.svg',
   },
   {
     id: 2,
-    quote: 'Жизнь в эпоху ИИ пугает меня: где правда, а где дезинформация',
-    name: 'Клэр',
-    country: 'Великобритания',
+    quote:
+      'Trust is anchored on CEA pillars. when communities have a way of reaching out to people passing information for their views and perspectives to be heard and corrected, it slowly builds trust on the messengers.',
+    name: 'Clair',
+    country: 'UK',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 3,
     quote:
-      'Хотелось бы иметь волшебную палочку, которая помогла бы мне отличить дезинформацию от правды',
-    name: 'Ольга',
-    country: 'Россия',
+      'You need to understand that when we are dealing with false information, it means that some real disaster situations are being ignored, and people who truly need rescue are being neglected. This is an extremely serious issue.',
+    name: 'Olga',
+    country: 'Russia',
     avatar: '/avatar/avatar-1.svg',
   },
   {
     id: 4,
     quote:
-      'Социальные сети распространяют ложную информацию так быстро, что становится трудно проверить, что правда, прежде чем станет слишком поздно',
-    name: 'Мария С.',
-    country: 'Филиппины',
+      'Les rumeurs érodent la confiance: la propagation rapide d’informations trompeuses crée de la confusion, amène certains à douter des autorités, et complique la relation entre les communautés et ceux qui les soutiennent.',
+    name: 'Maria S.',
+    country: 'Philippines',
     avatar: '/avatar/avatar-2.svg',
   },
   {
     id: 5,
-    quote: 'Во время катастроф дезинформация может быть опаснее самой катастрофы',
-    name: 'Джеймс К.',
-    country: 'Кения',
+    quote:
+      'Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
+    name: 'James K.',
+    country: 'Kenya',
     avatar: '/avatar/avatar-1.svg',
   },
 ];

@@ -44,7 +44,7 @@ export const testimonialsList = [
   {
     id: 4,
     quote:
-      'Moi, je pense que le canal qui peut être le plus favorable pour faire passer un message dans notre communauté, c’est de face à face, aller au pied des gens, les rencontrer en personne, parce que c’est difficile de rassembler les personnes dans notre communauté, comme les gens sont généralement occupés. Et même au niveau de la télé, tout le monde ne regarde pas les informations, certains se divertissent tout simplement. Je pense que c’est mieux d’aller au pied des gens, les rencontrer dans les différentes maisons et leur faire passer l’information.',
+      'Les rumeurs érodent la confiance: la propagation rapide d’informations trompeuses crée de la confusion, amène certains à douter des autorités, et complique la relation entre les communautés et ceux qui les soutiennent.',
     name: 'Maria S.',
     country: 'Philippines',
     avatar: '/avatar/avatar-2.svg',
@@ -52,7 +52,7 @@ export const testimonialsList = [
   {
     id: 5,
     quote:
-      'I Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
+      'Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
     name: 'James K.',
     country: 'Kenya',
     avatar: '/avatar/avatar-1.svg',
