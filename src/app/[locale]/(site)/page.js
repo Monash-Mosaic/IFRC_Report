@@ -71,7 +71,7 @@ export default async function Home({ params }) {
   const reportModule = getVisibleReports(locale)?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-  const chapterSlug = reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
+  const chapterSlug = reportUriMap['wdr25'].chapters['synthesis'].languages[locale];
   // Executive Summary translations
   const executiveSummary = {
     title: t('landingPage.executiveSummary.title'),

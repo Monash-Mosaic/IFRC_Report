@@ -64,6 +64,11 @@ export const featuredVideos = [
 
 export const chapters = {
   synthesis: {
+    metadata: {
+      chapterKey: 'Synthesis',
+      chapterNumber: 1,
+      chapterPrefix: 'Synthesis',
+    },
     component: Synthesis.default,
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,

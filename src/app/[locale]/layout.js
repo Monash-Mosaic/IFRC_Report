@@ -65,7 +65,9 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <html lang={locale} dir={dir}>
-      <body className={`${GeistSans.variable} ${GeistMono.variable} locale-${locale} antialiased`}>
+      <body
+        className={`${GeistSans.variable} ${GeistMono.variable}  ${bespokeSerif.variable} locale-${locale} antialiased`}
+      >
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
