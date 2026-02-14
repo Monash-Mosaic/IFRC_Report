@@ -1,18 +1,31 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { getPathname } from '@/i18n/navigation';
 import Form from 'next/form';
 
-export default function SearchInput({ isMobile = false, isSearchExpanded, setIsSearchExpanded }) {
+export default function SearchInput({
+  isMobile = false,
+  isSearchExpanded,
+  setIsSearchExpanded,
+  initialQuery = '',
+}) {
   const searchInputRef = useRef(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const containerRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const t = useTranslations('Home');
   const locale = useLocale();
 
-  // Get the localized search pathname
-  const pathname = getPathname({
+  // Update searchQuery when initialQuery changes (e.g., on search results page)
+  useEffect(() => {
+    if (initialQuery) {
+      setSearchQuery(initialQuery);
+    }
+  }, [initialQuery]);
+
+  // Get the localized search pathname (includes locale prefix e.g. /en/search)
+  const searchAction = getPathname({
     locale,
     href: '/search',
   });
@@ -21,8 +34,7 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
 
   const handleSearchFocus = () => {
     setIsSearchExpanded(true);
-    // Ensure focus remains on the input after expansion
-   const timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if (searchInputRef.current) {
         searchInputRef.current.focus();
       }
@@ -32,11 +44,22 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
 
   const handleCloseSearch = () => {
     setIsSearchExpanded(false);
-    setSearchQuery('');
+    setSearchQuery(initialQuery || '');
   };
 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
+  };
+
+  // Handle blur - close search when clicking outside
+  const handleBlur = () => {
+    setTimeout(() => {
+      if (containerRef.current && !containerRef.current.contains(document.activeElement)) {
+        if (!searchQuery.trim()) {
+          setIsSearchExpanded(false);
+        }
+      }
+    }, 150);
   };
 
   // Mobile: Use CSS overlay approach
@@ -57,7 +80,7 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
         {isSearchExpanded && (
           <div className="fixed inset-0 z-50 bg-white">
             <div className="flex items-center gap-3 p-4 border-b border-gray-200">
-              <Form action={pathname} replace={true} role="search" className="flex-1 relative">
+              <Form action={searchAction} role="search" className="flex-1 relative">
                 <input
                   ref={searchInputRef}
                   type="search"
@@ -95,18 +118,17 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
 
   const getSearchInputClasses = () => {
     const baseClasses =
-      'border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out';
+      'border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-red-300 bg-white placeholder-red-400 transition-all duration-300 ease-in-out [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden';
 
-    const sizeClasses = isSearchExpanded ? 'w-full pl-12 pr-4 py-2' : 'w-auto px-4 py-2 pr-10';
+    const sizeClasses = isSearchExpanded ? 'w-full pl-4 pr-12 py-2' : 'w-auto px-4 py-2 pr-10';
 
     return `${sizeClasses} ${baseClasses}`;
   };
 
   return (
-    <div className={containerClasses}>
+    <div ref={containerRef} className={containerClasses}>
       <Form
-        action={pathname}
-        replace={true}
+        action={searchAction}
         role="search"
         className={`relative ${isSearchExpanded ? 'flex-1' : ''}`}
       >
@@ -118,13 +140,16 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
           onChange={handleInputChange}
           placeholder={isSearchExpanded ? '' : t('nav.search')}
           onFocus={handleSearchFocus}
+          onBlur={handleBlur}
           className={getSearchInputClasses()}
           required
           autoComplete="off"
           spellCheck="true"
         />
         {isSearchExpanded ? (
-          <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${iconClasses}`} />
+          <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <Search className={iconClasses} />
+          </button>
         ) : (
           <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
             <Search className="w-5 h-5 text-red-600" />
