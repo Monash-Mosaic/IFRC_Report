@@ -2,7 +2,13 @@ import { ArrowLeft } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-import { getVisibleReports, isLocaleReleased, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
+import {
+  getVisibleReports,
+  isLocaleReleased,
+  isReportReleased,
+  reportsByLocale,
+  reportUriMap,
+} from '@/reports';
 import { getPathname, Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import SidebarPanel from '@/components/SidebarPanel';
@@ -13,7 +19,6 @@ import HighlightToolbar from '@/components/HighlightToolbar';
 
 import ActiveHeadingTracker from '@/components/ActiveHeadingTracker';
 
-
 export async function generateMetadata({ params }) {
   const { locale, report, chapter } = await params;
   const decodedReport = decodeURIComponent(report);
@@ -21,7 +26,10 @@ export async function generateMetadata({ params }) {
   const reportData = reportsByLocale[locale]?.reports?.[decodedReport];
   const chapterData = reportData?.chapters?.[decodedChapter];
   const { title: reportTitle } = reportData;
-  const { metadata: { chapterPrefix }, title: chapterTitle } = chapterData;
+  const {
+    metadata: { chapterPrefix },
+    title: chapterTitle,
+  } = chapterData;
   const reportKey = reportUriMap.uri[locale][decodedReport];
   const chapterKey = reportUriMap[reportKey].chapters.uri[locale][decodedChapter];
 
@@ -33,17 +41,14 @@ export async function generateMetadata({ params }) {
     .filter(([loc]) => isLocaleReleased(loc))
     .map(([loc, uri]) => {
       const href = buildHref(uri);
-            return [
-              loc,
-              getPathname({ locale: loc, href }),
-            ];
+      return [loc, getPathname({ locale: loc, href })];
     });
-    languages.push([
-      'x-default',
+  languages.push([
+    'x-default',
     languages
-        .find(([loc, url]) => loc === routing.defaultLocale)[1]
-        .replace(`/${routing.defaultLocale}/`, '/'),
-    ]);
+      .find(([loc, url]) => loc === routing.defaultLocale)[1]
+      .replace(`/${routing.defaultLocale}/`, '/'),
+  ]);
   const metaTitle = `${reportTitle} > ${chapterPrefix}`;
   const canonical = getPathname({ locale, href: buildHref(decodedChapter) });
   return {
@@ -148,7 +153,7 @@ export default async function ReportChapterPage({ params }) {
 
   const t = await getTranslations({
     namespace: 'ReportChapterPage',
-    locale
+    locale,
   });
 
   return (
@@ -175,7 +180,7 @@ export default async function ReportChapterPage({ params }) {
               <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
             </div>
 
-            <div className="mb-8 text-black text-4xl font-extrabold">{chapterTitle}</div>
+            <div className="mb-8 text-black text-5xl font-extrabold text-right">{chapterTitle}</div>
 
             <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 

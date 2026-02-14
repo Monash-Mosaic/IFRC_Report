@@ -56,14 +56,15 @@
         "heroAlt": "Imagen principal del Informe Mundial sobre Desastres mostrando a trabajadores humanitarios en acción"
       },
       "executiveSummary": {
-        "title": "Resumen Ejecutivo",
+        "title": "Síntesis",
         "subtitle": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
         "description": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
         "buttonTexts": {
           "read": "Leer",
           "download": "Descargar"
         },
-        "summaryAlt": "Portada del Resumen Ejecutivo con una persona en un contexto humanitario"
+        "summaryAlt": "Portada del Resumen Ejecutivo con una persona en un contexto humanitario",
+        "url": "síntesis"
       },
       "featuredVideos": {
         "title": "Videos Destacados de Todo el Mundo"
