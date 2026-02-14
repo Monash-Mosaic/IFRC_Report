@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "IFRC World Disasters Report 2026"
+  },
   "Home": {
     "meta": {
       "title": "IFRC Reports Homepage",
@@ -13,6 +17,7 @@
       "search": "Search",
       "acknowledgement": "Acknowledgement"
     },
+    "comingSoonLabel": "Coming soon",
     "footer": {
       "worldDisastersReport": "World Disasters Report",
       "chapters": {
@@ -131,6 +136,12 @@
       "noResults": "No results found. Try a different search term."
     }
   },
+  "ComingSoon": {
+    "meta": {
+      "title": "Coming soon",
+      "description": "The IFRC World Disasters Report experience is launching soon."
+    }
+  },
   "SidebarPanel": {
     "expandSidebar": "Expand sidebar",
     "closeSidebar": "Close sidebar",
@@ -165,5 +176,71 @@
     "videoCard": {
       "backToThumbnail": "Back to thumbnail"
     }
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Go to home"},
+  "Error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again.",
+    "message": "Error details: {message}",
+    "backHome": "Go to home"
+  },
+  
+  "About": {
+    "breadcrumbHome": "Home Page",
+    "breadcrumbCurrent": "About",
+    "pageTitle": "About Us",
+    "topicHeading": "The International Federation of Red Cross and Red Crescent Societies",
+    "body": "The International Federation of Red Cross and Red Crescent Societies (IFRC) is the world’s largest humanitarian network, with 191 National Red Cross and Red Crescent Societies and around 15 million volunteers. Our volunteers are present in communities before, during and after a crisis or disaster. We work in the most hard-to-reach and complex settings in the world, saving lives and promoting human dignity. We support communities to become stronger and more resilient places where people can live safe and healthy lives, and have opportunities to thrive.",
+    "coverPhotoTitle": "Cover photo",
+    "coverPhotoText": "Bourj el-Barajneh Camp in Lebanon, 10 September 2025.\nThis people-centred approach reduces barriers of access and hesitancy while upholding dignity, trust and continuity of care in a challenging setting.\nLama Chidiac, IFRC.",
+    "insidePhotosTitle": "Inside photos",
+    "insidePhotosText": "Syrian Arab Red Crescent • Lama Chidiac, IFRC • Aki Kolehmainen, Finnish Red Cross • Syrian Arab Red Crescent • Lama Chidiac, IFRC • IFRC • Paul Wu, IFRC • IFRC and Ecuadorean Red Cross • Pakistan Red Crescent • IFRC",
+    "contactUsTitle": "Contact us",
+    "contactUsText": "Requests for commercial reproduction should be directed to the IFRC secretariat:",
+    "addressTitle": "Address",
+    "addressText": "Chemin des Crêts 17, Petit-Saconnex, 1209 Geneva, Switzerland",
+    "postalAddressTitle": "Postal address",
+    "postalAddressText": "P.O. Box 303, 1211 Geneva 19, Switzerland",
+    "contactLine": "T: +41 (0) 22 730 42 22 | F: +41 (0) 22 730 42 00 | E: secretariat@ifrc.org | W: ifrc.org",
+    "copyrightTitle": "© International Federation of Red Cross and Red Crescent Societies, Geneva, 2026",
+    "copyrightText": "Any part of this publication may be cited, copied, translated into other languages or adapted to meet local needs without prior permission from the International Federation of Red Cross and Red Crescent Societies, provided that the source is clearly stated.",
+    "isbnTitle": "ISBN",
+    "isbnText": "978-2-9701289-8-4",
+    "pdfUrlTitle": "PDF URL",
+    "pdfUrlText": "www.ifrc.org/document/IFRC-Worlds-Disasters-Report-2026",
+    "webUrlTitle": "Web version URL",
+    "webUrlText": "www.ifrcwdr26.com"
+  },
+  "Acknowledgements": {
+    "meta": {
+      "title": "Acknowledgements and Contributors",
+      "description": "Recognition of the organizations and individuals who supported the production, translation, and publication of the IFRC World Disasters Report 2026."
+    },
+    "breadcrumbHome": "Home Page",
+    "breadcrumbCurrent": "Acknowledgements",
+    "pageTitle": "Acknowledgements",
+
+    "intro": "The <bold>International Federation of Red Cross and Red Crescent Societies</bold> (IFRC) gratefully acknowledges the support provided by the following organizations for the production and publication of the IFRC World Disasters Report 2026:",
+
+    "translation": "Translation costs for the Russian and Chinese editions were generously provided by the Academy of the Russian Red Cross and the International Academy of the Red Cross in China.",
+
+    "leadEditorLabel": "Lead Editor and Author:",
+    "leadEditor": "Charlotte Lindsey Curtet",
+
+    "designerLabel": "Designer:",
+    "designer": "Yann le Floch",
+
+    "projectManagerLabel": "Project Manager:",
+    "projectManager": "Heather Marie Leson",
+
+    "copyeditorLabel": "Copyeditor:",
+    "copyeditor": "Jen Claydon",
+
+    "contributions": "The World Disasters Report 2026 features over 100 written contributions from more than 60 practitioners and researchers across the humanitarian sector, as well as from governments, academia, civil society and beyond. These contributions appear throughout the report in Contributor Insight boxes, acknowledging the individual authors and their respective organizations.",
+
+    "research": "The <bold>IFRC Solferino Academy</bold> led a two-month rapid community intelligence study with 40 volunteers and staff from 10 National Societies. Acting as community researchers, they interviewed 132 volunteers and community members affected by humanitarian crises. Findings were synthesised by volunteer academics from the University of Michigan, Northumbria University and Open Lab (Newcastle University), ensuring that local nuance was preserved. Selected quotes appear throughout the report."
   }
 }

@@ -1,0 +1,8 @@
+{
+  "a6f314f4482bee61e1738029b9962c6e_0": {
+    "author": "Nathan Tran",
+    "comment": "URL hash is not a sensitive data.",
+    "false_positive": true,
+    "ignored_at": "2026-02-09T07:04:28Z"
+  }
+}

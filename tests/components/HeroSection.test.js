@@ -11,8 +11,7 @@ jest.mock('next-intl', () => ({
       'Home.landingPage.heroSection.buttonTexts.read': 'Read Report',
       'Home.landingPage.heroSection.buttonTexts.download': 'Download PDF',
       'Home.landingPage.heroSection.buttonTexts.share': 'Share Report',
-      'Home.landingPage.heroSection.heroAlt':
-        'World Disasters Report 2025 hero image',
+      'Home.landingPage.heroSection.heroAlt': 'World Disasters Report 2025 hero image',
     };
 
     // Check if we're testing with French locale (for custom content test)
@@ -42,7 +41,17 @@ jest.mock('@/components/landing-page/HeroVideo', () => ({
   default: ({ alt }) => <div data-testid="mock-hero-video" data-alt={alt} />,
 }));
 
-// Mock next-intl navigation Link component
+// Mock next/link component
+jest.mock('next/link', () => ({
+  __esModule: true,
+  default: ({ href, className, children, ...props }) => (
+    <a href={href} className={className} data-testid="mock-link" {...props}>
+      {children}
+    </a>
+  ),
+}));
+
+// Mock localized navigation Link component
 jest.mock('@/i18n/navigation', () => ({
   Link: ({ href, className, children, ...props }) => (
     <a href={href} className={className} data-testid="mock-link" {...props}>
@@ -55,7 +64,8 @@ const defaultProps = {
   locale: 'en',
   messages: {
     title: 'World Disasters Report 2025',
-    description: 'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.',
+    description:
+      'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.',
     buttonTexts: {
       read: 'Read Report',
       download: 'Download PDF',
@@ -63,7 +73,15 @@ const defaultProps = {
     },
     heroAlt: 'World Disasters Report 2025 hero image',
   },
+  url: '/reports/wdr25',
+  downloadLink: '/reports/wdr25.pdf',
 };
+
+const buildHeroMessages = (props) => ({
+  ...props.messages,
+  url: props.url,
+  downloadLink: props.downloadLink,
+});
 
 // Global variable to control custom content in tests
 let mockHeroSection = null;
@@ -76,7 +94,7 @@ describe('HeroSection', () => {
   });
 
   it('renders HeroSection with all content', () => {
-    const { container } = render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     // Should show description
     expect(
@@ -93,10 +111,7 @@ describe('HeroSection', () => {
     // Should render HeroVideo with correct alt text
     const heroVideo = screen.getByTestId('mock-hero-video');
     expect(heroVideo).toBeInTheDocument();
-    expect(heroVideo).toHaveAttribute(
-      'data-alt',
-      'World Disasters Report 2025 hero image'
-    );
+    expect(heroVideo).toHaveAttribute('data-alt', 'World Disasters Report 2025 hero image');
 
     expect(container).toBeInTheDocument();
   });
@@ -107,7 +122,7 @@ describe('HeroSection', () => {
       locale: 'fr',
     };
 
-    render(<HeroSection {...frenchProps} />);
+    render(<HeroSection messages={buildHeroMessages(frenchProps)} />);
 
     // Should still render content (locale is passed but doesn't affect rendering directly)
     expect(
@@ -122,7 +137,8 @@ describe('HeroSection', () => {
       locale: 'fr',
       messages: {
         title: 'Custom Hero Title for Testing Purposes',
-        description: 'Custom hero description with different content and longer text to test the component rendering capabilities.',
+        description:
+          'Custom hero description with different content and longer text to test the component rendering capabilities.',
         buttonTexts: {
           read: 'Lire le Rapport',
           download: 'Télécharger PDF',
@@ -130,9 +146,11 @@ describe('HeroSection', () => {
         },
         heroAlt: 'Custom hero alt text for testing',
       },
+      url: '/reports/custom-report',
+      downloadLink: '/reports/custom-report.pdf',
     };
 
-    render(<HeroSection {...customProps} />);
+    render(<HeroSection messages={buildHeroMessages(customProps)} />);
 
     expect(
       screen.getByText(
@@ -145,7 +163,7 @@ describe('HeroSection', () => {
   });
 
   it('has correct Link component for read button', () => {
-    render(<HeroSection {...defaultProps} />);
+    render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     // Check that read button is a Link component with correct href
     const readLink = screen.getByTestId('mock-link');
@@ -177,7 +195,7 @@ describe('HeroSection', () => {
   });
 
   it('has correct button styling and behavior', () => {
-    render(<HeroSection {...defaultProps} />);
+    render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     // Check download button styling (now using anchor tag)
     const downloadLink = screen.getByText('Download PDF').closest('a');
@@ -240,7 +258,7 @@ describe('HeroSection', () => {
   });
 
   it('has correct layout structure', () => {
-    const { container } = render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     // Should have main section with space-y-8
     const section = container.querySelector('section');
@@ -275,11 +293,13 @@ describe('HeroSection', () => {
         },
         heroAlt: '',
       },
+      url: '',
+      downloadLink: '',
     };
 
     // Should not crash with empty strings
     expect(() => {
-      render(<HeroSection {...malformedProps} />);
+      render(<HeroSection messages={buildHeroMessages(malformedProps)} />);
     }).not.toThrow();
 
     // Video should still render
@@ -290,7 +310,7 @@ describe('HeroSection', () => {
   });
 
   it('has proper semantic HTML structure', () => {
-    render(<HeroSection {...defaultProps} />);
+    render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     // Should use proper heading hierarchy
     const h1 = screen.getByRole('heading', { level: 1 });
@@ -312,14 +332,14 @@ describe('HeroSection', () => {
     // Should have links with proper role (Read and Download)
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(2); // Read and Download links
-    const readLink = links.find(link => link.textContent.includes('Read Report'));
-    const downloadLink = links.find(link => link.textContent.includes('Download PDF'));
+    const readLink = links.find((link) => link.textContent.includes('Read Report'));
+    const downloadLink = links.find((link) => link.textContent.includes('Download PDF'));
     expect(readLink).toBeInTheDocument();
     expect(downloadLink).toBeInTheDocument();
   });
 
   it('has responsive text sizing', () => {
-    render(<HeroSection {...defaultProps} />);
+    render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     // Title should have responsive classes
     const title = screen.getByRole('heading', { level: 1 });
@@ -328,16 +348,11 @@ describe('HeroSection', () => {
     // Description should have responsive classes
     const description = screen.getByText(/Explore the most comprehensive analysis/);
     const descriptionWrapper = description.parentElement;
-    expect(descriptionWrapper).toHaveClass(
-      'text-4xl',
-      'text-white',
-      'leading-tight',
-      'font-bold'
-    );
+    expect(descriptionWrapper).toHaveClass('text-4xl', 'text-white', 'leading-tight', 'font-bold');
   });
 
   it('has responsive button layout', () => {
-    const { container } = render(<HeroSection {...defaultProps} />);
+    const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     // Button container should use responsive flex direction (updated classes)
     const buttonContainer = container.querySelector(
@@ -350,7 +365,7 @@ describe('HeroSection', () => {
   });
 
   it('handles click events on buttons', () => {
-    render(<HeroSection {...defaultProps} />);
+    render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
     const downloadLink = screen.getByText('Download PDF').closest('a');
     const shareSpan = screen.getByText('Share Report');

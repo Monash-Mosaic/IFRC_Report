@@ -1,15 +1,10 @@
 // components/landing-page/ExecutiveSummarySection.js
 import Image from 'next/image';
-import { Link } from '@/i18n/navigation';
+import Link from 'next/link';
 import { Download } from 'lucide-react';
 import { Eye } from 'lucide-react';
 
 export default function ExecutiveSummarySection({ messages }) {
-  {
-    /* Placehodler */
-  }
-  const reportDownloadLink = `https://www.heritage.vic.gov.au/__data/assets/pdf_file/0022/512275/Victorias-framework-of-historical-themes-Heritage-Council-of-Victoria,-Victorian-Aboriginal-Heritage-Council-2009.pdf`;
-
   return (
     <section>
       {/* Mobile: Vertical Stack | Desktop: Two-column Grid */}
@@ -43,14 +38,14 @@ export default function ExecutiveSummarySection({ messages }) {
           {/* Action Buttons - Desktop: At bottom | Mobile: After content */}
           <div className="flex gap-4 lg:mt-8">
             <Link
-              href="/reports/wdr25/chapter-02"
+              href={messages.url}
               className="px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap"
             >
               {messages.buttonTexts.read}
               <Eye className="w-5 h-5 flex-shrink-0" />
             </Link>
             <a
-              href={reportDownloadLink}
+              href={messages.downloadLink}
               alt="alt text"
               target="_blank"
               className="px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap"

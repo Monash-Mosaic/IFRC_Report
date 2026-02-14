@@ -21,10 +21,12 @@ export default function SearchInput({ isMobile = false, isSearchExpanded, setIsS
 
   const handleSearchFocus = () => {
     setIsSearchExpanded(true);
-    setTimeout(() => {
+    // Ensure focus remains on the input after expansion
+   const timeoutId = setTimeout(() => {
       if (searchInputRef.current) {
         searchInputRef.current.focus();
       }
+      clearTimeout(timeoutId);
     }, 0);
   };
 

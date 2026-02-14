@@ -353,7 +353,7 @@ describe('Footer', () => {
       render(<Footer />);
 
       const ifrcLogo = screen.getByAltText('IFRC');
-      expect(ifrcLogo).toHaveAttribute('src', '/wdr25/ifrc_logo.png');
+      expect(ifrcLogo).toHaveAttribute('src', '/wdr25/ifrc_logo.jpg');
       expect(ifrcLogo).toHaveAttribute('width', '120');
       expect(ifrcLogo).toHaveAttribute('height', '40');
     });
