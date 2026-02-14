@@ -20,7 +20,7 @@ const withMDX = createMDX({
       ],
       ['@stefanprobst/rehype-extract-toc', {}],
       ['@stefanprobst/rehype-extract-toc/mdx', {}],
-      ['rehype-remove-footnote-heading', {}],
+      ['rehype-custom-footnotes', {}],
     ],
   },
 });
