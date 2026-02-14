@@ -62,11 +62,18 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
-  synthesis: {
+  تركيب: {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: 1,
+      chapterPrefix: 'تركيب',
+    },
     component: Synthesis.default,
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
   },
   'الفصل-02': {
     metadata: {
