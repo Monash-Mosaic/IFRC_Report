@@ -151,7 +151,7 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
   return rawResults.map((result) => ({
     id: result.doc.id,
     title: result.doc.title,
-    excerpt: result.highlight,
+    highlight: result.highlight,
     href: result.doc.href,
   }));
 }
