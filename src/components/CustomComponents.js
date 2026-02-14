@@ -248,8 +248,12 @@ export function ChapterImage({ imagePath, alt = 'Alt', width = 900, height = 700
   );
 }
 
-export function RefPlaceHolder({ children, ...props }) {
-  return <div>children</div>;
+export function EndnotesLink({ children, ...props }) {
+  return (
+    <span className="underline decoration-[#68ACFD]" {...props}>
+      {children}
+    </span>
+  );
 }
 
 const CustomComponents = {
@@ -270,7 +274,7 @@ const CustomComponents = {
   H1Contributor,
   Reccomendations,
   ReccomendationsTitle,
-  RefPlaceHolder,
+  EndnotesLink,
 };
 
 export default CustomComponents;

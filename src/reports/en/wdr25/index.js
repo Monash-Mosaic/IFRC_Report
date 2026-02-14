@@ -85,6 +85,8 @@ export const chapters = {
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
   },
   'chapter-02': {
     metadata: {
