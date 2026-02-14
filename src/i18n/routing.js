@@ -28,5 +28,13 @@ export const routing = defineRouting({
       ru: '/отчеты/[report]/[chapter]',
       es: '/reportaje/[report]/[chapter]',
     },
+    '/search': {
+      en: '/search',
+      fr: '/recherche',
+      zh: '/搜索',
+      ar: '/بحث',
+      ru: '/поиск',
+      es: '/buscar',
+    },
   },
 });
