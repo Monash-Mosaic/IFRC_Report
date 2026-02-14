@@ -5,7 +5,7 @@ const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [['remark-gfm', { firstLineBlank: true }]],
+    remarkPlugins: [['remark-gfm']],
     rehypePlugins: [
       ['rehype-slug', {}],
       [
