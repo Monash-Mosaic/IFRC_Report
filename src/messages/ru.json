@@ -3,6 +3,9 @@
     "titleTemplate": "%s | IFRC",
     "defaultTitle": "Всемирный доклад о бедствиях IFRC 2026"
   },
+  "Breadcrumb": {
+    "reports": "Отчеты"
+  },
   "Home": {
     "meta": {
       "title": "Главная страница отчетов IFRC",
@@ -104,7 +107,6 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "Назад к отчетам",
     "tableOfContent": "Оглавление",
     "bookmark": "Закладка",
     "bookmarkAria": "{action, select, add {Добавить закладку} remove {Удалить закладку} other {Неизвестно}} для {section}",
@@ -113,7 +115,6 @@
     }
   },
   "ReportChapterPage": {
-    "back": "Назад",
     "tocTitle": "В этой главе"
   },
   "LocaleSwitcher": {

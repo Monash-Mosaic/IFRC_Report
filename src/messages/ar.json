@@ -3,6 +3,9 @@
     "titleTemplate": "%s | IFRC",
     "defaultTitle": "تقرير الكوارث العالمي 2026 للاتحاد الدولي"
   },
+  "Breadcrumb": {
+    "reports": "التقارير"
+  },
   "Home": {
     "meta": {
       "title": "الصفحة الرئيسية لتقارير الاتحاد الدولي",
@@ -104,7 +107,6 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "العودة إلى التقارير",
     "tableOfContent": "جدول المحتويات",
     "bookmark": "إشارة مرجعية",
     "bookmarkAria": "{action, select, add {إضافة إشارة مرجعية} remove {إزالة الإشارة المرجعية} other {غير معروف}} للقسم {section}",
@@ -113,7 +115,6 @@
     }
   },
   "ReportChapterPage": {
-    "back": "عودة",
     "tocTitle": "في هذا الفصل"
   },
   "LocaleSwitcher": {

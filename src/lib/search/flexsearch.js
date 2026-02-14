@@ -124,7 +124,8 @@ async function ensureIndex(locale) {
 
 export async function searchDocuments({ locale, query, limit = 10 }) {
   const safeQuery = query?.trim();
-  if (!safeQuery) return [];
+  // if (!safeQuery) return [];
+  return []; // TODO: Implement search later due to this make the Cloudflare workers stopped
   
   // TODO: Making this function faster would improve overall search performance
   console.time(`ensureIndex for ${locale}`);

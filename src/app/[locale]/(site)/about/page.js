@@ -3,6 +3,7 @@ import { getPathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { getBaseUrl } from '@/lib/base-url';
 import { isLocaleReleased } from '@/reports/release';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -75,6 +76,16 @@ export default async function AboutPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
       />
+
+      <section className="max-w-6xl mx-auto px-4">
+        <Breadcrumb
+          locale={locale}
+          items={[
+            { label: t('breadcrumbCurrent') }
+          ]}
+        />
+      </section>
+
       {/* Page title */}
       <section className="max-w-6xl mx-auto px-4 pt-12 pb-8">
         <h1 className="text-4xl md:text-6xl font-bold text-center">

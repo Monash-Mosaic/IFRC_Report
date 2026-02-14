@@ -3,6 +3,9 @@
     "titleTemplate": "%s | IFRC",
     "defaultTitle": "IFRC 世界灾害报告 2026"
   },
+  "Breadcrumb": {
+    "reports": "报告"
+  },
   "Home": {
     "meta": {
       "title": "国际红十字报告主页",
@@ -104,7 +107,6 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "返回报告",
     "tableOfContent": "目录",
     "bookmark": "书签",
     "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
@@ -113,7 +115,6 @@
     }
   },
   "ReportChapterPage": {
-    "back": "返回",
     "tocTitle": "在本章节"
   },
   "LocaleSwitcher": {

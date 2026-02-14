@@ -1,8 +1,9 @@
-import { Menu, Bookmark, ChevronDown, ArrowLeft } from 'lucide-react';
+import { Menu, Bookmark, ChevronDown } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
+import Breadcrumb from '@/components/Breadcrumb';
 import { Link, getPathname } from '@/i18n/navigation';
 import {
   getVisibleReports,
@@ -140,12 +141,12 @@ export default async function ReportDetailPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reportJsonLd) }}
       />
       <div className="max-w-4xl mx-auto">
-        {/* Back Button */}
-        <Link href={'/'} className="flex items-center gap-2 text-black hover:text-gray-600 mb-8">
-          <ArrowLeft className="w-5 h-5" />
-          <p className="font-semibold">{t('backToDocuments')}</p>
-        </Link>
-
+        <Breadcrumb
+          locale={locale}
+          items={[
+            { label: reportTile },
+          ]}
+        />
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>

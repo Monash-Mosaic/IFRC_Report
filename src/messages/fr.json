@@ -3,6 +3,9 @@
     "titleTemplate": "%s | IFRC",
     "defaultTitle": "Rapport mondial sur les catastrophes 2026 de l'IFRC"
   },
+  "Breadcrumb": {
+    "reports": "Rapports"
+  },
   "Home": {
     "meta": {
       "title": "Page d'accueil des rapports de l'IFRC",
@@ -122,7 +125,6 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "Retour aux rapports",
     "tableOfContent": "Table des matières",
     "bookmark": "Marque-page",
     "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
@@ -131,7 +133,6 @@
     }
   },
   "ReportChapterPage": {
-    "back": "Retour",
     "tocTitle": "Sur cette chapitre"
   },
   "LocaleSwitcher": {

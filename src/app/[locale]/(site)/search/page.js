@@ -1,7 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
 import SearchResultCard from '@/components/SearchResultCard';
-import Breadcrumb from '@/components/Breadcrumb';
 import { searchDocuments } from '@/lib/search/flexsearch';
 
 export async function generateMetadata({ params }) {
@@ -10,6 +8,10 @@ export async function generateMetadata({ params }) {
   return {
     title: t('meta.title'),
     description: t('meta.description'),
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
@@ -18,7 +20,11 @@ export const dynamic = 'force-dynamic';
 export default async function SearchEngineResultPage({ params, searchParams }) {
   const { locale } = await params;
   const { q: query = '', limit = '20' } = await searchParams;
-  const t = await getTranslations('SearchPage', locale);
+  const t = await getTranslations({
+    namespace: 'SearchPage',
+    locale,
+  });
+
   const searchResults = await searchDocuments({
         locale,
         query: decodeURIComponent(query.trim()),
@@ -26,35 +32,23 @@ export default async function SearchEngineResultPage({ params, searchParams }) {
       });
 
   return (
-    <div className="min-h-screen bg-white">
-      <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4">
-        {/* Breadcrumb */}
-        <Breadcrumb
-          ariaLabel={t('breadcrumb.ariaLabel')}
-          homeLabel={t('breadcrumb.home')}
-          items={[{ label: t('breadcrumb.searchPage') }]}
-        />
+    <section aria-label={t('results.ariaLabel')}>
+      <div className="space-y-4">
+        {searchResults.map((result) => (
+          <SearchResultCard
+            key={result.id}
+            title={result.title}
+            highlight={result.highlight}
+            href={result.href}
+          />
+        ))}
+      </div>
 
-        {/* Search Results */}
-        <section aria-label={t('results.ariaLabel')}>
-          <div className="space-y-4">
-            {searchResults.map((result) => (
-              <SearchResultCard
-                key={result.id}
-                title={result.title}
-                highlight={result.highlight}
-                href={result.href}
-              />
-            ))}
-          </div>
-
-          {searchResults.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500">{t('results.noResults')}</p>
-            </div>
-          )}
-        </section>
-      </main>
-    </div>
+      {searchResults.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-gray-500">{t('results.noResults')}</p>
+        </div>
+      )}
+    </section>
   );
 }
