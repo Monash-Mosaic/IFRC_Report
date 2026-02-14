@@ -34,6 +34,7 @@ jest.mock('@/i18n/navigation', () => ({
   ),
   useRouter: () => ({ push: pushMock }),
   usePathname: () => '/current-path',
+  getPathname: ({ locale, href }) => `/${locale}${href}`,
 }));
 
 // Mock next-intl hooks used by the component
@@ -46,6 +47,7 @@ jest.mock('next-intl', () => ({
     };
     return translations[`${namespace}.${key}`] || key;
   },
+  useLocale: () => 'en',
 }));
 
 // Mock Lucide React icons
@@ -265,21 +267,18 @@ describe('Header', () => {
     it('mobile search works correctly', async () => {
       render(<Header />);
 
-      // Get all search inputs (desktop and mobile)
-      const searchInputs = screen.getAllByRole('textbox');
-      const mobileSearchInput = searchInputs.find((input) => input.className.includes('w-10 h-10'));
+      const mobileSearchButton = screen.getByRole('button', { name: 'Search' });
+      expect(mobileSearchButton).toBeInTheDocument();
 
-      expect(mobileSearchInput).toBeInTheDocument();
-
-      // Focus on mobile search input
       await act(async () => {
-        fireEvent.focus(mobileSearchInput);
+        fireEvent.click(mobileSearchButton);
       });
 
-      // Check that search expanded
+      // Overlay search should now be visible
       await waitFor(() => {
-        const closeIcons = screen.getAllByTestId('x-icon');
-        expect(closeIcons.length).toBeGreaterThan(0);
+        expect(screen.getAllByRole('searchbox')).toHaveLength(2);
+        expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
+        expect(screen.getByLabelText('Close search')).toBeInTheDocument();
       });
     });
   });
@@ -302,7 +301,9 @@ describe('Header', () => {
         searchInput.focus();
       });
 
-      expect(document.activeElement).toBe(searchInput);
+      const activeElement = document.activeElement;
+      expect(activeElement).toHaveAttribute('type', 'search');
+      expect(screen.getAllByRole('searchbox')).toContain(activeElement);
     });
   });
 

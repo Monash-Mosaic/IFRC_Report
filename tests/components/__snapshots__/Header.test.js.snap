@@ -43,23 +43,35 @@ exports[`Header Rendering matches snapshot 1`] = `
           Locale Switcher
         </div>
         <div
-          class="flex items-center  "
+          class="flex items-center "
         >
-          <div
+          <form
+            action="/en/search"
             class="relative "
+            role="search"
           >
             <input
+              autocomplete="off"
               class="w-auto px-4 py-2 pr-10 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out"
+              name="q"
               placeholder="Search"
-              type="text"
+              required=""
+              spellcheck="true"
+              type="search"
+              value=""
             />
-            <div
-              class="absolute right-3 w-5 h-5 top-1/2 transform -translate-y-1/2 text-red-600"
-              data-testid="search-icon"
+            <button
+              class="absolute right-3 top-1/2 transform -translate-y-1/2"
+              type="submit"
             >
-              Search Icon
-            </div>
-          </div>
+              <div
+                class="w-5 h-5 text-red-600"
+                data-testid="search-icon"
+              >
+                Search Icon
+              </div>
+            </button>
+          </form>
         </div>
       </nav>
       <div
@@ -70,25 +82,18 @@ exports[`Header Rendering matches snapshot 1`] = `
         >
           Locale Switcher
         </div>
-        <div
-          class="flex items-center  "
+        <button
+          aria-label="Search"
+          class="w-10 h-10 flex items-center justify-center border-2 border-red-600 rounded-lg bg-white"
+          type="button"
         >
           <div
-            class="relative "
+            class="w-4 h-4 text-red-600"
+            data-testid="search-icon"
           >
-            <input
-              class="w-10 h-10 p-0 pr-0 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out"
-              placeholder=""
-              type="text"
-            />
-            <div
-              class="absolute right-3 w-4 h-4 pointer-events-none top-1/2 transform -translate-y-1/2 text-red-600"
-              data-testid="search-icon"
-            >
-              Search Icon
-            </div>
+            Search Icon
           </div>
-        </div>
+        </button>
         <button
           aria-label="Toggle mobile menu"
           class="p-2 text-red-700 hover:text-red-900 transition-colors"

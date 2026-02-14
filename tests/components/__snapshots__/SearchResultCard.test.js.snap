@@ -18,7 +18,9 @@ exports[`SearchResultCard renders SearchResultCard with all content 1`] = `
       <p
         class="text-sm text-gray-600 leading-relaxed line-clamp-3"
       >
-        This is a test excerpt that provides a brief description of the chapter content. It should be truncated if too long...
+        <span>
+          This is a test excerpt that provides a brief description of the chapter content. It should be truncated if too long...
+        </span>
       </p>
     </article>
   </a>

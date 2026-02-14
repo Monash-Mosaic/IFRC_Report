@@ -12,7 +12,7 @@ jest.mock('@/i18n/navigation', () => ({
 
 const defaultProps = {
   title: 'Test Chapter Title: Understanding Humanitarian Response',
-  excerpt:
+  highlight:
     'This is a test excerpt that provides a brief description of the chapter content. It should be truncated if too long...',
   href: '/reports/wdr25/chapter-02',
 };
@@ -62,7 +62,7 @@ describe('SearchResultCard', () => {
   it('renders with different content', () => {
     const customProps = {
       title: 'Harmful Information and the Erosion of Trust in Humanitarian Response',
-      excerpt:
+      highlight:
         'Confirmation Bias refers to the tendency to seek out, favour and recall information that supports our existing beliefs...',
       href: '/reports/wdr25/chapter-01',
     };
@@ -101,8 +101,15 @@ describe('SearchResultCard', () => {
 
     // Excerpt should have correct classes
     const excerpt = screen.getByText(/This is a test excerpt/);
-    expect(excerpt.tagName).toBe('P');
-    expect(excerpt).toHaveClass('text-sm', 'text-gray-600', 'leading-relaxed', 'line-clamp-3');
+    const excerptParagraph = excerpt.closest('p');
+    expect(excerptParagraph).toBeInTheDocument();
+    expect(excerptParagraph.tagName).toBe('P');
+    expect(excerptParagraph).toHaveClass(
+      'text-sm',
+      'text-gray-600',
+      'leading-relaxed',
+      'line-clamp-3'
+    );
   });
 
   it('wraps content in a clickable link', () => {
@@ -132,14 +139,14 @@ describe('SearchResultCard', () => {
   it('handles long excerpts with line-clamp', () => {
     const longExcerptProps = {
       ...defaultProps,
-      excerpt:
+      highlight:
         'This is an extremely long excerpt that would normally take up a lot of space. It contains detailed information about the chapter content and should be truncated to show only three lines of text to maintain a clean and consistent card layout.',
     };
 
     render(<SearchResultCard {...longExcerptProps} />);
 
     const excerpt = screen.getByText(/This is an extremely long excerpt/);
-    expect(excerpt).toHaveClass('line-clamp-3');
+    expect(excerpt.closest('p')).toHaveClass('line-clamp-3');
   });
 
   it('has proper semantic HTML structure', () => {
@@ -161,7 +168,7 @@ describe('SearchResultCard', () => {
   it('handles empty strings gracefully', () => {
     const emptyProps = {
       title: '',
-      excerpt: '',
+      highlight: '',
       href: '/reports/wdr25/chapter-02',
     };
 
