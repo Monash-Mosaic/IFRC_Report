@@ -35,24 +35,11 @@ function extractTextFromMdx(content) {
   // Remove export statements (but keep the content)
   text = text.replace(/^export\s+const\s+\w+\s*=\s*/gm, '');
 
-  // Remove JSX component tags but keep inner content
-  // e.g., <SideNote>content</SideNote> -> content
-  text = text.replace(/<(\w+)[^>]*>([\s\S]*?)<\/\1>/g, (match, tag, inner) => {
-    // Skip certain components that don't have searchable content
-    if (['Contributors', 'ContributorRole'].includes(tag)) {
-      return '';
-    }
-    return inner;
-  });
-
-  // Remove self-closing tags
-  text = text.replace(/<\w+[^>]*\/>/g, '');
-
-  // Remove remaining opening tags
-  text = text.replace(/<\w+[^>]*>/g, '');
-
-  // Remove closing tags
-  text = text.replace(/<\/\w+>/g, '');
+  // Strip all HTML/JSX tags and comments in one pass
+  // Uses single-character class [<>] cleanup to avoid incomplete multi-character sanitization
+  text = text.replace(/<!--[\s\S]*?-->|<[^>]+>/g, '');
+  // Remove any remaining angle brackets to guarantee no tag fragments survive
+  text = text.replace(/[<>]/g, '');
 
   // Remove curly braces content (JSX expressions)
   text = text.replace(/\{[^}]*\}/g, '');
