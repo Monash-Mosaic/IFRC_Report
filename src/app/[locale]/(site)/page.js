@@ -94,7 +94,6 @@ export default async function Home({ params }) {
     }),
     downloadLink: reportModule.chapters[chapterSlug].downloadLink,
   };
-
   // Hero Section translations
   const heroMessage = {
     title: t('landingPage.heroSection.title'),

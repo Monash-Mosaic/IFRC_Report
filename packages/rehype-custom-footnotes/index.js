@@ -12,6 +12,9 @@ export default function rehypeRemoveFootnoteHeading() {
           node.children.shift();
         }
       }
+      if (node.tagName === 'a' && node.properties?.className?.includes('data-footnote-backref')) {
+        node.properties.className = [...node.properties.className, 'text-2xl', 'sm:text-base'];
+      }
     });
   };
 }

@@ -1,5 +1,5 @@
 {
-    "name": "rehype-remove-footnote-heading",
+    "name": "rehype-custom-footnotes",
     "version": "1.0.0",
     "type": "module",
     "main": "index.js",
