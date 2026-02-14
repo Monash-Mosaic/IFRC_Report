@@ -35,12 +35,9 @@ function extractTextFromMdx(content) {
   // Remove export statements (but keep the content)
   text = text.replace(/^export\s+const\s+\w+\s*=\s*/gm, '');
 
-  // Strip all HTML/JSX tags and comments in one pass
-  text = text.replace(/<!--[\s\S]*?-->|<[^>]+>/g, '');
-  // Strip any residual angle brackets to prevent incomplete multi-character sanitization
+  // Remove all angle brackets to strip any HTML/JSX tags
+  // Uses single-character replacement to avoid incomplete multi-character sanitization
   text = text.replace(/[<>]/g, '');
-  // Additionally neutralize any remaining "script" substrings to avoid script-like content
-  text = text.replace(/script/gi, '');
 
   // Remove curly braces content (JSX expressions)
   text = text.replace(/\{[^}]*\}/g, '');
