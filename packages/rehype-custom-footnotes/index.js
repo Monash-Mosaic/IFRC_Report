@@ -1,7 +1,7 @@
-// packages/rehype-remove-footnote-heading/index.js
+// packages/rehype-custom-footnotes/index.js
 import { visit } from 'unist-util-visit';
 
-export default function rehypeRemoveFootnoteHeading() {
+export default function rehypeCustomFootnotes() {
   return (tree) => {
     visit(tree, 'element', (node) => {
       if (
