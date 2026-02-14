@@ -12,108 +12,6 @@ exports[`Footer Rendering matches snapshot 1`] = `
         class="flex flex-col lg:flex-row lg:justify-between lg:items-start space-y-12 lg:space-y-0"
       >
         <div
-          class="lg:w-2/3 lg:pl-12 order-1 lg:order-2"
-        >
-          <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12"
-          >
-            <div>
-              <button
-                aria-expanded="false"
-                class="md:hidden w-full flex justify-between items-center py-4 border-b border-gray-200 text-left"
-              >
-                <h4
-                  class="text-lg font-semibold text-gray-900"
-                >
-                  Report Chapters
-                </h4>
-                <div
-                  class="text-gray-900 transform transition-transform "
-                  data-testid="chevron-down-icon"
-                >
-                  Chevron Down Icon
-                </div>
-              </button>
-              <h4
-                class="hidden md:block text-lg font-semibold text-gray-900 mb-6"
-              >
-                Report Chapters
-              </h4>
-              <ul
-                class="space-y-4 md:block hidden"
-              >
-                <li>
-                  <a
-                    class="text-gray-600 hover:text-gray-900 transition-colors"
-                    href="#chapter1"
-                  >
-                    Chapter 1
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-600 hover:text-gray-900 transition-colors"
-                    href="#chapter2"
-                  >
-                    Chapter 2
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-600 hover:text-gray-900 transition-colors"
-                    href="#chapter3"
-                  >
-                    Chapter 3
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <button
-                aria-expanded="false"
-                class="md:hidden w-full flex justify-between items-center py-4 border-b border-gray-200 text-left"
-              >
-                <h4
-                  class="text-lg font-semibold text-gray-900"
-                >
-                  Disinformation Games
-                </h4>
-                <div
-                  class="text-gray-900 transform transition-transform "
-                  data-testid="chevron-down-icon"
-                >
-                  Chevron Down Icon
-                </div>
-              </button>
-              <h4
-                class="hidden md:block text-lg font-semibold text-gray-900 mb-6"
-              >
-                Disinformation Games
-              </h4>
-              <ul
-                class="space-y-4 md:block hidden"
-              >
-                <li>
-                  <a
-                    class="text-gray-600 hover:text-gray-900 transition-colors"
-                    href="#disinformer"
-                  >
-                    Disinformer
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-600 hover:text-gray-900 transition-colors"
-                    href="#ctrl-alt-prebunk"
-                  >
-                    Ctrl+Alt+Prebunk
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div
           class="lg:w-1/3 space-y-4 lg:space-y-8 order-2 lg:order-1 text-center lg:text-left"
         >
           <div
@@ -130,24 +28,34 @@ exports[`Footer Rendering matches snapshot 1`] = `
               <div
                 class="flex items-center space-x-3 mb-4"
               >
-                <img
-                  alt="IFRC"
-                  class="h-10 w-auto"
-                  height="40"
-                  src="/wdr25/ifrc_logo.jpg"
-                  width="120"
-                />
+                <a
+                  class="block"
+                  href="https://www.ifrc.org"
+                >
+                  <img
+                    alt="IFRC"
+                    class="h-10 w-auto"
+                    height="40"
+                    src="/wdr25/ifrc_logo.jpg"
+                    width="120"
+                  />
+                </a>
               </div>
               <div
                 class="flex items-center space-x-3"
               >
-                <img
-                  alt="Mosaic"
-                  class="h-10 w-auto -ml-4"
-                  height="40"
-                  src="/wdr25/mosaic_logo.png"
-                  width="120"
-                />
+                <a
+                  class="block"
+                  href="https://www.mosaic-monash.ai/"
+                >
+                  <img
+                    alt="Mosaic"
+                    class="h-10 w-auto -ml-4"
+                    height="40"
+                    src="/wdr25/mosaic_logo.png"
+                    width="120"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -159,7 +67,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
             >
               <a
                 class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                href="#facebook"
+                href="https://www.facebook.com/p/IFRC-Solferino-Academy-61572985566986/"
               >
                 <div
                   data-testid="facebook-icon"
@@ -169,7 +77,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
               </a>
               <a
                 class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                href="#linkedin"
+                href="https://www.linkedin.com/company/ifrc-solferino-academy"
               >
                 <div
                   data-testid="linkedin-icon"
@@ -179,17 +87,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
               </a>
               <a
                 class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                href="#youtube"
-              >
-                <div
-                  data-testid="youtube-icon"
-                >
-                  YouTube Icon
-                </div>
-              </a>
-              <a
-                class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-                href="#instagram"
+                href="https://www.instagram.com/ifrcsolferinoacademy/"
               >
                 <div
                   data-testid="instagram-icon"
