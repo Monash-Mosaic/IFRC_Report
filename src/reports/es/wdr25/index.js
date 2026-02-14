@@ -20,41 +20,27 @@ export const testimonialsList = [
   {
     id: 1,
     quote:
-      'Durante la COVID-19, había tanta información que me sentí perdido y no sabía en qué creer',
-    name: 'Abdul M.',
-    country: 'Afganistán',
-    avatar: '/avatar/avatar-1.svg',
+      'False information is particularly effective when it originates within the circle of people you trust, a serious problem since the very ties that bind communities together can make them susceptible to misinformation and its harmful consequences.',
   },
   {
     id: 2,
-    quote: 'Vivir en la era de la IA me asusta: ¿dónde está la verdad y dónde la desinformación?',
-    name: 'Clair',
-    country: 'Reino Unido',
-    avatar: '/avatar/avatar-2.svg',
+    quote:
+      'Trust is anchored on CEA pillars. when communities have a way of reaching out to people passing information for their views and perspectives to be heard and corrected, it slowly builds trust on the messengers.',
   },
   {
     id: 3,
     quote:
-      'Ojalá tuviera una varita mágica que me ayudara a distinguir la desinformación de la verdad',
-    name: 'Olga',
-    country: 'Rusia',
-    avatar: '/avatar/avatar-1.svg',
+      'You need to understand that when we are dealing with false information, it means that some real disaster situations are being ignored, and people who truly need rescue are being neglected. This is an extremely serious issue.',
   },
   {
     id: 4,
     quote:
-      'Las redes sociales difunden información falsa tan rápido que es difícil verificar qué es real antes de que sea demasiado tarde',
-    name: 'María S.',
-    country: 'Filipinas',
-    avatar: '/avatar/avatar-2.svg',
+      'Les rumeurs érodent la confiance: la propagation rapide d’informations trompeuses crée de la confusion, amène certains à douter des autorités, et complique la relation entre les communautés et ceux qui les soutiennent.',
   },
   {
     id: 5,
     quote:
-      'En tiempos de desastre, la desinformación puede ser más peligrosa que el propio desastre',
-    name: 'James K.',
-    country: 'Kenia',
-    avatar: '/avatar/avatar-1.svg',
+      'Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
   },
 ];
 

@@ -9,7 +9,6 @@ import TestimonialCard from '@/components/landing-page/TestimonialCard';
 import { getPathname } from '@/i18n/navigation';
 import { getBaseUrl } from '@/lib/base-url';
 
-
 /** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -159,15 +158,9 @@ export default async function Home({ params }) {
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.testimonials.title')}
           </h2>
-          <EmblaCarousel slideWidth={284} loop={false}>
+          <EmblaCarousel locale={locale} slideWidth={284} loop={false}>
             {testimonialsList.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                quote={testimonial.quote}
-                name={testimonial.name}
-                country={testimonial.country}
-                avatar={testimonial.avatar}
-              />
+              <TestimonialCard key={index} quote={testimonial.quote} />
             ))}
           </EmblaCarousel>
         </div>

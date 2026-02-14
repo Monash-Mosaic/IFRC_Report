@@ -20,39 +20,27 @@ export const testimonialsList = [
   {
     id: 1,
     quote:
-      'During COVID-19, there was so much information that I felt lost and did not know what to believe',
-    name: 'Abdul M.',
-    country: 'Afghanistan',
-    avatar: '/avatar/avatar-1.svg',
+      'False information is particularly effective when it originates within the circle of people you trust, a serious problem since the very ties that bind communities together can make them susceptible to misinformation and its harmful consequences.',
   },
   {
     id: 2,
-    quote: 'Living in the age of AI scares me: where is the truth and where is the misinformation',
-    name: 'Clair',
-    country: 'UK',
-    avatar: '/avatar/avatar-2.svg',
+    quote:
+      'Trust is anchored on CEA pillars. when communities have a way of reaching out to people passing information for their views and perspectives to be heard and corrected, it slowly builds trust on the messengers.',
   },
   {
     id: 3,
-    quote: 'I wish I had a magic wand that would help me to distinguish misinformation and truth',
-    name: 'Olga',
-    country: 'Russia',
-    avatar: '/avatar/avatar-1.svg',
+    quote:
+      'You need to understand that when we are dealing with false information, it means that some real disaster situations are being ignored, and people who truly need rescue are being neglected. This is an extremely serious issue.',
   },
   {
     id: 4,
     quote:
-      "Social media spreads false information so quickly that it becomes hard to verify what's real before it's too late",
-    name: 'Maria S.',
-    country: 'Philippines',
-    avatar: '/avatar/avatar-2.svg',
+      'Les rumeurs érodent la confiance: la propagation rapide d’informations trompeuses crée de la confusion, amène certains à douter des autorités, et complique la relation entre les communautés et ceux qui les soutiennent.',
   },
   {
     id: 5,
-    quote: 'In times of disaster, misinformation can be more dangerous than the disaster itself',
-    name: 'James K.',
-    country: 'Kenya',
-    avatar: '/avatar/avatar-1.svg',
+    quote:
+      'Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
   },
 ];
 
