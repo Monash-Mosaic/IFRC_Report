@@ -14,13 +14,20 @@ export default function SearchInput({
   const searchInputRef = useRef(null);
   const containerRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const prevInitialQueryRef = useRef(initialQuery);
   const t = useTranslations('Home');
   const locale = useLocale();
 
   // Update searchQuery when initialQuery changes (e.g., on search results page)
+  // Use a ref to track previous value and only update when prop changes externally
   useEffect(() => {
-    if (initialQuery) {
-      setSearchQuery(initialQuery);
+    if (initialQuery !== prevInitialQueryRef.current) {
+      prevInitialQueryRef.current = initialQuery;
+      // Schedule update to avoid synchronous setState in effect
+      const timeoutId = setTimeout(() => {
+        setSearchQuery(initialQuery);
+      }, 0);
+      return () => clearTimeout(timeoutId);
     }
   }, [initialQuery]);
 
