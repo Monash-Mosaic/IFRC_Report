@@ -20,7 +20,8 @@
     "test": "jest",
     "ci:build": "opennextjs-cloudflare build",
     "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions --coverage --ci --json --outputFile=report.json",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "postinstall": "npm rebuild better-sqlite3"
   },
   "engines": {
     "node": ">=22.0.0"
