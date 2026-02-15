@@ -37,6 +37,8 @@ export default async function SearchEngineResultPage({ params, searchParams }) {
       })
     : [];
 
+  console.log('[SearchPage] Query:', query, '| Results:', searchResults?.length);
+
   return (
     <section aria-label={t('results.ariaLabel')}>
       <div className="space-y-4">

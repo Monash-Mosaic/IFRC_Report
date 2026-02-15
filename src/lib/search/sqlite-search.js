@@ -122,7 +122,7 @@ function getDatabase() {
   }
 
   if (!fs.existsSync(DB_PATH)) {
-    console.error('[Search] Database not found');
+    console.error('[Search] Database not found at:', DB_PATH);
     throw new Error('Search database not found. Run: pnpm build:search');
   }
 
@@ -153,6 +153,8 @@ export async function searchDocuments({ locale, query, limit = 20 }) {
       .map((word) => `${word.replace(/[^\w]/g, '')}*`)
       .join(' OR ');
 
+    console.log('[Search] Input:', safeQuery, '| FTS Query:', ftsQuery, '| Locale:', locale);
+
     if (!ftsQuery) return [];
 
     // Search with FTS5 using snippet() for highlighting
@@ -176,6 +178,8 @@ export async function searchDocuments({ locale, query, limit = 20 }) {
       )
       .all(ftsQuery, locale, limit);
 
+    console.log('[Search] Results found:', results.length);
+
     return results.map((row) => ({
       id: row.id,
       title: row.title,
@@ -183,7 +187,7 @@ export async function searchDocuments({ locale, query, limit = 20 }) {
       href: row.href,
     }));
   } catch (error) {
-    console.error('[Search] Error occurred during search');
+    console.error('Search error:', error);
     return [];
   }
 }
