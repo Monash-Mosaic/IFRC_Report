@@ -6,6 +6,7 @@ import { getBaseUrl } from '@/lib/base-url';
 import { reportsByLocale } from '@/reports';
 import { isLocaleReleased } from '@/reports/release';
 import { notFound } from 'next/navigation';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -83,6 +84,16 @@ export default async function AcknowledgementsPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(acknowledgementJsonLd) }}
       />
+
+      <section className="max-w-6xl mx-auto px-4">
+        <Breadcrumb
+          locale={locale}
+          items={[
+            { label: t('breadcrumbCurrent') },
+          ]}
+        />
+      </section>
+
       {/* Page title */}
       <section className="max-w-6xl mx-auto px-4 pt-12 pb-8">
         <h1 className="text-4xl md:text-6xl font-bold text-center">

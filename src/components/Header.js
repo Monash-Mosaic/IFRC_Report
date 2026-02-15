@@ -3,13 +3,21 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import SearchInput from './SearchInput';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Get initial query if on search page
+  const isSearchPage = pathname === '/search';
+  const initialQuery = isSearchPage ? searchParams.get('q') || '' : '';
 
   const t = useTranslations('Home');
 
@@ -66,6 +74,7 @@ export default function Header() {
           <SearchInput
             isSearchExpanded={isSearchExpanded}
             setIsSearchExpanded={setIsSearchExpanded}
+            initialQuery={initialQuery}
           />
         </nav>
 
@@ -80,6 +89,7 @@ export default function Header() {
             isMobile
             isSearchExpanded={isSearchExpanded}
             setIsSearchExpanded={setIsSearchExpanded}
+            initialQuery={initialQuery}
           />
           {!isSearchExpanded && (
             <button

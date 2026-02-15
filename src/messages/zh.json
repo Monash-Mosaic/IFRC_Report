@@ -3,6 +3,9 @@
     "titleTemplate": "%s | IFRC",
     "defaultTitle": "IFRC 世界灾害报告 2026"
   },
+  "Breadcrumb": {
+    "reports": "报告"
+  },
   "Home": {
     "meta": {
       "title": "国际红十字报告主页",
@@ -104,7 +107,6 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "返回报告",
     "tableOfContent": "目录",
     "bookmark": "书签",
     "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
@@ -113,7 +115,6 @@
     }
   },
   "ReportChapterPage": {
-    "back": "返回",
     "tocTitle": "在本章节"
   },
   "LocaleSwitcher": {
@@ -125,6 +126,21 @@
     "meta": {
       "title": "即将上线",
       "description": "IFRC《世界灾难报告》数字体验即将上线。"
+    }
+  },
+  "SearchPage": {
+    "meta": {
+      "title": "搜索结果",
+      "description": "IFRC报告搜索结果"
+    },
+    "breadcrumb": {
+      "ariaLabel": "面包屑导航",
+      "home": "首页",
+      "searchPage": "搜索页面"
+    },
+    "results": {
+      "ariaLabel": "搜索结果",
+      "noResults": "未找到结果。请尝试其他搜索词。"
     }
   },
   "SidebarPanel": {

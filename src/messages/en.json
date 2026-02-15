@@ -3,6 +3,9 @@
     "titleTemplate": "%s | IFRC",
     "defaultTitle": "IFRC World Disasters Report 2026"
   },
+  "Breadcrumb": {
+    "reports": "Reports"
+  },
   "Home": {
     "meta": {
       "title": "IFRC Reports Homepage",
@@ -104,7 +107,6 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "Back to Reports",
     "tableOfContent": "Table of Contents",
     "bookmark": "Bookmark",
     "bookmarkAria": "{action, select, add {Add bookmark} remove {Remove bookmark} other {Unknown}} for {section}",
@@ -113,13 +115,27 @@
     }
   },
   "ReportChapterPage": {
-    "back": "Back",
     "tocTitle": "On This Chapter"
   },
   "LocaleSwitcher": {
     "ariaLabel": "Select language",
     "title": "Select language",
     "language": "Language"
+  },
+  "SearchPage": {
+    "meta": {
+      "title": "Search Results",
+      "description": "Search results for IFRC reports"
+    },
+    "breadcrumb": {
+      "ariaLabel": "Breadcrumb navigation",
+      "home": "Home Page",
+      "searchPage": "Search page"
+    },
+    "results": {
+      "ariaLabel": "Search results",
+      "noResults": "No results found. Try a different search term."
+    }
   },
   "ComingSoon": {
     "meta": {
@@ -172,7 +188,6 @@
     "message": "Error details: {message}",
     "backHome": "Go to home"
   },
-  
   "About": {
     "breadcrumbHome": "Home Page",
     "breadcrumbCurrent": "About",
