@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import SearchResultCard from '@/components/SearchResultCard';
-import { searchDocuments } from '@/lib/search/sqlite-search';
+import { searchDocuments } from '@/lib/search/flexsearch';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -19,23 +19,18 @@ export const dynamic = 'force-dynamic';
 
 export default async function SearchEngineResultPage({ params, searchParams }) {
   const { locale } = await params;
-  const resolvedSearchParams = await searchParams;
-  const query = resolvedSearchParams?.q || '';
-  const limit = resolvedSearchParams?.limit || '20';
+  const { q: query = '', limit = '20' } = await searchParams;
 
   const t = await getTranslations({
     namespace: 'SearchPage',
     locale,
   });
 
-  // Only search if we have a query
-  const searchResults = query.trim()
-    ? await searchDocuments({
+  const searchResults = await searchDocuments({
         locale,
         query: decodeURIComponent(query.trim()),
         limit: parseInt(limit, 10),
-      })
-    : [];
+      });
 
   return (
     <section aria-label={t('results.ariaLabel')}>

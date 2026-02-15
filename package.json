@@ -7,7 +7,6 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "build:search": "node scripts/build-search-index.mjs",
-    "prebuild": "node scripts/build-search-index.mjs",
     "start": "next start --turbopack",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
@@ -20,8 +19,7 @@
     "test": "jest",
     "ci:build": "opennextjs-cloudflare build",
     "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions --coverage --ci --json --outputFile=report.json",
-    "test:watch": "jest --watch",
-    "postinstall": "npm rebuild better-sqlite3"
+    "test:watch": "jest --watch"
   },
   "engines": {
     "node": ">=22.0.0"
@@ -35,7 +33,6 @@
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@types/mdx": "^2.0.13",
     "autoprefixer": "^10.4.24",
-    "better-sqlite3": "^12.6.2",
     "dexie": "^4.3.0",
     "embla-carousel-react": "^8.6.0",
     "flexsearch": "^0.8.212",
