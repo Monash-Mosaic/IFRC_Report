@@ -3,6 +3,7 @@
 import { useEffect, useCallback, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { isRtlLocale } from '@/i18n/helper';
 
 // Constants
 const GAP_SIZE = 24; // Match gap-6 class (24px)
@@ -28,14 +29,16 @@ export default function EmblaCarousel({
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const isRTL = locale === 'ar';
+  function getDirection(locale) {
+    return isRtlLocale(locale) ? 'rtl' : 'ltr';
+  }
 
   // Embla setup
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align,
     loop,
     slidesToScroll: 1,
-    direction: isRTL ? 'rtl' : 'ltr',
+    direction: getDirection(locale),
   });
 
   // Navigation callbacks
@@ -104,12 +107,12 @@ export default function EmblaCarousel({
   useEffect(() => {
     if (!emblaApi) return;
 
-    emblaApi.reInit({ direction: isRTL ? 'rtl' : 'ltr' });
+    emblaApi.reInit({ direction: getDirection(locale) });
 
     const timer = setTimeout(onSelect, 0);
 
     return () => clearTimeout(timer);
-  }, [locale, emblaApi, isRTL, onSelect]);
+  }, [locale]);
 
   // Computed values
   const totalChildren = Array.isArray(children) ? children.length : 1;
@@ -124,7 +127,7 @@ export default function EmblaCarousel({
 
   // Navigation helpers
   const renderNavigationButton = (direction, onClick, disabled, ariaLabel) => {
-    const Icon = isRTL
+    const Icon = isRtlLocale(locale)
       ? direction === 'prev'
         ? ChevronRight
         : ChevronLeft
@@ -164,7 +167,7 @@ export default function EmblaCarousel({
       {title && <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{title}</h2>}
 
       <div className={`relative ${containerClassName}`}>
-        <div className="overflow-hidden embla__viewport" ref={emblaRef} dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="overflow-hidden embla__viewport" ref={emblaRef} dir={getDirection(locale)}>
           <div className="flex gap-6">
             {Array.isArray(children) ? children.map(renderSlide) : renderSlide(children, 0)}
           </div>
