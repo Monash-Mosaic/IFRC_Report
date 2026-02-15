@@ -76,7 +76,7 @@ export const chapters = {
   合成: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: 1,
+      chapterNumber: 0,
       chapterPrefix: '合成',
     },
     component: Synthesis.default,
