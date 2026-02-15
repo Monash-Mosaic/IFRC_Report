@@ -66,7 +66,7 @@ export const chapters = {
   synthèse: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: 1,
+      chapterNumber: 0,
       chapterPrefix: 'Synthèse',
     },
     component: Synthesis.default,
