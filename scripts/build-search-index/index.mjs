@@ -57,8 +57,8 @@ await fs.writeFile('./reports.json', JSON.stringify(report, null, 2));
 const { reportsByLocale } = report;
 const indices = Object.fromEntries(Object.keys(reportsByLocale).map(e => [e, []]));
 
-// for (const [locale, { reports }] of Object.entries(reportsByLocale)) {
-for (const [locale, { reports }] of [['en', reportsByLocale['en']]]) {
+for (const [locale, { reports }] of Object.entries(reportsByLocale)) {
+  slugger.reset();
   for (const [report, { chapters }] of Object.entries(reports)) {
     for (const [chapter, content] of Object.entries(chapters)) {
       const { chapterPrefix } = content['metadata']
@@ -73,16 +73,15 @@ for (const [locale, { reports }] of [['en', reportsByLocale['en']]]) {
         locale,
       });
     
-      slugger.reset();
       const initialValue = [];
       initialValue.push({
         id: `${locale}-${report}-${chapter}`,
         chapterPrefix,
-        heading: content.title,
+        title: content.title,
         excerpt: '',
         href: decodeURIComponent(`${pathname}`),
       });
-      const index = reduceMast(
+      const documents = reduceMast(
         content.component,
         (acc, node) => {
           if (node?.type === 'heading') {
@@ -91,7 +90,7 @@ for (const [locale, { reports }] of [['en', reportsByLocale['en']]]) {
             acc.push({
               id: `${locale}-${report}-${chapter}-${id}`,
               chapterPrefix,
-              heading: text,
+              title: text,
               excerpt: '',
               href: decodeURIComponent(`${pathname}#${id}`)
             });
@@ -105,15 +104,14 @@ for (const [locale, { reports }] of [['en', reportsByLocale['en']]]) {
         },
         initialValue
       ).filter(e => !!e.excerpt);
-      const searchIndex = await createSearchIndex(locale);
-      for (const doc of index) {
-        searchIndex.add(doc['id'], doc);
-      }
-      // await searchIndex.commit();
-      console.log(searchIndex)
-      indices[locale].push(...index);
+      indices[locale].push(...documents);
     }
   }
+  const searchIndex = await createSearchIndex(locale);
+  for (const doc of indices[locale]) {
+    await searchIndex.addAsync(doc['id'], doc);
+  }
+  await searchIndex.commit(); 
 }
 
 await fs.writeFile(

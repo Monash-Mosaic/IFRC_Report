@@ -1,6 +1,7 @@
-import { Document, Charset, Encoder, Resolver } from 'flexsearch';
-import { createSearchIndex } from './db';
-
+import { highlight_fields } from './flexsearch-highlight.js';
+import { createSearchIndex } from './db.js';
+import { Document } from 'flexsearch';
+import { routing } from '@/i18n/routing';
 const indexCache = new Map();
 
 /** @returns {Promise<Document>} */
@@ -15,39 +16,47 @@ async function ensureIndex(locale) {
   return index;
 }
 
-await ensureIndex('en');
+
+for await (const locale of routing.locales) {
+  await ensureIndex(locale);
+}
 
 export async function searchDocuments({ locale, query, limit = 10 }) {
   const safeQuery = query?.trim();
   if (!safeQuery) return [];
-  
-  // TODO: Making this function faster would improve overall search performance
-  console.time(`ensureIndex for ${locale}`);
+
   const index = await ensureIndex(locale);
-  console.timeEnd(`ensureIndex for ${locale}`);
 
   console.time(`searchCache`);
   const rawResults = await index.searchCacheAsync({
     query: safeQuery,
-    field: ['heading', 'excerpt'],
+    field: ['title', 'excerpt'],
     limit,
     enrich: true,
     merge: true,
-    highlight: {
-      template: "<em>$1</em>",
-      boundary: 500,
-      merge: true,
-      clip: false,
-    },
+    // FIXME: This option is not working for SQLite Database
+    // highlight: {
+    //   template: "<em>$1</em>",
+    //   boundary: 500,
+    //   merge: true,
+    //   clip: false,
+    // },
     suggest: true,
     pluck: "excerpt",
   });
+  
+  const results = highlight_fields(safeQuery, rawResults, index.index, 'excerpt', {
+    template: "<em>$1</em>",
+    boundary: 500,
+    merge: true,
+    clip: false,
+  });
   console.timeEnd(`searchCache`);
 
-  return rawResults.map((result) => ({
+  return results.map((result) => ({
     id: result.doc.id,
-    title: `${result.doc.chapterPrefix} > ${result.doc.heading}`,
-    highlight: result.doc.excerpt,
+    title: `${result.doc.chapterPrefix} > ${result.doc.title}`,
+    highlight: result.highlight,
     href: result.doc.href,
   }));
 }

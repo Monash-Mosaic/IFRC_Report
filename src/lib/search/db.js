@@ -43,17 +43,10 @@ async function ensureOutputDir() {
   await mkdir(OUTPUT_DIR, { recursive: true });
 }
 
-export async function createSearchIndex(locale) {
+export async function createSearchIndex(locale, engine = 'sqlite') {
   if (!LOCALES.has(locale)) {
     throw new Error(`Unsupported locale: ${locale}`);
   }
-
-  await ensureOutputDir();
-  const name = `ifrc-wdr-playbook-${locale}-db`;
-  const db = new Database(name, {
-    type: "bigint",
-    path: path.join(OUTPUT_DIR, `${name}.sqlite`),
-  });
 
   const doc = new Document({
     document: {
@@ -61,10 +54,9 @@ export async function createSearchIndex(locale) {
       store: true,
       field: [
         {
-          field: 'heading',
+          field: 'title',
           tokenize: 'forward',
-          encoder: createFieldEncoder(locale, 'heading'),
-          bidirectional: false,
+          encoder: createFieldEncoder(locale, 'title'),
         },
         {
           field: 'excerpt',
@@ -76,6 +68,14 @@ export async function createSearchIndex(locale) {
     },
   });
 
-  // await doc.mount(db);
+  if (engine === 'sqlite') {
+    await ensureOutputDir();
+    const name = `ifrc-wdr-playbook-${locale}-db`;
+    const db = new Database(name, {
+      path: path.join(OUTPUT_DIR, `${name}.sqlite`),
+    });
+    await doc.mount(db);
+  }
+
   return doc;
 }
