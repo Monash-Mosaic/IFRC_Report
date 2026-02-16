@@ -3,7 +3,7 @@
 import { useEffect, useCallback, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { isRtlLocale } from '@/i18n/helper';
+import { isRtlLocale, getDirection } from '@/i18n/helper';
 
 // Constants
 const GAP_SIZE = 24; // Match gap-6 class (24px)
@@ -28,10 +28,6 @@ export default function EmblaCarousel({
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-  function getDirection(locale) {
-    return isRtlLocale(locale) ? 'rtl' : 'ltr';
-  }
 
   // Embla setup
   const [emblaRef, emblaApi] = useEmblaCarousel({
