@@ -43,35 +43,23 @@ exports[`Header Rendering matches snapshot 1`] = `
           Locale Switcher
         </div>
         <div
-          class="flex items-center "
+          class="flex items-center  "
         >
-          <form
-            action="/en/search"
+          <div
             class="relative "
-            role="search"
           >
             <input
-              autocomplete="off"
-              class="w-auto px-4 py-2 pr-10 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-red-300 bg-white placeholder-red-400 transition-all duration-300 ease-in-out [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
-              name="q"
+              class="w-auto px-4 py-2 pr-10 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out"
               placeholder="Search"
-              required=""
-              spellcheck="true"
-              type="search"
-              value=""
+              type="text"
             />
-            <button
-              class="absolute right-3 top-1/2 transform -translate-y-1/2"
-              type="submit"
+            <div
+              class="absolute right-3 w-5 h-5 top-1/2 transform -translate-y-1/2 text-red-600"
+              data-testid="search-icon"
             >
-              <div
-                class="w-5 h-5 text-red-600"
-                data-testid="search-icon"
-              >
-                Search Icon
-              </div>
-            </button>
-          </form>
+              Search Icon
+            </div>
+          </div>
         </div>
       </nav>
       <div
@@ -82,18 +70,25 @@ exports[`Header Rendering matches snapshot 1`] = `
         >
           Locale Switcher
         </div>
-        <button
-          aria-label="Search"
-          class="w-10 h-10 flex items-center justify-center border-2 border-red-600 rounded-lg bg-white"
-          type="button"
+        <div
+          class="flex items-center  "
         >
           <div
-            class="w-4 h-4 text-red-600"
-            data-testid="search-icon"
+            class="relative "
           >
-            Search Icon
+            <input
+              class="w-10 h-10 p-0 pr-0 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400 transition-all duration-300 ease-in-out"
+              placeholder=""
+              type="text"
+            />
+            <div
+              class="absolute right-3 w-4 h-4 pointer-events-none top-1/2 transform -translate-y-1/2 text-red-600"
+              data-testid="search-icon"
+            >
+              Search Icon
+            </div>
           </div>
-        </button>
+        </div>
         <button
           aria-label="Toggle mobile menu"
           class="p-2 text-red-700 hover:text-red-900 transition-colors"

@@ -12,14 +12,11 @@ const withMDX = createMDX({
         'rehype-autolink-headings',
         {
           behavior: 'wrap',
-          content: {
-            type: 'text',
-            value: ' 🔗',
-          },
         },
       ],
       ['@stefanprobst/rehype-extract-toc', {}],
       ['@stefanprobst/rehype-extract-toc/mdx', {}],
+      ['rehype-custom-footnotes', {}],
     ],
   },
 });

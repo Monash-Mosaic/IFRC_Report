@@ -1,5 +1,5 @@
 import * as Chapter02 from './chapter-02.mdx';
-
+import * as Synthesis from './exec-summary.mdx';
 export const title = 'Informe Mundial sobre Desastres 2025';
 
 export const description =
@@ -76,6 +76,19 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
+  'síntesis': {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: 0,
+      chapterPrefix: 'Síntesis',
+    },
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+  },
   'capitulo-02': {
     metadata: {
       chapterKey: 'chapter-02',
