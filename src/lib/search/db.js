@@ -9,41 +9,73 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..');
 const OUTPUT_DIR = path.join(PROJECT_ROOT, 'data');
-const SEARCH_DB_PATH = path.join(OUTPUT_DIR, 'search.db');
+
+const LOCALES = new Set(['ar', 'en', 'es', 'fr', 'ru', 'zh']);
+
+function createFieldEncoder(locale, field) {
+  // Keep current English behavior for excerpt scoring.
+  if (locale === 'en' && field === 'excerpt') {
+    return new Encoder(Charset.LatinSoundex, { filter: stopword });
+  }
+
+  // Chinese requires CJK token split support.
+  if (locale === 'zh') {
+    return Charset.CJK;
+  }
+
+  // Arabic and Cyrillic scripts rely on normalized unicode matching.
+  if (locale === 'ar') {
+    return {
+      ...Charset.Default,
+      rtl: true,
+    };
+  }
+
+  if (locale === 'ru') {
+    return Charset.Default;
+  }
+
+  // Romance languages and English use latin-focused encoders.
+  return Charset.LatinAdvanced;
+}
 
 async function ensureOutputDir() {
   await mkdir(OUTPUT_DIR, { recursive: true });
 }
 
 export async function createSearchIndex(locale) {
-  await ensureOutputDir();
-
-  const db = new Database('ifrc-report-db', {
-    path: SEARCH_DB_PATH,
-  });
-  switch (locale) {
-    case 'en':
-      const doc = new Document({
-        document: {
-          store: true,
-          field: [
-            {
-              field: 'heading',
-              tokenize: 'forward',
-              encoder: Charset.LatinAdvanced,
-            },
-            {
-              field: 'excerpt',
-              tokenize: 'forward',
-              encoder: new Encoder(Charset.LatinSoundex, { filter: stopword }),
-              context: true,
-            },
-          ],
-        },
-      });
-      await doc.mount(db);
-      return doc;
-    default:
-      throw new Error('Unsupported Locale');
+  if (!LOCALES.has(locale)) {
+    throw new Error(`Unsupported locale: ${locale}`);
   }
+
+  await ensureOutputDir();
+  const name = `ifrc-wdr-playbook-${locale}-db`;
+  const db = new Database(name, {
+    type: "bigint",
+    path: path.join(OUTPUT_DIR, `${name}.sqlite`),
+  });
+
+  const doc = new Document({
+    document: {
+      id: "id",
+      store: true,
+      field: [
+        {
+          field: 'heading',
+          tokenize: 'forward',
+          encoder: createFieldEncoder(locale, 'heading'),
+          bidirectional: false,
+        },
+        {
+          field: 'excerpt',
+          tokenize: 'forward',
+          encoder: createFieldEncoder(locale, 'excerpt'),
+          context: true,
+        },
+      ],
+    },
+  });
+
+  // await doc.mount(db);
+  return doc;
 }

@@ -26,9 +26,10 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
   const index = await ensureIndex(locale);
   console.timeEnd(`ensureIndex for ${locale}`);
 
-  console.time(`searchCache for ${safeQuery}`);
+  console.time(`searchCache`);
   const rawResults = await index.searchCacheAsync({
     query: safeQuery,
+    field: ['heading', 'excerpt'],
     limit,
     enrich: true,
     merge: true,
@@ -41,11 +42,11 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
     suggest: true,
     pluck: "excerpt",
   });
-  console.timeEnd(`searchCache for ${safeQuery}`);
+  console.timeEnd(`searchCache`);
 
   return rawResults.map((result) => ({
     id: result.doc.id,
-    title: result.doc.title,
+    title: `${result.doc.chapterPrefix} > ${result.doc.heading}`,
     highlight: result.doc.excerpt,
     href: result.doc.href,
   }));

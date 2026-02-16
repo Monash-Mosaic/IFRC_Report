@@ -17,9 +17,11 @@ export async function generateMetadata({ params }) {
 
 export const dynamic = 'force-dynamic';
 
+const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time))
+
 export default async function SearchEngineResultPage({ params, searchParams }) {
   const { locale } = await params;
-  const { q: query = '', limit = '20' } = await searchParams;
+  const { q: query = '', limit = '10' } = await searchParams;
 
   const t = await getTranslations({
     namespace: 'SearchPage',
@@ -31,6 +33,8 @@ export default async function SearchEngineResultPage({ params, searchParams }) {
         query: decodeURIComponent(query.trim()),
         limit: parseInt(limit, 10),
       });
+
+  // await sleep(2000);
 
   return (
     <section aria-label={t('results.ariaLabel')}>

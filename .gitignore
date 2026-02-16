@@ -40,5 +40,4 @@ next-env.d.ts
 # cloudflare wrangler
 .wrangler
 # Search index artifacts (regenerated on build)
-data/search.db
-data/search-seed.sql
+data/

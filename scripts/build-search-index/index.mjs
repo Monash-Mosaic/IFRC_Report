@@ -54,83 +54,72 @@ function extractInlineText(node) {
 
 await fs.writeFile('./reports.json', JSON.stringify(report, null, 2));
 
-const { reportUriMap, reportsByLocale } = report;
-const locale = 'en';
-const reportKey = 'wdr25';
-const indices = {
-  [locale]: [],
-};
+const { reportsByLocale } = report;
+const indices = Object.fromEntries(Object.keys(reportsByLocale).map(e => [e, []]));
 
-for (const [chapterSlug, data] of Object.entries(reportsByLocale[locale].reports[reportKey].chapters)) {
-  const { chapterKey, chapterPrefix, chapterNumber } = data['metadata']
-  const pathname = getPathname({
-    href: {
-      pathname: '/reports/[report]/[chapter]',
-      params: {
-        report: reportUriMap[reportKey].languages[locale],
-        chapter: chapterSlug,
-      },
-    },
-    locale,
-  });
-
-  slugger.reset();
-  const initialValue = [];
-  initialValue.push({
-    id: `${locale}-${reportKey}-${chapterKey}`,
-    depth: 0,
-    title: `${chapterPrefix}: ${data.title}`,
-    chapterPrefix,
-    chapterNumber,
-    heading: data.title,
-    excerpt: '',
-    href: decodeURIComponent(`${pathname}`)b
-  });
-  const index = reduceMast(
-    data.component,
-    (acc, node) => {
-      if (node?.type === 'heading') {
-        const text = extractInlineText(node);
-        const id = slugger.slug(text);
-        acc.push({
-          id: `${locale}-${reportKey}-${chapterKey}-${id}`,
-          depth: node.depth ?? 1,
-          title: `${chapterPrefix} > ${text}`,
-          chapterPrefix,
-          chapterNumber,
-          heading: text,
-          excerpt: '',
-          href: decodeURIComponent(`${pathname}#${id}`)
-        });
+// for (const [locale, { reports }] of Object.entries(reportsByLocale)) {
+for (const [locale, { reports }] of [['en', reportsByLocale['en']]]) {
+  for (const [report, { chapters }] of Object.entries(reports)) {
+    for (const [chapter, content] of Object.entries(chapters)) {
+      const { chapterPrefix } = content['metadata']
+      const pathname = getPathname({
+        href: {
+          pathname: '/reports/[report]/[chapter]',
+          params: {
+            report: report,
+            chapter: chapter,
+          },
+        },
+        locale,
+      });
+    
+      slugger.reset();
+      const initialValue = [];
+      initialValue.push({
+        id: `${locale}-${report}-${chapter}`,
+        chapterPrefix,
+        heading: content.title,
+        excerpt: '',
+        href: decodeURIComponent(`${pathname}`),
+      });
+      const index = reduceMast(
+        content.component,
+        (acc, node) => {
+          if (node?.type === 'heading') {
+            const text = extractInlineText(node);
+            const id = slugger.slug(text);
+            acc.push({
+              id: `${locale}-${report}-${chapter}-${id}`,
+              chapterPrefix,
+              heading: text,
+              excerpt: '',
+              href: decodeURIComponent(`${pathname}#${id}`)
+            });
+          }
+          if (node?.type === 'paragraph' || (node?.type === 'mdxJsxFlowElement' && ['ChapterQuote', 'SideNote', 'SmallQuote', 'Spotlight'].includes(node?.name))) {
+            const text = extractInlineText(node);
+            const i = acc.length - 1;
+            acc[i].excerpt = [acc[i].excerpt, text].join('\n').trimStart('\n');
+          }
+          return acc;
+        },
+        initialValue
+      ).filter(e => !!e.excerpt);
+      const searchIndex = await createSearchIndex(locale);
+      for (const doc of index) {
+        searchIndex.add(doc['id'], doc);
       }
-      if (node?.type === 'paragraph' || (node?.type === 'mdxJsxFlowElement' && ['ChapterQuote', 'SideNote', 'SmallQuote', 'Spotlight'].includes(node?.name))) {
-        const text = extractInlineText(node);
-        const i = acc.length - 1;
-        acc[i].excerpt = [acc[i].excerpt, text].join('\n').trimStart('\n');
-      }
-      return acc;
-    },
-    initialValue
-  );
-  indices[locale].push(...index);
+      // await searchIndex.commit();
+      console.log(searchIndex)
+      indices[locale].push(...index);
+    }
+  }
 }
-
-const searchIndex = await createSearchIndex(locale);
-for (const doc of indices[locale]) {
-  console.log('Indexing', doc['id'])
-  await searchIndex.addAsync(doc);
-}
-
-await searchIndex.commit();
 
 await fs.writeFile(
   './index.json',
   JSON.stringify(
-    {
-      locale,
-      reportKey,
-      chapters: indices,
-    },
+    indices,
     null,
     2
   )
