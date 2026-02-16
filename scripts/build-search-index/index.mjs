@@ -52,8 +52,6 @@ function extractInlineText(node) {
   return parts.join('\n').replace(/\s+/g, ' ').trim();
 }
 
-await fs.writeFile('./reports.json', JSON.stringify(report, null, 2));
-
 const { reportsByLocale } = report;
 const indices = Object.fromEntries(Object.keys(reportsByLocale).map(e => [e, []]));
 
@@ -113,12 +111,3 @@ for (const [locale, { reports }] of Object.entries(reportsByLocale)) {
   }
   await searchIndex.commit(); 
 }
-
-await fs.writeFile(
-  './index.json',
-  JSON.stringify(
-    indices,
-    null,
-    2
-  )
-);
