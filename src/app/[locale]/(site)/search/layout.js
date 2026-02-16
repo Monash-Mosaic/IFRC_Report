@@ -2,8 +2,6 @@ import Breadcrumb from '@/components/Breadcrumb';
 import { routing } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 
-export const dynamic = 'force-static';
-
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }

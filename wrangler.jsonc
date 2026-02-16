@@ -29,6 +29,15 @@
   "images": {
     "binding": "IMAGES"
   },
+  "d1_databases": [
+    {
+      "binding": "SEARCH_DB",
+      "database_name": "ifrc-wdr-search",
+      // Replace with your real production D1 database ID.
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "migrations_dir": "migrations"
+    }
+  ],
   "observability": {
     "enabled": true,
     "logs": {
@@ -61,6 +70,15 @@
       "images": {
         "binding": "IMAGES"
       },
+      "d1_databases": [
+        {
+          "binding": "SEARCH_DB",
+          "database_name": "ifrc-wdr-search-preview",
+          // Replace with your real preview D1 database ID.
+          "database_id": "00000000-0000-0000-0000-000000000002",
+          "migrations_dir": "migrations"
+        }
+      ],
       "observability": {
         "enabled": true,
         "logs": {
