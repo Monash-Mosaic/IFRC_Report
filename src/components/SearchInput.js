@@ -5,6 +5,28 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { getPathname, usePathname } from '@/i18n/navigation';
 import Form from 'next/form';
+import { useFormStatus } from 'react-dom'
+ 
+export function SearchButton({ label }) {
+  const status = useFormStatus();
+  return (
+    <button
+      type="submit"
+      aria-label={label}
+      disabled={status.pending}
+      className="absolute start-3 top-1/2 transform -translate-y-1/2"
+    >
+      {status.pending ? (
+        <span
+          className="block w-5 h-5 rounded-full border-2 border-red-600 border-t-transparent animate-spin"
+          aria-hidden="true"
+        />
+      ) : (
+        <Search className="w-5 h-5 text-red-600" />
+      )}
+    </button>
+  );
+}
 
 export default function SearchInput() {
   const locale = useLocale();
@@ -62,6 +84,7 @@ export default function SearchInput() {
       searchInputRef.current?.focus();
       return;
     }
+
     if (!isSearchPage) {
       closeSearchOverlay();
     }
@@ -127,9 +150,11 @@ export default function SearchInput() {
             <Form
               action={searchAction}
               role="search"
+              replace
               className="relative flex-1"
               onSubmit={handleSearchSubmit}
             >
+              <input type="hidden" name="limit" defaultValue={10} />
               <label htmlFor={overlayInputId} className="sr-only">
                 {t('nav.search')}
               </label>
@@ -146,12 +171,7 @@ export default function SearchInput() {
                 autoComplete="off"
                 spellCheck="true"
               />
-              <button
-                type="submit"
-                className="absolute start-3 top-1/2 transform -translate-y-1/2"
-              >
-                <Search className="w-5 h-5 text-red-600" />
-              </button>
+              <SearchButton label={t('nav.search')} />
               <button
                 type="button"
                 onClick={clearSearchInput}

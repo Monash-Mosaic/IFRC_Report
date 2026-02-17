@@ -56,18 +56,16 @@ export default async function Header({ locale }) {
 
         {/* Mobile Locale Switcher and Search */}
         <div className="lg:hidden flex items-center space-x-3">
+          <LocaleSwitcher />
           <SearchInput />
-          <div className="flex items-center space-x-3">
-            <LocaleSwitcher />
-            <label
-              htmlFor="mobile-menu-toggle"
-              className={`${buttonClasses} inline-flex items-center justify-center`}
-              aria-label="Toggle mobile menu"
-            >
-              <Menu className="menu-open-icon" />
-              <X className="menu-close-icon" />
-            </label>
-          </div>
+          <label
+            htmlFor="mobile-menu-toggle"
+            className={`${buttonClasses} inline-flex items-center justify-center`}
+            aria-label="Toggle mobile menu"
+          >
+            <Menu className="menu-open-icon" />
+            <X className="menu-close-icon" />
+          </label>
         </div>
       </div>
 

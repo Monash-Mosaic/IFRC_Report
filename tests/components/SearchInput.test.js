@@ -33,7 +33,7 @@ jest.mock('@/i18n/helper', () => ({
 
 jest.mock('next/form', () => ({
   __esModule: true,
-  default: ({ children, ...props }) => <form {...props}>{children}</form>,
+  default: ({ children, replace, ...props }) => <form {...props}>{children}</form>,
 }));
 
 jest.mock('lucide-react', () => ({
