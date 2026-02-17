@@ -4,7 +4,10 @@ exports[`SearchResultCard renders SearchResultCard with all content 1`] = `
 <div>
   <a
     class="block"
-    data-testid="mock-link"
+    data-result-href="/reports/wdr25/chapter-02"
+    data-result-index="0"
+    data-result-title="Test Chapter Title: Understanding Humanitarian Response"
+    data-search-result="true"
     href="/reports/wdr25/chapter-02"
   >
     <article

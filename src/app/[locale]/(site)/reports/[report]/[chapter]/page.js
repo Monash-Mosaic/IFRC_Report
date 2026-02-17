@@ -159,7 +159,7 @@ export default async function ReportChapterPage({ params }) {
   });
 
   return (
-    <div className="min-h-screen bg-white flex  pl-8 pr-0 py-8">
+    <div className="min-h-screen bg-white flex">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(chapterJsonLd) }}

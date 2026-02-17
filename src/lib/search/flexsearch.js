@@ -23,7 +23,7 @@ for await (const locale of routing.locales) {
 
 export async function searchDocuments({ locale, query, limit = 10 }) {
   const safeQuery = query?.trim();
-  if (!safeQuery) return [];
+  if (!safeQuery || limit < 1) return [];
 
   const index = await ensureIndex(locale);
 

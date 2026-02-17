@@ -15,7 +15,7 @@ export default async function SearchPageLayout({ params, children }){
 
   return (
     <div className="min-h-screen bg-white">
-      <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4">
+      <main className="max-w-full lg:max-w-8/10 py-4 mx-auto px-4">
         <Breadcrumb
           locale={locale}
           items={[{ label: t('breadcrumb.searchPage') }]}
