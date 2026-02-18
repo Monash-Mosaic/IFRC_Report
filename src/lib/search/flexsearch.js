@@ -1,29 +1,34 @@
 import { highlight_fields } from './flexsearch-highlight.js';
 import { createSearchIndex } from './db.js';
-import { Document } from 'flexsearch';
 import { routing } from '@/i18n/routing';
 const indexCache = new Map();
 
-/** @returns {Promise<Document>} */
 async function ensureIndex(locale) {
   if (indexCache.has(locale)) {
     return indexCache.get(locale);
   }
 
-  const index = await createSearchIndex(locale);
+  const indexPromise = createSearchIndex(locale, { engine: 'd1' })
+    .then((index) => {
+      indexCache.set(locale, index);
+      return index;
+    })
+    .catch((error) => {
+      indexCache.delete(locale);
+      throw error;
+    });
 
-  indexCache.set(locale, index);
-  return index;
-}
-
-
-for await (const locale of routing.locales) {
-  await ensureIndex(locale);
+  indexCache.set(locale, indexPromise);
+  return indexPromise;
 }
 
 export async function searchDocuments({ locale, query, limit = 10 }) {
   const safeQuery = query?.trim();
   if (!safeQuery || limit < 1) return [];
+
+  if (!routing.locales.includes(locale)) {
+    return [];
+  }
 
   const index = await ensureIndex(locale);
 

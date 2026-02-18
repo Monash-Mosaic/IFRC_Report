@@ -2,8 +2,10 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Menu, X } from 'lucide-react';
+import { Suspense } from 'react';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import SearchInput from './SearchInput';
+import SearchInputFallback from './SearchInputFallback';
 
 export default async function Header({ locale }) {
   const t = await getTranslations({
@@ -19,6 +21,8 @@ export default async function Header({ locale }) {
     { href: '/about', label: t('nav.about') },
     { href: '/acknowledgement', label: t('nav.acknowledgement') },
   ];
+  const searchLabel = t('nav.search');
+  const searchPlaceholder = t('nav.searchPlaceholder');
 
   return (
     <header className="w-full bg-white mb-4">
@@ -51,13 +55,21 @@ export default async function Header({ locale }) {
             ))}
             <LocaleSwitcher />
           </div>
-          <SearchInput />
+          <Suspense
+            fallback={<SearchInputFallback label={searchLabel} placeholder={searchPlaceholder} />}
+          >
+            <SearchInput />
+          </Suspense>
         </nav>
 
         {/* Mobile Locale Switcher and Search */}
         <div className="lg:hidden flex items-center space-x-3">
           <LocaleSwitcher />
-          <SearchInput />
+          <Suspense
+            fallback={<SearchInputFallback label={searchLabel} placeholder={searchPlaceholder} />}
+          >
+            <SearchInput />
+          </Suspense>
           <label
             htmlFor="mobile-menu-toggle"
             className={`${buttonClasses} inline-flex items-center justify-center`}

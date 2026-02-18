@@ -53,8 +53,8 @@ await build({
   sourcemap: true,
   entryNames: '[name]',
   chunkNames: 'chunks/[name]-[hash]',
-  // Native sqlite bindings should stay runtime-resolved in Node.
-  external: ['sqlite3', 'better-sqlite3'],
+  // Native bindings and wrangler runtime should stay runtime-resolved in Node.
+  external: ['sqlite3', 'better-sqlite3', 'wrangler'],
   logLevel: 'info',
   plugins: [aliasFromConfigPlugin, customMdxPlugin],
 });

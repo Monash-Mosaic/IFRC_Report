@@ -1,94 +1,91 @@
 {
-  /**
+	/**
     * Wrangler configuration file for Cloudflare Workers
     * For more information, see: https://developers.cloudflare.com/workers/platform/sites/configuration
     IMPORTANT:
      - Root wrangler configuration file is for production environment.
      - Preview (a.k.a Development) environment configuration is under the "env" key.
     */
-
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ifrc-wdr-playbook",
-  "main": ".open-next/worker.js",
-  "compatibility_date": "2024-12-30",
-  "compatibility_flags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
-  "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS",
-    "run_worker_first": false
-  },
-  "services": [
-    {
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "ifrc-wdr-playbook"
-    }
-  ],
-  "images": {
-    "binding": "IMAGES"
-  },
-  "d1_databases": [
-    {
-      "binding": "SEARCH_DB",
-      "database_name": "ifrc-wdr-search",
-      // Replace with your real production D1 database ID.
-      "database_id": "00000000-0000-0000-0000-000000000001",
-      "migrations_dir": "migrations"
-    }
-  ],
-  "observability": {
-    "enabled": true,
-    "logs": {
-      "enabled": true,
-      "invocation_logs": true
-    },
-    "traces": {
-      "enabled": true
-    },
-  },
-  "vars": {
-    "ENVIRONMENT": "production"
-  },
-  // Using worker.dev domain for staging (production preview) environment
-  "preview_urls": true,
-  "workers_dev": true,
-  "env": {
-    "preview": {
-      "vars": {
-        "ENVIRONMENT": "development"
-      },
-      "preview_urls": true,
-      "workers_dev": true,
-      "services": [
-        {
-          "binding": "WORKER_SELF_REFERENCE",
-          "service": "ifrc-wdr-playbook-preview"
-        }
-      ],
-      "images": {
-        "binding": "IMAGES"
-      },
-      "d1_databases": [
-        {
-          "binding": "SEARCH_DB",
-          "database_name": "ifrc-wdr-search-preview",
-          // Replace with your real preview D1 database ID.
-          "database_id": "00000000-0000-0000-0000-000000000002",
-          "migrations_dir": "migrations"
-        }
-      ],
-      "observability": {
-        "enabled": true,
-        "logs": {
-          "enabled": true,
-          "invocation_logs": true
-        },
-        "traces": {
-          "enabled": true
-        },
-      },
-    }
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ifrc-wdr-playbook",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2024-12-30",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS",
+		"run_worker_first": false
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "ifrc-wdr-playbook"
+		}
+	],
+	"images": {
+		"binding": "IMAGES"
+	},
+		"d1_databases": [
+			{
+				"binding": "SEARCH_DB",
+				"database_name": "ifrc-wdr-search",
+				"database_id": "edb6bbda-b0cd-4d9d-995a-4ac350f65cd2",
+				// "remote": true
+			},
+		],
+	"observability": {
+		"enabled": true,
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": true
+		},
+	},
+	"vars": {
+		"ENVIRONMENT": "production"
+	},
+	// Using worker.dev domain for staging (production preview) environment
+	"preview_urls": true,
+	"workers_dev": true,
+	"env": {
+		"preview": {
+			"vars": {
+				"ENVIRONMENT": "development"
+			},
+			"preview_urls": true,
+			"workers_dev": true,
+			"services": [
+				{
+					"binding": "WORKER_SELF_REFERENCE",
+					"service": "ifrc-wdr-playbook-preview"
+				}
+			],
+			"images": {
+				"binding": "IMAGES"
+			},
+				"d1_databases": [
+					{
+						"binding": "SEARCH_DB",
+						"database_name": "ifrc-wdr-search-preview",
+						"database_id": "6c095528-31bd-4506-ab02-0f7431689e01",
+						// "remote": true
+					}
+				],
+			"observability": {
+				"enabled": true,
+				"logs": {
+					"enabled": true,
+					"invocation_logs": true
+				},
+				"traces": {
+					"enabled": true
+				},
+			},
+		}
+	}
 }

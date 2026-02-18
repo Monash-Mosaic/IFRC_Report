@@ -1,14 +1,6 @@
-import { mkdir } from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { Document, Charset, Encoder } from 'flexsearch';
-import Database from 'flexsearch/db/sqlite';
+import Database from './d1-database.js';
 import stopword from 'stopwords-en';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..');
-const OUTPUT_DIR = path.join(PROJECT_ROOT, 'data');
 
 const LOCALES = new Set(['ar', 'en', 'es', 'fr', 'ru', 'zh']);
 
@@ -39,11 +31,39 @@ function createFieldEncoder(locale, field) {
   return Charset.LatinAdvanced;
 }
 
-async function ensureOutputDir() {
-  await mkdir(OUTPUT_DIR, { recursive: true });
+function normalizeOptions(options) {
+  if (!options) {
+    return { engine: 'd1', db: null };
+  }
+
+  if (typeof options === 'string') {
+    return { engine: options, db: null };
+  }
+
+  return {
+    engine: options.engine || 'd1',
+    db: options.db || null,
+  };
 }
 
-export async function createSearchIndex(locale, engine = 'sqlite') {
+async function resolveSearchDatabase(explicitDb) {
+  if (explicitDb) {
+    return explicitDb;
+  }
+
+  const { getCloudflareContext } = await import('@opennextjs/cloudflare');
+  const { env } = await getCloudflareContext({ async: true });
+  if (!env?.SEARCH_DB) {
+    throw new Error('SEARCH_DB binding is not configured.');
+  }
+
+  return env.SEARCH_DB;
+}
+
+export async function createSearchIndex(locale, options) {
+  const normalized = normalizeOptions(options);
+  const engine = normalized.engine === 'sqlite' ? 'd1' : normalized.engine;
+
   if (!LOCALES.has(locale)) {
     throw new Error(`Unsupported locale: ${locale}`);
   }
@@ -68,14 +88,11 @@ export async function createSearchIndex(locale, engine = 'sqlite') {
     },
   });
 
-  if (engine === 'sqlite') {
-    await ensureOutputDir();
-    const name = `ifrc-wdr-playbook-${locale}-db`;
-    const db = new Database(name, {
-      path: path.join(OUTPUT_DIR, `${name}.sqlite`),
-    });
-    await doc.mount(db);
-  }
-
+  const d1 = await resolveSearchDatabase(normalized.db);
+  const name = `ifrc-wdr-playbook-${locale}-db`;
+  const db = new Database(name, {
+    db: d1,
+  });
+  await doc.mount(db);
   return doc;
 }
