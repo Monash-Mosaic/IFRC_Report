@@ -1,9 +1,9 @@
-import { ArrowLeft } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import Breadcrumb from '@/components/Breadcrumb';
 
 import { getVisibleReports, isLocaleReleased, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
-import { getPathname, Link } from '@/i18n/navigation';
+import { getPathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import SidebarPanel from '@/components/SidebarPanel';
 import TableOfContent from '@/components/TableOfContent';
@@ -119,6 +119,7 @@ export default async function ReportChapterPage({ params }) {
     audios = [],
     videos = [],
     tableOfContents: chapterTableOfContents,
+    metadata: { chapterPrefix }
   } = chapters[decodedChapter];
 
   const chapterJsonLd = {
@@ -152,25 +153,33 @@ export default async function ReportChapterPage({ params }) {
   });
 
   return (
-    <div className="min-h-screen bg-white flex  pl-8 pr-0 py-8">
+    <div className="min-h-screen bg-white flex">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(chapterJsonLd) }}
       />
       {/* Sidebar Panel */}
-      <SidebarPanel chapterTitle={chapterTitle} audios={audios} videos={videos} />
+      {/* <SidebarPanel chapterTitle={chapterTitle} audios={audios} videos={videos} /> */}
 
       {/* Main Content */}
       <div className="flex-1 p-8">
         <div className="max-w-7xl mx-auto flex gap-6">
           <div className="flex-1 max-w-4xl mx-auto">
-            <Link
-              className="flex items-center gap-2 text-black hover:text-gray-600 mb-8"
-              href={`./`}
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="font-semibold">{t('back')}</span>
-            </Link>
+            <Breadcrumb
+              locale={locale}
+              items={[
+                { 
+                  label: reportTile,
+                  href: {
+                    pathname: '/reports/[report]',
+                    params: {
+                      report: decodedReport
+                    }
+                  }
+                },
+                { label: chapterPrefix }
+              ]}
+            />
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
             </div>
