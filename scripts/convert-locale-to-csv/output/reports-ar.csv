@@ -1,0 +1,169 @@
+key,value
+report.categories[0],التقرير السنوي
+report.categories[1],استراتيجية
+report.categories[2],صندوق الإغاثة في حالات الكوارث (DREF)
+report.categories[3],نداءات الطوارئ
+report.categories[4],إدارة الكوارث
+report.categories[5],الصحة والرعاية
+report.categories[6],تطوير الجمعية الوطنية
+report.categories[7],تغير المناخ
+report.categories[8],الهجرة
+report.categories[9],المناصرة
+report.categories[10],أخرى
+report.reports.wdr25.author,أمانة الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر
+report.reports.wdr25.category,تقرير سنوي
+report.reports.wdr25.chapters.الفصل-02.metadata.chapterKey,chapter-02
+report.reports.wdr25.chapters.الفصل-02.metadata.chapterNumber,2
+report.reports.wdr25.chapters.الفصل-02.metadata.chapterPrefix,الفصل 02
+report.reports.wdr25.chapters.الفصل-02.title,""
+report.reports.wdr25.chapters.الفصل-02.subtitle,""
+report.reports.wdr25.chapters.الفصل-02.audios[0].id,intro
+report.reports.wdr25.chapters.الفصل-02.audios[0].name,الفصل 02 - نظرة عامة
+report.reports.wdr25.chapters.الفصل-02.audios[0].duration,02:31
+report.reports.wdr25.chapters.الفصل-02.audios[0].url,https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
+report.reports.wdr25.chapters.الفصل-02.audios[1].id,section-1
+report.reports.wdr25.chapters.الفصل-02.audios[1].name,القسم 1: النتائج الرئيسية
+report.reports.wdr25.chapters.الفصل-02.audios[1].duration,04:12
+report.reports.wdr25.chapters.الفصل-02.audios[1].url,https://samplelib.com/lib/preview/mp3/sample-15s.mp3
+report.reports.wdr25.chapters.الفصل-02.videos[0].id,summary
+report.reports.wdr25.chapters.الفصل-02.videos[0].name,ملخص الفصل
+report.reports.wdr25.chapters.الفصل-02.videos[0].duration,03:45
+report.reports.wdr25.chapters.الفصل-02.videos[0].url,https://www.youtube.com/watch?v=o8NiE3XMPrM
+report.reports.wdr25.chapters.الفصل-02.videos[0].thumbnail,/window.svg
+report.reports.wdr25.description,التقرير السنوي للاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر لعام 2025، الذي يستعرض الاستجابة العالمية للكوارث والجهود الإنسانية.
+report.reports.wdr25.featuredVideos[0].id,1
+report.reports.wdr25.featuredVideos[0].title,دليل سريع لتطبيق Limitless
+report.reports.wdr25.featuredVideos[0].description,هل تواجه مشكلة في التقديم على برنامج Limitless؟ هل لا تعرف من أين تبدأ؟ لا تقلق. Zikomo هنا لتخبرك بكيفية ومكان التقديم لأكاديمية IFRC Limitless للابتكار الشبابي 2024
+report.reports.wdr25.featuredVideos[0].url,https://www.youtube.com/watch?v=k5WL45qWU78
+report.reports.wdr25.featuredVideos[1].id,2
+report.reports.wdr25.featuredVideos[1].title,الغوص في محلية المساعدات - مبادرة شاملة
+report.reports.wdr25.featuredVideos[1].description,في هذه الحلقة، تناقش فيكتوار من الصليب الأحمر الكاميروني أهمية إشراك السكان المحليين في تنفيذ العمل الإنساني في المجتمعات الضعيفة من خلال مشاركة السكان المحليين.
+report.reports.wdr25.featuredVideos[1].url,https://www.youtube.com/watch?v=_8cmKGTOluo
+report.reports.wdr25.reportFile.url,/reports/wdr2025.pdf
+report.reports.wdr25.reportFile.size,19389263
+report.reports.wdr25.testimonialsList[0].id,1
+report.reports.wdr25.testimonialsList[0].quote,خلال كوفيد-19، كانت هناك معلومات كثيرة جداً لدرجة أنني شعرت بالضياع ولم أعرف ماذا أصدق
+report.reports.wdr25.testimonialsList[0].name,عبد الرحمن م.
+report.reports.wdr25.testimonialsList[0].country,أفغانستان
+report.reports.wdr25.testimonialsList[0].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[1].id,2
+report.reports.wdr25.testimonialsList[1].quote,العيش في عصر الذكاء الاصطناعي يخيفني: أين الحقيقة وأين المعلومات المضللة
+report.reports.wdr25.testimonialsList[1].name,كلير
+report.reports.wdr25.testimonialsList[1].country,المملكة المتحدة
+report.reports.wdr25.testimonialsList[1].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[2].id,3
+report.reports.wdr25.testimonialsList[2].quote,أتمنى لو كان لدي عصا سحرية تساعدني على التمييز بين المعلومات المضللة والحقيقة
+report.reports.wdr25.testimonialsList[2].name,فاطمة
+report.reports.wdr25.testimonialsList[2].country,مصر
+report.reports.wdr25.testimonialsList[2].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[3].id,4
+report.reports.wdr25.testimonialsList[3].quote,وسائل التواصل الاجتماعي تنشر المعلومات الخاطئة بسرعة كبيرة لدرجة أنه يصبح من الصعب التحقق مما هو حقيقي قبل فوات الأوان
+report.reports.wdr25.testimonialsList[3].name,ماريا س.
+report.reports.wdr25.testimonialsList[3].country,الفلبين
+report.reports.wdr25.testimonialsList[3].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[4].id,5
+report.reports.wdr25.testimonialsList[4].quote,في أوقات الكوارث، يمكن أن تكون المعلومات المضللة أكثر خطورة من الكارثة نفسها
+report.reports.wdr25.testimonialsList[4].name,جيمس ك.
+report.reports.wdr25.testimonialsList[4].country,كينيا
+report.reports.wdr25.testimonialsList[4].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.title,تقرير الكوارث العالمي 2025
+message.Metadata.titleTemplate,%s | IFRC
+message.Metadata.defaultTitle,تقرير الكوارث العالمي 2026 للاتحاد الدولي
+message.Home.meta.title,الصفحة الرئيسية لتقارير الاتحاد الدولي
+message.Home.meta.description,مرحبًا بك في تقرير الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر
+message.Home.nav.logoAlt,شعار الاتحاد الدولي
+message.Home.nav.brand,الاتحاد الدولي | أكاديمية سولفرينو
+message.Home.nav.about,حول
+message.Home.nav.bookmarks,المرجعيات
+message.Home.nav.download,تحميل
+message.Home.nav.search,بحث
+message.Home.nav.acknowledgement,شكر وتقدير
+message.Home.comingSoonLabel,قريبًا
+message.Home.footer.worldDisastersReport,تقرير الكوارث العالمي
+message.Home.footer.chapters.title,فصول التقرير
+message.Home.footer.chapters.chapter1,الفصل الأول
+message.Home.footer.chapters.chapter2,الفصل الثاني
+message.Home.footer.chapters.chapter3,الفصل الثالث
+message.Home.footer.games.title,ألعاب المعلومات المضللة
+message.Home.footer.games.disinformer,Disinformer
+message.Home.footer.games.ctrlAltPrebunk,Ctrl+Alt+Prebunk
+message.Home.footer.social.facebook,فيسبوك
+message.Home.footer.social.linkedin,لينكد إن
+message.Home.footer.social.youtube,يوتيوب
+message.Home.footer.social.instagram,إنستغرام
+message.Home.footer.social.x,إكس (تويتر)
+message.Home.footer.copyright,© {year} الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر. جميع الحقوق محفوظة.
+message.Home.footer.orgFull,الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر
+message.Home.footer.privacyPolicy,سياسة الخصوصية
+message.Home.footer.termsOfService,شروط الخدمة
+message.Home.footer.contact,اتصل
+message.Home.landingPage.heroSection.title,"التقرير‭ ‬عن‭ ‬الكوارث‭
+‬في‭ ‬العالم‭ ‬لعام"
+message.Home.landingPage.heroSection.description,"الحقيقة،‭
+‬والثقة،‭ ‬والعمل‭
+‬الإنساني‭ ‬في‭ ‬عصر‭
+‬المعلومات‭
+‬الضارة"
+message.Home.landingPage.heroSection.buttonTexts.read,قراءة التقرير
+message.Home.landingPage.heroSection.buttonTexts.download,تحميل التقرير
+message.Home.landingPage.heroSection.buttonTexts.share,مشاركة
+message.Home.landingPage.heroSection.heroAlt,صورة تقرير الكوارث العالمية الرئيسية تُظهر العاملين في المجال الإنساني أثناء العمل
+message.Home.landingPage.executiveSummary.title,الملخص التنفيذي
+message.Home.landingPage.executiveSummary.subtitle,في نقطة الأزمة: مواجهة المعلومات الضارة، والدفاع عن الإنسانية
+message.Home.landingPage.executiveSummary.description,في نقطة الأزمة: مواجهة المعلومات الضارة، والدفاع عن الإنسانية
+message.Home.landingPage.executiveSummary.buttonTexts.read,قراءة
+message.Home.landingPage.executiveSummary.buttonTexts.download,تحميل
+message.Home.landingPage.executiveSummary.summaryAlt,غلاف الملخص التنفيذي يظهر شخصًا في سياق إنساني
+message.Home.landingPage.featuredVideos.title,مقاطع فيديو مميزة من حول العالم
+message.Home.landingPage.testimonials.title,الاقتباسات والتجارب المعاشة
+message.Home.videoCard.backToThumbnail,العودة إلى الصورة المصغرة
+message.Home.videoCard.videoAriaLabel,تشغيل الفيديو
+message.ReportListingPage.meta.title,التقارير والمنشورات
+message.ReportListingPage.meta.description,الوصول إلى تقارير ومنشورات الاتحاد الدولي وإدارتها
+message.ReportListingPage.title,التقارير والمنشورات
+message.ReportListingPage.description,الوصول إلى تقارير ومنشورات الاتحاد الدولي وإدارتها
+message.ReportListingPage.filter.label,الفئة
+message.ReportListingPage.filter.all,جميع الفئات
+message.ReportListingPage.dateRange.label,النطاق الزمني
+message.ReportListingPage.dateRange.all,كل الأوقات
+message.ReportListingPage.search.label,بحث
+message.ReportListingPage.search.placeholder,ابحث في التقارير...
+message.ReportListingPage.docList.label,جميع التقارير
+message.ReportListingPage.docList.showing,"{count, plural, =0 {لم يتم العثور على تقارير} =1 {عرض تقرير واحد} other {عرض # تقارير}}"
+message.ReportListingPage.docList.download,تحميل التقرير
+message.ReportListingPage.docList.readInteractiveAlt,قراءة التقرير التفاعلي
+message.ReportDetailPage.backToDocuments,العودة إلى التقارير
+message.ReportDetailPage.tableOfContent,جدول المحتويات
+message.ReportDetailPage.bookmark,إشارة مرجعية
+message.ReportDetailPage.bookmarkAria,"{action, select, add {إضافة إشارة مرجعية} remove {إزالة الإشارة المرجعية} other {غير معروف}} للقسم {section}"
+message.ReportDetailPage.sections.continue,متابعة
+message.ReportChapterPage.back,عودة
+message.ReportChapterPage.tocTitle,في هذا الفصل
+message.LocaleSwitcher.ariaLabel,اختر اللغة
+message.LocaleSwitcher.title,اختر اللغة
+message.LocaleSwitcher.language,اللغة
+message.SidebarPanel.expandSidebar,توسيع الشريط الجانبي
+message.SidebarPanel.closeSidebar,إغلاق الشريط الجانبي
+message.SidebarPanel.back,رجوع
+message.SidebarPanel.resources,الموارد
+message.SidebarPanel.chapterResourcesPanel,لوحة موارد الفصل
+message.SidebarPanel.panel.notes,الملاحظات
+message.SidebarPanel.panel.audios,الصوت
+message.SidebarPanel.panel.videos,الفيديو
+message.SidebarPanel.chapterNotes,ملاحظات الفصل
+message.SidebarPanel.myNotes,ملاحظاتي
+message.SidebarPanel.bookmarks,الإشارات المرجعية
+message.SidebarPanel.audio,الصوت
+message.SidebarPanel.videos,الفيديو
+message.SidebarPanel.loading,جاري التحميل
+message.SidebarPanel.noMediaAvailable.audio,لا توجد مواد صوتية متاحة لهذا الفصل
+message.SidebarPanel.noMediaAvailable.videos,لا توجد مقاطع فيديو متاحة لهذا الفصل
+message.SidebarPanel.selectMediaToPlay.audio,اختر مادة صوتية للتشغيل
+message.SidebarPanel.selectMediaToPlay.videos,اختر مقطع فيديو للتشغيل
+message.SidebarPanel.playerForAccessibility.audio,مشغل صوتي لتحسين إمكانية الوصول
+message.SidebarPanel.playerForAccessibility.videos,مشغل فيديو لتحسين إمكانية الوصول
+message.SidebarPanel.closeMediaPanel,إغلاق لوحة الوسائط
+message.SidebarPanel.duration,المدة
+message.SidebarPanel.videoCard.backToThumbnail,العودة إلى الصورة المصغرة
+message.ComingSoon.meta.title,قريبًا
+message.ComingSoon.meta.description,تجربة تقرير الكوارث العالمي للاتحاد الدولي ستنطلق قريبًا.

@@ -1,0 +1,170 @@
+key,value
+report.categories[0],Annual Report
+report.categories[1],Strategy
+report.categories[2],DREF
+report.categories[3],Emergency Appeals
+report.categories[4],Disaster Management
+report.categories[5],Health and Care
+report.categories[6],National Society Development
+report.categories[7],Climate Change
+report.categories[8],Migration
+report.categories[9],Advocacy
+report.categories[10],Other
+report.reports.wdr25.author,IFRC Secretariat
+report.reports.wdr25.category,Annual Report
+report.reports.wdr25.chapters.chapter-02.metadata.chapterKey,chapter-02
+report.reports.wdr25.chapters.chapter-02.metadata.chapterNumber,2
+report.reports.wdr25.chapters.chapter-02.metadata.chapterPrefix,Chapter 02
+report.reports.wdr25.chapters.chapter-02.title,""
+report.reports.wdr25.chapters.chapter-02.subtitle,""
+report.reports.wdr25.chapters.chapter-02.audios[0].id,intro
+report.reports.wdr25.chapters.chapter-02.audios[0].name,Chapter 02 - Overview
+report.reports.wdr25.chapters.chapter-02.audios[0].duration,02:31
+report.reports.wdr25.chapters.chapter-02.audios[0].url,https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
+report.reports.wdr25.chapters.chapter-02.audios[1].id,section-1
+report.reports.wdr25.chapters.chapter-02.audios[1].name,Section 1: Key Findings
+report.reports.wdr25.chapters.chapter-02.audios[1].duration,04:12
+report.reports.wdr25.chapters.chapter-02.audios[1].url,https://samplelib.com/lib/preview/mp3/sample-15s.mp3
+report.reports.wdr25.chapters.chapter-02.videos[0].id,summary
+report.reports.wdr25.chapters.chapter-02.videos[0].name,Chapter Summary
+report.reports.wdr25.chapters.chapter-02.videos[0].duration,03:45
+report.reports.wdr25.chapters.chapter-02.videos[0].url,https://www.youtube.com/watch?v=o8NiE3XMPrM
+report.reports.wdr25.chapters.chapter-02.videos[0].thumbnail,/window.svg
+report.reports.wdr25.description,"The International Federation of Red Cross and Red Crescent Societies' Annual Report for 2025, detailing global disaster response and humanitarian efforts."
+report.reports.wdr25.featuredVideos[0].id,1
+report.reports.wdr25.featuredVideos[0].title,Quick Guide to Your Limitless Application
+report.reports.wdr25.featuredVideos[0].description,"Are you having trouble applying for Limitless? Do you not know where to start? Don't worry. Zikomo is here to tell you how, why and where to apply for the IFRC Limitless Youth Innovation Academy 2024"
+report.reports.wdr25.featuredVideos[0].url,https://www.youtube.com/watch?v=k5WL45qWU78
+report.reports.wdr25.featuredVideos[1].id,2
+report.reports.wdr25.featuredVideos[1].title,Dive in the localisation of aid — An inclusive initiative
+report.reports.wdr25.featuredVideos[1].description,"In this episode, Victoire from Cameroon Red Cross discusses the significance of involving local people in implementing humanitarian action in vulnerable community through the involvement of local people."
+report.reports.wdr25.featuredVideos[1].url,https://www.youtube.com/watch?v=_8cmKGTOluo
+report.reports.wdr25.reportFile.url,/reports/wdr2025.pdf
+report.reports.wdr25.reportFile.size,19389263
+report.reports.wdr25.testimonialsList[0].id,1
+report.reports.wdr25.testimonialsList[0].quote,"During COVID-19, there was so much information that I felt lost and did not know what to believe"
+report.reports.wdr25.testimonialsList[0].name,Abdul M.
+report.reports.wdr25.testimonialsList[0].country,Afghanistan
+report.reports.wdr25.testimonialsList[0].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[1].id,2
+report.reports.wdr25.testimonialsList[1].quote,Living in the age of AI scares me: where is the truth and where is the misinformation
+report.reports.wdr25.testimonialsList[1].name,Clair
+report.reports.wdr25.testimonialsList[1].country,UK
+report.reports.wdr25.testimonialsList[1].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[2].id,3
+report.reports.wdr25.testimonialsList[2].quote,I wish I had a magic wand that would help me to distinguish misinformation and truth
+report.reports.wdr25.testimonialsList[2].name,Olga
+report.reports.wdr25.testimonialsList[2].country,Russia
+report.reports.wdr25.testimonialsList[2].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[3].id,4
+report.reports.wdr25.testimonialsList[3].quote,Social media spreads false information so quickly that it becomes hard to verify what's real before it's too late
+report.reports.wdr25.testimonialsList[3].name,Maria S.
+report.reports.wdr25.testimonialsList[3].country,Philippines
+report.reports.wdr25.testimonialsList[3].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[4].id,5
+report.reports.wdr25.testimonialsList[4].quote,"In times of disaster, misinformation can be more dangerous than the disaster itself"
+report.reports.wdr25.testimonialsList[4].name,James K.
+report.reports.wdr25.testimonialsList[4].country,Kenya
+report.reports.wdr25.testimonialsList[4].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.title,World Disaster Report 2025
+message.Metadata.titleTemplate,%s | IFRC
+message.Metadata.defaultTitle,IFRC World Disasters Report 2026
+message.Home.meta.title,IFRC Reports Homepage
+message.Home.meta.description,Welcome to the IFRC Report
+message.Home.nav.logoAlt,IFRC Logo
+message.Home.nav.brand,IFRC | solferino academy
+message.Home.nav.about,About
+message.Home.nav.bookmarks,Bookmarks
+message.Home.nav.download,Download
+message.Home.nav.search,Search
+message.Home.nav.acknowledgement,Acknowledgement
+message.Home.comingSoonLabel,Coming soon
+message.Home.footer.worldDisastersReport,World Disasters Report
+message.Home.footer.chapters.title,Report Chapters
+message.Home.footer.chapters.chapter1,Chapter 1
+message.Home.footer.chapters.chapter2,Chapter 2
+message.Home.footer.chapters.chapter3,Chapter 3
+message.Home.footer.games.title,Disinformation Games
+message.Home.footer.games.disinformer,Disinformer
+message.Home.footer.games.ctrlAltPrebunk,Ctrl+Alt+Prebunk
+message.Home.footer.social.facebook,Facebook
+message.Home.footer.social.linkedin,LinkedIn
+message.Home.footer.social.youtube,YouTube
+message.Home.footer.social.instagram,Instagram
+message.Home.footer.social.x,X (Twitter)
+message.Home.footer.copyright,© {year} International Federation of Red Cross and Red Crescent Societies. All rights reserved.
+message.Home.footer.orgFull,International Federation of Red Cross and Red Crescent Societies
+message.Home.footer.privacyPolicy,Privacy Policy
+message.Home.footer.termsOfService,Terms of Service
+message.Home.footer.contact,Contact
+message.Home.landingPage.heroSection.title,"World
+Disasters
+Report"
+message.Home.landingPage.heroSection.description,"Truth, Trust and
+Humanitarian
+Action in the
+Age of Harmful
+Information"
+message.Home.landingPage.heroSection.buttonTexts.read,Read report
+message.Home.landingPage.heroSection.buttonTexts.download,Download report
+message.Home.landingPage.heroSection.buttonTexts.share,Share
+message.Home.landingPage.heroSection.heroAlt,World Disasters Report hero image showing humanitarian workers in action
+message.Home.landingPage.executiveSummary.title,Executive Summary
+message.Home.landingPage.executiveSummary.subtitle,"At Crisis Point: Countering Harmful Information, Defending Humanity"
+message.Home.landingPage.executiveSummary.description,"At Crisis Point: Countering Harmful Information, Defending Humanity"
+message.Home.landingPage.executiveSummary.buttonTexts.read,Read
+message.Home.landingPage.executiveSummary.buttonTexts.download,Download
+message.Home.landingPage.executiveSummary.summaryAlt,Executive Summary cover featuring a person in humanitarian context
+message.Home.landingPage.featuredVideos.title,Featured Videos from Around the World
+message.Home.landingPage.testimonials.title,Citations & Lived Experiences
+message.Home.videoCard.backToThumbnail,Back to thumbnail
+message.Home.videoCard.videoAriaLabel,Play video
+message.ReportListingPage.meta.title,Reports and Publications
+message.ReportListingPage.meta.description,Access and manage IFRC reports and publications
+message.ReportListingPage.title,Reports and Publications
+message.ReportListingPage.description,Access and manage IFRC reports and publications
+message.ReportListingPage.filter.label,Category
+message.ReportListingPage.filter.all,All Categories
+message.ReportListingPage.dateRange.label,Date Range
+message.ReportListingPage.dateRange.all,All Time
+message.ReportListingPage.search.label,Search
+message.ReportListingPage.search.placeholder,Search reports...
+message.ReportListingPage.docList.label,All Reports
+message.ReportListingPage.docList.showing,"{count, plural, =0 {No report was found} =1 {Showing # report} other {Showing # reports}}"
+message.ReportListingPage.docList.download,Download Report
+message.ReportListingPage.docList.readInteractiveAlt,Read Interactive Report
+message.ReportDetailPage.backToDocuments,Back to Reports
+message.ReportDetailPage.tableOfContent,Table of Contents
+message.ReportDetailPage.bookmark,Bookmark
+message.ReportDetailPage.bookmarkAria,"{action, select, add {Add bookmark} remove {Remove bookmark} other {Unknown}} for {section}"
+message.ReportDetailPage.sections.continue,Continue
+message.ReportChapterPage.back,Back
+message.ReportChapterPage.tocTitle,On This Chapter
+message.LocaleSwitcher.ariaLabel,Select language
+message.LocaleSwitcher.title,Select language
+message.LocaleSwitcher.language,Language
+message.ComingSoon.meta.title,Coming soon
+message.ComingSoon.meta.description,The IFRC World Disasters Report experience is launching soon.
+message.SidebarPanel.expandSidebar,Expand sidebar
+message.SidebarPanel.closeSidebar,Close sidebar
+message.SidebarPanel.back,Back
+message.SidebarPanel.resources,Resources
+message.SidebarPanel.chapterResourcesPanel,Chapter Resources Panel
+message.SidebarPanel.panel.notes,Notes
+message.SidebarPanel.panel.audios,Audio
+message.SidebarPanel.panel.videos,Videos
+message.SidebarPanel.chapterNotes,Chapter Notes
+message.SidebarPanel.myNotes,My Notes
+message.SidebarPanel.bookmarks,Bookmarks
+message.SidebarPanel.audio,Audio
+message.SidebarPanel.videos,Videos
+message.SidebarPanel.loading,Loading
+message.SidebarPanel.noMediaAvailable.audio,No audio available for this chapter
+message.SidebarPanel.noMediaAvailable.videos,No videos available for this chapter
+message.SidebarPanel.selectMediaToPlay.audio,Select an audio to play
+message.SidebarPanel.selectMediaToPlay.videos,Select a video to play
+message.SidebarPanel.playerForAccessibility.audio,Audio player for enhanced accessibility
+message.SidebarPanel.playerForAccessibility.videos,Video player for enhanced accessibility
+message.SidebarPanel.closeMediaPanel,Close media panel
+message.SidebarPanel.duration,Duration
+message.SidebarPanel.videoCard.backToThumbnail,Back to thumbnail
