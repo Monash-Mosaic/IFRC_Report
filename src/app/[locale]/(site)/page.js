@@ -9,7 +9,6 @@ import TestimonialCard from '@/components/landing-page/TestimonialCard';
 import { getPathname } from '@/i18n/navigation';
 import { getBaseUrl } from '@/lib/base-url';
 
-
 /** @return {import('next').Metadata} */
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -72,7 +71,7 @@ export default async function Home({ params }) {
   const reportModule = getVisibleReports(locale)?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-  const chapterSlug = reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
+  const chapterSlug = reportUriMap['wdr25'].chapters['synthesis'].languages[locale];
   // Executive Summary translations
   const executiveSummary = {
     title: t('landingPage.executiveSummary.title'),
@@ -95,7 +94,6 @@ export default async function Home({ params }) {
     }),
     downloadLink: reportModule.chapters[chapterSlug].downloadLink,
   };
-
   // Hero Section translations
   const heroMessage = {
     title: t('landingPage.heroSection.title'),
@@ -133,13 +131,13 @@ export default async function Home({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
-      <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
-        <HeroSection locale={locale} messages={heroMessage} />
-        <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
+      <main className="max-w-full lg:max-w-8/10 py-4 mx-auto px-4 space-y-16">
+        <HeroSection messages={heroMessage} />
+        <ExecutiveSummarySection messages={executiveSummary} />
 
         {/* Featured Videos Section */}
         <div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.featuredVideos.title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -156,7 +154,7 @@ export default async function Home({ params }) {
 
         {/* Citations Section */}
         <div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.testimonials.title')}
           </h2>
           <EmblaCarousel slideWidth={284} loop={false}>

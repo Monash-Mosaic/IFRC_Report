@@ -1,6 +1,7 @@
 import * as Chapter02 from './chapter-02.mdx';
+import * as Synthesis from './exec-summary.mdx';
 
-export const title = 'Rapport mondial sur les catastrophes 2025';
+export const title = 'Rapport mondial sur les catastrophes 2026';
 
 export const description =
   'Rapport annuel 2025 de la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge, détaillant la réponse mondiale aux catastrophes et les efforts humanitaires.';
@@ -76,6 +77,19 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
+  'synthèse': {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: 0,
+      chapterPrefix: 'Synthèse',
+    },
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+  },
   'chapitre-02': {
     metadata: {
       chapterKey: 'chapter-02',

@@ -56,6 +56,23 @@ In Cloudflare Workers Builds, set:
 - Static asset caching is configured in public/_headers.
 - Optional: add an R2 binding named `NEXT_INC_CACHE_R2_BUCKET` to enable ISR caching.
 
+## Search Persistence (D1 + FlexSearch)
+
+Search now uses FlexSearch at runtime with index/document persistence in Cloudflare D1.
+
+1. Create/update your D1 databases and replace placeholder IDs in `wrangler.jsonc`:
+   - production binding: `SEARCH_DB`
+   - preview binding: `SEARCH_DB` under `env.preview`
+2. Apply schema migration:
+   - `npx wrangler d1 migrations apply SEARCH_DB --remote`
+   - preview: `npx wrangler d1 migrations apply SEARCH_DB --env preview --remote`
+3. Build seed SQL from MDX content:
+   - `npm run build:search`
+   - output file: `data/search-seed.sql`
+4. Seed D1 with generated data:
+   - `npx wrangler d1 execute SEARCH_DB --file data/search-seed.sql --remote`
+   - preview: `npx wrangler d1 execute SEARCH_DB --env preview --file data/search-seed.sql --remote`
+
 ## CI/CD and DevSecOps (GitHub Actions)
 
 This repository uses GitHub Actions for CI/CD and DevSecOps checks, aligned with Cloudflare Workers deployments.
