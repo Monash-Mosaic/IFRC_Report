@@ -92,7 +92,7 @@ describe('Footer', () => {
 
       // Check logos
       expect(screen.getByAltText('IFRC')).toBeInTheDocument();
-      expect(screen.getByAltText('Mosaic')).toBeInTheDocument();
+      expect(screen.getByAltText('Monash Mosaic')).toBeInTheDocument();
 
       // Check social media icons
       expect(screen.getByTestId('facebook-icon')).toBeInTheDocument();
@@ -173,7 +173,7 @@ describe('Footer', () => {
     it('renders Mosaic logo with correct attributes', () => {
       render(<Footer />);
 
-      const mosaicLogo = screen.getByAltText('Mosaic');
+      const mosaicLogo = screen.getByAltText('Monash Mosaic');
       expect(mosaicLogo).toHaveAttribute('src', '/wdr25/mosaic_logo.png');
       expect(mosaicLogo).toHaveAttribute('width', '120');
       expect(mosaicLogo).toHaveAttribute('height', '40');
