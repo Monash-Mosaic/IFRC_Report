@@ -9,6 +9,7 @@ import { useState } from 'react';
 export default function Footer() {
   const [openSection, setOpenSection] = useState(null);
   const t = useTranslations('Home');
+  const tAbout = useTranslations('About');
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
@@ -33,7 +34,7 @@ export default function Footer() {
                   <Link
                     href="https://www.ifrc.org"
                     className="block"
-                    aria-label="IFRC - International Federation of Red Cross and Red Crescent Societies"
+                    aria-label={`IFRC - ${tAbout('topicHeading')}`}
                   >
                   <Image
                     src="/wdr25/ifrc_logo.jpg"
@@ -48,11 +49,11 @@ export default function Footer() {
                   <Link
                     href="https://www.mosaic-monash.ai/"
                     className="block"
-                    aria-label="Mosaic"
+                    aria-label="Monash Mosaic"
                   >
                   <Image
                     src="/wdr25/mosaic_logo.png"
-                    alt="Mosaic"
+                    alt="Monash Mosaic"
                     width={120}
                     height={40}
                     className="h-10 w-auto -ml-4"
