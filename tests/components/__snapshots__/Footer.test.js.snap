@@ -49,7 +49,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
                   href="https://www.mosaic-monash.ai/"
                 >
                   <img
-                    alt="Mosaic"
+                    alt="Monash Mosaic"
                     class="h-10 w-auto -ml-4"
                     height="40"
                     src="/wdr25/mosaic_logo.png"
