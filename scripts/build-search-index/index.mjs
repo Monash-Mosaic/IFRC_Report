@@ -70,9 +70,7 @@ async function createPlatformProxy() {
       remoteBindings: useRemoteBindings,
       environment: cloudflareEnvironment,
       configPath: pathResolve(projectRoot, 'wrangler.jsonc'),
-      persist: {
-        path: pathResolve(projectRoot, '.wrangler', 'state', 'v3'),
-      },
+      persist: true,
     });
   } catch (error) {
     const baseMessage = error instanceof Error ? error.message : String(error);
@@ -88,7 +86,7 @@ async function createPlatformProxy() {
       'message' in error.cause.cause
         ? String(error.cause.cause.message)
         : '';
-
+    console.error(error);
     const combined = `${baseMessage}\n${causeMessage}`;
     if (combined.includes('cloudflared')) {
       throw new Error(
@@ -165,8 +163,8 @@ try {
         indices[locale].push(...documents);
       }
     }
+    console.log(`[build-search-index] locale=${locale} documents=${indices[locale].length}`);
     const searchIndex = await createSearchIndex(locale, {
-      engine: 'd1',
       db: env.SEARCH_DB,
       namespace: searchIndexNamespace,
     });

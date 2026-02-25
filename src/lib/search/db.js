@@ -113,10 +113,12 @@ export async function createSearchIndex(locale, options) {
 
   const d1 = await resolveSearchDatabase(normalized.db);
   const baseName = `ifrc-wdr-playbook-${locale}-db`;
+
   const name = normalized.namespace ? `${baseName}-${normalized.namespace}` : baseName;
   const db = new Database(name, {
     db: d1,
   });
   await doc.mount(db);
+  doc.db = db;
   return doc;
 }

@@ -225,7 +225,7 @@ export default class D1Database {
       )`,
       `CREATE INDEX IF NOT EXISTS ${this.indexName('reg', 'id')} ON ${regTable} (id)`,
     ];
-
+    
     await execBatches(
       this.db,
       schemaStatements.map((stmt) => prepareStatement(this.db, stmt))
