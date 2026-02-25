@@ -122,7 +122,6 @@ export default async function ReportChapterPage({ params }) {
     subtitle: chapterSubTitle,
     audios = [],
     videos = [],
-    metadata: { chapterPrefix },
     tableOfContents: chapterTableOfContents,
     metadata: { chapterPrefix }
   } = chapters[decodedChapter];
