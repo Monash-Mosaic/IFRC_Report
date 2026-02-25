@@ -82,6 +82,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
   const params = [];
   for (const locale of Object.keys(reportsByLocale)) {
