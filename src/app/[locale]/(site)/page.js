@@ -157,15 +157,9 @@ export default async function Home({ params }) {
           <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.testimonials.title')}
           </h2>
-          <EmblaCarousel slideWidth={284} loop={false}>
+          <EmblaCarousel locale={locale} slideWidth={284} loop={false}>
             {testimonialsList.map((testimonial, index) => (
-              <TestimonialCard
-                key={index}
-                quote={testimonial.quote}
-                name={testimonial.name}
-                country={testimonial.country}
-                avatar={testimonial.avatar}
-              />
+              <TestimonialCard key={index} quote={testimonial.quote} />
             ))}
           </EmblaCarousel>
         </div>

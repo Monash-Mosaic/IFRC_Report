@@ -1,4 +1,3 @@
-import { ArrowLeft } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -12,7 +11,6 @@ import {
 } from '@/reports';
 import { getPathname, Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
-import SidebarPanel from '@/components/SidebarPanel';
 import TableOfContent from '@/components/TableOfContent';
 import { getBaseUrl } from '@/lib/base-url';
 
@@ -126,6 +124,7 @@ export default async function ReportChapterPage({ params }) {
     videos = [],
     metadata: { chapterPrefix },
     tableOfContents: chapterTableOfContents,
+    metadata: { chapterPrefix }
   } = chapters[decodedChapter];
 
   const chapterJsonLd = {
