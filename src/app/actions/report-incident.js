@@ -31,7 +31,8 @@ export async function reportIncident(prevState, formData) {
       missingSecret: !hasSecret,
       missingDatabaseId: !hasDatabaseId,
     });
-    return { error: 'Server configuration error' };
+    const code = !hasSecret && !hasDatabaseId ? 'missing_both' : !hasSecret ? 'missing_secret' : 'missing_database_id';
+    return { error: 'Server configuration error', code };
   }
 
   const description = formData.get('description')?.toString()?.trim() ?? '';

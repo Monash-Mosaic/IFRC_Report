@@ -114,7 +114,7 @@ jobs:
           NOTION_SECRET: ${{ secrets.NOTION_SECRET }}
           NOTION_INCIDENT_DATABASE_ID: ${{ secrets.NOTION_INCIDENT_DATABASE_ID }}
         run: |
-          LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} 2>&1 | tee /dev/stderr)
+          LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} --keep-vars 2>&1 | tee /dev/stderr)
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
           PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview URL: https?://[^[:space:]]+' | awk '{print $4}')
           BRANCH_PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview Alias URL: https?://[^[:space:]]+' | awk '{print $5}')
@@ -130,10 +130,10 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           echo "Update Preview URL for main branch deployment"
-          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_PREVIEW_SITE_URL }} npm run deploy -- --env="preview"
+          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_PREVIEW_SITE_URL }} npm run deploy -- --env="preview" --keep-vars
 
           echo "Update Production on Preview Environment (account)"
-          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }} npm run deploy -- --env=""
+          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }} npm run deploy -- --env="" --keep-vars
 
       - name: Comment preview URL on PR
         if: ${{ github.event_name == 'pull_request' }}

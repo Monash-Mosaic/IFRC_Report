@@ -77,7 +77,7 @@ describe('reportIncident server action', () => {
     const formData = createFormData({ description: 'Test', location: '' });
     const result = await reportIncident(null, formData);
 
-    expect(result).toEqual({ error: 'Server configuration error' });
+    expect(result).toEqual({ error: 'Server configuration error', code: 'missing_secret' });
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
@@ -87,7 +87,7 @@ describe('reportIncident server action', () => {
     const formData = createFormData({ description: 'Test', location: '' });
     const result = await reportIncident(null, formData);
 
-    expect(result).toEqual({ error: 'Server configuration error' });
+    expect(result).toEqual({ error: 'Server configuration error', code: 'missing_database_id' });
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
