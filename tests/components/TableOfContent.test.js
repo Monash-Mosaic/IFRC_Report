@@ -52,7 +52,8 @@ describe('TableOfContent', () => {
       <TableOfContent chapterTableOfContents={mockChapterTableOfContents} title={mockTitle} />
     );
 
-    const listItems = screen.getAllByRole('listitem');
+    const [rootList] = screen.getAllByRole('list');
+    const listItems = Array.from(rootList.children).filter((child) => child.tagName === 'LI');
 
     // Verify correct number of items
     expect(listItems).toHaveLength(mockChapterTableOfContents.length);
