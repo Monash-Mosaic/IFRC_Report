@@ -161,6 +161,19 @@
       "description": "L’expérience du Rapport mondial sur les catastrophes de l’IFRC arrive bientôt."
     }
   },
+  "ReportIncident": {
+    "trigger": "Signaler une erreur",
+    "triggerTooltip": "Signaler une erreur ?",
+    "close": "Fermer",
+    "title": "Signaler une erreur",
+    "descriptionLabel": "Quel est le problème ?",
+    "descriptionPlaceholder": "Décrivez le problème (lien cassé, texte incorrect, mise en page…)…",
+    "submit": "Envoyer",
+    "submitting": "Envoi…",
+    "cancel": "Annuler",
+    "success": "Merci. Votre signalement a bien été envoyé.",
+    "error": "Une erreur s'est produite. Veuillez réessayer."
+  },
   "SidebarPanel": {
     "expandSidebar": "Étendre la barre latérale",
     "closeSidebar": "Fermer la barre latérale",

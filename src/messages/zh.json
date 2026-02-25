@@ -128,6 +128,19 @@
       "description": "IFRC《世界灾难报告》数字体验即将上线。"
     }
   },
+  "ReportIncident": {
+    "trigger": "报告错误",
+    "triggerTooltip": "报告错误？",
+    "close": "关闭",
+    "title": "报告错误",
+    "descriptionLabel": "出了什么问题？",
+    "descriptionPlaceholder": "描述问题（如链接失效、文字错误、版式问题等）…",
+    "submit": "提交",
+    "submitting": "提交中…",
+    "cancel": "取消",
+    "success": "感谢。您的报告已提交。",
+    "error": "出错了，请重试。"
+  },
   "SearchPage": {
     "meta": {
       "title": "搜索结果",
