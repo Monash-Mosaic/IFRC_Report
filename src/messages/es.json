@@ -3,6 +3,9 @@
     "titleTemplate": "%s | IFRC",
     "defaultTitle": "Informe Mundial sobre Desastres 2026 de la FICR"
   },
+  "Breadcrumb": {
+    "reports": "Informes"
+  },
   "Home": {
     "meta": {
       "title": "Página de inicio de Informes de la FICR",
@@ -104,7 +107,6 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "Volver a Informes",
     "tableOfContent": "Tabla de Contenidos",
     "bookmark": "Marcador",
     "bookmarkAria": "{action, select, add {Añadir marcador} remove {Eliminar marcador} other {Desconocido}} para {section}",
@@ -113,13 +115,27 @@
     }
   },
   "ReportChapterPage": {
-    "back": "Atrás",
     "tocTitle": "En Este Capítulo"
   },
   "LocaleSwitcher": {
     "ariaLabel": "Seleccionar idioma",
     "title": "Seleccionar idioma",
     "language": "Idioma"
+  },
+  "SearchPage": {
+    "meta": {
+      "title": "Resultados de búsqueda",
+      "description": "Resultados de búsqueda de informes de la FICR"
+    },
+    "breadcrumb": {
+      "ariaLabel": "Navegación de migas de pan",
+      "home": "Página de inicio",
+      "searchPage": "Página de búsqueda"
+    },
+    "results": {
+      "ariaLabel": "Resultados de búsqueda",
+      "noResults": "No se encontraron resultados. Intenta con otro término de búsqueda."
+    }
   },
   "SidebarPanel": {
     "expandSidebar": "Expandir barra lateral",

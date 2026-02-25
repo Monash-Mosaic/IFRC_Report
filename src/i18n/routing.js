@@ -44,6 +44,14 @@ export const routing = defineRouting({
       ru: '/отчеты/[report]/[chapter]',
       es: '/reportaje/[report]/[chapter]',
     },
+    '/search': {
+      en: '/search',
+      fr: '/recherche',
+      zh: '/搜索',
+      ar: '/بحث',
+      ru: '/поиск',
+      es: '/buscar',
+    },
   },
   alternateLinks: false, // We handle alternate links manually in HTML head
   localeCookie: false, // Use URL to determine locale avoid international regulations on cookie issues

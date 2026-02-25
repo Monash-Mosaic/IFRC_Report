@@ -19,38 +19,28 @@ export const reportFile = {
 export const testimonialsList = [
   {
     id: 1,
-    quote: '在COVID-19期间，信息太多了，我感到迷茫，不知道该相信什么',
-    name: '阿卜杜勒 M.',
-    country: '阿富汗',
-    avatar: '/avatar/avatar-1.svg',
+    quote:
+      'False information is particularly effective when it originates within the circle of people you trust, a serious problem since the very ties that bind communities together can make them susceptible to misinformation and its harmful consequences.',
   },
   {
     id: 2,
-    quote: '在AI时代生活让我害怕：哪里是真相，哪里是错误信息',
-    name: '克莱尔',
-    country: '英国',
-    avatar: '/avatar/avatar-2.svg',
+    quote:
+      'Trust is anchored on CEA pillars. when communities have a way of reaching out to people passing information for their views and perspectives to be heard and corrected, it slowly builds trust on the messengers.',
   },
   {
     id: 3,
-    quote: '我希望有一根魔法棒能帮助我区分错误信息和真相',
-    name: '王丽',
-    country: '中国',
-    avatar: '/avatar/avatar-1.svg',
+    quote:
+      'You need to understand that when we are dealing with false information, it means that some real disaster situations are being ignored, and people who truly need rescue are being neglected. This is an extremely serious issue.',
   },
   {
     id: 4,
-    quote: '社交媒体传播虚假信息如此之快，以至于在为时已晚之前很难验证什么是真的',
-    name: '玛丽亚 S.',
-    country: '菲律宾',
-    avatar: '/avatar/avatar-2.svg',
+    quote:
+      'Les rumeurs érodent la confiance: la propagation rapide d’informations trompeuses crée de la confusion, amène certains à douter des autorités, et complique la relation entre les communautés et ceux qui les soutiennent.',
   },
   {
     id: 5,
-    quote: '在灾难期间，错误信息可能比灾难本身更危险',
-    name: '詹姆斯 K.',
-    country: '肯尼亚',
-    avatar: '/avatar/avatar-1.svg',
+    quote:
+      'Rumors stop with the wise. With skills and abilities, we can address the issue. While other teams were retreating, we could continue rescuing people because we knew how to handle it.',
   },
 ];
 
