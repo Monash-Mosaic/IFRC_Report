@@ -3,26 +3,50 @@
 /**
  * Report-incident is implemented as a Server Action (instead of an API route) for built-in
  * security and alignment with Next.js forms. See: https://nextjs.org/docs/app/guides/forms
+ *
+ * Debug logs use prefix [report-incident] and can be removed after troubleshooting.
  */
 import crypto from 'node:crypto';
 
 const NOTION_VERSION = '2022-06-28';
 
+const LOG_PREFIX = '[report-incident]';
+
 export async function reportIncident(prevState, formData) {
+  console.log(LOG_PREFIX, 'action called');
+
   const secret = process.env.NOTION_SECRET;
   const databaseId = process.env.NOTION_INCIDENT_DATABASE_ID;
 
+  const hasSecret = Boolean(secret && String(secret).trim());
+  const hasDatabaseId = Boolean(databaseId && String(databaseId).trim());
+  console.log(LOG_PREFIX, 'env check', {
+    hasSecret,
+    hasDatabaseId,
+    databaseIdLength: hasDatabaseId ? String(databaseId).length : 0,
+  });
+
   if (!secret || !databaseId) {
+    console.log(LOG_PREFIX, 'early return: missing config', {
+      missingSecret: !hasSecret,
+      missingDatabaseId: !hasDatabaseId,
+    });
     return { error: 'Server configuration error' };
   }
 
   const description = formData.get('description')?.toString()?.trim() ?? '';
   const location = formData.get('location')?.toString()?.trim() ?? '';
+  console.log(LOG_PREFIX, 'form data', {
+    descriptionLength: description.length,
+    hasLocation: Boolean(location),
+  });
 
   if (!description) {
+    console.log(LOG_PREFIX, 'early return: description required');
     return { error: 'Description is required' };
   }
 
+  console.log(LOG_PREFIX, 'building incident, calling Notion API');
   const now = new Date();
   const pad = (n) => String(n).padStart(2, '0');
   const datePart = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
@@ -68,13 +92,14 @@ export async function reportIncident(prevState, formData) {
       await res.json().catch(() => ({}));
       // Generic message only—do not log res.status or response body (Bearer CWE-532) to avoid
       // information leakage in logs.
-      console.error('Notion API error');
+      console.error(LOG_PREFIX, 'Notion API error (res.notOk)');
       return { error: 'Failed to create incident' };
     }
 
+    console.log(LOG_PREFIX, 'success');
     return { success: true };
-  } catch {
-    console.error('Report incident error');
+  } catch (e) {
+    console.error(LOG_PREFIX, 'catch', e instanceof Error ? e.message : 'unknown');
     return { error: 'Failed to create incident' };
   }
 }
