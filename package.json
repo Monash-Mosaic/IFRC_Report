@@ -75,6 +75,7 @@
   },
   "overrides": {
     "@smithy/config-resolver": "^4.4.0",
-    "fast-xml-parser": "^5.3.4"
+    "fast-xml-parser": "^5.3.4",
+    "minimatch": ">=10.2.1"
   }
 }
