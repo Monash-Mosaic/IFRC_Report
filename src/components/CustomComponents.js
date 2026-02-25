@@ -242,7 +242,7 @@ export function ChapterImage({ imagePath, alt = 'Alt', width = 900, height = 700
           margin: '0 auto',
         }}
       >
-        <Image src={imagePath} alt={alt} fill className="object-cover" priority />
+        <Image src={imagePath} alt={alt} fill className="object-cover" />
       </div>
     </div>
   );
