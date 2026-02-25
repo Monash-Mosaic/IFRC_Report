@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useActionState } from 'react';
 import { useTranslations } from 'next-intl';
 import { MessageCircle, X } from 'lucide-react';
@@ -17,26 +17,19 @@ export default function ReportIncidentWidget() {
 
   const [state, formAction, pending] = useActionState(reportIncident, initialState);
 
-  useEffect(() => {
-    if (open && typeof window !== 'undefined') {
-      setFormLocation(window.location.href);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    if (state?.success) setDescription('');
-  }, [state?.success]);
-
   const handleOpen = () => {
+    const willOpen = !open;
     setOpen((prev) => !prev);
-    if (!open) {
+    if (willOpen) {
       setDismissedSuccess(false);
+      if (typeof window !== 'undefined') setFormLocation(window.location.href);
     }
   };
 
   const handleClose = () => {
     setOpen(false);
     setDismissedSuccess(true);
+    setDescription('');
   };
 
   const showSuccess = state?.success && !dismissedSuccess;
