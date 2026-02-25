@@ -111,6 +111,8 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_ENV: preview
           NEXT_PUBLIC_SITE_URL: ${{ format('{0}-{1}.{2}.workers.dev', steps.preview.outputs.branch_slug, vars.CLOUDFLARE_WORKER_NAME, vars.CLOUDFLARE_WORKERS_SUBDOMAIN) }}
+          NOTION_SECRET: ${{ secrets.NOTION_SECRET }}
+          NOTION_INCIDENT_DATABASE_ID: ${{ secrets.NOTION_INCIDENT_DATABASE_ID }}
         run: |
           LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} 2>&1 | tee /dev/stderr)
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
