@@ -60,16 +60,25 @@ In Cloudflare Workers Builds, set:
 
 Search now uses FlexSearch at runtime with index/document persistence in Cloudflare D1.
 
-1. Create/update your D1 databases and replace placeholder IDs in `wrangler.jsonc`:
+1. Create/update your D1 databases. The repository keeps placeholder IDs in `wrangler.jsonc`:
    - production binding: `SEARCH_DB`
    - preview binding: `SEARCH_DB` under `env.preview`
-2. Apply schema migration:
+2. Inject D1 database IDs before any Wrangler command (CI does this automatically):
+   - required env vars:
+     - `CF_D1_SEARCH_DB_ID_PROD`
+     - `CF_D1_SEARCH_DB_ID_PREVIEW`
+   - command:
+     - `node scripts/ci/inject-d1-database-ids.mjs`
+3. (Optional) Set `SEARCH_INDEX_NAMESPACE` before `npm run build:search` to persist into a namespaced index:
+   - preview example: `SEARCH_INDEX_NAMESPACE=<preview-branch-slug>`
+   - staging example: `SEARCH_INDEX_NAMESPACE=<release-tag>`
+4. Apply schema migration:
    - `npx wrangler d1 migrations apply SEARCH_DB --remote`
    - preview: `npx wrangler d1 migrations apply SEARCH_DB --env preview --remote`
-3. Build seed SQL from MDX content:
+5. Build seed SQL from MDX content:
    - `npm run build:search`
    - output file: `data/search-seed.sql`
-4. Seed D1 with generated data:
+6. Seed D1 with generated data:
    - `npx wrangler d1 execute SEARCH_DB --file data/search-seed.sql --remote`
    - preview: `npx wrangler d1 execute SEARCH_DB --env preview --file data/search-seed.sql --remote`
 
@@ -80,6 +89,7 @@ This repository uses GitHub Actions for CI/CD and DevSecOps checks, aligned with
 ### Workflows
 
 - CodeQL security scanning: [.github/workflows/codeql.yml](.github/workflows/codeql.yml)
+- PR preview deploy: [.github/workflows/deploy-preview.yml](.github/workflows/deploy-preview.yml)
 - Production deploy on published releases: [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
 - Staging deploy on Produciton Preview Url: [.github/workflows/deploy-staging.yml](.github/workflows/deploy-staging.yml)
 
@@ -93,6 +103,7 @@ This repository uses GitHub Actions for CI/CD and DevSecOps checks, aligned with
 
 Create these environments with required reviewers:
 
+- preview
 - staging
 - production
 
@@ -100,6 +111,21 @@ Add the following secrets to each environment:
 
 - CLOUDFLARE_API_TOKEN
 - CLOUDFLARE_ACCOUNT_ID
+- CF_D1_SEARCH_DB_ID_PROD
+- CF_D1_SEARCH_DB_ID_PREVIEW
+
+### CI-managed D1 database IDs
+
+Deploy workflows inject D1 `database_id` values into `wrangler.jsonc` at runtime:
+
+- script: `scripts/ci/inject-d1-database-ids.mjs`
+- workflows:
+  - `.github/workflows/deploy-preview.yml`
+  - `.github/workflows/deploy-staging.yml`
+  - `.github/workflows/deploy.yml`
+
+The script validates required secrets, replaces placeholders, and fails if placeholders remain.
+Any future step that runs `npm run build:search` must run after this injection step in the same job.
 
 ### Security gates
 

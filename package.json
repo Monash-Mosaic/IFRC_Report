@@ -6,7 +6,7 @@
     "predev": "node scripts/ensure-env.mjs",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "build:search": "node scripts/build-search-index.mjs",
+    "build:search": "npm run --workspace=scripts/build-search-index start:esbuild",
     "start": "next start --turbopack",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",

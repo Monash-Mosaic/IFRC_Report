@@ -54,23 +54,13 @@ function extractInlineText(node) {
   return parts.join('\n').replace(/\s+/g, ' ').trim();
 }
 
-function sanitizeIdentifier(value) {
-  return String(value)
-        .toLowerCase()
-        .replace(/[^a-z0-9_]/g, '');
-}
-
-function regTableForLocale(locale) {
-  const scope = sanitizeIdentifier(`ifrc-wdr-playbook-${locale}-db`);
-  return `reg_${scope}`;
-}
-
 const { reportsByLocale } = report;
 const indices = Object.fromEntries(Object.keys(reportsByLocale).map(e => [e, []]));
 const configuredEnvironment = process.env.CLOUDFLARE_ENV || 'preview';
 const cloudflareEnvironment =
   configuredEnvironment === 'production' ? undefined : configuredEnvironment;
 const useRemoteBindings = process.env.CLOUDFLARE_REMOTE_BINDINGS !== 'false';
+const searchIndexNamespace = process.env.SEARCH_INDEX_NAMESPACE?.trim() || '';
 const projectRoot = pathResolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 
 async function createPlatformProxy() {
@@ -115,7 +105,7 @@ async function createPlatformProxy() {
 }
 
 console.info(
-  `[build-search-index] environment=${cloudflareEnvironment || 'production'} remoteBindings=${useRemoteBindings}`
+  `[build-search-index] environment=${cloudflareEnvironment || 'production'} remoteBindings=${useRemoteBindings} namespace=${searchIndexNamespace || 'default'}`
 );
 const platform = await createPlatformProxy();
 const { env, dispose } = platform;
@@ -178,6 +168,7 @@ try {
     const searchIndex = await createSearchIndex(locale, {
       engine: 'd1',
       db: env.SEARCH_DB,
+      namespace: searchIndexNamespace,
     });
     await searchIndex.clear();
     for (const doc of indices[locale]) {
@@ -185,7 +176,10 @@ try {
     }
     await searchIndex.commit();
 
-    const table = regTableForLocale(locale);
+    const table = searchIndex?.db?.tableName?.('reg');
+    if (!table) {
+      throw new Error(`[build-search-index] Unable to resolve registry table for locale ${locale}`);
+    }
     const countResult = await env.SEARCH_DB
       .prepare(`SELECT COUNT(*) AS count FROM ${table}`)
       .first();

@@ -12,42 +12,41 @@
 	"compatibility_date": "2024-12-30",
 	"compatibility_flags": [
 		"nodejs_compat",
-		"global_fetch_strictly_public"
+		"global_fetch_strictly_public",
 	],
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS",
-		"run_worker_first": false
+		"run_worker_first": false,
 	},
 	"services": [
 		{
 			"binding": "WORKER_SELF_REFERENCE",
-			"service": "ifrc-wdr-playbook"
+			"service": "ifrc-wdr-playbook",
 		}
 	],
 	"images": {
 		"binding": "IMAGES"
 	},
-		"d1_databases": [
+	"d1_databases": [
 			{
 				"binding": "SEARCH_DB",
 				"database_name": "ifrc-wdr-search",
-				"database_id": "edb6bbda-b0cd-4d9d-995a-4ac350f65cd2",
-				// "remote": true
+				"database_id": "__D1_SEARCH_DB_ID_PROD__",
 			},
 		],
 	"observability": {
 		"enabled": true,
 		"logs": {
 			"enabled": true,
-			"invocation_logs": true
+			"invocation_logs": true,
 		},
 		"traces": {
-			"enabled": true
+			"enabled": true,
 		},
 	},
 	"vars": {
-		"ENVIRONMENT": "production"
+		"ENVIRONMENT": "production",
 	},
 	// Using worker.dev domain for staging (production preview) environment
 	"preview_urls": true,
@@ -55,35 +54,34 @@
 	"env": {
 		"preview": {
 			"vars": {
-				"ENVIRONMENT": "development"
+				"ENVIRONMENT": "development",
 			},
 			"preview_urls": true,
 			"workers_dev": true,
 			"services": [
 				{
 					"binding": "WORKER_SELF_REFERENCE",
-					"service": "ifrc-wdr-playbook-preview"
-				}
+					"service": "ifrc-wdr-playbook-preview",
+				},
 			],
 			"images": {
-				"binding": "IMAGES"
+				"binding": "IMAGES",
 			},
 				"d1_databases": [
 					{
 						"binding": "SEARCH_DB",
 						"database_name": "ifrc-wdr-search-preview",
-						"database_id": "6c095528-31bd-4506-ab02-0f7431689e01",
-						// "remote": true
-					}
+						"database_id": "__D1_SEARCH_DB_ID_PREVIEW__",
+					},
 				],
 			"observability": {
 				"enabled": true,
 				"logs": {
 					"enabled": true,
-					"invocation_logs": true
+					"invocation_logs": true,
 				},
 				"traces": {
-					"enabled": true
+					"enabled": true,
 				},
 			},
 		}
