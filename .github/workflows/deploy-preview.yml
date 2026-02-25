@@ -63,7 +63,6 @@ jobs:
           output: comment, report-markdown
 
       - name: Post coverage comment
-        if: ${{ steps.coverage.outputs.report != '' }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: ${{ steps.coverage.outputs.report }}
