@@ -25,7 +25,6 @@
     "node": ">=22.0.0"
   },
   "workspaces": [
-    "packages/*",
     "scripts/wdr25"
   ],
   "dependencies": {
