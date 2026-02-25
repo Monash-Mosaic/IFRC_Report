@@ -102,16 +102,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Setup cloudflared
-        uses: AnimMouse/setup-cloudflared@v2
-        
-      - name: Setup cloudflared tunnel
-        uses: AnimMouse/setup-cloudflared/tunnel@v2
-        with:
-          cloudflare_tunnel_credential: ${{ secrets.CLOUDFLARE_TUNNEL_CREDENTIAL }}
-          cloudflare_tunnel_configuration: ${{ vars.CLOUDFLARE_TUNNEL_CONFIGURATION }}
-          cloudflare_tunnel_id: ${{ vars.CLOUDFLARE_TUNNEL_ID }}
           
       - name: Inject D1 database IDs into Wrangler config
         env:
@@ -126,10 +116,6 @@ jobs:
           CLOUDFLARE_ENV: preview
           SEARCH_INDEX_NAMESPACE: ${{ steps.preview.outputs.branch_slug }}
         run: npm run build:search
-
-      - name: Shutdown and view logs of cloudflared
-        if: '! cancelled()'
-        uses: AnimMouse/setup-cloudflared/shutdown@v2
 
       - name: Deploy to Cloudflare (preview for PR)
         id: deploy
