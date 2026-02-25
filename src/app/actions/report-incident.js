@@ -1,37 +1,26 @@
-import { NextResponse } from 'next/server';
+'use server';
+
+/**
+ * Report-incident is implemented as a Server Action (instead of an API route) for built-in
+ * security and alignment with Next.js forms. See: https://nextjs.org/docs/app/guides/forms
+ */
 import crypto from 'node:crypto';
 
 const NOTION_VERSION = '2022-06-28';
 
-export async function POST(request) {
+export async function reportIncident(prevState, formData) {
   const secret = process.env.NOTION_SECRET;
   const databaseId = process.env.NOTION_INCIDENT_DATABASE_ID;
 
   if (!secret || !databaseId) {
-    return NextResponse.json(
-      { error: 'Server configuration error' },
-      { status: 500 }
-    );
+    return { error: 'Server configuration error' };
   }
 
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json(
-      { error: 'Invalid request body' },
-      { status: 400 }
-    );
-  }
-
-  const description = typeof body.description === 'string' ? body.description.trim() : '';
-  const location = typeof body.location === 'string' ? body.location.trim() : '';
+  const description = formData.get('description')?.toString()?.trim() ?? '';
+  const location = formData.get('location')?.toString()?.trim() ?? '';
 
   if (!description) {
-    return NextResponse.json(
-      { error: 'Description is required' },
-      { status: 400 }
-    );
+    return { error: 'Description is required' };
   }
 
   const now = new Date();
@@ -80,18 +69,12 @@ export async function POST(request) {
       // Generic message only—do not log res.status or response body (Bearer CWE-532) to avoid
       // information leakage in logs.
       console.error('Notion API error');
-      return NextResponse.json(
-        { error: 'Failed to create incident' },
-        { status: 502 }
-      );
+      return { error: 'Failed to create incident' };
     }
 
-    return NextResponse.json({ success: true });
+    return { success: true };
   } catch {
     console.error('Report incident error');
-    return NextResponse.json(
-      { error: 'Failed to create incident' },
-      { status: 500 }
-    );
+    return { error: 'Failed to create incident' };
   }
 }

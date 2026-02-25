@@ -15,6 +15,8 @@ const reportIncidentTranslations = {
   error: 'Something went wrong. Please try again.',
 };
 
+const mockReportIncident = jest.fn();
+
 jest.mock('next-intl', () => ({
   useTranslations: (namespace) => (key) => {
     if (namespace === 'ReportIncident' && reportIncidentTranslations[key]) {
@@ -24,17 +26,18 @@ jest.mock('next-intl', () => ({
   },
 }));
 
+jest.mock('@/app/actions/report-incident', () => ({
+  reportIncident: (...args) => mockReportIncident(...args),
+}));
+
 jest.mock('lucide-react', () => ({
   MessageCircle: (props) => <div data-testid="message-circle-icon" {...props} />,
   X: (props) => <div data-testid="x-icon" {...props} />,
 }));
 
 describe('ReportIncidentWidget', () => {
-  let fetchMock;
-
   beforeEach(() => {
-    fetchMock = jest.fn();
-    global.fetch = fetchMock;
+    mockReportIncident.mockReset();
   });
 
   it('renders the floating trigger button', () => {
@@ -71,76 +74,69 @@ describe('ReportIncidentWidget', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('calls API with description and location on submit', async () => {
-    fetchMock.mockResolvedValueOnce({ ok: true, json: () => Promise.resolve({ success: true }) });
+  it('submits form with description and location via server action', async () => {
+    mockReportIncident.mockResolvedValue({ success: true });
 
     render(<ReportIncidentWidget />);
     fireEvent.click(screen.getByRole('button', { name: /report an error/i }));
 
     const textarea = screen.getByPlaceholderText(/describe the issue/i);
     fireEvent.change(textarea, { target: { value: 'Broken link on chapter 2' } });
-    fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+    const form = screen.getByTestId('report-incident-form');
+    fireEvent.submit(form);
 
     await waitFor(() => {
-      expect(fetchMock).toHaveBeenCalledTimes(1);
-      expect(fetchMock).toHaveBeenCalledWith(
-        '/api/report-incident',
-        expect.objectContaining({
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-        })
-      );
-      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
-      expect(body.description).toBe('Broken link on chapter 2');
-      expect(typeof body.location).toBe('string');
+      expect(mockReportIncident).toHaveBeenCalledTimes(1);
+      const [prevState, formData] = mockReportIncident.mock.calls[0];
+      expect(prevState).toEqual({ success: false, error: null });
+      expect(formData.get('description')).toBe('Broken link on chapter 2');
+      expect(typeof formData.get('location')).toBe('string');
     });
   });
 
   it('shows success message after successful submit', async () => {
-    fetchMock.mockResolvedValueOnce({ ok: true, json: () => Promise.resolve({ success: true }) });
+    mockReportIncident.mockResolvedValue({ success: true });
 
     render(<ReportIncidentWidget />);
     fireEvent.click(screen.getByRole('button', { name: /report an error/i }));
     fireEvent.change(screen.getByPlaceholderText(/describe the issue/i), {
       target: { value: 'Test issue' },
     });
-    fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+    fireEvent.submit(screen.getByTestId('report-incident-form'));
 
     await waitFor(() => {
       expect(screen.getByText(/thank you\. your report has been submitted\./i)).toBeInTheDocument();
     });
   });
 
-  it('shows error message when API returns error', async () => {
-    fetchMock.mockResolvedValueOnce({
-      ok: false,
-      json: () => Promise.resolve({ error: 'Failed to create incident' }),
-    });
+  it('shows error message when action returns error', async () => {
+    mockReportIncident.mockResolvedValue({ error: 'Failed to create incident' });
 
     render(<ReportIncidentWidget />);
     fireEvent.click(screen.getByRole('button', { name: /report an error/i }));
     fireEvent.change(screen.getByPlaceholderText(/describe the issue/i), {
       target: { value: 'Test issue' },
     });
-    fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+    fireEvent.submit(screen.getByTestId('report-incident-form'));
 
     await waitFor(() => {
       expect(screen.getByText(/failed to create incident/i)).toBeInTheDocument();
     });
   });
 
-  it('shows generic error message when fetch throws', async () => {
-    fetchMock.mockRejectedValueOnce(new Error('Network error'));
+  it('shows server configuration error when action returns it', async () => {
+    mockReportIncident.mockResolvedValue({ error: 'Server configuration error' });
 
     render(<ReportIncidentWidget />);
     fireEvent.click(screen.getByRole('button', { name: /report an error/i }));
     fireEvent.change(screen.getByPlaceholderText(/describe the issue/i), {
       target: { value: 'Test issue' },
     });
-    fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+    fireEvent.submit(screen.getByTestId('report-incident-form'));
 
     await waitFor(() => {
-      expect(screen.getByText(/something went wrong\. please try again\./i)).toBeInTheDocument();
+      expect(screen.getByText(/server configuration error/i)).toBeInTheDocument();
     });
   });
 });
