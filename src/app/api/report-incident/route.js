@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import crypto from 'node:crypto';
 
 const NOTION_VERSION = '2022-06-28';
 
@@ -37,9 +38,9 @@ export async function POST(request) {
   const pad = (n) => String(n).padStart(2, '0');
   const datePart = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
   const timePart = `${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
-  const suffix = Math.floor(Math.random() * 256)
-    .toString(16)
-    .padStart(2, '0');
+  // Use crypto.randomBytes instead of Math.random() for the incident ID suffix. Math.random() is
+  // insufficient for security tooling (Bearer CWE-330); crypto avoids "insufficiently random values" findings.
+  const suffix = crypto.randomBytes(1)[0].toString(16).padStart(2, '0');
   const incidentId = `IFMS-${datePart}-${timePart}-${suffix}`;
   const reportedAt = now.toISOString();
 
@@ -75,8 +76,8 @@ export async function POST(request) {
     });
 
     if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      console.error('Notion API error:', res.status, err);
+      await res.json().catch(() => ({}));
+      console.error('Notion API error:', res.status);
       return NextResponse.json(
         { error: 'Failed to create incident' },
         { status: 502 }
@@ -84,8 +85,8 @@ export async function POST(request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (e) {
-    console.error('Report incident error:', e);
+  } catch {
+    console.error('Report incident error');
     return NextResponse.json(
       { error: 'Failed to create incident' },
       { status: 500 }
