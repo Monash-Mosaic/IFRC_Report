@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import Header from '@/components/Header';
 
-// Mock next/image component
+//  Mock next/image component
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props) => {
