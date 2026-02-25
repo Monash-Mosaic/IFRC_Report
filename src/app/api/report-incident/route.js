@@ -77,7 +77,9 @@ export async function POST(request) {
 
     if (!res.ok) {
       await res.json().catch(() => ({}));
-      console.error('Notion API error:', res.status);
+      // Generic message only—do not log res.status or response body (Bearer CWE-532) to avoid
+      // information leakage in logs.
+      console.error('Notion API error');
       return NextResponse.json(
         { error: 'Failed to create incident' },
         { status: 502 }
