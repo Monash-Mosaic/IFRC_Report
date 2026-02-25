@@ -86,7 +86,6 @@ async function resolveSearchDatabase(explicitDb) {
 
 export async function createSearchIndex(locale, options) {
   const normalized = normalizeOptions(options);
-  const engine = normalized.engine === 'sqlite' ? 'd1' : normalized.engine;
 
   if (!LOCALES.has(locale)) {
     throw new Error(`Unsupported locale: ${locale}`);
