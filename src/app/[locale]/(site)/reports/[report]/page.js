@@ -144,6 +144,7 @@ export default async function ReportDetailPage({ params }) {
         },
         thumbnail: chapter.thumbnail || null,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
+        released: chapter.released !== false,
         sortOrder: chapterNumber !== null && chapterNumber !== undefined ? chapterNumber : -1,
       };
     })
@@ -189,6 +190,7 @@ export default async function ReportDetailPage({ params }) {
               tableOfContents={chapter.tableOfContents}
               continueHref={chapter.continueHref}
               report={decodedReport}
+              released={chapter.released}
             />
           ))}
         </div>

@@ -117,6 +117,7 @@
     },
     "sections": {
       "continue": "Continue",
+      "comingSoon": "Coming Soon",
       "moreItems": "and {count} more items"
     }
   },

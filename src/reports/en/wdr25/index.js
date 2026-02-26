@@ -74,6 +74,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: null,
     thumbnailOverlay: 'red',
+    released: true,
   },
   'chapter-01': {
     metadata: {
@@ -98,6 +99,7 @@ export const chapters = {
     ],
     thumbnail: null,
     thumbnailOverlay: 'red',
+    released: true,
   },
   'chapter-02': {
     metadata: {
@@ -111,7 +113,7 @@ export const chapters = {
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
     thumbnail: null,
-    thumbnailOverlay: 'blue',
+    released: true,
     audios: [
       {
         id: 'intro',
@@ -148,6 +150,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: null,
     thumbnailOverlay: 'blue',
+    released: false,
   },
   'chapter-04': {
     metadata: {
@@ -161,6 +164,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: null,
     thumbnailOverlay: 'red',
+    released: false,
   },
   'chapter-05': {
     metadata: {
@@ -174,6 +178,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: null,
     thumbnailOverlay: 'red',
+    released: false,
   },
   'chapter-06': {
     metadata: {
@@ -187,6 +192,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: null,
     thumbnailOverlay: 'red',
+    released: false,
   },
   'chapter-07': {
     metadata: {
@@ -200,6 +206,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: null,
     thumbnailOverlay: 'red',
+    released: false,
   },
   'chapter-08': {
     metadata: {
@@ -213,5 +220,6 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: null,
     thumbnailOverlay: 'red',
+    released: false,
   },
 };

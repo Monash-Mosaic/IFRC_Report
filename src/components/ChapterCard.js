@@ -82,17 +82,17 @@ export default function ChapterCard({
   };
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm">
+    <div className="bg-gray-100 overflow-hidden border border-gray-200 shadow-sm">
       <div className="p-5">
         {/* Top row: thumbnail + title + chevron + continue */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-start gap-5">
           {/* Thumbnail */}
           <div
-            className={`relative w-20 h-20 shrink-0 rounded overflow-hidden ${thumbnailBgClass} flex items-center justify-center`}
+            className={`relative w-28 h-28 shrink-0 rounded overflow-hidden ${thumbnailBgClass} flex items-center justify-center`}
           >
             {thumbnail ? (
               <>
-                <Image src={thumbnail} alt={title} fill className="object-cover" sizes="80px" />
+                <Image src={thumbnail} alt={title} fill className="object-cover" sizes="112px" />
                 <div
                   className={`absolute inset-0 ${thumbnailOverlay === 'blue' ? 'bg-blue-500/30' : 'bg-red-500/30'}`}
                 />
@@ -103,9 +103,9 @@ export default function ChapterCard({
           </div>
 
           {/* Title area */}
-          <div className="flex-1 min-w-0">
-            <div className="text-xs text-red-600 font-semibold mb-1">{chapterLabel}</div>
-            <h3 className="text-base font-bold text-black leading-snug">{title}</h3>
+          <div className="flex-1 min-w-0 pt-1">
+            <div className="text-sm text-red-600 font-semibold mb-1">{chapterLabel}</div>
+            <h3 className="text-lg font-bold text-black leading-snug">{title}</h3>
             {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
           </div>
 
@@ -113,13 +113,13 @@ export default function ChapterCard({
           {tableOfContents.length > 0 && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="shrink-0 p-1 hover:bg-gray-100 rounded transition-colors"
+              className="shrink-0 p-1 hover:bg-gray-100 rounded transition-colors self-center"
               aria-label={isExpanded ? 'Collapse chapter' : 'Expand chapter'}
             >
               {isExpanded ? (
-                <ChevronUp className="w-5 h-5 text-gray-600" />
+                <ChevronUp className="w-6 h-6 text-black" />
               ) : (
-                <ChevronDown className="w-5 h-5 text-gray-600" />
+                <ChevronDown className="w-6 h-6 text-black" />
               )}
             </button>
           )}
@@ -127,7 +127,7 @@ export default function ChapterCard({
           {/* Continue button - outlined style */}
           <Link
             href={continueHref}
-            className="shrink-0 border border-red-600 text-red-600 hover:bg-red-50 px-6 py-2 rounded text-sm font-medium transition-colors whitespace-nowrap"
+            className="shrink-0 self-center border border-red-600 text-red-600 hover:bg-red-50 px-8 py-2.5 rounded text-sm font-medium transition-colors whitespace-nowrap"
           >
             {t('sections.continue')}
           </Link>
@@ -135,7 +135,7 @@ export default function ChapterCard({
 
         {/* Expanded: Table of Contents dropdown */}
         {isExpanded && tableOfContents.length > 0 && (
-          <div className="mt-3 ml-24">{renderTocItems(tableOfContents)}</div>
+          <div className="mt-4 ml-[8.25rem]">{renderTocItems(tableOfContents)}</div>
         )}
       </div>
     </div>
