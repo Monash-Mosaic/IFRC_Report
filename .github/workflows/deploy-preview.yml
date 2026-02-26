@@ -146,7 +146,7 @@ jobs:
           NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_PREVIEW_SITE_URL }} npm run deploy -- --env="preview" --tag main
 
           echo "Update Production on Preview Environment (account)"
-          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }} npm run deploy -- --env=""
+          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }} npm run deploy -- --env="" --tag $(git describe --tags --always)
 
       - name: Comment preview URL on PR
         if: ${{ github.event_name == 'pull_request' }}
