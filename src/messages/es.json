@@ -244,5 +244,18 @@
       "title": "Próximamente",
       "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
     }
+  },
+  "ContributionInsight": {
+    "title": "Contribution Insight"
+  },
+  "TohIcons": {
+    "deprivational": "Deprivational",
+    "societal": "Societal",
+    "digital": "Digital",
+    "longitudinal": "Longitudinal",
+    "physical": "Physical",
+    "psychological": "Psychological",
+    "social": "Social",
+    "informational": "Informational"
   }
 }

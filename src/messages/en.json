@@ -243,5 +243,18 @@
     "contributions": "The World Disasters Report 2026 features over 100 written contributions from more than 60 practitioners and researchers across the humanitarian sector, as well as from governments, academia, civil society and beyond. These contributions appear throughout the report in Contributor Insight boxes, acknowledging the individual authors and their respective organizations.",
 
     "research": "The <bold>IFRC Solferino Academy</bold> led a two-month rapid community intelligence study with 40 volunteers and staff from 10 National Societies. Acting as community researchers, they interviewed 132 volunteers and community members affected by humanitarian crises. Findings were synthesised by volunteer academics from the University of Michigan, Northumbria University and Open Lab (Newcastle University), ensuring that local nuance was preserved. Selected quotes appear throughout the report."
+  },
+  "ContributionInsight": {
+    "title": "Contribution Insight"
+  },
+  "TohIcons": {
+    "deprivational": "Deprivational",
+    "societal": "Societal",
+    "digital": "Digital",
+    "longitudinal": "Longitudinal",
+    "physical": "Physical",
+    "psychological": "Psychological",
+    "social": "Social",
+    "informational": "Informational"
   }
 }
