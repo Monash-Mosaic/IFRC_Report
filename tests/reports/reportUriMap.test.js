@@ -48,12 +48,12 @@ describe('report release helpers', () => {
   });
 
   it('respects locale release gating', () => {
-    expect(isReportReleased('es', 'wdr25', 'preview')).toBe(true);
+    expect(isReportReleased('es', 'wdr25', 'preview')).toBe(false);
     expect(isReportReleased('en', 'wdr25', 'preview')).toBe(true);
   });
 
   it('filters visible reports by locale release', () => {
-    expect(getVisibleReports('es', 'preview')).toHaveProperty('wdr25');
+    expect(getVisibleReports('es', 'preview')).toEqual({});
     expect(getVisibleReports('en', 'preview')).toHaveProperty('wdr25');
   });
 });
