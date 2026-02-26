@@ -8,18 +8,9 @@ async function ensureIndex(locale) {
     return indexCache.get(locale);
   }
 
-  const indexPromise = createSearchIndex(locale, { engine: 'd1' })
-    .then((index) => {
-      indexCache.set(locale, index);
-      return index;
-    })
-    .catch((error) => {
-      indexCache.delete(locale);
-      throw error;
-    });
-
-  indexCache.set(locale, indexPromise);
-  return indexPromise;
+  const index = await createSearchIndex(locale, { engine: 'd1' });
+  indexCache.set(locale, index);
+  return index;
 }
 
 export async function searchDocuments({ locale, query, limit = 10 }) {
@@ -32,7 +23,6 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
 
   const index = await ensureIndex(locale);
 
-  console.time(`searchCache`);
   const rawResults = await index.searchCacheAsync({
     query: safeQuery,
     field: ['title', 'excerpt'],
@@ -56,7 +46,6 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
     merge: true,
     clip: false,
   });
-  console.timeEnd(`searchCache`);
 
   return results.map((result) => ({
     id: result.doc.id,
