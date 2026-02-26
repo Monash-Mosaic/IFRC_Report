@@ -88,6 +88,8 @@ try {
     throw new Error('SEARCH_DB binding is required. Configure D1 in wrangler.jsonc.');
   }
 
+  const searchDb = env.SEARCH_DB;
+
   for (const [locale, { reports }] of Object.entries(reportsByLocale)) {
     slugger.reset();
     for (const [report, { chapters }] of Object.entries(reports)) {
@@ -140,7 +142,7 @@ try {
     }
     console.log(`[build-search-index] locale=${locale} documents=${indices[locale].length}`);
     const searchIndex = await createSearchIndex(locale, {
-      db: env.SEARCH_DB.withSession(`first-primary`),
+      db: searchDb,
       namespace: searchIndexNamespace,
     });
     await searchIndex.clear();
@@ -153,7 +155,7 @@ try {
     if (!table) {
       throw new Error(`[build-search-index] Unable to resolve registry table for locale ${locale}`);
     }
-    const countResult = await env.SEARCH_DB
+    const countResult = await searchDb
       .prepare(`SELECT COUNT(*) AS count FROM ${table}`)
       .first();
     const persistedCount = Number(countResult?.count || 0);
