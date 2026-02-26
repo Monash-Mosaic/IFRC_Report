@@ -111,7 +111,8 @@
     "bookmark": "书签",
     "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
     "sections": {
-      "continue": "继续"
+      "continue": "继续",
+      "moreItems": "和{count}个更多项目"
     }
   },
   "ReportChapterPage": {
@@ -189,7 +190,7 @@
     "message": "错误详情：{message}",
     "backHome": "返回首页"
   },
-  
+
   "About": {
     "breadcrumbHome": "首页",
     "breadcrumbCurrent": "关于",
@@ -216,7 +217,7 @@
     "webUrlTitle": "网页版链接",
     "webUrlText": "www.ifrcwdr26.com"
   },
-   "Acknowledgements": {
+  "Acknowledgements": {
     "meta": {
       "title": "致谢与贡献者",
       "description": "感谢并致敬支持 IFRC《2026 年世界灾害报告》制作、翻译与发布的各组织与个人。"

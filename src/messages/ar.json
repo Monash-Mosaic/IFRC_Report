@@ -111,7 +111,8 @@
     "bookmark": "إشارة مرجعية",
     "bookmarkAria": "{action, select, add {إضافة إشارة مرجعية} remove {إزالة الإشارة المرجعية} other {غير معروف}} للقسم {section}",
     "sections": {
-      "continue": "متابعة"
+      "continue": "متابعة",
+      "moreItems": "و{count} عنصر آخر"
     }
   },
   "ReportChapterPage": {

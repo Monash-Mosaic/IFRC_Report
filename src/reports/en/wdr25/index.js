@@ -62,6 +62,43 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
+  synthesis: {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: null,
+      chapterPrefix: 'Synthesis',
+    },
+    component: Chapter02.default,
+    title: 'Truth, Trust and Humanitarian Action in the Age of Harmful Information',
+    subtitle: null,
+    tableOfContents: [],
+    thumbnail: null,
+    thumbnailOverlay: 'red',
+  },
+  'chapter-01': {
+    metadata: {
+      chapterKey: 'chapter-01',
+      chapterNumber: 1,
+      chapterPrefix: 'Chapter 1',
+    },
+    component: Chapter02.default,
+    title: 'Crisis, Chaos and Confusion: Understanding Harmful Information',
+    subtitle: null,
+    tableOfContents: [
+      { id: '1', value: 'Defining Harmful Information', children: [] },
+      { id: '2', value: 'The Evolving Information Ecosystem', children: [] },
+      { id: '3', value: 'Who are the Threat Actors?', children: [] },
+      { id: '4', value: 'Information Integrity in Crisis Situation', children: [] },
+      { id: '5', value: 'From Broadcast to Two-Way Engagement', children: [] },
+      { id: '6', value: 'Who is Most Vulnerable to Harmful Information—and Why?', children: [] },
+      { id: '7', value: 'What is the Impact and Harm?', children: [] },
+      { id: '8', value: 'Typology of Harm', children: [] },
+      { id: '9', value: 'Artificial Intelligence and Harmful Information', children: [] },
+      { id: '10', value: 'Framework for Analysis of Harmful Information', children: [] },
+    ],
+    thumbnail: null,
+    thumbnailOverlay: 'red',
+  },
   'chapter-02': {
     metadata: {
       chapterKey: 'chapter-02',
@@ -73,6 +110,8 @@ export const chapters = {
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
+    thumbnail: null,
+    thumbnailOverlay: 'blue',
     audios: [
       {
         id: 'intro',
@@ -96,5 +135,83 @@ export const chapters = {
         thumbnail: '/window.svg',
       },
     ],
+  },
+  'chapter-03': {
+    metadata: {
+      chapterKey: 'chapter-03',
+      chapterNumber: 3,
+      chapterPrefix: 'Chapter 3',
+    },
+    component: Chapter02.default,
+    title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
+    subtitle: 'Harmful Narratives that Thrive',
+    tableOfContents: [],
+    thumbnail: null,
+    thumbnailOverlay: 'blue',
+  },
+  'chapter-04': {
+    metadata: {
+      chapterKey: 'chapter-04',
+      chapterNumber: 4,
+      chapterPrefix: 'Chapter 4',
+    },
+    component: Chapter02.default,
+    title: 'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
+    subtitle: 'Harmful Information and Operational Realities',
+    tableOfContents: [],
+    thumbnail: null,
+    thumbnailOverlay: 'red',
+  },
+  'chapter-05': {
+    metadata: {
+      chapterKey: 'chapter-05',
+      chapterNumber: 5,
+      chapterPrefix: 'Chapter 5',
+    },
+    component: Chapter02.default,
+    title: 'Navigating Regulation, Rights and Societal Resilience',
+    subtitle: 'Information Landscape and Humanitarian Contexts',
+    tableOfContents: [],
+    thumbnail: null,
+    thumbnailOverlay: 'red',
+  },
+  'chapter-06': {
+    metadata: {
+      chapterKey: 'chapter-06',
+      chapterNumber: 6,
+      chapterPrefix: 'Chapter 6',
+    },
+    component: Chapter02.default,
+    title: 'Rooted in Resilience: Community-first approach to Harmful Information',
+    subtitle: 'The Importance of Community for Resilience',
+    tableOfContents: [],
+    thumbnail: null,
+    thumbnailOverlay: 'red',
+  },
+  'chapter-07': {
+    metadata: {
+      chapterKey: 'chapter-07',
+      chapterNumber: 7,
+      chapterPrefix: 'Chapter 7',
+    },
+    component: Chapter02.default,
+    title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
+    subtitle: 'Humanitarian Action in the Era of Instant Narratives',
+    tableOfContents: [],
+    thumbnail: null,
+    thumbnailOverlay: 'red',
+  },
+  'chapter-08': {
+    metadata: {
+      chapterKey: 'chapter-08',
+      chapterNumber: 8,
+      chapterPrefix: 'Chapter 8',
+    },
+    component: Chapter02.default,
+    title: "What's Next for Truth and Trust? Toward a Resilient Humanitarian Sector",
+    subtitle: 'The Stakes of Harmful Information',
+    tableOfContents: [],
+    thumbnail: null,
+    thumbnailOverlay: 'red',
   },
 };

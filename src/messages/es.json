@@ -111,7 +111,8 @@
     "bookmark": "Marcador",
     "bookmarkAria": "{action, select, add {Añadir marcador} remove {Eliminar marcador} other {Desconocido}} para {section}",
     "sections": {
-      "continue": "Continuar"
+      "continue": "Continuar",
+      "moreItems": "y {count} elementos más"
     }
   },
   "ReportChapterPage": {
