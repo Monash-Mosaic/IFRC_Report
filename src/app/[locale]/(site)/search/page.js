@@ -48,7 +48,7 @@ export async function generateMetadata({ params, searchParams }) {
   });
   const title = `${t('meta.title')}: "${query}"`;
   const description = `${t('meta.description')}. "${query}"`;
-  const canonical = new URL(getPathname({ locale, href: '/' }), getBaseUrl()).toString();
+  const canonical = new URL(getPathname({ locale, href: '/search' }), getBaseUrl()).toString();
   const image = new URL('/wdr25/ifrc_logo.jpg', getBaseUrl()).toString();
 
   return {
