@@ -6,18 +6,6 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
-/**
- * Renders a single chapter card with expand/collapse functionality
- * @param {Object} props
- * @param {string} props.chapterKey - The chapter key/slug
- * @param {string} props.chapterLabel - The chapter label (e.g., "Chapter 1", "Synthesis")
- * @param {string} props.title - Chapter title
- * @param {string} props.subtitle - Chapter subtitle
- * @param {string} props.thumbnail - Thumbnail image path
- * @param {string} props.thumbnailOverlay - Color overlay ('red' or 'blue')
- * @param {Array} props.tableOfContents - Table of contents items
- * @param {string} props.continueHref - Link to continue reading
- */
 export default function ChapterCard({
   chapterKey,
   chapterLabel,
@@ -28,17 +16,13 @@ export default function ChapterCard({
   tableOfContents = [],
   continueHref,
   report,
+  released = true,
 }) {
   const t = useTranslations('ReportDetailPage');
   const [isExpanded, setIsExpanded] = useState(false);
 
   const thumbnailBgClass = thumbnailOverlay === 'blue' ? 'bg-blue-500' : 'bg-red-500';
 
-  /**
-   * Generate anchor slug from TOC item value
-   * @param {string} value - The heading text
-   * @returns {string} The slugified anchor
-   */
   const toAnchor = (item) => {
     if (item.id && !/^\d+$/.test(item.id)) {
       return item.id;
@@ -49,32 +33,25 @@ export default function ChapterCard({
       .replace(/\s+/g, '-');
   };
 
-  /**
-   * Recursively render table of contents items as clickable links
-   * @param {Array} items - TOC items
-   * @param {number} level - Current nesting level
-   * @returns {import('react').ReactNode}
-   */
-  const renderTocItems = (items = [], level = 1) => {
+  const cleanLabel = (value) => value.replace(/\s*\u{1F517}\s*$/u, '').trim();
+
+  const renderTocItems = (items = []) => {
     if (!items || !Array.isArray(items) || items.length === 0) return null;
 
     return (
-      <ol className="list-decimal ml-6 space-y-1">
+      <ol className="list-decimal ml-6 space-y-0.5">
         {items.map((item, index) => (
-          <li key={item.id || index} className="text-sm text-gray-700">
+          <li key={item.id || index} className="text-sm text-gray-700 font-semibold">
             <Link
               href={{
                 pathname: '/reports/[report]/[chapter]',
                 params: { report, chapter: chapterKey },
                 hash: toAnchor(item),
               }}
-              className="underline hover:text-black"
+              className="underline hover:text-gray-800"
             >
-              {item.value}
+              {cleanLabel(item.value)}
             </Link>
-            {item.children && Array.isArray(item.children) && item.children.length > 0 && (
-              <div className="ml-4 mt-1">{renderTocItems(item.children, level + 1)}</div>
-            )}
           </li>
         ))}
       </ol>
@@ -82,61 +59,97 @@ export default function ChapterCard({
   };
 
   return (
-    <div className="bg-gray-100 overflow-hidden border border-gray-200 shadow-sm">
-      <div className="p-5">
-        {/* Top row: thumbnail + title + chevron + continue */}
-        <div className="flex items-start gap-5">
+    <div className="relative bg-gray-100 overflow-hidden border border-gray-200 shadow-sm">
+      <div className="p-4 sm:p-5">
+        {/* Mobile: actions pinned top-right */}
+        <div className="absolute top-3 right-3 flex items-center gap-2 sm:hidden">
+          <button
+            onClick={() => tableOfContents.length > 0 && setIsExpanded(!isExpanded)}
+            className={`p-0.5 rounded transition-colors ${tableOfContents.length > 0 ? 'hover:bg-gray-200 cursor-pointer' : 'cursor-default'}`}
+            aria-label={isExpanded ? 'Collapse chapter' : 'Expand chapter'}
+          >
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 text-black" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-black" />
+            )}
+          </button>
+          {released ? (
+            <Link
+              href={continueHref}
+              className="border border-red-600 text-red-600 bg-white hover:bg-red-50 px-3 py-1 rounded text-xs font-medium transition-colors whitespace-nowrap"
+            >
+              {t('sections.continue')}
+            </Link>
+          ) : (
+            <span className="border border-gray-300 text-gray-400 bg-gray-50 px-3 py-1 rounded text-xs font-medium whitespace-nowrap cursor-default">
+              {t('sections.comingSoon')}
+            </span>
+          )}
+        </div>
+
+        {/* Main row: thumbnail + content */}
+        <div className="flex items-start gap-3 sm:gap-5">
           {/* Thumbnail */}
           <div
-            className={`relative w-28 h-28 shrink-0 rounded overflow-hidden ${thumbnailBgClass} flex items-center justify-center`}
+            className={`relative w-14 h-14 sm:w-28 sm:h-28 shrink-0 rounded overflow-hidden ${thumbnailBgClass} flex items-center justify-center`}
           >
             {thumbnail ? (
               <>
-                <Image src={thumbnail} alt={title} fill className="object-cover" sizes="112px" />
+                <Image src={thumbnail} alt={title} fill className="object-cover" sizes="(max-width: 640px) 56px, 112px" />
                 <div
                   className={`absolute inset-0 ${thumbnailOverlay === 'blue' ? 'bg-blue-500/30' : 'bg-red-500/30'}`}
                 />
               </>
             ) : (
-              <span className="text-white text-xs font-bold text-center px-1">{chapterLabel}</span>
+              <span className="text-white text-[9px] sm:text-xs font-bold text-center px-0.5">{chapterLabel}</span>
             )}
           </div>
 
-          {/* Title area */}
-          <div className="flex-1 min-w-0 pt-1">
-            <div className="text-sm text-red-600 font-semibold mb-1">{chapterLabel}</div>
-            <h3 className="text-lg font-bold text-black leading-snug">{title}</h3>
-            {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
+          {/* Content area */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start gap-4">
+              {/* Title block */}
+              <div className="flex-1 min-w-0 pr-24 sm:pr-0 sm:pt-1">
+                <div className="text-xs sm:text-sm text-red-600 font-normal mb-0.5 sm:mb-1">{chapterLabel}</div>
+                <h3 className="text-sm sm:text-lg font-semibold text-black leading-snug">{title}</h3>
+                {subtitle && <p className="text-xs sm:text-sm text-gray-500 font-semibold mt-0.5 sm:mt-1">{subtitle}</p>}
+              </div>
+
+              {/* Desktop actions */}
+              <div className="hidden sm:flex items-center gap-3 shrink-0 mt-5">
+                <button
+                  onClick={() => tableOfContents.length > 0 && setIsExpanded(!isExpanded)}
+                  className={`p-1 rounded transition-colors ${tableOfContents.length > 0 ? 'hover:bg-gray-200 cursor-pointer' : 'cursor-default'}`}
+                  aria-label={isExpanded ? 'Collapse chapter' : 'Expand chapter'}
+                >
+                  {isExpanded ? (
+                    <ChevronUp className="w-6 h-6 text-black" />
+                  ) : (
+                    <ChevronDown className="w-6 h-6 text-black" />
+                  )}
+                </button>
+                {released ? (
+                  <Link
+                    href={continueHref}
+                    className="border border-red-600 text-red-600 bg-white hover:bg-red-50 px-8 py-2.5 rounded text-sm font-medium transition-colors whitespace-nowrap"
+                  >
+                    {t('sections.continue')}
+                  </Link>
+                ) : (
+                  <span className="border border-gray-300 text-gray-400 bg-gray-50 px-8 py-2.5 rounded text-sm font-medium whitespace-nowrap cursor-default">
+                    {t('sections.comingSoon')}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Expanded TOC */}
+            {isExpanded && tableOfContents.length > 0 && (
+              <div className="mt-2 sm:mt-3">{renderTocItems(tableOfContents)}</div>
+            )}
           </div>
-
-          {/* Chevron toggle */}
-          {tableOfContents.length > 0 && (
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="shrink-0 p-1 hover:bg-gray-100 rounded transition-colors self-center"
-              aria-label={isExpanded ? 'Collapse chapter' : 'Expand chapter'}
-            >
-              {isExpanded ? (
-                <ChevronUp className="w-6 h-6 text-black" />
-              ) : (
-                <ChevronDown className="w-6 h-6 text-black" />
-              )}
-            </button>
-          )}
-
-          {/* Continue button - outlined style */}
-          <Link
-            href={continueHref}
-            className="shrink-0 self-center border border-red-600 text-red-600 hover:bg-red-50 px-8 py-2.5 rounded text-sm font-medium transition-colors whitespace-nowrap"
-          >
-            {t('sections.continue')}
-          </Link>
         </div>
-
-        {/* Expanded: Table of Contents dropdown */}
-        {isExpanded && tableOfContents.length > 0 && (
-          <div className="mt-4 ml-[8.25rem]">{renderTocItems(tableOfContents)}</div>
-        )}
       </div>
     </div>
   );
