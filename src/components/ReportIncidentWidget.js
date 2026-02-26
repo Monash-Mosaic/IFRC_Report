@@ -74,10 +74,10 @@ export default function ReportIncidentWidget() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={t('descriptionPlaceholder')}
-                rows={4}
+                rows={8}
                 required
                 disabled={pending}
-                className="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-red-600 focus:outline-none focus:ring-1 focus:ring-red-600 disabled:bg-gray-100"
+                className="min-h-[160px] w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-red-600 focus:outline-none focus:ring-1 focus:ring-red-600 disabled:bg-gray-100"
               />
               {state?.error && (
                 <p className="text-sm text-red-600">{state.error}</p>
