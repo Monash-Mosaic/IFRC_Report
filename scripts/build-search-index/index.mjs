@@ -2,11 +2,18 @@ import { createSearchIndex } from '@/lib/search/db';
 import * as report from '@/reports';
 import { getPathname } from '@/i18n/navigation';
 import GithubSlugger from 'github-slugger';
+import dotenv from 'dotenv';
 import { getPlatformProxy } from 'wrangler';
 import { dirname, resolve as pathResolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const slugger = new GithubSlugger();
+const projectRoot = pathResolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const dotenvResult = dotenv.config({ path: pathResolve(projectRoot, '.env') });
+
+if (dotenvResult.error && dotenvResult.error.code !== 'ENOENT') {
+  throw dotenvResult.error;
+}
 
 /**
  * Generic reducer for Markdown/MDX AST (mdast).
@@ -59,51 +66,19 @@ const indices = Object.fromEntries(Object.keys(reportsByLocale).map(e => [e, []]
 const configuredEnvironment = process.env.CLOUDFLARE_ENV || 'preview';
 const cloudflareEnvironment =
   configuredEnvironment === 'production' ? undefined : configuredEnvironment;
-const useRemoteBindings = process.env.CLOUDFLARE_REMOTE_BINDINGS !== 'false';
-const searchIndexNamespace = process.env.SEARCH_INDEX_NAMESPACE?.trim() || '';
-const projectRoot = pathResolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const searchIndexNamespace = process.env.NEXT_PUBLIC_GIT_TAG?.trim() || '';
 
 async function createPlatformProxy() {
-  try {
-    return await getPlatformProxy({
-      envFiles: [pathResolve(projectRoot, '.env')],
-      remoteBindings: useRemoteBindings,
-      environment: cloudflareEnvironment,
-      configPath: pathResolve(projectRoot, 'wrangler.jsonc'),
-      persist: true,
-    });
-  } catch (error) {
-    const baseMessage = error instanceof Error ? error.message : String(error);
-    const causeMessage =
-      error &&
-      typeof error === 'object' &&
-      'cause' in error &&
-      error.cause &&
-      typeof error.cause === 'object' &&
-      'cause' in error.cause &&
-      error.cause.cause &&
-      typeof error.cause.cause === 'object' &&
-      'message' in error.cause.cause
-        ? String(error.cause.cause.message)
-        : '';
-    console.error(error);
-    const combined = `${baseMessage}\n${causeMessage}`;
-    if (combined.includes('cloudflared')) {
-      throw new Error(
-        [
-          'Remote D1 bindings require cloudflared in this Cloudflare Access setup.',
-          'Install cloudflared: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation',
-          'Or run locally with CLOUDFLARE_REMOTE_BINDINGS=false.',
-        ].join('\n')
-      );
-    }
-
-    throw error;
-  }
+  return getPlatformProxy({
+    envFiles: [pathResolve(projectRoot, '.env')],
+    environment: cloudflareEnvironment,
+    configPath: pathResolve(projectRoot, 'wrangler.jsonc'),
+    persist: true,
+  });
 }
 
 console.info(
-  `[build-search-index] environment=${cloudflareEnvironment || 'production'} remoteBindings=${useRemoteBindings} namespace=${searchIndexNamespace || 'default'}`
+  `[build-search-index] environment=${cloudflareEnvironment || 'production'} namespace=${searchIndexNamespace || 'default'}`
 );
 const platform = await createPlatformProxy();
 const { env, dispose } = platform;

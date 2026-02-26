@@ -32,8 +32,6 @@
 			{
 				"binding": "SEARCH_DB",
 				"database_name": "ifrc-wdr-search",
-				"database_id": "edb6bbda-b0cd-4d9d-995a-4ac350f65cd2",
-				"remote": true,
 			},
 		],
 	"observability": {
@@ -68,14 +66,12 @@
 			"images": {
 				"binding": "IMAGES",
 			},
-				"d1_databases": [
-					{
-						"binding": "SEARCH_DB",
-						"database_name": "ifrc-wdr-search-preview",
-						"database_id": "6c095528-31bd-4506-ab02-0f7431689e01",
-						"remote": true,
-					},
-				],
+			"d1_databases": [
+				{
+					"binding": "SEARCH_DB",
+					"database_name": "ifrc-wdr-search-preview",
+				},
+			],
 			"observability": {
 				"enabled": true,
 				"logs": {

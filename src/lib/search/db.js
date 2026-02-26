@@ -51,7 +51,7 @@ function createFieldEncoder(locale, field) {
 }
 
 function normalizeOptions(options) {
-  const envNamespace = normalizeNamespace(process.env.SEARCH_INDEX_NAMESPACE);
+  const envNamespace = normalizeNamespace(process.env.NEXT_PUBLIC_GIT_TAG);
 
   if (!options) {
     return { engine: 'd1', db: null, namespace: envNamespace };
@@ -113,7 +113,6 @@ export async function createSearchIndex(locale, options) {
 
   const d1 = await resolveSearchDatabase(normalized.db);
   const baseName = `ifrc-wdr-playbook-${locale}-db`;
-
   const name = normalized.namespace ? `${baseName}-${normalized.namespace}` : baseName;
   const db = new Database(name, {
     db: d1,
