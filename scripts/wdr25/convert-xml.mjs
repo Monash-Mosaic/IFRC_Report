@@ -37,7 +37,7 @@ console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: 'WDR26-Executive-Summary-EN.with-links.xml',
+  source: 'WDR26-Synthesis-FR.with-links-and-endnotes.xml',
   mdx: 'WDR26-Executive-Summary-EN.mdx',
   endnotesSource: 'endnotes.json',
 };
@@ -396,6 +396,7 @@ const convertToMDXAst = (node, index, parent) => {
       return [];
     case 'img':
       return [paragraph([image(node.attributes?.href_fmt || '')])];
+    case 'quote-tight':
     case 'quote':
     case 'small-quote':
       return [mdxJsxEl('SmallQuote', [], extractTextChildren(node))];
