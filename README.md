@@ -74,6 +74,9 @@ Search now uses FlexSearch at runtime with index/document persistence in Cloudfl
    - staging example: `NEXT_PUBLIC_GIT_TAG=<release-tag>`
 4. Apply schema migration:
    - `npm run build:search`
+5. Table lifecycle is CI-managed:
+   - PR previews: namespaced FlexSearch tables are deleted automatically when the PR is closed.
+   - staging: only the latest 10 release namespaces are retained; older release namespaces are pruned.
 
 ## CI/CD and DevSecOps (GitHub Actions)
 
@@ -112,6 +115,7 @@ Add the following secrets to each environment:
 Deploy workflows inject D1 `database_id` values into `wrangler.jsonc` at runtime:
 
 - script: `scripts/ci/inject-d1-database-ids.mjs`
+- table cleanup script: `scripts/ci/cleanup-flexsearch-tables.mjs`
 - workflows:
   - `.github/workflows/deploy-preview.yml`
   - `.github/workflows/deploy-staging.yml`
