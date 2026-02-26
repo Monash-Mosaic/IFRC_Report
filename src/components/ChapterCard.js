@@ -65,7 +65,7 @@ export default function ChapterCard({
         <div className="absolute top-3 right-3 flex items-center gap-2 sm:hidden">
           <button
             onClick={() => tableOfContents.length > 0 && setIsExpanded(!isExpanded)}
-            className={`p-0.5 rounded transition-colors ${tableOfContents.length > 0 ? 'hover:bg-gray-200 cursor-pointer' : 'cursor-default'}`}
+            className={`${tableOfContents.length > 0 ? 'cursor-pointer' : 'cursor-default'}`}
             aria-label={isExpanded ? 'Collapse chapter' : 'Expand chapter'}
           >
             {isExpanded ? (
@@ -120,7 +120,7 @@ export default function ChapterCard({
               <div className="hidden sm:flex items-center gap-3 shrink-0 mt-5">
                 <button
                   onClick={() => tableOfContents.length > 0 && setIsExpanded(!isExpanded)}
-                  className={`p-1 rounded transition-colors ${tableOfContents.length > 0 ? 'hover:bg-gray-200 cursor-pointer' : 'cursor-default'}`}
+                  className={`${tableOfContents.length > 0 ? 'cursor-pointer' : 'cursor-default'}`}
                   aria-label={isExpanded ? 'Collapse chapter' : 'Expand chapter'}
                 >
                   {isExpanded ? (
