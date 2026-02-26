@@ -32,7 +32,7 @@
     "@opennextjs/cloudflare": "^1.16.4",
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@types/mdx": "^2.0.13",
-    "autoprefixer": "^10.4.24",
+    "autoprefixer": "^10.4.27",
     "dexie": "^4.3.0",
     "embla-carousel-react": "^8.6.0",
     "flexsearch": "^0.8.212",
