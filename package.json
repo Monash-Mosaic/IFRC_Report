@@ -22,7 +22,6 @@
     "test:watch": "jest --watch"
   },
   "workspaces": [
-    "packages/*",
     "scripts/*"
   ],
   "engines": {

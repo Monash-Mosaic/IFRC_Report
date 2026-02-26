@@ -236,18 +236,5 @@
       "title": "قريبًا",
       "description": "تجربة تقرير الكوارث العالمي للاتحاد الدولي ستنطلق قريبًا."
     }
-  },
-  "ContributionInsight": {
-    "title": "نظرة على المساهمات"
-  },
-  "TohIcons": {
-    "deprivational": "الحرمان",
-    "societal": "مجتمعي",
-    "digital": "رقمي",
-    "longitudinal": "طولي",
-    "physical": "بدني",
-    "psychological": "نفسي",
-    "social": "اجتماعي",
-    "informational": "معلوماتي"
   }
 }

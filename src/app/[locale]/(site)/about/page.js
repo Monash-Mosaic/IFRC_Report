@@ -5,9 +5,6 @@ import { getBaseUrl } from '@/lib/base-url';
 import { isLocaleReleased } from '@/reports/release';
 import Breadcrumb from '@/components/Breadcrumb';
 
-export const dynamic = 'force-static';
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }

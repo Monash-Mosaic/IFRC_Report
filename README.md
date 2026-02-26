@@ -73,14 +73,7 @@ Search now uses FlexSearch at runtime with index/document persistence in Cloudfl
    - preview example: `NEXT_PUBLIC_GIT_TAG=<preview-branch-slug>`
    - staging example: `NEXT_PUBLIC_GIT_TAG=<release-tag>`
 4. Apply schema migration:
-   - `npx wrangler d1 migrations apply SEARCH_DB --remote`
-   - preview: `npx wrangler d1 migrations apply SEARCH_DB --env preview --remote`
-5. Build seed SQL from MDX content:
    - `npm run build:search`
-   - output file: `data/search-seed.sql`
-6. Seed D1 with generated data:
-   - `npx wrangler d1 execute SEARCH_DB --file data/search-seed.sql --remote`
-   - preview: `npx wrangler d1 execute SEARCH_DB --env preview --file data/search-seed.sql --remote`
 
 ## CI/CD and DevSecOps (GitHub Actions)
 
