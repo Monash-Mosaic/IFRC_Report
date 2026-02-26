@@ -2,7 +2,6 @@ import { getTranslations } from 'next-intl/server';
 import SearchAnalyticsEvents from '@/components/SearchAnalyticsEvents';
 import SearchResultCard from '@/components/SearchResultCard';
 import { getPathname } from '@/i18n/navigation';
-import { routing } from '@/i18n/routing';
 import { getBaseUrl } from '@/lib/base-url';
 import { searchDocuments } from '@/lib/search/flexsearch';
 
