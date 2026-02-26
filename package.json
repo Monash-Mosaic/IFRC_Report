@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/ensure-env.mjs",
+    "predev": "node scripts/ensure-env.mjs && npm run build:search",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "build:search": "npm run --workspace=scripts/build-search-index start:esbuild",

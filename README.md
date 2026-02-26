@@ -69,9 +69,9 @@ Search now uses FlexSearch at runtime with index/document persistence in Cloudfl
      - `CF_D1_SEARCH_DB_ID_PREVIEW`
    - command:
      - `node scripts/ci/inject-d1-database-ids.mjs`
-3. (Optional) Set `SEARCH_INDEX_NAMESPACE` before `npm run build:search` to persist into a namespaced index:
-   - preview example: `SEARCH_INDEX_NAMESPACE=<preview-branch-slug>`
-   - staging example: `SEARCH_INDEX_NAMESPACE=<release-tag>`
+3. (Optional) Set `NEXT_PUBLIC_GIT_TAG` before `npm run build:search` to persist into a namespaced index:
+   - preview example: `NEXT_PUBLIC_GIT_TAG=<preview-branch-slug>`
+   - staging example: `NEXT_PUBLIC_GIT_TAG=<release-tag>`
 4. Apply schema migration:
    - `npx wrangler d1 migrations apply SEARCH_DB --remote`
    - preview: `npx wrangler d1 migrations apply SEARCH_DB --env preview --remote`
