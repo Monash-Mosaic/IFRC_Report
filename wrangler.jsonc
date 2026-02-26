@@ -32,6 +32,7 @@
 			{
 				"binding": "SEARCH_DB",
 				"database_name": "ifrc-wdr-search",
+				"database_id": "00000000-0000-0000-0000-000000000000",
 			},
 		],
 	"observability": {
@@ -70,6 +71,7 @@
 				{
 					"binding": "SEARCH_DB",
 					"database_name": "ifrc-wdr-search-preview",
+					"database_id": "00000000-0000-0000-0000-000000000000",
 				},
 			],
 			"observability": {
