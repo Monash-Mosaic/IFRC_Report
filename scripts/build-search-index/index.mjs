@@ -73,7 +73,9 @@ async function createPlatformProxy() {
     envFiles: [pathResolve(projectRoot, '.env')],
     environment: cloudflareEnvironment,
     configPath: pathResolve(projectRoot, 'wrangler.jsonc'),
-    persist: true,
+    persist: {
+      path: pathResolve(projectRoot, '.wrangler', 'state', 'v3'),
+    },
   });
 }
 
