@@ -140,7 +140,7 @@ try {
     }
     console.log(`[build-search-index] locale=${locale} documents=${indices[locale].length}`);
     const searchIndex = await createSearchIndex(locale, {
-      db: env.SEARCH_DB,
+      db: env.SEARCH_DB.withSession(`first-primary`),
       namespace: searchIndexNamespace,
     });
     await searchIndex.clear();

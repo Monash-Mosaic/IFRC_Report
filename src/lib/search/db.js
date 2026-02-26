@@ -81,7 +81,7 @@ async function resolveSearchDatabase(explicitDb) {
     throw new Error('SEARCH_DB binding is not configured.');
   }
 
-  return env.SEARCH_DB;
+  return env.SEARCH_DB.withSession();
 }
 
 export async function createSearchIndex(locale, options) {
