@@ -248,5 +248,18 @@
     "psychological": "Psychological",
     "social": "Social",
     "informational": "Informational"
+  },
+  "ReportIncident": {
+    "trigger": "Reportar un error",
+    "triggerTooltip": "¿Reportar un error?",
+    "close": "Cerrar",
+    "title": "Reportar un error",
+    "descriptionLabel": "¿Qué ha ido mal?",
+    "descriptionPlaceholder": "Describe el problema (enlace roto, texto incorrecto, diseño, etc.)…",
+    "submit": "Enviar",
+    "submitting": "Enviando…",
+    "cancel": "Cancelar",
+    "success": "Gracias. Tu reporte se ha enviado.",
+    "error": "Algo ha fallado. Inténtalo de nuevo."
   }
 }

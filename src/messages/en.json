@@ -143,6 +143,19 @@
       "description": "The IFRC World Disasters Report experience is launching soon."
     }
   },
+  "ReportIncident": {
+    "trigger": "Report an error",
+    "triggerTooltip": "Report an error?",
+    "close": "Close",
+    "title": "Report an error",
+    "descriptionLabel": "What went wrong?",
+    "descriptionPlaceholder": "Describe the issue (e.g. broken link, wrong text, layout problem)...",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "cancel": "Cancel",
+    "success": "Thank you. Your report has been submitted.",
+    "error": "Something went wrong. Please try again."
+  },
   "SidebarPanel": {
     "expandSidebar": "Expand sidebar",
     "closeSidebar": "Close sidebar",

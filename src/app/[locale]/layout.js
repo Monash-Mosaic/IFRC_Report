@@ -7,6 +7,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { getDirection } from '@/i18n/helper';
 import { routing } from '@/i18n/routing';
+import ReportIncidentWidget from '@/components/ReportIncidentWidget';
 import './globals.css';
 import localFont from 'next/font/local';
 
@@ -71,7 +72,10 @@ export default async function RootLayout({ children, params }) {
         className={`${GeistSans.variable} ${GeistMono.variable}  ${bespokeSerif.variable} locale-${locale} antialiased`}
       >
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {children}
+          <ReportIncidentWidget />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
