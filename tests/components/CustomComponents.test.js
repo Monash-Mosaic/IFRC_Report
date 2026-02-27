@@ -210,7 +210,7 @@ describe('CustomComponents async components', () => {
     });
 
     expect(heading).toBeInTheDocument();
-    expect(heading).not.toHaveAttribute('id');
+    expect(heading).toHaveAttribute('id');
     expect(screen.getByText('Box body')).toBeInTheDocument();
     expect(screen.getByText('Contributor Tag')).toBeInTheDocument();
     expect(document.querySelector('#insight-1')).toBeInTheDocument();
