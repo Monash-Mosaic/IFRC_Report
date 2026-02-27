@@ -148,11 +148,7 @@ export default async function ReportDetailPage({ params }) {
         sortOrder: chapterNumber !== null && chapterNumber !== undefined ? chapterNumber : -1,
       };
     })
-    .sort((a, b) => {
-      if (a.sortOrder === -1) return -1;
-      if (b.sortOrder === -1) return 1;
-      return a.sortOrder - b.sortOrder;
-    });
+    .sort((a, b) => a.sortOrder - b.sortOrder);
 
   return (
     <div className="min-h-screen bg-white">
