@@ -66,8 +66,7 @@
           "read": "Leer",
           "download": "Descargar"
         },
-        "summaryAlt": "Portada del Resumen Ejecutivo con una persona en un contexto humanitario",
-        "url": "síntesis"
+        "summaryAlt": "Portada del Resumen Ejecutivo con una persona en un contexto humanitario"
       },
       "featuredVideos": {
         "title": "Videos Destacados de Todo el Mundo"
@@ -218,25 +217,17 @@
     "breadcrumbHome": "Página de inicio",
     "breadcrumbCurrent": "Agradecimientos",
     "pageTitle": "Agradecimientos",
-
     "intro": "La <bold>Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja</bold> (IFRC) agradece sinceramente el apoyo brindado por las siguientes organizaciones para la producción y publicación del Informe Mundial sobre Desastres de la IFRC 2026:",
-
     "translation": "Los costos de traducción de las ediciones en ruso y chino fueron generosamente cubiertos por la Academia de la Cruz Roja Rusa y la Academia Internacional de la Cruz Roja en China.",
-
     "leadEditorLabel": "Editora principal y autora:",
     "leadEditor": "Charlotte Lindsey Curtet",
-
     "designerLabel": "Diseñador:",
     "designer": "Yann le Floch",
-
     "projectManagerLabel": "Directora de proyecto:",
     "projectManager": "Heather Marie Leson",
-
     "copyeditorLabel": "Correctora de estilo:",
     "copyeditor": "Jen Claydon",
-
     "contributions": "El Informe Mundial sobre Desastres 2026 incluye más de 100 contribuciones escritas de más de 60 profesionales e investigadores del sector humanitario, así como de gobiernos, el ámbito académico, la sociedad civil y otros sectores. Estas contribuciones aparecen a lo largo del informe en recuadros de análisis de colaboradores, reconociendo a los autores individuales y a sus respectivas organizaciones.",
-
     "research": "<bold>La Academia Solferino de la IFRC</bold> llevó a cabo un estudio rápido de inteligencia comunitaria de dos meses con 40 voluntarios y miembros del personal de 10 Sociedades Nacionales. Actuando como investigadores comunitarios, entrevistaron a 132 voluntarios y miembros de comunidades afectadas por crisis humanitarias. Los hallazgos fueron sintetizados por académicos voluntarios de la Universidad de Michigan, la Universidad de Northumbria y Open Lab (Universidad de Newcastle), garantizando que se preservaran los matices locales. Citas seleccionadas aparecen a lo largo del informe."
   },
   "ComingSoon": {
