@@ -194,18 +194,22 @@ export default async function ReportDetailPage({ params }) {
           ))}
         </div>
 
-        {/* Placeholder for future email subscription section */}
-        <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
+        {/* Placeholder for future email subscription section (non-English only) */}
+        {locale !== 'en' && (
+          <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
+        )}
       </div>
 
-      {/* Hero Video Section */}
-      <div className="mt-8">
-        <HeroMediaBlock
-          title={tHome('landingPage.heroSection.title')}
-          description={tHome('landingPage.heroSection.description')}
-          heroAlt={tHome('landingPage.heroSection.heroAlt')}
-        />
-      </div>
+      {/* Hero Video Section (non-English only) */}
+      {locale !== 'en' && (
+        <div className="mt-8">
+          <HeroMediaBlock
+            title={tHome('landingPage.heroSection.title')}
+            description={tHome('landingPage.heroSection.description')}
+            heroAlt={tHome('landingPage.heroSection.heroAlt')}
+          />
+        </div>
+      )}
     </div>
   );
 }
