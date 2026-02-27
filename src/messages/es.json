@@ -112,6 +112,8 @@
     "bookmarkAria": "{action, select, add {Añadir marcador} remove {Eliminar marcador} other {Desconocido}} para {section}",
     "sections": {
       "continue": "Continuar",
+      "comingSoon": "Próximamente",
+      "expandChapter": "Expandir detalles del capítulo",
       "moreItems": "y {count} elementos más"
     }
   },

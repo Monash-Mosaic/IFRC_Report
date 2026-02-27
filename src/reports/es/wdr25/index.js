@@ -62,38 +62,18 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
-  'capitulo-02': {
+  sintesis: {
     metadata: {
-      chapterKey: 'chapter-02',
-      chapterNumber: 2,
-      chapterPrefix: 'Capítulo 02',
+      chapterKey: 'synthesis',
+      chapterNumber: null,
+      chapterPrefix: 'Síntesis',
     },
     component: Chapter02.default,
-    title: Chapter02.title,
-    subtitle: Chapter02.subtitle,
-    tableOfContents: Chapter02.tableOfContents,
-    audios: [
-      {
-        id: 'intro',
-        name: 'Capítulo 02 - Descripción general',
-        duration: '02:31',
-        url: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
-      },
-      {
-        id: 'section-1',
-        name: 'Sección 1: Hallazgos clave',
-        duration: '04:12',
-        url: 'https://samplelib.com/lib/preview/mp3/sample-15s.mp3',
-      },
-    ],
-    videos: [
-      {
-        id: 'summary',
-        name: 'Resumen del capítulo',
-        duration: '03:45',
-        url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
-        thumbnail: '/window.svg',
-      },
-    ],
+    title: 'Verdad, confianza y acción humanitaria en la era de la información dañina',
+    subtitle: null,
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnailOverlay: 'red',
+    released: true,
   },
 };

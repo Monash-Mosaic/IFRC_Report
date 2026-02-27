@@ -4,6 +4,7 @@ import { hasLocale } from 'next-intl';
 
 import Breadcrumb from '@/components/Breadcrumb';
 import ChapterCard from '@/components/ChapterCard';
+import HeroMediaBlock from '@/components/landing-page/HeroMediaBlock';
 import { getPathname } from '@/i18n/navigation';
 import {
   getVisibleReports,
@@ -123,6 +124,10 @@ export default async function ReportDetailPage({ params }) {
     namespace: 'ReportDetailPage',
     locale,
   });
+  const tHome = await getTranslations({
+    namespace: 'Home',
+    locale,
+  });
 
   const chapterEntries = Object.entries(chapters)
     .map(([chapterKey, chapter]) => {
@@ -180,9 +185,26 @@ export default async function ReportDetailPage({ params }) {
               continueHref={chapter.continueHref}
               report={decodedReport}
               released={chapter.released}
+              translations={{
+                continue: t('sections.continue'),
+                comingSoon: t('sections.comingSoon'),
+                expandChapter: t('sections.expandChapter'),
+              }}
             />
           ))}
         </div>
+
+        {/* Placeholder for future email subscription section */}
+        <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
+      </div>
+
+      {/* Hero Video Section */}
+      <div className="mt-8">
+        <HeroMediaBlock
+          title={tHome('landingPage.heroSection.title')}
+          description={tHome('landingPage.heroSection.description')}
+          heroAlt={tHome('landingPage.heroSection.heroAlt')}
+        />
       </div>
     </div>
   );

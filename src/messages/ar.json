@@ -112,6 +112,8 @@
     "bookmarkAria": "{action, select, add {إضافة إشارة مرجعية} remove {إزالة الإشارة المرجعية} other {غير معروف}} للقسم {section}",
     "sections": {
       "continue": "متابعة",
+      "comingSoon": "قريباً",
+      "expandChapter": "توسيع تفاصيل الفصل",
       "moreItems": "و{count} عنصر آخر"
     }
   },

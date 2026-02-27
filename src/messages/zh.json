@@ -112,6 +112,8 @@
     "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
     "sections": {
       "continue": "继续",
+      "comingSoon": "即将推出",
+      "expandChapter": "展开章节详情",
       "moreItems": "和{count}个更多项目"
     }
   },

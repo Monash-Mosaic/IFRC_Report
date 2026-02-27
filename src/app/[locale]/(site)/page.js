@@ -71,7 +71,8 @@ export default async function Home({ params }) {
   const reportModule = getVisibleReports(locale)?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-  const chapterSlug = reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
+  const chapterSlug = reportUriMap['wdr25'].chapters['chapter-02']?.languages?.[locale];
+  const chapterData = chapterSlug ? reportModule?.chapters?.[chapterSlug] : null;
   // Executive Summary translations
   const executiveSummary = {
     title: t('landingPage.executiveSummary.title'),
@@ -82,17 +83,27 @@ export default async function Home({ params }) {
       read: t('landingPage.executiveSummary.buttonTexts.read'),
       download: t('landingPage.executiveSummary.buttonTexts.download'),
     },
-    url: getPathname({
-      locale,
-      href: {
-        pathname: '/reports/[report]/[chapter]',
-        params: {
-          report: reportUriMap['wdr25'].languages[locale],
-          chapter: chapterSlug,
-        },
-      },
-    }),
-    downloadLink: reportModule.chapters[chapterSlug].downloadLink,
+    url: chapterSlug
+      ? getPathname({
+          locale,
+          href: {
+            pathname: '/reports/[report]/[chapter]',
+            params: {
+              report: reportUriMap['wdr25'].languages[locale],
+              chapter: chapterSlug,
+            },
+          },
+        })
+      : getPathname({
+          locale,
+          href: {
+            pathname: '/reports/[report]',
+            params: {
+              report: reportUriMap['wdr25'].languages[locale],
+            },
+          },
+        }),
+    downloadLink: chapterData?.downloadLink,
   };
 
   // Hero Section translations
@@ -114,7 +125,7 @@ export default async function Home({ params }) {
         },
       },
     }),
-    downloadLink: reportModule.chapters[chapterSlug].downloadLink,
+    downloadLink: chapterData?.downloadLink,
   };
 
   const homeJsonLd = {

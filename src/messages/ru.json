@@ -112,6 +112,8 @@
     "bookmarkAria": "{action, select, add {Добавить закладку} remove {Удалить закладку} other {Неизвестно}} для {section}",
     "sections": {
       "continue": "Продолжить",
+      "comingSoon": "Скоро",
+      "expandChapter": "Развернуть детали главы",
       "moreItems": "и еще {count} элементов"
     }
   },
