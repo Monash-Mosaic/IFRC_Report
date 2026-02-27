@@ -19,14 +19,6 @@ export default async function ChapterCard({
 
   const thumbnailBgClass = thumbnailOverlay === 'blue' ? 'bg-blue-500' : 'bg-red-500';
 
-  const toAnchor = (item) => {
-    if (item.id && !/^\d+$/.test(item.id)) {
-      return item.id;
-    }
-    return item.value
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-');
   };
 
   const cleanLabel = (value) => value.replace(/\s*\u{1F517}\s*$/u, '').trim();
