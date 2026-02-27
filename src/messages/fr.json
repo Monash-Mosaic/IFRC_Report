@@ -18,7 +18,7 @@
       "bookmarks": "Signets",
       "download": "Télécharger",
       "search": "Recherche",
-      "acknowledgement": "Reconnaissance"
+      "acknowledgement": "Remerciements"
     },
     "comingSoonLabel": "Bientôt disponible",
     "footer": {
@@ -207,7 +207,6 @@
     "message": "Détails de l’erreur : {message}",
     "backHome": "Retour à l'accueil"
   },
-  
   "About": {
     "breadcrumbHome": "Page d'accueil",
     "breadcrumbCurrent": "À propos",
@@ -242,26 +241,17 @@
     "breadcrumbHome": "Page d’accueil",
     "breadcrumbCurrent": "Remerciements",
     "pageTitle": "Remerciements",
-
     "intro": "La <bold>Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge</bold> (IFRC) remercie chaleureusement les organisations suivantes pour le soutien apporté à la production et à la publication du Rapport mondial sur les catastrophes de l’IFRC 2026 :",
-
     "translation": "Les coûts de traduction des éditions russe et chinoise ont été généreusement pris en charge par l’Académie de la Croix-Rouge russe et l’Académie internationale de la Croix-Rouge en Chine.",
-
     "leadEditorLabel": "Rédactrice en chef et auteure :",
     "leadEditor": "Charlotte Lindsey Curtet",
-
     "designerLabel": "Concepteur :",
     "designer": "Yann le Floch",
-
     "projectManagerLabel": "Cheffe de projet :",
     "projectManager": "Heather Marie Leson",
-
     "copyeditorLabel": "Révision éditoriale :",
     "copyeditor": "Jen Claydon",
-
     "contributions": "Le Rapport mondial sur les catastrophes 2026 comprend plus de 100 contributions écrites provenant de plus de 60 praticiens et chercheurs du secteur humanitaire, ainsi que de gouvernements, du milieu universitaire, de la société civile et d’autres acteurs. Ces contributions apparaissent tout au long du rapport dans des encadrés « Contributor Insight », reconnaissant les auteurs individuels et leurs organisations respectives.",
-
     "research": "<bold>L’Académie Solferino de l’IFRC</bold> a mené une étude rapide d’intelligence communautaire de deux mois avec 40 volontaires et membres du personnel issus de 10 Sociétés nationales. Agissant en tant que chercheurs communautaires, ils ont interrogé 132 volontaires et membres de communautés touchées par des crises humanitaires. Les résultats ont été synthétisés par des universitaires bénévoles de l’Université du Michigan, de l’Université de Northumbria et d’Open Lab (Université de Newcastle), garantissant la préservation des nuances locales. Des citations sélectionnées figurent tout au long du rapport."
   }
-
 }

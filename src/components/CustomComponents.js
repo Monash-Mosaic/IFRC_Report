@@ -256,6 +256,14 @@ export function EndnotesLink({ children, ...props }) {
   );
 }
 
+export function ChapterLink({ children, ...props }) {
+  return (
+    <a className="text-[#f2483a]" {...props}>
+      {children}
+    </a>
+  );
+}
+
 const CustomComponents = {
   Contributors,
   ContributorRole,
@@ -275,6 +283,7 @@ const CustomComponents = {
   Reccomendations,
   ReccomendationsTitle,
   EndnotesLink,
+  ChapterLink,
 };
 
 export default CustomComponents;
