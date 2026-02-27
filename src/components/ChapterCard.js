@@ -42,7 +42,7 @@ export default async function ChapterCard({
               href={{
                 pathname: '/reports/[report]/[chapter]',
                 params: { report, chapter: chapterKey },
-                hash: toAnchor(item),
+                hash: item.id,
               }}
               className="underline hover:text-gray-800"
             >
