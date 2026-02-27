@@ -145,7 +145,7 @@ export default async function ReportDetailPage({ params }) {
         thumbnail: chapter.thumbnail || null,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
         released: chapter.released !== false,
-        sortOrder: chapterNumber !== null && chapterNumber !== undefined ? chapterNumber : -1,
+        sortOrder: chapter.metadata.chapterNumber,
       };
     })
     .sort((a, b) => a.sortOrder - b.sortOrder);
