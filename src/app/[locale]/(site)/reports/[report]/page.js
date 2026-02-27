@@ -134,7 +134,7 @@ export default async function ReportDetailPage({ params }) {
 
       return {
         key: chapterKey,
-        label: chapterLabel,
+        label: chapterPrefix,
         title: chapter.title,
         subtitle: chapter.subtitle,
         tableOfContents: chapter.tableOfContents || [],
