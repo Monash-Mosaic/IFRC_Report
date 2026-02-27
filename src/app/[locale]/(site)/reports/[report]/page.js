@@ -139,7 +139,7 @@ export default async function ReportDetailPage({ params }) {
           pathname: '/reports/[report]/[chapter]',
           params: { report: decodedReport, chapter: chapterKey },
         },
-        thumbnail: chapter.thumbnail || null,
+        thumbnail: chapter.thumbnail,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
         released: chapter.released,
         sortOrder: chapter.metadata.chapterNumber,
