@@ -128,9 +128,6 @@ export default async function ReportDetailPage({ params }) {
     .map(([chapterKey, chapter]) => {
       const chapterNumber = chapter.metadata?.chapterNumber;
       const chapterPrefix = chapter.metadata?.chapterPrefix || '';
-      const chapterLabel = chapterNumber
-        ? `Chapter ${chapterNumber}`
-        : chapterPrefix || 'Synthesis';
 
       return {
         key: chapterKey,
