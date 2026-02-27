@@ -1,12 +1,9 @@
-'use client';
-
-import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 
-export default function ChapterCard({
+export default async function ChapterCard({
   chapterKey,
   chapterLabel,
   title,
@@ -18,8 +15,7 @@ export default function ChapterCard({
   report,
   released = true,
 }) {
-  const t = useTranslations('ReportDetailPage');
-  const [isExpanded, setIsExpanded] = useState(false);
+  const t = await getTranslations('ReportDetailPage');
 
   const thumbnailBgClass = thumbnailOverlay === 'blue' ? 'bg-blue-500' : 'bg-red-500';
 
