@@ -110,6 +110,11 @@
     "tableOfContent": "Оглавление",
     "bookmark": "Закладка",
     "bookmarkAria": "{action, select, add {Добавить закладку} remove {Удалить закладку} other {Неизвестно}} для {section}",
+    "pageTitle": "Доклад о мировых катастрофах — Содержание",
+    "breadcrumb": {
+      "home": "Главная страница",
+      "chapters": "Главы"
+    },
     "sections": {
       "continue": "Продолжить",
       "comingSoon": "Скоро",

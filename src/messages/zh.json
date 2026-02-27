@@ -110,6 +110,11 @@
     "tableOfContent": "目录",
     "bookmark": "书签",
     "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
+    "pageTitle": "世界灾害报告 — 目录",
+    "breadcrumb": {
+      "home": "首页",
+      "chapters": "章节"
+    },
     "sections": {
       "continue": "继续",
       "comingSoon": "即将推出",

@@ -110,6 +110,11 @@
     "tableOfContent": "جدول المحتويات",
     "bookmark": "إشارة مرجعية",
     "bookmarkAria": "{action, select, add {إضافة إشارة مرجعية} remove {إزالة الإشارة المرجعية} other {غير معروف}} للقسم {section}",
+    "pageTitle": "تقرير الكوارث العالمي — جدول المحتويات",
+    "breadcrumb": {
+      "home": "الصفحة الرئيسية",
+      "chapters": "الفصول"
+    },
     "sections": {
       "continue": "متابعة",
       "comingSoon": "قريباً",

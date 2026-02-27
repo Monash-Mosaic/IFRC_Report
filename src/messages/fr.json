@@ -128,6 +128,11 @@
     "tableOfContent": "Table des matières",
     "bookmark": "Marque-page",
     "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
+    "pageTitle": "Rapport mondial sur les catastrophes — Table des matières",
+    "breadcrumb": {
+      "home": "Page d'accueil",
+      "chapters": "Chapitres"
+    },
     "sections": {
       "continue": "Continuer",
       "comingSoon": "Bientôt disponible",

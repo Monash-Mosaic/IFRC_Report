@@ -110,6 +110,11 @@
     "tableOfContent": "Tabla de Contenidos",
     "bookmark": "Marcador",
     "bookmarkAria": "{action, select, add {Añadir marcador} remove {Eliminar marcador} other {Desconocido}} para {section}",
+    "pageTitle": "Informe Mundial sobre Desastres — Tabla de Contenidos",
+    "breadcrumb": {
+      "home": "Página de inicio",
+      "chapters": "Capítulos"
+    },
     "sections": {
       "continue": "Continuar",
       "comingSoon": "Próximamente",

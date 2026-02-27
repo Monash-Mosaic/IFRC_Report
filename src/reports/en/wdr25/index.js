@@ -150,7 +150,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
-    released: false,
+    released: true,
   },
   'chapter-04': {
     metadata: {
@@ -164,7 +164,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-05': {
     metadata: {
@@ -178,7 +178,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-06': {
     metadata: {
@@ -192,7 +192,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-07': {
     metadata: {
@@ -206,7 +206,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-08': {
     metadata: {
@@ -220,6 +220,6 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter8.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
 };

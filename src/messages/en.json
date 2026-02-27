@@ -110,7 +110,7 @@
     "tableOfContent": "Table of Contents",
     "bookmark": "Bookmark",
     "bookmarkAria": "{action, select, add {Add bookmark} remove {Remove bookmark} other {Unknown}} for {section}",
-    "pageTitle": "World Disasters Report Table of Content",
+    "pageTitle": "World Disasters Report Table of Contents",
     "breadcrumb": {
       "home": "Home Page",
       "chapters": "Chapters"
