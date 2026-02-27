@@ -157,11 +157,7 @@ export default async function ReportDetailPage({ params }) {
         <Breadcrumb
           locale={locale}
           items={[
-            {
-              label: t('breadcrumb.home'),
-              href: '/',
-            },
-            { label: t('breadcrumb.chapters') },
+            { label: reportTile },
           ]}
         />
 
