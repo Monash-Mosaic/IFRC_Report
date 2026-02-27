@@ -1,5 +1,6 @@
-import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
+import * as Chapter01 from './chapter-01.mdx';
+import * as Chapter02 from './chapter-02.mdx';
 export const title = 'تقرير الكوارث العالمي 2025';
 
 export const description =
@@ -62,7 +63,7 @@ export const featuredVideos = [
 ];
 
 export const chapters = {
-  تركيب: {
+  'تركيب': {
     metadata: {
       chapterKey: 'synthesis',
       chapterNumber: 0,
@@ -74,6 +75,19 @@ export const chapters = {
     tableOfContents: Synthesis.tableOfContents,
     downloadLink:
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+  },
+  'الفصل-01': {
+    metadata: {
+      chapterKey: 'chapter-01',
+      chapterNumber: 1,
+      chapterPrefix: 'الفصل 01',
+    },
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    audios: [],
+    videos: [],
   },
   'الفصل-02': {
     metadata: {

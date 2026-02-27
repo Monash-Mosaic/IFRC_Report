@@ -9,7 +9,7 @@ import {
   reportsByLocale,
   reportUriMap,
 } from '@/reports';
-import { getPathname, Link } from '@/i18n/navigation';
+import { getPathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import SidebarPanel from '@/components/SidebarPanel';
 import TableOfContent from '@/components/TableOfContent';
@@ -83,6 +83,7 @@ export async function generateMetadata({ params }) {
 }
 
 export const dynamic = 'force-static';
+export const dynamicParams = false; 
 
 export async function generateStaticParams() {
   const params = [];
@@ -108,14 +109,6 @@ export default async function ReportChapterPage({ params }) {
   const decodedChapter = decodeURIComponent(chapter);
   const baseUrl = getBaseUrl();
   const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
-  if (
-    !reportsByLocale[locale] ||
-    !reportsByLocale[locale].reports[decodedReport] ||
-    !reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter] ||
-    !isReportReleased(locale, decodedReport)
-  ) {
-    notFound();
-  }
   setRequestLocale(locale);
   const reportData = reportsByLocale[locale].reports[decodedReport];
   const { chapters, title: reportTile, description, author, releaseDate } = reportData;

@@ -17,13 +17,13 @@ const components = {
   // a: (props) => <a {...props} />,
   ul: (props) => (
     <ul
-      className="list-['—'] pl-12 marker:font-bold  [&>li]:pl-5 marker:text-[#ee2435] text-balance"
+      className="list-['—'] ps-12 marker:font-bold  [&>li]:ps-5 marker:text-[#ee2435] text-balance"
       {...props}
     />
   ),
   ol: (props) => (
     <ol
-      className="list-decimal pl-12 [&>li::marker]:text-[#ee2435] [&>li::marker]:font-bold"
+      className="list-decimal ps-12 [&>li::marker]:text-[#ee2435] [&>li::marker]:font-bold"
       {...props}
     />
   ),
