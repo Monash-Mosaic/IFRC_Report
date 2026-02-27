@@ -141,7 +141,7 @@ export default async function ReportDetailPage({ params }) {
         },
         thumbnail: chapter.thumbnail || null,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
-        released: chapter.released !== false,
+        released: chapter.released,
         sortOrder: chapter.metadata.chapterNumber,
       };
     })
