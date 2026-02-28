@@ -61,7 +61,7 @@ export const featuredVideos = [
   },
 ];
 
-export const chapterRelease = true;
+export const chapterRelease = false;
 
 export const chapters = {
   'التوليف': {
