@@ -195,7 +195,7 @@ export default async function ReportDetailPage({ params }) {
         </div>
 
         {/* Placeholder for future email subscription section */}
-        {reportData.chapterRelease && (
+        {!reportData.chapterRelease && (
           <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
         )}
       </div>
