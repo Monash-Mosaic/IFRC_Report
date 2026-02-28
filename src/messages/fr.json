@@ -161,6 +161,15 @@
       "description": "L’expérience du Rapport mondial sur les catastrophes de l’IFRC arrive bientôt."
     }
   },
+  "ReportSubscribe": {
+    "headline": "Le rapport complet arrive bientôt.",
+    "placeholder": "Rejoignez notre liste e-mail",
+    "submit": "S'abonner",
+    "submitting": "Inscription…",
+    "successTitle": "Merci de nous avoir rejoints !",
+    "successMessage": "Nous vous enverrons un e-mail lorsque le nouveau contenu sera disponible.",
+    "close": "Fermer"
+  },
   "ReportIncident": {
     "trigger": "Signaler une erreur",
     "triggerTooltip": "Signaler une erreur ?",

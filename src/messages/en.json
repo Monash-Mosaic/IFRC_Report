@@ -143,6 +143,15 @@
       "description": "The IFRC World Disasters Report experience is launching soon."
     }
   },
+  "ReportSubscribe": {
+    "headline": "Full report is coming soon.",
+    "placeholder": "Join our email list",
+    "submit": "Subscribe",
+    "submitting": "Subscribing…",
+    "successTitle": "Thank you for joining!",
+    "successMessage": "We will email you when the new content is available.",
+    "close": "Close"
+  },
   "ReportIncident": {
     "trigger": "Report an error",
     "triggerTooltip": "Report an error?",

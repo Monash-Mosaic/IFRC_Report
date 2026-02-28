@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import Breadcrumb from '@/components/Breadcrumb';
+import SubscribeBox from '@/components/SubscribeBox';
 import { Link, getPathname } from '@/i18n/navigation';
 import {
   getVisibleReports,
@@ -134,6 +135,9 @@ export default async function ReportDetailPage({ params }) {
     slug: chapterKey,
   }));
 
+  const chapterCount = Object.keys(chapters).length;
+  const showSubscribe = chapterCount < 9;
+
   return (
     <div className="min-h-screen bg-white p-8">
       <script
@@ -253,6 +257,11 @@ export default async function ReportDetailPage({ params }) {
               )}
             </div>
           ))}
+          {showSubscribe && (
+            <div className="mt-6">
+              <SubscribeBox locale={locale} showSubscribe={showSubscribe} />
+            </div>
+          )}
         </div>
       </div>
     </div>
