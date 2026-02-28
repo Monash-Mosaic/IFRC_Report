@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BookA } from 'lucide-react';
 import {
   Deprivational,
   Digital,
@@ -261,9 +261,10 @@ export function FeatureImage({ src, description, ...props }) {
 export function Definition({ children, ...props }) {
   return (
     <div
-      className="font-[var(--font-bespoke-serif)] font-extrabold border-b-2 border-[#030303ff] text-2xl"
+      className="font-[var(--font-bespoke-serif)] font-extrabold border-b-2 border-[#030303ff] text-2xl inline-flex items-center gap-2"
       {...props}
     >
+      <BookA className="w-6 h-6" />
       {children}
     </div>
   );
