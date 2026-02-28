@@ -194,14 +194,14 @@ export default async function ReportDetailPage({ params }) {
           ))}
         </div>
 
-        {/* Placeholder for future email subscription section (non-English only) */}
-        {locale !== 'en' && (
+        {/* Placeholder for future email subscription section */}
+        {reportData.chapterRelease && (
           <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
         )}
       </div>
 
-      {/* Hero Video Section (non-English only) */}
-      {locale !== 'en' && (
+      {/* Hero Video Section */}
+      {reportData.chapterRelease && (
         <div className="mt-8">
           <HeroMediaBlock
             title={tHome('landingPage.heroSection.title')}
