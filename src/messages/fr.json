@@ -136,8 +136,7 @@
     "sections": {
       "continue": "Continuer",
       "comingSoon": "Bientôt disponible",
-      "expandChapter": "Développer les détails du chapitre",
-      "moreItems": "et {count} autres éléments"
+      "expandChapter": "Développer les détails du chapitre"
     }
   },
   "ReportChapterPage": {

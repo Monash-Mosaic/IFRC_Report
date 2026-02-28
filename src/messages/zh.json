@@ -118,8 +118,7 @@
     "sections": {
       "continue": "继续",
       "comingSoon": "即将推出",
-      "expandChapter": "展开章节详情",
-      "moreItems": "和{count}个更多项目"
+      "expandChapter": "展开章节详情"
     }
   },
   "ReportChapterPage": {

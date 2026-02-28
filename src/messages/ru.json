@@ -118,8 +118,7 @@
     "sections": {
       "continue": "Продолжить",
       "comingSoon": "Скоро",
-      "expandChapter": "Развернуть детали главы",
-      "moreItems": "и еще {count} элементов"
+      "expandChapter": "Развернуть детали главы"
     }
   },
   "ReportChapterPage": {

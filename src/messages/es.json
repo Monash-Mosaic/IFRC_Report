@@ -118,8 +118,7 @@
     "sections": {
       "continue": "Continuar",
       "comingSoon": "Próximamente",
-      "expandChapter": "Expandir detalles del capítulo",
-      "moreItems": "y {count} elementos más"
+      "expandChapter": "Expandir detalles del capítulo"
     }
   },
   "ReportChapterPage": {
