@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useActionState } from 'react';
 import { useTranslations } from 'next-intl';
 import { X } from 'lucide-react';
@@ -24,28 +24,21 @@ export default function SubscribeBox({
   compact = false,
   showSubscribe = true,
 }) {
-  if (!showSubscribe) return null;
   const t = useTranslations('ReportSubscribe');
-  const [location, setLocation] = useState('');
-  const [showSuccess, setShowSuccess] = useState(false);
+  const locationInputRef = useRef(/** @type {HTMLInputElement | null} */ (null));
   const [dismissedSuccess, setDismissedSuccess] = useState(false);
 
   const [state, formAction, pending] = useActionState(subscribeReport, initialState);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setLocation(window.location.href);
+    if (typeof window !== 'undefined' && locationInputRef.current) {
+      locationInputRef.current.value = window.location.href;
     }
   }, []);
 
-  useEffect(() => {
-    if (state?.success && !dismissedSuccess) {
-      setShowSuccess(true);
-    }
-  }, [state?.success, dismissedSuccess]);
+  const showSuccess = Boolean(state?.success && !dismissedSuccess);
 
   const handleCloseSuccess = () => {
-    setShowSuccess(false);
     setDismissedSuccess(true);
   };
 
@@ -54,6 +47,8 @@ export default function SubscribeBox({
   const displaySubmit = submitLabel ?? t('submit');
   const displaySuccessTitle = successTitle ?? t('successTitle');
   const displaySuccessMessage = successMessage ?? t('successMessage');
+
+  if (!showSubscribe) return null;
 
   return (
     <div className={`rounded-lg border-2 border-gray-200 bg-[#EEEEEE] p-6 shadow-sm ${className}`}>
@@ -79,7 +74,7 @@ export default function SubscribeBox({
         </div>
       ) : (
         <form action={formAction} className={compact ? 'space-y-3' : 'space-y-4'}>
-          <input type="hidden" name="location" value={location} />
+          <input ref={locationInputRef} type="hidden" name="location" />
           <input type="hidden" name="locale" value={locale} />
           <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
             <input
