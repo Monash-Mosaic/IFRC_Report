@@ -71,14 +71,47 @@ let insightIndex = 0;
 let figIndex = 0;
 
 const tagMap = {
-  'p1.3': '{TypologyOfHarm.Physical}',
-  'p3.19': '{TypologyOfHarm.Psychological}',
-  'p1.28': '{TypologyOfHarm.Social}',
-  'p1.17': '{TypologyOfHarm.Societal}',
-  'p3.17': '{TypologyOfHarm.Informational}',
-  'p1.20': '{TypologyOfHarm.Deprivational}',
-  'p3.25': '{TypologyOfHarm.Digital}',
+  'p1.3': 'TypologyOfHarm.Physical',
+  'p3.19': 'TypologyOfHarm.Psychological',
+  'p1.28': 'TypologyOfHarm.Social',
+  'p1.17': 'TypologyOfHarm.Societal',
+  'p3.17': 'TypologyOfHarm.Informational',
+  'p1.20': 'TypologyOfHarm.Deprivational',
+  'p3.25': 'TypologyOfHarm.Digital',
 };
+
+/**
+ * Parse TOH shorthand codes from XML text content into TypologyOfHarm expressions.
+ * @param {import('unist').Node & { children?: import('unist').Node[] }} node
+ * @returns {string[]}
+ */
+const extractTohTypes = (node) => {
+  const raw = getTextContent(node);
+  if (!raw) return [];
+  return raw
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter(Boolean)
+    .map((token) => tagMap[token])
+    .filter(Boolean);
+};
+
+/**
+ * Build a mdxJsx attribute expression for `types={[TypologyOfHarm.*]}`.
+ * @param {string[]} types
+ * @returns {import('mdast').MdxJsxAttribute}
+ */
+const createTohTypesAttribute = (types) => ({
+  type: 'mdxJsxAttribute',
+  name: 'types',
+  value: {
+    type: 'mdxJsxAttributeValueExpression',
+    value: `[${types.join(', ')}]`,
+    data: {
+      estree: null,
+    },
+  },
+});
 
 /**
  * Ensure the destination directory exists before writing files.
@@ -554,6 +587,17 @@ const convertToMDXAst = (node, index, parent) => {
       ], extractTextChildren(node))];
     case 'caption':
       return [mdxJsxEl('Caption', [], extractTextChildren(node))];
+    case 'toh-body-box': {
+      const types = extractTohTypes(node);
+      if (types.length === 0) return [];
+      return [
+        mdxJsxEl('TohInsight', [
+          { type: 'mdxJsxAttribute', name: 'align', value: 'right' },
+          { type: 'mdxJsxAttribute', name: 'underline', value: null },
+          createTohTypesAttribute(types),
+        ]),
+      ];
+    }
     case 'box':
       insightIndex += 1;
       const tohIndex = node.children.findIndex((n => n.type === 'mdxJsxFlowElement' && n.name === 'TohInsight'));

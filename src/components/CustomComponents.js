@@ -280,7 +280,7 @@ export function DefinitionDescription({ children, ...props }) {
   );
 }
 
-export async function TohInsight({ children, types = [], ...props }) {
+export async function TohInsight({ children, types = [], align = 'left', underline = false, ...props }) {
   const toh = await getTranslations('TohIcons');
 
   const svgMap = {
@@ -325,11 +325,19 @@ export async function TohInsight({ children, types = [], ...props }) {
       </Tooltip>
     ),
   };
+
+  const justifyContent = align === 'right' ? 'flex-end' : 'flex-start';
+  const containerStyle = underline
+    ? { width: '100%', borderBottom: '1px solid #ee2435', paddingBottom: '0.5rem' }
+    : { width: '100%' };
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      {types.map((code) => {
-        return svgMap[code];
-      })}
+    <div style={containerStyle} {...props}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent, gap: '8px' }}>
+        {types.map((code) => {
+          return svgMap[code];
+        })}
+      </div>
     </div>
   );
 }
