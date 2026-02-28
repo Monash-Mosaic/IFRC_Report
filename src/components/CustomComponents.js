@@ -76,7 +76,7 @@ export function Contributors({ children, ...props }) {
 
 export function ContributorRole({ children, ...props }) {
   return (
-    <div style={{ fontStyle: 'italic' }} {...props}>
+    <div className='text-sm font-bold' {...props}>
       {children}
     </div>
   );
