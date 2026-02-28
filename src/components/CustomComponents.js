@@ -1,4 +1,5 @@
 import React, { Children } from 'react';
+import { ArrowRight } from 'lucide-react';
 import {
   Deprivational,
   Digital,
@@ -359,11 +360,11 @@ function chunkByPredicate(array, predicate) {
   return chunkedArray;
 }
 
-export const Box = async ({ children, ...props }) => {
+export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...props }) => {
   const c = await getTranslations('ContributionInsight');
   const [h2, ...rest] = Children.toArray(children);
   const contributorTagIndex = rest.findIndex((child) => child.type === ContributorTag);
-  const contributorTag = rest.splice(contributorTagIndex, 1); // extract ContributorTag if exists
+  const contributorTag = contributorTagIndex >= 0 ? rest.splice(contributorTagIndex, 1) : [];
   const splittedByAnchor = chunkByPredicate(rest, (child) => child.type === Anchor);
   return (
     <div>
@@ -372,9 +373,20 @@ export const Box = async ({ children, ...props }) => {
           <div className="[border-inline-start:1px_solid_#ee2435]" />
           <div className="flex items-center justify-between pt-4 pb-4">
             <span>
-              {c('title')} {props.index}
+              {c('title')} {index}
             </span>
-            {props.types && <TohInsight types={props.types} />}
+            <div className="flex items-center gap-3">
+              {types ? <TohInsight types={types} /> : null}
+              {arrowHref ? (
+                <a
+                  href={arrowHref}
+                  aria-label={arrowLabel ?? 'Jump to referenced content'}
+                  className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors"
+                >
+                  <ArrowRight className="w-5 h-5" strokeWidth={2.75} />
+                </a>
+              ) : null}
+            </div>
           </div>
         </div>
         {<Spotlight>{h2}</Spotlight>}
