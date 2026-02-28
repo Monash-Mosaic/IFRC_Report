@@ -15,6 +15,7 @@ import {
   ReccomendationsTitle,
   SmallQuote,
   SmallQuoteAuthor,
+  TableLabel,
   TohInsight,
 } from '@/components/CustomComponents';
 
@@ -527,13 +528,13 @@ export const subtitle = '';
 
 <table class="w-full table-auto border-separate border-spacing-2">
   <caption id="typology-of-harm-ar" class="caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
-    <span>تصنيف أنواع الضرر</span>{' '}
+    <TableLabel index="1.1" label="جدول" /> <span>تصنيف أنواع الضرر</span>{' '}
     <a
       href="#box-1-1-link-source-ar"
       aria-label="العودة إلى المساهمة 1.1"
-      className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors inline-flex align-middle"
+      className="pl-1 align-top text-[#8b5cf6] hover:text-[#7c3aed] transition-colors inline-flex align-middle"
     >
-      <Undo2 className="w-5 h-5 [transform:scaleY(-1)]" strokeWidth={2.75} />
+      <Undo2 className="w-4 h-4 [transform:scaleY(-1)]" strokeWidth={2.75} />
     </a>
   </caption>
   <colgroup>

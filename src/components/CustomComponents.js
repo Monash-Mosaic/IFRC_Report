@@ -450,6 +450,14 @@ export function ChapterLink({ children, ...props }) {
   );
 }
 
+export function TableLabel({ index, label = 'Table', className = '', ...props }) {
+  return (
+    <span className={`inline-block align-top me-3 text-[#ee2435] text-base font-medium ${className}`} {...props}>
+      {label} {index}
+    </span>
+  );
+}
+
 const CustomComponents = {
   Box,
   H1Contributor,
@@ -476,6 +484,7 @@ const CustomComponents = {
   ReccomendationsTitle,
   EndnotesLink,
   ChapterLink,
+  TableLabel,
 };
 
 export default CustomComponents;
