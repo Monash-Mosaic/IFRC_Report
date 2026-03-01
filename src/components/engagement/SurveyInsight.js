@@ -26,13 +26,7 @@ function ProgressRow({ id, rank, label, value, selectedTag, handleSelectionTag }
         aria-label="Save insight"
       >
         <Heart
-          className={`
-                    ${
-                      selectedTag[id]
-                        ? 'fill-red-500 text-red-500'
-                        : 'text-stone-400 hover:text-red-400'
-                    }
-                  `}
+          className={`${selectedTag[id] ? 'fill-red-500 text-red-500' : 'text-stone-400 hover:text-red-400'}`}
         />
       </button>
     </div>
@@ -52,20 +46,17 @@ function SurveyCard({ item, index, selectedTag, handleSelectionTag }) {
         return <Shield size={20} className="text-red-600" />;
     }
   };
+
   return (
     <div
-      key={item.id}
-      className={`
-                relative bg-white rounded-lg p-6
-                transition-all duration-300 hover:shadow-lg
-                ${selectedTag[item.id] ? 'bg-red-50' : 'hover:border-red-300'}
-              `}
+      className={`relative bg-white rounded-lg p-6 transition-all duration-300 hover:shadow-lg ${
+        selectedTag[item.id] ? 'bg-red-50' : 'hover:border-red-300'
+      }`}
       style={{
         animationDelay: `${index * 0.1}s`,
         animation: 'fade-in 0.5s ease-out forwards',
       }}
     >
-      {/* Heart Button */}
       <button
         onClick={() => handleSelectionTag(item.id)}
         className="absolute top-4 right-4 transition-all duration-200 hover:scale-110"
@@ -73,17 +64,10 @@ function SurveyCard({ item, index, selectedTag, handleSelectionTag }) {
       >
         <Heart
           size={24}
-          className={`
-              ${
-                selectedTag[item.id]
-                  ? 'fill-red-500 text-red-500'
-                  : 'text-stone-400 hover:text-red-400'
-              }
-            `}
+          className={`${selectedTag[item.id] ? 'fill-red-500 text-red-500' : 'text-stone-400 hover:text-red-400'}`}
         />
       </button>
 
-      {/* Content Container */}
       <div className="flex flex-col items-center text-center space-y-4 mt-2">
         <div className="p-3 bg-red-50 rounded-full">{getIcon(item.id)}</div>
         <div className="text-lg font-bold text-stone-800">{item.stat}</div>
@@ -95,54 +79,17 @@ function SurveyCard({ item, index, selectedTag, handleSelectionTag }) {
 
 export default function SurveyInsight({ selectedTag, handleSelectionTag }) {
   const statsData = [
-    {
-      id: 'affected',
-      stat: '73.3%',
-      text: 'have been personally affected by harmful information',
-    },
-    {
-      id: 'reject',
-      stat: '55.0%',
-      text: 'have seen people rejecting aid due to false or misleading info',
-    },
-    {
-      id: 'combat',
-      stat: '63.5%',
-      text: 'have seen groups organize to combat false and misleading info, online or offline',
-    },
+    { id: 'affected', stat: '73.3%', text: 'have been personally affected by harmful information' },
+    { id: 'reject', stat: '55.0%', text: 'have seen people rejecting aid due to false or misleading info' },
+    { id: 'combat', stat: '63.5%', text: 'have seen groups organize to combat false and misleading info, online or offline' },
   ];
 
   const progressData = [
-    {
-      id: 'dialogue',
-      rank: 1,
-      text: 'Dialogue and community participation',
-      percentage: 64.2,
-    },
-    {
-      id: 'leadership',
-      rank: 2,
-      text: 'Strong local leadership',
-      percentage: 61.0,
-    },
-    {
-      id: 'clear',
-      rank: 3,
-      text: 'Clear, coherent and transparent communications',
-      percentage: 57.9,
-    },
-    {
-      id: 'trusted',
-      rank: 4,
-      text: 'Trusted messengers from within the community',
-      percentage: 55.5,
-    },
-    {
-      id: 'proximity',
-      rank: 5,
-      text: 'Proximity and presence of aid providersp',
-      percentage: 42.1,
-    },
+    { id: 'dialogue', rank: 1, text: 'Dialogue and community participation', percentage: 64.2 },
+    { id: 'leadership', rank: 2, text: 'Strong local leadership', percentage: 61.0 },
+    { id: 'clear', rank: 3, text: 'Clear, coherent and transparent communications', percentage: 57.9 },
+    { id: 'trusted', rank: 4, text: 'Trusted messengers from within the community', percentage: 55.5 },
+    { id: 'proximity', rank: 5, text: 'Proximity and presence of aid providers', percentage: 42.1 },
   ];
 
   return (
@@ -150,19 +97,21 @@ export default function SurveyInsight({ selectedTag, handleSelectionTag }) {
       <div className="px-6 py-4 border-b border-slate-100">
         <div className="text-sm font-semibold text-slate-900">Survey Insights</div>
       </div>
-      <div className="w-full border-b border-slate-100 ">
+
+      <div className="w-full border-b border-slate-100">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {statsData.map((item, index) => (
             <SurveyCard
-              key={index}
+              key={item.id}
               index={index}
               item={item}
               selectedTag={selectedTag}
               handleSelectionTag={handleSelectionTag}
-            ></SurveyCard>
+            />
           ))}
         </div>
       </div>
+
       <div className="px-6">
         {progressData.map((row) => (
           <ProgressRow
@@ -176,41 +125,6 @@ export default function SurveyInsight({ selectedTag, handleSelectionTag }) {
           />
         ))}
       </div>
-    </div>
-  ];
-
-  return (
-    <div className="mt-10 bg-white rounded-xl border border-slate-200 shadow-sm">
-      <div className="px-6 py-4 border-b border-slate-100">
-        <div className="text-sm font-semibold text-slate-900">Survey Insights</div>
-      </div>
-      <div className="w-full border-b border-slate-100 ">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {statsData.map((item, index) => (
-            <SurveyCard
-              key={index}
-              index={index}
-              item={item}
-              selectedTag={selectedTag}
-              handleSelectionTag={handleSelectionTag}
-            ></SurveyCard>
-          ))}
-        </div>
-      </div>
-      <div className="px-6">
-        {progressData.map((row) => (
-          <ProgressRow
-            key={row.rank}
-            id={row.id}
-            rank={row.rank}
-            label={row.text}
-            value={row.percentage}
-            selectedTag={selectedTag}
-            handleSelectionTag={handleSelectionTag}
-          />
-        ))}
-      </div>
-    </>
     </div>
   );
 }
