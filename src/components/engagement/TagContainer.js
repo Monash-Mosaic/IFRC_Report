@@ -1,154 +1,106 @@
-import { ChevronDown, Funnel, Shuffle, Circle, CircleCheck } from 'lucide-react';
-import { useState } from 'react';
-export default function TagContainer({ selectedTag, setSelectedTag, handleSelectionTag }) {
-  const [isShuffleTag, setIsShuffleTag] = useState(false);
-  const tags = [
-    {
-      id: 'safety',
-      label: 'Safety and security of staff and volunteers',
-      type: 'harm_category',
-    },
-    {
-      id: 'access_contstraints',
-      label: 'Access constraints and acceptance risks',
-      type: 'harm_category',
-    },
-    {
-      id: 'programme',
-      label: 'Programme effectiveness and accountability',
-      type: 'harm_category',
-    },
-    {
-      id: 'rumour_tracking',
-      label: 'Rumour tracking and early warning',
-      type: 'response_strategy',
-    },
-    {
-      id: 'information_aid',
-      label: 'Information as aid',
-      type: 'response_strategy',
-    },
-    {
-      id: 'trusted_messenger',
-      label: 'Trusted messengers and local intermediaries',
-      type: 'response_strategy',
-    },
-    {
-      id: 'community_engagement',
-      label: 'Community engagement and accountability',
-      type: 'response_strategy',
-    },
-    {
-      id: 'prebunking',
-      type: 'response_strategy',
-      label: 'Prebunking and narrative resilience',
-    },
-    {
-      id: 'debunking',
-      label: 'Debunking and corrective communication',
-      type: 'response_strategy',
-    },
-    {
-      id: 'principles',
-      label: 'Humanitarian principles and neutrality',
-      type: 'governance',
-    },
-    {
-      id: 'freedom',
-      label: 'Freedom of expression and information rights',
-      type: 'governance',
-    },
-    {
-      id: 'regulation',
-      label: 'Regulation and public policy framework',
-      type: 'governance',
-    },
-  ];
+import React from 'react';
+import { Funnel } from 'lucide-react';
 
-  const tag_combo = [
-    { programme: true, regulation: true },
-    { safety: true, access_contstraints: true },
-  ];
+export const TAG_CATEGORIES = [
+  {
+    id: 'harm',
+    label: 'Harm',
+    column: 'harm',
+    tags: [
+      { id: 'psychological', label: 'Psychological' },
+      { id: 'societal', label: 'Societal' },
+      { id: 'social', label: 'Social' },
+      { id: 'informational', label: 'Informational' },
+      { id: 'digital_technological', label: 'Digital/technological' },
+      { id: 'physical', label: 'Physical' },
+      { id: 'deprivational', label: 'Deprivational/financial/economic' },
+    ],
+  },
+  {
+    id: 'operational_impact',
+    label: 'Operational Impact',
+    column: 'operational',
+    tags: [
+      { id: 'access_constraints', label: 'Access constraints and acceptance risks' },
+      { id: 'distorted_needs', label: 'Distorted needs and demand signals' },
+      { id: 'programme', label: 'Programme effectiveness and accountability' },
+      { id: 'safety', label: 'Safety and security of staff and volunteers' },
+    ],
+  },
+  {
+    id: 'response_strategy',
+    label: 'Response Strategy',
+    column: 'response',
+    tags: [
+      { id: 'community_engagement', label: 'Community engagement and accountability' },
+      { id: 'information_aid', label: 'Information as aid' },
+      { id: 'prebunking', label: 'Prebunking and narrative resilience' },
+      { id: 'rumour_tracking', label: 'Rumour tracking and early warning' },
+      { id: 'trusted_messenger', label: 'Trusted messengers and local intermediaries' },
+      { id: 'debunking', label: 'Debunking and corrective communication' },
+      { id: 'partnership', label: 'Partnership and coordination' },
+    ],
+  },
+  {
+    id: 'governance',
+    label: 'Governance',
+    column: 'governance',
+    tags: [
+      { id: 'regulation', label: 'Regulation and public policy frameworks' },
+      { id: 'freedom', label: 'Freedom of expression and information rights' },
+      { id: 'technology_governance', label: 'Technology governance and platform accountability' },
+      { id: 'principles', label: 'Humanitarian principles and neutrality' },
+    ],
+  },
+];
 
-  const handleShuffleTag = () => {
-    if (!isShuffleTag) {
-      const randomIndex = Math.floor(Math.random() * tag_combo.length);
-      setSelectedTag(tag_combo[randomIndex]);
-    } else {
-      setSelectedTag({});
-    }
-    setIsShuffleTag(!isShuffleTag);
-  };
-
-  const [expandedTags, setExpandedTags] = useState(true);
-  const toggleTag = () => {
-    setExpandedTags(!expandedTags);
-  };
+export default function TagContainer({ selectedTag, handleSelectionTag }) {
+  const selectedCount = Object.values(selectedTag).filter(Boolean).length;
 
   return (
-    <div
-      className="animate-fade-in bg-white rounded-xl border border-slate-200 shadow-sm"
-      style={{ animationDelay: '0.1s' }}
-    >
-      <div className="w-full h-15 flex justify-between items-center px-2 rounded-lg">
-        {/* Left Side - Filter Label */}
-        <div className="flex items-center gap-2">
-          <Funnel size={20} className="text-[#ee2435]" />
-          <span className="text-sm font-semibold text-slate-900">Explore Content By Tags</span>
+    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      {/* Header */}
+      <div className="px-6 pt-5 pb-4">
+        <div className="flex items-center gap-2 mb-3">
+          <Funnel size={17} className="text-[#ee2435]" />
+          <span className="text-sm font-bold text-slate-900">Browse Topics</span>
+          {selectedCount > 0 && (
+            <span className="text-xs font-medium text-white bg-[#ee2435] px-2 py-0.5 rounded-full">
+              {selectedCount} selected
+            </span>
+          )}
         </div>
-
-        {/* Right Side - Shuffle and Dropdown */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => handleShuffleTag()}
-            className="hover:opacity-70 text-[#ee2435] transition-opacity"
-          >
-            <Shuffle size={20} className="hover:text-[#ee2435] text-stone-700" />
-          </button>
-          <button onClick={() => toggleTag()}>
-            <ChevronDown
-              size={20}
-              className={`text-stone-500 transition-transform duration-300 ${
-                !expandedTags ? 'rotate-180' : ''
-              }`}
-            />
-          </button>
-        </div>
+        <div className="h-0.5 bg-gradient-to-r from-[#ee2435] to-orange-400 rounded-full" />
       </div>
 
-      {/* Expanded Tags List - Centered with 60% width */}
-      <div className="w-full flex justify-center">
-        <div
-          className={`w-full transition-all duration-300 ease-in-out overflow-hidden
-          ${expandedTags ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-        >
-          <div className="flex flex-wrap gap-3 justify-center p-4">
-            {tags.map((tag, index) => (
-              <button
-                key={tag.id}
-                onClick={() => handleSelectionTag(tag.id)}
-                className={`
-                tag-btn px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
-                ${
-                  selectedTag[tag.id]
-                    ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white border-2'
-                    : 'bg-white text-stone-700 border-2 border-stone-200 hover:border-red-300 hover:border-2'
-                }
-              `}
-                style={{ animationDelay: `${0.15 + index * 0.05}s` }}
+      {/* 4-column tag grid */}
+      <div className="px-6 pb-6">
+        <div className="grid grid-cols-4 gap-x-3 gap-y-2">
+          {TAG_CATEGORIES.map((category) => (
+            <React.Fragment key={category.id}>
+              {/* Full-width section label */}
+              <div
+                className="col-span-4 text-sm font-bold text-slate-800 pt-3 pb-1"
               >
-                <div className="flex items-center gap-2">
-                  {selectedTag[tag.id] ? (
-                    <CircleCheck size={18}></CircleCheck>
-                  ) : (
-                    <Circle size={18} className="text-stone-400"></Circle>
-                  )}
+                {category.label}
+              </div>
 
+              {/* Tags — each fills one cell, wrap naturally across 4 columns */}
+              {category.tags.map((tag) => (
+                <button
+                  key={tag.id}
+                  onClick={() => handleSelectionTag(tag.id)}
+                  className={`px-3 py-2 rounded-lg text-xs font-medium border text-center transition-all duration-150 ${
+                    selectedTag[tag.id]
+                      ? 'bg-[#ee2435] border-[#ee2435] text-white'
+                      : 'bg-white text-[#ee2435] border-[#ee2435]/40 hover:border-[#ee2435] hover:bg-red-50'
+                  }`}
+                >
                   {tag.label}
-                </div>
-              </button>
-            ))}
-          </div>
+                </button>
+              ))}
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </div>
