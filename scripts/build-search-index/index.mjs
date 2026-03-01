@@ -63,9 +63,7 @@ function extractInlineText(node) {
 
 const { reportsByLocale } = report;
 const indices = Object.fromEntries(Object.keys(reportsByLocale).map(e => [e, []]));
-const configuredEnvironment = process.env.CLOUDFLARE_ENV || 'preview';
-const cloudflareEnvironment =
-  configuredEnvironment === 'production' ? undefined : configuredEnvironment;
+const cloudflareEnvironment = process.env.CLOUDFLARE_ENV;
 const searchIndexNamespace = process.env.NEXT_PUBLIC_GIT_TAG?.trim() || '';
 
 async function createPlatformProxy() {
