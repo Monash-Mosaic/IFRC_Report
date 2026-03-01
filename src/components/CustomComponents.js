@@ -513,15 +513,25 @@ export function ChapterImage({
   width = 900,
   height = 700,
   imageTitle,
+  imageSubtitle,
+  caption,
   imageIndex,
   imageLabel = 'Fig',
 }) {
   return (
     <figure className="w-full">
-      {imageTitle || imageIndex ? (
+      {imageTitle || imageSubtitle || imageIndex ? (
         <div className="mb-3 text-left max-w-[900px] mx-auto">
-          {imageIndex ? <FigureLabel index={imageIndex} label={imageLabel} className="me-2" /> : null}
-          {imageTitle ? <span className="text-2xl font-bold">{imageTitle}</span> : null}
+          {imageTitle || imageIndex ? (
+            <div className="flex items-start">
+              {imageIndex ? <FigureLabel index={imageIndex} label={imageLabel} className="me-2" /> : null}
+              <div>
+                {imageTitle ? <span className="text-2xl font-bold">{imageTitle}</span> : null}
+                {imageSubtitle ? <p className="mt-1 text-base font-light text-slate-700">{imageSubtitle}</p> : null}
+              </div>
+            </div>
+          ) : null}
+          {!imageTitle && imageSubtitle ? <p className="mt-1 text-base font-light text-slate-700">{imageSubtitle}</p> : null}
         </div>
       ) : null}
       <div
@@ -534,6 +544,7 @@ export function ChapterImage({
       >
         <Image src={imagePath} alt={alt} fill className="object-cover" />
       </div>
+      {caption ? <figcaption className="mt-2 max-w-[900px] mx-auto text-right text-sm text-slate-600">{caption}</figcaption> : null}
     </figure>
   );
 }
