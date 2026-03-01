@@ -128,8 +128,15 @@
     "tableOfContent": "Table des matières",
     "bookmark": "Marque-page",
     "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
+    "pageTitle": "Rapport mondial sur les catastrophes — Table des matières",
+    "breadcrumb": {
+      "home": "Page d'accueil",
+      "chapters": "Chapitres"
+    },
     "sections": {
-      "continue": "Continuer"
+      "continue": "Continuer",
+      "comingSoon": "Bientôt disponible",
+      "expandChapter": "Développer les détails du chapitre"
     }
   },
   "ReportChapterPage": {
@@ -220,7 +227,7 @@
     "message": "Détails de l’erreur : {message}",
     "backHome": "Retour à l'accueil"
   },
-  
+
   "About": {
     "breadcrumbHome": "Page d'accueil",
     "breadcrumbCurrent": "À propos",
@@ -276,5 +283,4 @@
 
     "research": "<bold>L’Académie Solferino de l’IFRC</bold> a mené une étude rapide d’intelligence communautaire de deux mois avec 40 volontaires et membres du personnel issus de 10 Sociétés nationales. Agissant en tant que chercheurs communautaires, ils ont interrogé 132 volontaires et membres de communautés touchées par des crises humanitaires. Les résultats ont été synthétisés par des universitaires bénévoles de l’Université du Michigan, de l’Université de Northumbria et d’Open Lab (Université de Newcastle), garantissant la préservation des nuances locales. Des citations sélectionnées figurent tout au long du rapport."
   }
-
 }

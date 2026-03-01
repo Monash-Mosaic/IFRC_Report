@@ -61,6 +61,8 @@ export const featuredVideos = [
   },
 ];
 
+export const chapterRelease = false;
+
 export const chapters = {
   'chapitre-02': {
     metadata: {

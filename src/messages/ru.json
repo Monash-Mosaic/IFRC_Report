@@ -110,8 +110,15 @@
     "tableOfContent": "Оглавление",
     "bookmark": "Закладка",
     "bookmarkAria": "{action, select, add {Добавить закладку} remove {Удалить закладку} other {Неизвестно}} для {section}",
+    "pageTitle": "Доклад о мировых катастрофах — Содержание",
+    "breadcrumb": {
+      "home": "Главная страница",
+      "chapters": "Главы"
+    },
     "sections": {
-      "continue": "Продолжить"
+      "continue": "Продолжить",
+      "comingSoon": "Скоро",
+      "expandChapter": "Развернуть детали главы"
     }
   },
   "ReportChapterPage": {
@@ -202,7 +209,7 @@
     "message": "Подробности ошибки: {message}",
     "backHome": "На главную"
   },
-  
+
   "About": {
     "breadcrumbHome": "Главная страница",
     "breadcrumbCurrent": "О нас",
@@ -229,7 +236,7 @@
     "webUrlTitle": "Ссылка на веб-версию",
     "webUrlText": "www.ifrcwdr26.com"
   },
-   "Acknowledgements": {
+  "Acknowledgements": {
     "meta": {
       "title": "Благодарности и участники",
       "description": "Признание организаций и людей, поддержавших подготовку, перевод и публикацию Всемирного доклада о катастрофах IFRC 2026."

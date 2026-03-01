@@ -110,8 +110,15 @@
     "tableOfContent": "Table of Contents",
     "bookmark": "Bookmark",
     "bookmarkAria": "{action, select, add {Add bookmark} remove {Remove bookmark} other {Unknown}} for {section}",
+    "pageTitle": "World Disasters Report Table of Contents",
+    "breadcrumb": {
+      "home": "Home Page",
+      "chapters": "Chapters"
+    },
     "sections": {
-      "continue": "Continue"
+      "continue": "Continue",
+      "comingSoon": "Coming Soon",
+      "expandChapter": "Expand chapter details"
     }
   },
   "ReportChapterPage": {
@@ -194,7 +201,8 @@
   "NotFound": {
     "title": "Page not found",
     "description": "The page you are looking for does not exist or has been moved.",
-    "backHome": "Go to home"},
+    "backHome": "Go to home"
+  },
   "Error": {
     "title": "Something went wrong",
     "description": "An unexpected error occurred. Please try again.",
