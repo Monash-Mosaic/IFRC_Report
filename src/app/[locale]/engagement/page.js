@@ -1,17 +1,10 @@
 'use client';
 import { useState } from 'react';
-<<<<<<< HEAD
-
 import TagContainer from '@/components/engagement/TagContainer';
 import QuotesSection from '@/components/engagement/QuotesSection';
-
 import QuoteMap from '@/components/engagement/QuoteMap';
 import SurveyInsight from '@/components/engagement/SurveyInsight';
-=======
-
-import TagContainer from '@/components/engagement/TagContainer';
-import QuotesSection from '@/components/engagement/QuotesSection';
->>>>>>> 6883e5c (Revamp engagement page with Browse Topics, Quotes section, and hero image)
+import CommunityResearchInsight from '@/components/engagement/CommunityResearchInsight';
 
 export default function EngagementPage() {
   const [selectedTag, setSelectedTag] = useState({});
@@ -25,7 +18,6 @@ export default function EngagementPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Hero */}
       <div className="w-full overflow-hidden" style={{ height: '420px' }}>
         <img
           src="/engagement_page_picture.png"
@@ -34,10 +26,12 @@ export default function EngagementPage() {
         />
       </div>
 
-      {/* Content */}
-      <main className="max-w-6xl mx-auto px-6 py-8 space-y-6">
+      <main className="max-w-6xl mx-auto px-6 py-8 space-y-8">
         <TagContainer selectedTag={selectedTag} handleSelectionTag={handleSelectionTag} />
+        <SurveyInsight selectedTag={selectedTag} handleSelectionTag={handleSelectionTag} />
+        <QuoteMap selectedTag={selectedTag} handleSelectionTag={handleSelectionTag} />
         <QuotesSection selectedTag={selectedTag} />
+        <CommunityResearchInsight />
       </main>
     </div>
   );
