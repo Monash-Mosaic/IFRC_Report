@@ -169,7 +169,7 @@ try {
       namespace: searchIndexNamespace,
     });
     await retryAsync(() => searchIndex.clear(), 3, 500);
-    const BATCH_SIZE = Number(process.env.SEARCH_BATCH_SIZE) || 100;
+    const BATCH_SIZE = Number(process.env.SEARCH_BATCH_SIZE) || 50;
     const total = indices[locale].length;
     const batches = Math.ceil(total / BATCH_SIZE) || 1;
     for (let b = 0; b < batches; b += 1) {
