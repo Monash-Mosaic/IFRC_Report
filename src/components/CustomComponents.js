@@ -113,11 +113,11 @@ export function SideNote({ children, ...props }) {
 
 export function SmallQuote({ children, ...props }) {
   return (
-    <blockquote
-      className="font-[var(--font-bespoke-serif)] my-4 text-2xl font-extrabold [padding-inline-start:1rem] [border-inline-start:4px_solid_#ee2435]"
-      {...props}
-    >
-      {children}
+    <blockquote className="font-[var(--font-bespoke-serif)] my-4 text-2xl font-extrabold" {...props}>
+      <div className="flex items-start gap-4">
+        <Quote className="w-8 h-8 shrink-0 rotate-180 text-[#ee2435]" strokeWidth={2} fill="#ee2435" />
+        <span>{children}</span>
+      </div>
     </blockquote>
   );
 }
