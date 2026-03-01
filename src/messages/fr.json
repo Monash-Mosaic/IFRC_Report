@@ -129,8 +129,15 @@
     "tableOfContent": "Table des matières",
     "bookmark": "Marque-page",
     "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
+    "pageTitle": "Rapport mondial sur les catastrophes — Table des matières",
+    "breadcrumb": {
+      "home": "Page d'accueil",
+      "chapters": "Chapitres"
+    },
     "sections": {
-      "continue": "Continuer"
+      "continue": "Continuer",
+      "comingSoon": "Bientôt disponible",
+      "expandChapter": "Développer les détails du chapitre"
     }
   },
   "ReportChapterPage": {
@@ -161,6 +168,19 @@
       "title": "Bientôt disponible",
       "description": "L’expérience du Rapport mondial sur les catastrophes de l’IFRC arrive bientôt."
     }
+  },
+  "ReportIncident": {
+    "trigger": "Signaler une erreur",
+    "triggerTooltip": "Signaler une erreur ?",
+    "close": "Fermer",
+    "title": "Signaler une erreur",
+    "descriptionLabel": "Quel est le problème ?",
+    "descriptionPlaceholder": "Décrivez le problème (lien cassé, texte incorrect, mise en page…)…",
+    "submit": "Envoyer",
+    "submitting": "Envoi…",
+    "cancel": "Annuler",
+    "success": "Merci. Votre signalement a bien été envoyé.",
+    "error": "Une erreur s'est produite. Veuillez réessayer."
   },
   "SidebarPanel": {
     "expandSidebar": "Étendre la barre latérale",

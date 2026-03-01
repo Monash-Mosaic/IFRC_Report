@@ -7,6 +7,7 @@ import { getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { getDirection } from '@/i18n/helper';
 import { routing } from '@/i18n/routing';
+import ReportIncidentWidget from '@/components/ReportIncidentWidget';
 import './globals.css';
 
 export async function generateMetadata({ params }) {
@@ -39,7 +40,10 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale} dir={dir}>
       <body className={`${GeistSans.variable} ${GeistMono.variable} locale-${locale} antialiased`}>
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {children}
+          <ReportIncidentWidget />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

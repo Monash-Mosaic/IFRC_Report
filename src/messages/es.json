@@ -111,8 +111,15 @@
     "tableOfContent": "Tabla de Contenidos",
     "bookmark": "Marcador",
     "bookmarkAria": "{action, select, add {Añadir marcador} remove {Eliminar marcador} other {Desconocido}} para {section}",
+    "pageTitle": "Informe Mundial sobre Desastres — Tabla de Contenidos",
+    "breadcrumb": {
+      "home": "Página de inicio",
+      "chapters": "Capítulos"
+    },
     "sections": {
-      "continue": "Continuar"
+      "continue": "Continuar",
+      "comingSoon": "Próximamente",
+      "expandChapter": "Expandir detalles del capítulo"
     }
   },
   "ReportChapterPage": {
@@ -236,5 +243,18 @@
       "title": "Próximamente",
       "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
     }
+  },
+  "ReportIncident": {
+    "trigger": "Reportar un error",
+    "triggerTooltip": "¿Reportar un error?",
+    "close": "Cerrar",
+    "title": "Reportar un error",
+    "descriptionLabel": "¿Qué ha ido mal?",
+    "descriptionPlaceholder": "Describe el problema (enlace roto, texto incorrecto, diseño, etc.)…",
+    "submit": "Enviar",
+    "submitting": "Enviando…",
+    "cancel": "Cancelar",
+    "success": "Gracias. Tu reporte se ha enviado.",
+    "error": "Algo ha fallado. Inténtalo de nuevo."
   }
 }

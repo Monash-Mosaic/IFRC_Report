@@ -111,8 +111,15 @@
     "tableOfContent": "Оглавление",
     "bookmark": "Закладка",
     "bookmarkAria": "{action, select, add {Добавить закладку} remove {Удалить закладку} other {Неизвестно}} для {section}",
+    "pageTitle": "Доклад о мировых катастрофах — Содержание",
+    "breadcrumb": {
+      "home": "Главная страница",
+      "chapters": "Главы"
+    },
     "sections": {
-      "continue": "Продолжить"
+      "continue": "Продолжить",
+      "comingSoon": "Скоро",
+      "expandChapter": "Развернуть детали главы"
     }
   },
   "ReportChapterPage": {
@@ -143,6 +150,19 @@
       "title": "Скоро",
       "description": "Цифровая версия Всемирного доклада о бедствиях IFRC скоро будет доступна."
     }
+  },
+  "ReportIncident": {
+    "trigger": "Сообщить об ошибке",
+    "triggerTooltip": "Сообщить об ошибке?",
+    "close": "Закрыть",
+    "title": "Сообщить об ошибке",
+    "descriptionLabel": "Что произошло?",
+    "descriptionPlaceholder": "Опишите проблему (неработающая ссылка, неверный текст и т.д.)…",
+    "submit": "Отправить",
+    "submitting": "Отправка…",
+    "cancel": "Отмена",
+    "success": "Спасибо. Ваше сообщение отправлено.",
+    "error": "Что-то пошло не так. Попробуйте ещё раз."
   },
   "SidebarPanel": {
     "expandSidebar": "Развернуть боковую панель",

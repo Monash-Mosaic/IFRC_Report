@@ -111,8 +111,15 @@
     "tableOfContent": "جدول المحتويات",
     "bookmark": "إشارة مرجعية",
     "bookmarkAria": "{action, select, add {إضافة إشارة مرجعية} remove {إزالة الإشارة المرجعية} other {غير معروف}} للقسم {section}",
+    "pageTitle": "تقرير الكوارث العالمي — جدول المحتويات",
+    "breadcrumb": {
+      "home": "الصفحة الرئيسية",
+      "chapters": "الفصول"
+    },
     "sections": {
-      "continue": "متابعة"
+      "continue": "متابعة",
+      "comingSoon": "قريباً",
+      "expandChapter": "توسيع تفاصيل الفصل"
     }
   },
   "ReportChapterPage": {
@@ -236,5 +243,18 @@
       "title": "قريبًا",
       "description": "تجربة تقرير الكوارث العالمي للاتحاد الدولي ستنطلق قريبًا."
     }
+  },
+  "ReportIncident": {
+    "trigger": "الإبلاغ عن خطأ",
+    "triggerTooltip": "الإبلاغ عن خطأ؟",
+    "close": "إغلاق",
+    "title": "الإبلاغ عن خطأ",
+    "descriptionLabel": "ما المشكلة؟",
+    "descriptionPlaceholder": "صف المشكلة (رابط معطل، نص خاطئ، تخطيط، إلخ)…",
+    "submit": "إرسال",
+    "submitting": "جاري الإرسال…",
+    "cancel": "إلغاء",
+    "success": "شكراً. تم إرسال تقريرك.",
+    "error": "حدث خطأ. يرجى المحاولة مرة أخرى."
   }
 }

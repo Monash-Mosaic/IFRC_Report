@@ -111,8 +111,15 @@
     "tableOfContent": "目录",
     "bookmark": "书签",
     "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
+    "pageTitle": "世界灾害报告 — 目录",
+    "breadcrumb": {
+      "home": "首页",
+      "chapters": "章节"
+    },
     "sections": {
-      "continue": "继续"
+      "continue": "继续",
+      "comingSoon": "即将推出",
+      "expandChapter": "展开章节详情"
     }
   },
   "ReportChapterPage": {
@@ -128,6 +135,19 @@
       "title": "即将上线",
       "description": "IFRC《世界灾难报告》数字体验即将上线。"
     }
+  },
+  "ReportIncident": {
+    "trigger": "报告错误",
+    "triggerTooltip": "报告错误？",
+    "close": "关闭",
+    "title": "报告错误",
+    "descriptionLabel": "出了什么问题？",
+    "descriptionPlaceholder": "描述问题（如链接失效、文字错误、版式问题等）…",
+    "submit": "提交",
+    "submitting": "提交中…",
+    "cancel": "取消",
+    "success": "感谢。您的报告已提交。",
+    "error": "出错了，请重试。"
   },
   "SearchPage": {
     "meta": {
