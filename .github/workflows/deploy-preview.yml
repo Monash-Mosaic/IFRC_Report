@@ -138,14 +138,14 @@ jobs:
           echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
           echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
-      - name: Build search index (Production on Preview)
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_ENV: ''
-          NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
-        run: npm run build:search
+      # - name: Build search index (Production on Preview)
+      #   if: ${{ github.event_name != 'pull_request' }}
+      #   env:
+      #     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #     CLOUDFLARE_ENV: ''
+      #     NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
+      #   run: npm run build:search
 
       - name: Deploy to Cloudflare (preview for main)
         id: deploy_main
@@ -157,8 +157,8 @@ jobs:
           echo "Update Preview URL for main branch deployment"
           NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_PREVIEW_SITE_URL }} npm run deploy -- --env="preview" --tag main
 
-          echo "Update Production on Preview Environment (account)"
-          NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }} npm run deploy -- --env="" --tag $(git describe --tags --always)
+          # echo "Update Production on Preview Environment (account)"
+          # NEXT_PUBLIC_SITE_URL=${{ env.NEXT_PUBLIC_SITE_URL }} npm run deploy -- --env="" --tag $(git describe --tags --always)
 
       - name: Comment preview URL on PR
         if: ${{ github.event_name == 'pull_request' }}
