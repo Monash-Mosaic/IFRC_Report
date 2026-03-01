@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import { ArrowRight, BookA } from 'lucide-react';
+import { ArrowRight, BookA, Info } from 'lucide-react';
 import {
   Deprivational,
   Digital,
@@ -426,6 +426,39 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
   );
 };
 
+export function QuestionAnswerBox({ children, ...props }) {
+  return (
+    <section className="my-8 grid grid-cols-[auto_1fr]" {...props}>
+      {children}
+    </section>
+  );
+}
+
+export function QuestionAnswerBoxTitle({ children, ...props }) {
+  return (
+    <>
+      <div className="flex items-start pt-1 pb-3 [border-inline-end:2px_solid_#fe4d60] [padding-inline-end:0.75rem] border-b-2 border-b-[#fe4d60]" {...props}>
+        <Info className="w-7 h-7 shrink-0" strokeWidth={1.5} />
+      </div>
+      <span className="font-bold text-2xl [padding-inline-start:0.75rem] pb-3 border-b-2 border-b-[#fe4d60]">{children}</span>
+    </>
+  );
+}
+
+export function QuestionAnswerBoxBody({ children, ...props }) {
+  return (
+    <>
+      <div className="[border-inline-end:2px_solid_#fe4d60] [padding-inline-end:0.75rem]" />
+      <div
+        className="[padding-inline-start:0.75rem] space-y-4 mt-4"
+        {...props}
+      >
+        {children}
+      </div>
+    </>
+  );
+}
+
 export function ChapterImage({
   imagePath,
   alt = 'Alt',
@@ -508,6 +541,9 @@ const CustomComponents = {
   ContributorSpotlightPosition,
   ContributorSpotlightRole,
   ChapterImage,
+  SpotlightBox,
+  SpotlightBoxTitle,
+  SpotlightBoxBody,
   Definition,
   DefinitionDescription,
   H1Contributor,
