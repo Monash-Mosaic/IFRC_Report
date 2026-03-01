@@ -1,0 +1,60 @@
+[
+    {
+        "id": 1,
+        "title": "Chapter 1. What is Misinformation",
+        "sections": [
+            {
+                "title": "Defining Misinformation",
+                "slug": "what-is-misinformation",
+                "tags": [
+                    "psychology",
+                    "education"
+                ]
+            },
+            {
+                "title": "Types of False Information",
+                "slug": "types-of-false-info",
+                "tags": [
+                    "education"
+                ]
+            },
+            {
+                "title": "Historical Context",
+                "slug": "historical-context",
+                "tags": [
+                    "education"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Chapter 2. The Spread of Misinformation",
+        "sections": [
+            {
+                "title": "Social Media Amplification",
+                "slug": "social-media-amplification",
+                "tags": [
+                    "social-media",
+                    "technology"
+                ]
+            },
+            {
+                "title": "Viral Mechanics",
+                "slug": "viral-mechanics",
+                "tags": [
+                    "social-media",
+                    "psychology"
+                ]
+            },
+            {
+                "title": "Echo Chambers",
+                "slug": "echo-chambers",
+                "tags": [
+                    "social-media",
+                    "psychology"
+                ]
+            }
+        ]
+    }
+]

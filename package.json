@@ -36,11 +36,14 @@
     "@opennextjs/cloudflare": "^1.16.4",
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@types/mdx": "^2.0.13",
+    "autoprefixer": "^10.4.24",
     "dexie": "^4.3.0",
     "embla-carousel-react": "^8.6.0",
     "flexsearch": "^0.8.212",
     "geist": "^1.7.0",
     "hls.js": "^1.6.15",
+    "lucide-react": "^0.563.0",
+    "mapbox-gl": "^3.19.0",
     "jsonc-parser": "^3.3.1",
     "lucide-react": "^0.563.0",
     "next": "^16.1.6",
@@ -79,6 +82,11 @@
     "tailwindcss": "^4.1.18",
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
+    "wrangler": "^4.64.0"
+  },
+  "overrides": {
+    "@smithy/config-resolver": "^4.4.0",
+    "fast-xml-parser": "^5.3.4",
     "wrangler": "^4.69.0"
   },
   "overrides": {
