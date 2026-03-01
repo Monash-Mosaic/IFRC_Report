@@ -1,11 +1,11 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 import createMDX from '@next/mdx';
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
-
 const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
   options: {
+    remarkPlugins: [['remark-gfm']],
     rehypePlugins: [
       ['rehype-slug', {}],
       [
@@ -14,7 +14,7 @@ const withMDX = createMDX({
           behavior: 'wrap',
           content: {
             type: 'text',
-            value: ' 🔗',
+            value: '',
           },
         },
       ],

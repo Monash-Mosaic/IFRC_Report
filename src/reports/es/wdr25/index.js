@@ -1,5 +1,5 @@
 import * as Chapter02 from './chapter-02.mdx';
-
+import * as Synthesis from './exec-summary.mdx';
 export const title = 'Informe Mundial sobre Desastres 2025';
 
 export const description =

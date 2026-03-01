@@ -1,0 +1,1103 @@
+import {
+  Anchor,
+  Box,
+  ChapterImage,
+  Contributor,
+  ContributorEntity,
+  ContributorName,
+  ContributorRole,
+  ContributorTag,
+  ColumParagraphs,
+  ColumParagraph,
+  Definition,
+  DefinitionDescription,
+  FeatureImage,
+  Reccomendations,
+  ReccomendationsTitle,
+  SmallQuote,
+  SmallQuoteAuthor,
+  TableLabel,
+  TohInsight,
+} from '@/components/CustomComponents';
+
+import {
+  Deprivational,
+  Digital,
+  Informational,
+  Longitudinal,
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+} from '@/components/icons/toh';
+import { TypologyOfHarm } from '@/types/TypologyOfHarm';
+import { Undo2 } from 'lucide-react';
+
+export const title =
+  'Crisis, chaos and confusion: Understanding harmful information in humanitarian contexts';
+
+export const subtitle = '';
+
+# Introduction
+
+For the humanitarian sector, the 2004 Indian Ocean tsunami marked the first major disaster to receive widespread digital coverage, while the wars in Afghanistan and Iraq (in the early 2000s) became the first armed conflicts dissected in real time by thousands of online commentators. This signalled the start of a decentralized digital information era, shaped less by traditional media and more by fast, participatory online spaces. Early digital content often failed to reflect local realities, particularly in contexts where local languages were absent from platforms. Yet the emerging blogger community played an active role in reporting, verifying content and calling out manipulated imagery, fabricated reporting or exaggerated harm. While imperfect, these efforts exposed new possibilities for scrutiny and public accountability.
+
+These online blogger communities emerged as a powerful force within the information ecosystem. Enabled by technological innovation and driven by social shifts, individuals were able to share unfiltered perspectives, often in response to growing dissatisfaction with mainstream media. Blogs offered immediacy and more personal, alternative narratives, fostering informal networks of discussion (‘communities’) and shaping early forms of participatory media. Ultimately, they laid the groundwork for today’s decentralized and user-driven communication models.
+
+For humanitarian operational and communication professionals, this period felt fast-paced and unpredictable, heralding changes that were once unimaginable. Humanitarian crises – especially wars – have always been accompanied by the use of information to deceive, manipulate, discredit, disrupt or advance political or ideological agendas. What has changed is the nature, speed, scale and accessibility of harmful information. Today, a wide range of actors – professional and amateur, anonymous and overt – create and spread harmful information across digital and offline channels. The internet, mobile phones, social media platforms and messaging apps serve as powerful amplifiers. In many spaces, fact, truth and accuracy have been displaced by opinion, emotion and perception – often driven by financial, political or ideological motivations. Polarization and distrust are often not just by-products but deliberate objectives. This dynamic extends well beyond warfare: harmful information now shapes how communities understand, prepare for and respond to disasters, health emergencies, migration and other humanitarian challenges.
+
+Instead of facilitating access to trustworthy, life-saving information, the information space increasingly feeds on people’s fear and uncertainty. Crisis information is routinely manipulated, politicized or distorted – including minimizing a disaster’s cause or severity. For example, in 2024, false information spread online claimed that Hurricane Helene in the US was geo-engineered. Such theories circulated widely on social media, illustrating a growing trend of disaster misinformation and disinformation, and mistrust in official information.
+
+If the Indian Ocean tsunami was the first disaster to be digitally witnessed at scale, COVID-19 was the first to be digitally lived. Every aspect of the crisis – health guidance, rumours, fear and solidarity – spread online as quickly as the virus itself. COVID-19 – an unparalleled health emergency in living memory – combined a pandemic and **infodemic** , affecting people worldwide. While the health crisis has largely been contained, the infodemic has left lasting consequences: deepened distrust in authorities, increased vaccine hesitancy and refusal, and the rise of an industry of influencers and conspiracy theorists spreading narratives about the dangers of everything from medical treatments and health care professionals to cell phone towers.
+
+<Definition>Infodemic</Definition>
+
+<DefinitionDescription>
+  An **infodemic** is too much information, including false or misleading information, in digital and physical environments during a disease outbreak.
+</DefinitionDescription>
+
+The impact of such information is immediate and often harmful. Correcting it is extraordinarily difficult. Exploiting social divisions, political sensitivities and deep-rooted prejudices, harmful information increasingly drives people to turn against authorities, reject aid and dehumanize or mobilize against those perceived as ‘other’.
+
+<SmallQuote>
+  What happens if misinformation lands on me now, somehow it breeds fear on me, and now I find it
+  difficult to identify which one makes sense to me, which one I should follow. Because I get all of
+  them from the media still. I have gotten this one which tells me to do this. I›ve also gotten this
+  one which is telling me if you do this, you›re going to suffer from this, you›re going to get
+  this. So I remain there. So it becomes really very, very difficult and confusing”.
+</SmallQuote>
+
+<SmallQuoteAuthor>Community member, Uganda</SmallQuoteAuthor>
+
+During the 2024 Valencia flood response in Spain, misinformation claimed that aid was being diverted to migrants rather than reaching disaster-affected communities, fuelling xenophobic narratives. Similarly, in Southport (UK) in 2024, following the killing and injuring of several children at a dance workshop, false rumours and inflammatory content spread that suggested the attacker was a Muslim asylum seeker. This narrative inflamed anti-immigrant and Islamophobic sentiment, triggering violent protests and riots outside a mosque and sparking wider unrest across multiple cities.
+
+<div id="box-1-1-link-source"></div>
+
+<Box
+  index="1.1"
+  types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological, TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+  arrowHref="#typology-of-harm"
+  arrowLabel="Jump to typology of harm"
+>
+  ## Harmful Information and the DANA floods in Valencia (Spain) 2024 (Part 1)
+
+  In late October 2024, Valencia was struck by one of Spain’s deadliest floods in recent history, caused by a DANA (Depresión Aislada en Niveles Altos, or ‘cold drop’). Torrential rain fell in just a few hours and overwhelmed infrastructure, leaving 236 people dead and devastating communities.
+
+  Specific incidents of harmful information that spread on social media included negative comments, insults and threats directed at our workers and volunteers on the streets and, to a lesser extent, acts of vandalism against our offices and vehicles (such as graffiti and flat tyres).
+
+  Misinformation about the Spanish Red Cross has circulated for years, but during the DANA it mainly took the form of hoaxes and rumours claiming that the National Society was:
+
+  - not present on the ground helping people in Valencia
+
+  - only in Valencia taking staged photos and videos, rather than providing real assistance – «your clothes are clean, your work tools are new and recently purchased» (see Figure 1.1)
+
+  - helping migrants instead of Spanish citizens affected by the DANA
+
+  - misusing funds – lying about their destination and amounts allocated or refusing in-kind donations to keep the money.
+
+
+  <Anchor meta="Fig 1.1">Posts on X, November and December 2024</Anchor>
+
+  <ColumParagraphs count={2}>
+    <ColumParagraph>
+      A smaller number of recurring messages attacked the Spanish Red Cross’ international work (e.g., for Ukraine or Gaza) or resurfaced older messages related to migrants in Spain or blood donations.
+
+      In this case, harmful information did not directly hinder the humanitarian response; it was not an obstacle to providing assistance. However, it undoubtedly had an impact on the people involved in the response by:
+
+      - creating an extraordinary workload dedicated to denying, explaining or minimizing the impact of harmful information
+
+      - causing emotional distress and even doubts about the organization, both within society and among Spanish Red Cross members
+
+      - undermining public trust, with some donors questioning the organization.
+
+      During the DANA, the groups most vulnerable to misinformation were our staff and volunteers (both on the ground and off), our partners and allies, and, of course, our beneficiaries. Migrants were also targeted in the harmful information – these posts inevitably fuelled xenophobia – but in this case, they were used more as a tool to target the Spanish Red Cross. These groups were emotionally affected to varying degrees and we estimate that some also experienced a certain loss of trust in the organization.
+    </ColumParagraph>
+    <ColumParagraph>
+      <FeatureImage
+        src="/wdr25/chapter-01/fig-1-1-c_opt.png"
+        width={782}
+        height={1366}
+      />
+    </ColumParagraph>
+  </ColumParagraphs>
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        María Trénor Alvargonzález
+      </ContributorName>
+
+      <ContributorEntity>
+        Director of Communications
+      </ContributorEntity>
+
+      <ContributorRole>
+        Spanish Red Cross
+      </ContributorRole>
+    </Contributor>
+
+    <Contributor>
+      <ContributorName>
+        Kenan Terzic
+      </ContributorName>
+
+      <ContributorEntity>
+        Social Media Manager
+      </ContributorEntity>
+
+      <ContributorRole>
+        Spanish Red Cross
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+These impacts of harmful information are often felt most acutely at the community level, though in some contexts they are being actively fuelled by external actors. This unfolds against a backdrop of declining trust in traditional institutions and growing perceptions of non-governmental organizations (NGOs) as partisan or politically aligned. This erosion of trust is further exacerbated by what has been termed the “death of expertise”, as journalists, academics and public institutions – once seen as trusted sources of information – are no longer widely trusted in many countries. Meanwhile, AI is being used to produce content that imitates authoritative, expert voices but may be inaccurate, misleading or stripped of its context.
+
+# Defining harmful information
+
+Today’s information ecosystem is highly complex, encompassing many forms of harmful content, including misinformation, disinformation, malinformation, hate speech, propaganda, foreign information manipulation and interference. These forms of harmful information often overlap and reinforce one another, with intent the key factor that distinguishes them.
+
+This report uses the term ‘harmful information’ to focus on its impact and the responses – rather than rigid classifications, which are often politically charged and context dependent. While there is no universally agreed definition, for the purposes of this report, harmful information refers to **information that has the potential to cause, contribute to or result in harm to an individual or entity.**
+
+Legitimate criticism, even when uncomfortable or challenging, is not considered harmful. However, organizations must still acknowledge and address it, as unaddressed criticism can be exploited by others.
+
+Understanding harm is essential not only to assess its impact on individuals, communities, organizations and societies, but also to design appropriate, proportionate and principled strategies for response.
+
+# The evolving information ecosystem
+
+Harmful information is often framed as an online phenomenon, but humanitarian crises have long been shaped by rumours, myths and propaganda spread through offline means – word of mouth, pamphlets, radio and television broadcasts, community meetings and other official or semi-official channels. These offline dynamics remain deeply influential, especially in contexts with limited digital access or low media literacy. Importantly, harmful information often moves fluidly between online and offline spaces, amplifying its reach and creating real-world consequences for individuals and communities.
+
+<Box
+  index="1.2"
+  types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological, TypologyOfHarm.Societal, TypologyOfHarm.Informational, TypologyOfHarm.Deprivational]}
+>
+  ## South Sudan – impact of harmful information on humanitarian response
+
+**Incident** : In Juba and surrounding areas, rumours claimed that international NGOs were distributing poisoned food as part of a political agenda.
+
+Impact: Aid recipients hesitated to collect aid supplies, and local staff faced verbal threats in at least two documented instances.
+
+Response: The Sentinel team used WikiRumours to quickly verify and publicly refute the false claims, working with local radio stations and community chiefs to reassure residents and restore trust in humanitarian food distribution activities.
+
+<TohInsight
+  align="right"
+  underline
+  types={[TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+/>
+
+**Incident:** Community members reported hearing that armed youth were advancing on villages in Lainya County, causing families to flee overnight.
+
+Impact: Although the rumour was later proven false, it triggered panic-driven displacement and led to the temporary suspension of local humanitarian activities.
+
+Response: Community ambassadors verified the facts on the ground and corrective broadcasts were issued via radio and SMS the next morning. The rapid clarification helped resume humanitarian activities and deter further displacement or conflict.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Anahi Ayala Iacucci, Nabeel Chudasama, <br/>
+        Nabeela Jivraj, Zainah Alsamman
+      </ContributorName>
+
+      <ContributorRole>
+        Grand Challenges Canada
+      </ContributorRole>
+    </Contributor>
+
+    <Contributor>
+      <ContributorName>
+        Christopher Tuckwood
+      </ContributorName>
+
+      <ContributorRole>
+        The Sentinel Project
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+The digital information environment – spanning both digital and cyber domains – has become increasingly complex, contested and politicized. States approach this environment from distinct angles. Some focus on **infrastructure** – the **cables:** the physical architecture that enables data flows, such as data centres, cloud servers and undersea cables. Others concentrate on **content** : the narratives, data and discourse circulating within and across platforms. These two lenses – cables and content – are not mutually exclusive, but they shape how influence and control are asserted over the information space, with implications for sovereignty, surveillance and resilience.
+
+Control over content can involve shaping, restricting or distorting information flows for political, ideological or security purposes. This may be achieved through disinformation campaigns, censorship, platform regulation, information manipulation or influence operations. As a result, the boundaries between cybersecurity, information influence operations and geopolitical competition are increasingly blurred. Strategic decisions regarding cables and content have direct consequences for access to information, freedom of expression and communities’ ability to engage safely and meaningfully in the digital space.
+
+At the same time, threat actors’ tactics, techniques and procedures are no longer confined to technical systems. They increasingly leverage harmful information motivated by financial, political or ideological agendas, making information manipulation as consequential as cyberattacks on physical systems. Psychological factors are at the core of this threat: harmful information exploits fear, emotion, identity and grievance, deepening social division and making it far harder to counter with facts alone.
+
+
+<Box index="1.3" types={[]}>
+  ## Information first responders: building narrative resilience into humanitarian response
+
+<FeatureImage
+  src="/wdr25/chapter-01/WDR25-008.jpg"
+  description="April 2015, pre-election tension and related violence erupted in Burundi, resulting in more than 600 people being injured, and a number of deaths in the capital of Bujumbura. More than 120,000 Burundians have fled to neighbouring countries."
+  width={706}
+  height={318}
+/>
+
+
+In an age when crises are amplified by misleading information and manipulation, the humanitarian sector must treat the information environment as operational terrain. False narratives no longer circulate on the margins: they now shape perceptions, drive behaviours and determine the legitimacy of aid itself. From manipulated evacuation route guidance to targeted information attacks on humanitarian actors, harmful content is no longer a side effect of crises – it is part of the crisis.
+
+During the early weeks of the COVID-19 pandemic, false cures, conspiracy theories and xenophobic narratives competed strongly with verified public health guidance, often outpacing and overshadowing it in the battle for attention. In more recent crises, from Sudan to Ukraine, misinformation has obstructed safe passage of civilians, fuelled local suspicion toward aid workers and led to violent reprisals. These examples underscore that the costs of harmful information are not abstract – they are immediate and sometimes life-threatening. Waiting to react means being late to the race.
+
+We are experiencing a crisis in our information ecosystem where distorted narratives erode trust, deepen polarization and fracture the relationship between responders and communities. Edelman’s Trust Barometer 2025 found that nearly 70% of global respondents worried about being purposefully misled by authoritative sources such as government or media. An alarming 25% of respondents said they were willing to spread disinformation to achieve change, a number that rises to 34% among young adults.
+
+Meanwhile, recent data from the Reuters Institute shows 58% of global respondents are concerned about how they can distinguish truth from falsehood online. In many regions, online influencers and national politicians are now seen as the leading sources of inaccurate information – surpassing traditional media, foreign powers or rogue actors.
+
+For the humanitarian sector, the message is clear: the fight for trust cannot begin after a crisis erupts. Just as supply chains are pre-positioned, communicators, digital monitoring protocols and trusted local messengers must be identified and deployed in advance, ready to scale up in the event of a crisis, but more importantly an ever-present player on the pitch.
+
+Such ‘information first responders’ are essential to compete in contested digital spaces and inoculate audiences against rapidly spreading falsehoods. This requires mobilizing authentic individuals who are relatable voices within key communities, building multilingual content pipelines and training field teams to identify and counter harmful narratives. It also requires deploying social media monitoring, real-time alert systems and rapid myth-debunking toolkits. Although AI can cause enormous harm by supercharging the generation and dissemination of fake content, it also presents opportunities to provide the superpower to create accurate and engaging content.
+
+Building resilience to manipulation in a polluted information ecosystem means more than getting the facts right. It means designing communication systems that are agile, community led and built for trust at their core. If humanitarian aid is to remain a neutral and stabilizing force, trust must be treated as a mission-critical capability – one that needs resourcing and defending.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Oliver Hayes OBE
+      </ContributorName>
+
+      <ContributorEntity>
+        Head of Counter-Disinformation
+      </ContributorEntity>
+
+      <ContributorRole>
+        EMEA
+      </ContributorRole>
+    </Contributor>
+
+    <Contributor>
+      <ContributorName>
+        Dave Fleet
+      </ContributorName>
+
+      <ContributorEntity>
+        Head of Global Digital Crisis and Counter-Disinformation
+      </ContributorEntity>
+
+      <ContributorRole>
+        Edelman
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+Other factors shaping the information ecosystem are discussed in Chapters 2 and 3.
+
+# Who are the threat actors?
+
+A diverse range of threat actors create and amplify harmful information from lone individuals to paid contractors, coordinated troll networks to outsourced call centres, propagandists to inauthentic accounts, national to transnational entities. Each requires a differentiated response. Whether motivated by profit, ideology, coercion or ego, these actors operate within a vast and expanding influence economy. Some act defensively, others offensively, amplifying noise or falsehoods with strategic intent.
+
+The introduction of AI has further lowered the barrier to entry, enabling more sophisticated, scalable manipulation and deepening the asymmetry between those spreading harmful information and those trying to contain it. What most clearly differentiates these actors is their intent – whether to deceive, disrupt, distract, divide or dominate. That intent not only shapes the forms their actions take but also determines the countermeasures required. This is not a level playing field: those spreading harmful content are faster, louder and have fewer constraints than those working to uphold truth and trust.
+
+<ChapterImage  imagePath="/wdr25/chapter-01/c1-word-cloud-CMYK_opt1.jpg" imageTitle="Threat actors involved in harmful information" imageIndex="1.2" />
+
+# Information integrity in crisis situations
+
+The UN has identified strengthening information integrity as “one of the most urgent challenges of our time” – fundamental to human rights, peace and sustainable development. Information integrity refers to the accuracy, consistency and reliability of information. In response to growing threats from misinformation, disinformation, hate speech and the misuse of digital technologies, including AI, the UN Global Principles for Information Integrity were launched. These principles are:
+
+- Societal Trust and Resilience
+
+- Healthy Incentives
+
+- Public Empowerment
+
+- Independent, Free and Pluralistic Media
+
+- Transparency and Research.
+
+Preceding these principles, a 2023 UN Policy Brief addressed information integrity on digital platforms, calling for follow-up steps including consultations and the possible development of a code of conduct to help “guide Member States, the digital platforms and other stakeholders in their efforts to make the digital space more inclusive and safe for all, while vigorously defending the right to freedom of opinion and expression, and the right to access information”. The consultations ultimately led to the development and launch of the principles. In September 2025, the UN released the first in a new Issue Brief series titled From Principles to Practice: Strengthening Information Integrity.
+
+<Box index="1.4" types={[]}>
+  ## Building on UN norms for information integrity
+
+  Before designing a plan to address harmful information, we need to understand the global frameworks that guide our actions. Any strategy must align with three key UN pillars:
+
+  - **UN Global Principles for Information Integrity**
+    – Recommend action around five principles: public trust, healthy incentives, public empowerment, a free media space, and transparency and research. These principles provide a blueprint for multi-stakeholder collaboration.
+
+  - **UNESCO Guidelines for the Governance of Digital Platforms**
+    – Set out five duties, from conducting impact assessments to ensuring meaningful redress.
+
+  - **Global Digital Compact**
+    – Adopted in September 2024, commits governments to an open, safe, rights-based digital future, with specific measures to protect information integrity.
+
+  These frameworks are not constraints – they are foundations for innovative, multi-faceted action.
+
+  Guiding principles and the need for a multi-stakeholder approach
+
+  - The UN Global Principles call on all actors – governments, tech companies, advertisers, media and more – to strengthen information integrity.
+
+  - They urge the UN to scale up action, which we are doing through system-wide coordination, knowledge-sharing and a working group on information integrity.
+
+  - No single actor can succeed alone; coalitions are essential to building global resilience.
+
+  **Four practical action tracks** based on lessons learned
+
+  - **Multi-stakeholder coalitions and action**
+    Establish a standing forum of trusted actors, from governments to youth groups, to share information, flag risks and coordinate rapid responses – especially during elections or public health crises.
+
+  - **Capacity building for resilience**
+    – Equip journalists, educators, fact-checkers and community leaders with the skills, resources and funding to detect and counter harmful narratives, with a focus on under-resourced areas.
+
+  - **Research and risk assessment**
+    – Create a regional research hub to monitor narratives, publish open data briefs, and provide cross-border early warning.
+
+  - **Prevention, mitigation and response protocols**
+    – Develop clear, human-rights-based procedures for governments, media, platforms and civil society to act quickly and transparently when harmful content emerges.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Hiroyuki Saito
+      </ContributorName>
+
+      <ContributorEntity>
+        Director
+      </ContributorEntity>
+
+      <ContributorRole>
+        UN Information Centre, Dakar
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+<Box
+  index="1.5"
+  types={[TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+>
+  ## Data quality as a lifeline in disaster management
+
+Misinformation, even when not created and spread deliberately, can still negatively affect the effectiveness and efficiency of humanitarian services and disaster management. During the 2003 Bam earthquake in Iran, which claimed thousands of lives and affected over 250,000 people, a major emergency response was launched at both national and international levels. The operation received huge national and international attention and support, and was largely successful, but it also faced challenges including in information management.
+
+Inaccurate and exaggerated reports on the scale and value of international humanitarian financial donations and aid caused three main challenges. First, inaccurate news and information disrupted planning, implementation and reporting. Second, exaggerated claims about the amount of international aid created doubts among potential donors as to whether further aid and contributions were needed, thereby undermining global resource mobilization and fundraising efforts. Third, inflated figures on the amount and value of international aid heightened expectations among affected people and beneficiaries, creating management challenges. These experiences highlight the imperative that all stakeholders in disaster response and humanitarian services comply with minimum quality standards for data and information – namely **accuracy, timeliness, relevance and reliability** – before sharing and spreading them.
+
+Beyond accuracy and quality, information must also be **comprehensive and integrated** for effective disaster management and risk reduction. Incomplete data and information can impede the achievement of the intended outcomes. Traditionally, the disaster management community has focused on natural **hazards** as the main driver of disasters. Later, it became clear that natural hazards alone should not be blamed for the occurrence of disasters; rather, human and societal vulnerabilities including **physical, social, economic and environmental** vulnerabilities, along with exposure of people, systems and assets to hazards, are the main drivers. These vulnerabilities often stem from human behaviour and unsound policies and practices. Therefore, it is imperative to integrate data on physical, socio-economic and environmental vulnerabilities with information on hazards in order to build a fuller understanding of **disaster risk** . This approach aligns with the first priority of the Sendai Framework for Disaster Risk Reduction (2015–2030): Understanding disaster risk.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Mostafa Mohaghegh
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Coordinator of the Asian and Pacific Centre for the Development of Disaster
+                    Information Management (APDIM)
+      </ContributorEntity>
+
+      <ContributorRole>
+        UN Economic and Social Commission for Asia and the Pacific (UNESCAP)
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+# From broadcast to twoway engagement
+
+The promise of new tools for community engagement was meant to mark a broader shift toward more inclusive communication. Digital platforms enabled a move from one-way, broadcast messaging – press releases, websites, official statements – towards two-way engagement. But in practice, this much-valued shift has become increasingly complex. Anyone can now respond to, challenge, reinterpret or amplify a message instantly and publicly.
+
+While two-way engagement invites dialogue, it also opens the door to criticism, harmful content and narrative disruption, including from global audiences and malicious threat actors far removed from the realities on the ground. Social media rarely fosters meaningful exchange, especially when responses spiral far beyond the original message. For humanitarian organizations, committed to neutrality and impartiality, an unpredictable, emotionally charged environment is difficult to monitor and manage, and failure to navigate it can have direct operational consequences.
+
+As of June 2025, platforms such as Google (26 years old), Facebook (21), YouTube (20), Twitter/X (19), VK (18), WhatsApp (16), Instagram (14), Signal (12), Telegram (11) and TikTok (9 in China, 8 globally) reach billions of people worldwide. These platforms have transformed how people access and share information, connect and engage. But they are also powerful vectors for harmful content. Their algorithms prioritize engagement – often the most shocking or polarizing material – because it generates more clicks, attention and ultimately profit. The result is not a glitch but a feature: systems that reinforce bias, create echo chambers, distort perception and deepen division.
+
+The deliberate spread of harmful information erodes trust, casting doubt on humanitarian intentions, principled action and legitimacy. In some cases, it has led directly to threats and violence: refugees and migrants being menaced, humanitarian staff being attacked and volunteers facing hostility.
+
+<TohInsight
+  types={[
+    TypologyOfHarm.Physical,
+    TypologyOfHarm.Psychological,
+    TypologyOfHarm.Social,
+    TypologyOfHarm.Societal,
+    TypologyOfHarm.Informational,
+  ]}
+/>
+
+During the Ebola outbreak in Guinea in July 2014, the President of the Red Cross Society of Guinea warned that violence against volunteers was hindering access to affected communities and disrupting safe burials. These attacks stemmed from misconceptions and fear surrounding Ebola, despite efforts to counter rumours through radio, television and community engagement. By working with religious leaders, families and local stakeholders, the National Society developed respectful burial practices adapted to cultural norms – allowing people to honour the dead.
+
+Social media users increasingly expect rapid, authentic responses. This creates pressure on organizations to engage in real time, often in tension with centralized approval processes, coordination needs with teams on the ground and the imperative for accuracy. For example, during safeguarding or integrity incidents, the demand for swift and transparent communication can clash with the requirement to verify facts, uphold duty of care and ensure due process. Delays or overly cautious messaging may then be perceived as prioritizing organizational reputation or funding relationships.
+
+In an environment where harmful information moves faster than facts and institutional credibility is under constant scrutiny, even well-intentioned engagement can appear reactive, defensive, disingenuous or lacking empathy. Building genuine two-way engagement requires more than responsiveness – it demands intention, transparency and sustained presence. Yet, when malicious actors exploit an organization’s communications, such as using comment sections to disrupt, derail messages or discredit an organization, two-way engagement may not shift the narrative. Many organizations avoid responding for fear of escalation, but silence can leave harmful narratives unchallenged and weaken credibility. Comment sections, once viewed as spaces for engagement, have become increasingly challenging to moderate. The sheer volume of harmful content they attract, combined with limited capacity to manage it, has led some news and media organizations to disable them to reduce reputational risks and curb the spread of harmful information.
+
+A good example of responding comes from Haiti during the 2010 earthquake. At that time, the IFRC established a Beneficiary Communication Programme that created ten access points for individuals and communities to share feedback on the humanitarian aid they were receiving and express their needs. These access points included live radio programmes, text messaging, information centres, direct engagement with communities and call centres. This initiative enabled the IFRC to continuously adapt its programming and make more informed decisions based on direct community input.
+
+Knowing when – and how – to communicate is increasingly difficult. Delays or silence often create a vacuum that others, whether ill-intentioned or misinformed, will quickly fill.
+
+<Box
+  index="1.6"
+  types={[TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+>
+  ## A communications failure and moment of reckoning
+
+The civil unrest of July and August 2024 in Bangladesh will be remembered not only for its political consequences – the fall of a government and the arrival of an interim one – but also for the way it tested institutions. Among them was the Bangladesh Red Crescent Society, an organization with a long-standing legacy of service, suddenly caught in the crossfire of public distrust and internal challenges.
+
+Although the National Society responded during the unrest – quietly, courageously and across multiple districts – the dominant narrative in the media and among segments of the public was one of absence, silence, even complicity. Accusations of inaction spread quickly and damaging speculation about political alignment overshadowed the life-saving work taking place on the ground. As the situation stabilized and the fog of unrest lifted, it became clear that this wasn’t just a communications failure: it was a moment of reckoning. While the Bangladesh Red Crescent Society volunteers were providing first aid to protestors, law enforcement personnel and bystanders alike, and while ambulances transported hundreds of injured people to safety, the broader public narrative told a different story. Many simply didn’t know what the National Society was doing. And in the absence of clear, timely and confident communication, that mistrust deepened.
+
+In reality, the Bangladesh Red Crescent Society had mounted a significant humanitarian response. Twenty-one teams were deployed across nine branches, hundreds of people received first aid, and food assistance reached more than 2,000 families. But as was quickly recognized “we hadn’t told this story in time, or in the right way. And in a crisis where perception shapes reality, that silence came at a cost”.
+
+Given the volatile and politically charged context, the Bangladesh Red Crescent Society leadership had made a strategic decision to maintain a low public profile – intentional discretion – to minimize the risk of politicization, safeguard volunteers and avoid being drawn into partisan narratives. While this approach was understandable from a risk management perspective, this silence and lack of public visibility created an information vacuum – one that was quickly filled by speculation, criticism and political narratives beyond the organization’s control. The consequences went beyond reputational damage. In some districts, volunteers were harassed, partnerships with local NGOs were strained and questions from donors and Movement partners raised concerns about the National Society’s ability to operate in politically sensitive contexts while maintaining the trust of all stakeholders. Recovering from this reputational risk is requiring more than image management. It has called for a long-term effort to reinforce institutional independence, diversify governance and rebuild public trust.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Alberto Bocanegra
+      </ContributorName>
+
+      <ContributorEntity>
+        Head of Delegation for Bangladesh
+      </ContributorEntity>
+
+      <ContributorRole>
+        IFRC
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+# Who is most vulnerable to harmful information – and why?
+
+Despite the unprecedented volume of information available today, many people still live in information vacuums where vital, life-saving information is inaccessible or unreliable. Harmful information can affect individuals, communities, institutions and entire societies, but certain groups are disproportionately at risk due to structural, contextual or situational vulnerabilities. As political and security analysts Singer and Brooking observe: “Like any viral infection, information offensives work by targeting the most vulnerable members of a population – in this case, the least informed.”
+
+In humanitarian contexts, those in the most vulnerable situations may include:
+
+**Crisis-affected populations:** People living through armed conflict, disaster, displacement, migration or health emergencies often face disrupted communication channels, heightened anxiety and scarce or manipulated information.
+
+**Groups that are marginalized or socially excluded:** Communities facing discrimination based on race, ethnicity, gender, religion, disability or legal status are frequently targeted by harmful narratives and often lack access to reliable sources of information.
+
+**Youth and older populations:** Young people may be \***\* more exposed to harmful information due to time spent online, peer influence or online trends. Older populations \*\*** may struggle with digital literacy and navigating new information environments.
+
+**Humanitarian staff, volunteers and organizations:** These are increasingly targeted by narratives questioning their neutrality, independence, impartiality or integrity, undermining trust, access and security.
+
+**Journalists** , **human rights defenders** and **civil society leaders:** People in these roles are often deliberately discredited, silenced or endangered in polarized environments.
+
+**People with limited access to information or media literacy** : Without trusted information channels or critical thinking skills, these individuals are more likely to believe and spread false content.
+
+<SmallQuote>
+  I don’t think it’s necessarily low-income people or the elderly who are more susceptible. Rather,
+  it’s those who are more easily influenced by their own emotions and by information – this has
+  nothing to do with age. You’ll find that some people are especially opinionated and unwilling to
+  change their views. In some cases, certain ‘leaders’ see their own judgement as superior to others
+  and insist they’re right. Their will, or their subjective descriptions, can drive the spread of
+  information – and they believe it themselves. For example, I might be a 20-year-old rescuer, but
+  if the person is 50 years old, even if I tell them what’s correct and what’s not, they may
+  question me and say, ‘I’ve eaten more salt than you’ve eaten rice; I know better’. So it’s not age
+  that determines susceptibility to misinformation – it’s subjective bias.”
+</SmallQuote>
+
+<SmallQuoteAuthor>Community member, China</SmallQuoteAuthor>
+
+Identifying and understanding these vulnerabilities, along with the specific risks of harmful information in different contexts, is now essential to mitigating their impact as part of humanitarian response. In a survey conducted by IFRC with 400 staff members, **50% reported observing misinformation, disinformation or hate speech affecting humanitarian work** , with the most frequently cited issues relating to vaccinations, health and migration.
+
+<Box
+  index="1.7"
+  types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological, TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+>
+  ## UNHCR Staff Survey
+
+Threats to information integrity on digital platforms, such as misinformation, disinformation and hate speech (MDH), are worsening and leading to real-world harms, especially in the most vulnerable humanitarian contexts of armed conflicts, disasters and other emergencies. These harms can be physical, such as violence and killings, economic, social and psychological, eroding trust and safety capacities. Humanitarian actors also face significant risks: staff safety and security, operational neutrality, public support and fundraising capacity can all be threatened. Ultimately, information inequality threatens the ability of refugees to access life-saving protection information on digital platforms.
+
+<TohInsight
+  align="right"
+  underline
+  types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological, TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+/>
+
+To better understand the impact of MDH, UN High Commissioner for Refugees (UNHCR) conducted two global surveys in late 2023 – one with forcibly displaced and stateless communities, and another with UNHCR staff. Among forcibly displaced and stateless respondents, 85% reported seeing hate speech or misinformation targeting their communities and 72% said they had personally been targeted. Most UNHCR staff reported witnessing MDH affecting the organization’s mandate: 37% saw such content monthly, 60% had seen hate speech with direct impact, 20% had been personally targeted, and one-third said colleagues had been affected. Nearly all (92%) expressed concern about MDH’s impact on the people UNHCR protects. On a more positive note, one in three staff noted that refugee-led or community-based groups are actively working to counter MDH – collaboration with these actors has proven vital in effective responses.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Gisella Lomax
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Advisor, Information Integrity
+      </ContributorEntity>
+
+      <ContributorRole>
+        UNHCR
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+# What is the impact of harmful information?
+
+Harmful information threatens the lives, safety and dignity of people in humanitarian crises. It can escalate violence during armed conflict and disasters, distort realities on the ground, mislead people about the availability of aid and influence life-saving decisions – such as whether to stay or flee, or accept or reject medical care.
+
+<SmallQuote>
+  So misinformation is very dangerous – very, very dangerous, not only in the bigger spectrum. It
+  can also be in our families. It can break families. It can confuse and hijack people’s future. It
+  can wreak havoc into people. It can bring about violence. It can cause a lot. It’s a terror of its
+  own, in my opinion.”
+</SmallQuote>
+
+<SmallQuoteAuthor>Community member, Uganda</SmallQuoteAuthor>
+
+UNHCR has documented a wide range of offline harms linked to harmful information in humanitarian contexts, including xenophobia, racism, persecution, violence, killings, forced displacement, trafficking and exploitation, barriers to accessing rights and services, damaged reputation, erosion of trust and legitimacy, diminished ability to protect and support refugees, threat to the physical security of humanitarian workers and decreased donor support.
+
+The World Health Organization (WHO) has highlighted the psychological and social harm caused by harmful information, both within communities affected by armed conflict and among humanitarian responders. As noted in a WHO review, “Based on the available evidence, people are feeling mental, social, political and/or economic distress due to misleading and false health-related content on social media during pandemics, health emergencies and humanitarian crises.” This occurs when harmful information discourages people from seeking or accessing humanitarian services and undermines organizations’ ability to deliver and implement effective interventions.
+
+The International Committee of the Red Cross (ICRC) has noted that sharing certain forms of harmful information may violate international law. International humanitarian law imposes “important limits on publishing or sharing certain forms of \[harmful information]”, such as that which encourages violations of international humanitarian law, threatening violence which spreads terror among civilians, unduly interfering with humanitarian or medical work, and publishing images of prisoners of war.
+
+Under international human rights law and other rules of international law, advocating hatred that constitutes incitement to hostility, discrimination or violence and inciting genocide, may amount to violations. The UN Special Rapporteur for Freedom of Expression has cautioned that state-sponsored disinformation “has a potent impact on human rights, the rule of law, democratic processes, national sovereignty and geopolitical stability because of the resources and reach of states and because of their ability to simultaneously suppress independent and critical voices in the country so that there can be no challenge to the official narratives.”
+
+The IFRC is concerned that some donors have given undue weight to rumours instead of engaging directly and formally with the affected National Red Cross and Red Crescent Society. This has led to opinions being formed based on disinformation rather than verified facts. While these rumours may have served the interests of certain individuals or institutions, they have negatively impacted communities and hindered the ability of National Societies to expand and deliver essential humanitarian services.
+
+Laws, policies and plans underpin all aspects of disaster risk management (DRM), protecting and preparing communities all around the world. Robust legal and policy frameworks are therefore a crucial piece of the puzzle for promoting information integrity and addressing the challenges posed by harmful information in DRM. To respond effectively, humanitarian actors must understand how harmful information disrupts response efforts. A typology of harm is important in building an evidence base that supports efforts to identify, measure and mitigate these effects. Each of the following types of harm can significantly undermine humanitarian action and all must be better understood, monitored and addressed.
+
+<table class="w-full table-auto border-separate border-spacing-2">
+  <caption id="typology-of-harm" class="caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
+    <TableLabel index="1.1" /> <span>Typology of harm</span>
+    <a
+      href="#box-1-1-link-source"
+      aria-label="Back to contribution insight 1.1"
+      className="pl-1 align-top text-[#8b5cf6] hover:text-[#7c3aed] transition-colors inline-flex"
+    >
+      <Undo2 className="w-4 h-4 [transform:scaleY(-1)]" strokeWidth={2.75} />
+    </a>
+  </caption>
+  <colgroup>
+    <col className='w-[15%] md:w-[10%]'/>
+    <col className='w-[35%] md:w-[20%]'/>
+    <col className="w-[50%] md:w-[70%]" />
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th class="border-t-[2px] font-bold text-2xl p-2 text-start" colSpan={2}>Type of harm</th>
+      <th class="border-t-[2px] font-bold text-2xl p-2 text-start">Examples of harm</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top"><Physical/></td>
+      <td className="border-t-[1px] font-medium p-2 align-top">Physical</td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">Physical injury, loss of life, or incitement to violence, panic or unsafe behaviours, treatment avoidance. Physical attacks on humanitarian vehicles, facilities or offices.</td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Psychological/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Psychological
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Emotional or mental trauma, fear, anxiety, disorientation, discrimination, shame, distrust,
+        manipulation, bullying, stalking, harassment.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Social/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Social
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Disruption to social cohesion and trust within communities, erosion of relationships, stigma,
+        social fragmentation, divisions, polarization. Forced or induced displacement of
+        populations leading to family separation, loss of community bonds and weakening of
+        collective support systems.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Societal/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Societal
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Shrinking space for humanitarian action, undermining trust in institutions, reputational
+        damage, operational disruption, impaired service delivery, silencing of sectors of society,
+        erosion of rights, restricted access to information, exclusion, limits to freedom of
+        expression. Use of harmful information to justify legal persecution, criminalization of
+        speech, or abuse of judicial systems.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Informational/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Informational
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Distortion, suppression or manipulation of information; loss of access to accurate, timely
+        or trustworthy information; saturation with falsehoods (information overload); erosion of
+        the shared understanding needed for decision-making.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Deprivational/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Deprivational / financial / economic
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Livelihood disruption, economic loss, loss of access to essential resources or services,
+        financial losses, theft, looting, fraud, scams, diversion of resources, inability to procure
+        necessities, restrictions on funding, extortion, loss of reputation, loss of donor support.
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Digital/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Digital / technological
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Attacks on digital identity, doxing, algorithmic amplification of harmful content, deepfakes,
+        bot-driven abuse, platform manipulation (see Glossary and box on deepfakes below for
+        definitions of terms).
+      </td>
+    </tr>
+    <tr>
+      <td className="border-t-[1px] p-2 align-top">
+        <Longitudinal/>
+      </td>
+      <td className="border-t-[1px] font-medium p-2 align-top">
+        Longitudinal / intergenerational (cross-cutting dimension)
+      </td>
+      <td className="border-t-[1px] font-extralight p-2 align-top">
+        Lasting effects on children exposed to harmful narratives, breakdown of intergenerational
+        trust, perpetuation of stereotypes or trauma, loss of hope.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<Box
+  index="1.8"
+  types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological, TypologyOfHarm.Social, TypologyOfHarm.Informational]}
+>
+  ## Online racism and mental health after disasters
+
+In the aftermath of disasters, communities seek solace and solidarity. Yet, for many racialized groups, tragedy is compounded by online racism. Following the June 2025 Air India crash, which claimed at least 290 lives, Indian communities around the world were subjected to a torrent of racist abuse online – mocked with slurs, stereotypes and dehumanizing jokes. Similarly, after the 2023 earthquakes in Turkey (which killed more than 50,000 people including 7,200 Syrian asylum seekers) surviving Syrians, already marginalized, faced scapegoating and xenophobic attacks both online and offline. Accusations circulated that they were looting or ‘taking resources’ meant for local citizens.
+
+This form of racism is not only offensive – it is psychologically harmful. Studies consistently link racial discrimination to heightened rates of anxiety, depression, post-traumatic stress disorder and suicidal ideation. When racism follows disaster, it disrupts collective mourning, isolates survivors and undermines long-term recovery. For diaspora and asylum-seeking communities, it reinforces a sense of unbelonging in the countries where they have sought refuge or migrated.
+
+These patterns reveal systemic failures: social media platforms that allow hate to flourish, governments that underfund anti-racism work, and humanitarian systems that often overlook the intersection of race, mental health and vulnerability. Addressing the mental health consequences of racism following disasters requires a coordinated and proactive approach. This is needed because “human well-being occurs in the context of, and is dependent on, an individual’s personal and a people’s collective ability to meet challenges and adversities in their environment through the intelligent, skilful, and ethical use of strengths and resources available to them. Person and community coexist – dynamically, interdependently, and integrally”.
+
+Social media platforms must be held accountable for the spread of hate speech. This includes implementing advanced detection systems – potentially AI-powered – backed by transparent reporting mechanisms and clear timelines for content removal. At the same time, the mental health needs of the human moderators tasked with viewing and removing racist and traumatic content must also be proactively addressed. All post-disaster response programmes, including mental health and psychosocial support, should integrate culturally competent, anti-racist care and support. Practitioners should be trained to recognize and respond to the specific psychological toll of racism, particularly in the wake of a crisis. Governments should lead public education campaigns rooted in evidence and community engagement, to counter post-disaster scapegoating, xenophobia and misinformation. These should be embedded in schools, workplaces and public institutions to have lasting impact. Ultimately, this is about upholding human dignity and humanity.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Yasin Duman
+      </ContributorName>
+
+      <ContributorEntity>
+        Research Specialist
+      </ContributorEntity>
+    </Contributor>
+
+    <Contributor>
+      <ContributorName>
+        Shona Whitton
+      </ContributorName>
+
+      <ContributorEntity>
+        Technical Advisor
+      </ContributorEntity>
+
+      <ContributorRole>
+        Red Cross Red Crescent Movement Mental Health and Psychosocial Support (MHPSS) Hub
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+# Artificial intelligence and harmful information
+
+People’s opinions are increasingly shaped by systems they neither fully understand nor can meaningfully challenge. Many assume they are seeing the same content as others on their feeds, but this is rarely the case. AI-driven recommendation algorithms curate what content surfaces, often reinforcing emotional reactions and echo chambers. This dynamic subtly but powerfully erodes individual agency in how information is encountered, interpreted and acted on.
+
+The harmful information landscape has rapidly evolved with the proliferation of AI tools. The publication of the first International Scientific Report on the Safety of Advanced AI (commonly referred to as the ‘Bengio Report’) in January 2025 underscored that, if discerning truth from falsehood was already difficult, **AI has fundamentally shifted the balance of power in favour of those who control the production and dissemination of information.** The report notes that AI reshapes how information is produced, who is empowered or disempowered by it and how it is manipulated. \*\*\*\* AI can generate persuasive, human-like content, rapidly and at scale – despite lacking deep conceptual understanding. As such content is often indistinguishable from human-produced material, people tend to overestimate their ability to detect it, increasing their vulnerability to manipulation. Emotionally charged or personalized content, especially when combined with social media data, can strongly shape perceptions and beliefs.
+
+The broader impact of AI-driven disinformation is still debated. Some studies suggest its spread and effects may be limited; others warn it may be more concentrated, harder to trace and prone to unintended consequences. What is certain is that the information space is becoming more complex and contested. Although no scientific consensus exists on the full societal impact of false information, its viral potential is well documented. Efforts such as adding watermarks or filtering content show some promise in detecting and mitigating AI-generated manipulation but remain limited. Moreover, interventions must balance curbing manipulation with protecting free expression. Reports point to an increase in the prevalence of AI-generated deepfake content (see box) but overall, scientific evidence remains limited. Anecdotal reports of harm caused by AI-generated fake content is growing, but without better evidence the full scale and impact remains difficult to assess.
+
+<Definition>**AI-generated fake content**</Definition>
+
+<DefinitionDescription>
+  Audio, text, or visual content, produced by generative AI, that depicts people or events in a way
+  that differs from reality in a malicious or deceptive way, e.g., showing people doing things they
+  did not do, saying things they did not say, changing the location of real events, or depicting
+  events that did not happen.
+</DefinitionDescription>
+
+<Definition>Deepfake</Definition>
+
+<DefinitionDescription>
+  Synthetic media – most often video, audio or images – created using artificial intelligence
+  techniques, particularly deep learning, to realistically manipulate or generate content that
+  portrays events or people in ways that did not actually occur.
+</DefinitionDescription>
+
+As AI-generated content becomes increasingly indistinguishable from human-created material, detection remains a persistent challenge. Media authentication techniques such as digital watermarks offer some protection but are easily bypassed or removed, especially in high-risk or adversarial environments.
+
+<Box index="1.9" types={[]}>
+  ## Detection of synthetic content in critical contexts
+
+Generative AI presents a new opportunity to create and spread harmful information. From to AI-manipulated videos of , such content can be used to mislead and manipulate. Deceptive synthetic content disrupts the information ecosystem in various ways. It can be used to create highly realistic depictions of events that have not happened. It can also be and authentic videos by enabling political figures to claim real footage is fake and has been AI-generated. It can distort the public›s perception of ongoing humanitarian crises by fabricating and disseminating .
+
+The threats posed by generative AI can be countered through technical solutions, such as AI detection tools that identify unnatural patterns or inconsistencies in content to determine the presence of potential AI manipulation. One example is the , an initiative of the NGO , which supports detection efforts to mitigate information crises in real time. The initiative connects frontline information actors with leading AI detection experts to assist them in analysing cases of suspected AI-generated content.
+
+The work of the Deepfakes Rapid Response Force provides a sociotechnical perspective to , highlighting the need for tools that can process low-quality, highly-compressed content, function across diverse languages and cultural contexts, and deliver analysis in a clear and actionable manner. To ensure that AI detection technology can effectively support humanitarian actors in crisis situations, the detection solutions must be technically advanced and also tailored to the needs, constraints and experiences of users operating in complex, high-stakes contexts.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Zuzanna Wojciak
+      </ContributorName>
+
+      <ContributorEntity>
+        Program Associate, Technology Threats and Opportunities
+      </ContributorEntity>
+
+      <ContributorRole>
+        WITNESS
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+There is no consensus on whether more realistic fake content leads to more effective manipulation, or whether the main barrier is distribution. Some experts argue that the greater challenge lies in spreading fake content at scale – not creating it. Research also suggests that ‘cheapfakes’ (simple, less sophisticated manipulations of audiovisual content) may be just as harmful as sophisticated deepfakes, reinforcing the idea that distribution and reach may matter more than quality. While social media platforms deploy moderation, labelling and source credibility checks to limit the spread of manipulated content, these measures raise concerns about free expression. At the same time, research shows that algorithms often “prioritise engagement and virality over accuracy or authenticity of content”, potentially aiding the rapid spread of AI-generated content to manipulate public opinion.
+
+The UN report Governing AI for Humanity emphasizes that it is “more useful to look at risks from the perspective of vulnerable communities and the commons”. It draws on the AI Risk Global Pulse Check, a survey of 348 AI experts that captures emerging AI-related trends and risks. The report stresses, however, that risk management must go beyond simply listing or prioritizing risks. It advocates for framing risks through the lens of vulnerability – shifting the focus from **what** the risk is (e.g., ‘risk to safety’) to **who** is at risk, **where** these risks occur and **who** should be accountable. This approach highlights the vulnerability of individuals, political systems, society, the economy and the environment. In the context of safety, the report underscores the importance of ensuring reliability and interpretability of AI systems and of assessing and mitigating risks to individual and collective rights, national and international security, and public safety across diverse contexts.
+
+Access to AI tools also remains uneven, reinforcing existing digital divides. People without reliable connectivity, digital literacy or language inclusion continue to be excluded or misinformed.
+
+What is clear is the need for systematic monitoring.
+
+See Chapter 5 for reflections on regulation, rights and policy.
+
+# Narratives shape perception, trust and action
+
+Narratives are the frameworks through which people make sense of their experiences and the world around them. They connect the personal to the political, the local to the global. Strong narratives simplify complexity, offering coherence – often at the expense of nuance. Narratives matter. In harmful information campaigns, they often carry historical or cultural weight, with many actors playing a long game.
+
+An event holds power only if people **believe** it happened. In today’s information environment, perception can outweigh truth: fabricated incidents can generate real consequences, while verified ones may be ignored. Outcomes are increasingly shaped less by facts and more by psychological, political and algorithmic influence. Trust is easily eroded by distortion and distraction. Political discourse often borrows tactics from the use of information in warfare, while armed conflict is shaped by battles over online narratives. The risk is that we all become participants when we click, like or share – feeding a wider contest over attention, belief and bias.
+
+In armed conflicts, civilians are often inadvertently drawn into the information dynamics, exposing them to serious risks to their safety – for example, by posting geolocated photos or videos of shelling on social media, relaying updates about territorial control or documenting attacks to seek help or accountability.
+
+These overlapping, often invisible, struggles shape how we perceive the world and act within it. In this ‘network of networks’, there is no neutral ground – the objective is influence, control and power. As Singer and Brooking note, influence is achieved not only through force but through shaping how people interpret the world, triggering emotional reactions that drive action and cultivating a sense of shared identity and belonging. Those who succeed are the ones who construct and spread compelling narratives – consistently, repeatedly and globally.
+
+Effective narratives in the digital landscape rely on simplicity, allowing messages to be absorbed quickly. This is why images resonate so powerfully. Resonance and novelty drive engagement. Yet simplicity is not something the humanitarian sector excels at; some argue the sector has even complicated public understanding of the humanitarian endeavour.
+
+Geopolitical tensions are intensifying polarization within societies and across borders, fuelling division, mistrust and competing narratives that complicate humanitarian action and undermine social cohesion. Returning to the earlier discussion of cables and content, control over both is increasingly treated as a strategic priority, with direct consequences for humanitarian response.
+
+<Box
+  index="1.10"
+  types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological, TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational, TypologyOfHarm.Deprivational]}
+>
+  ## The impact of harmful information on civilians: insights from two contexts
+
+Across the world, harmful information deepens mistrust in institutions, polarizes communities and undermines people’s ability to make informed decisions. In 2025, the CDAC Network conducted research in two very different crisis settings – Sudan and Lebanon – to better understand how harmful information distorts civilian decision-making, erodes trust and disrupts daily life. Despite the contexts differing significantly, the patterns are consistent, offering insights into the broader dynamics of harmful information in humanitarian crises.
+
+In both countries, harmful information shaped critical, often irreversible, decisions. In Lebanon, refugee families delayed or rushed returns to Syria based on social media rumours of border closures or new UN compensation packages, none of which could be verified. In Sudan, manipulated narratives about territorial control misled civilians into returning to contested areas or postponing evacuations, placing them in direct danger.
+
+Harmful information also fractures communities. In Lebanon, economic uncertainty and political disillusionment created fertile ground for scapegoating. Refugees were portrayed as favoured, host communities as neglected, while misinformation circulating in WhatsApp groups inflamed resentment. In Sudan, NGO workers, mutual aid groups and ethnic minorities were branded as politically aligned, undermining trust and triggering violence against members of civil society.
+
+The impact on livelihoods was equally stark. In Sudan, rumours targeting displaced groups led to exclusion from markets, housing and informal jobs. In some areas, entire labour sectors – such as butchery or tea vending – were destabilized as fear and suspicion drove down participation and income. These dynamics exacerbated existing inequality and fuelled intercommunal tensions.
+
+Finally, the research revealed how harmful information undermines both institutional and informal trust. In both countries, teachers, activists and aid workers who once acted as information bridges now hesitate to speak out, fearing backlash. Across both contexts, the findings are clear: harmful information does not just confuse, it divides, isolates and destabilizes, with profound consequences for crisis-affected populations.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Ila Schoop Rutten
+      </ContributorName>
+
+      <ContributorEntity>
+        Information Integrity Lead
+      </ContributorEntity>
+
+      <ContributorRole>
+        Communicating with Disaster Affected Communities (CDAC) Network
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+# Controlling accessibility and content moderation
+
+Content moderation, which combines human oversight with automated tools such as fact-checking and content removal, is conducted according to platforms’ own terms of service. In this role, platforms act as gatekeepers, determining what is permissible and facing criticism both for failing to act decisively against harmful content and for over-censoring. Recently, major platforms have scaled back their moderation efforts, driven by economic pressures, reputational concerns and political or ideological influences. Increasingly, they rely on user reporting or content de-ranking as a way to comply with legal requirements.
+
+Although the internet was founded on openness and trust, it remains vulnerable to shutdowns, blackouts and targeted restrictions.
+
+<Box index="1.11" types={[TypologyOfHarm.Informational, TypologyOfHarm.Societal]}>
+  ## Locally led action in the struggle for humanitarian connectivity: a focus on Myanmar
+
+Since 2021, millions of people across Myanmar have been disconnected from the internet by the military-led government, especially in conflict-affected regions. Access Now and the #KeepItOn coalition – uniting more than 334 national, international, regional and local organizations – recorded 85 shutdowns in 2024 alone, making Myanmar the country with the most internet disruptions globally.
+
+This is hardly an isolated case. In 2024, the #KeepItOn coalition documented 296 shutdowns in 54 countries, an all-time-high and a 35% increase in the number of countries where shutdowns occurred compared with the previous peak in 2022.
+
+The 2024 data confirms that conflict was the leading trigger for internet shutdowns for a second consecutive year, with an expanding arsenal of tools deployed to cut connectivity – jamming devices, cutting cables, destroying infrastructure and sabotaging internet service providers.
+
+Humanitarian crises are increasingly becoming complex emergencies with some countries affected by a layering of disaster, climate change and conflict. Myanmar is a striking example, hit by Cyclone Mocha in 2022 and a devastating earthquake in 2025, all while continuing to suffer from internal violence.
+
+When Cyclone Mocha hit western Myanmar, the lack of internet connectivity exacerbated the storm’s impact. People were unable to access vital information on evacuation efforts, warnings and even relief efforts because the internet was disconnected.
+
+Three years later, a devastating earthquake in the Sagaing region claimed over 3,000 lives. The region had already been subjected to a prolonged connectivity blackout since 2021. The shutdown, which impacted over one-third of the country, once again complicated rescue and relief operations. Aid groups and volunteers were left isolated, even as the area became a theatre of military operations.
+
+The essential role of connectivity for the civilian population during disasters underscores the importance of resilient and grassroots-led information management. By imposing or facilitating shutdowns, especially during complex crises, actors who actively hamper timely, safe and effective humanitarian response are ultimately responsible for preventable deaths. This environment can also hinder telecom operators from deploying enough crisis response infrastructure, as necessary authorizations are delayed or blocked due to political or tactical considerations.
+
+While humanitarian reporting by international actors focused on the visible outcomes of disasters and conflict, local advocacy groups such as the Myanmar Internet Project and Athan consistently raised alarms about connectivity disruptions, their consequences and the harms generated.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Wai Phyo
+      </ContributorName>
+
+      <ContributorEntity>
+        Asia Pacific Policy Analyst
+      </ContributorEntity>
+    </Contributor>
+
+    <Contributor>
+      <ContributorName>
+        Faiz Naeem
+      </ContributorName>
+
+      <ContributorEntity>
+        Asia Pacific Program Associate
+      </ContributorEntity>
+    </Contributor>
+
+    <Contributor>
+      <ContributorName>
+        Giulio Coppi
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Humanitarian Officer, Europe
+      </ContributorEntity>
+
+      <ContributorRole>
+        Access Now
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+# Analysis and monitoring of harmful information
+
+Analysing harmful information and its risks is essential to understanding the tactics, techniques and procedures used by those who create and disseminate it. Such analysis must consider contextual, historical, political, social, cultural and economic factors. Several analytical frameworks exist, including the 5 Ws (commonly used by journalists), ABCDE, DISARM and MITRE ATT\&CK, each requiring different levels of training and analytical capacity. This is explored more fully in Chapter 3.
+
+Effective analysis also relies on monitoring both the operational and information environments to detect harmful content, while integrating community-based approaches to better understand its dynamics and impact. Many humanitarian organizations are using a range of tools – commercially available or internally developed – that combine automated and manual methods to scrape public data. This is too often with a narrow focus on reputation, rather than assessing how harmful information affects their security, operations and the broader humanitarian context.
+
+The humanitarian sector urgently needs more systematic monitoring and social listening – including sentiment analysis – to detect, understand and frame responses to harmful information. In this regard, monitoring remains fragmented, underfunded and often ad hoc. By incorporating community-based approaches and sentiment analysis into social listening, organizations can detect and track not only what is being said but also how people feel – fearful, angry, mistrustful or supportive – providing deeper insights into shifting perceptions and risks.
+
+Without structured, real-time detection and analysis of both online and offline narratives, humanitarian actors risk being reactive rather than proactive, allowing harmful information to spread unchecked and erode trust before it can be countered. Systematic monitoring, social listening and sentiment analysis, grounded in ethical safeguards and community participation, would allow organizations to detect emerging narratives early, anticipate risks, adapt communications and programmes in real time, and strengthen resilience at both community and institutional levels.
+
+However, there is general acknowledgement that optimal monitoring tools have yet to be deployed, not because of a lack of tools but primarily due to resource constraints. Concerns also persist around the legal and ethical implications of data scraping, which can be perceived as intrusive or akin to surveillance.
+
+<Box index="1.12" types={[]}>
+  ## Detection and monitoring of harmful information in humanitarian and crisis contexts
+
+In humanitarian and crisis-affected contexts, harmful or misleading information about humanitarian efforts can jeopardize the safety of humanitarian personnel, undermine operational security and render aid delivery ineffective. At LinkAlong we have worked extensively on this challenge, developing an AI-based open-source monitoring platform tailored to detect and track such threats.
+
+Due to recent advances in AI-based natural language processing, there is now a significant opportunity to systematically monitor large volumes of open-source content in an automated way. Leveraging large language models, it is possible to detect, classify, aggregate and characterize harmful information with high precision and in near real time. A typical workflow involves three steps:
+
+**Data collection** from diverse sources, including open social media, public forums and relevant news outlets.
+
+**Deep text analysis** using AI to identify narratives, classify types of harmful content and assess potential risks.
+
+**Dissemination of results** through timely, structured reporting to stakeholders, enabling rapid and informed responses.
+
+However, several challenges hinder widespread adoption. First, large language models still struggle with low-resource languages and dialects common in crisis regions. Second, access to relevant social media data is increasingly restricted, while at the same time harmful narratives often migrate to encrypted or closed platforms such as Telegram or WhatsApp. Third, regional differences in social media usage require customized solutions, which can limit scalability. Fourth, most organizations lack the budget for sustained monitoring, and donors often undervalue this activity despite its strategic importance.
+
+Efforts are also fragmented: many organizations develop isolated, homegrown tools that are costly to maintain and miss opportunities for information sharing, even though information threats and narratives often overlap.
+
+The urgent need is for greater **cooperation between organizations** to pool resources, share information threat intelligence and jointly leverage sustainable solutions. The technical foundation already exists; the remaining challenge is building the business case and convincing relevant stakeholders that collaborative monitoring is an operational necessity, not a luxury.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Karl Aberer
+      </ContributorName>
+
+      <ContributorEntity>
+        Professor, Swiss Federal Institute of Technology
+      </ContributorEntity>
+
+      <ContributorRole>
+        Lausanne (École Polytechnique Fédérale de Lausanne) and Founder LinkAlong
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+<Box index="1.13" types={[]}>
+  ## Building resilience: catalogue of fact checks, false claim markers and provenance support
+
+Among monitoring tools developed to provide structured, machine-readable data on false and misleading claims circulating online, NewsGuard’s False Claim Fingerprints database tracks provably false narratives across 102 countries in local languages. It covers topics such as humanitarian crises and wars, health emergencies, earthquakes, climate-related disasters and migration. It also monitors information operations by malign actors worldwide. The database serves as an early warning system and fact-based ‘guardrails’ for high-risk false claims, providing a ‘Fingerprint’ for each (detailing the evidence for why the claim was determined false) with human-verified URLs, keywords, search terms, social posts, multimedia assets and language excerpts.
+
+NGOs and other institutions can use the database to detect false claims targeting them – or the vulnerable communities they serve – before those claims enter the mainstream. NewsGuard detects and flags high-risk claims before any public reporting or fact-checking in two-thirds of cases, and is the first to debunk false claims by authoritarian governments 83% of the time. Public relations teams can integrate NewsGuard’s journalistic assessments into their communication responses, using accurate, transparent, evidence-backed insights to defend their reputation when under attack. As more internet users turn to generative AI chatbots for information and news, such a database can be used to verify whether false claims have contaminated AI-generated responses, enabling organizations to respond quickly and strategically.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Chine Labbe
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Vice President, Partnerships and Managing Editor, Europe and Canada
+      </ContributorEntity>
+
+      <ContributorRole>
+        NewsGuard Technologies
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+<Box index="1.14" types={[]}>
+  ## Securing communication in humanitarian contexts
+
+In an era where harmful information can spread rapidly and undermine trust in humanitarian responses, ensuring that communication channels are secure, reliable and trusted is paramount. Twilio is a customer engagement platform, partnering with governments and service organizations worldwide to deliver critical information to those in need. When technology platforms directly affect people’s lives, regulatory discussions on safety and security become essential.
+
+Companies can provide valuable insights into how communications platforms operate and the potential effects of regulation on both innovation and user safety. Twilio’s approach is to work proactively with industry stakeholders to safeguard users while preserving open, reliable communications – especially where safety and well-being are at stake. Twilio has robust policies and enforcement mechanisms to prevent misuse of its platform, including violations of its Acceptable Use Policy. Automated systems monitor for security incidents and misuse of services.
+
+Technology and digitalization are having a meaningful impact on humanitarian crisis response. A found that digitalization can streamline processes for refugees and migrants, particularly supporting their integration into host communities.
+
+Twilio has a , which provides cash and voucher assistance to people affected by disaster or conflict. The process, requiring the IFRC to confirm the identity of displaced people at scale, was enhanced by the through SMS and WhatsApp. This collaboration shows how cross-sector partnerships to bring aid can be underpinned by secure communication platforms.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Chiara Kunnie
+      </ContributorName>
+
+      <ContributorEntity>
+        New Business Manager
+      </ContributorEntity>
+
+      <ContributorRole>
+        Social Impact Sales
+      </ContributorRole>
+    </Contributor>
+
+    <Contributor>
+      <ContributorName>
+        Alexandros Koronakis
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Director, Head of Government, <br/> Policy & Regulatory Affairs
+      </ContributorEntity>
+
+      <ContributorRole>
+        EMEA, Twilio
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+# Concluding remarks: harmful information is not background noise
+
+Harmful information is not background noise: it actively shapes how people understand crises, who they trust and whether they can access humanitarian assistance and protection. It influences safety and security both directly and indirectly. The struggle over harmful information is as much about cables as it is about content – the infrastructures and narratives that shape access, trust and power.
+
+As the information ecosystem becomes increasingly complex, so too must the capacity to read it, respond to it and protect affected populations, individuals and organizations from its harms. Navigating this ecosystem is now a core part of what it means to act in humanitarian crises. It must inform how responses are designed and implemented, while also driving advocacy for broader systemic change.
+
+The responsibility cannot rest solely with humanitarian organizations. Addressing harmful information requires enhancing resilience, building trust and deepening community engagement. It also demands coordinated, multi-stakeholder action – by governments, technology companies, media, communities and civil society organizations.
+
+Confronting harmful information is not optional. It requires nothing less than systemic change. It is essential to protecting lives, upholding humanitarian principles and ensuring that humanity itself remains the strongest counterforce to manipulation, mistrust and division.
+
+The task now is to ensure that the necessary safeguards, engagement, proximity, trust and resilience are not left to chance or profit, but are deliberately harnessed to protect people and enable principled humanitarian action.
+
+# Asks, aims and recommendations
+
+<ReccomendationsTitle>**Asks:**</ReccomendationsTitle>
+
+<Reccomendations>
+  Confront harmful information as a systemic humanitarian crisis that undermines safety, dignity and
+  access. Integrate universally recognized rights, preparedness, accountability and transparency
+  into crisis response, and act with the same urgency as for other humanitarian threats. Strengthen
+  collaboration for sector-wide monitoring through rumour tracking, social listening and sentiment
+  analysis.
+</Reccomendations>
+
+<ReccomendationsTitle>**Aims**</ReccomendationsTitle>
+
+<Reccomendations>
+  **Protect people:**
+
+Prioritize reliable and accurate information in crisis preparedness, response and recovery to safeguard safety, dignity and access.
+
+</Reccomendations>
+
+<Reccomendations>
+  **Detect early and adapt:**
+
+Monitor narratives, perceptions and sentiment to enable coordinated, transparent and timely responses.
+
+</Reccomendations>
+
+<Reccomendations>
+  **Safeguard humanitarian action:**
+
+Shield staff, volunteers, affected populations and operations from harmful information, cyber threats and disruptions to critical infrastructure, while preserving trust and legitimacy.
+
+</Reccomendations>
+
+### Recommendations
+
+#### For governments and policy-makers
+
+- Integrate harmful information management into crisis preparedness and response frameworks.
+
+- Invest in early-warning and verification systems to deliver timely, reliable, life-saving information.
+
+- Uphold cyber norms and protect humanitarian organizations and critical infrastructure from malicious ICT use.
+
+- Establish clear legal and policy frameworks that support and protect humanitarian action from interference and harmful information campaigns.
+
+#### For technology platforms
+
+- Prioritize rapid moderation and fact-checking in humanitarian crises – before, during and after crises – with effective escalation channels for humanitarian organizations.
+
+- Ensure tools function in low-bandwidth, multilingual and resource-constrained contexts.
+
+- Adapt algorithms to reduce amplification of harmful narratives targeting humanitarian organizations, principled humanitarian action and affected populations.
+
+- Report transparently on moderation actions, algorithmic adjustments and impacts in humanitarian contexts.
+
+- Co-design crisis-response protocols with humanitarian actors to ensure interventions are timely, context specific and aligned with internationally recognized rights and ethical standards.
+
+#### For humanitarian actors
+
+- Treat harmful information management as an operational risk – not just a communications challenge – integrated into humanitarian diplomacy and protection dialogue with states, regional organizations and multilateral forums; and into programmes, risk frameworks and preparedness planning.
+
+- Train staff and volunteers in rumour verification, digital literacy and safe information programmes; share insights across trusted organizations.
+
+- Strengthen monitoring by combining AI-enabled tools with human expertise for real-time detection, mapping of harmful information ecosystems and early warning; foster collaboration across the humanitarian sector to pool resources and capacity.
+
+- Document and analyse harmful information incidents systematically to build an evidence base for policy, adaptation and advocacy.
+
+- Engage communities transparently, co-creating messages with affected communities and reinforcing neutrality, impartiality and independence.
+
+#### For communities and local leaders
+
+- Develop and sustain local rumour tracking and verification systems.
+
+- Act as trusted intermediaries to strengthen solidarity, resilience and public confidence in humanitarian response.
+
+- Provide feedback loops to humanitarian actors and authorities on trust gaps and unmet concerns.
+
+- Ensure inclusivity by making sure youth, minorities and people with disabilities are represented in community information systems.
+
+- Foster dialogue, peer-to-peer engagement and community-led initiatives to counter harmful narratives and prevent polarization or stigma.

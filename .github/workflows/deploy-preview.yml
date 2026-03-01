@@ -54,19 +54,6 @@ jobs:
       - name: Test
         run: npm run ci:test
 
-      - name: Collect test coverage
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        id: coverage
-        with:
-          coverage-file: ./report.json
-          base-coverage-file: ./report.json
-          output: comment, report-markdown
-
-      - name: Post coverage comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: ${{ steps.coverage.outputs.report }}
-
       - name: Build
         run: npm run ci:build
 

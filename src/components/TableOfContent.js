@@ -16,6 +16,10 @@ export default function TableOfContent({
   title,
   maxDepth = Number.POSITIVE_INFINITY,
 }) {
+  const processedToc = chapterTableOfContents.map((item) =>
+    item.id === 'endnotes' ? { ...item, children: [] } : item
+  );
+
   /**
    * Recursively render the nested `<ul>` structure respecting the maxDepth limit.
    * @param {TocEntry[]} items
@@ -25,7 +29,7 @@ export default function TableOfContent({
 
   const renderItems = (items = [], level = 1) => {
     if (!items.length || level > maxDepth) return null;
-    const listClass = level === 1 ? 'pl-2 m-0 list-none' : 'pl-4 mt-2 list-none';
+    const listClass = level === 1 ? 'ps-2 m-0 list-none' : 'ps-4 mt-2 list-none';
     return (
       <ul className={listClass}>
         {items.map(({ id, value, children = [] }) => (
@@ -44,7 +48,7 @@ export default function TableOfContent({
   return (
     <>
       <div className="text-2xl text-black font-extrabold mb-2">{title}</div>
-      <div className="border-l-3 border-l-[#ee2435]">{renderItems(chapterTableOfContents)}</div>
+      <div className="border-s-3 border-s-[#ee2435]">{renderItems(processedToc)}</div>
     </>
   );
 }
