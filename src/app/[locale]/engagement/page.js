@@ -1,11 +1,17 @@
 'use client';
 import { useState } from 'react';
+<<<<<<< HEAD
 
 import TagContainer from '@/components/engagement/TagContainer';
 import QuotesSection from '@/components/engagement/QuotesSection';
 
 import QuoteMap from '@/components/engagement/QuoteMap';
 import SurveyInsight from '@/components/engagement/SurveyInsight';
+=======
+
+import TagContainer from '@/components/engagement/TagContainer';
+import QuotesSection from '@/components/engagement/QuotesSection';
+>>>>>>> 6883e5c (Revamp engagement page with Browse Topics, Quotes section, and hero image)
 
 export default function EngagementPage() {
   const [selectedTag, setSelectedTag] = useState({});
