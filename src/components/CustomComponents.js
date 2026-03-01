@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import { ArrowRight, BookA, Info } from 'lucide-react';
+import { ArrowRight, BookA, Info, Quote } from 'lucide-react';
 import {
   Deprivational,
   Digital,
@@ -127,6 +127,27 @@ export function SmallQuoteAuthor({ children, ...props }) {
     <div className="text-start font-extralight border-t-2 border-[#ee2435]" {...props}>
       {children}
     </div>
+  );
+}
+
+export function PullQuote({ children, ...props }) {
+  return (
+    <blockquote className="my-8" {...props}>
+      <div className="flex items-start gap-6">
+        <Quote
+          className="w-5 h-5 shrink-0 text-[#8549e7] rotate-180"
+          strokeWidth={2}
+          fill="#8549e7"
+        />
+        <p className="font-[var(--font-bespoke-serif)] text-2xl italic leading-relaxed">
+          {children}
+        </p>
+      </div>
+      <div className="flex items-end mt-4 [padding-inline-start:4.5rem]">
+        <div className="flex-1 h-[3px] bg-[#8549e7]" />
+        <div className="w-10 h-3 bg-[#8549e7] shrink-0" />
+      </div>
+    </blockquote>
   );
 }
 
@@ -536,14 +557,15 @@ const CustomComponents = {
   FeatureImage,
   SmallQuote,
   SmallQuoteAuthor,
+  PullQuote,
   ContributorSpotlight,
   ContributorSpotlightName,
   ContributorSpotlightPosition,
   ContributorSpotlightRole,
   ChapterImage,
-  SpotlightBox,
-  SpotlightBoxTitle,
-  SpotlightBoxBody,
+  QuestionAnswerBox,
+  QuestionAnswerBoxTitle,
+  QuestionAnswerBoxBody,
   Definition,
   DefinitionDescription,
   H1Contributor,
