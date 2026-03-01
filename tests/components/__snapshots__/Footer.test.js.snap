@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Footer Rendering matches snapshot 1`] = `
+<div>
+  <footer
+    class="w-full bg-white border-t border-gray-200"
+  >
+    <div
+      class="max-w-6xl mx-auto px-4 py-12"
+    >
+      <div
+        class="flex flex-col lg:flex-row lg:justify-between lg:items-start space-y-12 lg:space-y-0"
+      >
+        <div
+          class="lg:w-1/3 space-y-4 lg:space-y-8 order-2 lg:order-1 text-center lg:text-left"
+        >
+          <div
+            class="space-y-6"
+          >
+            <div
+              class="flex flex-col items-center lg:items-start"
+            >
+              <h3
+                class="text-xl font-semibold text-gray-900 mb-3"
+              >
+                World Disasters Report
+              </h3>
+              <div
+                class="flex items-center space-x-3 mb-4"
+              >
+                <a
+                  class="block"
+                  href="https://www.ifrc.org"
+                >
+                  <img
+                    alt="IFRC"
+                    class="h-10 w-auto"
+                    height="40"
+                    src="/wdr25/ifrc_logo.jpg"
+                    width="120"
+                  />
+                </a>
+              </div>
+              <div
+                class="flex items-center space-x-3"
+              >
+                <a
+                  class="block"
+                  href="https://www.mosaic-monash.ai/"
+                >
+                  <img
+                    alt="Monash Mosaic"
+                    class="h-10 w-auto -ml-4"
+                    height="40"
+                    src="/wdr25/mosaic_logo.png"
+                    width="120"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="border-gray-200 pt-3 lg:pt-6"
+          >
+            <div
+              class="flex space-x-3 justify-center lg:justify-start"
+            >
+              <a
+                class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
+                href="https://www.facebook.com/p/IFRC-Solferino-Academy-61572985566986/"
+              >
+                <div
+                  data-testid="facebook-icon"
+                >
+                  Facebook Icon
+                </div>
+              </a>
+              <a
+                class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
+                href="https://www.linkedin.com/company/ifrc-solferino-academy"
+              >
+                <div
+                  data-testid="linkedin-icon"
+                >
+                  LinkedIn Icon
+                </div>
+              </a>
+              <a
+                class="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
+                href="https://www.instagram.com/ifrcsolferinoacademy/"
+              >
+                <div
+                  data-testid="instagram-icon"
+                >
+                  Instagram Icon
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;

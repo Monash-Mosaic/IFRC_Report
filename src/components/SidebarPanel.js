@@ -1,16 +1,10 @@
-"use client"
+'use client';
 
 import { useReducer } from 'react';
 import { useTranslations } from 'next-intl';
 import { YouTubeEmbed } from '@next/third-parties/google';
 import { Menu, FileText, Volume2, Video, ChevronRight, X, ArrowLeft } from 'lucide-react';
-
-// Helper function to extract YouTube video ID from URL
-function extractYouTubeVideoId(url) {
-  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[7].length === 11) ? match[7] : null;
-}
+import { extractYouTubeVideoId } from '@/utils/video_util';
 
 // Action types
 const TOGGLE_SIDEBAR_ACTION = 'TOGGLE_SIDEBAR';
@@ -41,16 +35,16 @@ function reducer(state, action) {
     case SET_ACTIVE_NOTES_PANEL_ACTION:
       return { ...state, activeMediaPanel: null, selectedTrack: null };
     case SET_ACTIVE_AUDIOS_PANEL_ACTION:
-      return { 
-        ...state, 
-        activeMediaPanel: 'audio', 
-        selectedTrack: state.media.audios[0] ?? null 
+      return {
+        ...state,
+        activeMediaPanel: 'audio',
+        selectedTrack: state.media.audios[0] ?? null,
       };
     case SET_ACTIVE_VIDEOS_PANEL_ACTION:
-      return { 
-        ...state, 
-        activeMediaPanel: 'videos', 
-        selectedTrack: state.media.videos[0] ?? null 
+      return {
+        ...state,
+        activeMediaPanel: 'videos',
+        selectedTrack: state.media.videos[0] ?? null,
       };
     default:
       return state;
@@ -78,7 +72,7 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
       icon: Volume2,
       color: 'text-gray-700 hover:bg-green-50',
       onClick: () => dispatch({ type: SET_ACTIVE_AUDIOS_PANEL_ACTION }),
-      items: media.audios
+      items: media.audios,
     },
     {
       id: 'videos',
@@ -86,8 +80,8 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
       icon: Video,
       color: 'text-gray-700 hover:bg-red-50',
       onClick: () => dispatch({ type: SET_ACTIVE_VIDEOS_PANEL_ACTION }),
-      items: media.videos
-    }
+      items: media.videos,
+    },
   ];
 
   return (
@@ -149,17 +143,15 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
 
             {/* Footer */}
             <div className="mt-8 pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500 text-center">
-                {t('chapterResourcesPanel')}
-              </p>
+              <p className="text-xs text-gray-500 text-center">{t('chapterResourcesPanel')}</p>
             </div>
           </div>
         </div>
       )}
 
-     {/* Overlay to close sidebar when clicking outside - transparent */}
+      {/* Overlay to close sidebar when clicking outside - transparent */}
       {isExpanded && (
-        <div 
+        <div
           className="fixed inset-0 z-30"
           onClick={() => dispatch({ type: TOGGLE_SIDEBAR_ACTION, payload: false })}
         />
@@ -170,13 +162,12 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
         <MediaPanel
           mediaType={activeMediaPanel}
           loading={loading}
-          mediaItems={menuItems.find(item => item.id === activeMediaPanel)?.items || []}
+          mediaItems={menuItems.find((item) => item.id === activeMediaPanel)?.items || []}
           selectedTrack={selectedTrack}
           onTrackSelect={(track) => dispatch({ type: SET_SELECTED_TRACK_ACTION, payload: track })}
           onClose={() => dispatch({ type: CLOSE_MEDIA_PANEL_ACTION })}
         />
       )}
-
     </>
   );
 }
@@ -187,7 +178,7 @@ export default function SidebarPanel({ chapterTitle, audios = [], videos = [] })
 function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClose, loading }) {
   const t = useTranslations('SidebarPanel');
   const isAudio = mediaType === 'audio';
-  
+
   return (
     <div className="fixed top-0 left-0 md:left-80 right-0 bottom-0 bg-white z-45 flex flex-col md:flex-row animate-in slide-in-from-right duration-300 shadow-xl border-l border-gray-200">
       {/* Media List - Top on mobile, Left on desktop */}
@@ -205,24 +196,27 @@ function MediaPanel({ mediaType, mediaItems, selectedTrack, onTrackSelect, onClo
             <X className="w-6 h-6" />
           </button>
         </div>
-        
+
         {/* Media List */}
         <div className="flex-1 p-4 md:p-6 space-y-2 md:space-y-3 overflow-y-auto">
           {loading && (
-            <div className="text-white/90">{t('loading')} {t(mediaType)}...</div>
+            <div className="text-white/90">
+              {t('loading')} {t(mediaType)}...
+            </div>
           )}
           {!loading && mediaItems.length === 0 && (
             <div className="text-white/90">{t(`noMediaAvailable.${mediaType}`)}</div>
           )}
-          {!loading && mediaItems.map((item, index) => (
-            <MediaListItem
-              key={item.id}
-              item={item}
-              index={index + 1}
-              isSelected={selectedTrack?.id === item.id}
-              onSelect={() => onTrackSelect(item)}
-            />
-          ))}
+          {!loading &&
+            mediaItems.map((item, index) => (
+              <MediaListItem
+                key={item.id}
+                item={item}
+                index={index + 1}
+                isSelected={selectedTrack?.id === item.id}
+                onSelect={() => onTrackSelect(item)}
+              />
+            ))}
         </div>
       </div>
 
@@ -265,14 +259,14 @@ function MediaListItem({ item, index, isSelected, onSelect }) {
     <button
       onClick={onSelect}
       className={`w-full text-left p-3 md:p-4 rounded-lg transition-colors ${
-        isSelected 
-          ? 'bg-blue-400 text-white' 
-          : 'text-white hover:bg-blue-400 hover:bg-opacity-50'
+        isSelected ? 'bg-blue-400 text-white' : 'text-white hover:bg-blue-400 hover:bg-opacity-50'
       }`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 md:gap-3">
-          <span className="text-base md:text-lg font-semibold min-w-[20px] md:min-w-[24px]">{index}.</span>
+          <span className="text-base md:text-lg font-semibold min-w-[20px] md:min-w-[24px]">
+            {index}.
+          </span>
           <span className="text-sm md:text-base font-medium">{item.name}</span>
         </div>
         {item.duration && (
@@ -288,13 +282,19 @@ function MediaListItem({ item, index, isSelected, onSelect }) {
  */
 function MediaPlayer({ track, mediaType, t }) {
   const isAudio = mediaType === 'audio';
-  
+
   return (
     <div className="text-center max-w-sm md:max-w-md mx-auto w-full">
       {/* Media Display */}
       {isAudio ? (
         <div className="mb-4 md:mb-6">
-          <audio key={track.id} controls className="w-full" data-testid="audio-player" src={track.url}>
+          <audio
+            key={track.id}
+            controls
+            className="w-full"
+            data-testid="audio-player"
+            src={track.url}
+          >
             <source src={track.url} />
             Your browser does not support the audio element.
           </audio>
@@ -303,13 +303,13 @@ function MediaPlayer({ track, mediaType, t }) {
         <div className="mb-4 md:mb-6">
           {(() => {
             const youtubeVideoId = extractYouTubeVideoId(track.url);
-            
+
             if (youtubeVideoId) {
               // Use YouTube embed for YouTube URLs
               return (
                 <div className="w-full rounded-lg overflow-hidden">
-                  <YouTubeEmbed 
-                    videoid={youtubeVideoId} 
+                  <YouTubeEmbed
+                    videoid={youtubeVideoId}
                     height={300}
                     params="modestbranding=1&rel=0"
                   />
@@ -336,9 +336,13 @@ function MediaPlayer({ track, mediaType, t }) {
 
       {/* Track Info */}
       <div className="mb-4 md:mb-6">
-        <h4 className="text-lg md:text-xl font-semibold text-gray-800 mb-1 md:mb-2">{track.name}</h4>
+        <h4 className="text-lg md:text-xl font-semibold text-gray-800 mb-1 md:mb-2">
+          {track.name}
+        </h4>
         {track.duration && (
-          <p className="text-xs md:text-sm text-gray-600">{t('duration')}: {track.duration}</p>
+          <p className="text-xs md:text-sm text-gray-600">
+            {t('duration')}: {track.duration}
+          </p>
         )}
       </div>
     </div>

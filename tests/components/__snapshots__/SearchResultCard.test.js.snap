@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`SearchResultCard renders SearchResultCard with all content 1`] = `
+<div>
+  <a
+    class="block"
+    data-result-href="/reports/wdr25/chapter-02"
+    data-result-index="0"
+    data-result-title="Test Chapter Title: Understanding Humanitarian Response"
+    data-search-result="true"
+    href="/reports/wdr25/chapter-02"
+  >
+    <article
+      class="bg-gray-100 rounded-lg p-6 hover:bg-gray-200 transition-colors cursor-pointer"
+    >
+      <h3
+        class="text-lg font-bold text-gray-900 mb-3 line-clamp-2"
+      >
+        Test Chapter Title: Understanding Humanitarian Response
+      </h3>
+      <p
+        class="text-sm text-gray-600 leading-relaxed line-clamp-3"
+      >
+        <span>
+          This is a test excerpt that provides a brief description of the chapter content. It should be truncated if too long...
+        </span>
+      </p>
+    </article>
+  </a>
+</div>
+`;

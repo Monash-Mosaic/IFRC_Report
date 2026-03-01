@@ -1,4 +1,11 @@
 {
+  "Metadata": {
+    "titleTemplate": "%s | IFRC",
+    "defaultTitle": "Rapport mondial sur les catastrophes 2026 de l'IFRC"
+  },
+  "Breadcrumb": {
+    "reports": "Rapports"
+  },
   "Home": {
     "meta": {
       "title": "Page d'accueil des rapports de l'IFRC",
@@ -6,37 +13,90 @@
     },
     "nav": {
       "logoAlt": "Logo de l'IFRC",
-      "brand": "Rapports de l'IFRC"
+      "brand": "IFRC | académie solferino",
+      "about": "À propos",
+      "bookmarks": "Signets",
+      "download": "Télécharger",
+      "search": "Recherche",
+      "acknowledgement": "Reconnaissance",
+      "searchPlaceholder": "Recherchez dans le Rapport mondial sur les catastrophes 2026..."
     },
-    "hero": {
-      "globeAlt": "Globe de l'IFRC",
-      "title": "Système de rapports de l'IFRC",
-      "description": "Plateforme complète de gestion de documents et de rapports pour la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Accédez, analysez et collaborez sur des rapports et des publications humanitaires."
-    },
-    "cta": {
-      "browseDocuments": "Parcourir les documents",
-      "documentsIconAlt": "Icône des documents"
-    },
-    "features": {
-      "document": {
-        "title": "Gestion des documents",
-        "description": "Organisez et catégorisez les rapports avec des fonctionnalités avancées de filtrage et de recherche.",
-        "iconAlt": "Icône de document"
+    "comingSoonLabel": "Bientôt disponible",
+    "footer": {
+      "worldDisastersReport": "Rapport mondial sur les catastrophes",
+      "chapters": {
+        "title": "Chapitres du rapport",
+        "chapter1": "Chapitre 1",
+        "chapter2": "Chapitre 2",
+        "chapter3": "Chapitre 3"
       },
-      "global": {
-        "title": "Accès mondial",
-        "description": "Accédez aux rapports et publications humanitaires depuis n'importe où dans le monde.",
-        "iconAlt": "Icône du globe"
+      "games": {
+        "title": "Jeux de désinformation",
+        "disinformer": "Disinformer",
+        "ctrlAltPrebunk": "Ctrl+Alt+Prebunk"
       },
-      "analytics": {
-        "title": "Analyses avancées",
-        "description": "Analysez les tendances et les enseignements tirés de données humanitaires exhaustives.",
-        "iconAlt": "Icône d'analyse"
+      "social": {
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram",
+        "x": "X (Twitter)"
+      },
+      "copyright": "© {year} Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge. Tous droits réservés.",
+      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge",
+      "privacyPolicy": "Politique de confidentialité",
+      "termsOfService": "Conditions d'utilisation",
+      "contact": "Contact"
+    },
+    "landingPage": {
+      "heroSection": {
+        "title": "Rapport sur les\ncatastrophes\ndans le monde",
+        "description": "Vérité, confiance\net action\nhumanitaire à l'ère\ndes informations\npréjudiciables",
+        "buttonTexts": {
+          "read": "Lire le rapport",
+          "download": "Télécharger le rapport",
+          "share": "Partager"
+        },
+        "heroAlt": "Image principale du Rapport sur les catastrophes dans le monde montrant des travailleurs humanitaires en action"
+      },
+      "executiveSummary": {
+        "title": "Résumé exécutif",
+        "subtitle": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
+        "description": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
+        "buttonTexts": {
+          "read": "Lire",
+          "download": "Télécharger"
+        },
+        "summaryAlt": "Couverture du Résumé exécutif mettant en scène une personne dans un contexte humanitaire"
+      },
+      "featuredVideos": {
+        "title": "Vidéos en vedette du monde entier",
+        "videos": [
+          {
+            "id": 1,
+            "title": "Sous-titre",
+            "description": "Texte du corps pour tout ce que vous souhaitez ajouter au sous-titre.",
+            "thumbnailSrc": "/wdr25/thumbnail1.png",
+            "thumbnailAlt": "Miniature de la vidéo en vedette",
+            "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
+          },
+          {
+            "id": 2,
+            "title": "Sous-titre",
+            "description": "Texte du corps pour tout ce que vous souhaitez développer sur le point principal.",
+            "thumbnailSrc": "/wdr25/thumbnail2.png",
+            "thumbnailAlt": "Miniature de la vidéo en vedette",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Citations et expériences vécues"
       }
     },
-    "footer": {
-      "copyright": "© {year} Système de rapports de l'IFRC. Tous droits réservés.",
-      "orgFull": "Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge"
+    "videoCard": {
+      "backToThumbnail": "Retour à la miniature",
+      "videoAriaLabel": "Lire la vidéo"
     }
   },
   "ReportListingPage": {
@@ -66,21 +126,61 @@
     }
   },
   "ReportDetailPage": {
-    "backToDocuments": "Retour aux rapports",
     "tableOfContent": "Table des matières",
     "bookmark": "Marque-page",
     "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
+    "pageTitle": "Rapport mondial sur les catastrophes — Table des matières",
+    "breadcrumb": {
+      "home": "Page d'accueil",
+      "chapters": "Chapitres"
+    },
     "sections": {
-      "continue": "Continuer"
+      "continue": "Continuer",
+      "comingSoon": "Bientôt disponible",
+      "expandChapter": "Développer les détails du chapitre"
     }
   },
   "ReportChapterPage": {
-    "back": "Retour",
     "tocTitle": "Sur cette chapitre"
   },
   "LocaleSwitcher": {
     "ariaLabel": "Sélectionnez la langue",
-    "title": "Sélectionnez la langue"
+    "title": "Sélectionnez la langue",
+    "language": "Langue"
+  },
+  "SearchPage": {
+    "meta": {
+      "title": "Résultats de recherche",
+      "description": "Résultats de recherche pour les rapports de l'IFRC"
+    },
+    "breadcrumb": {
+      "ariaLabel": "Navigation par fil d'Ariane",
+      "home": "Page d'accueil",
+      "searchPage": "Page de recherche"
+    },
+    "results": {
+      "ariaLabel": "Résultats de recherche",
+      "noResults": "Aucun résultat trouvé. Essayez un autre terme de recherche."
+    }
+  },
+  "ComingSoon": {
+    "meta": {
+      "title": "Bientôt disponible",
+      "description": "L’expérience du Rapport mondial sur les catastrophes de l’IFRC arrive bientôt."
+    }
+  },
+  "ReportIncident": {
+    "trigger": "Signaler une erreur",
+    "triggerTooltip": "Signaler une erreur ?",
+    "close": "Fermer",
+    "title": "Signaler une erreur",
+    "descriptionLabel": "Quel est le problème ?",
+    "descriptionPlaceholder": "Décrivez le problème (lien cassé, texte incorrect, mise en page…)…",
+    "submit": "Envoyer",
+    "submitting": "Envoi…",
+    "cancel": "Annuler",
+    "success": "Merci. Votre signalement a bien été envoyé.",
+    "error": "Une erreur s'est produite. Veuillez réessayer."
   },
   "SidebarPanel": {
     "expandSidebar": "Étendre la barre latérale",
@@ -112,6 +212,67 @@
       "videos": "Lecteur vidéo pour une accessibilité améliorée"
     },
     "closeMediaPanel": "Fermer le panneau multimédia",
-    "duration": "Durée"
+    "duration": "Durée",
+    "videoCard": {
+      "backToThumbnail": "Retour à la miniature"
+    }
+  },
+  "NotFound": {
+    "title": "Page non trouvée",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "Error": {
+    "title": "Une erreur s'est produite",
+    "description": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    "message": "Détails de l’erreur : {message}",
+    "backHome": "Retour à l'accueil"
+  },
+  "About": {
+    "breadcrumbHome": "Page d'accueil",
+    "breadcrumbCurrent": "À propos",
+    "pageTitle": "À propos de nous",
+    "topicHeading": "La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge",
+    "body": "La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (IFRC) est le plus grand réseau humanitaire au monde, avec 191 Sociétés nationales de la Croix-Rouge et du Croissant-Rouge et environ 15 millions de volontaires. Nos volontaires sont présents dans les communautés avant, pendant et après une crise ou une catastrophe. Nous travaillons dans les contextes les plus difficiles d’accès et les plus complexes au monde, en sauvant des vies et en promouvant la dignité humaine. Nous aidons les communautés à devenir plus fortes et plus résilientes, afin que les personnes puissent vivre en sécurité et en bonne santé et puissent s’épanouir.",
+    "coverPhotoTitle": "Photo de couverture",
+    "coverPhotoText": "Camp de Bourj el-Barajneh au Liban, 10 septembre 2025.\nCette approche centrée sur les personnes réduit les obstacles d’accès et les réticences tout en préservant la dignité, la confiance et la continuité des soins dans un contexte difficile.\nLama Chidiac, IFRC.",
+    "insidePhotosTitle": "Photos intérieures",
+    "insidePhotosText": "Syrian Arab Red Crescent • Lama Chidiac, IFRC • Aki Kolehmainen, Finnish Red Cross • Syrian Arab Red Crescent • Lama Chidiac, IFRC • IFRC • Paul Wu, IFRC • IFRC et Croix-Rouge équatorienne • Pakistan Red Crescent • IFRC",
+    "contactUsTitle": "Nous contacter",
+    "contactUsText": "Les demandes de reproduction commerciale doivent être adressées au secrétariat de l’IFRC :",
+    "addressTitle": "Adresse",
+    "addressText": "Chemin des Crêts 17, Petit-Saconnex, 1209 Genève, Suisse",
+    "postalAddressTitle": "Adresse postale",
+    "postalAddressText": "P.O. Box 303, 1211 Genève 19, Suisse",
+    "contactLine": "T : +41 (0) 22 730 42 22 | F : +41 (0) 22 730 42 00 | E : secretariat@ifrc.org | W : ifrc.org",
+    "copyrightTitle": "© Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge, Genève, 2026",
+    "copyrightText": "Toute partie de cette publication peut être citée, copiée, traduite dans d’autres langues ou adaptée aux besoins locaux sans autorisation préalable, à condition que la source soit clairement indiquée.",
+    "isbnTitle": "ISBN",
+    "isbnText": "978-2-9701289-8-4",
+    "pdfUrlTitle": "URL PDF",
+    "pdfUrlText": "www.ifrc.org/document/IFRC-Worlds-Disasters-Report-2026",
+    "webUrlTitle": "URL de la version web",
+    "webUrlText": "www.ifrcwdr26.com"
+  },
+  "Acknowledgements": {
+    "meta": {
+      "title": "Remerciements et contributeurs",
+      "description": "Reconnaissance des organisations et des personnes ayant soutenu la production, la traduction et la publication du Rapport mondial sur les catastrophes de l’IFRC 2026."
+    },
+    "breadcrumbHome": "Page d’accueil",
+    "breadcrumbCurrent": "Remerciements",
+    "pageTitle": "Remerciements",
+    "intro": "La <bold>Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge</bold> (IFRC) remercie chaleureusement les organisations suivantes pour le soutien apporté à la production et à la publication du Rapport mondial sur les catastrophes de l’IFRC 2026 :",
+    "translation": "Les coûts de traduction des éditions russe et chinoise ont été généreusement pris en charge par l’Académie de la Croix-Rouge russe et l’Académie internationale de la Croix-Rouge en Chine.",
+    "leadEditorLabel": "Rédactrice en chef et auteure :",
+    "leadEditor": "Charlotte Lindsey Curtet",
+    "designerLabel": "Concepteur :",
+    "designer": "Yann le Floch",
+    "projectManagerLabel": "Cheffe de projet :",
+    "projectManager": "Heather Marie Leson",
+    "copyeditorLabel": "Révision éditoriale :",
+    "copyeditor": "Jen Claydon",
+    "contributions": "Le Rapport mondial sur les catastrophes 2026 comprend plus de 100 contributions écrites provenant de plus de 60 praticiens et chercheurs du secteur humanitaire, ainsi que de gouvernements, du milieu universitaire, de la société civile et d’autres acteurs. Ces contributions apparaissent tout au long du rapport dans des encadrés « Contributor Insight », reconnaissant les auteurs individuels et leurs organisations respectives.",
+    "research": "<bold>L’Académie Solferino de l’IFRC</bold> a mené une étude rapide d’intelligence communautaire de deux mois avec 40 volontaires et membres du personnel issus de 10 Sociétés nationales. Agissant en tant que chercheurs communautaires, ils ont interrogé 132 volontaires et membres de communautés touchées par des crises humanitaires. Les résultats ont été synthétisés par des universitaires bénévoles de l’Université du Michigan, de l’Université de Northumbria et d’Open Lab (Université de Newcastle), garantissant la préservation des nuances locales. Des citations sélectionnées figurent tout au long du rapport."
   }
 }

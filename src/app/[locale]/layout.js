@@ -1,25 +1,28 @@
-import { Geist, Geist_Mono } from 'next/font/google';
+import { GoogleTagManager } from '@next/third-parties/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
-import { routing } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
-import './globals.css';
 import { getDirection } from '@/i18n/helper';
+import { routing } from '@/i18n/routing';
+import ReportIncidentWidget from '@/components/ReportIncidentWidget';
+import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
-
-export const metadata = {
-  title: 'IFRC Reports',
-  description: 'Welcome to the IFRC Report',
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({
+    namespace: 'Metadata',
+    locale,
+  });
+  return {
+    title: {
+      default: t('defaultTitle'),
+      template: t('titleTemplate'),
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -35,8 +38,12 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <html lang={locale} dir={dir}>
-      <body className={`${geistSans.variable} ${geistMono.variable} locale-${locale} antialiased`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} locale-${locale} antialiased`}>
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        <NextIntlClientProvider>
+          {children}
+          <ReportIncidentWidget />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
