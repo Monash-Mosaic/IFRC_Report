@@ -169,10 +169,20 @@ try {
       namespace: searchIndexNamespace,
     });
     await retryAsync(() => searchIndex.clear(), 3, 500);
-    for (const doc of indices[locale]) {
-      await searchIndex.addAsync(doc['id'], doc);
+    const BATCH_SIZE = Number(process.env.SEARCH_BATCH_SIZE) || 50;
+    const total = indices[locale].length;
+    const batches = Math.ceil(total / BATCH_SIZE) || 1;
+    for (let b = 0; b < batches; b += 1) {
+      const start = b * BATCH_SIZE;
+      const chunk = indices[locale].slice(start, start + BATCH_SIZE);
+      for (const doc of chunk) {
+        await searchIndex.addAsync(doc['id'], doc);
+      }
+      await retryCommit(searchIndex);
+      console.info(
+        `[build-search-index] locale=${locale} batch=${b + 1}/${batches} added=${chunk.length}`
+      );
     }
-    await retryCommit(searchIndex);
 
     const table = searchIndex?.db?.tableName?.('reg');
     if (!table) {

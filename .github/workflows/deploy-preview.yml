@@ -138,6 +138,14 @@ jobs:
           echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
           echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
+      - name: Build search index (Production on Preview)
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
+        run: npm run build:search
+
       - name: Deploy to Cloudflare (preview for main)
         id: deploy_main
         if: ${{ github.event_name != 'pull_request' }}
