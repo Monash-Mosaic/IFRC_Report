@@ -1,15 +1,6 @@
 import SearchResultCard, { convertHighlightsReactComponent } from '@/components/SearchResultCard';
 import { render, screen } from '@testing-library/react';
 
-// Mock next-intl navigation Link component
-jest.mock('@/i18n/navigation', () => ({
-  Link: ({ href, className, children, ...props }) => (
-    <a href={href} className={className} data-testid="mock-link" {...props}>
-      {children}
-    </a>
-  ),
-}));
-
 const defaultProps = {
   title: 'Test Chapter Title: Understanding Humanitarian Response',
   highlight:
@@ -52,7 +43,7 @@ describe('SearchResultCard', () => {
     ).toBeInTheDocument();
 
     // Should render as a link
-    const link = screen.getByTestId('mock-link');
+    const link = screen.getByRole('link');
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '/reports/wdr25/chapter-02');
 
@@ -115,8 +106,9 @@ describe('SearchResultCard', () => {
   it('wraps content in a clickable link', () => {
     render(<SearchResultCard {...defaultProps} />);
 
-    const link = screen.getByTestId('mock-link');
+    const link = screen.getByRole('link');
     expect(link).toHaveClass('block');
+    expect(link).toHaveAttribute('data-search-result', 'true');
 
     // Article should be inside the link
     const article = link.querySelector('article');

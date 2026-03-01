@@ -12,10 +12,6 @@ const withMDX = createMDX({
         'rehype-autolink-headings',
         {
           behavior: 'wrap',
-          content: {
-            type: 'text',
-            value: ' 🔗',
-          },
         },
       ],
       ['@stefanprobst/rehype-extract-toc', {}],

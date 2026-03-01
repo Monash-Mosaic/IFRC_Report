@@ -7,6 +7,7 @@ const eslintConfig = defineConfig([
   prettier,
   // Override default ignores of eslint-config-next.
   globalIgnores([
+    'scripts/**',
     'node_modules/**',
     '.open-next/**',
     '.next/**',

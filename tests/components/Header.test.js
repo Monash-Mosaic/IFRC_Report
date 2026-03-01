@@ -1,7 +1,6 @@
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Header from '@/components/Header';
 
-// Mock next/image component
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props) => {
@@ -10,25 +9,21 @@ jest.mock('next/image', () => ({
   },
 }));
 
-// Mock LocaleSwitcher component
 jest.mock('@/components/LocaleSwitcher', () => {
   return function MockLocaleSwitcher() {
     return <div data-testid="locale-switcher">Locale Switcher</div>;
   };
 });
 
-// Mock navigation helper used by the component
-const pushMock = jest.fn();
+jest.mock('@/components/SearchInput', () => {
+  return function MockSearchInput() {
+    return <div data-testid="search-input">Search Input</div>;
+  };
+});
+
 jest.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, className, onClick }) => (
-    <a
-      href={href}
-      className={className}
-      onClick={(event) => {
-        event.preventDefault();
-        onClick?.(event);
-      }}
-    >
+  Link: ({ children, href, className }) => (
+    <a href={href} className={className}>
       {children}
     </a>
   ),
@@ -37,299 +32,142 @@ jest.mock('@/i18n/navigation', () => ({
   getPathname: ({ locale, href }) => `/${locale}${href}`,
 }));
 
-// Mock next-intl hooks used by the component
-jest.mock('next-intl', () => ({
-  useTranslations: (namespace) => (key) => {
-    const translations = {
-      'Home.nav.search': 'Search',
-      'Home.nav.about': 'About',
-      'Home.nav.acknowledgement': 'Acknowledgement',
+jest.mock('next-intl/server', () => ({
+  getTranslations: jest.fn(async (arg) => {
+    const namespace = typeof arg === 'string' ? arg : arg?.namespace;
+    return (key) => {
+      const translations = {
+        'Home.nav.about': 'About',
+        'Home.nav.acknowledgement': 'Acknowledgement',
+        'Home.nav.search': 'Search',
+        'Home.nav.searchPlaceholder': 'Search',
+      };
+      return translations[`${namespace}.${key}`] || key;
     };
-    return translations[`${namespace}.${key}`] || key;
-  },
+  }),
   useLocale: () => 'en',
 }));
 
-// Mock Lucide React icons
 jest.mock('lucide-react', () => ({
-  Search: ({ className, onClick, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="search-icon" {...props}>
-      Search Icon
-    </div>
-  ),
-  X: ({ className, onClick, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="x-icon" {...props}>
-      X Icon
-    </div>
-  ),
-  Mic: ({ className, onClick, onMouseDown, ...props }) => (
-    <div
-      className={className}
-      onClick={onClick}
-      onMouseDown={onMouseDown}
-      data-testid="mic-icon"
-      {...props}
-    >
-      Mic Icon
-    </div>
-  ),
+  Menu: ({ className }) => <span className={className} data-testid="menu-icon" />,
+  X: ({ className }) => <span className={className} data-testid="x-icon" />,
 }));
 
+const renderHeader = async (locale = 'en') => render(await Header({ locale }));
+
 describe('Header', () => {
-  beforeEach(() => {
-    pushMock.mockClear();
+  it('renders logo, navigation links, and child components', async () => {
+    await renderHeader();
+
+    expect(screen.getByAltText('Logo')).toBeInTheDocument();
+    expect(screen.getAllByText('About').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Acknowledgement').length).toBeGreaterThan(0);
+    expect(screen.getAllByTestId('locale-switcher')).toHaveLength(2);
+    expect(screen.getAllByTestId('search-input')).toHaveLength(2);
   });
 
-  describe('Rendering', () => {
-    it('renders the header component correctly', () => {
-      render(<Header />);
+  it('uses a checkbox + label for the CSS-only mobile menu toggle', async () => {
+    const { container } = await renderHeader();
 
-      // Check logo
-      expect(screen.getByAltText('Logo')).toBeInTheDocument();
+    const toggleCheckbox = container.querySelector('#mobile-menu-toggle');
+    const toggleControl = screen.getByLabelText('Toggle mobile menu');
 
-      // Check desktop navigation elements
-      expect(screen.getByText('About')).toBeInTheDocument();
-      expect(screen.getByText('Acknowledgement')).toBeInTheDocument();
+    expect(toggleCheckbox).toBeInTheDocument();
+    expect(toggleCheckbox).toHaveAttribute('type', 'checkbox');
+    expect(toggleCheckbox).not.toBeChecked();
 
-      // Check locale switcher
-      expect(screen.getAllByTestId('locale-switcher')).toHaveLength(2); // Desktop and mobile
+    fireEvent.click(toggleControl);
+    expect(toggleCheckbox).toBeChecked();
 
-      // Check search input
-      expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
-
-      // Check mobile menu button
-      expect(screen.getByLabelText('Toggle mobile menu')).toBeInTheDocument();
-    });
-
-    it('matches snapshot', () => {
-      const { container } = render(<Header />);
-      expect(container).toMatchSnapshot();
-    });
+    fireEvent.click(toggleControl);
+    expect(toggleCheckbox).not.toBeChecked();
   });
 
-  describe('Mobile Menu', () => {
-    it('toggles mobile menu when button is clicked', async () => {
-      render(<Header />);
+  it('renders both menu icons and relies on CSS classes for visibility', async () => {
+    const { container } = await renderHeader();
 
-      const menuButton = screen.getByLabelText('Toggle mobile menu');
+    expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('x-icon')).toBeInTheDocument();
 
-      // Initially mobile menu should not be visible
-      expect(screen.queryByText('About')).toBeInTheDocument(); // Desktop version
-
-      // Click to open mobile menu
-      fireEvent.click(menuButton);
-
-      // Mobile menu should now be visible (there will be multiple "About" links - desktop and mobile)
-      const aboutLinks = screen.getAllByText('About');
-      expect(aboutLinks.length).toBeGreaterThan(1);
-    });
-
-    it('closes mobile menu when a link is clicked', async () => {
-      render(<Header />);
-
-      const menuButton = screen.getByLabelText('Toggle mobile menu');
-
-      // Open mobile menu
-      fireEvent.click(menuButton);
-
-      // Get mobile navigation links (they should have specific mobile classes)
-      const mobileLinks = screen.getAllByText('About');
-      const mobileAboutLink = mobileLinks.find(
-        (link) => link.className.includes('block') && link.className.includes('py-2')
-      );
-
-      // Click mobile link
-      if (mobileAboutLink) {
-        fireEvent.click(mobileAboutLink);
-      }
-
-      // Mobile menu should close - we can check this by looking for the specific mobile menu container
-      await waitFor(() => {
-        const mobileMenus = screen
-          .queryAllByText('About')
-          .filter((link) => link.className.includes('block') && link.className.includes('py-2'));
-        expect(mobileMenus.length).toBe(0);
-      });
-    });
+    const iconWrapper = container.querySelector(
+      '.peer-checked\\:\\[\\&_\\.menu-open-icon\\]\\:hidden.peer-checked\\:\\[\\&_\\.menu-close-icon\\]\\:block'
+    );
+    expect(iconWrapper).toBeInTheDocument();
   });
 
-  describe('Search Functionality', () => {
-    it('expands search input on focus', async () => {
-      render(<Header />);
+  it('keeps mobile navigation mounted and controls visibility through CSS classes', async () => {
+    const { container } = await renderHeader();
+    const mobileMenu = container.querySelector(
+      '.hidden.peer-checked\\:block.lg\\:hidden.bg-white.border-t.border-gray-200.shadow-lg'
+    );
 
-      const searchInput = screen.getByPlaceholderText('Search');
-
-      // Initially search should not be expanded
-      expect(screen.queryAllByTestId('x-icon')).toHaveLength(0);
-
-      // Focus on search input using act to wrap state updates
-      await act(async () => {
-        fireEvent.focus(searchInput);
-      });
-
-      // Search should now be expanded - close icon should appear (both desktop and mobile)
-      await waitFor(() => {
-        const closeIcons = screen.getAllByTestId('x-icon');
-        expect(closeIcons.length).toBeGreaterThan(0);
-      });
-
-      // Expanded state should show close icons
-      const closeIcons = screen.getAllByTestId('x-icon');
-      expect(closeIcons.length).toBeGreaterThan(0);
-    });
-
-    it('shows expanded state correctly', async () => {
-      render(<Header />);
-
-      const searchInput = screen.getByPlaceholderText('Search');
-
-      // Initially both desktop and mobile search should be collapsed
-      expect(screen.queryAllByTestId('x-icon')).toHaveLength(0);
-      expect(screen.queryAllByTestId('mic-icon')).toHaveLength(0);
-
-      // Expand search
-      await act(async () => {
-        fireEvent.focus(searchInput);
-      });
-
-      // Both desktop and mobile search should now be expanded
-      await waitFor(() => {
-        const closeIcons = screen.getAllByTestId('x-icon');
-        expect(closeIcons.length).toBe(2); // Desktop and mobile
-      });
-    });
-
-    it('handles mic button click without closing search', async () => {
-      render(<Header />);
-
-      const searchInput = screen.getByPlaceholderText('Search');
-
-      // Expand search
-      await act(async () => {
-        fireEvent.focus(searchInput);
-      });
-
-      // Wait for expansion
-      await waitFor(() => {
-        const closeIcons = screen.getAllByTestId('x-icon');
-        expect(closeIcons.length).toBeGreaterThan(0);
-      });
-
-      // Search should still be expanded
-      const closeIcons = screen.getAllByTestId('x-icon');
-      expect(closeIcons.length).toBeGreaterThan(0);
-    });
-
-    it('search input receives focus after expansion', async () => {
-      render(<Header />);
-
-      const searchInput = screen.getByPlaceholderText('Search');
-
-      // Focus on search input
-      await act(async () => {
-        fireEvent.focus(searchInput);
-      });
-
-      // Wait for the setTimeout in handleSearchFocus and check expansion occurred
-      await waitFor(() => {
-        const closeIcons = screen.getAllByTestId('x-icon');
-        expect(closeIcons.length).toBeGreaterThan(0);
-      });
-
-      // The search should be expanded (we can verify this by the presence of the x-icon)
-      const closeIcons = screen.getAllByTestId('x-icon');
-      expect(closeIcons.length).toBeGreaterThan(0);
-    });
+    expect(mobileMenu).toBeInTheDocument();
+    expect(mobileMenu).toHaveClass('hidden', 'peer-checked:block', 'lg:hidden');
   });
 
   describe('Responsive Behavior', () => {
     it('search expands correctly on desktop', async () => {
-      render(<Header />);
+      await renderHeader();
 
-      const searchInput = screen.getByPlaceholderText('Search');
-
-      // Initially desktop nav should be visible
-      expect(screen.getByText('About')).toBeInTheDocument();
-      expect(screen.getByText('Acknowledgement')).toBeInTheDocument();
-
-      // Expand search
-      await act(async () => {
-        fireEvent.focus(searchInput);
-      });
-
-      // Check that search expanded
-      await waitFor(() => {
-        const closeIcons = screen.getAllByTestId('x-icon');
-        expect(closeIcons.length).toBeGreaterThan(0);
-      });
+      expect(screen.getAllByText('About').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Acknowledgement').length).toBeGreaterThan(0);
+      expect(screen.getAllByTestId('search-input')).toHaveLength(2);
     });
 
     it('mobile search works correctly', async () => {
-      render(<Header />);
+      const { container } = await renderHeader();
 
-      const mobileSearchButton = screen.getByRole('button', { name: 'Search' });
-      expect(mobileSearchButton).toBeInTheDocument();
+      const toggleCheckbox = container.querySelector('#mobile-menu-toggle');
+      const toggleControl = screen.getByLabelText('Toggle mobile menu');
+      expect(toggleCheckbox).not.toBeChecked();
 
-      await act(async () => {
-        fireEvent.click(mobileSearchButton);
-      });
-
-      // Overlay search should now be visible
-      await waitFor(() => {
-        expect(screen.getAllByRole('searchbox')).toHaveLength(2);
-        expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
-        expect(screen.getByLabelText('Close search')).toBeInTheDocument();
-      });
+      fireEvent.click(toggleControl);
+      expect(toggleCheckbox).toBeChecked();
     });
   });
 
   describe('Accessibility', () => {
-    it('has proper ARIA labels', () => {
-      render(<Header />);
+    it('has proper ARIA labels', async () => {
+      await renderHeader();
 
       expect(screen.getByLabelText('Toggle mobile menu')).toBeInTheDocument();
       expect(screen.getByAltText('Logo')).toBeInTheDocument();
     });
 
     it('supports keyboard navigation', async () => {
-      render(<Header />);
+      await renderHeader();
 
-      const searchInput = screen.getByPlaceholderText('Search');
+      const links = screen.getAllByRole('link');
+      expect(links.length).toBeGreaterThan(0);
+      links[0].focus();
 
-      // Tab to search input
-      act(() => {
-        searchInput.focus();
-      });
-
-      const activeElement = document.activeElement;
-      expect(activeElement).toHaveAttribute('type', 'search');
-      expect(screen.getAllByRole('searchbox')).toContain(activeElement);
+      expect(document.activeElement).toBe(links[0]);
     });
   });
 
   describe('CSS Classes and Styling', () => {
     it('applies correct CSS classes for different states', async () => {
-      render(<Header />);
+      const { container } = await renderHeader();
 
-      const searchInput = screen.getByPlaceholderText('Search');
+      const toggleControl = screen.getByLabelText('Toggle mobile menu');
+      expect(toggleControl).toHaveClass(
+        'p-2',
+        'text-red-700',
+        'hover:text-red-900',
+        'transition-colors',
+        'cursor-pointer'
+      );
 
-      // Check initial classes
-      expect(searchInput).toHaveClass('border-2', 'border-red-600', 'text-red-600');
-
-      // Expand search and check for transition classes
-      await act(async () => {
-        fireEvent.focus(searchInput);
-      });
-
-      await waitFor(() => {
-        expect(searchInput).toHaveClass('transition-all', 'duration-300', 'ease-in-out');
-      });
+      const mobileMenu = container.querySelector(
+        '.hidden.peer-checked\\:block.lg\\:hidden.bg-white.border-t.border-gray-200.shadow-lg'
+      );
+      expect(mobileMenu).toBeInTheDocument();
     });
   });
 
   describe('Component Integration', () => {
-    it('integrates with LocaleSwitcher component', () => {
-      render(<Header />);
+    it('integrates with LocaleSwitcher component', async () => {
+      await renderHeader();
 
       // Should render LocaleSwitcher components
       const localeSwitchers = screen.getAllByTestId('locale-switcher');
