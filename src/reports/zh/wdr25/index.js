@@ -64,18 +64,38 @@ export const featuredVideos = [
 export const chapterRelease = false;
 
 export const chapters = {
-  '综述': {
+  '章节-02': {
     metadata: {
-      chapterKey: 'synthesis',
-      chapterNumber: null,
-      chapterPrefix: '综述',
+      chapterKey: 'chapter-02',
+      chapterNumber: 2,
+      chapterPrefix: '第02章',
     },
     component: Chapter02.default,
-    title: '真相、信任与有害信息时代的人道行动',
-    subtitle: null,
-    tableOfContents: [],
-    thumbnail: '/wdr25/chapters/Synthesis.jpg',
-    thumbnailOverlay: 'red',
-    released: true,
+    title: Chapter02.title,
+    subtitle: Chapter02.subtitle,
+    tableOfContents: Chapter02.tableOfContents,
+    audios: [
+      {
+        id: 'intro',
+        name: '第02章 - 概述',
+        duration: '02:31',
+        url: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
+      },
+      {
+        id: 'section-1',
+        name: '第1节：主要发现',
+        duration: '04:12',
+        url: 'https://samplelib.com/lib/preview/mp3/sample-15s.mp3',
+      },
+    ],
+    videos: [
+      {
+        id: 'summary',
+        name: '章节摘要',
+        duration: '03:45',
+        url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        thumbnail: '/window.svg',
+      },
+    ],
   },
 };

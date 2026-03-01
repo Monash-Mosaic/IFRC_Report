@@ -64,18 +64,38 @@ export const featuredVideos = [
 export const chapterRelease = false;
 
 export const chapters = {
-  synthese: {
+  'chapitre-02': {
     metadata: {
-      chapterKey: 'synthesis',
-      chapterNumber: null,
-      chapterPrefix: 'Synthèse',
+      chapterKey: 'chapter-02',
+      chapterNumber: 2,
+      chapterPrefix: 'Chapitre 02',
     },
     component: Chapter02.default,
-    title: 'Vérité, confiance et action humanitaire à l\'ère des informations préjudiciables',
-    subtitle: null,
-    tableOfContents: [],
-    thumbnail: '/wdr25/chapters/Synthesis.jpg',
-    thumbnailOverlay: 'red',
-    released: true,
+    title: Chapter02.title,
+    subtitle: Chapter02.subtitle,
+    tableOfContents: Chapter02.tableOfContents,
+    audios: [
+      {
+        id: 'intro',
+        name: "Chapitre 02 - Vue d'ensemble",
+        duration: '02:31',
+        url: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
+      },
+      {
+        id: 'section-1',
+        name: 'Section 1 : Principales conclusions',
+        duration: '04:12',
+        url: 'https://samplelib.com/lib/preview/mp3/sample-15s.mp3',
+      },
+    ],
+    videos: [
+      {
+        id: 'summary',
+        name: 'Résumé du chapitre',
+        duration: '03:45',
+        url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
+        thumbnail: '/window.svg',
+      },
+    ],
   },
 };

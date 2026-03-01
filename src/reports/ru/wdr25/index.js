@@ -64,18 +64,38 @@ export const featuredVideos = [
 export const chapterRelease = false;
 
 export const chapters = {
-  'синтез': {
+  'глава-02': {
     metadata: {
-      chapterKey: 'synthesis',
-      chapterNumber: null,
-      chapterPrefix: 'Синтез',
+      chapterKey: 'chapter-02',
+      chapterNumber: 2,
+      chapterPrefix: 'Глава 02',
     },
     component: Chapter02.default,
-    title: 'Правда, доверие и гуманитарная деятельность в эпоху вредоносной информации',
-    subtitle: null,
-    tableOfContents: [],
-    thumbnail: '/wdr25/chapters/Synthesis.jpg',
-    thumbnailOverlay: 'red',
-    released: true,
+    title: Chapter02.title,
+    subtitle: Chapter02.subtitle,
+    tableOfContents: Chapter02.tableOfContents,
+    audios: [
+      {
+        id: 'intro',
+        name: 'Глава 02 - Обзор',
+        duration: '02:31',
+        url: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
+      },
+      {
+        id: 'section-1',
+        name: 'Раздел 1: Ключевые выводы',
+        duration: '04:12',
+        url: 'https://samplelib.com/lib/preview/mp3/sample-15s.mp3',
+      },
+    ],
+    videos: [
+      {
+        id: 'summary',
+        name: 'Краткое изложение главы',
+        duration: '03:45',
+        url: 'https://www.youtube.com/watch?v=o8NiE3XMPrM',
+        thumbnail: '/window.svg',
+      },
+    ],
   },
 };

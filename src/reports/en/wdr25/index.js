@@ -60,7 +60,9 @@ export const featuredVideos = [
     url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
   },
 ];
+
 export const chapterRelease = true;
+
 export const chapters = {
   synthesis: {
     metadata: {

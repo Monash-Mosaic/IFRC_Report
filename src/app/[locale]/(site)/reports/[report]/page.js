@@ -201,7 +201,7 @@ export default async function ReportDetailPage({ params }) {
       </div>
 
       {/* Hero Video Section */}
-      {reportData.chapterRelease && (
+      {!reportData.chapterRelease && (
         <div className="mt-8">
           <HeroMediaBlock
             title={tHome('landingPage.heroSection.title')}
