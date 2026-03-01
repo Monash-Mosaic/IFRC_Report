@@ -1,0 +1,169 @@
+key,value
+report.categories[0],Annual Report
+report.categories[1],Strategy
+report.categories[2],DREF
+report.categories[3],Emergency Appeals
+report.categories[4],Disaster Management
+report.categories[5],Health and Care
+report.categories[6],National Society Development
+report.categories[7],Climate Change
+report.categories[8],Migration
+report.categories[9],Advocacy
+report.categories[10],Other
+report.reports.wdr25.author,Secretariado de la FICR
+report.reports.wdr25.category,Informe Anual
+report.reports.wdr25.chapters.capitulo-02.metadata.chapterKey,chapter-02
+report.reports.wdr25.chapters.capitulo-02.metadata.chapterNumber,2
+report.reports.wdr25.chapters.capitulo-02.metadata.chapterPrefix,Capítulo 02
+report.reports.wdr25.chapters.capitulo-02.title,""
+report.reports.wdr25.chapters.capitulo-02.subtitle,""
+report.reports.wdr25.chapters.capitulo-02.audios[0].id,intro
+report.reports.wdr25.chapters.capitulo-02.audios[0].name,Capítulo 02 - Descripción general
+report.reports.wdr25.chapters.capitulo-02.audios[0].duration,02:31
+report.reports.wdr25.chapters.capitulo-02.audios[0].url,https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
+report.reports.wdr25.chapters.capitulo-02.audios[1].id,section-1
+report.reports.wdr25.chapters.capitulo-02.audios[1].name,Sección 1: Hallazgos clave
+report.reports.wdr25.chapters.capitulo-02.audios[1].duration,04:12
+report.reports.wdr25.chapters.capitulo-02.audios[1].url,https://samplelib.com/lib/preview/mp3/sample-15s.mp3
+report.reports.wdr25.chapters.capitulo-02.videos[0].id,summary
+report.reports.wdr25.chapters.capitulo-02.videos[0].name,Resumen del capítulo
+report.reports.wdr25.chapters.capitulo-02.videos[0].duration,03:45
+report.reports.wdr25.chapters.capitulo-02.videos[0].url,https://www.youtube.com/watch?v=o8NiE3XMPrM
+report.reports.wdr25.chapters.capitulo-02.videos[0].thumbnail,/window.svg
+report.reports.wdr25.description,"Informe Anual 2025 de la Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja, que detalla la respuesta global ante desastres y los esfuerzos humanitarios."
+report.reports.wdr25.featuredVideos[0].id,1
+report.reports.wdr25.featuredVideos[0].title,Guía Rápida para tu Aplicación Limitless
+report.reports.wdr25.featuredVideos[0].description,"¿Tienes problemas para solicitar Limitless? ¿No sabes por dónde empezar? No te preocupes. Zikomo está aquí para contarte cómo, por qué y dónde solicitar la Academia de Innovación Juvenil IFRC Limitless 2024"
+report.reports.wdr25.featuredVideos[0].url,https://www.youtube.com/watch?v=k5WL45qWU78
+report.reports.wdr25.featuredVideos[1].id,2
+report.reports.wdr25.featuredVideos[1].title,Sumérgete en la localización de la ayuda — Una iniciativa inclusiva
+report.reports.wdr25.featuredVideos[1].description,"En este episodio, Victoire de la Cruz Roja de Camerún analiza la importancia de involucrar a la población local en la implementación de acciones humanitarias en comunidades vulnerables a través de la participación de la población local."
+report.reports.wdr25.featuredVideos[1].url,https://www.youtube.com/watch?v=_8cmKGTOluo
+report.reports.wdr25.reportFile.url,/reports/wdr2025.pdf
+report.reports.wdr25.reportFile.size,19389263
+report.reports.wdr25.testimonialsList[0].id,1
+report.reports.wdr25.testimonialsList[0].quote,"Durante la COVID-19, había tanta información que me sentí perdido y no sabía en qué creer"
+report.reports.wdr25.testimonialsList[0].name,Abdul M.
+report.reports.wdr25.testimonialsList[0].country,Afganistán
+report.reports.wdr25.testimonialsList[0].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[1].id,2
+report.reports.wdr25.testimonialsList[1].quote,Vivir en la era de la IA me asusta: ¿dónde está la verdad y dónde la desinformación?
+report.reports.wdr25.testimonialsList[1].name,Clair
+report.reports.wdr25.testimonialsList[1].country,Reino Unido
+report.reports.wdr25.testimonialsList[1].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[2].id,3
+report.reports.wdr25.testimonialsList[2].quote,Ojalá tuviera una varita mágica que me ayudara a distinguir la desinformación de la verdad
+report.reports.wdr25.testimonialsList[2].name,Olga
+report.reports.wdr25.testimonialsList[2].country,Rusia
+report.reports.wdr25.testimonialsList[2].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[3].id,4
+report.reports.wdr25.testimonialsList[3].quote,Las redes sociales difunden información falsa tan rápido que es difícil verificar qué es real antes de que sea demasiado tarde
+report.reports.wdr25.testimonialsList[3].name,María S.
+report.reports.wdr25.testimonialsList[3].country,Filipinas
+report.reports.wdr25.testimonialsList[3].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[4].id,5
+report.reports.wdr25.testimonialsList[4].quote,"En tiempos de desastre, la desinformación puede ser más peligrosa que el propio desastre"
+report.reports.wdr25.testimonialsList[4].name,James K.
+report.reports.wdr25.testimonialsList[4].country,Kenia
+report.reports.wdr25.testimonialsList[4].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.title,Informe Mundial sobre Desastres 2025
+message.Metadata.titleTemplate,%s | IFRC
+message.Metadata.defaultTitle,Informe Mundial sobre Desastres 2026 de la FICR
+message.Home.meta.title,Página de inicio de Informes de la FICR
+message.Home.meta.description,Bienvenido/a al Informe de la FICR
+message.Home.nav.logoAlt,Logotipo de la FICR
+message.Home.nav.brand,FICR | Academia Solferino
+message.Home.nav.about,Acerca de
+message.Home.nav.bookmarks,Marcadores
+message.Home.nav.download,Descargar
+message.Home.nav.search,Buscar
+message.Home.nav.acknowledgement,Agradecimientos
+message.Home.comingSoonLabel,Próximamente
+message.Home.footer.worldDisastersReport,Informe Mundial sobre Desastres
+message.Home.footer.chapters.title,Capítulos del Informe
+message.Home.footer.chapters.chapter1,Capítulo 1
+message.Home.footer.chapters.chapter2,Capítulo 2
+message.Home.footer.chapters.chapter3,Capítulo 3
+message.Home.footer.games.title,Juegos sobre Desinformación
+message.Home.footer.games.disinformer,Desinformador
+message.Home.footer.games.ctrlAltPrebunk,Ctrl+Alt+Prebunk
+message.Home.footer.social.facebook,Facebook
+message.Home.footer.social.linkedin,LinkedIn
+message.Home.footer.social.youtube,YouTube
+message.Home.footer.social.instagram,Instagram
+message.Home.footer.social.x,X (Twitter)
+message.Home.footer.copyright,© {year} Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja. Todos los derechos reservados.
+message.Home.footer.orgFull,Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja
+message.Home.footer.privacyPolicy,Política de Privacidad
+message.Home.footer.termsOfService,Términos de Servicio
+message.Home.footer.contact,Contacto
+message.Home.landingPage.heroSection.title,"Informe
+Mundial sobre
+Desastres"
+message.Home.landingPage.heroSection.description,"Verdad, confianza y
+acción humanitaria
+en la era de la
+información danina"
+message.Home.landingPage.heroSection.buttonTexts.read,Leer informe
+message.Home.landingPage.heroSection.buttonTexts.download,Descargar informe
+message.Home.landingPage.heroSection.buttonTexts.share,Compartir
+message.Home.landingPage.heroSection.heroAlt,Imagen principal del Informe Mundial sobre Desastres mostrando a trabajadores humanitarios en acción
+message.Home.landingPage.executiveSummary.title,Resumen Ejecutivo
+message.Home.landingPage.executiveSummary.subtitle,"En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad"
+message.Home.landingPage.executiveSummary.description,"En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad"
+message.Home.landingPage.executiveSummary.buttonTexts.read,Leer
+message.Home.landingPage.executiveSummary.buttonTexts.download,Descargar
+message.Home.landingPage.executiveSummary.summaryAlt,Portada del Resumen Ejecutivo con una persona en un contexto humanitario
+message.Home.landingPage.featuredVideos.title,Videos Destacados de Todo el Mundo
+message.Home.landingPage.testimonials.title,Citas y Experiencias de Vida
+message.Home.videoCard.backToThumbnail,Volver a la miniatura
+message.Home.videoCard.videoAriaLabel,Reproducir video
+message.ReportListingPage.meta.title,Informes y Publicaciones
+message.ReportListingPage.meta.description,Accede y gestiona informes y publicaciones de la FICR
+message.ReportListingPage.title,Informes y Publicaciones
+message.ReportListingPage.description,Accede y gestiona informes y publicaciones de la FICR
+message.ReportListingPage.filter.label,Categoría
+message.ReportListingPage.filter.all,Todas las Categorías
+message.ReportListingPage.dateRange.label,Rango de Fechas
+message.ReportListingPage.dateRange.all,Todo el Tiempo
+message.ReportListingPage.search.label,Buscar
+message.ReportListingPage.search.placeholder,Buscar informes...
+message.ReportListingPage.docList.label,Todos los Informes
+message.ReportListingPage.docList.showing,"{count, plural, =0 {No se encontró ningún informe} =1 {Mostrando # informe} other {Mostrando # informes}}"
+message.ReportListingPage.docList.download,Descargar Informe
+message.ReportListingPage.docList.readInteractiveAlt,Leer Informe Interactivo
+message.ReportDetailPage.backToDocuments,Volver a Informes
+message.ReportDetailPage.tableOfContent,Tabla de Contenidos
+message.ReportDetailPage.bookmark,Marcador
+message.ReportDetailPage.bookmarkAria,"{action, select, add {Añadir marcador} remove {Eliminar marcador} other {Desconocido}} para {section}"
+message.ReportDetailPage.sections.continue,Continuar
+message.ReportChapterPage.back,Atrás
+message.ReportChapterPage.tocTitle,En Este Capítulo
+message.LocaleSwitcher.ariaLabel,Seleccionar idioma
+message.LocaleSwitcher.title,Seleccionar idioma
+message.LocaleSwitcher.language,Idioma
+message.SidebarPanel.expandSidebar,Expandir barra lateral
+message.SidebarPanel.closeSidebar,Cerrar barra lateral
+message.SidebarPanel.back,Atrás
+message.SidebarPanel.resources,Recursos
+message.SidebarPanel.chapterResourcesPanel,Panel de Recursos del Capítulo
+message.SidebarPanel.panel.notes,Notas
+message.SidebarPanel.panel.audios,Audio
+message.SidebarPanel.panel.videos,Videos
+message.SidebarPanel.chapterNotes,Notas del Capítulo
+message.SidebarPanel.myNotes,Mis Notas
+message.SidebarPanel.bookmarks,Marcadores
+message.SidebarPanel.audio,Audio
+message.SidebarPanel.videos,Videos
+message.SidebarPanel.loading,Cargando
+message.SidebarPanel.noMediaAvailable.audio,No hay audio disponible para este capítulo
+message.SidebarPanel.noMediaAvailable.videos,No hay videos disponibles para este capítulo
+message.SidebarPanel.selectMediaToPlay.audio,Selecciona un audio para reproducir
+message.SidebarPanel.selectMediaToPlay.videos,Selecciona un video para reproducir
+message.SidebarPanel.playerForAccessibility.audio,Reproductor de audio para mejorar la accesibilidad
+message.SidebarPanel.playerForAccessibility.videos,Reproductor de video para mejorar la accesibilidad
+message.SidebarPanel.closeMediaPanel,Cerrar panel de medios
+message.SidebarPanel.duration,Duración
+message.SidebarPanel.videoCard.backToThumbnail,Volver a la miniatura
+message.ComingSoon.meta.title,Próximamente
+message.ComingSoon.meta.description,La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto.

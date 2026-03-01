@@ -1,0 +1,166 @@
+key,value
+report.categories[0],Годовой отчет
+report.categories[1],Стратегия
+report.categories[2],DREF
+report.categories[3],Экстренные обращения
+report.categories[4],Управление при бедствиях
+report.categories[5],Здоровье и уход
+report.categories[6],Развитие национальных обществ
+report.categories[7],Изменение климата
+report.categories[8],Миграция
+report.categories[9],Адвокация
+report.categories[10],Другое
+report.reports.wdr25.author,Секретариат IFRC
+report.reports.wdr25.category,Годовой отчет
+report.reports.wdr25.chapters.глава-02.metadata.chapterKey,chapter-02
+report.reports.wdr25.chapters.глава-02.metadata.chapterNumber,2
+report.reports.wdr25.chapters.глава-02.metadata.chapterPrefix,Глава 02
+report.reports.wdr25.chapters.глава-02.title,""
+report.reports.wdr25.chapters.глава-02.subtitle,""
+report.reports.wdr25.chapters.глава-02.audios[0].id,intro
+report.reports.wdr25.chapters.глава-02.audios[0].name,Глава 02 - Обзор
+report.reports.wdr25.chapters.глава-02.audios[0].duration,02:31
+report.reports.wdr25.chapters.глава-02.audios[0].url,https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
+report.reports.wdr25.chapters.глава-02.audios[1].id,section-1
+report.reports.wdr25.chapters.глава-02.audios[1].name,Раздел 1: Ключевые выводы
+report.reports.wdr25.chapters.глава-02.audios[1].duration,04:12
+report.reports.wdr25.chapters.глава-02.audios[1].url,https://samplelib.com/lib/preview/mp3/sample-15s.mp3
+report.reports.wdr25.chapters.глава-02.videos[0].id,summary
+report.reports.wdr25.chapters.глава-02.videos[0].name,Краткое изложение главы
+report.reports.wdr25.chapters.глава-02.videos[0].duration,03:45
+report.reports.wdr25.chapters.глава-02.videos[0].url,https://www.youtube.com/watch?v=o8NiE3XMPrM
+report.reports.wdr25.chapters.глава-02.videos[0].thumbnail,/window.svg
+report.reports.wdr25.description,"Годовой отчет Международной федерации обществ Красного Креста и Красного Полумесяца за 2025 год, с подробным описанием глобального реагирования на бедствия и гуманитарной деятельности."
+report.reports.wdr25.featuredVideos[0].id,1
+report.reports.wdr25.featuredVideos[0].title,Краткое руководство по подаче заявки в Limitless
+report.reports.wdr25.featuredVideos[0].description,"У вас возникли проблемы с подачей заявки на программу Limitless? Не знаете, с чего начать? Не беспокойтесь. Zikomo расскажет вам, как, почему и куда подавать заявку в Академию инноваций для молодежи IFRC Limitless 2024"
+report.reports.wdr25.featuredVideos[0].url,https://www.youtube.com/watch?v=k5WL45qWU78
+report.reports.wdr25.featuredVideos[1].id,2
+report.reports.wdr25.featuredVideos[1].title,Погружение в локализацию помощи — Инклюзивная инициатива
+report.reports.wdr25.featuredVideos[1].description,В этом эпизоде Виктуар из Красного Креста Камеруна обсуждает важность вовлечения местного населения в реализацию гуманитарных действий в уязвимых сообществах через участие местных жителей.
+report.reports.wdr25.featuredVideos[1].url,https://www.youtube.com/watch?v=_8cmKGTOluo
+report.reports.wdr25.reportFile.url,/reports/wdr2025.pdf
+report.reports.wdr25.reportFile.size,19389263
+report.reports.wdr25.testimonialsList[0].id,1
+report.reports.wdr25.testimonialsList[0].quote,"Во время COVID-19 было так много информации, что я чувствовал себя потерянным и не знал, чему верить"
+report.reports.wdr25.testimonialsList[0].name,Абдул М.
+report.reports.wdr25.testimonialsList[0].country,Афганистан
+report.reports.wdr25.testimonialsList[0].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[1].id,2
+report.reports.wdr25.testimonialsList[1].quote,"Жизнь в эпоху ИИ пугает меня: где правда, а где дезинформация"
+report.reports.wdr25.testimonialsList[1].name,Клэр
+report.reports.wdr25.testimonialsList[1].country,Великобритания
+report.reports.wdr25.testimonialsList[1].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[2].id,3
+report.reports.wdr25.testimonialsList[2].quote,"Хотелось бы иметь волшебную палочку, которая помогла бы мне отличить дезинформацию от правды"
+report.reports.wdr25.testimonialsList[2].name,Ольга
+report.reports.wdr25.testimonialsList[2].country,Россия
+report.reports.wdr25.testimonialsList[2].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[3].id,4
+report.reports.wdr25.testimonialsList[3].quote,"Социальные сети распространяют ложную информацию так быстро, что становится трудно проверить, что правда, прежде чем станет слишком поздно"
+report.reports.wdr25.testimonialsList[3].name,Мария С.
+report.reports.wdr25.testimonialsList[3].country,Филиппины
+report.reports.wdr25.testimonialsList[3].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[4].id,5
+report.reports.wdr25.testimonialsList[4].quote,Во время катастроф дезинформация может быть опаснее самой катастрофы
+report.reports.wdr25.testimonialsList[4].name,Джеймс К.
+report.reports.wdr25.testimonialsList[4].country,Кения
+report.reports.wdr25.testimonialsList[4].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.title,Всемирный доклад о бедствиях 2025
+message.Metadata.titleTemplate,%s | IFRC
+message.Metadata.defaultTitle,Всемирный доклад о бедствиях IFRC 2026
+message.Home.meta.title,Главная страница отчетов IFRC
+message.Home.meta.description,Добро пожаловать в отчет IFRC
+message.Home.nav.logoAlt,Логотип IFRC
+message.Home.nav.brand,IFRC | академия солферино
+message.Home.nav.about,О нас
+message.Home.nav.bookmarks,Закладки
+message.Home.nav.download,Скачать
+message.Home.nav.search,Поиск
+message.Home.nav.acknowledgement,Благодарность
+message.Home.comingSoonLabel,Скоро
+message.Home.footer.worldDisastersReport,Всемирный доклад о бедствиях
+message.Home.footer.chapters.title,Главы доклада
+message.Home.footer.chapters.chapter1,Глава 1
+message.Home.footer.chapters.chapter2,Глава 2
+message.Home.footer.chapters.chapter3,Глава 3
+message.Home.footer.games.title,Игры о дезинформации
+message.Home.footer.games.disinformer,Disinformer
+message.Home.footer.games.ctrlAltPrebunk,Ctrl+Alt+Prebunk
+message.Home.footer.social.facebook,Facebook
+message.Home.footer.social.linkedin,LinkedIn
+message.Home.footer.social.youtube,YouTube
+message.Home.footer.social.instagram,Instagram
+message.Home.footer.social.x,X (Twitter)
+message.Home.footer.copyright,© {year} Международная федерация обществ Красного Креста и Красного Полумесяца. Все права защищены.
+message.Home.footer.orgFull,Международная федерация обществ Красного Креста и Красного Полумесяца
+message.Home.footer.privacyPolicy,Политика конфиденциальности
+message.Home.footer.termsOfService,Условия обслуживания
+message.Home.footer.contact,Контакты
+message.Home.landingPage.heroSection.title,"Всемирный
+доклад о
+бедствиях"
+message.Home.landingPage.heroSection.description,"Правда, доверие и гуманитарная деятельность в эпоху вредоносной информации"
+message.Home.landingPage.heroSection.buttonTexts.read,Читать доклад
+message.Home.landingPage.heroSection.buttonTexts.download,Скачать доклад
+message.Home.landingPage.heroSection.buttonTexts.share,Поделиться
+message.Home.landingPage.heroSection.heroAlt,"Главное изображение Доклада о мировых катастрофах, показывающее гуманитарных работников в действии"
+message.Home.landingPage.executiveSummary.title,Исполнительное резюме
+message.Home.landingPage.executiveSummary.subtitle,"В критической точке: противодействие вредной информации, защита человечности"
+message.Home.landingPage.executiveSummary.description,"В критической точке: противодействие вредной информации, защита человечности"
+message.Home.landingPage.executiveSummary.buttonTexts.read,Читать
+message.Home.landingPage.executiveSummary.buttonTexts.download,Скачать
+message.Home.landingPage.executiveSummary.summaryAlt,Обложка краткого обзора с изображением человека в гуманитарном контексте
+message.Home.landingPage.featuredVideos.title,Избранные видео со всего мира
+message.Home.landingPage.testimonials.title,Цитаты и жизненный опыт
+message.Home.videoCard.backToThumbnail,Вернуться к миниатюре
+message.Home.videoCard.videoAriaLabel,Воспроизвести видео
+message.ReportListingPage.meta.title,Отчеты и публикации
+message.ReportListingPage.meta.description,Доступ к отчетам и публикациям IFRC
+message.ReportListingPage.title,Отчеты и публикации
+message.ReportListingPage.description,Доступ к отчетам и публикациям IFRC
+message.ReportListingPage.filter.label,Категория
+message.ReportListingPage.filter.all,Все категории
+message.ReportListingPage.dateRange.label,Диапазон дат
+message.ReportListingPage.dateRange.all,За всё время
+message.ReportListingPage.search.label,Поиск
+message.ReportListingPage.search.placeholder,Поиск по отчетам…
+message.ReportListingPage.docList.label,Все отчеты
+message.ReportListingPage.docList.showing,"{count, plural, =0 {Отчеты не найдены} =1 {Показан # отчет} other {Показано # отчетов}}"
+message.ReportListingPage.docList.download,Скачать отчет
+message.ReportListingPage.docList.readInteractiveAlt,Открыть интерактивный отчет
+message.ReportDetailPage.backToDocuments,Назад к отчетам
+message.ReportDetailPage.tableOfContent,Оглавление
+message.ReportDetailPage.bookmark,Закладка
+message.ReportDetailPage.bookmarkAria,"{action, select, add {Добавить закладку} remove {Удалить закладку} other {Неизвестно}} для {section}"
+message.ReportDetailPage.sections.continue,Продолжить
+message.ReportChapterPage.back,Назад
+message.ReportChapterPage.tocTitle,В этой главе
+message.LocaleSwitcher.ariaLabel,Выберите язык
+message.LocaleSwitcher.title,Выберите язык
+message.LocaleSwitcher.language,Язык
+message.ComingSoon.meta.title,Скоро
+message.ComingSoon.meta.description,Цифровая версия Всемирного доклада о бедствиях IFRC скоро будет доступна.
+message.SidebarPanel.expandSidebar,Развернуть боковую панель
+message.SidebarPanel.closeSidebar,Закрыть боковую панель
+message.SidebarPanel.back,Назад
+message.SidebarPanel.resources,Ресурсы
+message.SidebarPanel.chapterResourcesPanel,Панель ресурсов главы
+message.SidebarPanel.panel.notes,Заметки
+message.SidebarPanel.panel.audios,Аудио
+message.SidebarPanel.panel.videos,Видео
+message.SidebarPanel.chapterNotes,Заметки главы
+message.SidebarPanel.myNotes,Мои заметки
+message.SidebarPanel.bookmarks,Закладки
+message.SidebarPanel.audio,Аудио
+message.SidebarPanel.videos,Видео
+message.SidebarPanel.loading,Загрузка
+message.SidebarPanel.noMediaAvailable.audio,Нет доступного аудио для этой главы
+message.SidebarPanel.noMediaAvailable.videos,Нет доступного видео для этой главы
+message.SidebarPanel.selectMediaToPlay.audio,Выберите аудио для воспроизведения
+message.SidebarPanel.selectMediaToPlay.videos,Выберите видео для воспроизведения
+message.SidebarPanel.playerForAccessibility.audio,Аудиоплеер для улучшения доступности
+message.SidebarPanel.playerForAccessibility.videos,Видеоплеер для улучшения доступности
+message.SidebarPanel.closeMediaPanel,Закрыть панель медиа
+message.SidebarPanel.duration,Длительность
+message.SidebarPanel.videoCard.backToThumbnail,Вернуться к миниатюре
