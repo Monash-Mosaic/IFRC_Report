@@ -21,18 +21,32 @@ export const acknowledgementContributors = {
   ],
   secondary: [
     { src: '/contributors/wdr26-logotypes-04.svg', alt: 'Американский Красный Крест', order: 1 },
-    { src: '/contributors/wdr26-logotypes-05.svg', alt: 'Глобальный центр готовности к катастрофам', order: 2 },
+    {
+      src: '/contributors/wdr26-logotypes-05.svg',
+      alt: 'Глобальный центр по обеспечению готовности к стихийным бедствиям',
+      order: 2,
+    },
     { src: '/contributors/wdr26-logotypes-06.svg', alt: 'Австралийский Красный Крест', order: 3 },
     { src: '/contributors/wdr26-logotypes-07.svg', alt: 'Австрийский Красный Крест', order: 4 },
     { src: '/contributors/wdr26-logotypes-08.svg', alt: 'Канадский Красный Крест', order: 5 },
-    { src: '/contributors/wdr26-logotypes-09.svg', alt: 'Шведский Красный Крест', order: 6 },
-    { src: '/contributors/wdr26-logotypes-10.svg', alt: 'Немецкий Красный Крест', order: 7 },
-    { src: '/contributors/wdr26-logotypes-11.svg', alt: 'Японское общество Красного Креста', order: 8 },
-    { src: '/contributors/wdr26-logotypes-12.svg', alt: 'Датский Красный Крест', order: 9 },
-    { src: '/contributors/wdr26-logotypes-13.svg', alt: 'Швейцарский Красный Крест', order: 10 },
-    { src: '/contributors/wdr26-logotypes-14.svg', alt: 'Правительство Австралии — DFAT', order: 11 },
   ],
-  tertiary: [],
+  tertiary: [
+    { src: '/contributors/wdr26-logotypes-09.svg', alt: 'Шведский Красный Крест', order: 1 },
+    { src: '/contributors/wdr26-logotypes-10.svg', alt: 'Немецкий Красный Крест', order: 2 },
+    {
+      src: '/contributors/wdr26-logotypes-11.svg',
+      alt: 'Японское общество Красного Креста',
+      order: 3,
+    },
+    { src: '/contributors/wdr26-logotypes-12.svg', alt: 'Финский Красный Крест', order: 4 },
+    { src: '/contributors/wdr26-logotypes-13.svg', alt: 'Датский Красный Крест', order: 5 },
+    { src: '/contributors/wdr26-logotypes-14.svg', alt: 'Швейцарский Красный Крест', order: 6 },
+    {
+      src: '/contributors/wdr26-logotypes-15.svg',
+      alt: 'Правительство Австралии – DFAT',
+      order: 7,
+    },
+  ],
 };
 
 export const reports = {
