@@ -302,6 +302,33 @@ export function DefinitionDescription({ children, ...props }) {
   );
 }
 
+export function FundamentalPrinciples({ children, ...props }) {
+  return (
+    <div
+      className="font-[var(--font-bespoke-serif)] font-extrabold border-b-2 border-[#fe4d60] text-[#fe4d60] text-2xl inline-flex items-center gap-2"
+      {...props}
+    >
+      <BookA className="w-6 h-6" />
+      {children}
+    </div>
+  );
+}
+
+export function FundamentalPrinciplesDescriptionBox({ children, ...props }) {
+  return (
+    <aside
+      className="font-[var(--font-bespoke-serif)] font-normal [padding-inline:0.75rem] [padding-block:0.75rem] [border-inline-start:4px_solid_#030303ff] bg-slate-50 text-xl flex flex-col gap-4"
+      {...props}
+    >
+      {children}
+    </aside>
+  );
+}
+
+export function FundamentalPrinciplesDescriptionBoxBody({ children, ...props }) {
+  return <div {...props}>{children}</div>;
+}
+
 export async function TohInsight({ children, types = [], align = 'left', underline = false, ...props }) {
   const toh = await getTranslations('TohIcons');
 
@@ -575,6 +602,9 @@ const CustomComponents = {
   ChapterLink,
   TableLabel,
   FigureLabel,
+  FundamentalPrinciples,
+  FundamentalPrinciplesDescriptionBox,
+  FundamentalPrinciplesDescriptionBoxBody,
 };
 
 export default CustomComponents;
