@@ -43,7 +43,7 @@ export function Contributor({ children, ...props }) {
 
 export function ContributorEntity({ children, ...props }) {
   return (
-    <div className="inline-block text-sm font-bold border-b-1 border-[#ee2435]" {...props}>
+    <div className="inline-block text-sm font-extralight border-b-1 border-[#ee2435]" {...props}>
       {children}
     </div>
   );
@@ -375,14 +375,14 @@ export async function TohInsight({ children, types = [], align = 'left', underli
     ),
   };
 
-  const justifyContent = align === 'right' ? 'flex-end' : 'flex-start';
+  const iconRowStyle = align === 'right' ? { marginInlineStart: 'auto' } : undefined;
   const containerStyle = underline
     ? { width: '100%', borderBottom: '1px solid #ee2435', paddingBottom: '0.5rem' }
     : { width: '100%' };
 
   return (
     <div style={containerStyle} {...props}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent, gap: '8px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', ...iconRowStyle }}>
         {types.map((code) => {
           return svgMap[code];
         })}
@@ -554,6 +554,14 @@ export function ChapterLink({ children, ...props }) {
   );
 }
 
+export function HeadingLabel({ index, className = '', ...props }) {
+  return (
+    <span className={`inline-block align-top me-3 text-[#fe4d60] text-2xl font-medium ${className}`} {...props}>
+      {index}
+    </span>
+  );
+}
+
 export function TableLabel({ index, label = 'Table', className = '', ...props }) {
   return (
     <span className={`inline-block align-top me-3 text-[#fe4d60] text-base font-medium ${className}`} {...props}>
@@ -600,6 +608,7 @@ const CustomComponents = {
   ReccomendationsTitle,
   EndnotesLink,
   ChapterLink,
+  HeadingLabel,
   TableLabel,
   FigureLabel,
   FundamentalPrinciples,
