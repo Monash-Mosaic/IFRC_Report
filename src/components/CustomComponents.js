@@ -426,9 +426,23 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
   );
 };
 
-export function ChapterImage({ imagePath, alt = 'Alt', width = 900, height = 700 }) {
+export function ChapterImage({
+  imagePath,
+  alt = 'Alt',
+  width = 900,
+  height = 700,
+  imageTitle,
+  imageIndex,
+  imageLabel = 'Fig',
+}) {
   return (
-    <div className="w-full">
+    <figure className="w-full">
+      {imageTitle || imageIndex ? (
+        <div className="mb-3 text-left max-w-[900px] mx-auto">
+          {imageIndex ? <FigureLabel index={imageIndex} label={imageLabel} className="me-2" /> : null}
+          {imageTitle ? <span className="text-2xl font-bold">{imageTitle}</span> : null}
+        </div>
+      ) : null}
       <div
         className="relative overflow-hidden  select-none w-full rounded-lg"
         style={{
@@ -439,7 +453,7 @@ export function ChapterImage({ imagePath, alt = 'Alt', width = 900, height = 700
       >
         <Image src={imagePath} alt={alt} fill className="object-cover" />
       </div>
-    </div>
+    </figure>
   );
 }
 
@@ -461,7 +475,15 @@ export function ChapterLink({ children, ...props }) {
 
 export function TableLabel({ index, label = 'Table', className = '', ...props }) {
   return (
-    <span className={`inline-block align-top me-3 text-[#ee2435] text-base font-medium ${className}`} {...props}>
+    <span className={`inline-block align-top me-3 text-[#fe4d60] text-base font-medium ${className}`} {...props}>
+      {label} {index}
+    </span>
+  );
+}
+
+export function FigureLabel({ index, label = 'Fig', className = '', ...props }) {
+  return (
+    <span className={`inline-block align-top me-3 text-[#fe4d60] text-sm font-medium ${className}`} {...props}>
       {label} {index}
     </span>
   );
@@ -494,6 +516,7 @@ const CustomComponents = {
   EndnotesLink,
   ChapterLink,
   TableLabel,
+  FigureLabel,
 };
 
 export default CustomComponents;
