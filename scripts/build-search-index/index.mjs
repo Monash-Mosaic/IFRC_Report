@@ -79,6 +79,27 @@ async function createPlatformProxy() {
   });
 }
 
+async function retryAsync(fn, attempts = 3, delay = 500) {
+  let lastError;
+  for (let i = 0; i < attempts; i += 1) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      const backoff = Math.round(delay * Math.pow(2, i));
+      console.warn(`[build-search-index] attempt=${i + 1} failed, retrying in ${backoff}ms: ${err?.message || err}`);
+      if (i < attempts - 1) {
+        await new Promise(r => setTimeout(r, backoff));
+      }
+    }
+  }
+  throw lastError;
+}
+
+async function retryCommit(searchIndex, attempts = 5, delay = 250) {
+  return retryAsync(() => searchIndex.commit(), attempts, delay);
+}
+
 console.info(
   `[build-search-index] environment=${cloudflareEnvironment || 'production'} namespace=${searchIndexNamespace || 'default'}`
 );
@@ -147,11 +168,11 @@ try {
       db: searchDb,
       namespace: searchIndexNamespace,
     });
-    await searchIndex.clear();
+    await retryAsync(() => searchIndex.clear(), 3, 500);
     for (const doc of indices[locale]) {
       await searchIndex.addAsync(doc['id'], doc);
     }
-    await searchIndex.commit();
+    await retryCommit(searchIndex);
 
     const table = searchIndex?.db?.tableName?.('reg');
     if (!table) {
