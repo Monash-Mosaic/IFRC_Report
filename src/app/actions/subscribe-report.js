@@ -1,16 +1,15 @@
 'use server';
 
+const { BrevoClient } = require('@getbrevo/brevo');
+
 /**
  * Subscribe-report stores email addresses in Brevo (for "full report coming soon" and
  * similar signups). Uses a Server Action so the API key never reaches the client.
- * Stores the page URL (location) in Brevo so you can see which page the user subscribed from.
+ * Uses the Brevo SDK. Stores SUBSCRIBE_PAGE (page URL) and SUBSCRIBE_LOCALE in Brevo.
  *
- * In Brevo: create a contact attribute (Contacts → Settings → Contact attributes)
- * named SUBSCRIBE_PAGE (type: Text) and SUBSCRIBE_LOCALE (type: Text) for the page URL
- * and web locale (e.g. en, zh). If omitted, the contact is still created and added to the list.
+ * In Brevo: create contact attributes (Contacts → Settings → Contact attributes)
+ * named SUBSCRIBE_PAGE (type: Text) and SUBSCRIBE_LOCALE (type: Text).
  */
-const BREVO_API = 'https://api.brevo.com/v3/contacts';
-
 function isValidEmail(value) {
   if (typeof value !== 'string' || value.length > 254) return false;
   const at = value.indexOf('@');
@@ -25,15 +24,6 @@ export async function subscribeReport(prevState, formData) {
   const apiKey = process.env.BREVO_API_KEY?.trim();
   const listIdRaw = process.env.BREVO_LIST_ID?.trim();
 
-  if (!apiKey || !listIdRaw) {
-    return { error: 'Server configuration error' };
-  }
-
-  const listId = Number(listIdRaw);
-  if (!Number.isInteger(listId) || listId <= 0) {
-    return { error: 'Server configuration error' };
-  }
-
   const email = formData.get('email')?.toString()?.trim() ?? '';
   const location = formData.get('location')?.toString()?.trim() ?? '';
   const locale = formData.get('locale')?.toString()?.trim() ?? '';
@@ -46,45 +36,26 @@ export async function subscribeReport(prevState, formData) {
     return { error: 'Please enter a valid email address.' };
   }
 
-  const body = {
-    email,
-    listIds: [listId],
-    updateEnabled: true,
-  };
-
-  if (location || locale) {
-    body.attributes = {};
-    if (location) body.attributes.SUBSCRIBE_PAGE = location.slice(0, 500);
-    if (locale) body.attributes.SUBSCRIBE_LOCALE = locale.slice(0, 20);
+  const listId = Number(listIdRaw);
+  if (!apiKey || !listIdRaw || !Number.isInteger(listId) || listId <= 0) {
+    return { error: 'Server configuration error' };
   }
 
+  const attributes = {};
+  if (location) attributes.SUBSCRIBE_PAGE = location.slice(0, 500);
+  if (locale) attributes.SUBSCRIBE_LOCALE = locale.slice(0, 20);
+
   try {
-    const res = await fetch(BREVO_API, {
-      method: 'POST',
-      headers: {
-        'api-key': apiKey,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+    const brevo = new BrevoClient({ apiKey });
+    await brevo.contacts.createContact({
+      email,
+      listIds: [listId],
+      updateEnabled: true,
+      ...(Object.keys(attributes).length > 0 && { attributes }),
     });
-
-    if (res.ok) {
-      return { success: true };
-    }
-
-    const data = await res.json().catch(() => ({}));
-    if (res.status === 400 && body.attributes && data?.message?.includes?.('attribute')) {
-      body.attributes = undefined;
-      const retry = await fetch(BREVO_API, {
-        method: 'POST',
-        headers: { 'api-key': apiKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      if (retry.ok) return { success: true };
-    }
-
-    return { error: 'Something went wrong. Please try again.' };
-  } catch {
+    return { success: true };
+  } catch (error) {
+    console.error('subscribe-report error:', error);
     return { error: 'Something went wrong. Please try again.' };
   }
 }

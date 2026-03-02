@@ -1,19 +1,27 @@
 /**
  * @jest-environment node
  */
+const createContactMock = jest.fn();
+
+jest.mock('@getbrevo/brevo', () => ({
+  BrevoClient: function MockBrevoClient() {
+    this.contacts = { createContact: createContactMock };
+  },
+}));
+
 import { subscribeReport } from '@/app/actions/subscribe-report';
 
 describe('subscribeReport server action', () => {
   const originalEnv = process.env;
 
   beforeEach(() => {
-    jest.resetModules();
+    jest.clearAllMocks();
+    createContactMock.mockResolvedValue({});
     process.env = {
       ...originalEnv,
       BREVO_API_KEY: 'test_api_key',
       BREVO_LIST_ID: '42',
     };
-    global.fetch = jest.fn();
   });
 
   afterAll(() => {
@@ -29,8 +37,6 @@ describe('subscribeReport server action', () => {
   }
 
   it('sends email, location and locale to Brevo and returns success', async () => {
-    global.fetch.mockResolvedValueOnce({ ok: true });
-
     const formData = createFormData({
       email: 'user@example.com',
       location: 'https://example.com/zh/reports/wdr25',
@@ -39,47 +45,42 @@ describe('subscribeReport server action', () => {
     const result = await subscribeReport(null, formData);
 
     expect(result).toEqual({ success: true });
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.brevo.com/v3/contacts',
+    expect(createContactMock).toHaveBeenCalledTimes(1);
+    expect(createContactMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        method: 'POST',
-        headers: expect.objectContaining({
-          'api-key': 'test_api_key',
-          'Content-Type': 'application/json',
-        }),
+        email: 'user@example.com',
+        listIds: [42],
+        updateEnabled: true,
+        attributes: {
+          SUBSCRIBE_PAGE: 'https://example.com/zh/reports/wdr25',
+          SUBSCRIBE_LOCALE: 'zh',
+        },
       })
     );
-
-    const fetchBody = JSON.parse(global.fetch.mock.calls[0][1].body);
-    expect(fetchBody.email).toBe('user@example.com');
-    expect(fetchBody.listIds).toEqual([42]);
-    expect(fetchBody.updateEnabled).toBe(true);
-    expect(fetchBody.attributes.SUBSCRIBE_PAGE).toBe('https://example.com/zh/reports/wdr25');
-    expect(fetchBody.attributes.SUBSCRIBE_LOCALE).toBe('zh');
   });
 
   it('sends only locale when location is empty', async () => {
-    global.fetch.mockResolvedValueOnce({ ok: true });
-
     const formData = createFormData({ location: '', locale: 'fr' });
     const result = await subscribeReport(null, formData);
 
     expect(result).toEqual({ success: true });
-    const fetchBody = JSON.parse(global.fetch.mock.calls[0][1].body);
-    expect(fetchBody.attributes.SUBSCRIBE_LOCALE).toBe('fr');
-    expect(fetchBody.attributes.SUBSCRIBE_PAGE).toBeUndefined();
+    expect(createContactMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        attributes: {
+          SUBSCRIBE_LOCALE: 'fr',
+        },
+      })
+    );
+    expect(createContactMock.mock.calls[0][0].attributes.SUBSCRIBE_PAGE).toBeUndefined();
   });
 
   it('does not add attributes when location and locale are empty', async () => {
-    global.fetch.mockResolvedValueOnce({ ok: true });
-
     const formData = createFormData({ location: '', locale: '' });
     const result = await subscribeReport(null, formData);
 
     expect(result).toEqual({ success: true });
-    const fetchBody = JSON.parse(global.fetch.mock.calls[0][1].body);
-    expect(fetchBody.attributes).toBeUndefined();
+    const callArg = createContactMock.mock.calls[0][0];
+    expect(callArg.attributes).toBeUndefined();
   });
 
   it('returns error when email is missing', async () => {
@@ -87,7 +88,7 @@ describe('subscribeReport server action', () => {
     const result = await subscribeReport(null, formData);
 
     expect(result).toEqual({ error: 'Email is required' });
-    expect(global.fetch).not.toHaveBeenCalled();
+    expect(createContactMock).not.toHaveBeenCalled();
   });
 
   it('returns error for invalid email', async () => {
@@ -95,7 +96,7 @@ describe('subscribeReport server action', () => {
     const result = await subscribeReport(null, formData);
 
     expect(result).toEqual({ error: 'Please enter a valid email address.' });
-    expect(global.fetch).not.toHaveBeenCalled();
+    expect(createContactMock).not.toHaveBeenCalled();
   });
 
   it('returns error when Brevo config is missing', async () => {
@@ -105,15 +106,17 @@ describe('subscribeReport server action', () => {
     const result = await subscribeReport(null, formData);
 
     expect(result).toEqual({ error: 'Server configuration error' });
-    expect(global.fetch).not.toHaveBeenCalled();
+    expect(createContactMock).not.toHaveBeenCalled();
   });
 
-  it('returns error when Brevo API returns not ok', async () => {
-    global.fetch.mockResolvedValueOnce({ ok: false, json: () => Promise.resolve({ message: 'Error' }) });
+  it('returns error when Brevo SDK throws', async () => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    createContactMock.mockRejectedValueOnce(new Error('API error'));
 
     const formData = createFormData();
     const result = await subscribeReport(null, formData);
 
     expect(result).toEqual({ error: 'Something went wrong. Please try again.' });
+    consoleSpy.mockRestore();
   });
 });
