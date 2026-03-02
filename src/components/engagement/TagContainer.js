@@ -1,24 +1,13 @@
+'use client';
+
 import React from 'react';
 import { Funnel } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export const TAG_CATEGORIES = [
   {
-    id: 'harm',
-    label: 'Harm',
-    column: 'harm',
-    tags: [
-      { id: 'psychological', label: 'Psychological' },
-      { id: 'societal', label: 'Societal' },
-      { id: 'social', label: 'Social' },
-      { id: 'informational', label: 'Informational' },
-      { id: 'digital_technological', label: 'Digital/technological' },
-      { id: 'physical', label: 'Physical' },
-      { id: 'deprivational', label: 'Deprivational/financial/economic' },
-    ],
-  },
-  {
     id: 'operational_impact',
-    label: 'Operational Impact',
+    labelKey: 'browseOperationalImpact',
     column: 'operational',
     tags: [
       { id: 'access_constraints', label: 'Access constraints and acceptance risks' },
@@ -29,7 +18,7 @@ export const TAG_CATEGORIES = [
   },
   {
     id: 'response_strategy',
-    label: 'Response Strategy',
+    labelKey: 'browseResponseStrategy',
     column: 'response',
     tags: [
       { id: 'community_engagement', label: 'Community engagement and accountability' },
@@ -43,7 +32,7 @@ export const TAG_CATEGORIES = [
   },
   {
     id: 'governance',
-    label: 'Governance',
+    labelKey: 'browseGovernance',
     column: 'governance',
     tags: [
       { id: 'regulation', label: 'Regulation and public policy frameworks' },
@@ -55,6 +44,7 @@ export const TAG_CATEGORIES = [
 ];
 
 export default function TagContainer({ selectedTag, handleSelectionTag }) {
+  const t = useTranslations('Engagement');
   const selectedCount = Object.values(selectedTag).filter(Boolean).length;
 
   return (
@@ -63,10 +53,10 @@ export default function TagContainer({ selectedTag, handleSelectionTag }) {
       <div className="px-6 pt-5 pb-4">
         <div className="flex items-center gap-2 mb-3">
           <Funnel size={17} className="text-[#ee2435]" />
-          <span className="text-sm font-bold text-slate-900">Browse Topics</span>
+          <span className="text-sm font-bold text-slate-900">{t('browseTopics')}</span>
           {selectedCount > 0 && (
             <span className="text-xs font-medium text-white bg-[#ee2435] px-2 py-0.5 rounded-full">
-              {selectedCount} selected
+              {t('selectedCount', { count: selectedCount })}
             </span>
           )}
         </div>
@@ -82,7 +72,7 @@ export default function TagContainer({ selectedTag, handleSelectionTag }) {
               <div
                 className="col-span-4 text-sm font-bold text-slate-800 pt-3 pb-1"
               >
-                {category.label}
+                {t(category.labelKey)}
               </div>
 
               {/* Tags — each fills one cell, wrap naturally across 4 columns */}

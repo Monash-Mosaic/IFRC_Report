@@ -42,7 +42,16 @@ const CHAPTER_TITLES = {
   CH8: 'Recommendations and the Path Forward',
 };
 
-// Six thematic icons shown on every card
+// Types of Harm (TOH): map harm tag labels to one of the six icons per quote
+const HARM_TAG_TO_ICON = [
+  { label: 'psychological', Icon: User },
+  { label: 'societal', Icon: Building2 },
+  { label: 'social', Icon: Smartphone },
+  { label: 'informational', Icon: Wifi },
+  { label: 'digital/technological', Icon: Monitor },
+  { label: 'physical', Icon: Activity },
+  { label: 'deprivational/financial/economic', Icon: Activity },
+];
 const THEME_ICONS = [Monitor, Wifi, Smartphone, Activity, User, Building2];
 
 function parseCSV(text) {
@@ -77,8 +86,33 @@ function parseTags(str) {
   return (str || '').split(';').map((t) => t.trim()).filter(Boolean);
 }
 
+/** CH1 -> "Chapter 1", CH2 -> "Chapter 2", etc. */
+function formatChapterLabel(chapterCode) {
+  if (!chapterCode || typeof chapterCode !== 'string') return '';
+  const m = chapterCode.trim().match(/^CH(\d+)$/i);
+  return m ? `Chapter ${m[1]}` : chapterCode;
+}
+
+/** Resolve quote harm tags to TOH icons (unique, ordered). */
+function getIconsForHarm(harmStr) {
+  const tags = parseTags(harmStr).map((t) => t.toLowerCase().trim());
+  const seen = new Set();
+  const icons = [];
+  for (const { label, Icon } of HARM_TAG_TO_ICON) {
+    const labelNorm = label.toLowerCase();
+    const matches = tags.some((t) => t.includes(labelNorm) || labelNorm.includes(t));
+    if (matches && !seen.has(Icon)) {
+      seen.add(Icon);
+      icons.push(Icon);
+    }
+  }
+  return icons.length > 0 ? icons : THEME_ICONS;
+}
+
 function QuoteCard({ quote }) {
   const chapterTitle = CHAPTER_TITLES[quote.chapter];
+  const chapterLabel = formatChapterLabel(quote.chapter);
+  const tohIcons = getIconsForHarm(quote.harm);
 
   return (
     <div
@@ -91,9 +125,9 @@ function QuoteCard({ quote }) {
           &ldquo;{quote.text}&rdquo;
         </p>
 
-        {/* 2×3 grid of circular icon badges */}
+        {/* TOH icons from harm tags (2×3 grid) */}
         <div className="grid grid-cols-3 gap-2">
-          {THEME_ICONS.map((Icon, i) => (
+          {tohIcons.map((Icon, i) => (
             <div
               key={i}
               className="flex items-center justify-center w-9 h-9 rounded-full bg-[#ee2435]"
@@ -106,9 +140,9 @@ function QuoteCard({ quote }) {
 
       {/* Footer */}
       <div className="px-5 py-4 border-t border-slate-100">
-        {quote.chapter && (
+        {chapterLabel && (
           <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
-            {quote.chapter}
+            {chapterLabel}
           </span>
         )}
         {chapterTitle && (
@@ -149,12 +183,19 @@ export default function QuotesSection({ selectedTag }) {
           setQuotes([]);
           return;
         }
+        const quoteTextIdx = colIndex['Quote text'];
+        const isValidQuoteText = (val) => {
+          if (!val || typeof val !== 'string') return false;
+          const v = val.trim();
+          if (/^CH\d+$/i.test(v) || /^\d+$/.test(v)) return false;
+          return v.length > 0;
+        };
         const parsed = rows
           .slice(1)
-          .filter((row) => row[colIndex['Quote text']]?.length > 0)
+          .filter((row) => isValidQuoteText(row[quoteTextIdx]))
           .map((row) => ({
             id: row[colIndex['Q_ID']],
-            text: row[colIndex['Quote text']],
+            text: (row[quoteTextIdx] || '').trim(),
             chapter: (row[colIndex['Chapter']] || '').trim(),
             country: (row[colIndex['country_region']] || '').trim(),
             harm: (row[colIndex['tag:harm']] || '').trim(),
