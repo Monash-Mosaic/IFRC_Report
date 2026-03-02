@@ -108,7 +108,7 @@ export default function EmblaCarousel({
     const timer = setTimeout(onSelect, 0);
 
     return () => clearTimeout(timer);
-  }, [locale, emblaApi, onSelect]);
+  }, [locale]);
 
   // Computed values
   const totalChildren = Array.isArray(children) ? children.length : 1;
