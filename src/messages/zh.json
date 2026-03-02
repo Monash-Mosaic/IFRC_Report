@@ -18,7 +18,8 @@
       "bookmarks": "书签",
       "download": "下载",
       "search": "搜索",
-      "acknowledgement": "鸣谢"
+      "acknowledgement": "鸣谢",
+      "searchPlaceholder": "搜索《2026年世界灾害报告》..."
     },
     "comingSoonLabel": "即将上线",
     "footer": {
@@ -110,8 +111,15 @@
     "tableOfContent": "目录",
     "bookmark": "书签",
     "bookmarkAria": "{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}",
+    "pageTitle": "世界灾害报告 — 目录",
+    "breadcrumb": {
+      "home": "首页",
+      "chapters": "章节"
+    },
     "sections": {
-      "continue": "继续"
+      "continue": "继续",
+      "comingSoon": "即将推出",
+      "expandChapter": "展开章节详情"
     }
   },
   "ReportChapterPage": {
@@ -202,7 +210,6 @@
     "message": "错误详情：{message}",
     "backHome": "返回首页"
   },
-  
   "About": {
     "breadcrumbHome": "首页",
     "breadcrumbCurrent": "关于",
@@ -229,7 +236,7 @@
     "webUrlTitle": "网页版链接",
     "webUrlText": "www.ifrcwdr26.com"
   },
-   "Acknowledgements": {
+  "Acknowledgements": {
     "meta": {
       "title": "致谢与贡献者",
       "description": "感谢支持红十字会与红新月会国际联合会《2026年世界灾害报告》编撰、翻译和出版工作的各组织和个人。"
