@@ -1,4 +1,5 @@
 import * as Synthesis from './exec-summary.mdx';
+import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
 
@@ -67,13 +68,26 @@ export const chapters = {
   synthesis: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: 0,
+      chapterNumber: -1,
       chapterPrefix: 'Synthesis',
     },
     component: Synthesis.default,
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+  },
+  introduction: {
+    metadata: {
+      chapterKey: 'introduction',
+      chapterNumber: 0,
+      chapterPrefix: 'Introduction',
+    },
+    component: Introduction.default,
+    title: Introduction.title,
+    subtitle: Introduction.subtitle,
+    tableOfContents: Introduction.tableOfContents,
     downloadLink:
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
   },

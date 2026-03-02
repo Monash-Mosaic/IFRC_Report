@@ -76,7 +76,7 @@ export function Contributors({ children, ...props }) {
 
 export function ContributorRole({ children, ...props }) {
   return (
-    <div className='text-sm font-bold' {...props}>
+    <div className="text-sm font-bold" {...props}>
       {children}
     </div>
   );
@@ -113,9 +113,16 @@ export function SideNote({ children, ...props }) {
 
 export function SmallQuote({ children, ...props }) {
   return (
-    <blockquote className="font-[var(--font-bespoke-serif)] my-4 text-2xl font-extrabold" {...props}>
+    <blockquote
+      className="font-[var(--font-bespoke-serif)] my-4 text-2xl font-extrabold"
+      {...props}
+    >
       <div className="flex items-start gap-4">
-        <Quote className="w-8 h-8 shrink-0 rotate-180 text-[#ee2435]" strokeWidth={2} fill="#ee2435" />
+        <Quote
+          className="w-8 h-8 shrink-0 rotate-180 text-[#ee2435]"
+          strokeWidth={2}
+          fill="#ee2435"
+        />
         <span>{children}</span>
       </div>
     </blockquote>
@@ -193,7 +200,7 @@ export function ContributorSpotlightRole({ children, ...props }) {
 
 export function ChapterQuote({ children, ...props }) {
   return (
-    <div style={{ color: '#6b7280', fontStyle: 'italic' }} {...props}>
+    <div style={{ color: '#6b7280', fontSize: '2rem' }} {...props}>
       {children}
     </div>
   );
@@ -269,7 +276,7 @@ export function ColumParagraph({ children, ...props }) {
 export function FeatureImage({ src, description, ...props }) {
   return (
     <figure>
-      <Image className="w-full mb-4" alt={description} src={src} {...props} />
+      <Image className="w-full mb-4" alt={src} src={src} {...props} />
       {description && (
         <figcaption className="text-xs font-medium">
           {description} <span className="text-red-500">@IFRC</span>
@@ -329,7 +336,13 @@ export function FundamentalPrinciplesDescriptionBoxBody({ children, ...props }) 
   return <div {...props}>{children}</div>;
 }
 
-export async function TohInsight({ children, types = [], align = 'left', underline = false, ...props }) {
+export async function TohInsight({
+  children,
+  types = [],
+  align = 'left',
+  underline = false,
+  ...props
+}) {
   const toh = await getTranslations('TohIcons');
 
   const svgMap = {
@@ -382,7 +395,15 @@ export async function TohInsight({ children, types = [], align = 'left', underli
 
   return (
     <div style={containerStyle} {...props}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: 'fit-content', ...iconRowStyle }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          width: 'fit-content',
+          ...iconRowStyle,
+        }}
+      >
         {types.map((code) => {
           return svgMap[code];
         })}
@@ -485,10 +506,15 @@ export function QuestionAnswerBox({ children, ...props }) {
 export function QuestionAnswerBoxTitle({ children, ...props }) {
   return (
     <>
-      <div className="flex items-start pt-1 pb-3 [border-inline-end:2px_solid_#fe4d60] [padding-inline-end:0.75rem] border-b-2 border-b-[#fe4d60]" {...props}>
+      <div
+        className="flex items-start pt-1 pb-3 [border-inline-end:2px_solid_#fe4d60] [padding-inline-end:0.75rem] border-b-2 border-b-[#fe4d60]"
+        {...props}
+      >
         <Info className="w-7 h-7 shrink-0" strokeWidth={1.5} />
       </div>
-      <span className="font-bold text-2xl [padding-inline-start:0.75rem] pb-3 border-b-2 border-b-[#fe4d60]">{children}</span>
+      <span className="font-bold text-2xl [padding-inline-start:0.75rem] pb-3 border-b-2 border-b-[#fe4d60]">
+        {children}
+      </span>
     </>
   );
 }
@@ -497,10 +523,7 @@ export function QuestionAnswerBoxBody({ children, ...props }) {
   return (
     <>
       <div className="[border-inline-end:2px_solid_#fe4d60] [padding-inline-end:0.75rem]" />
-      <div
-        className="[padding-inline-start:0.75rem] space-y-4 mt-4"
-        {...props}
-      >
+      <div className="[padding-inline-start:0.75rem] space-y-4 mt-4" {...props}>
         {children}
       </div>
     </>
@@ -524,14 +547,20 @@ export function ChapterImage({
         <div className="mb-3 text-left max-w-[900px] mx-auto">
           {imageTitle || imageIndex ? (
             <div className="flex items-start">
-              {imageIndex ? <FigureLabel index={imageIndex} label={imageLabel} className="me-2" /> : null}
+              {imageIndex ? (
+                <FigureLabel index={imageIndex} label={imageLabel} className="me-2" />
+              ) : null}
               <div>
                 {imageTitle ? <span className="text-2xl font-bold">{imageTitle}</span> : null}
-                {imageSubtitle ? <p className="mt-1 text-base font-light text-slate-700">{imageSubtitle}</p> : null}
+                {imageSubtitle ? (
+                  <p className="mt-1 text-base font-light text-slate-700">{imageSubtitle}</p>
+                ) : null}
               </div>
             </div>
           ) : null}
-          {!imageTitle && imageSubtitle ? <p className="mt-1 text-base font-light text-slate-700">{imageSubtitle}</p> : null}
+          {!imageTitle && imageSubtitle ? (
+            <p className="mt-1 text-base font-light text-slate-700">{imageSubtitle}</p>
+          ) : null}
         </div>
       ) : null}
       <div
@@ -544,7 +573,11 @@ export function ChapterImage({
       >
         <Image src={imagePath} alt={alt} fill className="object-cover" />
       </div>
-      {caption ? <figcaption className="mt-2 max-w-[900px] mx-auto text-right text-sm text-slate-600">{caption}</figcaption> : null}
+      {caption ? (
+        <figcaption className="mt-2 max-w-[900px] mx-auto text-right text-sm text-slate-600">
+          {caption}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }
@@ -567,7 +600,10 @@ export function ChapterLink({ children, ...props }) {
 
 export function HeadingLabel({ index, className = '', ...props }) {
   return (
-    <span className={`inline-block align-top me-3 text-[#fe4d60] text-2xl font-medium ${className}`} {...props}>
+    <span
+      className={`inline-block align-top me-3 text-[#fe4d60] text-2xl font-medium ${className}`}
+      {...props}
+    >
       {index}
     </span>
   );
@@ -575,7 +611,10 @@ export function HeadingLabel({ index, className = '', ...props }) {
 
 export function TableLabel({ index, label = 'Table', className = '', ...props }) {
   return (
-    <span className={`inline-block align-top me-3 text-[#fe4d60] text-base font-medium ${className}`} {...props}>
+    <span
+      className={`inline-block align-top me-3 text-[#fe4d60] text-base font-medium ${className}`}
+      {...props}
+    >
       {label} {index}
     </span>
   );
@@ -583,7 +622,10 @@ export function TableLabel({ index, label = 'Table', className = '', ...props })
 
 export function FigureLabel({ index, label = 'Fig', className = '', ...props }) {
   return (
-    <span className={`inline-block align-top me-3 text-[#fe4d60] text-sm font-medium ${className}`} {...props}>
+    <span
+      className={`inline-block align-top me-3 text-[#fe4d60] text-sm font-medium ${className}`}
+      {...props}
+    >
       {label} {index}
     </span>
   );

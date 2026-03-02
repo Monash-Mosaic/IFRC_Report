@@ -699,8 +699,10 @@ const convertToMDXAst = (node, index, parent) => {
       return [paragraph([image(node.attributes?.href_fmt || '')])];
     case 'quote-tight':
     case 'quote':
+    case 'biq-quote':
     case 'small-quote':
       return [mdxJsxEl('SmallQuote', [], extractTextChildren(node))];
+    case 'quote-author':
     case 'small-quote-author':
       return [mdxJsxEl('SmallQuoteAuthor', [], extractTextChildren(node))];
     case 'h1-sidenote-context':
