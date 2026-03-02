@@ -252,6 +252,8 @@
     "successTitle": "¡Gracias por unirse!",
     "successMessage": "Le enviaremos un correo cuando el nuevo contenido esté disponible.",
     "close": "Cerrar",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "invalidEmail": "Introduce una dirección de correo electrónico válida.",
     "subscribeError": "No pudimos añadirte a la lista. Por favor, inténtalo de nuevo más tarde."
   },
   "ReportIncident": {

@@ -25,13 +25,17 @@ export async function subscribeReport(prevState, formData) {
 
   const email = formData.get('email')?.toString()?.trim() ?? '';
   const locale = formData.get('locale')?.toString()?.trim() ?? '';
+  const t = await getTranslations({
+    locale: locale || 'en',
+    namespace: 'ReportSubscribe',
+  });
 
   if (!email) {
-    return { error: 'Email is required' };
+    return { error: t('emailRequired') };
   }
 
   if (!isValidEmail(email)) {
-    return { error: 'Please enter a valid email address.' };
+    return { error: t('invalidEmail') };
   }
 
   const listId = Number(listIdRaw);
@@ -49,10 +53,6 @@ export async function subscribeReport(prevState, formData) {
     return { success: true };
   } catch (error) {
     console.error('subscribe-report error', error);
-    const t = await getTranslations({
-      locale: locale || 'en',
-      namespace: 'ReportSubscribe',
-    });
     return { error: t('subscribeError') };
   }
 }

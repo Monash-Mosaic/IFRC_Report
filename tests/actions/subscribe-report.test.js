@@ -11,9 +11,14 @@ jest.mock('@getbrevo/brevo', () => ({
 
 jest.mock('next-intl/server', () => ({
   getTranslations: jest.fn(() =>
-    Promise.resolve((key) =>
-      key === 'subscribeError' ? "We couldn't add you to the list. Please try again later." : key
-    )
+    Promise.resolve((key) => {
+      const messages = {
+        emailRequired: 'Email is required',
+        invalidEmail: 'Please enter a valid email address.',
+        subscribeError: "We couldn't add you to the list. Please try again later.",
+      };
+      return messages[key] ?? key;
+    })
   ),
 }));
 

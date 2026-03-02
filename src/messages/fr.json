@@ -177,6 +177,8 @@
     "successTitle": "Merci de nous avoir rejoints !",
     "successMessage": "Nous vous enverrons un e-mail lorsque le nouveau contenu sera disponible.",
     "close": "Fermer",
+    "emailRequired": "L'adresse e-mail est requise",
+    "invalidEmail": "Veuillez entrer une adresse e-mail valide.",
     "subscribeError": "Nous n'avons pas pu vous ajouter à la liste. Veuillez réessayer plus tard."
   },
   "ReportIncident": {

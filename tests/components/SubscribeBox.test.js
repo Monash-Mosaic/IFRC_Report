@@ -10,6 +10,8 @@ const reportSubscribeTranslations = {
   successTitle: 'Thank you for joining!',
   successMessage: 'We will email you when the new content is available.',
   close: 'Close',
+  emailRequired: 'Email is required',
+  invalidEmail: 'Please enter a valid email address.',
   subscribeError: "We couldn't add you to the list. Please try again later.",
 };
 
