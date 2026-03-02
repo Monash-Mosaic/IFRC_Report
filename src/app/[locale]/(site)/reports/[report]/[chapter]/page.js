@@ -12,6 +12,7 @@ import { getBaseUrl } from '@/lib/base-url';
 import HighlightToolbar from '@/components/HighlightToolbar';
 
 import ActiveHeadingTracker from '@/components/ActiveHeadingTracker';
+import SubscribeBox from '@/components/SubscribeBox';
 
 
 export async function generateMetadata({ params }) {
@@ -152,6 +153,11 @@ export default async function ReportChapterPage({ params }) {
     locale
   });
 
+  const chapterKeys = Object.keys(chapters);
+  const isLastChapter = chapterKeys.length > 0 && chapterKeys[chapterKeys.length - 1] === decodedChapter;
+  const chapterCount = chapterKeys.length;
+  const showSubscribe = chapterCount < 9;
+
   return (
     <div className="min-h-screen bg-white flex">
       <script
@@ -194,6 +200,11 @@ export default async function ReportChapterPage({ params }) {
                   chapterTableOfContents={chapterTableOfContents}
                   title={t('tocTitle')}
                 />
+                {isLastChapter && showSubscribe && (
+                  <div className="mt-6">
+                    <SubscribeBox locale={locale} showSubscribe={showSubscribe} />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -219,7 +230,12 @@ export default async function ReportChapterPage({ params }) {
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}
-              ></TableOfContent>
+              />
+              {isLastChapter && showSubscribe && (
+                <div className="mt-6">
+                  <SubscribeBox locale={locale} showSubscribe={showSubscribe} />
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import Breadcrumb from '@/components/Breadcrumb';
+import SubscribeBox from '@/components/SubscribeBox';
 import ChapterCard from '@/components/ChapterCard';
 import HeroMediaBlock from '@/components/landing-page/HeroMediaBlock';
 import { getPathname } from '@/i18n/navigation';
@@ -152,6 +153,9 @@ export default async function ReportDetailPage({ params }) {
     })
     .sort((a, b) => a.sortOrder - b.sortOrder);
 
+  const chapterCount = Object.keys(chapters).length;
+  const showSubscribe = chapterCount < 9;
+
   return (
     <div className="min-h-screen bg-white">
       <script
@@ -192,6 +196,11 @@ export default async function ReportDetailPage({ params }) {
               }}
             />
           ))}
+          {showSubscribe && (
+            <div className="mt-6">
+              <SubscribeBox locale={locale} showSubscribe={showSubscribe} />
+            </div>
+          )}
         </div>
 
         {/* Placeholder for future email subscription section */}
