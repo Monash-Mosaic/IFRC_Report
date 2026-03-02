@@ -18,9 +18,7 @@ export default async function SiteLayout({ children, params }) {
 
   return (
     <>
-      <Suspense fallback={null}>
-        <Header />
-      </Suspense>
+      <Header />
       {children}
       <Footer />
     </>
