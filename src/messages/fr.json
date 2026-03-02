@@ -19,7 +19,7 @@
       "bookmarks": "Signets",
       "download": "Télécharger",
       "search": "Recherche",
-      "acknowledgement": "Reconnaissance",
+      "acknowledgement": "Remerciements",
       "searchPlaceholder": "Recherchez dans le Rapport mondial sur les catastrophes 2026..."
     },
     "comingSoonLabel": "Bientôt disponible",
@@ -61,7 +61,7 @@
         "heroAlt": "Image principale du Rapport sur les catastrophes dans le monde montrant des travailleurs humanitaires en action"
       },
       "executiveSummary": {
-        "title": "Résumé exécutif",
+        "title": "Synthèse",
         "subtitle": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
         "description": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
         "buttonTexts": {
@@ -304,5 +304,19 @@
     "noQuotesMatch": "Aucune citation ne correspond aux filtres sélectionnés.",
     "errorLoadingQuotes": "Impossible de charger les citations. Veuillez réessayer.",
     "filtersActive": "{count, plural, one {# filtre actif} other {# filtres actifs}}"
+  },
+  "ContributionInsight": {
+    "title": "Aperçu des Contributions"
+  },
+  "TohIcons": {
+    "deprivational": "Privation",
+    "societal": "Sociétal",
+    "digital": "Numérique",
+    "longitudinal": "Longitudinal",
+    "physical": "Physique",
+    "psychological": "Psychologique",
+    "social": "Social",
+    "informational": "Informationnel"
+  }
   }
 }

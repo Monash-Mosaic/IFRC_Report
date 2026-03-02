@@ -61,7 +61,7 @@
         "heroAlt": "World Disasters Report hero image showing humanitarian workers in action"
       },
       "executiveSummary": {
-        "title": "Executive Summary",
+        "title": "Synthesis",
         "subtitle": "At Crisis Point: Countering Harmful Information, Defending Humanity",
         "description": "At Crisis Point: Countering Harmful Information, Defending Humanity",
         "buttonTexts": {
@@ -124,7 +124,7 @@
     }
   },
   "ReportChapterPage": {
-    "tocTitle": "On This Chapter"
+    "tocTitle": "In This Chapter"
   },
   "LocaleSwitcher": {
     "ariaLabel": "Select language",
@@ -286,5 +286,19 @@
     "noQuotesMatch": "No quotes match the selected filters.",
     "errorLoadingQuotes": "Could not load quotes. Please try again.",
     "filtersActive": "{count, plural, one {# filter active} other {# filters active}}"
+  },
+  "ContributionInsight": {
+    "title": "Contribution Insight"
+  },
+  "TohIcons": {
+    "deprivational": "Deprivational",
+    "societal": "Societal",
+    "digital": "Digital",
+    "longitudinal": "Longitudinal",
+    "physical": "Physical",
+    "psychological": "Psychological",
+    "social": "Social",
+    "informational": "Informational"
+  }
   }
 }

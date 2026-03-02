@@ -61,7 +61,7 @@
         "heroAlt": "《世界灾难报告》主题图片，展示人道主义工作者正在行动"
       },
       "executiveSummary": {
-        "title": "执行摘要",
+        "title": "合成",
         "subtitle": "关键时刻：对抗有害信息，保护人性",
         "description": "关键时刻：对抗有害信息，保护人性",
         "buttonTexts": {
@@ -286,5 +286,19 @@
     "noQuotesMatch": "没有与所选筛选条件匹配的引述。",
     "errorLoadingQuotes": "无法加载引述，请重试。",
     "filtersActive": "{count, plural, one {# 个筛选已选} other {# 个筛选已选}}"
+  },
+  "ContributionInsight": {
+    "title": "贡献洞察"
+  },
+  "TohIcons": {
+    "deprivational": "剥夺",
+    "societal": "社会",
+    "digital": "数字",
+    "longitudinal": "纵向",
+    "physical": "身体",
+    "psychological": "心理",
+    "social": "社交",
+    "informational": "信息"
+  }
   }
 }

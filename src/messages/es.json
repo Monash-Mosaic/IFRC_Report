@@ -61,7 +61,7 @@
         "heroAlt": "Imagen principal del Informe Mundial sobre Desastres mostrando a trabajadores humanitarios en acción"
       },
       "executiveSummary": {
-        "title": "Resumen Ejecutivo",
+        "title": "Síntesis",
         "subtitle": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
         "description": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
         "buttonTexts": {
@@ -261,6 +261,20 @@
     "noQuotesMatch": "Ninguna cita coincide con los filtros seleccionados.",
     "errorLoadingQuotes": "No se pudieron cargar las citas. Inténtalo de nuevo.",
     "filtersActive": "{count, plural, one {# filtro activo} other {# filtros activos}}"
+  },
+  "ContributionInsight": {
+    "title": "Contribution Insight"
+  },
+  "TohIcons": {
+    "deprivational": "Deprivational",
+    "societal": "Societal",
+    "digital": "Digital",
+    "longitudinal": "Longitudinal",
+    "physical": "Physical",
+    "psychological": "Psychological",
+    "social": "Social",
+    "informational": "Informational"
+  },
   },
   "ReportSubscribe": {
     "headline": "El informe completo estará disponible pronto.",

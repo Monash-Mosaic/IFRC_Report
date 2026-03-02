@@ -1,16 +1,31 @@
 import {
-  ChapterQuote,
-  ContributorRole,
+  Box,
   ContributorSpotlight,
   ContributorSpotlightName,
   ContributorSpotlightPosition,
   ContributorSpotlightRole,
   Contributors,
+  TohInsight,
+  ChapterQuote,
+  Contributor,
+  ContributorEntity,
+  ContributorName,
+  ContributorRole,
+  ContributorTag,
   SideNote,
   SmallQuote,
   SmallQuoteAuthor,
   Spotlight,
+  QuestionAnswerBox,
+  QuestionAnswerBoxTitle,
+  QuestionAnswerBoxBody,
+  Definition,
+  DefinitionDescription,
+  HeadingLabel
 } from '@/components/CustomComponents';
+
+import { TypologyOfHarm } from '@/types/TypologyOfHarm';
+
 
 export const title =
   'Harmful Information and the Erosion of Trust in Humanitarian Response: the Role of Truth, Trust and Technology';
@@ -25,16 +40,15 @@ So said Ed Murrow, the American broadcaster and correspondent during the Second 
 
 In times of crisis or uncertainty – and these are profoundly uncertain times – people increasingly turn to information sources they perceive as relevant and aligned with their personal and lived experience, rather than those grounded solely in factual accuracy. Truth alone no longer always persuades. Emotion, identity and repetition can entrench misbeliefs in powerful, sometimes harmful ways. In such an environment, even reaching agreement on what constitutes a fact is difficult. For humanitarian organisations, whose access, acceptance and ability to operate depend on trust, navigating this fragmented, emotionally charged information space has become not only an operational challenge, but also a security risk.
 
-# Incentivised to Hostility
+# <HeadingLabel index="2.1" /> Incentivised to Hostility
 
 This online dynamic has been described as the filter bubble (Pariser, 2011), a term used to explain how search engines and social media platforms serve content that algorithms think we want to see, based on our searches, likes and clicks. Pariser warned that being confined to such echo chambers reduces exposure to diverse perspectives and increases the risk of isolation in our views or rejection of opposing viewpoints and sources of information due to confirmation bias.
 
-# Confirmation Bias
-
-<SideNote>
-  Confirmation Bias refers to the tendency to seek out, favour and recall information that supports
+<Definition>Confirmation Bias</Definition>
+<DefinitionDescription>
+  **Confirmation Bias** refers to the tendency to seek out, favour and recall information that supports
   our existing beliefs, while ignoring or dismissing contradictory evidence.
-</SideNote>
+</DefinitionDescription>
 
 Although some studies (Pierre) show that users do encounter opposing views online, these interactions often trigger annoyance or hostility rather than reflection or debate. Algorithms reinforce this by amplifying divisive content, since hostility drives engagement, and engagement drives profits for platform companies. As Pariser notes, platforms are effectively “incentivizing us to fight with each other when we are online”. This dynamic is compounded by the online disinhibition effect (Suler), whereby people tend to express opinions more freely online due to factors like anonymity (hidden identities), invisibility (not being seen by others we communicate with) and asynchronicity (not engaging in real time).
 
@@ -44,7 +58,7 @@ The internet makes it easier than ever to find information that confirms existin
 
 RAND researchers Kavanagh and Rich (2008) have described this phenomenon as truth decay, defined by a set of four related trends: (1) increasing disagreement about facts and analytical interpretations of facts and data; (2) a blurring of the line between opinion and fact; (3) the increasing relative volume, and resulting influence, of opinion and personal experience over fact; and, (4) declining trust in formerly respected sources of factual information. Instead of using facts to inform our beliefs, information – regardless of its truthfulness – is increasingly used to justify the beliefs already held by individuals and the groups they affiliate with. As they conclude: “We’re no longer willing to agree on something as seemingly fundamental as what counts as evidence, facts, or truth anymore”.
 
-# Trust: What is Being Lost?
+# <HeadingLabel index="2.2" /> Trust: What is Being Lost?
 
 Trust is grounded in expectations, involves vulnerability and builds gradually, yet once broken it may be lost completely. Rousseau et al. (1998) define trust as “a psychological state comprising the intention to accept vulnerability based upon positive expectations of the intentions or behaviour of another”. This highlights a key dimension: trust requires accepting vulnerability to those in whom it is placed.
 
@@ -65,10 +79,11 @@ As psychologist Pierre observes, vaccine hesitancy driven by misinformation “m
 The IFRC’s 2022 World Disasters Report: Trust, Equity and Local Action – Lessons from the COVID-19 pandemic to avert the next global crisis highlights that multiple studies suggest that “trust was one of the best predictors of a country’s success or failure in handling the COVID-19 pandemic”. Many communities had extremely limited access to health education and information (Royston et al, 2020). Information from social media platforms or state news outlets was often distrusted and many people did not understand the rationale behind public health measures. In several countries, governments issued contradictory advice and oversimplified or false beliefs took hold – for example, claims that COVID-19 was only dangerous to the elderly and clinically vulnerable or, in Zimbabwe, that “COVID-19 does not kill black people”. These narratives, compounded by vaccine related disinformation (such as sterility or microchip claims) and entrenched anti-vaccine beliefs, drove harmful behaviours including vaccine refusal and avoidance of life-saving health measures.
 
 Pierre defines beliefs as “cognitive representations of past, present, and future reality, encompassing our inner experiences, the world around us, and the world beyond.” He models beliefs as probability judgements, emphasising that many of our beliefs are held with excessive conviction, often at the expense of acknowledging appropriate levels of uncertainty. People often tend to adopt an absolute “belief that” stance, even on matters that would more appropriately warrant a more probabilistic “belief in” that acknowledges uncertainty and complexity. Deciding who to trust or mistrust often comes down to assessments of source credibility – based on perceived trustworthiness and expertise. When these perceptions are distorted, the very foundation of humanitarian and public health response is at risk.
-
-<Spotlight>Trust, Misinformation and the Power of Local Connection in Crisis Response</Spotlight>
-
-For over a decade, NGOs have occupied a unique position in the global trust landscape.
+<Box
+  index="2.1"
+  types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological, TypologyOfHarm.Societal, TypologyOfHarm.Informational, TypologyOfHarm.Deprivational]}
+>
+   ## Trust, Misinformation and the Power of Local Connection in Crisis Response
 
 In today’s increasingly connected world, misinformation, disinformation, and harmful speech pose serious threats to humanitarian access, public health and social cohesion. Understanding how these dynamics take root and evolve is essential for designing effective, community-led programmes and responses.
 
@@ -84,11 +99,25 @@ To effectively respond to these challenges, National Societies need targeted tra
 
 Ultimately, the most sustainable solutions begin at the community level. Empowering people through digital and information literacy, combined with culturally sensitive engagement, builds the foundation for trust, critical thinking and informed decision-making. Monitoring community trust and reinforcing transparency can help strengthen the relationship between National Societies and the communities they serve.
 
-<Contributors>Diana Medina, Asia Pacific Regional Coordinator</Contributors>
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Diana Medina
+      </ContributorName>
 
-<Contributors>Community Engagement and Accountability (CEA)</Contributors>
+      <ContributorEntity>
+        Asia Pacific Regional Coordinator <br/>
+        Community Engagement and Accountability (CEA)
+      </ContributorEntity>
 
-<ContributorRole>International Federation of Red Cross and Red Crescent Societies</ContributorRole>
+
+      <ContributorRole>
+       International Federation of Red Cross and Red Crescent Societies
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
 
 # Trust in Institutions
 
@@ -246,7 +275,7 @@ Designing programming around trust is not about ignoring risks. It is more like 
 
 # Community Engagement: A Bridge to Trust
 
-<ChapterQuote>
+<SmallQuote>
   “So then, the advantage we had … is that when we were finally able to go in to carry out an
   assessment and have contact with the community leaders, we would compare the information coming
   out in the press or the information sometimes given to us by the municipalities with what the
@@ -255,9 +284,9 @@ Designing programming around trust is not about ignoring risks. It is more like 
   etc., compared to what was being reported… that’s why we always made a point of seeking
   information from the people who were suffering at that moment, the ones who were actually facing
   the emergency.”
-</ChapterQuote>
+</SmallQuote>
 
-<Contributors>Community Researcher, Bolivia</Contributors>
+<SmallQuoteAuthor>Community Researcher, Bolivia</SmallQuoteAuthor>
 
 Community Engagement and Accountability (CEA) is a vital bridge to building and sustaining trust. Trust grows through proximity, inclusive participation, timely and transparent communication and shared decision-making with people and communities. wCEA also ensures that communities have access to accurate, relevant and potentially life-saving information – making it essential not only for effective humanitarian response but also for the safety and security of staff and operations.
 
@@ -282,11 +311,14 @@ Community engagement played a pivotal role in rebuilding trust in the 2018 Ebola
 
 To respond, the DRC Red Cross placed community engagement at the centre of its strategy. Volunteers maintained daily dialogue with communities to address concerns and rebuild trust. Using a first-of-its-kind feedback system, they collected over 394,000 pieces of community feedback, enabling humanitarian actors to adapt approaches to local realities. Volunteers went door-to-door sharing information on how to prevent, detect and respond to Ebola, hosted radio talk shows, organised mobile cinemas and conducted outreach to vulnerable groups, including people with disabilities, children and women’s associations. This approach had a measurable impact: acceptance of safe and dignified burials rose above 80%, while community resistance dropped from 79% to just 8%. Trust, dialogue and locally driven action proved essential to stopping the spread of Ebola. [Note there is a photo we could potentially use.
 
-<Spotlight>Yemen Red Crescent Society Volunteers – Trusted by the Communities They Serve</Spotlight>
+<QuestionAnswerBox>
+  <QuestionAnswerBoxTitle>Yemen Red Crescent Society Volunteers – Trusted by the Communities They Serve</QuestionAnswerBoxTitle>
+  <QuestionAnswerBoxBody>
+    Through consistent and transparent external communication, the Yemen Red Crescent Society (YRCS) has established itself as a trusted organisation within Yemeni communities. With a strong volunteer base across its 22 branches, YRCS relies on individuals who are directly connected to the communities they serve. Typically, one male and one female volunteer are responsible for every 20 households, fostering gender-based engagement and local familiarity.
 
-Through consistent and transparent external communication, the Yemen Red Crescent Society (YRCS) has established itself as a trusted organisation within Yemeni communities. With a strong volunteer base across its 22 branches, YRCS relies on individuals who are directly connected to the communities they serve. Typically, one male and one female volunteer are responsible for every 20 households, fostering gender-based engagement and local familiarity.
-
-These volunteers play a key role in selecting new staff and volunteers, helping ensure that individuals’ political, tribal or religious backgrounds do not interfere with their ability to work effectively with community leaders and members. This careful and inclusive election process helps maintain harmonious working relationships and reinforces the community’s trust in YRCS. By adopting community-based programme approaches YRCS ensures its interventions are culturally relevant and locally accepted – critical to effective Disaster Risk Reduction (DRR) and other humanitarian initiatives.
+    These volunteers play a key role in selecting new staff and volunteers, helping ensure that individuals’ political, tribal or religious backgrounds do not interfere with their ability to work effectively with community leaders and members. This careful and inclusive election process helps maintain harmonious working relationships and reinforces the community’s trust in YRCS. By adopting community-based programme approaches YRCS ensures its interventions are culturally relevant and locally accepted – critical to effective Disaster Risk Reduction (DRR) and other humanitarian initiatives.
+  </QuestionAnswerBoxBody>
+</QuestionAnswerBox>
 
 Trust is difficult to establish and even harder to rebuild once lost. The IFRC identified trust as one of the strongest predictors of a successful emergency response, making preparedness fundamentally dependent on cultivating trust within communities and societies. To support this, the IFRC developed the Community Trust Index – an evidence-based tool to measure and strengthen trust between National Red Cross and Red Crescent Societies and the communities they serve. The index tracks changes in trust over time and identifies the factors that influence it across different contexts. By uncovering barriers to trust, it guides tailored activities that promote trust-based behaviours, improve community acceptance and enhance programme effectiveness. It also links trust to compliance, governance and inclusive, community-informed decision-making, reinforcing accountability and impact.
 
