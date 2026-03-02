@@ -143,7 +143,8 @@
     "submitting": "订阅中…",
     "successTitle": "感谢您的加入！",
     "successMessage": "新内容上线时我们将通过邮件通知您。",
-    "close": "关闭"
+    "close": "关闭",
+    "subscribeError": "无法将您加入列表，请稍后再试。"
   },
   "ReportIncident": {
     "trigger": "报告错误",

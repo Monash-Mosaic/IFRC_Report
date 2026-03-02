@@ -158,7 +158,8 @@
     "submitting": "Subscribing…",
     "successTitle": "Thank you for joining!",
     "successMessage": "We will email you when the new content is available.",
-    "close": "Close"
+    "close": "Close",
+    "subscribeError": "We couldn't add you to the list. Please try again later."
   },
   "ReportIncident": {
     "trigger": "Report an error",

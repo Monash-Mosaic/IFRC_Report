@@ -9,6 +9,14 @@ jest.mock('@getbrevo/brevo', () => ({
   },
 }));
 
+jest.mock('next-intl/server', () => ({
+  getTranslations: jest.fn(() =>
+    Promise.resolve((key) =>
+      key === 'subscribeError' ? "We couldn't add you to the list. Please try again later." : key
+    )
+  ),
+}));
+
 import { subscribeReport } from '@/app/actions/subscribe-report';
 
 describe('subscribeReport server action', () => {
@@ -72,14 +80,16 @@ describe('subscribeReport server action', () => {
     expect(createContactMock).not.toHaveBeenCalled();
   });
 
-  it('returns generic error when Brevo SDK throws', async () => {
+  it('returns localized subscribeError when Brevo SDK throws', async () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     createContactMock.mockRejectedValueOnce(new Error('API error'));
 
     const formData = createFormData();
     const result = await subscribeReport(null, formData);
 
-    expect(result).toEqual({ error: 'Something went wrong. Please try again.' });
+    expect(result).toEqual({
+      error: "We couldn't add you to the list. Please try again later.",
+    });
     consoleSpy.mockRestore();
   });
 });

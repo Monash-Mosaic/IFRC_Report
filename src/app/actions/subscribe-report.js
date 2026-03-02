@@ -1,6 +1,7 @@
 'use server';
 
 const { BrevoClient } = require('@getbrevo/brevo');
+const { getTranslations } = require('next-intl/server');
 
 /**
  * Subscribe-report stores email addresses in Brevo. Uses a Server Action so the API key
@@ -46,8 +47,12 @@ export async function subscribeReport(prevState, formData) {
       },
     });
     return { success: true };
-  } catch {
-    console.error('subscribe-report error');
-    return { error: 'Something went wrong. Please try again.' };
+  } catch (error) {
+    console.error('subscribe-report error', error);
+    const t = await getTranslations({
+      locale: locale || 'en',
+      namespace: 'ReportSubscribe',
+    });
+    return { error: t('subscribeError') };
   }
 }

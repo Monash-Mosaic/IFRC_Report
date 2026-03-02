@@ -251,7 +251,8 @@
     "submitting": "Suscribiendo…",
     "successTitle": "¡Gracias por unirse!",
     "successMessage": "Le enviaremos un correo cuando el nuevo contenido esté disponible.",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "subscribeError": "No pudimos añadirte a la lista. Por favor, inténtalo de nuevo más tarde."
   },
   "ReportIncident": {
     "trigger": "Reportar un error",

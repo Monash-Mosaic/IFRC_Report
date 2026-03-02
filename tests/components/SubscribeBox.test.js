@@ -10,12 +10,14 @@ const reportSubscribeTranslations = {
   successTitle: 'Thank you for joining!',
   successMessage: 'We will email you when the new content is available.',
   close: 'Close',
+  subscribeError: "We couldn't add you to the list. Please try again later.",
 };
 
 const mockSubscribeReport = jest.fn();
 
 jest.mock('next-intl', () => ({
-  useTranslations: (namespace) => (key) => {
+  useTranslations: (arg) => (key) => {
+    const namespace = typeof arg === 'string' ? arg : arg?.namespace;
     if (namespace === 'ReportSubscribe' && reportSubscribeTranslations[key]) {
       return reportSubscribeTranslations[key];
     }
