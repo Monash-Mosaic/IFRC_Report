@@ -2,6 +2,7 @@ import * as Synthesis from './exec-summary.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter08 from './chapter-08.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
 
@@ -138,5 +139,18 @@ export const chapters = {
         thumbnail: '/window.svg',
       },
     ],
+  },
+  'chapter-08': {
+    metadata: {
+      chapterKey: 'chapter-08',
+      chapterNumber: 8,
+      chapterPrefix: 'Chapter 08',
+    },
+    component: Chapter08.default,
+    title: Chapter08.title,
+    subtitle: Chapter08.subtitle,
+    tableOfContents: Chapter08.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
   },
 };
