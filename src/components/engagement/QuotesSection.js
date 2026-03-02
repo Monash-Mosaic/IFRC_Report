@@ -131,7 +131,7 @@ export default function QuotesSection({ selectedTag }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/data/engagement_tab.csv')
+    fetch('/engagement/engagement_tab.csv')
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.text();
