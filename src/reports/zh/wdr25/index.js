@@ -1,9 +1,10 @@
 import * as Chapter02 from './chapter-02.mdx';
+import * as Synthesis from './exec-summary.mdx';
 
 export const title = '国际红十字与红新月联合会 2025 年度报告';
 
 export const description =
-  '国际红十字与红新月联合会 2025 年度报告，详述全球灾害响应与人道救援工作。';
+  '国际红十字与红新月联合会 2026 年度报告，详述全球灾害响应与人道救援工作。';
 
 export const author = 'IFRC 秘书处';
 
@@ -61,7 +62,25 @@ export const featuredVideos = [
   },
 ];
 
+export const chapterRelease = false;
+
 export const chapters = {
+  合成: {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: 0,
+      chapterPrefix: '合成',
+    },
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
   '章节-02': {
     metadata: {
       chapterKey: 'chapter-02',

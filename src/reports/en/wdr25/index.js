@@ -1,6 +1,10 @@
+import * as Synthesis from './exec-summary.mdx';
+import * as Introduction from './introduction.mdx';
+import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter08 from './chapter-08.mdx';
 
-export const title = 'World Disaster Report 2025';
+export const title = 'World \n Disaster\n Report\n\n 2026';
 
 export const description =
   "The International Federation of Red Cross and Red Crescent Societies' Annual Report for 2025, detailing global disaster response and humanitarian efforts.";
@@ -61,7 +65,57 @@ export const featuredVideos = [
   },
 ];
 
+export const chapterRelease = false;
+
 export const chapters = {
+  synthesis: {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: -1,
+      chapterPrefix: 'Synthesis',
+    },
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  introduction: {
+    metadata: {
+      chapterKey: 'introduction',
+      chapterNumber: 0,
+      chapterPrefix: 'Introduction',
+    },
+    component: Introduction.default,
+    title: Introduction.title,
+    subtitle: Introduction.subtitle,
+    tableOfContents: Introduction.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    thumbnail: '/wdr25/chapters/Intro.jpg',
+    thumbnailOverlay: 'blue',
+    released: true,
+  },
+  'chapter-01': {
+    metadata: {
+      chapterKey: 'chapter-01',
+      chapterNumber: 1,
+      chapterPrefix: 'Chapter 01',
+    },
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    thumbnail: '/wdr25/chapters/Chapter1.png',
+    thumbnailOverlay: 'red',
+    released: false,
+  },
   'chapter-02': {
     metadata: {
       chapterKey: 'chapter-02',
@@ -73,6 +127,8 @@ export const chapters = {
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
+    thumbnail: '/wdr25/chapters/Chapter2.png',
+    released: false,
     audios: [
       {
         id: 'intro',
@@ -96,5 +152,92 @@ export const chapters = {
         thumbnail: '/window.svg',
       },
     ],
+  },
+  'chapter-03': {
+    metadata: {
+      chapterKey: 'chapter-03',
+      chapterNumber: 3,
+      chapterPrefix: 'Chapter 3',
+    },
+    component: Chapter02.default,
+    title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
+    subtitle: 'Harmful Narratives that Thrive',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter3.png',
+    thumbnailOverlay: 'blue',
+    released: false,
+  },
+  'chapter-04': {
+    metadata: {
+      chapterKey: 'chapter-04',
+      chapterNumber: 4,
+      chapterPrefix: 'Chapter 4',
+    },
+    component: Chapter02.default,
+    title:
+      'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
+    subtitle: 'Harmful Information and Operational Realities',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter4.png',
+    thumbnailOverlay: 'red',
+    released: false,
+  },
+  'chapter-05': {
+    metadata: {
+      chapterKey: 'chapter-05',
+      chapterNumber: 5,
+      chapterPrefix: 'Chapter 5',
+    },
+    component: Chapter02.default,
+    title: 'Navigating Regulation, Rights and Societal Resilience',
+    subtitle: 'Information Landscape and Humanitarian Contexts',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter5.png',
+    thumbnailOverlay: 'red',
+    released: false,
+  },
+  'chapter-06': {
+    metadata: {
+      chapterKey: 'chapter-06',
+      chapterNumber: 6,
+      chapterPrefix: 'Chapter 6',
+    },
+    component: Chapter02.default,
+    title: 'Rooted in Resilience: Community-first approach to Harmful Information',
+    subtitle: 'The Importance of Community for Resilience',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter6.png',
+    thumbnailOverlay: 'red',
+    released: false,
+  },
+  'chapter-07': {
+    metadata: {
+      chapterKey: 'chapter-07',
+      chapterNumber: 7,
+      chapterPrefix: 'Chapter 7',
+    },
+    component: Chapter02.default,
+    title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
+    subtitle: 'Humanitarian Action in the Era of Instant Narratives',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter7.png',
+    thumbnailOverlay: 'red',
+    released: false,
+  },
+  'chapter-08': {
+    metadata: {
+      chapterKey: 'chapter-08',
+      chapterNumber: 8,
+      chapterPrefix: 'Chapter 08',
+    },
+    component: Chapter08.default,
+    title: Chapter08.title,
+    subtitle: Chapter08.subtitle,
+    tableOfContents: Chapter08.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    thumbnail: '/wdr25/chapters/Chapter8.png',
+    thumbnailOverlay: 'red',
+    released: false,
   },
 };
