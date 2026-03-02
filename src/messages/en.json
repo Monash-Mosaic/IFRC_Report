@@ -18,7 +18,8 @@
       "bookmarks": "Bookmarks",
       "download": "Download",
       "search": "Search",
-      "acknowledgement": "Acknowledgement"
+      "acknowledgement": "Acknowledgement",
+      "searchPlaceholder": "Search within WDR 2026..."
     },
     "comingSoonLabel": "Coming soon",
     "footer": {
@@ -110,8 +111,15 @@
     "tableOfContent": "Table of Contents",
     "bookmark": "Bookmark",
     "bookmarkAria": "{action, select, add {Add bookmark} remove {Remove bookmark} other {Unknown}} for {section}",
+    "pageTitle": "World Disasters Report Table of Contents",
+    "breadcrumb": {
+      "home": "Home Page",
+      "chapters": "Chapters"
+    },
     "sections": {
-      "continue": "Continue"
+      "continue": "Continue",
+      "comingSoon": "Coming Soon",
+      "expandChapter": "Expand chapter details"
     }
   },
   "ReportChapterPage": {

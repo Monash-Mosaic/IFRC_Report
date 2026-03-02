@@ -18,7 +18,8 @@
       "bookmarks": "Signets",
       "download": "Télécharger",
       "search": "Recherche",
-      "acknowledgement": "Remerciements"
+      "acknowledgement": "Remerciements",
+      "searchPlaceholder": "Recherchez dans le Rapport mondial sur les catastrophes 2026..."
     },
     "comingSoonLabel": "Bientôt disponible",
     "footer": {
@@ -128,8 +129,15 @@
     "tableOfContent": "Table des matières",
     "bookmark": "Marque-page",
     "bookmarkAria": "{action, select, add {Ajouter un marque-page} remove {Supprimer le marque-page} other {Inconnu}} pour {section}",
+    "pageTitle": "Rapport mondial sur les catastrophes — Table des matières",
+    "breadcrumb": {
+      "home": "Page d'accueil",
+      "chapters": "Chapitres"
+    },
     "sections": {
-      "continue": "Continuer"
+      "continue": "Continuer",
+      "comingSoon": "Bientôt disponible",
+      "expandChapter": "Développer les détails du chapitre"
     }
   },
   "ReportChapterPage": {

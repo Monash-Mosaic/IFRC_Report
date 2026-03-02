@@ -44,3 +44,5 @@ data/search.db
 
 scripts/wdr25/data
 scripts/wdr25/output
+# Search index artifacts (regenerated on build)
+data/

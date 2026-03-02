@@ -7,6 +7,7 @@ declare namespace Cloudflare {
 	}
 	interface PreviewEnv {
 		IMAGES: ImagesBinding;
+		SEARCH_DB: D1Database;
 		CLOUDFLARE_ACCOUNT_ID: string;
 		CLOUDFLARE_API_TOKEN: string;
 		CLOUDFLARE_ENV: string;
@@ -21,6 +22,7 @@ declare namespace Cloudflare {
 		ENVIRONMENT: string;
 		NEXTJS_ENV: string;
 		IMAGES: ImagesBinding;
+		SEARCH_DB: D1Database;
 		WORKER_SELF_REFERENCE: Fetcher /* ifrc-wdr-playbook-preview */ | Service<typeof import("./.open-next/worker").default>;
 		ASSETS?: Fetcher;
 	}

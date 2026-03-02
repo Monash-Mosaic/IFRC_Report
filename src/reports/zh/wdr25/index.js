@@ -62,6 +62,8 @@ export const featuredVideos = [
   },
 ];
 
+export const chapterRelease = false;
+
 export const chapters = {
   合成: {
     metadata: {
