@@ -12,7 +12,7 @@ const initialState = { success: false, error: null };
 /**
  * Email subscribe box for report TOC page. Form stays inline; success and error
  * are shown in a react-modal popup only. Parent controls visibility via
- * {showSubscribe && <SubscribeBox />}.
+ * {showSubscribeSection && <SubscribeBox />}.
  */
 export default function SubscribeBox({ locale, className = '' }) {
   const t = useTranslations('ReportSubscribe');
