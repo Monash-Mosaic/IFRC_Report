@@ -118,16 +118,16 @@ export default function HeroSection({ locale = 'en', messages }) {
             </a>
           </div>
 
-          <div className="relative">
+          <div className="relative flex-none">
             <button
               type="button"
               onClick={handleShareToggle}
-              className="w-[173px] h-[76px] bg-white rounded-[8px] border-2 border-red-600 inline-flex items-center justify-center gap-3 whitespace-nowrap shadow-sm hover:bg-[#EE2435] hover:text-white group transition-colors cursor-pointer"
+              className="p-[6px] border-3 border-[#ee2435] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] bg-white inline-flex items-center justify-center hover:bg-[#EE2435] hover:text-white group transition-colors cursor-pointer md:w-[173px] md:h-[76px] md:p-0 md:border-2 md:shadow-sm md:gap-3"
               aria-expanded={isShareOpen}
               aria-label={messages.buttonTexts.share}
             >
               <span
-                className="underline text-[#EE2435] group-hover:text-white transition-colors truncate max-w-[110px]"
+                className="hidden md:inline underline text-[#EE2435] group-hover:text-white transition-colors truncate max-w-[110px]"
                 style={{
                   fontFamily: 'Inter, sans-serif',
                   fontSize: 18,
@@ -144,92 +144,105 @@ export default function HeroSection({ locale = 'en', messages }) {
             </button>
 
             {isShareOpen && (
-              <div
-                className={`absolute top-0 z-40 ${isRtl ? 'right-full mr-1' : 'left-full ml-1'}`}
-              >
-                {/* Share Button (expanded) – Figma 301-171: W316 × H76 */}
-                <div className="relative w-[316px] h-[76px] bg-white rounded-[8px] border-2 border-red-600 overflow-hidden">
-                  {/* Close tile – 76×76 */}
-                  <button
-                    type="button"
-                    onClick={() => setIsShareOpen(false)}
-                    className={`absolute top-0 w-[76px] h-[76px] hover:brightness-95 active:brightness-90 transition-all duration-150 ${isRtl ? 'right-0 rounded-r-[8px]' : 'left-0 rounded-l-[8px]'}`}
-                    style={{ backgroundColor: CLOSE_BG }}
-                    aria-label="Close share menu"
-                  >
-                    <span
-                      className="absolute"
-                      style={{ left: 21, top: 20, width: 35, height: 35 }}
+              <>
+                {/* Mobile panel – vertical, below the button (Figma 328-1101) */}
+                <div className="absolute top-full mt-1 left-1/2 -translate-x-1/2 z-40 md:hidden">
+                  <div className="flex flex-col items-center gap-[22px] px-[6px] py-[7px] bg-white rounded-[8px] border-2 border-red-600">
+                    <button
+                      type="button"
+                      onClick={() => setIsShareOpen(false)}
+                      className="w-[47px] h-[45px] rounded-[8px] shrink-0 flex items-center justify-center hover:brightness-95 active:brightness-90 transition-all duration-150"
+                      style={{ backgroundColor: CLOSE_BG }}
+                      aria-label="Close share menu"
                     >
-                      <GgCloseR />
-                    </span>
-                  </button>
+                      <span className="w-[35px] h-[35px]">
+                        <GgCloseR />
+                      </span>
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={() => copyShareLink({ url: getShareUrl() })}
-                    className={`absolute top-[22px] w-[30px] h-[30px] inline-flex items-center justify-center rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[97px]' : 'left-[97px]'}`}
-                    aria-label="Copy link"
-                  >
-                    <img
-                      alt=""
-                      src="/figma-link-301-189.svg"
-                      className="block w-full h-full object-contain"
-                      draggable={false}
-                    />
-                  </button>
-
-                  <div className={`absolute top-[22px] w-[30px] h-[30px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[148px]' : 'left-[148px]'}`}>
-                    <LinkedinShareButton
-                      url={getShareUrl()}
-                      title={shareTitle}
-                      summary={shareTitle}
-                      className="w-full h-full inline-flex items-center justify-center"
-                      style={{ width: '100%', height: '100%' }}
+                    <button
+                      type="button"
+                      onClick={() => copyShareLink({ url: getShareUrl() })}
+                      className="w-[30px] h-[30px] shrink-0 inline-flex items-center justify-center rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150"
+                      aria-label="Copy link"
                     >
-                      <img
-                        alt=""
-                        src="/figma-linkedin.svg"
-                        className="block w-full h-full object-contain"
-                        draggable={false}
-                      />
-                    </LinkedinShareButton>
-                  </div>
+                      <img alt="" src="/figma-link-301-189.svg" className="block w-full h-full object-contain" draggable={false} />
+                    </button>
 
-                  <div className={`absolute top-[19px] w-[35px] h-[35px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[199px]' : 'left-[199px]'}`}>
-                    <FacebookShareButton
-                      url={getShareUrl()}
-                      hashtag="#IFRC"
-                      className="w-full h-full inline-flex items-center justify-center"
-                      style={{ width: '100%', height: '100%' }}
-                    >
-                      <img
-                        alt=""
-                        src="/figma-facebook-301-200.svg"
-                        className="block w-full h-full object-contain"
-                        draggable={false}
-                      />
-                    </FacebookShareButton>
-                  </div>
+                    <div className="w-[30px] h-[30px] shrink-0 rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150">
+                      <LinkedinShareButton url={getShareUrl()} title={shareTitle} summary={shareTitle} className="w-full h-full inline-flex items-center justify-center" style={{ width: '100%', height: '100%' }}>
+                        <img alt="" src="/figma-linkedin.svg" className="block w-full h-full object-contain" draggable={false} />
+                      </LinkedinShareButton>
+                    </div>
 
-                  <div className={`absolute top-[20px] w-[35px] h-[35px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[255px]' : 'left-[255px]'}`}>
+                    <div className="w-[35px] h-[35px] shrink-0 rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150">
+                      <FacebookShareButton url={getShareUrl()} hashtag="#IFRC" className="w-full h-full inline-flex items-center justify-center" style={{ width: '100%', height: '100%' }}>
+                        <img alt="" src="/figma-facebook-301-200.svg" className="block w-full h-full object-contain" draggable={false} />
+                      </FacebookShareButton>
+                    </div>
+
                     <button
                       type="button"
                       onClick={() => shareToWhatsApp({ url: getShareUrl(), text: shareTitle, separator: '\n' })}
-                      className="w-full h-full inline-flex items-center justify-center"
+                      className="w-[35px] h-[35px] shrink-0 inline-flex items-center justify-center rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150"
                       title="Share to WhatsApp"
                       aria-label="Share to WhatsApp"
                     >
-                      <img
-                        alt=""
-                        src="/figma-whatsapp-301-203.svg"
-                        className="block w-full h-full object-contain"
-                        draggable={false}
-                      />
+                      <img alt="" src="/figma-whatsapp-301-203.svg" className="block w-full h-full object-contain" draggable={false} />
                     </button>
                   </div>
                 </div>
-              </div>
+
+                {/* Desktop panel – horizontal, to the side (Figma 301-171) */}
+                <div className={`absolute top-0 z-40 hidden md:block ${isRtl ? 'right-full mr-1' : 'left-full ml-1'}`}>
+                  <div className="relative w-[316px] h-[76px] bg-white rounded-[8px] border-2 border-red-600 overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setIsShareOpen(false)}
+                      className={`absolute top-0 w-[76px] h-[76px] hover:brightness-95 active:brightness-90 transition-all duration-150 ${isRtl ? 'right-0 rounded-r-[8px]' : 'left-0 rounded-l-[8px]'}`}
+                      style={{ backgroundColor: CLOSE_BG }}
+                      aria-label="Close share menu"
+                    >
+                      <span className="absolute" style={{ left: 21, top: 20, width: 35, height: 35 }}>
+                        <GgCloseR />
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => copyShareLink({ url: getShareUrl() })}
+                      className={`absolute top-[22px] w-[30px] h-[30px] inline-flex items-center justify-center rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[97px]' : 'left-[97px]'}`}
+                      aria-label="Copy link"
+                    >
+                      <img alt="" src="/figma-link-301-189.svg" className="block w-full h-full object-contain" draggable={false} />
+                    </button>
+
+                    <div className={`absolute top-[22px] w-[30px] h-[30px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[148px]' : 'left-[148px]'}`}>
+                      <LinkedinShareButton url={getShareUrl()} title={shareTitle} summary={shareTitle} className="w-full h-full inline-flex items-center justify-center" style={{ width: '100%', height: '100%' }}>
+                        <img alt="" src="/figma-linkedin.svg" className="block w-full h-full object-contain" draggable={false} />
+                      </LinkedinShareButton>
+                    </div>
+
+                    <div className={`absolute top-[19px] w-[35px] h-[35px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[199px]' : 'left-[199px]'}`}>
+                      <FacebookShareButton url={getShareUrl()} hashtag="#IFRC" className="w-full h-full inline-flex items-center justify-center" style={{ width: '100%', height: '100%' }}>
+                        <img alt="" src="/figma-facebook-301-200.svg" className="block w-full h-full object-contain" draggable={false} />
+                      </FacebookShareButton>
+                    </div>
+
+                    <div className={`absolute top-[20px] w-[35px] h-[35px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[255px]' : 'left-[255px]'}`}>
+                      <button
+                        type="button"
+                        onClick={() => shareToWhatsApp({ url: getShareUrl(), text: shareTitle, separator: '\n' })}
+                        className="w-full h-full inline-flex items-center justify-center"
+                        title="Share to WhatsApp"
+                        aria-label="Share to WhatsApp"
+                      >
+                        <img alt="" src="/figma-whatsapp-301-203.svg" className="block w-full h-full object-contain" draggable={false} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
             )}
           </div>
         </div>

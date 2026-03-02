@@ -241,32 +241,28 @@ describe('HeroSection', () => {
     expect(downloadLink).toHaveAttribute('target', '_blank');
     expect(downloadLink).toHaveTextContent('Download PDF');
 
-    // Check share button styling – Figma 301-171: 173×76 white rounded pill
+    // Check share button styling – responsive: mobile icon-only, desktop 173×76
     const shareSpan = screen.getByText('Share Report');
     const shareButton = shareSpan.closest('button');
     expect(shareButton).toHaveClass(
-      'w-[173px]',
-      'h-[76px]',
       'bg-white',
       'rounded-[8px]',
-      'border-2',
-      'border-red-600',
       'inline-flex',
       'items-center',
       'justify-center',
-      'gap-3',
-      'whitespace-nowrap',
-      'shadow-sm',
       'hover:bg-[#EE2435]',
       'hover:text-white',
       'group',
       'transition-colors',
-      'cursor-pointer'
+      'cursor-pointer',
+      'md:w-[173px]',
+      'md:h-[76px]'
     );
     expect(shareButton).toHaveAttribute('aria-expanded', 'false');
     expect(shareButton).toHaveAttribute('aria-label', 'Share Report');
 
-    // Share text should use 18px Inter font
+    // Share text hidden on mobile, visible on md+
+    expect(shareSpan).toHaveClass('hidden', 'md:inline');
     expect(shareSpan).toHaveStyle({ fontSize: '18px', fontWeight: 500 });
 
     // Buttons should be clickable without crashing
@@ -408,95 +404,80 @@ describe('HeroSection', () => {
     it('opens when Share button is clicked and closes when close button is clicked', () => {
       render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
-      // Panel should not be visible initially
-      expect(screen.queryByLabelText('Close share menu')).not.toBeInTheDocument();
+      expect(screen.queryAllByLabelText('Close share menu')).toHaveLength(0);
 
-      // Click Share to open panel
       const shareButton = screen.getByText('Share Report').closest('button');
       fireEvent.click(shareButton);
 
-      // Panel should now be visible with close button
-      expect(screen.getByLabelText('Close share menu')).toBeInTheDocument();
+      const closeButtons = screen.getAllByLabelText('Close share menu');
+      expect(closeButtons.length).toBeGreaterThanOrEqual(1);
       expect(shareButton).toHaveAttribute('aria-expanded', 'true');
 
-      // Click close button to close panel
-      fireEvent.click(screen.getByLabelText('Close share menu'));
-      expect(screen.queryByLabelText('Close share menu')).not.toBeInTheDocument();
+      fireEvent.click(closeButtons[0]);
+      expect(screen.queryAllByLabelText('Close share menu')).toHaveLength(0);
       expect(shareButton).toHaveAttribute('aria-expanded', 'false');
     });
 
     it('renders all social share buttons when expanded', () => {
       render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
-
-      // Open the panel
       fireEvent.click(screen.getByText('Share Report').closest('button'));
 
-      // Copy link button
-      expect(screen.getByLabelText('Copy link')).toBeInTheDocument();
+      expect(screen.getAllByLabelText('Copy link').length).toBeGreaterThanOrEqual(1);
+      expect(screen.getAllByTestId('linkedin-share-button').length).toBeGreaterThanOrEqual(1);
 
-      // LinkedIn share button
-      expect(screen.getByTestId('linkedin-share-button')).toBeInTheDocument();
+      const fbButtons = screen.getAllByTestId('facebook-share-button');
+      expect(fbButtons.length).toBeGreaterThanOrEqual(1);
+      expect(fbButtons[0]).toHaveAttribute('data-hashtag', '#IFRC');
 
-      // Facebook share button with correct hashtag
-      const fbButton = screen.getByTestId('facebook-share-button');
-      expect(fbButton).toBeInTheDocument();
-      expect(fbButton).toHaveAttribute('data-hashtag', '#IFRC');
-
-      // WhatsApp share button
-      expect(screen.getByLabelText('Share to WhatsApp')).toBeInTheDocument();
+      expect(screen.getAllByLabelText('Share to WhatsApp').length).toBeGreaterThanOrEqual(1);
     });
 
-    it('has Figma-spec panel dimensions (316×76)', () => {
+    it('has Figma-spec desktop panel (316×76)', () => {
       const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
-
-      // Open the panel
       fireEvent.click(screen.getByText('Share Report').closest('button'));
 
-      const panel = container.querySelector('.w-\\[316px\\].h-\\[76px\\]');
-      expect(panel).toBeInTheDocument();
-      expect(panel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600', 'overflow-hidden');
+      const desktopPanel = container.querySelector('.w-\\[316px\\].h-\\[76px\\]');
+      expect(desktopPanel).toBeInTheDocument();
+      expect(desktopPanel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600');
     });
 
-    it('has Figma-spec close tile (76×76) with correct background', () => {
+    it('has Figma-spec mobile panel with vertical layout', () => {
+      const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      fireEvent.click(screen.getByText('Share Report').closest('button'));
+
+      const mobileWrapper = container.querySelector('.md\\:hidden');
+      expect(mobileWrapper).toBeInTheDocument();
+
+      const mobilePanel = mobileWrapper.querySelector('.flex-col');
+      expect(mobilePanel).toBeInTheDocument();
+      expect(mobilePanel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600');
+    });
+
+    it('has close tiles with correct background color', () => {
       render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
-
-      // Open the panel
       fireEvent.click(screen.getByText('Share Report').closest('button'));
 
-      const closeButton = screen.getByLabelText('Close share menu');
-      expect(closeButton).toHaveClass('w-[76px]', 'h-[76px]');
-      expect(closeButton).toHaveStyle({ backgroundColor: 'rgba(251,208,211,0.53)' });
+      screen.getAllByLabelText('Close share menu').forEach((btn) => {
+        expect(btn).toHaveStyle({ backgroundColor: 'rgba(251,208,211,0.53)' });
+      });
     });
 
-    it('positions panel to the right (LTR) for English locale', () => {
+    it('positions desktop panel to the right (LTR) for English', () => {
       const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
-
-      // Open the panel
       fireEvent.click(screen.getByText('Share Report').closest('button'));
 
-      const panelWrapper = container.querySelector('.left-full.ml-1');
-      expect(panelWrapper).toBeInTheDocument();
-
-      // Close button should be on the left side
-      const closeButton = screen.getByLabelText('Close share menu');
-      expect(closeButton).toHaveClass('left-0', 'rounded-l-[8px]');
-
-      // Icons should use left positioning
-      const copyButton = screen.getByLabelText('Copy link');
-      expect(copyButton).toHaveClass('left-[97px]');
+      const desktopWrapper = container.querySelector('.left-full.ml-1');
+      expect(desktopWrapper).toBeInTheDocument();
+      expect(desktopWrapper).toHaveClass('hidden', 'md:block');
     });
 
-    it('positions panel to the left (RTL) for Arabic locale', () => {
+    it('positions desktop panel to the left (RTL) for Arabic', () => {
       const arabicProps = {
         locale: 'ar',
         messages: {
           title: 'تقرير الكوارث العالمي',
           description: 'وصف التقرير',
-          buttonTexts: {
-            read: 'قراءة التقرير',
-            download: 'تحميل التقرير',
-            share: 'مشاركة',
-          },
+          buttonTexts: { read: 'قراءة التقرير', download: 'تحميل التقرير', share: 'مشاركة' },
           heroAlt: 'صورة التقرير',
         },
         url: '/ar/reports/wdr25',
@@ -506,54 +487,33 @@ describe('HeroSection', () => {
       const { container } = render(
         <HeroSection locale="ar" messages={buildHeroMessages(arabicProps)} />
       );
-
-      // Open the panel
       fireEvent.click(screen.getByText('مشاركة').closest('button'));
 
-      // Panel should open to the left
-      const panelWrapper = container.querySelector('.right-full.mr-1');
-      expect(panelWrapper).toBeInTheDocument();
-
-      // Close button should be on the right side
-      const closeButton = screen.getByLabelText('Close share menu');
-      expect(closeButton).toHaveClass('right-0', 'rounded-r-[8px]');
-
-      // Icons should use right positioning
-      const copyButton = screen.getByLabelText('Copy link');
-      expect(copyButton).toHaveClass('right-[97px]');
+      const desktopWrapper = container.querySelector('.right-full.mr-1');
+      expect(desktopWrapper).toBeInTheDocument();
     });
 
     it('copies link to clipboard when copy button is clicked', async () => {
       const mockWriteText = jest.fn().mockResolvedValue(undefined);
-      Object.assign(navigator, {
-        clipboard: { writeText: mockWriteText },
-      });
+      Object.assign(navigator, { clipboard: { writeText: mockWriteText } });
 
       render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
-
-      // Open the panel
       fireEvent.click(screen.getByText('Share Report').closest('button'));
+      fireEvent.click(screen.getAllByLabelText('Copy link')[0]);
 
-      // Click copy link
-      fireEvent.click(screen.getByLabelText('Copy link'));
-
-      // Should have called clipboard API
       await new Promise((r) => setTimeout(r, 0));
       expect(mockWriteText).toHaveBeenCalledWith(window.location.href);
     });
 
     it('toggles panel closed when Share button is clicked again', () => {
       render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
-
       const shareButton = screen.getByText('Share Report').closest('button');
 
-      // Open
       fireEvent.click(shareButton);
-      expect(screen.getByLabelText('Close share menu')).toBeInTheDocument();
+      expect(screen.getAllByLabelText('Close share menu').length).toBeGreaterThanOrEqual(1);
 
-      // Close by clicking Share again
       fireEvent.click(shareButton);
-      expect(screen.queryByLabelText('Close share menu')).not.toBeInTheDocument();
+      expect(screen.queryAllByLabelText('Close share menu')).toHaveLength(0);
     });
   });
 });
