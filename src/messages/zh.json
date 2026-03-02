@@ -136,6 +136,18 @@
       "description": "IFRC《世界灾难报告》数字体验即将上线。"
     }
   },
+  "ReportSubscribe": {
+    "headline": "完整报告即将推出。",
+    "placeholder": "加入我们的邮件列表",
+    "submit": "订阅",
+    "submitting": "订阅中…",
+    "successTitle": "感谢您的加入！",
+    "successMessage": "新内容上线时我们将通过邮件通知您。",
+    "close": "关闭",
+    "emailRequired": "请填写电子邮箱",
+    "invalidEmail": "请输入有效的电子邮箱地址。",
+    "subscribeError": "无法将您加入列表，请稍后再试。"
+  },
   "ReportIncident": {
     "trigger": "报告错误",
     "triggerTooltip": "报告错误？",

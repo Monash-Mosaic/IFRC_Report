@@ -13,7 +13,6 @@ import HighlightToolbar from '@/components/HighlightToolbar';
 
 import ActiveHeadingTracker from '@/components/ActiveHeadingTracker';
 
-
 export async function generateMetadata({ params }) {
   const { locale, report, chapter } = await params;
   const decodedReport = decodeURIComponent(report);
@@ -219,7 +218,7 @@ export default async function ReportChapterPage({ params }) {
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}
-              ></TableOfContent>
+              />
             </div>
           </div>
         </div>
