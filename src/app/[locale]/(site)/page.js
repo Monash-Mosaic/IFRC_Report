@@ -56,7 +56,7 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
-  return routing.locales.filter(isLocaleReleased).map((locale) => ({ locale }));
+  return routing.locales.filter((l) => isLocaleReleased(l)).map((locale) => ({ locale }));
 }
 
 export default async function Home({ params }) {

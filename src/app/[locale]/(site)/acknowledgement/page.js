@@ -9,7 +9,7 @@ import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 
 export async function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.filter((l) => isLocaleReleased(l)).map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }) {

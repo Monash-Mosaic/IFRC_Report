@@ -77,6 +77,7 @@ export const chapters = {
     tableOfContents: Synthesis.tableOfContents,
     downloadLink:
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    released: true,
   },
   'الفصل-01': {
     metadata: {
