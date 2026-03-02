@@ -202,22 +202,22 @@ export default async function ReportDetailPage({ params }) {
           )}
         </div>
 
-        {/* Placeholder for future email subscription section */}
-        {!reportData.chapterRelease && (
+        {/* Placeholder only when subscribe + hero are not shown */}
+        {!reportData.chapterRelease && !showSubscribe && (
           <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
         )}
-      </div>
 
-      {/* Hero Video Section */}
-      {!reportData.chapterRelease && (
-        <div className="mt-8">
-          <HeroMediaBlock
-            title={tHome('landingPage.heroSection.title')}
-            description={tHome('landingPage.heroSection.description')}
-            heroAlt={tHome('landingPage.heroSection.heroAlt')}
-          />
-        </div>
-      )}
+        {/* Hero Video Section — show when subscribe box is shown; same container as content */}
+        {showSubscribe && (
+          <div className="mt-6">
+            <HeroMediaBlock
+              title={tHome('landingPage.heroSection.title')}
+              description={tHome('landingPage.heroSection.description')}
+              heroAlt={tHome('landingPage.heroSection.heroAlt')}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
