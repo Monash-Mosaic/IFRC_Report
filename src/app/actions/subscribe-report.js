@@ -47,7 +47,7 @@ export async function subscribeReport(prevState, formData) {
     });
     return { success: true };
   } catch (error) {
-    console.error('subscribe-report error:', error);
+    console.error('subscribe-report error:', error?.message ?? 'Unknown error');
     return { error: 'Something went wrong. Please try again.' };
   }
 }
