@@ -113,7 +113,7 @@ describe('TestimonialCard', () => {
       quote: '',
     };
 
-    // Should not crash with empty strings
+    //  Should not crash with empty strings
     expect(() => {
       render(<TestimonialCard {...emptyProps} />);
     }).not.toThrow();
