@@ -61,6 +61,8 @@ export const featuredVideos = [
   },
 ];
 
+export const chapterRelease = false;
+
 export const chapters = {
   'الفصل-02': {
     metadata: {

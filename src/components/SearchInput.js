@@ -1,35 +1,50 @@
 'use client';
-import { useRef, useState, useEffect } from 'react';
-import { Search, X } from 'lucide-react';
+import { useEffect, useId, useRef, useState } from 'react';
+import { Search, X, ArrowRight } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
-import { getPathname } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
+import { getPathname, usePathname } from '@/i18n/navigation';
 import Form from 'next/form';
+import { useFormStatus } from 'react-dom'
+ 
+export function SearchButton({ label }) {
+  const status = useFormStatus();
+  return (
+    <button
+      type="submit"
+      aria-label={label}
+      disabled={status.pending}
+      className="absolute start-3 top-1/2 transform -translate-y-1/2"
+    >
+      {status.pending ? (
+        <span
+          className="block w-5 h-5 rounded-full border-2 border-red-600 border-t-transparent animate-spin"
+          aria-hidden="true"
+        />
+      ) : (
+        <Search className="w-5 h-5 text-red-600" />
+      )}
+    </button>
+  );
+}
 
-export default function SearchInput({
-  isMobile = false,
-  isSearchExpanded,
-  setIsSearchExpanded,
-  initialQuery = '',
-}) {
-  const searchInputRef = useRef(null);
-  const containerRef = useRef(null);
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const prevInitialQueryRef = useRef(initialQuery);
-  const t = useTranslations('Home');
+export default function SearchInput() {
   const locale = useLocale();
-
-  // Update searchQuery when initialQuery changes (e.g., on search results page)
-  // Use a ref to track previous value and only update when prop changes externally
-  useEffect(() => {
-    if (initialQuery !== prevInitialQueryRef.current) {
-      prevInitialQueryRef.current = initialQuery;
-      // Schedule update to avoid synchronous setState in effect
-      const timeoutId = setTimeout(() => {
-        setSearchQuery(initialQuery);
-      }, 0);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [initialQuery]);
+  const searchParams = useSearchParams();
+  const searchInputId = useId();
+  const triggerInputId = `${searchInputId}-trigger`;
+  const overlayInputId = `${searchInputId}-overlay`;
+  const pathname = usePathname();
+  const isSearchPage = pathname === '/search';
+  const searchInputRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') ?? '');
+  const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(() => {
+    if (isSearchPage) return true;
+    return !!searchParams.get('q');
+  });
+  const isOverlayVisible = isSearchPage || isSearchOverlayOpen;
+  const t = useTranslations('Home');
+  const searchPlaceholder = t('nav.searchPlaceholder');
 
   // Get the localized search pathname (includes locale prefix e.g. /en/search)
   const searchAction = getPathname({
@@ -37,138 +52,146 @@ export default function SearchInput({
     href: '/search',
   });
 
-  const iconClasses = 'w-5 h-5 text-red-600';
-
-  const handleSearchFocus = () => {
-    setIsSearchExpanded(true);
-    const timeoutId = setTimeout(() => {
-      if (searchInputRef.current) {
-        searchInputRef.current.focus();
-      }
-      clearTimeout(timeoutId);
-    }, 0);
-  };
-
-  const handleCloseSearch = () => {
-    setIsSearchExpanded(false);
-    setSearchQuery(initialQuery || '');
-  };
-
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  // Handle blur - close search when clicking outside
-  const handleBlur = () => {
-    setTimeout(() => {
-      if (containerRef.current && !containerRef.current.contains(document.activeElement)) {
-        if (!searchQuery.trim()) {
-          setIsSearchExpanded(false);
+  const clearSearchInput = () => {
+    setSearchQuery('');
+    searchInputRef.current?.focus();
+  };
+
+  const openSearchOverlay = () => {
+    setIsSearchOverlayOpen(true);
+  };
+
+  const closeSearchOverlay = () => {
+    setIsSearchOverlayOpen(false);
+  };
+
+  const handleOverlayBlur = (event) => {
+    if (isSearchPage) {
+      return;
+    }
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      closeSearchOverlay();
+    }
+  };
+
+  const handleSearchSubmit = (event) => {
+    if (!searchQuery.trim()) {
+      event.preventDefault();
+      searchInputRef.current?.focus();
+      return;
+    }
+
+    if (!isSearchPage) {
+      closeSearchOverlay();
+    }
+  };
+
+  useEffect(() => {
+    if (!isOverlayVisible) {
+      return;
+    }
+    searchInputRef.current?.focus();
+  }, [isOverlayVisible]);
+
+  useEffect(() => {
+    if (!isOverlayVisible) {
+      return;
+    }
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        if (isSearchPage) {
+          return;
         }
+        setIsSearchOverlayOpen(false);
       }
-    }, 150);
-  };
+    };
 
-  // Mobile: Use CSS overlay approach
-  if (isMobile) {
-    return (
-      <>
-        {/* Search trigger button */}
-        <button
-          type="button"
-          onClick={handleSearchFocus}
-          className="w-10 h-10 flex items-center justify-center border-2 border-red-600 rounded-lg bg-white"
-          aria-label={t('nav.search')}
-        >
-          <Search className="w-4 h-4 text-red-600" />
-        </button>
+    window.addEventListener('keydown', handleEscape);
 
-        {/* Overlay search form */}
-        {isSearchExpanded && (
-          <div className="fixed inset-0 z-50 bg-white">
-            <div className="flex items-center gap-3 p-4 border-b border-gray-200">
-              <Form action={searchAction} role="search" className="flex-1 relative">
-                <input
-                  ref={searchInputRef}
-                  type="search"
-                  name="q"
-                  value={searchQuery}
-                  onChange={handleInputChange}
-                  placeholder={t('nav.search')}
-                  className="w-full pl-10 pr-4 py-2 h-10 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-0 bg-white placeholder-red-400"
-                  required
-                  autoComplete="off"
-                  spellCheck="true"
-                  autoFocus
-                />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-600" />
-              </Form>
-              <button
-                type="button"
-                onClick={handleCloseSearch}
-                className="p-2"
-                aria-label="Close search"
-              >
-                <X
-                  className={`${iconClasses} cursor-pointer hover:text-red-700 transition-colors`}
-                />
-              </button>
-            </div>
-          </div>
-        )}
-      </>
-    );
-  }
-
-  // Desktop: Original inline expansion behavior
-  const containerClasses = `flex items-center ${isSearchExpanded ? 'w-full gap-3' : ''}`;
-
-  const getSearchInputClasses = () => {
-    const baseClasses =
-      'border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-red-300 bg-white placeholder-red-400 transition-all duration-300 ease-in-out [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden';
-
-    const sizeClasses = isSearchExpanded ? 'w-full pl-4 pr-12 py-2' : 'w-auto px-4 py-2 pr-10';
-
-    return `${sizeClasses} ${baseClasses}`;
-  };
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isOverlayVisible, isSearchPage]);
 
   return (
-    <div ref={containerRef} className={containerClasses}>
-      <Form
-        action={searchAction}
-        role="search"
-        className={`relative ${isSearchExpanded ? 'flex-1' : ''}`}
-      >
+    <>
+      <div className="relative flex items-center gap-2">
+        <label htmlFor={triggerInputId} className="sr-only">
+          {t('nav.search')}
+        </label>
         <input
-          ref={searchInputRef}
+          id={triggerInputId}
           type="search"
-          name="q"
           value={searchQuery}
-          onChange={handleInputChange}
-          placeholder={isSearchExpanded ? '' : t('nav.search')}
-          onFocus={handleSearchFocus}
-          onBlur={handleBlur}
-          className={getSearchInputClasses()}
-          required
-          autoComplete="off"
-          spellCheck="true"
+          onFocus={openSearchOverlay}
+          placeholder={searchPlaceholder}
+          className="border-2 border-red-600 text-red-600 rounded-lg font-medium w-10 lg:w-[20rem] lg:pe-4 ps-10 py-2 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
+          readOnly
         />
-        {isSearchExpanded ? (
-          <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
-            <Search className={iconClasses} />
-          </button>
-        ) : (
-          <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
-            <Search className="w-5 h-5 text-red-600" />
-          </button>
-        )}
-      </Form>
-      {isSearchExpanded && (
-        <X
-          className={`${iconClasses} cursor-pointer hover:text-red-700 transition-colors flex-shrink-0`}
-          onClick={handleCloseSearch}
-        />
+        <button
+          type="button"
+          onClick={openSearchOverlay}
+          className="absolute start-3 top-1/2 transform -translate-y-1/2"
+          aria-label={t('nav.search')}
+        >
+          <Search className="w-5 h-5 text-red-600" />
+        </button>
+      </div>
+
+      {isOverlayVisible && (
+        <div className="fixed inset-x-0 top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+          <div
+            className="max-w-9/10 lg:max-w-8/10 mx-auto lg:px-4 py-4 flex items-center h-[100px]"
+            onBlur={handleOverlayBlur}
+          >
+            <Form
+              action={searchAction}
+              role="search"
+              replace
+              className="relative flex-1"
+              onSubmit={handleSearchSubmit}
+            >
+              <input type="hidden" name="limit" defaultValue={10} />
+              <label htmlFor={overlayInputId} className="sr-only">
+                {t('nav.search')}
+              </label>
+              <input
+                ref={searchInputRef}
+                id={overlayInputId}
+                type="search"
+                name="q"
+                value={searchQuery}
+                onChange={handleInputChange}
+                placeholder={searchPlaceholder}
+                className="w-full ps-10 pe-20 py-2 border-2 border-red-600 text-red-600 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-red-300 bg-white placeholder-red-400 [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
+                required
+                autoComplete="off"
+                spellCheck="true"
+              />
+              <SearchButton label={t('nav.search')} />
+              <button
+                type="button"
+                onClick={clearSearchInput}
+                className="absolute end-3 top-1/2 transform -translate-y-1/2"
+                aria-label="Clear search input"
+              >
+                <X className="w-5 h-5 text-red-600" />
+              </button>
+            </Form>
+            <button
+              type="button"
+              onClick={closeSearchOverlay}
+              className="shrink-0 p-2 text-red-600 hover:text-red-700 transition-colors"
+              aria-label={t('nav.search')}
+            >
+              <ArrowRight className="w-5 h-5 text-red-600 rtl:-scale-x-100" />
+            </button>
+          </div>
+        </div>
       )}
-    </div>
+    </>
   );
 }
