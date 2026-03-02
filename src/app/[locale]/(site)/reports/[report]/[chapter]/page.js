@@ -219,7 +219,7 @@ export default async function ReportChapterPage({ params }) {
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}
-              ></TableOfContent>
+              />
             </div>
           </div>
         </div>

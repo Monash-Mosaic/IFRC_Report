@@ -257,6 +257,18 @@
     "social": "اجتماعي",
     "informational": "معلوماتي"
   },
+  "ReportSubscribe": {
+    "headline": "التقرير الكامل قادم قريباً.",
+    "placeholder": "انضم إلى قائمة بريدنا الإلكتروني",
+    "submit": "اشتراك",
+    "submitting": "جاري الاشتراك…",
+    "successTitle": "شكراً لانضمامك!",
+    "successMessage": "سنرسل لك بريداً إلكترونياً عند توفر المحتوى الجديد.",
+    "close": "إغلاق",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صحيح.",
+    "subscribeError": "لم نتمكن من إضافتك إلى القائمة. يرجى المحاولة مرة أخرى لاحقاً."
+  },
   "ReportIncident": {
     "trigger": "الإبلاغ عن خطأ",
     "triggerTooltip": "الإبلاغ عن خطأ؟",

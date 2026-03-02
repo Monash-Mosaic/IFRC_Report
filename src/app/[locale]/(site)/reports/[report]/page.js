@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import Breadcrumb from '@/components/Breadcrumb';
+import SubscribeBox from '@/components/SubscribeBox';
 import ChapterCard from '@/components/ChapterCard';
 import HeroMediaBlock from '@/components/landing-page/HeroMediaBlock';
 import { getPathname } from '@/i18n/navigation';
@@ -108,6 +109,7 @@ export default async function ReportDetailPage({ params }) {
   setRequestLocale(locale);
   const reportData = reportsByLocale[locale].reports[decodedReport];
   const { chapters, title: reportTile, description, author, releaseDate, reportFile } = reportData;
+  const showSubscribeSection = !reportData.chapterRelease;
   const reportJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Report',
@@ -192,24 +194,29 @@ export default async function ReportDetailPage({ params }) {
               }}
             />
           ))}
+          {showSubscribeSection && (
+            <div className="mt-6">
+              <SubscribeBox locale={locale} />
+            </div>
+          )}
         </div>
 
-        {/* Placeholder for future email subscription section */}
-        {!reportData.chapterRelease && (
+        {/* Placeholder only when subscribe + hero are not shown */}
+        {!showSubscribeSection && (
           <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
         )}
-      </div>
 
-      {/* Hero Video Section */}
-      {!reportData.chapterRelease && (
-        <div className="mt-8">
-          <HeroMediaBlock
-            title={tHome('landingPage.heroSection.title')}
-            description={tHome('landingPage.heroSection.description')}
-            heroAlt={tHome('landingPage.heroSection.heroAlt')}
-          />
-        </div>
-      )}
+        {/* Hero Video Section — show when subscribe box is shown; same container as content */}
+        {showSubscribeSection && (
+          <div className="mt-6">
+            <HeroMediaBlock
+              title={tHome('landingPage.heroSection.title')}
+              description={tHome('landingPage.heroSection.description')}
+              heroAlt={tHome('landingPage.heroSection.heroAlt')}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
