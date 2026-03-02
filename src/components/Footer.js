@@ -7,7 +7,7 @@ import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 import { getVisibleReports, reportUriMap } from '@/reports';
 
-export default function Footer() {
+export default function Footer({ locale }) {
 
   const t = useTranslations('Footer');
   const locale = useLocale();
