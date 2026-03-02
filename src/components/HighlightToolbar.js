@@ -16,6 +16,7 @@ import {
   LinkedinIcon,
   WhatsappIcon,
 } from 'next-share';
+import { shareOrCopy } from '@/lib/share';
 
 const COLOR_META = [
   { key: 'yellow', name: 'Yellow', rgba: 'rgba(253, 224, 71, 0.55)', circleClass: 'bg-yellow-300' },
@@ -306,35 +307,16 @@ export default function HighlightToolbar({
   }, [containerEl]);
 
   const setToolbarPositionFromRect = useCallback((rect) => {
-    if (!containerEl) return;
-
     const TOOLBAR_HEIGHT_EST = 52;
     const GAP = 12;
 
-    // rect is viewport-based; convert to page coords
-    const scrollX = window.scrollX || window.pageXOffset;
-    const scrollY = window.scrollY || window.pageYOffset;
-
-    const xPage = rect.left + rect.width / 2 + scrollX;
-
-    // prefer above selection
-    let yPage = rect.top + scrollY - TOOLBAR_HEIGHT_EST - GAP;
-
-    // if too close to top, put below selection
-    if (rect.top - TOOLBAR_HEIGHT_EST - GAP < 8) {
-      yPage = rect.bottom + scrollY + GAP;
-    }
-
-    // convert page coords -> container coords
-    const containerRect = containerEl.getBoundingClientRect();
-    const containerLeft = containerRect.left + scrollX;
-    const containerTop = containerRect.top + scrollY;
-
-    const x = xPage - containerLeft;
-    const y = yPage - containerTop;
+    // Use viewport coordinates and render with `position: fixed`
+    // to avoid offsetParent/container mismatches.
+    const x = rect.left + rect.width / 2;
+    const y = rect.top - TOOLBAR_HEIGHT_EST - GAP;
 
     setPos({ x, y });
-  }, [containerEl]);
+  }, []);
 
 
   // Restore highlights on mount
@@ -478,30 +460,11 @@ export default function HighlightToolbar({
   const onShare = async () => {
     if (!selectedText) return;
 
-    const composed = `${selectedText}\n${shareUrl}`; // URL last, single real newline
-
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: shareTitle,
-          text: selectedText,
-          url: shareUrl,
-        });
-      } else {
-        await navigator.clipboard.writeText(composed);
-      }
-    } catch {
-      try {
-        const ta = document.createElement('textarea');
-        ta.value = composed;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-      } catch {
-        // ignore
-      }
-    }
+    await shareOrCopy({
+      title: shareTitle,
+      text: selectedText,
+      url: shareUrl,
+    });
 
     window.getSelection()?.removeAllRanges();
     setIsVisible(false);
@@ -614,7 +577,7 @@ export default function HighlightToolbar({
 
   return (
     <div
-      className="absolute z-50"
+      className="fixed z-50"
       style={{
         left: `${pos.x}px`,
         top: `${pos.y}px`,
