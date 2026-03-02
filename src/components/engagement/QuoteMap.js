@@ -89,10 +89,10 @@ export default function QuoteMap({ selectedTag, handleSelectionTag }) {
           })
           .filter(Boolean);
 
-        console.log('Processed Map Data:', features); // Debugging: Check console to see if this prints
+        // console.log('Processed Map Data:', features); // Debugging: Check console to see if this prints
         setDotsData({ type: 'FeatureCollection', features });
       } catch (error) {
-        console.error('Error loading CSV:', error);
+        // console.error('Error loading CSV:', error);
       }
     };
 
@@ -324,7 +324,7 @@ export default function QuoteMap({ selectedTag, handleSelectionTag }) {
   // This runs whenever dotsData changes OR when the map finishes loading
   useEffect(() => {
     if (isMapLoaded && mapRef.current && mapRef.current.getSource(DOTS_SOURCE_ID)) {
-        console.log('Injecting data into map:', dotsData);
+        // console.log('Injecting data into map:', dotsData);
         mapRef.current.getSource(DOTS_SOURCE_ID).setData(dotsData);
     }
   }, [dotsData, isMapLoaded]);
