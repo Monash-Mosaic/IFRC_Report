@@ -244,6 +244,15 @@
       "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
     }
   },
+  "ReportSubscribe": {
+    "headline": "El informe completo estará disponible pronto.",
+    "placeholder": "Únase a nuestra lista de correo",
+    "submit": "Suscribirse",
+    "submitting": "Suscribiendo…",
+    "successTitle": "¡Gracias por unirse!",
+    "successMessage": "Le enviaremos un correo cuando el nuevo contenido esté disponible.",
+    "close": "Cerrar"
+  },
   "ReportIncident": {
     "trigger": "Reportar un error",
     "triggerTooltip": "¿Reportar un error?",

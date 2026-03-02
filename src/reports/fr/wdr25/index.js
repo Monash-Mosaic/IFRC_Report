@@ -99,3 +99,5 @@ export const chapters = {
     ],
   },
 };
+
+export const showSubscribe = Object.keys(chapters).length < 9;
