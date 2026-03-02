@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { QuoteIcon, Monitor, Wifi, Smartphone, Activity, User, Building2 } from 'lucide-react';
 
 const TAG_COLUMN_MAP = {
@@ -124,17 +125,32 @@ function QuoteCard({ quote }) {
 }
 
 export default function QuotesSection({ selectedTag }) {
+  const t = useTranslations('Engagement');
   const [quotes, setQuotes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     fetch('/data/engagement_tab.csv')
-      .then((r) => r.text())
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.text();
+      })
       .then((text) => {
         const rows = parseCSV(text);
+        if (!rows?.length || !rows[0]?.length) {
+          setQuotes([]);
+          return;
+        }
         const headers = rows[0].map((h) => h.trim());
         const colIndex = {};
         headers.forEach((h, i) => { colIndex[h] = i; });
-
+        if (colIndex['Quote text'] == null) {
+          setQuotes([]);
+          return;
+        }
         const parsed = rows
           .slice(1)
           .filter((row) => row[colIndex['Quote text']]?.length > 0)
@@ -148,9 +164,10 @@ export default function QuotesSection({ selectedTag }) {
             response: (row[colIndex['tag:response_strategy']] || '').trim(),
             governance: (row[colIndex['tag:governance']] || '').trim(),
           }));
-
         setQuotes(parsed);
-      });
+      })
+      .catch((err) => setError(err?.message || 'Failed to load'))
+      .finally(() => setLoading(false));
   }, []);
 
   const filtered = useMemo(() => {
@@ -175,25 +192,29 @@ export default function QuotesSection({ selectedTag }) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <QuoteIcon size={16} className="text-[#ee2435]" />
-          <span className="text-sm font-bold text-slate-900">Quotes</span>
+          <span className="text-sm font-bold text-slate-900">{t('quotesTitle')}</span>
           <span className="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">
             {filtered.length}
           </span>
         </div>
         {activeCount > 0 && (
           <span className="text-xs text-slate-400">
-            {activeCount} filter{activeCount > 1 ? 's' : ''} active
+            {t('filtersActive', { count: activeCount })}
           </span>
         )}
       </div>
 
-      {quotes.length === 0 ? (
+      {loading ? (
         <div className="p-8 text-center text-slate-400 text-sm bg-white rounded-xl border border-slate-200">
-          Loading quotes…
+          {t('loadingQuotes')}
+        </div>
+      ) : error ? (
+        <div className="p-8 text-center text-red-600 text-sm bg-white rounded-xl border border-slate-200">
+          {t('errorLoadingQuotes')}
         </div>
       ) : filtered.length === 0 ? (
         <div className="p-8 text-center text-slate-400 text-sm bg-white rounded-xl border border-slate-200">
-          No quotes match the selected filters.
+          {t('noQuotesMatch')}
         </div>
       ) : (
         <div

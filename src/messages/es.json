@@ -245,6 +245,15 @@
       "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
     }
   },
+  "Engagement": {
+    "breadcrumbHome": "Página principal",
+    "breadcrumbCurrent": "Descubrir",
+    "quotesTitle": "Citas",
+    "loadingQuotes": "Cargando citas…",
+    "noQuotesMatch": "Ninguna cita coincide con los filtros seleccionados.",
+    "errorLoadingQuotes": "No se pudieron cargar las citas. Inténtalo de nuevo.",
+    "filtersActive": "{count, plural, one {# filtro activo} other {# filtros activos}}"
+  },
   "ReportIncident": {
     "trigger": "Reportar un error",
     "triggerTooltip": "¿Reportar un error?",
