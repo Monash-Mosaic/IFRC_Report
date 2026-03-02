@@ -56,7 +56,7 @@ export async function generateMetadata({ params }) {
 }
 
 export async function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.filter(isLocaleReleased).map((locale) => ({ locale }));
 }
 
 export default async function Home({ params }) {
@@ -71,7 +71,7 @@ export default async function Home({ params }) {
   const reportModule = getVisibleReports(locale)?.wdr25;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-  const chapterSlug = reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
+  const chapterSlug = reportUriMap['wdr25'].chapters['synthesis'].languages[locale];
   // Executive Summary translations
   const executiveSummary = {
     title: t('landingPage.executiveSummary.title'),
@@ -94,7 +94,6 @@ export default async function Home({ params }) {
     }),
     downloadLink: reportModule.chapters[chapterSlug].downloadLink,
   };
-
   // Hero Section translations
   const heroMessage = {
     title: t('landingPage.heroSection.title'),
@@ -133,8 +132,8 @@ export default async function Home({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
-        <HeroSection locale={locale} messages={heroMessage} />
-        <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
+        <HeroSection messages={heroMessage} />
+        <ExecutiveSummarySection messages={executiveSummary} />
 
         {/* Featured Videos Section */}
         <div>
