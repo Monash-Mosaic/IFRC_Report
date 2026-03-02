@@ -18,6 +18,7 @@ export default async function Header({ locale }) {
 
   // Navigation links data to avoid duplication
   const navigationLinks = [
+    { href: '/engagement', label: t('nav.discover') },
     { href: '/about', label: t('nav.about') },
     { href: '/acknowledgement', label: t('nav.acknowledgement') },
   ];
