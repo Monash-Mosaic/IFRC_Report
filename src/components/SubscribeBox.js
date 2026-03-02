@@ -15,10 +15,7 @@ const initialState = { success: false, error: null };
  * {showSubscribe && <SubscribeBox />}.
  */
 export default function SubscribeBox({ locale, className = '' }) {
-  const t = useTranslations({
-    namespace: 'ReportSubscribe',
-    locale,
-  });
+  const t = useTranslations('ReportSubscribe');
   const [state, formAction, pending] = useActionState(subscribeReport, initialState);
   const [resultModalOpen, setResultModalOpen] = useState(false);
   const [resultType, setResultType] = useState(/** @type {'success' | 'error' | null} */ (null));
