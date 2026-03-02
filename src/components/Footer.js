@@ -9,7 +9,10 @@ import { getVisibleReports, reportUriMap } from '@/reports';
 
 export default function Footer({ locale }) {
 
-  const t = useTranslations('Footer');
+  const t = await getTranslations({
+     namespace: 'Footer',
+     locale
+  });
   const locale = useLocale();
 
   const iconClass =
