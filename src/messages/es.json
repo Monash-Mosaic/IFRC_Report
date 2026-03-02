@@ -254,6 +254,18 @@
     "errorLoadingQuotes": "No se pudieron cargar las citas. Inténtalo de nuevo.",
     "filtersActive": "{count, plural, one {# filtro activo} other {# filtros activos}}"
   },
+  "ReportSubscribe": {
+    "headline": "El informe completo estará disponible pronto.",
+    "placeholder": "Únase a nuestra lista de correo",
+    "submit": "Suscribirse",
+    "submitting": "Suscribiendo…",
+    "successTitle": "¡Gracias por unirse!",
+    "successMessage": "Le enviaremos un correo cuando el nuevo contenido esté disponible.",
+    "close": "Cerrar",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "invalidEmail": "Introduce una dirección de correo electrónico válida.",
+    "subscribeError": "No pudimos añadirte a la lista. Por favor, inténtalo de nuevo más tarde."
+  },
   "ReportIncident": {
     "trigger": "Reportar un error",
     "triggerTooltip": "¿Reportar un error?",
