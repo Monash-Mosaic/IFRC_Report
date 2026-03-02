@@ -108,7 +108,8 @@ export default async function ReportDetailPage({ params }) {
   }
   setRequestLocale(locale);
   const reportData = reportsByLocale[locale].reports[decodedReport];
-  const { chapters, title: reportTile, description, author, releaseDate, reportFile, showSubscribe } = reportData;
+  const { chapters, title: reportTile, description, author, releaseDate, reportFile } = reportData;
+  const showSubscribeSection = !reportData.chapterRelease;
   const reportJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Report',
@@ -193,7 +194,7 @@ export default async function ReportDetailPage({ params }) {
               }}
             />
           ))}
-          {showSubscribe && (
+          {showSubscribeSection && (
             <div className="mt-6">
               <SubscribeBox locale={locale} />
             </div>
@@ -201,12 +202,12 @@ export default async function ReportDetailPage({ params }) {
         </div>
 
         {/* Placeholder only when subscribe + hero are not shown */}
-        {!reportData.chapterRelease && !showSubscribe && (
+        {!showSubscribeSection && (
           <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
         )}
 
         {/* Hero Video Section — show when subscribe box is shown; same container as content */}
-        {showSubscribe && (
+        {showSubscribeSection && (
           <div className="mt-6">
             <HeroMediaBlock
               title={tHome('landingPage.heroSection.title')}
