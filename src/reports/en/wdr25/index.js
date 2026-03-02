@@ -96,8 +96,8 @@ export const chapters = {
     tableOfContents: Introduction.tableOfContents,
     downloadLink:
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
-    thumbnail: '/wdr25/chapters/Synthesis.jpg',
-    thumbnailOverlay: 'red',
+    thumbnail: '/wdr25/chapters/Intro.jpg',
+    thumbnailOverlay: 'blue',
     released: true,
   },
   'chapter-01': {
@@ -128,7 +128,7 @@ export const chapters = {
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
     thumbnail: '/wdr25/chapters/Chapter2.png',
-    released: true,
+    released: false,
     audios: [
       {
         id: 'intro',
@@ -165,7 +165,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
-    released: true,
+    released: false,
   },
   'chapter-04': {
     metadata: {
@@ -180,7 +180,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-05': {
     metadata: {
@@ -194,7 +194,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-06': {
     metadata: {
@@ -208,7 +208,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-07': {
     metadata: {
@@ -222,7 +222,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-08': {
     metadata: {
@@ -238,6 +238,6 @@ export const chapters = {
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Chapter8.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
 };

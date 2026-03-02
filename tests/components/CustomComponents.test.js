@@ -25,6 +25,16 @@ import CustomComponents, {
   Box,
   ColumParagraphs,
   ColumParagraph,
+  FigureLabel,
+  FundamentalPrinciples,
+  TableLabel,
+  HeadingLabel,
+  QuestionAnswerBox,
+  QuestionAnswerBoxTitle,
+  QuestionAnswerBoxBody,
+  FeatureImage,
+  ChapterImage,
+  Anchor,
 } from '@/components/CustomComponents';
 
 jest.mock('next-intl/server', () => ({
@@ -48,15 +58,11 @@ describe('CustomComponents primitives', () => {
       <div>
         <ReccomendationsTitle>Title text</ReccomendationsTitle>
         <Reccomendations>Recommendation text</Reccomendations>
-      </div>,
+      </div>
     );
 
-    expect(screen.getByLabelText('ReccomendationsTitle')).toHaveTextContent(
-      'Title text',
-    );
-    expect(screen.getByLabelText('Reccomendations')).toHaveTextContent(
-      'Recommendation text',
-    );
+    expect(screen.getByLabelText('ReccomendationsTitle')).toHaveTextContent('Title text');
+    expect(screen.getByLabelText('Reccomendations')).toHaveTextContent('Recommendation text');
   });
 
   it('renders ContributorTag with column count', () => {
@@ -64,7 +70,7 @@ describe('CustomComponents primitives', () => {
       <ContributorTag>
         <div>One</div>
         <div>Two</div>
-      </ContributorTag>,
+      </ContributorTag>
     );
 
     expect(container.firstChild).toHaveClass('md:grid-cols-2');
@@ -76,7 +82,7 @@ describe('CustomComponents primitives', () => {
         <ContributorName>Jane Doe</ContributorName>
         <ContributorEntity>IFRC</ContributorEntity>
         <ContributorRole>Lead</ContributorRole>
-      </Contributor>,
+      </Contributor>
     );
 
     expect(screen.getByText('Jane Doe')).toBeInTheDocument();
@@ -89,7 +95,7 @@ describe('CustomComponents primitives', () => {
       <div>
         <ContributorName>Contributor Name</ContributorName>
         <ContributorEntity>Contributor Entity</ContributorEntity>
-      </div>,
+      </div>
     );
 
     const nameNode = screen.getByText('Contributor Name');
@@ -105,7 +111,7 @@ describe('CustomComponents primitives', () => {
         <H1Contributor>Header</H1Contributor>
         <Contributors>Group</Contributors>
         <ContributorRole>Role</ContributorRole>
-      </div>,
+      </div>
     );
 
     expect(screen.getByLabelText('H1Contributors')).toHaveTextContent('Header');
@@ -119,7 +125,7 @@ describe('CustomComponents primitives', () => {
         <Spotlight>Spotlight content</Spotlight>
         <SideNote>Side note</SideNote>
         <ChapterQuote>Chapter quote</ChapterQuote>
-      </div>,
+      </div>
     );
 
     expect(screen.getByText('Spotlight content')).toBeInTheDocument();
@@ -132,7 +138,7 @@ describe('CustomComponents primitives', () => {
       <div>
         <SmallQuote>Quote text</SmallQuote>
         <SmallQuoteAuthor>Author</SmallQuoteAuthor>
-      </div>,
+      </div>
     );
 
     expect(screen.getByText('Quote text').closest('blockquote')).toBeInTheDocument();
@@ -145,7 +151,7 @@ describe('CustomComponents primitives', () => {
         <ContributorSpotlightName>Spot Name</ContributorSpotlightName>
         <ContributorSpotlightPosition>Position</ContributorSpotlightPosition>
         <ContributorSpotlightRole>Role</ContributorSpotlightRole>
-      </ContributorSpotlight>,
+      </ContributorSpotlight>
     );
 
     expect(screen.getByText('Spot Name')).toBeInTheDocument();
@@ -158,7 +164,7 @@ describe('CustomComponents primitives', () => {
       <div>
         <Definition>Definition</Definition>
         <DefinitionDescription>Description</DefinitionDescription>
-      </div>,
+      </div>
     );
 
     expect(screen.getByText('Definition')).toBeInTheDocument();
@@ -170,12 +176,114 @@ describe('CustomComponents primitives', () => {
       <ColumParagraphs count={2}>
         <ColumParagraph>First column</ColumParagraph>
         <ColumParagraph>Second column</ColumParagraph>
-      </ColumParagraphs>,
+      </ColumParagraphs>
     );
 
     expect(container.firstChild).toHaveClass('md:grid-cols-2');
     expect(screen.getByText('First column')).toBeInTheDocument();
     expect(screen.getByText('Second column')).toBeInTheDocument();
+  });
+
+  it('renders Anchor with meta and children', () => {
+    render(<Anchor meta="1.1">Anchor heading</Anchor>);
+
+    expect(screen.getByText('Anchor heading')).toBeInTheDocument();
+    expect(screen.getByText('1.1')).toBeInTheDocument();
+  });
+
+  it('renders FeatureImage with description and IFRC credit', () => {
+    render(
+      <FeatureImage src="/test-image.jpg" description="Test caption" width={400} height={300} />
+    );
+
+    expect(screen.getByAltText('/test-image.jpg')).toBeInTheDocument();
+    expect(screen.getByText('Test caption')).toBeInTheDocument();
+    expect(screen.getByText('@IFRC')).toBeInTheDocument();
+  });
+
+  it('renders FeatureImage without description', () => {
+    render(<FeatureImage src="/img.png" width={400} height={300} />);
+
+    expect(screen.getByAltText('/img.png')).toBeInTheDocument();
+    expect(screen.queryByText('@IFRC')).not.toBeInTheDocument();
+  });
+
+  it('renders QuestionAnswerBox composition', () => {
+    render(
+      <QuestionAnswerBox>
+        <QuestionAnswerBoxTitle>Why does this matter?</QuestionAnswerBoxTitle>
+        <QuestionAnswerBoxBody>
+          <p>Because it does.</p>
+        </QuestionAnswerBoxBody>
+      </QuestionAnswerBox>
+    );
+
+    expect(screen.getByText('Why does this matter?')).toBeInTheDocument();
+    expect(screen.getByText('Because it does.')).toBeInTheDocument();
+  });
+
+  it('renders HeadingLabel with index', () => {
+    render(<HeadingLabel index="2.1" />);
+
+    expect(screen.getByText('2.1')).toBeInTheDocument();
+  });
+
+  it('renders TableLabel with default label', () => {
+    render(<TableLabel index={3} />);
+
+    expect(screen.getByText('Table 3')).toBeInTheDocument();
+  });
+
+  it('renders TableLabel with custom label', () => {
+    render(<TableLabel index={1} label="Tableau" />);
+
+    expect(screen.getByText('Tableau 1')).toBeInTheDocument();
+  });
+
+  it('renders FigureLabel with default label', () => {
+    render(<FigureLabel index={5} />);
+
+    expect(screen.getByText('Fig 5')).toBeInTheDocument();
+  });
+
+  it('renders FigureLabel with custom label', () => {
+    render(<FigureLabel index={2} label="Figure" />);
+
+    expect(screen.getByText('Figure 2')).toBeInTheDocument();
+  });
+
+  it('renders FundamentalPrinciples', () => {
+    render(<FundamentalPrinciples>Humanity</FundamentalPrinciples>);
+
+    expect(screen.getByText('Humanity')).toBeInTheDocument();
+  });
+
+  it('renders ChapterImage with title, subtitle and caption', () => {
+    render(
+      <ChapterImage
+        imagePath="/chapter-img.jpg"
+        alt="Chapter image"
+        width={800}
+        height={600}
+        imageTitle="Figure Title"
+        imageSubtitle="A subtitle"
+        caption="Photo credit"
+        imageIndex={1}
+      />
+    );
+
+    expect(screen.getByAltText('Chapter image')).toBeInTheDocument();
+    expect(screen.getByText('Figure Title')).toBeInTheDocument();
+    expect(screen.getByText('A subtitle')).toBeInTheDocument();
+    expect(screen.getByText('Photo credit')).toBeInTheDocument();
+    expect(screen.getByText('Fig 1')).toBeInTheDocument();
+  });
+
+  it('renders ChapterImage without optional props', () => {
+    render(<ChapterImage imagePath="/simple.jpg" alt="Simple" width={400} height={300} />);
+
+    expect(screen.getByAltText('Simple')).toBeInTheDocument();
+    expect(screen.queryByRole('figcaption')).not.toBeInTheDocument();
   });
 });
 
