@@ -100,6 +100,7 @@ export default async function AcknowledgementsPage({ params }) {
           <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
             {t.rich('intro', {
               bold: (chunk) => <strong>{chunk}</strong>,
+              italic: (chunk) => <em>{chunk}</em>
             })}
           </p>
 
@@ -160,7 +161,10 @@ export default async function AcknowledgementsPage({ params }) {
 
           {/* Contributions */}
           <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
-            {t('contributions')}
+            {t.rich('contributions', {
+              bold: (chunk) => <strong>{chunk}</strong>,
+              italic: (chunk) => <em>{chunk}</em>
+            })}
           </p>
 
           {/* Research acknowledgement */}
