@@ -306,14 +306,16 @@ export default function HighlightToolbar({
     return r;
   }, [containerEl]);
 
-  const setToolbarPositionFromRect = useCallback((rect) => {
-    const TOOLBAR_HEIGHT_EST = 52;
-    const GAP = 12;
+  const TOOLBAR_HEIGHT_EST = 52;
+  const GAP = 12;
 
-    // Use viewport coordinates and render with `position: fixed`
-    // to avoid offsetParent/container mismatches.
+  const setToolbarPositionFromRect = useCallback((rect) => {
     const x = rect.left + rect.width / 2;
-    const y = rect.top - TOOLBAR_HEIGHT_EST - GAP;
+    let y = rect.top - TOOLBAR_HEIGHT_EST - GAP;
+
+    if (y < 0) {
+      y = rect.bottom + GAP;
+    }
 
     setPos({ x, y });
   }, []);
@@ -432,6 +434,34 @@ export default function HighlightToolbar({
       if (hideTimer.current) clearTimeout(hideTimer.current);
     };
   }, [containerEl, getSelectionRangeSafe, setToolbarPositionFromRect]);
+
+  // Reposition toolbar on scroll so it tracks the highlighted text
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let rafId = null;
+
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const range = getSelectionRangeSafe();
+        if (!range) {
+          setIsVisible(false);
+          setSelectedText('');
+          setActiveHighlightGroupId(null);
+          return;
+        }
+        setToolbarPositionFromRect(range.getBoundingClientRect());
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll, { passive: true, capture: true });
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [isVisible, getSelectionRangeSafe, setToolbarPositionFromRect]);
 
   const shareUrl = useMemo(() => {
     if (typeof window === 'undefined') return '';

@@ -9,7 +9,7 @@ import HeroMediaBlock from './HeroMediaBlock';
 import { isRtlLocale } from '@/i18n/helper';
 import {
   FacebookShareButton,
-  TwitterShareButton,
+  LinkedinShareButton,
 } from 'next-share';
 
 const CLOSE_BG = 'rgba(251,208,211,0.53)';
@@ -122,7 +122,7 @@ export default function HeroSection({ locale = 'en', messages }) {
             <button
               type="button"
               onClick={handleShareToggle}
-              className="w-[173px] h-[76px] bg-white rounded-[8px] inline-flex items-center justify-center gap-3 whitespace-nowrap shadow-sm hover:bg-[#EE2435] hover:text-white group transition-colors cursor-pointer"
+              className="w-[173px] h-[76px] bg-white rounded-[8px] border-2 border-red-600 inline-flex items-center justify-center gap-3 whitespace-nowrap shadow-sm hover:bg-[#EE2435] hover:text-white group transition-colors cursor-pointer"
               aria-expanded={isShareOpen}
               aria-label={messages.buttonTexts.share}
             >
@@ -148,7 +148,7 @@ export default function HeroSection({ locale = 'en', messages }) {
                 className={`absolute top-0 z-40 ${isRtl ? 'right-full mr-1' : 'left-full ml-1'}`}
               >
                 {/* Share Button (expanded) – Figma 301-171: W316 × H76 */}
-                <div className="relative w-[316px] h-[76px] bg-white rounded-[8px] overflow-hidden">
+                <div className="relative w-[316px] h-[76px] bg-white rounded-[8px] border-2 border-red-600 overflow-hidden">
                   {/* Close tile – 76×76 */}
                   <button
                     type="button"
@@ -180,19 +180,20 @@ export default function HeroSection({ locale = 'en', messages }) {
                   </button>
 
                   <div className={`absolute top-[22px] w-[30px] h-[30px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[148px]' : 'left-[148px]'}`}>
-                    <TwitterShareButton
+                    <LinkedinShareButton
                       url={getShareUrl()}
                       title={shareTitle}
+                      summary={shareTitle}
                       className="w-full h-full inline-flex items-center justify-center"
                       style={{ width: '100%', height: '100%' }}
                     >
                       <img
                         alt=""
-                        src="/figma-twitter-301-197.svg"
+                        src="/figma-linkedin.svg"
                         className="block w-full h-full object-contain"
                         draggable={false}
                       />
-                    </TwitterShareButton>
+                    </LinkedinShareButton>
                   </div>
 
                   <div className={`absolute top-[19px] w-[35px] h-[35px] rounded-full hover:bg-red-50 hover:scale-110 active:scale-95 transition-all duration-150 ${isRtl ? 'right-[199px]' : 'left-[199px]'}`}>

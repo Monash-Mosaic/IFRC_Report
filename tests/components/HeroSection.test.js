@@ -72,8 +72,8 @@ jest.mock('next-share', () => ({
       {children}
     </div>
   ),
-  TwitterShareButton: ({ children, ...props }) => (
-    <div data-testid="twitter-share-button" data-url={props.url} data-title={props.title}>
+  LinkedinShareButton: ({ children, ...props }) => (
+    <div data-testid="linkedin-share-button" data-url={props.url} data-title={props.title}>
       {children}
     </div>
   ),
@@ -249,6 +249,8 @@ describe('HeroSection', () => {
       'h-[76px]',
       'bg-white',
       'rounded-[8px]',
+      'border-2',
+      'border-red-600',
       'inline-flex',
       'items-center',
       'justify-center',
@@ -432,8 +434,8 @@ describe('HeroSection', () => {
       // Copy link button
       expect(screen.getByLabelText('Copy link')).toBeInTheDocument();
 
-      // Twitter/X share button
-      expect(screen.getByTestId('twitter-share-button')).toBeInTheDocument();
+      // LinkedIn share button
+      expect(screen.getByTestId('linkedin-share-button')).toBeInTheDocument();
 
       // Facebook share button with correct hashtag
       const fbButton = screen.getByTestId('facebook-share-button');
@@ -452,7 +454,7 @@ describe('HeroSection', () => {
 
       const panel = container.querySelector('.w-\\[316px\\].h-\\[76px\\]');
       expect(panel).toBeInTheDocument();
-      expect(panel).toHaveClass('bg-white', 'rounded-[8px]', 'overflow-hidden');
+      expect(panel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600', 'overflow-hidden');
     });
 
     it('has Figma-spec close tile (76×76) with correct background', () => {
