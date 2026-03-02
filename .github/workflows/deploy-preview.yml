@@ -148,7 +148,7 @@ jobs:
         run: npm run build:search
 
       - name: Deploy to Cloudflare (preview for main)
-        id: deploy_main
+        id: deploy_preview_main
         if: ${{ github.event_name != 'pull_request' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -162,7 +162,7 @@ jobs:
           npx --yes wrangler@4 versions deploy -y "$VERSION_ID"
 
       - name: Deploy to Cloudflare (Production preview for main)
-        id: deploy_main
+        id: deploy_production_main
         if: ${{ github.event_name != 'pull_request' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
