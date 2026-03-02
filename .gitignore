@@ -41,3 +41,6 @@ next-env.d.ts
 .wrangler
 # Search database (regenerated on build)
 data/search.db
+
+scripts/wdr25/data
+scripts/wdr25/output
