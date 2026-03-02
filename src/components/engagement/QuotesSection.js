@@ -42,17 +42,16 @@ const CHAPTER_TITLES = {
   CH8: 'Recommendations and the Path Forward',
 };
 
-// Types of Harm (TOH): map harm tag labels to one of the six icons per quote
+// Types of Harm (TOH): map harm tag labels to icon + display name for tooltip
 const HARM_TAG_TO_ICON = [
-  { label: 'psychological', Icon: User },
-  { label: 'societal', Icon: Building2 },
-  { label: 'social', Icon: Smartphone },
-  { label: 'informational', Icon: Wifi },
-  { label: 'digital/technological', Icon: Monitor },
-  { label: 'physical', Icon: Activity },
-  { label: 'deprivational/financial/economic', Icon: Activity },
+  { label: 'psychological', displayLabel: 'Psychological', Icon: User },
+  { label: 'societal', displayLabel: 'Societal', Icon: Building2 },
+  { label: 'social', displayLabel: 'Social', Icon: Smartphone },
+  { label: 'informational', displayLabel: 'Informational', Icon: Wifi },
+  { label: 'digital/technological', displayLabel: 'Digital/technological', Icon: Monitor },
+  { label: 'physical', displayLabel: 'Physical', Icon: Activity },
+  { label: 'deprivational/financial/economic', displayLabel: 'Deprivational/financial/economic', Icon: Activity },
 ];
-const THEME_ICONS = [Monitor, Wifi, Smartphone, Activity, User, Building2];
 
 function parseCSV(text) {
   const rows = [];
@@ -93,30 +92,30 @@ function formatChapterLabel(chapterCode) {
   return m ? `Chapter ${m[1]}` : chapterCode;
 }
 
-/** Resolve quote harm tags to TOH icons (unique, ordered). */
+/** Resolve quote harm tags to TOH icons with labels (unique by Icon, ordered). Only icons that match are returned. */
 function getIconsForHarm(harmStr) {
   const tags = parseTags(harmStr).map((t) => t.toLowerCase().trim());
-  const seen = new Set();
-  const icons = [];
-  for (const { label, Icon } of HARM_TAG_TO_ICON) {
+  const byIcon = new Map();
+  for (const { label, displayLabel, Icon } of HARM_TAG_TO_ICON) {
     const labelNorm = label.toLowerCase();
     const matches = tags.some((t) => t.includes(labelNorm) || labelNorm.includes(t));
-    if (matches && !seen.has(Icon)) {
-      seen.add(Icon);
-      icons.push(Icon);
+    if (matches) {
+      const existing = byIcon.get(Icon);
+      if (existing) existing.labels.push(displayLabel);
+      else byIcon.set(Icon, { Icon, labels: [displayLabel] });
     }
   }
-  return icons.length > 0 ? icons : THEME_ICONS;
+  return Array.from(byIcon.values());
 }
 
 function QuoteCard({ quote }) {
   const chapterTitle = CHAPTER_TITLES[quote.chapter];
   const chapterLabel = formatChapterLabel(quote.chapter);
-  const tohIcons = getIconsForHarm(quote.harm);
+  const tohItems = getIconsForHarm(quote.harm);
 
   return (
     <div
-      className="flex-shrink-0 bg-white rounded-xl border-2 border-[#ee2435] flex flex-col overflow-hidden"
+      className="flex-shrink-0 bg-white rounded-xl border-2 border-[#ee2435] flex flex-col"
       style={{ width: '280px' }}
     >
       <div className="p-5 flex flex-col flex-1 gap-4">
@@ -125,17 +124,32 @@ function QuoteCard({ quote }) {
           &ldquo;{quote.text}&rdquo;
         </p>
 
-        {/* TOH icons from harm tags (2×3 grid) */}
-        <div className="grid grid-cols-3 gap-2">
-          {tohIcons.map((Icon, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#ee2435]"
-            >
-              <Icon size={16} className="text-white" strokeWidth={1.8} />
-            </div>
-          ))}
-        </div>
+        {/* TOH icons grouped together; hover shows TOH name in tooltip */}
+        {tohItems.length > 0 && (
+          <div className="flex flex-wrap gap-2 overflow-visible">
+            {tohItems.map((item, i) => {
+              const Icon = item.Icon;
+              const tooltipText = item.labels && item.labels.length > 0 ? item.labels.join(', ') : '';
+              return (
+                <div
+                  key={i}
+                  className="relative group flex items-center justify-center w-9 h-9 rounded-full bg-[#ee2435] cursor-help shrink-0"
+                  title={tooltipText}
+                >
+                  <Icon size={16} className="text-white" strokeWidth={1.8} />
+                  {tooltipText && (
+                    <span
+                      className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 text-xs font-medium text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity z-20 whitespace-nowrap"
+                      role="tooltip"
+                    >
+                      {tooltipText}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Footer */}

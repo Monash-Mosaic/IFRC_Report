@@ -21,11 +21,7 @@ export default async function EngagementPage({ params }) {
       <section className="max-w-6xl mx-auto px-4 pt-4">
         <Breadcrumb locale={locale} items={[{ label: t('breadcrumbCurrent') }]} />
       </section>
-      <DiscoverHero
-        title={t('heroTitle')}
-        subtitle={t('heroSubtitle')}
-        imageAlt={t('heroAlt')}
-      />
+      <DiscoverHero />
       <EngagementClient />
     </div>
   );

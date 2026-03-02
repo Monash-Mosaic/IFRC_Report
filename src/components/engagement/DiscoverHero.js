@@ -1,26 +1,17 @@
 import Image from 'next/image';
 
-export default function DiscoverHero({ title, subtitle, imageSrc = '/engagement/discover-banner.jpg', imageAlt }) {
+export default function DiscoverHero({ imageSrc = '/engagement/discover-banner.png', imageAlt = 'Discover the Interactive Playbook' }) {
   return (
-    <section className="relative w-full min-h-[320px] md:min-h-[400px] overflow-hidden">
-      <div className="absolute inset-0">
+    <section className="w-full max-w-7xl mx-auto px-4 pt-6 pb-6 md:pt-8 md:pb-8">
+      <div className="relative w-full overflow-hidden rounded-lg bg-slate-100 min-h-[180px] sm:min-h-[220px] md:min-h-[280px] lg:min-h-[320px]">
         <Image
           src={imageSrc}
-          alt={imageAlt ?? ''}
+          alt={imageAlt}
           fill
-          className="object-cover"
+          className="object-contain object-center"
           priority
-          sizes="100vw"
+          sizes="(max-width: 1280px) 100vw, 1280px"
         />
-        <div className="absolute inset-0 bg-black/30" />
-      </div>
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col justify-center min-h-[320px] md:min-h-[400px]">
-        <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-2xl">
-          {title}
-        </h1>
-        <p className="text-lg md:text-xl text-white/95 mt-4 max-w-2xl">
-          {subtitle}
-        </p>
       </div>
     </section>
   );
