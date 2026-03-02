@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import Footer from '@/components/Footer';
 
 // Mock next/image component
@@ -93,7 +93,16 @@ describe('Footer', () => {
       // Check logos
       expect(screen.getByAltText('IFRC')).toBeInTheDocument();
       expect(screen.getByAltText('Monash Mosaic')).toBeInTheDocument();
+      // Check section titles (desktop version)
+      expect(screen.getAllByText('Report Chapters')).toHaveLength(2); // Mobile + Desktop
+      expect(screen.getAllByText('Disinformation Games')).toHaveLength(2); // Mobile + Desktop
 
+      // Check navigation links
+      expect(screen.getByText('Chapter 1')).toBeInTheDocument();
+      expect(screen.getByText('Chapter 2')).toBeInTheDocument();
+      expect(screen.getByText('Chapter 3')).toBeInTheDocument();
+      expect(screen.getByText('Disinformer')).toBeInTheDocument();
+      expect(screen.getByText('Ctrl+Alt+Prebunk')).toBeInTheDocument();
       // Check social media icons
       expect(screen.getByTestId('facebook-icon')).toBeInTheDocument();
       expect(screen.getByTestId('linkedin-icon')).toBeInTheDocument();
@@ -110,6 +119,128 @@ describe('Footer', () => {
 
       const footerElement = screen.getByRole('contentinfo');
       expect(footerElement).toBeInTheDocument();
+         // Check for responsive grid classes - look for the div with grid classes directly
+      const gridContainer = screen
+        .getByRole('contentinfo')
+        .querySelector('.grid.grid-cols-1.md\\:grid-cols-3');
+      expect(gridContainer).toHaveClass('grid', 'grid-cols-1', 'md:grid-cols-3');
+    });
+  });
+
+  describe('Mobile Dropdown Functionality', () => {
+    it('shows mobile dropdown buttons on mobile', () => {
+      render(<Footer />);
+
+      // Check for mobile dropdown buttons (they should have ChevronDown icons)
+      const chevronIcons = screen.getAllByTestId('chevron-down-icon');
+      expect(chevronIcons).toHaveLength(2); // One for each section
+    });
+
+    it('toggles chapters section dropdown', async () => {
+      render(<Footer />);
+
+      // Find the chapters dropdown button - look for button containing "Report Chapters"
+      const chaptersButtons = screen.getAllByText('Report Chapters');
+      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
+      expect(chaptersButton).toBeInTheDocument();
+
+      // Initially content should be hidden on mobile
+      const chapterLinks = screen.getAllByText('Chapter 1');
+      expect(chapterLinks[0].closest('ul')).toHaveClass('hidden');
+
+      // Click to expand
+      await act(async () => {
+        fireEvent.click(chaptersButton.closest('button'));
+      });
+
+      // Content should now be visible
+      await waitFor(() => {
+        const expandedChapterLinks = screen.getAllByText('Chapter 1');
+        expect(expandedChapterLinks[0].closest('ul')).toHaveClass('block', 'mt-4');
+      });
+    });
+
+    it('toggles games section dropdown', async () => {
+      render(<Footer />);
+
+      // Find the games dropdown button
+      const gamesButtons = screen.getAllByText('Disinformation Games');
+      const gamesButton = gamesButtons.find((button) => button.closest('button'));
+      expect(gamesButton).toBeInTheDocument();
+
+      // Click to expand
+      await act(async () => {
+        fireEvent.click(gamesButton.closest('button'));
+      });
+
+      // Content should now be visible
+      await waitFor(() => {
+        const disinformerLink = screen.getByText('Disinformer');
+        expect(disinformerLink.closest('ul')).toHaveClass('block', 'mt-4');
+      });
+    });
+
+    it('closes section when clicking on already open section', async () => {
+      render(<Footer />);
+
+      const chaptersButtons = screen.getAllByText('Report Chapters');
+      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
+
+      // Open the section
+      await act(async () => {
+        fireEvent.click(chaptersButton.closest('button'));
+      });
+
+      // Verify it's open
+      await waitFor(() => {
+        const chapterLinks = screen.getAllByText('Chapter 1');
+        expect(chapterLinks[0].closest('ul')).toHaveClass('block', 'mt-4');
+      });
+
+      // Click again to close
+      await act(async () => {
+        fireEvent.click(chaptersButton.closest('button'));
+      });
+
+      // Should be closed now
+      await waitFor(() => {
+        const chapterLinks = screen.getAllByText('Chapter 1');
+        expect(chapterLinks[0].closest('ul')).toHaveClass('hidden');
+      });
+    });
+
+    it('closes other sections when opening a new one', async () => {
+      render(<Footer />);
+
+      const chaptersButtons = screen.getAllByText('Report Chapters');
+      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
+      const gamesButtons = screen.getAllByText('Disinformation Games');
+      const gamesButton = gamesButtons.find((button) => button.closest('button'));
+
+      // Open chapters section
+      await act(async () => {
+        fireEvent.click(chaptersButton.closest('button'));
+      });
+
+      // Verify chapters is open
+      await waitFor(() => {
+        const chapterLinks = screen.getAllByText('Chapter 1');
+        expect(chapterLinks[0].closest('ul')).toHaveClass('block', 'mt-4');
+      });
+
+      // Open games section
+      await act(async () => {
+        fireEvent.click(gamesButton.closest('button'));
+      });
+
+      // Verify games is open and chapters is closed
+      await waitFor(() => {
+        const disinformerLink = screen.getByText('Disinformer');
+        expect(disinformerLink.closest('ul')).toHaveClass('block', 'mt-4');
+
+        const chapterLinks = screen.getAllByText('Chapter 1');
+        expect(chapterLinks[0].closest('ul')).toHaveClass('hidden');
+      });
 
       const mainLayout = screen.getByRole('contentinfo').firstChild.firstChild;
       expect(mainLayout).toHaveClass('flex', 'flex-col', 'lg:flex-row');
@@ -145,13 +276,62 @@ describe('Footer', () => {
       expect(facebookLink).toHaveClass('hover:text-gray-600', 'transition-colors');
     });
   });
-
-  describe('Responsive Behavior', () => {
-    it('applies correct responsive layout classes', () => {
+   describe('Navigation Links', () => {
+    it('renders all navigation links with correct href attributes', () => {
       render(<Footer />);
 
+      // Chapter links
+      expect(screen.getByText('Chapter 1')).toHaveAttribute('href', '#chapter1');
+      expect(screen.getByText('Chapter 2')).toHaveAttribute('href', '#chapter2');
+      expect(screen.getByText('Chapter 3')).toHaveAttribute('href', '#chapter3');
+
+      // Game links
+      expect(screen.getByText('Disinformer')).toHaveAttribute('href', '#disinformer');
+      expect(screen.getByText('Ctrl+Alt+Prebunk')).toHaveAttribute('href', '#ctrl-alt-prebunk');
+    });
+
+    it('navigation links have hover states', () => {
+      render(<Footer />);
+
+      const chapter1Link = screen.getByText('Chapter 1');
+      expect(chapter1Link).toHaveClass('text-gray-600', 'hover:text-gray-900', 'transition-colors');
+    });
+  });
+  describe('Responsive Behavior', () => {
+      it('shows desktop headers with proper visibility classes', () => {
+      render(<Footer />);
+
+      // Desktop headers should have 'hidden md:block' classes
+      const allHeaders = screen.getAllByText('Report Chapters');
+      const desktopHeader = allHeaders.find(
+        (header) => header.className.includes('hidden') && header.className.includes('md:block')
+      );
+      expect(desktopHeader).toBeInTheDocument();
+    });
+
+    it('shows mobile buttons with proper visibility classes', () => {
+      render(<Footer />);
+
+      // Mobile buttons should have 'md:hidden' class
+      const allButtons = screen.getAllByText('Report Chapters');
+      const mobileButton = allButtons.find((button) =>
+        button.closest('button')?.className.includes('md:hidden')
+      );
+      expect(mobileButton).toBeInTheDocument();
+    });
+    it('applies correct responsive layout classes', () => {
+      render(<Footer />);
+    // Check main layout classes - look at the actual rendered structure
       const mainLayout = screen.getByRole('contentinfo').firstChild.firstChild;
       expect(mainLayout).toHaveClass('flex', 'flex-col', 'lg:flex-row');
+
+       // Check content sections responsive classes - navigate to the correct div with the classes
+      const contentSection = screen
+        .getByRole('contentinfo')
+        .querySelector('.lg\\:w-2\\/3.order-1.lg\\:order-2');
+      expect(contentSection).toHaveClass('lg:w-2/3', 'order-1', 'lg:order-2');
+
+      // Check logo section responsive classes
 
       const logoSection = screen
         .getByRole('contentinfo')
@@ -191,6 +371,20 @@ describe('Footer', () => {
   });
 
   describe('Accessibility', () => {
+    it('has proper ARIA attributes for dropdown buttons', () => {
+      render(<Footer />);
+
+      const chaptersButtons = screen.getAllByText('Report Chapters');
+      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
+      expect(chaptersButton.closest('button')).toHaveAttribute('aria-expanded', 'false');
+
+      // Test expanding updates aria-expanded
+      act(() => {
+        fireEvent.click(chaptersButton.closest('button'));
+      });
+
+      expect(chaptersButton.closest('button')).toHaveAttribute('aria-expanded', 'true');
+    });
     it('uses semantic footer element', () => {
       render(<Footer />);
 
@@ -200,33 +394,62 @@ describe('Footer', () => {
 
     it('has proper heading hierarchy', () => {
       render(<Footer />);
-
+    // Main title should be h3
       const mainTitle = screen.getByRole('heading', { level: 3 });
       expect(mainTitle).toHaveTextContent('World Disasters Report');
+      // Section titles should be h4
+      const sectionTitles = screen.getAllByRole('heading', { level: 4 });
+      expect(sectionTitles).toHaveLength(4); // 3 desktop + 3 mobile headers
     });
   });
 
   describe('CSS Classes and Styling', () => {
+     it('applies correct transition classes for chevron rotation', () => {
+      render(<Footer />);
+
+      const chevronIcons = screen.getAllByTestId('chevron-down-icon');
+      chevronIcons.forEach((icon) => {
+        expect(icon).toHaveClass('transform', 'transition-transform');
+      });
+    });
     it('applies correct border and spacing classes', () => {
       render(<Footer />);
 
       const footer = screen.getByRole('contentinfo');
       expect(footer).toHaveClass('w-full', 'bg-white', 'border-t', 'border-gray-200');
+    
+      const mobileButtons = screen
+        .getAllByTestId('chevron-down-icon')
+        .map((icon) => icon.closest('button'))
+        .filter((button) => button !== null);
+
+      mobileButtons.forEach((button) => {
+        expect(button).toHaveClass('py-4', 'border-b', 'border-gray-200');
+      });
     });
   });
 
   describe('Internationalization', () => {
     it('uses translation keys correctly', () => {
       render(<Footer />);
-
+      // Verify translated content is rendered
       expect(screen.getByText('World Disasters Report')).toBeInTheDocument();
+      expect(screen.getAllByText('Report Chapters')).toHaveLength(2); // Mobile + Desktop
+      expect(screen.getAllByText('Disinformation Games')).toHaveLength(2); // Mobile + Desktop
+      expect(screen.getByText('Disinformer')).toBeInTheDocument();
+      expect(screen.getByText('Ctrl+Alt+Prebunk')).toBeInTheDocument();
     });
 
-    it('renders links', () => {
+    it('uses localized Link component from i18n/navigation', () => {
       render(<Footer />);
 
+       // All internal links should use the i18n Link component
+      // This is verified by our mock which renders <a> tags
       const navigationLinks = screen.getAllByRole('link');
       expect(navigationLinks.length).toBeGreaterThan(0);
+      // Verify some specific links exist
+      expect(screen.getByText('Chapter 1').closest('a')).toHaveAttribute('href', '#chapter1');
+      expect(screen.getByText('Disinformer').closest('a')).toHaveAttribute('href', '#disinformer');
     });
   });
 });
