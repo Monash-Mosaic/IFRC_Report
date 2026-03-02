@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Footer from '@/components/Footer';
 
-// Mock next/image component
+// Mock next/image
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props) => {
@@ -10,103 +10,84 @@ jest.mock('next/image', () => ({
   },
 }));
 
-// Mock navigation helper used by the component
-const pushMock = jest.fn();
+// Mock i18n navigation
 jest.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, className, onClick }) => (
-    <a href={href} className={className} onClick={onClick}>
+  Link: ({ children, href, className }) => (
+    <a href={typeof href === 'object' ? JSON.stringify(href) : href} className={className}>
       {children}
     </a>
   ),
-  useRouter: () => ({ push: pushMock }),
-  usePathname: () => '/current-path',
 }));
 
-// Mock next-intl hooks used by the component
+// Mock next-intl
 jest.mock('next-intl', () => ({
   useTranslations: (namespace) => (key) => {
     const translations = {
-      'Home.footer.worldDisastersReport': 'World Disasters Report',
-      'Home.footer.chapters.title': 'Report Chapters',
-      'Home.footer.chapters.chapter1': 'Chapter 1',
-      'Home.footer.chapters.chapter2': 'Chapter 2',
-      'Home.footer.chapters.chapter3': 'Chapter 3',
-      'Home.footer.games.title': 'Disinformation Games',
-      'Home.footer.games.disinformer': 'Disinformer',
-      'Home.footer.games.ctrlAltPrebunk': 'Ctrl+Alt+Prebunk',
-      'Home.footer.social.facebook': 'Facebook',
-      'Home.footer.social.linkedin': 'LinkedIn',
-      'Home.footer.social.youtube': 'YouTube',
-      'Home.footer.social.instagram': 'Instagram',
-      'Home.footer.social.x': 'X (Twitter)',
+      'Footer.report': 'Report',
+      'Footer.readReport': 'Read Report',
+      'Footer.downloadReport': 'Download Report',
+      'Footer.reportIssue': 'Report an Issue',
+      'Footer.games': 'Disinformation Games',
+      'Footer.world': 'World',
+      'Footer.disasters': 'Disasters',
+      'Footer.reportTitle': 'Report',
+      'Footer.year': '2025',
     };
     return translations[`${namespace}.${key}`] || key;
+  },
+  useLocale: () => 'en',
+}));
+
+// Mock reports module
+const mockReadReportLink = {
+  pathname: '/reports/[report]',
+  params: { report: 'world-disasters-report-2025' },
+};
+const mockDownloadLink = 'https://example.com/download.pdf';
+
+jest.mock('@/reports', () => ({
+  getVisibleReports: jest.fn(() => ({
+    wdr25: {
+      chapters: {
+        'chapter-02-en': {
+          downloadLink: 'https://example.com/download.pdf',
+        },
+      },
+    },
+  })),
+  reportUriMap: {
+    wdr25: {
+      languages: { en: 'world-disasters-report-2025' },
+      chapters: {
+        'chapter-02': {
+          languages: { en: 'chapter-02-en' },
+        },
+      },
+    },
   },
 }));
 
 // Mock Lucide React icons
 jest.mock('lucide-react', () => ({
-  X: ({ className, onClick, size, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="x-icon" {...props}>
-      X Icon
-    </div>
+  Facebook: ({ className, size, ...props }) => (
+    <svg data-testid="facebook-icon" className={className} {...props} />
   ),
-  Linkedin: ({ className, onClick, size, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="linkedin-icon" {...props}>
-      LinkedIn Icon
-    </div>
+  Linkedin: ({ className, size, ...props }) => (
+    <svg data-testid="linkedin-icon" className={className} {...props} />
   ),
-  Youtube: ({ className, onClick, size, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="youtube-icon" {...props}>
-      YouTube Icon
-    </div>
+  Youtube: ({ className, size, ...props }) => (
+    <svg data-testid="youtube-icon" className={className} {...props} />
   ),
-  Instagram: ({ className, onClick, size, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="instagram-icon" {...props}>
-      Instagram Icon
-    </div>
-  ),
-  Facebook: ({ className, onClick, size, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="facebook-icon" {...props}>
-      Facebook Icon
-    </div>
-  ),
-  ChevronDown: ({ className, onClick, size, ...props }) => (
-    <div className={className} onClick={onClick} data-testid="chevron-down-icon" {...props}>
-      Chevron Down Icon
-    </div>
+  Instagram: ({ className, size, ...props }) => (
+    <svg data-testid="instagram-icon" className={className} {...props} />
   ),
 }));
 
 describe('Footer', () => {
-  beforeEach(() => {
-    pushMock.mockClear();
-  });
-
   describe('Rendering', () => {
     it('renders the footer component correctly', () => {
       render(<Footer />);
-
-      // Check main title
-      expect(screen.getByText('World Disasters Report')).toBeInTheDocument();
-
-      // Check logos
-      expect(screen.getByAltText('IFRC')).toBeInTheDocument();
-      expect(screen.getByAltText('Monash Mosaic')).toBeInTheDocument();
-      // Check section titles (desktop version)
-      expect(screen.getAllByText('Report Chapters')).toHaveLength(2); // Mobile + Desktop
-      expect(screen.getAllByText('Disinformation Games')).toHaveLength(2); // Mobile + Desktop
-
-      // Check navigation links
-      expect(screen.getByText('Chapter 1')).toBeInTheDocument();
-      expect(screen.getByText('Chapter 2')).toBeInTheDocument();
-      expect(screen.getByText('Chapter 3')).toBeInTheDocument();
-      expect(screen.getByText('Disinformer')).toBeInTheDocument();
-      expect(screen.getByText('Ctrl+Alt+Prebunk')).toBeInTheDocument();
-      // Check social media icons
-      expect(screen.getByTestId('facebook-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('linkedin-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('instagram-icon')).toBeInTheDocument();
+      expect(screen.getByRole('contentinfo')).toBeInTheDocument();
     });
 
     it('matches snapshot', () => {
@@ -114,342 +95,289 @@ describe('Footer', () => {
       expect(container).toMatchSnapshot();
     });
 
-    it('renders with proper responsive layout classes', () => {
+    it('applies correct background and border classes', () => {
       render(<Footer />);
-
-      const footerElement = screen.getByRole('contentinfo');
-      expect(footerElement).toBeInTheDocument();
-         // Check for responsive grid classes - look for the div with grid classes directly
-      const gridContainer = screen
-        .getByRole('contentinfo')
-        .querySelector('.grid.grid-cols-1.md\\:grid-cols-3');
-      expect(gridContainer).toHaveClass('grid', 'grid-cols-1', 'md:grid-cols-3');
-    });
-  });
-
-  describe('Mobile Dropdown Functionality', () => {
-    it('shows mobile dropdown buttons on mobile', () => {
-      render(<Footer />);
-
-      // Check for mobile dropdown buttons (they should have ChevronDown icons)
-      const chevronIcons = screen.getAllByTestId('chevron-down-icon');
-      expect(chevronIcons).toHaveLength(2); // One for each section
+      const footer = screen.getByRole('contentinfo');
+      expect(footer).toHaveClass('w-full', 'bg-[#f5f5f5]', 'border-t', 'border-gray-200');
     });
 
-    it('toggles chapters section dropdown', async () => {
+    it('renders responsive flex layout', () => {
       render(<Footer />);
-
-      // Find the chapters dropdown button - look for button containing "Report Chapters"
-      const chaptersButtons = screen.getAllByText('Report Chapters');
-      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
-      expect(chaptersButton).toBeInTheDocument();
-
-      // Initially content should be hidden on mobile
-      const chapterLinks = screen.getAllByText('Chapter 1');
-      expect(chapterLinks[0].closest('ul')).toHaveClass('hidden');
-
-      // Click to expand
-      await act(async () => {
-        fireEvent.click(chaptersButton.closest('button'));
-      });
-
-      // Content should now be visible
-      await waitFor(() => {
-        const expandedChapterLinks = screen.getAllByText('Chapter 1');
-        expect(expandedChapterLinks[0].closest('ul')).toHaveClass('block', 'mt-4');
-      });
-    });
-
-    it('toggles games section dropdown', async () => {
-      render(<Footer />);
-
-      // Find the games dropdown button
-      const gamesButtons = screen.getAllByText('Disinformation Games');
-      const gamesButton = gamesButtons.find((button) => button.closest('button'));
-      expect(gamesButton).toBeInTheDocument();
-
-      // Click to expand
-      await act(async () => {
-        fireEvent.click(gamesButton.closest('button'));
-      });
-
-      // Content should now be visible
-      await waitFor(() => {
-        const disinformerLink = screen.getByText('Disinformer');
-        expect(disinformerLink.closest('ul')).toHaveClass('block', 'mt-4');
-      });
-    });
-
-    it('closes section when clicking on already open section', async () => {
-      render(<Footer />);
-
-      const chaptersButtons = screen.getAllByText('Report Chapters');
-      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
-
-      // Open the section
-      await act(async () => {
-        fireEvent.click(chaptersButton.closest('button'));
-      });
-
-      // Verify it's open
-      await waitFor(() => {
-        const chapterLinks = screen.getAllByText('Chapter 1');
-        expect(chapterLinks[0].closest('ul')).toHaveClass('block', 'mt-4');
-      });
-
-      // Click again to close
-      await act(async () => {
-        fireEvent.click(chaptersButton.closest('button'));
-      });
-
-      // Should be closed now
-      await waitFor(() => {
-        const chapterLinks = screen.getAllByText('Chapter 1');
-        expect(chapterLinks[0].closest('ul')).toHaveClass('hidden');
-      });
-    });
-
-    it('closes other sections when opening a new one', async () => {
-      render(<Footer />);
-
-      const chaptersButtons = screen.getAllByText('Report Chapters');
-      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
-      const gamesButtons = screen.getAllByText('Disinformation Games');
-      const gamesButton = gamesButtons.find((button) => button.closest('button'));
-
-      // Open chapters section
-      await act(async () => {
-        fireEvent.click(chaptersButton.closest('button'));
-      });
-
-      // Verify chapters is open
-      await waitFor(() => {
-        const chapterLinks = screen.getAllByText('Chapter 1');
-        expect(chapterLinks[0].closest('ul')).toHaveClass('block', 'mt-4');
-      });
-
-      // Open games section
-      await act(async () => {
-        fireEvent.click(gamesButton.closest('button'));
-      });
-
-      // Verify games is open and chapters is closed
-      await waitFor(() => {
-        const disinformerLink = screen.getByText('Disinformer');
-        expect(disinformerLink.closest('ul')).toHaveClass('block', 'mt-4');
-
-        const chapterLinks = screen.getAllByText('Chapter 1');
-        expect(chapterLinks[0].closest('ul')).toHaveClass('hidden');
-      });
-
-      const mainLayout = screen.getByRole('contentinfo').firstChild.firstChild;
-      expect(mainLayout).toHaveClass('flex', 'flex-col', 'lg:flex-row');
-    });
-  });
-
-  describe('Social Media Links', () => {
-    it('renders all social media links correctly', () => {
-      render(<Footer />);
-
-      // Check social media icons are present
-      expect(screen.getByTestId('facebook-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('linkedin-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('instagram-icon')).toBeInTheDocument();
-    });
-
-    it('social media links have correct href attributes', () => {
-      render(<Footer />);
-
-      const facebookLink = screen.getByTestId('facebook-icon').closest('a');
-      const linkedinLink = screen.getByTestId('linkedin-icon').closest('a');
-      const instagramLink = screen.getByTestId('instagram-icon').closest('a');
-
-      expect(facebookLink).toHaveAttribute('href', 'https://www.facebook.com/p/IFRC-Solferino-Academy-61572985566986/');
-      expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/company/ifrc-solferino-academy');
-      expect(instagramLink).toHaveAttribute('href', 'https://www.instagram.com/ifrcsolferinoacademy/');
-    });
-
-    it('social media links have hover states', () => {
-      render(<Footer />);
-
-      const facebookLink = screen.getByTestId('facebook-icon').closest('a');
-      expect(facebookLink).toHaveClass('hover:text-gray-600', 'transition-colors');
-    });
-  });
-   describe('Navigation Links', () => {
-    it('renders all navigation links with correct href attributes', () => {
-      render(<Footer />);
-
-      // Chapter links
-      expect(screen.getByText('Chapter 1')).toHaveAttribute('href', '#chapter1');
-      expect(screen.getByText('Chapter 2')).toHaveAttribute('href', '#chapter2');
-      expect(screen.getByText('Chapter 3')).toHaveAttribute('href', '#chapter3');
-
-      // Game links
-      expect(screen.getByText('Disinformer')).toHaveAttribute('href', '#disinformer');
-      expect(screen.getByText('Ctrl+Alt+Prebunk')).toHaveAttribute('href', '#ctrl-alt-prebunk');
-    });
-
-    it('navigation links have hover states', () => {
-      render(<Footer />);
-
-      const chapter1Link = screen.getByText('Chapter 1');
-      expect(chapter1Link).toHaveClass('text-gray-600', 'hover:text-gray-900', 'transition-colors');
-    });
-  });
-  describe('Responsive Behavior', () => {
-      it('shows desktop headers with proper visibility classes', () => {
-      render(<Footer />);
-
-      // Desktop headers should have 'hidden md:block' classes
-      const allHeaders = screen.getAllByText('Report Chapters');
-      const desktopHeader = allHeaders.find(
-        (header) => header.className.includes('hidden') && header.className.includes('md:block')
-      );
-      expect(desktopHeader).toBeInTheDocument();
-    });
-
-    it('shows mobile buttons with proper visibility classes', () => {
-      render(<Footer />);
-
-      // Mobile buttons should have 'md:hidden' class
-      const allButtons = screen.getAllByText('Report Chapters');
-      const mobileButton = allButtons.find((button) =>
-        button.closest('button')?.className.includes('md:hidden')
-      );
-      expect(mobileButton).toBeInTheDocument();
-    });
-    it('applies correct responsive layout classes', () => {
-      render(<Footer />);
-    // Check main layout classes - look at the actual rendered structure
-      const mainLayout = screen.getByRole('contentinfo').firstChild.firstChild;
-      expect(mainLayout).toHaveClass('flex', 'flex-col', 'lg:flex-row');
-
-       // Check content sections responsive classes - navigate to the correct div with the classes
-      const contentSection = screen
-        .getByRole('contentinfo')
-        .querySelector('.lg\\:w-2\\/3.order-1.lg\\:order-2');
-      expect(contentSection).toHaveClass('lg:w-2/3', 'order-1', 'lg:order-2');
-
-      // Check logo section responsive classes
-
-      const logoSection = screen
-        .getByRole('contentinfo')
-        .querySelector('.lg\\:w-1\\/3.order-2.lg\\:order-1');
-      expect(logoSection).toHaveClass('lg:w-1/3', 'order-2', 'lg:order-1');
+      const contentinfo = screen.getByRole('contentinfo');
+      const flexContainer = contentinfo.querySelector('.flex.flex-col.lg\\:flex-row');
+      expect(flexContainer).toBeInTheDocument();
     });
   });
 
   describe('Logo Rendering', () => {
     it('renders IFRC logo with correct attributes', () => {
       render(<Footer />);
-
       const ifrcLogo = screen.getByAltText('IFRC');
       expect(ifrcLogo).toHaveAttribute('src', '/wdr25/ifrc_logo.jpg');
       expect(ifrcLogo).toHaveAttribute('width', '120');
       expect(ifrcLogo).toHaveAttribute('height', '40');
     });
 
-    it('renders Mosaic logo with correct attributes', () => {
+    it('renders IFRC logo wrapped in a link to ifrc.org', () => {
       render(<Footer />);
+      const ifrcLogo = screen.getByAltText('IFRC');
+      const ifrcLink = ifrcLogo.closest('a');
+      expect(ifrcLink).toHaveAttribute('href', 'https://www.ifrc.org');
+      expect(ifrcLink).toHaveAttribute('target', '_blank');
+      expect(ifrcLink).toHaveAttribute('rel', 'noopener noreferrer');
+    });
 
+    it('renders Solferino Academy logo with correct attributes', () => {
+      render(<Footer />);
+      const solferinoLogo = screen.getByAltText('Solferino Academy');
+      expect(solferinoLogo).toHaveAttribute('src', '/wdr25/solferino_logo.svg');
+      expect(solferinoLogo).toHaveAttribute('width', '150');
+      expect(solferinoLogo).toHaveAttribute('height', '40');
+    });
+
+    it('renders Solferino Academy logo wrapped in a link', () => {
+      render(<Footer />);
+      const solferinoLogo = screen.getByAltText('Solferino Academy');
+      const solferinoLink = solferinoLogo.closest('a');
+      expect(solferinoLink).toHaveAttribute('href', 'https://solferinoacademy.com');
+      expect(solferinoLink).toHaveAttribute('target', '_blank');
+    });
+
+    it('renders Monash Mosaic logo with correct attributes', () => {
+      render(<Footer />);
       const mosaicLogo = screen.getByAltText('Monash Mosaic');
-      expect(mosaicLogo).toHaveAttribute('src', '/wdr25/mosaic_logo.png');
-      expect(mosaicLogo).toHaveAttribute('width', '120');
-      expect(mosaicLogo).toHaveAttribute('height', '40');
+      expect(mosaicLogo).toHaveAttribute('src', '/wdr25/mosaic_logo.svg');
+      expect(mosaicLogo).toHaveAttribute('width', '150');
+      expect(mosaicLogo).toHaveAttribute('height', '50');
     });
 
-    it('applies correct responsive alignment classes', () => {
+    it('renders Monash Mosaic logo wrapped in a link', () => {
       render(<Footer />);
-
-      // Logo section container should have responsive alignment classes - find the correct container
-      const logoSectionContainer = screen
-        .getByRole('contentinfo')
-        .querySelector('.text-center.lg\\:text-left');
-      expect(logoSectionContainer).toHaveClass('text-center', 'lg:text-left');
+      const mosaicLogo = screen.getByAltText('Monash Mosaic');
+      const mosaicLink = mosaicLogo.closest('a');
+      expect(mosaicLink).toHaveAttribute('href', 'https://www.mosaic-monash.ai/');
+      expect(mosaicLink).toHaveAttribute('target', '_blank');
     });
   });
 
-  describe('Accessibility', () => {
-    it('has proper ARIA attributes for dropdown buttons', () => {
+  describe('Social Media Icons', () => {
+    it('renders multiple Facebook icons (one per org with Facebook)', () => {
       render(<Footer />);
-
-      const chaptersButtons = screen.getAllByText('Report Chapters');
-      const chaptersButton = chaptersButtons.find((button) => button.closest('button'));
-      expect(chaptersButton.closest('button')).toHaveAttribute('aria-expanded', 'false');
-
-      // Test expanding updates aria-expanded
-      act(() => {
-        fireEvent.click(chaptersButton.closest('button'));
-      });
-
-      expect(chaptersButton.closest('button')).toHaveAttribute('aria-expanded', 'true');
-    });
-    it('uses semantic footer element', () => {
-      render(<Footer />);
-
-      const footer = screen.getByRole('contentinfo');
-      expect(footer).toBeInTheDocument();
+      const facebookIcons = screen.getAllByTestId('facebook-icon');
+      expect(facebookIcons.length).toBeGreaterThanOrEqual(2); // IFRC + Solferino
     });
 
-    it('has proper heading hierarchy', () => {
+    it('renders multiple LinkedIn icons', () => {
       render(<Footer />);
-    // Main title should be h3
-      const mainTitle = screen.getByRole('heading', { level: 3 });
-      expect(mainTitle).toHaveTextContent('World Disasters Report');
-      // Section titles should be h4
-      const sectionTitles = screen.getAllByRole('heading', { level: 4 });
-      expect(sectionTitles).toHaveLength(4); // 3 desktop + 3 mobile headers
+      const linkedinIcons = screen.getAllByTestId('linkedin-icon');
+      expect(linkedinIcons.length).toBeGreaterThanOrEqual(3); // IFRC + Solferino + Mosaic
+    });
+
+    it('renders multiple YouTube icons', () => {
+      render(<Footer />);
+      const youtubeIcons = screen.getAllByTestId('youtube-icon');
+      expect(youtubeIcons.length).toBeGreaterThanOrEqual(2); // IFRC + Solferino
+    });
+
+    it('renders multiple Instagram icons', () => {
+      render(<Footer />);
+      const instagramIcons = screen.getAllByTestId('instagram-icon');
+      expect(instagramIcons.length).toBeGreaterThanOrEqual(3); // IFRC + Solferino + Mosaic
+    });
+
+    it('IFRC social links have correct hrefs', () => {
+      render(<Footer />);
+      const allFacebookLinks = screen.getAllByTestId('facebook-icon').map((icon) => icon.closest('a'));
+      const ifrcFacebook = allFacebookLinks.find((a) => a?.href.includes('facebook.com/IFRC'));
+      expect(ifrcFacebook).toBeTruthy();
+
+      const allYoutubeLinks = screen.getAllByTestId('youtube-icon').map((icon) => icon.closest('a'));
+      const ifrcYoutube = allYoutubeLinks.find((a) => a?.href.includes('youtube.com/user/ifrc'));
+      expect(ifrcYoutube).toBeTruthy();
+
+      const allLinkedinLinks = screen.getAllByTestId('linkedin-icon').map((icon) => icon.closest('a'));
+      const ifrcLinkedin = allLinkedinLinks.find((a) => a?.href.includes('linkedin.com/company/ifrc/'));
+      expect(ifrcLinkedin).toBeTruthy();
+
+      const allInstagramLinks = screen.getAllByTestId('instagram-icon').map((icon) => icon.closest('a'));
+      const ifrcInstagram = allInstagramLinks.find((a) => a?.href.includes('instagram.com/ifrc'));
+      expect(ifrcInstagram).toBeTruthy();
+    });
+
+    it('Solferino Academy social links have correct hrefs', () => {
+      render(<Footer />);
+      const allFacebookLinks = screen.getAllByTestId('facebook-icon').map((icon) => icon.closest('a'));
+      const solferinoFacebook = allFacebookLinks.find((a) =>
+        a?.href.includes('Solferino-Academy') || a?.href.includes('solferino') || a?.href.includes('61572985566986')
+      );
+      expect(solferinoFacebook).toBeTruthy();
+
+      const allLinkedinLinks = screen.getAllByTestId('linkedin-icon').map((icon) => icon.closest('a'));
+      const solferinoLinkedin = allLinkedinLinks.find((a) =>
+        a?.href.includes('ifrc-solferino-academy')
+      );
+      expect(solferinoLinkedin).toBeTruthy();
+
+      const allInstagramLinks = screen.getAllByTestId('instagram-icon').map((icon) => icon.closest('a'));
+      const solferinoInstagram = allInstagramLinks.find((a) =>
+        a?.href.includes('ifrcsolferinoacademy')
+      );
+      expect(solferinoInstagram).toBeTruthy();
+    });
+
+    it('Monash Mosaic social links have correct hrefs', () => {
+      render(<Footer />);
+      const allLinkedinLinks = screen.getAllByTestId('linkedin-icon').map((icon) => icon.closest('a'));
+      const mosaicLinkedin = allLinkedinLinks.find((a) =>
+        a?.href.includes('mosaic-monash-student-team')
+      );
+      expect(mosaicLinkedin).toBeTruthy();
+
+      const allInstagramLinks = screen.getAllByTestId('instagram-icon').map((icon) => icon.closest('a'));
+      const mosaicInstagram = allInstagramLinks.find((a) =>
+        a?.href.includes('mosaic.monash')
+      );
+      expect(mosaicInstagram).toBeTruthy();
+    });
+
+    it('social icons have correct styling classes', () => {
+      render(<Footer />);
+      const facebookIcon = screen.getAllByTestId('facebook-icon')[0];
+      expect(facebookIcon).toHaveClass('p-1', 'text-gray-400', 'hover:text-gray-700', 'transition');
     });
   });
 
-  describe('CSS Classes and Styling', () => {
-     it('applies correct transition classes for chevron rotation', () => {
+  describe('Navigation Links', () => {
+    it('renders the report section with translated heading', () => {
       render(<Footer />);
-
-      const chevronIcons = screen.getAllByTestId('chevron-down-icon');
-      chevronIcons.forEach((icon) => {
-        expect(icon).toHaveClass('transform', 'transition-transform');
-      });
+      expect(screen.getByText('Report')).toBeInTheDocument();
     });
-    it('applies correct border and spacing classes', () => {
+
+    it('renders Read Report link', () => {
       render(<Footer />);
+      expect(screen.getByText('Read Report')).toBeInTheDocument();
+    });
 
-      const footer = screen.getByRole('contentinfo');
-      expect(footer).toHaveClass('w-full', 'bg-white', 'border-t', 'border-gray-200');
-    
-      const mobileButtons = screen
-        .getAllByTestId('chevron-down-icon')
-        .map((icon) => icon.closest('button'))
-        .filter((button) => button !== null);
+    it('renders Download Report link', () => {
+      render(<Footer />);
+      expect(screen.getByText('Download Report')).toBeInTheDocument();
+    });
 
-      mobileButtons.forEach((button) => {
-        expect(button).toHaveClass('py-4', 'border-b', 'border-gray-200');
-      });
+    it('renders Report an Issue link with correct href', () => {
+      render(<Footer />);
+      const issueLink = screen.getByText('Report an Issue');
+      expect(issueLink).toBeInTheDocument();
+      expect(issueLink.closest('a')).toHaveAttribute('href', '/issue');
+    });
+
+    it('renders games section with translated heading', () => {
+      render(<Footer />);
+      expect(screen.getByText('Disinformation Games')).toBeInTheDocument();
+    });
+
+    it('renders Disinformer game link with correct href', () => {
+      render(<Footer />);
+      const disinformerLink = screen.getByText('Disinformer');
+      expect(disinformerLink).toBeInTheDocument();
+      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/disinformer');
+    });
+
+    it('renders Ctrl + Alt + Prebunk game link with correct href', () => {
+      render(<Footer />);
+      const prebunkLink = screen.getByText('Ctrl + Alt + Prebunk');
+      expect(prebunkLink).toBeInTheDocument();
+      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/prebunk');
+    });
+
+    it('Download Report link uses dynamic download link from reportModule', () => {
+      render(<Footer />);
+      const downloadLink = screen.getByText('Download Report').closest('a');
+      expect(downloadLink).toHaveAttribute('href', mockDownloadLink);
+    });
+  });
+
+  describe('Title / Branding', () => {
+    it('renders the report title text split across lines', () => {
+      render(<Footer />);
+      const titleParagraph = screen.getByRole('contentinfo').querySelector('p.font-bold.text-xl');
+      expect(titleParagraph).toBeInTheDocument();
+      expect(titleParagraph.textContent).toContain('World');
+      expect(titleParagraph.textContent).toContain('Disasters');
+      expect(titleParagraph.textContent).toContain('Report');
+    });
+
+    it('renders the year', () => {
+      render(<Footer />);
+      expect(screen.getByText('2025')).toBeInTheDocument();
+    });
+
+    it('applies correct text alignment classes to title section', () => {
+      render(<Footer />);
+      const contentinfo = screen.getByRole('contentinfo');
+      const titleSection = contentinfo.querySelector('.text-left.lg\\:text-right');
+      expect(titleSection).toBeInTheDocument();
+    });
+  });
+
+  describe('No Mobile Dropdown Behavior', () => {
+    it('does not render any chevron/dropdown icons', () => {
+      render(<Footer />);
+      expect(screen.queryByTestId('chevron-down-icon')).not.toBeInTheDocument();
+    });
+
+    it('does not render any buttons', () => {
+      render(<Footer />);
+      expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    });
+
+    it('navigation links are always visible (no hidden class toggling)', () => {
+      render(<Footer />);
+      expect(screen.getByText('Disinformer')).toBeVisible();
+      expect(screen.getByText('Read Report')).toBeVisible();
     });
   });
 
   describe('Internationalization', () => {
-    it('uses translation keys correctly', () => {
+    it('uses the Footer translation namespace', () => {
       render(<Footer />);
-      // Verify translated content is rendered
-      expect(screen.getByText('World Disasters Report')).toBeInTheDocument();
-      expect(screen.getAllByText('Report Chapters')).toHaveLength(2); // Mobile + Desktop
-      expect(screen.getAllByText('Disinformation Games')).toHaveLength(2); // Mobile + Desktop
-      expect(screen.getByText('Disinformer')).toBeInTheDocument();
-      expect(screen.getByText('Ctrl+Alt+Prebunk')).toBeInTheDocument();
+      // Translated keys should render
+      expect(screen.getByText('Report')).toBeInTheDocument();
+      expect(screen.getByText('Read Report')).toBeInTheDocument();
+      expect(screen.getByText('Download Report')).toBeInTheDocument();
+      expect(screen.getByText('Disinformation Games')).toBeInTheDocument();
+      expect(screen.getByText('2025')).toBeInTheDocument();
     });
 
-    it('uses localized Link component from i18n/navigation', () => {
+    it('uses locale from useLocale to build report links', () => {
+      const { getVisibleReports } = require('@/reports');
       render(<Footer />);
+      expect(getVisibleReports).toHaveBeenCalledWith('en');
+    });
+  });
 
-       // All internal links should use the i18n Link component
-      // This is verified by our mock which renders <a> tags
-      const navigationLinks = screen.getAllByRole('link');
-      expect(navigationLinks.length).toBeGreaterThan(0);
-      // Verify some specific links exist
-      expect(screen.getByText('Chapter 1').closest('a')).toHaveAttribute('href', '#chapter1');
-      expect(screen.getByText('Disinformer').closest('a')).toHaveAttribute('href', '#disinformer');
+  describe('Accessibility', () => {
+    it('uses semantic footer element', () => {
+      render(<Footer />);
+      expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+    });
+
+    it('external links have target="_blank"', () => {
+      render(<Footer />);
+      const ifrcLink = screen.getByAltText('IFRC').closest('a');
+      expect(ifrcLink).toHaveAttribute('target', '_blank');
+    });
+
+    it('logo links to ifrc.org have rel="noopener noreferrer"', () => {
+      render(<Footer />);
+      const ifrcLink = screen.getByAltText('IFRC').closest('a');
+      expect(ifrcLink).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+
+    it('all logos have meaningful alt text', () => {
+      render(<Footer />);
+      expect(screen.getByAltText('IFRC')).toBeInTheDocument();
+      expect(screen.getByAltText('Solferino Academy')).toBeInTheDocument();
+      expect(screen.getByAltText('Monash Mosaic')).toBeInTheDocument();
     });
   });
 });

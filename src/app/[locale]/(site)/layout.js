@@ -1,10 +1,11 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default function SiteLayout({ children }) {
+export default async function SiteLayout({ params, children }) {
+  const { locale } = await params;
   return (
     <>
-      <Header />
+      <Header locale={locale}/>
       {children}
       <Footer />
     </>

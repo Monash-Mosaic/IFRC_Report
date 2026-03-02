@@ -64,8 +64,7 @@ export default async function AcknowledgementsPage({ params }) {
     namespace: 'Acknowledgements',
     locale,
   });
-  const contributorsByLabel =
-    reportsByLocale[locale]?.acknowledgementContributors;
+  const contributorsByLabel = reportsByLocale[locale]?.acknowledgementContributors;
   if (!contributorsByLabel) {
     notFound();
   }
@@ -86,29 +85,21 @@ export default async function AcknowledgementsPage({ params }) {
       />
 
       <section className="max-w-6xl mx-auto px-4">
-        <Breadcrumb
-          locale={locale}
-          items={[
-            { label: t('breadcrumbCurrent') },
-          ]}
-        />
+        <Breadcrumb locale={locale} items={[{ label: t('breadcrumbCurrent') }]} />
       </section>
 
       {/* Page title */}
       <section className="max-w-6xl mx-auto px-4 pt-12 pb-8">
-        <h1 className="text-4xl md:text-6xl font-bold text-center">
-          {t('pageTitle')}
-        </h1>
+        <h1 className="text-4xl md:text-6xl font-bold text-center">{t('pageTitle')}</h1>
       </section>
 
       {/* Main content */}
       <section className="max-w-6xl mx-auto px-4 pb-14">
         <div className="bg-gray-100 border border-gray-200 rounded-2xl shadow-sm p-6 md:p-10 space-y-8">
-
           {/* Intro */}
           <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
             {t.rich('intro', {
-              bold: (chunk) => <strong>{chunk}</strong>
+              bold: (chunk) => <strong>{chunk}</strong>,
             })}
           </p>
 
@@ -122,7 +113,10 @@ export default async function AcknowledgementsPage({ params }) {
                 return null;
               }
               return (
-                <div key={label} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-6">
+                <div
+                  key={label}
+                  className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-5 gap-y-6"
+                >
                   {contributors.map((logo) => (
                     <div
                       key={`${label}-${logo.order}`}
@@ -150,10 +144,18 @@ export default async function AcknowledgementsPage({ params }) {
 
           {/* Credits */}
           <div className="space-y-1 text-sm md:text-base leading-snug">
-            <p>{t('leadEditorLabel')} <strong>{t('leadEditor')}</strong></p>
-            <p>{t('designerLabel')} <strong>{t('designer')}</strong></p>
-            <p>{t('projectManagerLabel')} <strong>{t('projectManager')}</strong></p>
-            <p>{t('copyeditorLabel')} <strong>{t('copyeditor')}</strong></p>
+            <p>
+              {t('leadEditorLabel')} <strong>{t('leadEditor')}</strong>
+            </p>
+            <p>
+              {t('designerLabel')} <strong>{t('designer')}</strong>
+            </p>
+            <p>
+              {t('projectManagerLabel')} <strong>{t('projectManager')}</strong>
+            </p>
+            <p>
+              {t('copyeditorLabel')} <strong>{t('copyeditor')}</strong>
+            </p>
           </div>
 
           {/* Contributions */}
@@ -164,10 +166,9 @@ export default async function AcknowledgementsPage({ params }) {
           {/* Research acknowledgement */}
           <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
             {t.rich('research', {
-              bold: (chunk) => <strong>{chunk}</strong>
+              bold: (chunk) => <strong>{chunk}</strong>,
             })}
           </p>
-
         </div>
       </section>
     </div>

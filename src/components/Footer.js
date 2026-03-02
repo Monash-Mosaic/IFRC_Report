@@ -98,7 +98,6 @@ export default function Footer() {
                 </Link>
 
                 <div className="flex gap-3">
-                  <Link href="#"><Facebook size={18} className={iconClass}/></Link>
                   <Link href="https://www.linkedin.com/company/mosaic-monash-student-team/"><Linkedin size={18} className={iconClass}/></Link>
                   <Link href="https://www.instagram.com/mosaic.monash/"><Instagram size={18} className={iconClass}/></Link>
                 </div>
