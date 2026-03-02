@@ -299,13 +299,11 @@ describe('Footer', () => {
   describe('Title / Branding', () => {
     it('renders the report title text split across lines', () => {
       render(<Footer />);
-
       const titleParagraph = screen.getByRole('contentinfo').querySelector('p.font-bold.text-xl');
       expect(titleParagraph).toBeInTheDocument();
       expect(titleParagraph.textContent).toContain('World');
       expect(titleParagraph.textContent).toContain('Disasters');
       expect(titleParagraph.textContent).toContain('Report');
-
     });
 
     it('renders the year', () => {
