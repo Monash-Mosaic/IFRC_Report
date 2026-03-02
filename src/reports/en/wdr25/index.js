@@ -214,3 +214,5 @@ export const chapters = {
     released: true,
   },
 };
+
+export const showSubscribe = Object.keys(chapters).length < 9;

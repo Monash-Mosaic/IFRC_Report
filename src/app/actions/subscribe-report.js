@@ -3,12 +3,10 @@
 const { BrevoClient } = require('@getbrevo/brevo');
 
 /**
- * Subscribe-report stores email addresses in Brevo (for "full report coming soon" and
- * similar signups). Uses a Server Action so the API key never reaches the client.
- * Uses the Brevo SDK. Stores SUBSCRIBE_PAGE (page URL) and SUBSCRIBE_LOCALE in Brevo.
+ * Subscribe-report stores email addresses in Brevo. Uses a Server Action so the API key
+ * never reaches the client. Uses the Brevo SDK. Stores SUBSCRIBE_LOCALE in Brevo.
  *
- * In Brevo: create contact attributes (Contacts → Settings → Contact attributes)
- * named SUBSCRIBE_PAGE (type: Text) and SUBSCRIBE_LOCALE (type: Text).
+ * In Brevo: create contact attribute SUBSCRIBE_LOCALE (type: Text) in Contacts → Settings.
  */
 function isValidEmail(value) {
   if (typeof value !== 'string' || value.length > 254) return false;
@@ -21,11 +19,10 @@ function isValidEmail(value) {
 }
 
 export async function subscribeReport(prevState, formData) {
-  const apiKey = process.env.BREVO_API_KEY?.trim();
-  const listIdRaw = process.env.BREVO_LIST_ID?.trim();
+  const apiKey = process.env.BREVO_API_KEY;
+  const listIdRaw = process.env.BREVO_LIST_ID;
 
   const email = formData.get('email')?.toString()?.trim() ?? '';
-  const location = formData.get('location')?.toString()?.trim() ?? '';
   const locale = formData.get('locale')?.toString()?.trim() ?? '';
 
   if (!email) {
@@ -37,13 +34,6 @@ export async function subscribeReport(prevState, formData) {
   }
 
   const listId = Number(listIdRaw);
-  if (!apiKey || !listIdRaw || !Number.isInteger(listId) || listId <= 0) {
-    return { error: 'Server configuration error' };
-  }
-
-  const attributes = {};
-  if (location) attributes.SUBSCRIBE_PAGE = location.slice(0, 500);
-  if (locale) attributes.SUBSCRIBE_LOCALE = locale.slice(0, 20);
 
   try {
     const brevo = new BrevoClient({ apiKey });
@@ -51,7 +41,9 @@ export async function subscribeReport(prevState, formData) {
       email,
       listIds: [listId],
       updateEnabled: true,
-      ...(Object.keys(attributes).length > 0 && { attributes }),
+      attributes: {
+        SUBSCRIBE_LOCALE: locale,
+      },
     });
     return { success: true };
   } catch (error) {

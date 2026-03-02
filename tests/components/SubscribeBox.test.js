@@ -31,20 +31,21 @@ jest.mock('lucide-react', () => ({
   X: (props) => <span data-testid="x-icon" {...props} />,
 }));
 
+beforeAll(() => {
+  const reactModal = require('react-modal');
+  const Modal = reactModal.default ?? reactModal;
+  if (Modal?.setAppElement) Modal.setAppElement(document.body);
+});
+
 describe('SubscribeBox', () => {
   beforeEach(() => {
     mockSubscribeReport.mockReset();
   });
 
-  it('returns null when showSubscribe is false', () => {
-    const { container } = render(<SubscribeBox showSubscribe={false} />);
-    expect(container.firstChild).toBeNull();
-  });
-
-  it('renders form with headline and locale hidden input when showSubscribe is true', () => {
-    const { container } = render(<SubscribeBox locale="zh" showSubscribe={true} />);
+  it('renders form with headline and locale hidden input', () => {
+    render(<SubscribeBox locale="zh" />);
     expect(screen.getByText('Full report is coming soon.')).toBeInTheDocument();
-    const form = container.querySelector('form');
+    const form = document.querySelector('form');
     expect(form).toBeInTheDocument();
     const localeInput = document.querySelector('input[name="locale"]');
     expect(localeInput).toBeInTheDocument();
@@ -52,17 +53,17 @@ describe('SubscribeBox', () => {
   });
 
   it('headline has bold and IFRC red styling', () => {
-    render(<SubscribeBox showSubscribe={true} />);
+    render(<SubscribeBox locale="en" />);
     const headline = screen.getByText('Full report is coming soon.');
     expect(headline).toHaveClass('font-bold');
     expect(headline).toHaveClass('text-[#ED1B2E]');
   });
 
-  it('success message block is center-aligned', async () => {
+  it('shows success in modal after submit', async () => {
     mockSubscribeReport.mockResolvedValue({ success: true });
 
-    const { container } = render(<SubscribeBox locale="en" showSubscribe={true} />);
-    const form = container.querySelector('form');
+    render(<SubscribeBox locale="en" />);
+    const form = document.querySelector('form');
     const emailInput = screen.getByPlaceholderText(/join our email list/i);
     fireEvent.change(emailInput, { target: { value: 'user@example.com' } });
     fireEvent.submit(form);
@@ -72,15 +73,16 @@ describe('SubscribeBox', () => {
       expect(screen.getByText('We will email you when the new content is available.')).toBeInTheDocument();
     });
 
-    const alert = screen.getByRole('alert');
+    const alert = document.querySelector('[role="alert"]');
+    expect(alert).toBeInTheDocument();
     expect(alert).toHaveClass('text-center');
   });
 
   it('calls subscribeReport with formData including locale on submit', async () => {
     mockSubscribeReport.mockResolvedValue({ success: true });
 
-    const { container } = render(<SubscribeBox locale="fr" showSubscribe={true} />);
-    const form = container.querySelector('form');
+    render(<SubscribeBox locale="fr" />);
+    const form = document.querySelector('form');
     const emailInput = screen.getByPlaceholderText(/join our email list/i);
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.submit(form);
@@ -93,11 +95,11 @@ describe('SubscribeBox', () => {
     });
   });
 
-  it('shows error when action returns error', async () => {
+  it('shows error in modal when action returns error', async () => {
     mockSubscribeReport.mockResolvedValue({ error: 'Please enter a valid email address.' });
 
-    const { container } = render(<SubscribeBox showSubscribe={true} />);
-    const form = container.querySelector('form');
+    render(<SubscribeBox locale="en" />);
+    const form = document.querySelector('form');
     fireEvent.change(screen.getByPlaceholderText(/join our email list/i), {
       target: { value: 'bad' },
     });

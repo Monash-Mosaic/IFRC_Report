@@ -31,15 +31,13 @@ describe('subscribeReport server action', () => {
   function createFormData(overrides = {}) {
     const fd = new FormData();
     fd.set('email', overrides.email ?? 'user@example.com');
-    fd.set('location', overrides.location ?? 'https://example.com/en/reports/wdr25');
     fd.set('locale', overrides.locale ?? 'en');
     return fd;
   }
 
-  it('sends email, location and locale to Brevo and returns success', async () => {
+  it('sends email and SUBSCRIBE_LOCALE to Brevo and returns success', async () => {
     const formData = createFormData({
       email: 'user@example.com',
-      location: 'https://example.com/zh/reports/wdr25',
       locale: 'zh',
     });
     const result = await subscribeReport(null, formData);
@@ -52,35 +50,10 @@ describe('subscribeReport server action', () => {
         listIds: [42],
         updateEnabled: true,
         attributes: {
-          SUBSCRIBE_PAGE: 'https://example.com/zh/reports/wdr25',
           SUBSCRIBE_LOCALE: 'zh',
         },
       })
     );
-  });
-
-  it('sends only locale when location is empty', async () => {
-    const formData = createFormData({ location: '', locale: 'fr' });
-    const result = await subscribeReport(null, formData);
-
-    expect(result).toEqual({ success: true });
-    expect(createContactMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        attributes: {
-          SUBSCRIBE_LOCALE: 'fr',
-        },
-      })
-    );
-    expect(createContactMock.mock.calls[0][0].attributes.SUBSCRIBE_PAGE).toBeUndefined();
-  });
-
-  it('does not add attributes when location and locale are empty', async () => {
-    const formData = createFormData({ location: '', locale: '' });
-    const result = await subscribeReport(null, formData);
-
-    expect(result).toEqual({ success: true });
-    const callArg = createContactMock.mock.calls[0][0];
-    expect(callArg.attributes).toBeUndefined();
   });
 
   it('returns error when email is missing', async () => {
@@ -99,17 +72,7 @@ describe('subscribeReport server action', () => {
     expect(createContactMock).not.toHaveBeenCalled();
   });
 
-  it('returns error when Brevo config is missing', async () => {
-    delete process.env.BREVO_API_KEY;
-
-    const formData = createFormData();
-    const result = await subscribeReport(null, formData);
-
-    expect(result).toEqual({ error: 'Server configuration error' });
-    expect(createContactMock).not.toHaveBeenCalled();
-  });
-
-  it('returns error when Brevo SDK throws', async () => {
+  it('returns generic error when Brevo SDK throws', async () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     createContactMock.mockRejectedValueOnce(new Error('API error'));
 

@@ -108,7 +108,7 @@ export default async function ReportDetailPage({ params }) {
   }
   setRequestLocale(locale);
   const reportData = reportsByLocale[locale].reports[decodedReport];
-  const { chapters, title: reportTile, description, author, releaseDate, reportFile } = reportData;
+  const { chapters, title: reportTile, description, author, releaseDate, reportFile, showSubscribe: showSubscribeFlag } = reportData;
   const reportJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Report',
@@ -153,8 +153,7 @@ export default async function ReportDetailPage({ params }) {
     })
     .sort((a, b) => a.sortOrder - b.sortOrder);
 
-  const chapterCount = Object.keys(chapters).length;
-  const showSubscribe = chapterCount < 9;
+  const showSubscribe = showSubscribeFlag ?? Object.keys(chapters).length < 9;
 
   return (
     <div className="min-h-screen bg-white">
@@ -198,7 +197,7 @@ export default async function ReportDetailPage({ params }) {
           ))}
           {showSubscribe && (
             <div className="mt-6">
-              <SubscribeBox locale={locale} showSubscribe={showSubscribe} />
+              <SubscribeBox locale={locale} />
             </div>
           )}
         </div>
