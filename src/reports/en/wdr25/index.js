@@ -61,7 +61,37 @@ export const featuredVideos = [
   },
 ];
 
+export const chapterRelease = true;
+
 export const chapters = {
+  synthesis: {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: 0,
+      chapterPrefix: 'Synthesis',
+    },
+    component: Chapter02.default,
+    title: 'Truth, Trust and Humanitarian Action in the Age of Harmful Information',
+    subtitle: null,
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'chapter-01': {
+    metadata: {
+      chapterKey: 'chapter-01',
+      chapterNumber: 1,
+      chapterPrefix: 'Chapter 1',
+    },
+    component: Chapter02.default,
+    title: 'Crisis, Chaos and Confusion: Understanding Harmful Information',
+    subtitle: null,
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter1.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
   'chapter-02': {
     metadata: {
       chapterKey: 'chapter-02',
@@ -73,6 +103,8 @@ export const chapters = {
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
+    thumbnail: '/wdr25/chapters/Chapter2.png',
+    released: true,
     audios: [
       {
         id: 'intro',
@@ -96,5 +128,89 @@ export const chapters = {
         thumbnail: '/window.svg',
       },
     ],
+  },
+  'chapter-03': {
+    metadata: {
+      chapterKey: 'chapter-03',
+      chapterNumber: 3,
+      chapterPrefix: 'Chapter 3',
+    },
+    component: Chapter02.default,
+    title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
+    subtitle: 'Harmful Narratives that Thrive',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter3.png',
+    thumbnailOverlay: 'blue',
+    released: true,
+  },
+  'chapter-04': {
+    metadata: {
+      chapterKey: 'chapter-04',
+      chapterNumber: 4,
+      chapterPrefix: 'Chapter 4',
+    },
+    component: Chapter02.default,
+    title: 'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
+    subtitle: 'Harmful Information and Operational Realities',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter4.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'chapter-05': {
+    metadata: {
+      chapterKey: 'chapter-05',
+      chapterNumber: 5,
+      chapterPrefix: 'Chapter 5',
+    },
+    component: Chapter02.default,
+    title: 'Navigating Regulation, Rights and Societal Resilience',
+    subtitle: 'Information Landscape and Humanitarian Contexts',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter5.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'chapter-06': {
+    metadata: {
+      chapterKey: 'chapter-06',
+      chapterNumber: 6,
+      chapterPrefix: 'Chapter 6',
+    },
+    component: Chapter02.default,
+    title: 'Rooted in Resilience: Community-first approach to Harmful Information',
+    subtitle: 'The Importance of Community for Resilience',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter6.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'chapter-07': {
+    metadata: {
+      chapterKey: 'chapter-07',
+      chapterNumber: 7,
+      chapterPrefix: 'Chapter 7',
+    },
+    component: Chapter02.default,
+    title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
+    subtitle: 'Humanitarian Action in the Era of Instant Narratives',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter7.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'chapter-08': {
+    metadata: {
+      chapterKey: 'chapter-08',
+      chapterNumber: 8,
+      chapterPrefix: 'Chapter 8',
+    },
+    component: Chapter02.default,
+    title: "What's Next for Truth and Trust? Toward a Resilient Humanitarian Sector",
+    subtitle: 'The Stakes of Harmful Information',
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter8.png',
+    thumbnailOverlay: 'red',
+    released: true,
   },
 };

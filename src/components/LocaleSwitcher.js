@@ -39,11 +39,11 @@ export default function LocaleSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={t('ariaLabel')}
         title={t('title')}
-        className="p-2 md:px-6 md:py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none w-10 h-10 md:w-auto md:h-auto justify-center md:justify-start"
+        className="p-2 lg:px-6 lg:py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors inline-flex items-center gap-1 lg:gap-2 whitespace-nowrap focus:outline-none w-10 h-10 lg:w-auto lg:h-auto justify-center lg:justify-start"
       >
-        <span className="hidden md:inline">{t('language')}</span>
-        <Globe className="w-5 h-5 md:hidden text-white" />
-        <ChevronDown className="w-2 h-2 md:w-3 md:h-3 text-white" />
+        <span className="hidden lg:inline">{t('language')}</span>
+        <Globe className="w-5 h-5 lg:hidden text-white" />
+        <ChevronDown className="w-2 h-2 lg:w-3 lg:h-3 text-white" />
       </button>
 
       {isOpen && (

@@ -5,8 +5,9 @@
   "scripts": {
     "predev": "node scripts/ensure-env.mjs",
     "dev": "next dev --turbopack",
+    "dev:search": "npm run build:search && npm run dev",
     "build": "next build --turbopack",
-    "build:search": "node scripts/build-search-index.mjs",
+    "build:search": "npm run --workspace=scripts/build-search-index start:esbuild",
     "start": "next start --turbopack",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
@@ -21,6 +22,9 @@
     "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions --coverage --ci --json --outputFile=report.json",
     "test:watch": "jest --watch"
   },
+  "workspaces": [
+    "scripts/*"
+  ],
   "engines": {
     "node": ">=22.0.0"
   },
@@ -33,12 +37,12 @@
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@tailwindcss/cli": "^4.2.1",
     "@types/mdx": "^2.0.13",
-    "autoprefixer": "^10.4.24",
     "dexie": "^4.3.0",
     "embla-carousel-react": "^8.6.0",
     "flexsearch": "^0.8.212",
     "geist": "^1.7.0",
     "hls.js": "^1.6.15",
+    "jsonc-parser": "^3.3.1",
     "lucide-react": "^0.563.0",
     "next": "^16.1.6",
     "next-intl": "^4.8.2",
@@ -48,6 +52,7 @@
     "react-dom": "^19.2.4",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "stopwords-en": "^0.3.0"
   },
   "devDependencies": {
@@ -61,9 +66,12 @@
     "@types/node": "25.2.3",
     "@types/react": "19.2.14",
     "autocannon": "^8.0.0",
+    "autoprefixer": "^10.4.24",
     "baseline-browser-mapping": "^2.9.19",
-    "eslint": "^9.*",
-    "eslint-config-next": "16.1.6",
+    "cloudflared": "^0.7.1",
+    "cssnano": "^7.1.2",
+    "eslint": "^9",
+    "eslint-config-next": "^16.1.6",
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
@@ -72,11 +80,11 @@
     "tailwindcss": "^4.2.1",
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
-    "wrangler": "^4.64.0"
+    "wrangler": "~4.65.0"
   },
   "overrides": {
     "@smithy/config-resolver": "^4.4.0",
-    "fast-xml-parser": "^5.3.4",
+    "fast-xml-parser": "^5.3.8",
     "minimatch": ">=10.2.1"
   }
 }
