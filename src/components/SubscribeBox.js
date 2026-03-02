@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useActionState } from 'react';
 import { useTranslations } from 'next-intl';
 import Modal from 'react-modal';
@@ -19,24 +19,20 @@ export default function SubscribeBox({ locale = '', className = '' }) {
   const [state, formAction, pending] = useActionState(subscribeReport, initialState);
   const [resultModalOpen, setResultModalOpen] = useState(false);
   const [resultType, setResultType] = useState(/** @type {'success' | 'error' | null} */ (null));
-  const openedForRef = useRef(/** @type {'success' | 'error' | null} */ (null));
 
   useEffect(() => {
-    if (state?.success && openedForRef.current !== 'success') {
-      openedForRef.current = 'success';
-      setResultType('success');
+    if (!state?.success && !state?.error) return;
+    const nextType = state?.success ? 'success' : 'error';
+    const timer = setTimeout(() => {
+      setResultType(nextType);
       setResultModalOpen(true);
-    } else if (state?.error && openedForRef.current !== 'error') {
-      openedForRef.current = 'error';
-      setResultType('error');
-      setResultModalOpen(true);
-    }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [state?.success, state?.error]);
 
   const closeResultModal = () => {
     setResultModalOpen(false);
     setResultType(null);
-    openedForRef.current = null;
   };
 
   return (
