@@ -306,35 +306,22 @@ export default function HighlightToolbar({
   }, [containerEl]);
 
   const setToolbarPositionFromRect = useCallback((rect) => {
-    if (!containerEl) return;
-
     const TOOLBAR_HEIGHT_EST = 52;
     const GAP = 12;
 
-    // rect is viewport-based; convert to page coords
-    const scrollX = window.scrollX || window.pageXOffset;
-    const scrollY = window.scrollY || window.pageYOffset;
+    const x = rect.left + rect.width / 2;
 
-    const xPage = rect.left + rect.width / 2 + scrollX;
+    // Prefer above selection
+    let y = rect.top - TOOLBAR_HEIGHT_EST - GAP;
 
-    // prefer above selection
-    let yPage = rect.top + scrollY - TOOLBAR_HEIGHT_EST - GAP;
+    // If not enough space above, put below
+    if (y < 8) y = rect.bottom + GAP;
 
-    // if too close to top, put below selection
-    if (rect.top - TOOLBAR_HEIGHT_EST - GAP < 8) {
-      yPage = rect.bottom + scrollY + GAP;
-    }
-
-    // convert page coords -> container coords
-    const containerRect = containerEl.getBoundingClientRect();
-    const containerLeft = containerRect.left + scrollX;
-    const containerTop = containerRect.top + scrollY;
-
-    const x = xPage - containerLeft;
-    const y = yPage - containerTop;
-
-    setPos({ x, y });
-  }, [containerEl]);
+    setPos({
+      x: clamp(x, 16, window.innerWidth - 16),
+      y: clamp(y, 8, window.innerHeight - 8),
+    });
+  }, []);
 
 
   // Restore highlights on mount
@@ -614,7 +601,7 @@ export default function HighlightToolbar({
 
   return (
     <div
-      className="absolute z-50"
+      className="fixed z-50"
       style={{
         left: `${pos.x}px`,
         top: `${pos.y}px`,
