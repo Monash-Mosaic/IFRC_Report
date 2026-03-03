@@ -33,7 +33,7 @@ export default async function Footer() {
   /* ======================================================== */
 
   return (
-    <footer className="w-full bg-[#f5f5f5] border-t border-gray-200">
+    <footer className="w-full bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start gap-12">
@@ -63,7 +63,7 @@ export default async function Footer() {
                 </div>
               </div>
 
-              {/* Solferino Academy: white bg on the image only */}
+              {/* Solferino Academy */}
               <div className="flex flex-col items-center gap-0 w-[160px]">
                 <Link href="https://solferinoacademy.com">
                   <Image
@@ -71,7 +71,7 @@ export default async function Footer() {
                     alt="Solferino Academy"
                     width={150}
                     height={40}
-                    className="h-18 w-auto object-contain bg-white rounded-lg p-3"
+                    className="h-18 w-auto object-contain"
                   />
                 </Link>
 

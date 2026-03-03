@@ -108,7 +108,7 @@ describe('Footer', () => {
     it('applies correct background and border classes', async () => {
       await renderFooter();
       const footer = screen.getByRole('contentinfo');
-      expect(footer).toHaveClass('w-full', 'bg-[#f5f5f5]', 'border-t', 'border-gray-200');
+      expect(footer).toHaveClass('w-full', 'bg-white', 'border-t', 'border-gray-200');
     });
 
     it('renders responsive flex layout', async () => {
