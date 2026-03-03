@@ -1,6 +1,10 @@
+import * as Synthesis from './exec-summary.mdx';
+import * as Introduction from './introduction.mdx';
+import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter08 from './chapter-08.mdx';
 
-export const title = 'World Disaster Report 2025';
+export const title = 'World \n Disaster\n Report\n\n 2026';
 
 export const description =
   "The International Federation of Red Cross and Red Crescent Societies' Annual Report for 2025, detailing global disaster response and humanitarian efforts.";
@@ -61,36 +65,56 @@ export const featuredVideos = [
   },
 ];
 
-export const chapterRelease = true;
+export const chapterRelease = false;
 
 export const chapters = {
   synthesis: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: 0,
+      chapterNumber: -1,
       chapterPrefix: 'Synthesis',
     },
-    component: Chapter02.default,
-    title: 'Truth, Trust and Humanitarian Action in the Age of Harmful Information',
-    subtitle: null,
-    tableOfContents: [],
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Synthesis.jpg',
     thumbnailOverlay: 'red',
+    released: true,
+  },
+  introduction: {
+    metadata: {
+      chapterKey: 'introduction',
+      chapterNumber: 0,
+      chapterPrefix: 'Introduction',
+    },
+    component: Introduction.default,
+    title: Introduction.title,
+    subtitle: Introduction.subtitle,
+    tableOfContents: Introduction.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    thumbnail: '/wdr25/chapters/Intro.jpg',
+    thumbnailOverlay: 'blue',
     released: true,
   },
   'chapter-01': {
     metadata: {
       chapterKey: 'chapter-01',
       chapterNumber: 1,
-      chapterPrefix: 'Chapter 1',
+      chapterPrefix: 'Chapter 01',
     },
-    component: Chapter02.default,
-    title: 'Crisis, Chaos and Confusion: Understanding Harmful Information',
-    subtitle: null,
-    tableOfContents: [],
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Chapter1.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-02': {
     metadata: {
@@ -104,7 +128,7 @@ export const chapters = {
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
     thumbnail: '/wdr25/chapters/Chapter2.png',
-    released: true,
+    released: false,
     audios: [
       {
         id: 'intro',
@@ -141,7 +165,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
-    released: true,
+    released: false,
   },
   'chapter-04': {
     metadata: {
@@ -150,12 +174,13 @@ export const chapters = {
       chapterPrefix: 'Chapter 4',
     },
     component: Chapter02.default,
-    title: 'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
+    title:
+      'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
     subtitle: 'Harmful Information and Operational Realities',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-05': {
     metadata: {
@@ -169,7 +194,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-06': {
     metadata: {
@@ -183,7 +208,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-07': {
     metadata: {
@@ -197,20 +222,22 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-08': {
     metadata: {
       chapterKey: 'chapter-08',
       chapterNumber: 8,
-      chapterPrefix: 'Chapter 8',
+      chapterPrefix: 'Chapter 08',
     },
-    component: Chapter02.default,
-    title: "What's Next for Truth and Trust? Toward a Resilient Humanitarian Sector",
-    subtitle: 'The Stakes of Harmful Information',
-    tableOfContents: [],
+    component: Chapter08.default,
+    title: Chapter08.title,
+    subtitle: Chapter08.subtitle,
+    tableOfContents: Chapter08.tableOfContents,
+    downloadLink:
+      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Chapter8.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
 };

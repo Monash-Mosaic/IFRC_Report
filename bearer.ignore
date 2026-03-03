@@ -4,5 +4,11 @@
     "comment": "URL hash is not a sensitive data.",
     "false_positive": true,
     "ignored_at": "2026-02-09T07:04:28Z"
+  },
+  "af17b843067318ee934c594626886328_0": {
+    "author": "Sebastian",
+    "comment": "Subscribe-report server action: full error logged for server-side debugging; logs not exposed to clients.",
+    "false_positive": true,
+    "ignored_at": "2026-03-02T00:00:00Z"
   }
 }

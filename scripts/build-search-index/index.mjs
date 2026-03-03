@@ -1,5 +1,6 @@
 import { createSearchIndex } from '@/lib/search/db';
 import * as report from '@/reports';
+import { isLocaleReleased } from '@/reports/release';
 import { getPathname } from '@/i18n/navigation';
 import GithubSlugger from 'github-slugger';
 import dotenv from 'dotenv';
@@ -112,9 +113,17 @@ try {
   const searchDb = env.SEARCH_DB;
 
   for (const [locale, { reports }] of Object.entries(reportsByLocale)) {
+    if (!isLocaleReleased(locale)) {
+      console.info(`[build-search-index] Skipping locale ${locale} as it is not released in the current environment`);
+      continue;
+    }
     slugger.reset();
     for (const [report, { chapters }] of Object.entries(reports)) {
       for (const [chapter, content] of Object.entries(chapters)) {
+        if (!content.released) {
+          console.info(`[build-search-index] Skipping ${locale} ${report} ${chapter} as it is not released in the current environment`);
+          continue;
+        }
         const { chapterPrefix } = content['metadata']
         const pathname = getPathname({
           href: {
