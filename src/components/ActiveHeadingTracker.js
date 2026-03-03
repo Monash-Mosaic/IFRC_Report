@@ -84,6 +84,7 @@ export default function ActiveHeadingTracker({
     return () => {
       disposed = true;
       cleanupRef.current?.();
+      setHash.cancel();
     };
   }, [containerSelector, headingSelector, rootMargin]);
 
