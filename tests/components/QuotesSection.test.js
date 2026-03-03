@@ -10,6 +10,7 @@ const engagementTranslations = {
 };
 
 jest.mock('next-intl', () => ({
+  useLocale: () => 'en',
   useTranslations: (namespace) => (key, params) => {
     const fullKey = `${namespace}.${key}`;
     const value = engagementTranslations[fullKey];
@@ -26,6 +27,10 @@ jest.mock('lucide-react', () => ({
   User: () => <span />,
   Building2: () => <span />,
 }));
+
+jest.mock('@/components/EmblaCarousel', () => function MockEmblaCarousel({ children }) {
+  return <div data-testid="embla-carousel">{children}</div>;
+});
 
 const mockFetch = jest.fn();
 
@@ -49,12 +54,12 @@ describe('QuotesSection', () => {
     });
   });
 
-  it('shows quotes when fetch succeeds with valid CSV', async () => {
-    const csv = [
-      'Q_ID,Quote text,Chapter,country_region,tag:harm,tag:operational_impact,tag:response_strategy,tag:governance',
-      '1,"Test quote one",CH1,Country A,Social,,,',
+  it('shows quotes when fetch succeeds with valid TSV', async () => {
+    const tsv = [
+      'Q_ID\tQuote text\tChapter\tcountry_region\ttag:harm\ttag:operational_impact\ttag:response_strategy\ttag:governance',
+      '1\tTest quote one\tCH1\tCountry A\tSocial\t\t\t',
     ].join('\n');
-    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(csv) });
+    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(tsv) });
     render(<QuotesSection selectedTag={{}} />);
     await waitFor(() => {
       expect(screen.getByText('Quotes')).toBeInTheDocument();
@@ -65,11 +70,11 @@ describe('QuotesSection', () => {
   });
 
   it('shows no quotes match when filters exclude all results', async () => {
-    const csv = [
-      'Q_ID,Quote text,Chapter,country_region,tag:harm,tag:operational_impact,tag:response_strategy,tag:governance',
-      '1,"Test quote",CH1,Country A,Social,,,',
+    const tsv = [
+      'Q_ID\tQuote text\tChapter\tcountry_region\ttag:harm\ttag:operational_impact\ttag:response_strategy\ttag:governance',
+      '1\tTest quote\tCH1\tCountry A\tSocial\t\t\t',
     ].join('\n');
-    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(csv) });
+    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(tsv) });
     render(<QuotesSection selectedTag={{ physical: true }} />);
     await waitFor(() => {
       expect(screen.getByText('No quotes match the selected filters.')).toBeInTheDocument();
@@ -77,12 +82,12 @@ describe('QuotesSection', () => {
   });
 
   it('displays quote count in section header after load', async () => {
-    const csv = [
-      'Q_ID,Quote text,Chapter,country_region,tag:harm,tag:operational_impact,tag:response_strategy,tag:governance',
-      '1,"Quote A",CH1,,Social,,,',
-      '2,"Quote B",CH1,,Physical,,,',
+    const tsv = [
+      'Q_ID\tQuote text\tChapter\tcountry_region\ttag:harm\ttag:operational_impact\ttag:response_strategy\ttag:governance',
+      '1\tQuote A\tCH1\t\tSocial\t\t\t',
+      '2\tQuote B\tCH1\t\tPhysical\t\t\t',
     ].join('\n');
-    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(csv) });
+    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(tsv) });
     render(<QuotesSection selectedTag={{}} />);
     await waitFor(() => {
       expect(screen.getByText('2')).toBeInTheDocument();

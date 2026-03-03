@@ -54,11 +54,6 @@ const HARM_TAG_TO_ICON = [
   { label: 'deprivational/financial/economic', displayLabel: 'Deprivational/financial/economic', Icon: Activity },
 ];
 
-/** Parse CSV with proper handling of quoted fields (commas and newlines inside quotes). */
-function parseCSV(text) {
-  return parseDelimited(text, ',');
-}
-
 /** Parse TSV (tab-separated) so commas in descriptions don't break parsing. Use when exporting from Sheets. */
 function parseTSV(text) {
   return parseDelimited(text, '\t');
@@ -191,17 +186,13 @@ export default function QuotesSection({ selectedTag }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const parse = (text, url) => (url.endsWith('.tsv') ? parseTSV(text) : parseCSV(text));
     fetch('/engagement/engagement_tab.tsv')
       .then((r) => {
-        if (r.ok) return r.text().then((text) => ({ text, url: '/engagement/engagement_tab.tsv' }));
-        return fetch('/engagement/engagement_tab.csv').then((r2) => {
-          if (!r2.ok) throw new Error(`HTTP ${r2.status}`);
-          return r2.text().then((text) => ({ text, url: '/engagement/engagement_tab.csv' }));
-        });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.text();
       })
-      .then(({ text, url }) => {
-        const rows = parse(text, url);
+      .then((text) => {
+        const rows = parseTSV(text);
         if (!rows?.length || !rows[0]?.length) {
           setQuotes([]);
           return;
