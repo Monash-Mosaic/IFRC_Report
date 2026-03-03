@@ -292,5 +292,33 @@
     "psychological": "心理",
     "social": "社交",
     "informational": "信息"
+  },
+   "Acknowledgements": {
+    "meta": {
+      "title": "致谢与贡献者",
+      "description": "感谢支持红十字会与红新月会国际联合会《2026年世界灾害报告》编撰、翻译和出版工作的各组织和个人。"
+    },
+    "breadcrumbHome": "主页",
+    "breadcrumbCurrent": "致谢",
+    "pageTitle": "致谢",
+
+    "intro": "红十字会与红新月会国际联合会（IFRC）诚挚感谢下列组织对我会《2026年世界灾害报告》的编撰出版做出大力支持：",
+
+    "translation": "本报告俄文和中文版本的翻译费用，由俄罗斯红十字会学院和中国的红十字国际学院慷慨承担。",
+
+    "leadEditorLabel": "主编及作者：",
+    "leadEditor": "夏洛特·林赛（Charlotte Lindsey）",
+
+    "designerLabel": "设计：",
+    "designer": "严恩·勒弗洛克（Yann le Floc'h）",
+
+    "projectManagerLabel": "项目官员：",
+    "projectManager": "希瑟·玛丽·勒森（Heather Marie Leson）",
+
+    "copyeditorLabel": "版权编辑：",
+    "copyeditor": "珍·克雷顿（Jen Claydon）",
+
+    "contributions": "《2026年世界灾害报告》汇集了来自人道主义领域60多位从业者和研究者的100余篇书面供稿，还呈现了政府、学术界、民间社会等各界人士的见解。这些贡献以「来稿洞见」专栏形式贯穿全书，并逐一标注了每位作者及其所属机构。",
+    "research": "红十字会与红新月会国际联合会索尔费里诺学院牵头开展了一项为期两个月的快速社区情报研究，由来自10个国家红会的40名志愿者和工作人员组成调研团队。他们以社区研究员身份，采访了132名受人道主义危机影响的志愿者和社区成员。研究发现由密歇根大学、诺森比亚大学及纽卡斯尔大学开放实验室的志愿学术人员进行整合，确保保留了地方特色。报告全文穿插着精选的受访者原话。"
   }
 }

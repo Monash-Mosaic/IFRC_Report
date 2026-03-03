@@ -298,6 +298,7 @@
     "reportTitle": "Rapport",
     "year": "2026"
   },
+
   "ContributionInsight": {
     "title": "Aperçu des Contributions"
   },
@@ -310,5 +311,28 @@
     "psychological": "Psychologique",
     "social": "Social",
     "informational": "Informationnel"
+  },
+  "Acknowledgements": {
+    "meta": {
+      "title": "Remerciements et contributeurs",
+      "description": "Reconnaissance des organisations et des personnes qui ont soutenu la production, la traduction et la publication du Rapport sur les catastrophes dans le monde 2026 de la Fédération internationale."
+    },
+    "breadcrumbHome": "Page d'accueil",
+    "breadcrumbCurrent": "Remerciements",
+    "pageTitle": "Remerciements",
+    "intro": "La <bold>Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge</bold> désire exprimer sa gratitude aux organisations suivantes pour le soutien qu'ils ont apporté à la production et à la publication de l'édition 2026 de son <italic>Rapport sur les catastrophes dans le monde</italic> :",
+    "translation": "Les frais de traduction des versions russe et chinoise ont été généreusement pris en charge respectivement par l'Académie de la Croix-Rouge russe et l'Académie internationale de la Croix-Rouge en Chine.",
+    "leadEditorLabel": "Rédactrice en chef et autrice :",
+    "leadEditor": "Charlotte Lindsey Curtet",
+    "designerLabel": "Conception et mise en page :",
+    "designer": "Yann le Floc'h",
+    "projectManagerLabel": "Responsable de projet :",
+    "projectManager": "Heather Marie Leson",
+    "copyeditorLabel": "Réviseure linquistique :",
+    "copyeditor": "Jen Claydon",
+    "frenchEditorLabel": "Responsable de la version française :",
+    "frenchEditor": "Florence Marot",
+    "contributions": "Le <italic>Rapport sur les catastrophes dans le monde 2026</italic> comprend près de 100 contributions écrites de plus de 60 praticiens et chercheurs du secteur humanitaire, ainsi que de gouvernements, de milieux académiques, de la société civile et bien au-delà. Ces contributions apparaissent tout au long du rapport dans des encadrés intitulés « Perspectives des contributeurs », qui mentionnent les auteurs individuels et leurs organisations respectives. En ce qui concerne la présente <italic>Synthèse</italic>, elle prend appui sur cette expertise collective sans toutefois citer ou mentionner les différents contributeurs.",
+    "research": "L' <bold>Académie Solferino de la Fédération internationale</bold> a mené une étude rapide de deux mois sur les connaissances communautaires avec 40 volontaires et membres du personnel de 10 Sociétés nationales. Agissant en tant que chercheurs communautaires, ils ont interrogé 132 volontaires et membres de communautés touchées par des crises humanitaires. Les résultats ont été synthétisés par des universitaires bénévoles de l'Université du Michigan, de l'Université de Northumbria et de l'Open Lab (Université de Newcastle), afin de préserver les nuances locales. Des citations sélectionnées apparaissent tout au long du rapport."
   }
 }
