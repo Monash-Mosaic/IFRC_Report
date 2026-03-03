@@ -53,7 +53,17 @@ const HARM_TAG_TO_ICON = [
   { label: 'deprivational/financial/economic', displayLabel: 'Deprivational/financial/economic', Icon: Activity },
 ];
 
+/** Parse CSV with proper handling of quoted fields (commas and newlines inside quotes). */
 function parseCSV(text) {
+  return parseDelimited(text, ',');
+}
+
+/** Parse TSV (tab-separated) so commas in descriptions don't break parsing. Use when exporting from Sheets. */
+function parseTSV(text) {
+  return parseDelimited(text, '\t');
+}
+
+function parseDelimited(text, delimiter) {
   const rows = [];
   let currentRow = [];
   let currentField = '';
@@ -64,7 +74,7 @@ function parseCSV(text) {
     if (char === '"') {
       if (inQuotes && text[i + 1] === '"') { currentField += '"'; i++; }
       else inQuotes = !inQuotes;
-    } else if (char === ',' && !inQuotes) {
+    } else if (char === delimiter && !inQuotes) {
       currentRow.push(currentField.trim()); currentField = '';
     } else if (char === '\n' && !inQuotes) {
       currentRow.push(currentField.trim());
@@ -179,13 +189,17 @@ export default function QuotesSection({ selectedTag }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/engagement/engagement_tab.csv')
+    const parse = (text, url) => (url.endsWith('.tsv') ? parseTSV(text) : parseCSV(text));
+    fetch('/engagement/engagement_tab.tsv')
       .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.text();
+        if (r.ok) return r.text().then((text) => ({ text, url: '/engagement/engagement_tab.tsv' }));
+        return fetch('/engagement/engagement_tab.csv').then((r2) => {
+          if (!r2.ok) throw new Error(`HTTP ${r2.status}`);
+          return r2.text().then((text) => ({ text, url: '/engagement/engagement_tab.csv' }));
+        });
       })
-      .then((text) => {
-        const rows = parseCSV(text);
+      .then(({ text, url }) => {
+        const rows = parse(text, url);
         if (!rows?.length || !rows[0]?.length) {
           setQuotes([]);
           return;
@@ -228,9 +242,9 @@ export default function QuotesSection({ selectedTag }) {
     if (activeTagIds.length === 0) return quotes;
 
     return quotes.filter((quote) =>
-      activeTagIds.every((tagId) => {
+      activeTagIds.some((tagId) => {
         const tagInfo = TAG_COLUMN_MAP[tagId];
-        if (!tagInfo) return true;
+        if (!tagInfo) return false;
         const values = parseTags(quote[tagInfo.column]).map((v) => v.toLowerCase());
         return values.some((v) => v.includes(tagInfo.label.toLowerCase()));
       })
