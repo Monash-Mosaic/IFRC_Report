@@ -264,30 +264,29 @@
    "Acknowledgements": {
     "meta": {
       "title": "致谢与贡献者",
-      "description": "感谢并致敬支持 IFRC《2026 年世界灾害报告》制作、翻译与发布的各组织与个人。"
+      "description": "感谢支持红十字会与红新月会国际联合会《2026年世界灾害报告》编撰、翻译和出版工作的各组织和个人。"
     },
     "breadcrumbHome": "主页",
     "breadcrumbCurrent": "致谢",
     "pageTitle": "致谢",
 
-    "intro": "<bold>国际红十字会与红新月会联合会</bold>（IFRC）谨此感谢以下组织对《IFRC 2026 年世界灾害报告》的编制和出版所提供的支持：",
+    "intro": "红十字会与红新月会国际联合会（IFRC）诚挚感谢下列组织对我会《2026年世界灾害报告》的编撰出版做出大力支持：",
 
-    "translation": "俄文版和中文版的翻译费用由俄罗斯红十字会学院和中国国际红十字学院慷慨资助。",
+    "translation": "本报告俄文和中文版本的翻译费用，由俄罗斯红十字会学院和中国的红十字国际学院慷慨承担。",
 
     "leadEditorLabel": "主编及作者：",
-    "leadEditor": "Charlotte Lindsey Curtet",
+    "leadEditor": "夏洛特·林赛（Charlotte Lindsey）",
 
     "designerLabel": "设计：",
-    "designer": "Yann le Floch",
+    "designer": "严恩·勒弗洛克（Yann le Floc'h）",
 
-    "projectManagerLabel": "项目经理：",
-    "projectManager": "Heather Marie Leson",
+    "projectManagerLabel": "项目官员：",
+    "projectManager": "希瑟·玛丽·勒森（Heather Marie Leson）",
 
-    "copyeditorLabel": "文字编辑：",
-    "copyeditor": "Jen Claydon",
+    "copyeditorLabel": "版权编辑：",
+    "copyeditor": "珍·克雷顿（Jen Claydon）",
 
-    "contributions": "《2026 年世界灾害报告》收录了来自人道主义领域以及政府、学术界和公民社会等多个领域的 60 多位实践者和研究人员撰写的 100 余篇书面贡献。这些内容以“贡献者洞见”框的形式贯穿全书，明确标注了个人作者及其所属机构。",
-
-    "research": "<bold>IFRC 索尔费里诺学院</bold>牵头开展了一项为期两个月的快速社区情报研究，来自 10 个国家红会的 40 名志愿者和工作人员参与其中。作为社区研究人员，他们采访了 132 名受人道主义危机影响的志愿者和社区成员。研究结果由密歇根大学、诺森比亚大学和 Open Lab（纽卡斯尔大学）的志愿学者进行综合整理，确保充分保留地方背景和细微差异。精选引述贯穿于整份报告之中。"
+    "contributions": "《2026年世界灾害报告》汇集了来自人道主义领域60多位从业者和研究者的100余篇书面供稿，还呈现了政府、学术界、民间社会等各界人士的见解。这些贡献以「来稿洞见」专栏形式贯穿全书，并逐一标注了每位作者及其所属机构。",
+    "research": "红十字会与红新月会国际联合会索尔费里诺学院牵头开展了一项为期两个月的快速社区情报研究，由来自10个国家红会的40名志愿者和工作人员组成调研团队。他们以社区研究员身份，采访了132名受人道主义危机影响的志愿者和社区成员。研究发现由密歇根大学、诺森比亚大学及纽卡斯尔大学开放实验室的志愿学术人员进行整合，确保保留了地方特色。报告全文穿插着精选的受访者原话。"
   }
 }
