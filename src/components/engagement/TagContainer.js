@@ -63,24 +63,24 @@ export default function TagContainer({ selectedTag, handleSelectionTag }) {
         <div className="h-0.5 bg-gradient-to-r from-[#ee2435] to-orange-400 rounded-full" />
       </div>
 
-      {/* 4-column tag grid */}
+      {/* Responsive tag grid: 1 col mobile, 2 sm, 4 lg */}
       <div className="px-6 pb-6">
-        <div className="grid grid-cols-4 gap-x-3 gap-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-2">
           {TAG_CATEGORIES.map((category) => (
             <React.Fragment key={category.id}>
               {/* Full-width section label */}
               <div
-                className="col-span-4 text-sm font-bold text-slate-800 pt-3 pb-1"
+                className="col-span-1 sm:col-span-2 lg:col-span-4 text-sm font-bold text-slate-800 pt-3 pb-1"
               >
                 {t(category.labelKey)}
               </div>
 
-              {/* Tags — each fills one cell, wrap naturally across 4 columns */}
+              {/* Tags — text wraps inside box; min-w-0 allows flex/grid shrink */}
               {category.tags.map((tag) => (
                 <button
                   key={tag.id}
                   onClick={() => handleSelectionTag(tag.id)}
-                  className={`px-3 py-2 rounded-lg text-xs font-medium border text-center transition-all duration-150 ${
+                  className={`min-w-0 px-3 py-2 rounded-lg text-xs font-medium border text-center transition-all duration-150 break-words whitespace-normal ${
                     selectedTag[tag.id]
                       ? 'bg-[#ee2435] border-[#ee2435] text-white'
                       : 'bg-white text-[#ee2435] border-[#ee2435]/40 hover:border-[#ee2435] hover:bg-red-50'
