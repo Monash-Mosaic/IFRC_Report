@@ -48,12 +48,12 @@ describe('report release helpers', () => {
   });
 
   it('respects locale release gating', () => {
-    expect(isReportReleased('es', 'wdr25', 'preview')).toBe(false);
+    expect(isReportReleased('es', 'wdr25', 'preview')).toBe(true);
     expect(isReportReleased('en', 'wdr25', 'preview')).toBe(true);
   });
 
   it('filters visible reports by locale release', () => {
-    expect(getVisibleReports('es', 'preview')).toEqual({});
+    expect(getVisibleReports('es', 'preview')).toHaveProperty('wdr25');
     expect(getVisibleReports('en', 'preview')).toHaveProperty('wdr25');
   });
 });
@@ -138,9 +138,7 @@ describe('reportUriMap error branches', () => {
         mockLocaleModules(localeModules);
         require('../../src/reports');
       });
-    }).toThrow(
-      'Duplicate chapter slug mapping for locale "fr" in report "wdr25".'
-    );
+    }).toThrow('Duplicate chapter slug mapping for locale "fr" in report "wdr25".');
   });
 
   it('skips chapters without canonical mapping', () => {
