@@ -36,7 +36,7 @@ export default async function Footer() {
     <footer className="w-full bg-[#f5f5f5] border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
-        <div className="flex flex-col xl:flex-row justify-between items-start gap-12">
+        <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start gap-12">
 
           {/* ================= LEFT SECTION ================= */}
           <div className="flex flex-col gap-6 shrink-0">
@@ -63,7 +63,7 @@ export default async function Footer() {
                 </div>
               </div>
 
-              {/* Solferino Academy */}
+              {/* Solferino Academy: white bg on the image only */}
               <div className="flex flex-col items-center gap-0 w-[160px]">
                 <Link href="https://solferinoacademy.com">
                   <Image
@@ -71,7 +71,7 @@ export default async function Footer() {
                     alt="Solferino Academy"
                     width={150}
                     height={40}
-                    className="h-18 w-auto object-contain"
+                    className="h-18 w-auto object-contain bg-white rounded-lg p-3"
                   />
                 </Link>
 
@@ -105,10 +105,10 @@ export default async function Footer() {
           </div>
 
           {/* ================= CENTER LINKS ================= */}
-          <div className="flex gap-12 text-sm text-gray-800">
+          <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:gap-12 text-sm text-gray-800">
 
             {/* Report */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col items-center gap-2 text-center lg:items-start lg:text-left">
               <p className="font-semibold">{t('report')}</p>
 
               <Link href={readReportLink}>
@@ -126,7 +126,7 @@ export default async function Footer() {
             </div>
 
             {/* Games */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col items-center gap-2 text-center lg:items-start lg:text-left">
               <p className="font-semibold">{t('games')}</p>
 
               <Link href="/disinformer">Disinformer</Link>
@@ -136,7 +136,7 @@ export default async function Footer() {
           </div>
 
           {/* ================= RIGHT TITLE ================= */}
-          <div className="text-right">
+          <div className="text-center xl:text-right">
             <p className="font-bold text-black text-xl leading-tight">
               {t('world')} <br />
               {t('disasters')} <br />

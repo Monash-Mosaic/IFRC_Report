@@ -323,8 +323,9 @@ describe('Footer', () => {
     it('applies correct text alignment classes to title section', async () => {
       await renderFooter();
       const contentinfo = screen.getByRole('contentinfo');
-      const titleSection = contentinfo.querySelector('.text-right');
+      const titleSection = contentinfo.querySelector('[class*="text-right"]');
       expect(titleSection).toBeInTheDocument();
+      expect(titleSection).toHaveClass('text-center');
     });
   });
 
