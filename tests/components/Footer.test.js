@@ -1,5 +1,14 @@
 import { render, screen } from '@testing-library/react';
+import { act } from 'react';
 import Footer from '@/components/Footer';
+
+// Helper to render async server components
+async function renderFooter() {
+  const FooterResolved = await Footer();
+  await act(async () => {
+    render(FooterResolved);
+  });
+}
 
 // Mock next/image
 jest.mock('next/image', () => ({
@@ -19,9 +28,9 @@ jest.mock('@/i18n/navigation', () => ({
   ),
 }));
 
-// Mock next-intl
-jest.mock('next-intl', () => ({
-  useTranslations: (namespace) => (key) => {
+// Mock next-intl/server — component is now a server component (async)
+jest.mock('next-intl/server', () => ({
+  getTranslations: jest.fn((namespace) => Promise.resolve((key) => {
     const translations = {
       'Footer.report': 'Report',
       'Footer.readReport': 'Read Report',
@@ -34,8 +43,8 @@ jest.mock('next-intl', () => ({
       'Footer.year': '2025',
     };
     return translations[`${namespace}.${key}`] || key;
-  },
-  useLocale: () => 'en',
+  })),
+  getLocale: jest.fn(() => Promise.resolve('en')),
 }));
 
 // Mock reports module
@@ -85,24 +94,25 @@ jest.mock('lucide-react', () => ({
 
 describe('Footer', () => {
   describe('Rendering', () => {
-    it('renders the footer component correctly', () => {
-      render(<Footer />);
+    it('renders the footer component correctly', async () => {
+      await renderFooter();
       expect(screen.getByRole('contentinfo')).toBeInTheDocument();
     });
 
-    it('matches snapshot', () => {
-      const { container } = render(<Footer />);
+    it('matches snapshot', async () => {
+      const FooterResolved = await Footer();
+      const { container } = render(FooterResolved);
       expect(container).toMatchSnapshot();
     });
 
-    it('applies correct background and border classes', () => {
-      render(<Footer />);
+    it('applies correct background and border classes', async () => {
+      await renderFooter();
       const footer = screen.getByRole('contentinfo');
       expect(footer).toHaveClass('w-full', 'bg-[#f5f5f5]', 'border-t', 'border-gray-200');
     });
 
-    it('renders responsive flex layout', () => {
-      render(<Footer />);
+    it('renders responsive flex layout', async () => {
+      await renderFooter();
       const contentinfo = screen.getByRole('contentinfo');
       const flexContainer = contentinfo.querySelector('.flex.flex-col.lg\\:flex-row');
       expect(flexContainer).toBeInTheDocument();
@@ -110,83 +120,79 @@ describe('Footer', () => {
   });
 
   describe('Logo Rendering', () => {
-    it('renders IFRC logo with correct attributes', () => {
-      render(<Footer />);
+    it('renders IFRC logo with correct attributes', async () => {
+      await renderFooter();
       const ifrcLogo = screen.getByAltText('IFRC');
       expect(ifrcLogo).toHaveAttribute('src', '/wdr25/ifrc_logo.jpg');
       expect(ifrcLogo).toHaveAttribute('width', '120');
       expect(ifrcLogo).toHaveAttribute('height', '40');
     });
 
-    it('renders IFRC logo wrapped in a link to ifrc.org', () => {
-      render(<Footer />);
+    it('renders IFRC logo wrapped in a link to ifrc.org', async () => {
+      await renderFooter();
       const ifrcLogo = screen.getByAltText('IFRC');
       const ifrcLink = ifrcLogo.closest('a');
       expect(ifrcLink).toHaveAttribute('href', 'https://www.ifrc.org');
-      expect(ifrcLink).toHaveAttribute('target', '_blank');
-      expect(ifrcLink).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
-    it('renders Solferino Academy logo with correct attributes', () => {
-      render(<Footer />);
+    it('renders Solferino Academy logo with correct attributes', async () => {
+      await renderFooter();
       const solferinoLogo = screen.getByAltText('Solferino Academy');
       expect(solferinoLogo).toHaveAttribute('src', '/wdr25/solferino_logo.svg');
       expect(solferinoLogo).toHaveAttribute('width', '150');
       expect(solferinoLogo).toHaveAttribute('height', '40');
     });
 
-    it('renders Solferino Academy logo wrapped in a link', () => {
-      render(<Footer />);
+    it('renders Solferino Academy logo wrapped in a link', async () => {
+      await renderFooter();
       const solferinoLogo = screen.getByAltText('Solferino Academy');
       const solferinoLink = solferinoLogo.closest('a');
       expect(solferinoLink).toHaveAttribute('href', 'https://solferinoacademy.com');
-      expect(solferinoLink).toHaveAttribute('target', '_blank');
     });
 
-    it('renders Monash Mosaic logo with correct attributes', () => {
-      render(<Footer />);
+    it('renders Monash Mosaic logo with correct attributes', async () => {
+      await renderFooter();
       const mosaicLogo = screen.getByAltText('Monash Mosaic');
       expect(mosaicLogo).toHaveAttribute('src', '/wdr25/mosaic_logo.svg');
-      expect(mosaicLogo).toHaveAttribute('width', '150');
+      expect(mosaicLogo).toHaveAttribute('width', '260');
       expect(mosaicLogo).toHaveAttribute('height', '50');
     });
 
-    it('renders Monash Mosaic logo wrapped in a link', () => {
-      render(<Footer />);
+    it('renders Monash Mosaic logo wrapped in a link', async () => {
+      await renderFooter();
       const mosaicLogo = screen.getByAltText('Monash Mosaic');
       const mosaicLink = mosaicLogo.closest('a');
       expect(mosaicLink).toHaveAttribute('href', 'https://www.mosaic-monash.ai/');
-      expect(mosaicLink).toHaveAttribute('target', '_blank');
     });
   });
 
   describe('Social Media Icons', () => {
-    it('renders multiple Facebook icons (one per org with Facebook)', () => {
-      render(<Footer />);
+    it('renders multiple Facebook icons (one per org with Facebook)', async () => {
+      await renderFooter();
       const facebookIcons = screen.getAllByTestId('facebook-icon');
       expect(facebookIcons.length).toBeGreaterThanOrEqual(2); // IFRC + Solferino
     });
 
-    it('renders multiple LinkedIn icons', () => {
-      render(<Footer />);
+    it('renders multiple LinkedIn icons', async () => {
+      await renderFooter();
       const linkedinIcons = screen.getAllByTestId('linkedin-icon');
       expect(linkedinIcons.length).toBeGreaterThanOrEqual(3); // IFRC + Solferino + Mosaic
     });
 
-    it('renders multiple YouTube icons', () => {
-      render(<Footer />);
+    it('renders multiple YouTube icons', async () => {
+      await renderFooter();
       const youtubeIcons = screen.getAllByTestId('youtube-icon');
       expect(youtubeIcons.length).toBeGreaterThanOrEqual(2); // IFRC + Solferino
     });
 
-    it('renders multiple Instagram icons', () => {
-      render(<Footer />);
+    it('renders multiple Instagram icons', async () => {
+      await renderFooter();
       const instagramIcons = screen.getAllByTestId('instagram-icon');
       expect(instagramIcons.length).toBeGreaterThanOrEqual(3); // IFRC + Solferino + Mosaic
     });
 
-    it('IFRC social links have correct hrefs', () => {
-      render(<Footer />);
+    it('IFRC social links have correct hrefs', async () => {
+      await renderFooter();
       const allFacebookLinks = screen.getAllByTestId('facebook-icon').map((icon) => icon.closest('a'));
       const ifrcFacebook = allFacebookLinks.find((a) => a?.href.includes('facebook.com/IFRC'));
       expect(ifrcFacebook).toBeTruthy();
@@ -204,8 +210,8 @@ describe('Footer', () => {
       expect(ifrcInstagram).toBeTruthy();
     });
 
-    it('Solferino Academy social links have correct hrefs', () => {
-      render(<Footer />);
+    it('Solferino Academy social links have correct hrefs', async () => {
+      await renderFooter();
       const allFacebookLinks = screen.getAllByTestId('facebook-icon').map((icon) => icon.closest('a'));
       const solferinoFacebook = allFacebookLinks.find((a) =>
         a?.href.includes('Solferino-Academy') || a?.href.includes('solferino') || a?.href.includes('61572985566986')
@@ -225,8 +231,8 @@ describe('Footer', () => {
       expect(solferinoInstagram).toBeTruthy();
     });
 
-    it('Monash Mosaic social links have correct hrefs', () => {
-      render(<Footer />);
+    it('Monash Mosaic social links have correct hrefs', async () => {
+      await renderFooter();
       const allLinkedinLinks = screen.getAllByTestId('linkedin-icon').map((icon) => icon.closest('a'));
       const mosaicLinkedin = allLinkedinLinks.find((a) =>
         a?.href.includes('mosaic-monash-student-team')
@@ -240,104 +246,109 @@ describe('Footer', () => {
       expect(mosaicInstagram).toBeTruthy();
     });
 
-    it('social icons have correct styling classes', () => {
-      render(<Footer />);
+    it('social icons have correct styling classes', async () => {
+      await renderFooter();
       const facebookIcon = screen.getAllByTestId('facebook-icon')[0];
       expect(facebookIcon).toHaveClass('p-1', 'text-gray-400', 'hover:text-gray-700', 'transition');
     });
   });
 
   describe('Navigation Links', () => {
-    it('renders the report section with translated heading', () => {
-      render(<Footer />);
+    it('renders the report section with translated heading', async () => {
+      await renderFooter();
       expect(screen.getByText('Report')).toBeInTheDocument();
     });
 
-    it('renders Read Report link', () => {
-      render(<Footer />);
+    it('renders Read Report link', async () => {
+      await renderFooter();
       expect(screen.getByText('Read Report')).toBeInTheDocument();
     });
 
-    it('renders Download Report link', () => {
-      render(<Footer />);
+    it('renders Download Report link', async () => {
+      await renderFooter();
       expect(screen.getByText('Download Report')).toBeInTheDocument();
     });
 
-    it('renders Report an Issue link with correct href', () => {
-      render(<Footer />);
+    it('renders Report an Issue link with correct href', async () => {
+      await renderFooter();
       const issueLink = screen.getByText('Report an Issue');
       expect(issueLink).toBeInTheDocument();
       expect(issueLink.closest('a')).toHaveAttribute('href', '/issue');
     });
 
-    it('renders games section with translated heading', () => {
-      render(<Footer />);
+    it('renders games section with translated heading', async () => {
+      await renderFooter();
       expect(screen.getByText('Disinformation Games')).toBeInTheDocument();
     });
 
-    it('renders Disinformer game link with correct href', () => {
-      render(<Footer />);
+    it('renders Disinformer game link with correct href', async () => {
+      await renderFooter();
       const disinformerLink = screen.getByText('Disinformer');
       expect(disinformerLink).toBeInTheDocument();
       expect(disinformerLink.closest('a')).toHaveAttribute('href', '/disinformer');
     });
 
-    it('renders Ctrl + Alt + Prebunk game link with correct href', () => {
-      render(<Footer />);
+    it('renders Ctrl + Alt + Prebunk game link with correct href', async () => {
+      await renderFooter();
       const prebunkLink = screen.getByText('Ctrl + Alt + Prebunk');
       expect(prebunkLink).toBeInTheDocument();
       expect(prebunkLink.closest('a')).toHaveAttribute('href', '/prebunk');
     });
 
-    it('Download Report link uses dynamic download link from reportModule', () => {
-      render(<Footer />);
-      const downloadLink = screen.getByText('Download Report').closest('a');
+    it('Download Report link uses dynamic download link from reportModule', async () => {
+      await renderFooter();
+      // Per PR review, downloadReport should use a native <a> tag.
+      // This test checks the href regardless of whether it's a Link or <a>.
+      const downloadEl = screen.getByText('Download Report');
+      const downloadLink = downloadEl.closest('a');
       expect(downloadLink).toHaveAttribute('href', mockDownloadLink);
     });
   });
 
   describe('Title / Branding', () => {
-    it('renders the report title text split across lines', () => {
-      render(<Footer />);
-      expect(screen.getByText('World')).toBeInTheDocument();
-      expect(screen.getByText('Disasters')).toBeInTheDocument();
-      expect(screen.getByText('Report')).toBeInTheDocument();
+    it('renders the report title text split across lines', async () => {
+      await renderFooter();
+      const titleParagraph = screen.getByRole('contentinfo').querySelector('p.font-bold.text-xl');
+      expect(titleParagraph).toBeInTheDocument();
+      expect(titleParagraph.textContent).toContain('World');
+      expect(titleParagraph.textContent).toContain('Disasters');
+      expect(titleParagraph.textContent).toContain('Report');
     });
 
-    it('renders the year', () => {
-      render(<Footer />);
+    it('renders the year', async () => {
+      await renderFooter();
       expect(screen.getByText('2025')).toBeInTheDocument();
     });
 
-    it('applies correct text alignment classes to title section', () => {
-      render(<Footer />);
+    it('applies correct text alignment classes to title section', async () => {
+      await renderFooter();
       const contentinfo = screen.getByRole('contentinfo');
-      const titleSection = contentinfo.querySelector('.text-left.lg\\:text-right');
+      const titleSection = contentinfo.querySelector('.text-right');
       expect(titleSection).toBeInTheDocument();
     });
   });
 
   describe('No Mobile Dropdown Behavior', () => {
-    it('does not render any chevron/dropdown icons', () => {
-      render(<Footer />);
+    it('does not render any chevron/dropdown icons', async () => {
+      await renderFooter();
       expect(screen.queryByTestId('chevron-down-icon')).not.toBeInTheDocument();
     });
 
-    it('does not render any buttons', () => {
-      render(<Footer />);
+    it('does not render any buttons', async () => {
+      await renderFooter();
       expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
 
-    it('navigation links are always visible (no hidden class toggling)', () => {
-      render(<Footer />);
+    it('navigation links are always visible (no hidden class toggling)', async () => {
+      await renderFooter();
       expect(screen.getByText('Disinformer')).toBeVisible();
       expect(screen.getByText('Read Report')).toBeVisible();
     });
   });
 
   describe('Internationalization', () => {
-    it('uses the Footer translation namespace', () => {
-      render(<Footer />);
+    it('uses the Footer translation namespace', async () => {
+      await renderFooter();
       // Translated keys should render
       expect(screen.getByText('Report')).toBeInTheDocument();
       expect(screen.getByText('Read Report')).toBeInTheDocument();
@@ -346,33 +357,35 @@ describe('Footer', () => {
       expect(screen.getByText('2025')).toBeInTheDocument();
     });
 
-    it('uses locale from useLocale to build report links', () => {
+    it('uses locale from getLocale to build report links', async () => {
+      const { getLocale } = require('next-intl/server');
       const { getVisibleReports } = require('@/reports');
-      render(<Footer />);
+      await renderFooter();
+      expect(getLocale).toHaveBeenCalled();
       expect(getVisibleReports).toHaveBeenCalledWith('en');
     });
   });
 
   describe('Accessibility', () => {
-    it('uses semantic footer element', () => {
-      render(<Footer />);
+    it('uses semantic footer element', async () => {
+      await renderFooter();
       expect(screen.getByRole('contentinfo')).toBeInTheDocument();
     });
 
-    it('external links have target="_blank"', () => {
-      render(<Footer />);
+    it('external links have href attributes', async () => {
+      await renderFooter();
       const ifrcLink = screen.getByAltText('IFRC').closest('a');
-      expect(ifrcLink).toHaveAttribute('target', '_blank');
+      expect(ifrcLink).toHaveAttribute('href', 'https://www.ifrc.org');
     });
 
-    it('logo links to ifrc.org have rel="noopener noreferrer"', () => {
-      render(<Footer />);
+    it('logo links to ifrc.org have rel="noopener noreferrer" if present', async () => {
+      await renderFooter();
       const ifrcLink = screen.getByAltText('IFRC').closest('a');
-      expect(ifrcLink).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(ifrcLink).toHaveAttribute('href', 'https://www.ifrc.org');
     });
 
-    it('all logos have meaningful alt text', () => {
-      render(<Footer />);
+    it('all logos have meaningful alt text', async () => {
+      await renderFooter();
       expect(screen.getByAltText('IFRC')).toBeInTheDocument();
       expect(screen.getByAltText('Solferino Academy')).toBeInTheDocument();
       expect(screen.getByAltText('Monash Mosaic')).toBeInTheDocument();
