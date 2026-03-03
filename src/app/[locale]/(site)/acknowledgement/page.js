@@ -157,6 +157,11 @@ export default async function AcknowledgementsPage({ params }) {
             <p>
               {t('copyeditorLabel')} <strong>{t('copyeditor')}</strong>
             </p>
+            {t.has('frenchEditorLabel') && (
+              <p>
+                {t('frenchEditorLabel')} <strong>{t('frenchEditor')}</strong>
+              </p>
+            )}
           </div>
 
           {/* Contributions */}
