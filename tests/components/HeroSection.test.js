@@ -90,6 +90,11 @@ const defaultProps = {
       read: 'Read Report',
       download: 'Download PDF',
       share: 'Share Report',
+      closeShare: 'Close share menu',
+      copyLink: 'Copy link',
+      shareLinkedIn: 'Share to LinkedIn',
+      shareFacebook: 'Share to Facebook',
+      shareWhatsApp: 'Share to WhatsApp',
     },
     heroAlt: 'World Disasters Report 2025 hero image',
   },
@@ -163,6 +168,11 @@ describe('HeroSection', () => {
           read: 'Lire le Rapport',
           download: 'Télécharger PDF',
           share: 'Partager Rapport',
+          closeShare: 'Fermer le menu de partage',
+          copyLink: 'Copier le lien',
+          shareLinkedIn: 'Partager sur LinkedIn',
+          shareFacebook: 'Partager sur Facebook',
+          shareWhatsApp: 'Partager sur WhatsApp',
         },
         heroAlt: 'Custom hero alt text for testing',
       },
@@ -261,9 +271,8 @@ describe('HeroSection', () => {
     expect(shareButton).toHaveAttribute('aria-expanded', 'false');
     expect(shareButton).toHaveAttribute('aria-label', 'Share Report');
 
-    // Share text hidden on mobile, visible on md+
-    expect(shareSpan).toHaveClass('hidden', 'md:inline');
-    expect(shareSpan).toHaveStyle({ fontSize: '18px', fontWeight: 500 });
+    // Share text hidden on mobile, visible on md+ with correct Tailwind classes
+    expect(shareSpan).toHaveClass('hidden', 'md:inline', 'text-lg', 'font-medium', 'leading-[150%]');
 
     // Buttons should be clickable without crashing
     fireEvent.click(downloadLink);
@@ -305,6 +314,11 @@ describe('HeroSection', () => {
           read: '',
           download: '',
           share: '',
+          closeShare: '',
+          copyLink: '',
+          shareLinkedIn: '',
+          shareFacebook: '',
+          shareWhatsApp: '',
         },
         heroAlt: '',
       },
@@ -477,7 +491,7 @@ describe('HeroSection', () => {
         messages: {
           title: 'تقرير الكوارث العالمي',
           description: 'وصف التقرير',
-          buttonTexts: { read: 'قراءة التقرير', download: 'تحميل التقرير', share: 'مشاركة' },
+          buttonTexts: { read: 'قراءة التقرير', download: 'تحميل التقرير', share: 'مشاركة', closeShare: 'إغلاق قائمة المشاركة', copyLink: 'نسخ الرابط', shareLinkedIn: 'مشاركة عبر لينكدإن', shareFacebook: 'مشاركة عبر فيسبوك', shareWhatsApp: 'مشاركة عبر واتساب' },
           heroAlt: 'صورة التقرير',
         },
         url: '/ar/reports/wdr25',

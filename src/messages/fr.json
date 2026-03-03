@@ -55,7 +55,12 @@
         "buttonTexts": {
           "read": "Lire le rapport",
           "download": "Télécharger le rapport",
-          "share": "Partager"
+          "share": "Partager",
+          "closeShare": "Fermer le menu de partage",
+          "copyLink": "Copier le lien",
+          "shareLinkedIn": "Partager sur LinkedIn",
+          "shareFacebook": "Partager sur Facebook",
+          "shareWhatsApp": "Partager sur WhatsApp"
         },
         "heroAlt": "Image principale du Rapport sur les catastrophes dans le monde montrant des travailleurs humanitaires en action"
       },
