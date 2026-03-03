@@ -9,7 +9,7 @@ import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 
 export async function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.filter((l) => isLocaleReleased(l)).map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }) {
@@ -100,6 +100,7 @@ export default async function AcknowledgementsPage({ params }) {
           <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
             {t.rich('intro', {
               bold: (chunk) => <strong>{chunk}</strong>,
+              italic: (chunk) => <em>{chunk}</em>
             })}
           </p>
 
@@ -156,11 +157,19 @@ export default async function AcknowledgementsPage({ params }) {
             <p>
               {t('copyeditorLabel')} <strong>{t('copyeditor')}</strong>
             </p>
+            {t.has('frenchEditorLabel') && (
+              <p>
+                {t('frenchEditorLabel')} <strong>{t('frenchEditor')}</strong>
+              </p>
+            )}
           </div>
 
           {/* Contributions */}
           <p className="text-sm md:text-base leading-relaxed whitespace-pre-line">
-            {t('contributions')}
+            {t.rich('contributions', {
+              bold: (chunk) => <strong>{chunk}</strong>,
+              italic: (chunk) => <em>{chunk}</em>
+            })}
           </p>
 
           {/* Research acknowledgement */}

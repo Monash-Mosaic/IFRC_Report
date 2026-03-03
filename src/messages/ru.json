@@ -262,7 +262,7 @@
     "leadEditorLabel": "Главный редактор и автор:",
     "leadEditor": "Charlotte Lindsey Curtet",
     "designerLabel": "Дизайнер:",
-    "designer": "Yann le Floch",
+    "designer": "Yann le Floc'h",
     "projectManagerLabel": "Руководитель проекта:",
     "projectManager": "Heather Marie Leson",
     "copyeditorLabel": "Редактор:",
@@ -286,6 +286,16 @@
     "noQuotesMatch": "Нет цитат, соответствующих выбранным фильтрам.",
     "errorLoadingQuotes": "Не удалось загрузить цитаты. Попробуйте ещё раз.",
     "filtersActive": "{count, plural, one {# фильтр активен} other {# фильтров активны}}"
+  "Footer": {
+    "report": "Отчёт",
+    "readReport": "Читать отчёт",
+    "downloadReport": "Скачать отчёт",
+    "reportIssue": "Сообщить о проблеме",
+    "games": "Игры",
+    "world": "Мировой",
+    "disasters": "доклад о катастрофах",
+    "reportTitle": "",
+    "year": "2026"
   },
   "ContributionInsight": {
     "title": "Анализ Вклада"

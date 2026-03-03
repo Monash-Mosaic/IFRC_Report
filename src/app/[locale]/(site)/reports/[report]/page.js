@@ -132,8 +132,8 @@ export default async function ReportDetailPage({ params }) {
   });
 
   const chapterEntries = Object.entries(chapters)
+    .filter(([_, chapter]) => chapter.released)
     .map(([chapterKey, chapter]) => {
-      const chapterNumber = chapter.metadata?.chapterNumber;
       const chapterPrefix = chapter.metadata?.chapterPrefix || '';
 
       return {

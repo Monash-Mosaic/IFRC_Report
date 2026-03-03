@@ -1,7 +1,7 @@
 export const localeRelease = {
   en: { production: true, preview: true },
-  fr: { production: false, preview: true },
-  zh: { production: false, preview: true },
+  fr: { production: true, preview: true },
+  zh: { production: true, preview: true },
   ar: { production: false, preview: true },
   ru: { production: false, preview: true },
   es: { production: false, preview: true },

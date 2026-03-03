@@ -26,7 +26,7 @@ export default async function Header({ locale }) {
   const searchPlaceholder = t('nav.searchPlaceholder');
 
   return (
-    <header className="w-full bg-white">
+    <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
       <input id="mobile-menu-toggle" type="checkbox" className="peer sr-only" />
 
       <div className="max-w-9/10 lg:max-w-8/10 mx-auto px-4 py-4 flex items-center justify-between [&_.menu-close-icon]:hidden peer-checked:[&_.menu-open-icon]:hidden peer-checked:[&_.menu-close-icon]:block">

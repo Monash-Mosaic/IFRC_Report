@@ -592,7 +592,7 @@ export function EndnotesLink({ children, ...props }) {
 
 export function ChapterLink({ children, ...props }) {
   return (
-    <a className="text-[#f2483a]" {...props}>
+    <a className="text-[#ee2435]" {...props}>
       {children}
     </a>
   );

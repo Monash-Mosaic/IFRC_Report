@@ -65,7 +65,7 @@ export const featuredVideos = [
   },
 ];
 
-export const chapterRelease = true;
+export const chapterRelease = false;
 
 export const chapters = {
   synthesis: {
@@ -114,7 +114,7 @@ export const chapters = {
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Chapter1.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-02': {
     metadata: {
@@ -128,7 +128,7 @@ export const chapters = {
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
     thumbnail: '/wdr25/chapters/Chapter2.png',
-    released: false,
+    released: true,
     audios: [
       {
         id: 'intro',
@@ -238,6 +238,6 @@ export const chapters = {
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Chapter8.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
 };

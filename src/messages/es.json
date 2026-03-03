@@ -231,7 +231,7 @@
     "leadEditorLabel": "Editora principal y autora:",
     "leadEditor": "Charlotte Lindsey Curtet",
     "designerLabel": "Diseñador:",
-    "designer": "Yann le Floch",
+    "designer": "Yann le Floc'h",
     "projectManagerLabel": "Directora de proyecto:",
     "projectManager": "Heather Marie Leson",
     "copyeditorLabel": "Correctora de estilo:",
@@ -299,5 +299,16 @@
     "cancel": "Cancelar",
     "success": "Gracias. Tu reporte se ha enviado.",
     "error": "Algo ha fallado. Inténtalo de nuevo."
+  },
+  "Footer": {
+    "report": "Informe",
+    "readReport": "Leer el informe",
+    "downloadReport": "Descargar el informe",
+    "reportIssue": "Informar un problema",
+    "games": "Juegos",
+    "world": "Mundial",
+    "disasters": "sobre Desastres",
+    "reportTitle": "Informe",
+    "year": "2026"
   }
 }
