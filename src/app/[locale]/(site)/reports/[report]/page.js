@@ -147,6 +147,7 @@ export default async function ReportDetailPage({ params }) {
           params: { report: decodedReport, chapter: chapterKey },
         },
         thumbnail: chapter.thumbnail,
+        downloadLink: chapter.downloadLink,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
         released: chapter.released,
         sortOrder: chapter.metadata.chapterNumber,
@@ -187,6 +188,8 @@ export default async function ReportDetailPage({ params }) {
               continueHref={chapter.continueHref}
               report={decodedReport}
               released={chapter.released}
+              page={!!chapter.continueHref}
+              downloadLink={chapter.downloadLink}
               translations={{
                 continue: t('sections.continue'),
                 comingSoon: t('sections.comingSoon'),
@@ -200,11 +203,6 @@ export default async function ReportDetailPage({ params }) {
             </div>
           )}
         </div>
-
-        {/* Placeholder only when subscribe + hero are not shown */}
-        {!showSubscribeSection && (
-          <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
-        )}
 
         {/* Hero Video Section — show when subscribe box is shown; same container as content */}
         {showSubscribeSection && (

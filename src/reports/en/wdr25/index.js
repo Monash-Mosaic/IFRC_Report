@@ -65,13 +65,13 @@ export const featuredVideos = [
   },
 ];
 
-export const chapterRelease = false;
+export const chapterRelease = true;
 
 export const chapters = {
   synthesis: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: -1,
+      chapterNumber: -5,
       chapterPrefix: 'Synthesis',
     },
     component: Synthesis.default,
@@ -81,6 +81,39 @@ export const chapters = {
     downloadLink:
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  acknowledgement: {
+    metadata: {
+      chapterKey: 'acknowledgement',
+      chapterNumber: -4,
+      chapterPrefix: 'Acknowledgement',
+    },
+    title: 'Acknowledgement',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Acknowledgments_EN.pdf',
+    thumbnailOverlay: 'blue',
+    released: true,
+  },
+  foreword: {
+    metadata: {
+      chapterKey: 'foreword',
+      chapterNumber: -3,
+      chapterPrefix: 'Foreword',
+    },
+    title: 'Foreword',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Foreword_EN.pdf', 
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  acronyms: {
+    metadata: {
+      chapterKey: 'acronyms',
+      chapterNumber: -2,
+      chapterPrefix: 'Acronyms',
+    },
+    title: 'Acronyms',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Acronyms_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -95,7 +128,7 @@ export const chapters = {
     subtitle: Introduction.subtitle,
     tableOfContents: Introduction.tableOfContents,
     downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+      'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Introduction_EN.pdf',
     thumbnail: '/wdr25/chapters/Intro.jpg',
     thumbnailOverlay: 'blue',
     released: true,
@@ -114,7 +147,7 @@ export const chapters = {
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Chapter1.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-02': {
     metadata: {
@@ -237,6 +270,28 @@ export const chapters = {
     downloadLink:
       'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
     thumbnail: '/wdr25/chapters/Chapter8.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'glossary': {
+    metadata: {
+      chapterKey: 'glossary',
+      chapterNumber: 9,
+      chapterPrefix: 'Glossary',
+    },
+    title: 'Glossary',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Glossary_EN.pdf',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'annex2': {
+    metadata: {
+      chapterKey: 'annex2',
+      chapterNumber: 10,
+      chapterPrefix: 'Annex 2',
+    },
+    title: 'Annex 2',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Annex2_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },
