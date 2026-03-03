@@ -286,6 +286,7 @@
     "noQuotesMatch": "Нет цитат, соответствующих выбранным фильтрам.",
     "errorLoadingQuotes": "Не удалось загрузить цитаты. Попробуйте ещё раз.",
     "filtersActive": "{count, plural, one {# фильтр активен} other {# фильтров активны}}"
+  },
   "Footer": {
     "report": "Отчёт",
     "readReport": "Читать отчёт",
