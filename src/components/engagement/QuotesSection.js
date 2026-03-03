@@ -1,7 +1,8 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { QuoteIcon, Monitor, Wifi, Smartphone, Activity, User, Building2 } from 'lucide-react';
+import EmblaCarousel from '@/components/EmblaCarousel';
 
 const TAG_COLUMN_MAP = {
   psychological:         { column: 'harm',        label: 'Psychological' },
@@ -184,6 +185,7 @@ function QuoteCard({ quote }) {
 
 export default function QuotesSection({ selectedTag }) {
   const t = useTranslations('Engagement');
+  const locale = useLocale();
   const [quotes, setQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -284,14 +286,17 @@ export default function QuotesSection({ selectedTag }) {
           {t('noQuotesMatch')}
         </div>
       ) : (
-        <div
-          className="flex items-start gap-4 overflow-x-auto pb-3"
-          style={{ scrollbarWidth: 'thin', scrollbarColor: '#e2e8f0 transparent' }}
+        <EmblaCarousel
+          locale={locale}
+          slideWidth={280}
+          loop={false}
+          showArrows={true}
+          containerClassName="pb-3"
         >
           {filtered.map((quote) => (
             <QuoteCard key={quote.id} quote={quote} />
           ))}
-        </div>
+        </EmblaCarousel>
       )}
     </div>
   );
