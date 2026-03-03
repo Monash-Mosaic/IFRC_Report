@@ -282,6 +282,8 @@ export default function QuotesSection({ selectedTag }) {
           slideWidth={280}
           loop={false}
           showArrows={true}
+          arrowsPosition="top"
+          className="!space-y-4"
           containerClassName="pb-3"
         >
           {filtered.map((quote) => (
