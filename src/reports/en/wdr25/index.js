@@ -2,6 +2,7 @@ import * as Synthesis from './exec-summary.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter03 from './chapter-03.mdx';
 import * as Chapter08 from './chapter-08.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
@@ -159,13 +160,13 @@ export const chapters = {
       chapterNumber: 3,
       chapterPrefix: 'Chapter 3',
     },
-    component: Chapter02.default,
-    title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
-    subtitle: 'Harmful Narratives that Thrive',
-    tableOfContents: [],
+    component: Chapter03.default,
+    title: Chapter03.title,
+    subtitle: Chapter03.subtitle,
+    tableOfContents: Chapter03.tableOfContents,
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
-    released: false,
+    released: true,
   },
   'chapter-04': {
     metadata: {
