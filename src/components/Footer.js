@@ -41,7 +41,7 @@ export default async function Footer() {
           {/* ================= LEFT SECTION ================= */}
           <div className="flex flex-col gap-6 shrink-0">
 
-            <div className="flex items-start gap-8 flex-wrap xl:flex-nowrap">
+            <div className="flex flex-col items-center gap-8 xl:flex-row xl:items-start xl:flex-nowrap">
 
               {/* IFRC */}
               <div className="flex flex-col items-center gap-3 w-[160px] mt-3">
