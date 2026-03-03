@@ -64,7 +64,7 @@ export default function Footer() {
             </div>
 
             {/* Social Media Icons */}
-            <div className="border-gray-200 pt-3 lg:pt-6">
+            <div className="border-gray-200 pt-3 lg:pt-6" data-ga-section="footer_social">
               <div className="flex space-x-3 justify-center lg:justify-start">
                 <Link
                   href="https://www.facebook.com/p/IFRC-Solferino-Academy-61572985566986/"

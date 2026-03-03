@@ -190,7 +190,7 @@ export default async function ReportDetailPage({ params }) {
         </div>
 
         {/* Content Area */}
-        <div className="p-6 bg-white rounded-lg shadow">
+        <div className="p-6 bg-white rounded-lg shadow" data-ga-section="list">
           {activeMenu === 'bookmark' && displayedSections.length === 0 && (
             <div className="text-center py-8 text-gray-500">
               <p className="text-lg">No bookmarked sections yet.</p>

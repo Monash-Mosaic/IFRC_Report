@@ -133,11 +133,15 @@ export default async function Home({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
-        <HeroSection locale={locale} messages={heroMessage} />
-        <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
+        <div data-ga-section="hero">
+          <HeroSection locale={locale} messages={heroMessage} />
+        </div>
+        <div data-ga-section="executive_summary">
+          <ExecutiveSummarySection locale={locale} messages={executiveSummary} />
+        </div>
 
         {/* Featured Videos Section */}
-        <div>
+        <div data-ga-section="featured_videos">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.featuredVideos.title')}
           </h2>
@@ -154,7 +158,7 @@ export default async function Home({ params }) {
         </div>
 
         {/* Citations Section */}
-        <div>
+        <div data-ga-section="quotes">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.testimonials.title')}
           </h2>

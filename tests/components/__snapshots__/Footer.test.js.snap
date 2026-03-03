@@ -61,6 +61,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
           </div>
           <div
             class="border-gray-200 pt-3 lg:pt-6"
+            data-ga-section="footer_social"
           >
             <div
               class="flex space-x-3 justify-center lg:justify-start"
