@@ -60,7 +60,7 @@
         "heroAlt": "Imagen principal del Informe Mundial sobre Desastres mostrando a trabajadores humanitarios en acción"
       },
       "executiveSummary": {
-        "title": "Resumen Ejecutivo",
+        "title": "Síntesis",
         "subtitle": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
         "description": "En Punto Crítico: Contrarrestando la Información Perjudicial, Defendiendo la Humanidad",
         "buttonTexts": {
@@ -244,6 +244,31 @@
       "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
     }
   },
+  "ContributionInsight": {
+    "title": "Contribution Insight"
+  },
+  "TohIcons": {
+    "deprivational": "Deprivational",
+    "societal": "Societal",
+    "digital": "Digital",
+    "longitudinal": "Longitudinal",
+    "physical": "Physical",
+    "psychological": "Psychological",
+    "social": "Social",
+    "informational": "Informational"
+  },
+  "ReportSubscribe": {
+    "headline": "El informe completo estará disponible pronto.",
+    "placeholder": "Únase a nuestra lista de correo",
+    "submit": "Suscribirse",
+    "submitting": "Suscribiendo…",
+    "successTitle": "¡Gracias por unirse!",
+    "successMessage": "Le enviaremos un correo cuando el nuevo contenido esté disponible.",
+    "close": "Cerrar",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "invalidEmail": "Introduce una dirección de correo electrónico válida.",
+    "subscribeError": "No pudimos añadirte a la lista. Por favor, inténtalo de nuevo más tarde."
+  },
   "ReportIncident": {
     "trigger": "Reportar un error",
     "triggerTooltip": "¿Reportar un error?",
@@ -256,16 +281,5 @@
     "cancel": "Cancelar",
     "success": "Gracias. Tu reporte se ha enviado.",
     "error": "Algo ha fallado. Inténtalo de nuevo."
-  },
-  "Footer": {
-    "report": "Informe",
-    "readReport": "Leer el informe",
-    "downloadReport": "Descargar el informe",
-    "reportIssue": "Informar un problema",
-    "games": "Juegos",
-    "world": "Mundial",
-    "disasters": "sobre Desastres",
-    "reportTitle": "Informe",
-    "year": "2026"
   }
 }
