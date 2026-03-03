@@ -36,12 +36,12 @@ export default async function Footer() {
     <footer className="w-full bg-[#f5f5f5] border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-12">
+        <div className="flex flex-col xl:flex-row justify-between items-start gap-12">
 
           {/* ================= LEFT SECTION ================= */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 shrink-0">
 
-            <div className="flex items-start gap-12 flex-wrap">
+            <div className="flex items-start gap-8 flex-wrap xl:flex-nowrap">
 
               {/* IFRC */}
               <div className="flex flex-col items-center gap-3 w-[160px] mt-3">
