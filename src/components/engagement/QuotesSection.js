@@ -128,9 +128,9 @@ function QuoteCard({ quote }) {
       className="flex-shrink-0 bg-white rounded-xl border-2 border-[#ee2435] flex flex-col"
       style={{ width: '280px' }}
     >
-      <div className="p-5 flex flex-col flex-1 gap-4">
+      <div className="p-5 flex flex-col gap-4">
         {/* Quote text */}
-        <p className="text-sm text-slate-800 leading-relaxed flex-1">
+        <p className="text-sm text-slate-800 leading-relaxed">
           &ldquo;{quote.text}&rdquo;
         </p>
 
@@ -285,7 +285,7 @@ export default function QuotesSection({ selectedTag }) {
         </div>
       ) : (
         <div
-          className="flex gap-4 overflow-x-auto pb-3"
+          className="flex items-start gap-4 overflow-x-auto pb-3"
           style={{ scrollbarWidth: 'thin', scrollbarColor: '#e2e8f0 transparent' }}
         >
           {filtered.map((quote) => (
