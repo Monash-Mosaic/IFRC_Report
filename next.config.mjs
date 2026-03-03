@@ -1,21 +1,17 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 import createMDX from '@next/mdx';
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
-
 const nextIntlPlugin = createNextIntlPlugin();
 
 const withMDX = createMDX({
   options: {
+    remarkPlugins: [['remark-gfm']],
     rehypePlugins: [
       ['rehype-slug', {}],
       [
         'rehype-autolink-headings',
         {
           behavior: 'wrap',
-          content: {
-            type: 'text',
-            value: ' 🔗',
-          },
         },
       ],
       ['@stefanprobst/rehype-extract-toc', {}],
