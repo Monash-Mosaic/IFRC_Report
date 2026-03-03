@@ -114,7 +114,7 @@ describe('Footer', () => {
     it('renders responsive flex layout', async () => {
       await renderFooter();
       const contentinfo = screen.getByRole('contentinfo');
-      const flexContainer = contentinfo.querySelector('.flex.flex-col.lg\\:flex-row');
+      const flexContainer = contentinfo.querySelector('.flex.flex-col.xl\\:flex-row');
       expect(flexContainer).toBeInTheDocument();
     });
   });

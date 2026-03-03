@@ -9,13 +9,13 @@ exports[`Footer Rendering matches snapshot 1`] = `
       class="max-w-7xl mx-auto px-6 py-12"
     >
       <div
-        class="flex flex-col lg:flex-row justify-between items-start gap-12"
+        class="flex flex-col xl:flex-row justify-between items-start gap-12"
       >
         <div
-          class="flex flex-col gap-6"
+          class="flex flex-col gap-6 shrink-0"
         >
           <div
-            class="flex items-start gap-12 flex-wrap"
+            class="flex items-start gap-8 flex-wrap xl:flex-nowrap"
           >
             <div
               class="flex flex-col items-center gap-3 w-[160px] mt-3"
