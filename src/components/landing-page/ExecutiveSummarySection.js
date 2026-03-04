@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Download } from 'lucide-react';
 import { Eye } from 'lucide-react';
+import DownloadButton from '@/components/DownloadButton';
 
 export default function ExecutiveSummarySection({ messages }) {
   return (
@@ -44,16 +45,16 @@ export default function ExecutiveSummarySection({ messages }) {
               {messages.buttonTexts.read}
               <Eye className="w-5 h-5 flex-shrink-0" />
             </Link>
-            <a
-              href={messages.downloadLink}
+            <DownloadButton
+              url={messages.downloadLink}
               alt="alt text"
-              target="_blank"
-              className="px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+              target="_blank" 
               rel="noopener noreferrer"
+              className="px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap"
             >
               {messages.buttonTexts.download}
               <Download className="w-5 h-5 flex-shrink-0" />
-            </a>
+            </DownloadButton>
           </div>
         </div>
 

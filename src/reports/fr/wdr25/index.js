@@ -13,7 +13,8 @@ export const category = 'Rapport annuel';
 export const releaseDate = new Date('2025-11-15');
 
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
+  // TODO: Update with the full report file details
+  // url: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_FR.pdf',
   size: 19_389_263,
 };
 

@@ -141,7 +141,8 @@
       "expandChapter": "Développer les détails du chapitre",
       "notAvailable": "Non disponible",
       "download": "Télécharger"
-    }
+    },
+    "downloadFullReport": "Télécharger le rapport complet"
   },
   "ReportChapterPage": {
     "tocTitle": "Sur cette chapitre"

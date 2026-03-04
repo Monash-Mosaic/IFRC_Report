@@ -13,8 +13,8 @@ export const category = 'Годовой отчет';
 export const releaseDate = new Date('2025-11-15');
 
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
-  size: 19_389_263,
+  // url: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf',
+  // size: 19_389_263,
 };
 
 export const testimonialsList = [
@@ -76,7 +76,7 @@ export const chapters = {
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
     downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+      'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf',
   },
   'глава-02': {
     metadata: {

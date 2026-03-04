@@ -269,11 +269,9 @@ describe('Footer', () => {
       expect(screen.getByText('Download Report')).toBeInTheDocument();
     });
 
-    it('renders Report an Issue link with correct href', async () => {
+    it('does not render Report an Issue link', async () => {
       await renderFooter();
-      const issueLink = screen.getByText('Report an Issue');
-      expect(issueLink).toBeInTheDocument();
-      expect(issueLink.closest('a')).toHaveAttribute('href', '/issue');
+      expect(screen.queryByText('Report an Issue')).not.toBeInTheDocument();
     });
 
     it('renders games section with translated heading', async () => {

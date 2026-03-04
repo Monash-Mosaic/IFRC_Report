@@ -123,7 +123,8 @@
       "expandChapter": "展开章节详情",
       "notAvailable": "不可用",
       "download": "下载"
-    }
+    },
+    "downloadFullReport": "下载完整报告"
   },
   "ReportChapterPage": {
     "tocTitle": "在本章节"

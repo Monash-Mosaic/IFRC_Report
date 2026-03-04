@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
+import DownloadLink from '@/components/DownloadButton';
 
 import { Download } from 'lucide-react';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -202,9 +203,9 @@ export default async function ReportDetailPage({ params }) {
               }}
             />
           ))}
-          {locale === 'en' && reportFile?.url && (
+          {reportFile?.url && (
             <div className="flex justify-center mt-8">
-              <a
+              <DownloadLink
                 href={reportFile.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -212,7 +213,7 @@ export default async function ReportDetailPage({ params }) {
               >
                 <Download className="w-5 h-5 flex-shrink-0" />
                 <span>{t('downloadFullReport')}</span>
-              </a>
+              </DownloadLink>
             </div>
           )}
           {showSubscribeSection && (

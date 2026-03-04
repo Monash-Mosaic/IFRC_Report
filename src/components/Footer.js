@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { getTranslations, getLocale } from 'next-intl/server';
 import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
-
+import DownloadLink from '@/components/DownloadButton';
 import { getVisibleReports, reportUriMap } from '@/reports';
 
 export default async function Footer() {
@@ -27,8 +27,7 @@ export default async function Footer() {
     },
   };
 
-  const downloadReportLink =
-    reportModule?.chapters?.[chapterSlug]?.downloadLink ?? '#';
+  const downloadReportLink = reportModule?.reportFile?.url || reportModule?.chapters?.[chapterSlug]?.downloadLink;
 
   /* ======================================================== */
 
@@ -116,13 +115,9 @@ export default async function Footer() {
               </Link>
 
               {/* Native <a> tag per PR review — external download link */}
-              <a href={downloadReportLink}>
+              <DownloadLink url={downloadReportLink} >
                 {t('downloadReport')}
-              </a>
-
-              <Link href="/issue">
-                {t('reportIssue')}
-              </Link>
+              </DownloadLink>
             </div>
 
             {/* Games */}

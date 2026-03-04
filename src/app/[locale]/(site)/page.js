@@ -114,7 +114,7 @@ export default async function Home({ params }) {
         },
       },
     }),
-    downloadLink: reportModule.chapters[chapterSlug]?.downloadLink,
+    downloadLink: reportModule?.reportFile?.url || reportModule.chapters[chapterSlug]?.downloadLink,
   };
 
   const homeJsonLd = {

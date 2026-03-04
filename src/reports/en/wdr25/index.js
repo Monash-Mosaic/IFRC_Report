@@ -80,7 +80,7 @@ export const chapters = {
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
-    downloadLink: fullReportUrl,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_EN.pdf',
     thumbnail: '/wdr25/chapters/Synthesis.jpg',
     thumbnailOverlay: 'red',
     released: true,
