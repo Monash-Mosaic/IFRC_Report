@@ -8,6 +8,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getDirection } from '@/i18n/helper';
 import { routing } from '@/i18n/routing';
 import ReportIncidentWidget from '@/components/ReportIncidentWidget';
+import OutboundLinkTracker from '@/components/OutboundLinkTracker';
+import ScrollDepthTracker from '@/components/ScrollDepthTracker';
 import './globals.css';
 import localFont from 'next/font/local';
 
@@ -76,6 +78,8 @@ export default async function RootLayout({ children, params }) {
         <NextIntlClientProvider>
           {children}
           <ReportIncidentWidget />
+          <OutboundLinkTracker />
+          <ScrollDepthTracker />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -16,7 +16,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-white border-t border-gray-200">
+    <footer className="w-full bg-white border-t border-gray-200" data-ga-section="footer">
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Main Footer Layout */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start space-y-12 lg:space-y-0">
