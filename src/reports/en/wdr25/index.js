@@ -15,8 +15,10 @@ export const category = 'Annual Report';
 
 export const releaseDate = new Date('2025-11-15');
 
+const fullReportUrl = 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf';
+
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
+  url: fullReportUrl,
   size: 19_389_263,
 };
 
@@ -78,7 +80,7 @@ export const chapters = {
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
-    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_EN.pdf',
+    downloadLink: fullReportUrl,
     thumbnail: '/wdr25/chapters/Synthesis.jpg',
     thumbnailOverlay: 'red',
     released: true,

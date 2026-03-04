@@ -18,7 +18,7 @@ export default async function Footer() {
   const reportModule = getVisibleReports(locale)?.wdr25;
 
   const chapterSlug =
-    reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
+    reportUriMap['wdr25'].chapters['synthesis'].languages[locale];
 
   const readReportLink = {
     pathname: '/reports/[report]',
