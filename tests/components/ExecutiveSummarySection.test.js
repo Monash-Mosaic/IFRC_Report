@@ -104,7 +104,7 @@ const defaultProps = {
     },
     summaryAlt: 'Executive Summary cover featuring a person in humanitarian context',
   },
-  url: '/reports/wdr25/chapter-02',
+  url: '/reports/wdr26/chapter-02',
   downloadLink:
     'https://www.heritage.vic.gov.au/__data/assets/pdf_file/0022/512275/Victorias-framework-of-historical-themes-Heritage-Council-of-Victoria,-Victorian-Aboriginal-Heritage-Council-2009.pdf',
 };
@@ -150,7 +150,7 @@ describe('ExecutiveSummarySection', () => {
     // Should show images (now there are two for responsive design)
     const images = screen.getAllByTestId('mock-image');
     expect(images.length).toBe(2); // One for mobile, one for desktop
-    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.png');
+    expect(images[0]).toHaveAttribute('src', '/wdr26/summary.png');
     expect(images[0]).toHaveAttribute(
       'alt',
       'Executive Summary cover featuring a person in humanitarian context'
@@ -222,7 +222,7 @@ describe('ExecutiveSummarySection', () => {
       'gap-2',
       'whitespace-nowrap'
     );
-    expect(readButton).toHaveAttribute('href', '/reports/wdr25/chapter-02');
+    expect(readButton).toHaveAttribute('href', '/reports/wdr26/chapter-02');
     expect(readButton).toHaveTextContent('Read Full Report');
 
     // Check download button styling (now using anchor tag with download styling)
@@ -289,7 +289,7 @@ describe('ExecutiveSummarySection', () => {
     const images = screen.getAllByTestId('mock-image');
 
     // Should have correct image attributes (check first image)
-    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.png');
+    expect(images[0]).toHaveAttribute('src', '/wdr26/summary.png');
     expect(images[0]).toHaveAttribute(
       'alt',
       'Executive Summary cover featuring a person in humanitarian context'
@@ -341,7 +341,7 @@ describe('ExecutiveSummarySection', () => {
     // Read link
     const readLink = links.find(link => link.textContent.includes('Read Full Report'));
     expect(readLink).toBeInTheDocument();
-    expect(readLink).toHaveAttribute('href', '/reports/wdr25/chapter-02');
+    expect(readLink).toHaveAttribute('href', '/reports/wdr26/chapter-02');
     
     // Download link
     const downloadLink = links.find(link => link.textContent.includes('Download PDF'));

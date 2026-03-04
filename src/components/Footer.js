@@ -15,15 +15,15 @@ export default async function Footer() {
 
   /* ================= DYNAMIC REPORT LINKS ================= */
 
-  const reportModule = getVisibleReports(locale)?.wdr25;
+  const reportModule = getVisibleReports(locale)?.wdr26;
 
   const chapterSlug =
-    reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
+    reportUriMap['wdr26'].chapters['chapter-02'].languages[locale];
 
   const readReportLink = {
     pathname: '/reports/[report]',
     params: {
-      report: reportUriMap['wdr25'].languages[locale],
+      report: reportUriMap['wdr26'].languages[locale],
     },
   };
 
@@ -47,7 +47,7 @@ export default async function Footer() {
               <div className="flex flex-col items-center gap-3 w-[160px] mt-3">
                 <Link href="https://www.ifrc.org">
                   <Image
-                    src="/wdr25/ifrc_logo.jpg"
+                    src="/wdr26/ifrc_logo.jpg"
                     alt="IFRC"
                     width={120}
                     height={40}
@@ -67,7 +67,7 @@ export default async function Footer() {
               <div className="flex flex-col items-center gap-0 w-[160px]">
                 <Link href="https://solferinoacademy.com">
                   <Image
-                    src="/wdr25/solferino_logo.svg"
+                    src="/wdr26/solferino_logo.svg"
                     alt="Solferino Academy"
                     width={150}
                     height={40}
@@ -87,7 +87,7 @@ export default async function Footer() {
               <div className="flex flex-col items-center gap-1 w-[260px] mt-3">
                 <Link href="https://www.mosaic-monash.ai/">
                   <Image
-                    src="/wdr25/mosaic_logo.svg"
+                    src="/wdr26/mosaic_logo.svg"
                     alt="Monash Mosaic"
                     width={260}
                     height={50}

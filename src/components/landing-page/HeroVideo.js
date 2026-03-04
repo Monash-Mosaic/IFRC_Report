@@ -26,7 +26,7 @@ export default function HeroVideo({ alt }) {
     let cancelled = false;
 
     const attachHls = async () => {
-      let selectedUrl = '/wdr25/hero/hls/master.m3u8';
+      let selectedUrl = '/wdr26/hero/hls/master.m3u8';
 
       // Network-based conditional loading - only supported in Chrome. Otherwise, hls.js will decide the quality based on the network conditions.
       if (typeof navigator !== 'undefined') {
@@ -39,19 +39,19 @@ export default function HeroVideo({ alt }) {
 
           // Priority 1: Check saveData flag (data saver mode)
           if (saveData) {
-            selectedUrl = '/wdr25/hero/hls/save_data.m3u8';
+            selectedUrl = '/wdr26/hero/hls/save_data.m3u8';
           } else if (effectiveType === '2g' || effectiveType === 'slow-2g') {
             // Priority 2: Check effectiveType for 2G/slow-2G
-            selectedUrl = '/wdr25/hero/hls/2g.m3u8';
+            selectedUrl = '/wdr26/hero/hls/2g.m3u8';
           } else if (effectiveType === '3g') {
             // Priority 3: Check effectiveType for 3G
-            selectedUrl = '/wdr25/hero/hls/3g.m3u8';
+            selectedUrl = '/wdr26/hero/hls/3g.m3u8';
           } else if (effectiveType === '4g') {
             // Priority 4: Check effectiveType for 4G with downlink bandwidth
             if (downlink && downlink < 1.5) {
-              selectedUrl = '/wdr25/hero/hls/low4g.m3u8';
+              selectedUrl = '/wdr26/hero/hls/low4g.m3u8';
             } else {
-              selectedUrl = '/wdr25/hero/hls/4g.m3u8';
+              selectedUrl = '/wdr26/hero/hls/4g.m3u8';
             }
           }
         }
@@ -92,7 +92,7 @@ export default function HeroVideo({ alt }) {
       {/* Poster image - fades out when video is ready */}
       <Image
         ref={imageRef}
-        src="/wdr25/hero/poster.webp"
+        src="/wdr26/hero/poster.webp"
         alt={alt}
         fill
         priority={true}

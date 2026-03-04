@@ -5,7 +5,7 @@ const defaultProps = {
   title: 'Test Chapter Title: Understanding Humanitarian Response',
   highlight:
     'This is a test excerpt that provides a brief description of the chapter content. It should be truncated if too long...',
-  href: '/reports/wdr25/chapter-02',
+  href: '/reports/wdr26/chapter-02',
 };
 
 describe('convertHighlightsReactComponent', () => {
@@ -45,7 +45,7 @@ describe('SearchResultCard', () => {
     // Should render as a link
     const link = screen.getByRole('link');
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/reports/wdr25/chapter-02');
+    expect(link).toHaveAttribute('href', '/reports/wdr26/chapter-02');
 
     expect(container).toMatchSnapshot();
   });
@@ -55,7 +55,7 @@ describe('SearchResultCard', () => {
       title: 'Harmful Information and the Erosion of Trust in Humanitarian Response',
       highlight:
         'Confirmation Bias refers to the tendency to seek out, favour and recall information that supports our existing beliefs...',
-      href: '/reports/wdr25/chapter-01',
+      href: '/reports/wdr26/chapter-01',
     };
 
     render(<SearchResultCard {...customProps} />);
@@ -161,7 +161,7 @@ describe('SearchResultCard', () => {
     const emptyProps = {
       title: '',
       highlight: '',
-      href: '/reports/wdr25/chapter-02',
+      href: '/reports/wdr26/chapter-02',
     };
 
     // Should not crash with empty strings

@@ -33,7 +33,7 @@ export default async function Header({ locale }) {
         {/* Logo */}
         <Link href={'/'}>
           <Image
-            src="/wdr25/ifrc_logo.jpg"
+            src="/wdr26/ifrc_logo.jpg"
             alt="Logo"
             width={70}
             height={70}

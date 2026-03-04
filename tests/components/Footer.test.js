@@ -40,7 +40,7 @@ jest.mock('next-intl/server', () => ({
       'Footer.world': 'World',
       'Footer.disasters': 'Disasters',
       'Footer.reportTitle': 'Report',
-      'Footer.year': '2025',
+      'Footer.year': '2026',
     };
     return translations[`${namespace}.${key}`] || key;
   })),
@@ -50,13 +50,13 @@ jest.mock('next-intl/server', () => ({
 // Mock reports module
 const mockReadReportLink = {
   pathname: '/reports/[report]',
-  params: { report: 'world-disasters-report-2025' },
+  params: { report: 'world-disasters-report-2026' },
 };
 const mockDownloadLink = 'https://example.com/download.pdf';
 
 jest.mock('@/reports', () => ({
   getVisibleReports: jest.fn(() => ({
-    wdr25: {
+    wdr26: {
       chapters: {
         'chapter-02-en': {
           downloadLink: 'https://example.com/download.pdf',
@@ -65,8 +65,8 @@ jest.mock('@/reports', () => ({
     },
   })),
   reportUriMap: {
-    wdr25: {
-      languages: { en: 'world-disasters-report-2025' },
+    wdr26: {
+      languages: { en: 'world-disasters-report-2026' },
       chapters: {
         'chapter-02': {
           languages: { en: 'chapter-02-en' },
@@ -123,7 +123,7 @@ describe('Footer', () => {
     it('renders IFRC logo with correct attributes', async () => {
       await renderFooter();
       const ifrcLogo = screen.getByAltText('IFRC');
-      expect(ifrcLogo).toHaveAttribute('src', '/wdr25/ifrc_logo.jpg');
+      expect(ifrcLogo).toHaveAttribute('src', '/wdr26/ifrc_logo.jpg');
       expect(ifrcLogo).toHaveAttribute('width', '120');
       expect(ifrcLogo).toHaveAttribute('height', '40');
     });
@@ -138,7 +138,7 @@ describe('Footer', () => {
     it('renders Solferino Academy logo with correct attributes', async () => {
       await renderFooter();
       const solferinoLogo = screen.getByAltText('Solferino Academy');
-      expect(solferinoLogo).toHaveAttribute('src', '/wdr25/solferino_logo.svg');
+      expect(solferinoLogo).toHaveAttribute('src', '/wdr26/solferino_logo.svg');
       expect(solferinoLogo).toHaveAttribute('width', '150');
       expect(solferinoLogo).toHaveAttribute('height', '40');
     });
@@ -153,7 +153,7 @@ describe('Footer', () => {
     it('renders Monash Mosaic logo with correct attributes', async () => {
       await renderFooter();
       const mosaicLogo = screen.getByAltText('Monash Mosaic');
-      expect(mosaicLogo).toHaveAttribute('src', '/wdr25/mosaic_logo.svg');
+      expect(mosaicLogo).toHaveAttribute('src', '/wdr26/mosaic_logo.svg');
       expect(mosaicLogo).toHaveAttribute('width', '260');
       expect(mosaicLogo).toHaveAttribute('height', '50');
     });
@@ -317,7 +317,7 @@ describe('Footer', () => {
 
     it('renders the year', async () => {
       await renderFooter();
-      expect(screen.getByText('2025')).toBeInTheDocument();
+      expect(screen.getByText('2026')).toBeInTheDocument();
     });
 
     it('applies correct text alignment classes to title section', async () => {
@@ -355,7 +355,7 @@ describe('Footer', () => {
       expect(screen.getByText('Read Report')).toBeInTheDocument();
       expect(screen.getByText('Download Report')).toBeInTheDocument();
       expect(screen.getByText('Disinformation Games')).toBeInTheDocument();
-      expect(screen.getByText('2025')).toBeInTheDocument();
+      expect(screen.getByText('2026')).toBeInTheDocument();
     });
 
     it('uses locale from getLocale to build report links', async () => {

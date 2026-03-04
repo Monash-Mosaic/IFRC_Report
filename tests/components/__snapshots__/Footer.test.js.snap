@@ -27,7 +27,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
                   alt="IFRC"
                   class="h-12 w-auto object-contain"
                   height="40"
-                  src="/wdr25/ifrc_logo.jpg"
+                  src="/wdr26/ifrc_logo.jpg"
                   width="120"
                 />
               </a>
@@ -78,7 +78,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
                   alt="Solferino Academy"
                   class="h-18 w-auto object-contain"
                   height="40"
-                  src="/wdr25/solferino_logo.svg"
+                  src="/wdr26/solferino_logo.svg"
                   width="150"
                 />
               </a>
@@ -129,7 +129,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
                   alt="Monash Mosaic"
                   class="h-14 w-auto object-contain"
                   height="50"
-                  src="/wdr25/mosaic_logo.svg"
+                  src="/wdr26/mosaic_logo.svg"
                   width="260"
                 />
               </a>

@@ -60,7 +60,7 @@ describe('HeroVideo', () => {
     const { container } = render(<HeroVideo alt="Hero alt text" />);
 
     const image = screen.getByTestId('mock-image');
-    expect(image).toHaveAttribute('src', '/wdr25/hero/poster.webp');
+    expect(image).toHaveAttribute('src', '/wdr26/hero/poster.webp');
     expect(image).toHaveAttribute('alt', 'Hero alt text');
     expect(image).toHaveAttribute('placeholder', 'blur');
     expect(image).toHaveAttribute('data-blurdataurl');
@@ -77,7 +77,7 @@ describe('HeroVideo', () => {
     const video = container.querySelector('video');
 
     await waitFor(() => {
-      expect(video.src).toContain('/wdr25/hero/hls/save_data.m3u8');
+      expect(video.src).toContain('/wdr26/hero/hls/save_data.m3u8');
     });
 
     expect(mockIsSupported).not.toHaveBeenCalled();
@@ -92,7 +92,7 @@ describe('HeroVideo', () => {
     const video = container.querySelector('video');
 
     await waitFor(() => {
-      expect(mockLoadSource).toHaveBeenCalledWith('/wdr25/hero/hls/3g.m3u8');
+      expect(mockLoadSource).toHaveBeenCalledWith('/wdr26/hero/hls/3g.m3u8');
       expect(mockAttachMedia).toHaveBeenCalledWith(video);
     });
   });
@@ -106,7 +106,7 @@ describe('HeroVideo', () => {
     const video = container.querySelector('video');
 
     await waitFor(() => {
-      expect(video.src).toContain('/wdr25/hero/hls/4g.m3u8');
+      expect(video.src).toContain('/wdr26/hero/hls/4g.m3u8');
     });
   });
 
@@ -118,7 +118,7 @@ describe('HeroVideo', () => {
     const video = container.querySelector('video');
 
     await waitFor(() => {
-      expect(video.src).toContain('/wdr25/hero/hls/low4g.m3u8');
+      expect(video.src).toContain('/wdr26/hero/hls/low4g.m3u8');
     });
   });
 });
