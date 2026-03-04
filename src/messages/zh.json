@@ -14,6 +14,7 @@
     "nav": {
       "logoAlt": "国际红十字与红新月联合会标志",
       "brand": "国际红十字会 | 索尔费里诺学院",
+      "discover": "发现",
       "about": "关于",
       "bookmarks": "书签",
       "download": "下载",
@@ -119,7 +120,9 @@
     "sections": {
       "continue": "继续",
       "comingSoon": "即将推出",
-      "expandChapter": "展开章节详情"
+      "expandChapter": "展开章节详情",
+      "notAvailable": "不可用",
+      "download": "下载"
     }
   },
   "ReportChapterPage": {
@@ -227,7 +230,7 @@
     "breadcrumbCurrent": "关于",
     "pageTitle": "关于我们",
     "topicHeading": "红十字会与红新月会国际联合会",
-    "body": "红十字会与红新月会国际联合会（IFRC）是全球最大的 гуманитар（人道主义）网络，拥有191个国家红十字会与红新月会，并有约1500万名志愿者。我们的志愿者在危机或灾害发生前、发生时以及发生后都扎根社区开展工作。我们在世界上最难抵达、最复杂的环境中开展行动，拯救生命并弘扬人类尊严。我们支持社区变得更强大、更具韧性，使人们能够安全健康地生活，并拥有发展与繁荣的机会。",
+    "body": "红十字会与红新月会国际联合会（IFRC）是全球最大的人道主义网络，拥有191个国家红十字会与红新月会，并有约1500万名志愿者。我们的志愿者在危机或灾害发生前、发生时以及发生后都扎根社区开展工作。我们在世界上最难抵达、最复杂的环境中开展行动，拯救生命并弘扬人类尊严。我们支持社区变得更强大、更具韧性，使人们能够安全健康地生活，并拥有发展与繁荣的机会。",
     "coverPhotoTitle": "封面照片",
     "coverPhotoText": "黎巴嫩布尔杰·巴拉杰内难民营，2025年9月10日。\n以人为本的方式降低了获取服务的障碍与犹豫，同时在艰难环境中维护尊严、信任与护理连续性。\nLama Chidiac，IFRC。",
     "insidePhotosTitle": "内页图片",
@@ -269,6 +272,23 @@
     "contributions": "《2026 年世界灾害报告》收录了来自人道主义领域以及政府、学术界和公民社会等多个领域的 60 多位实践者和研究人员撰写的 100 余篇书面贡献。这些内容以“贡献者洞见”框的形式贯穿全书，明确标注了个人作者及其所属机构。",
     "research": "<bold>IFRC 索尔费里诺学院</bold>牵头开展了一项为期两个月的快速社区情报研究，来自 10 个国家红会的 40 名志愿者和工作人员参与其中。作为社区研究人员，他们采访了 132 名受人道主义危机影响的志愿者和社区成员。研究结果由密歇根大学、诺森比亚大学和 Open Lab（纽卡斯尔大学）的志愿学者进行综合整理，确保充分保留地方背景和细微差异。精选引述贯穿于整份报告之中。"
   },
+  "Engagement": {
+    "breadcrumbHome": "首页",
+    "breadcrumbCurrent": "发现",
+    "heroTitle": "发现互动手册",
+    "heroSubtitle": "多媒体洞见、亲历经验以及面向政策与实践的可操作建议。",
+    "heroAlt": "发现互动手册横幅",
+    "browseTopics": "浏览主题",
+    "browseOperationalImpact": "运营影响",
+    "browseResponseStrategy": "应对策略",
+    "browseGovernance": "治理",
+    "selectedCount": "已选 {count} 项",
+    "quotesTitle": "引述",
+    "loadingQuotes": "正在加载引述…",
+    "noQuotesMatch": "没有与所选筛选条件匹配的引述。",
+    "errorLoadingQuotes": "无法加载引述，请重试。",
+    "filtersActive": "{count, plural, one {# 个筛选已选} other {# 个筛选已选}}"
+  },
   "Footer": {
     "report": "报告",
     "readReport": "阅读报告",
@@ -292,33 +312,5 @@
     "psychological": "心理",
     "social": "社交",
     "informational": "信息"
-  },
-   "Acknowledgements": {
-    "meta": {
-      "title": "致谢与贡献者",
-      "description": "感谢支持红十字会与红新月会国际联合会《2026年世界灾害报告》编撰、翻译和出版工作的各组织和个人。"
-    },
-    "breadcrumbHome": "主页",
-    "breadcrumbCurrent": "致谢",
-    "pageTitle": "致谢",
-
-    "intro": "红十字会与红新月会国际联合会（IFRC）诚挚感谢下列组织对我会《2026年世界灾害报告》的编撰出版做出大力支持：",
-
-    "translation": "本报告俄文和中文版本的翻译费用，由俄罗斯红十字会学院和中国的红十字国际学院慷慨承担。",
-
-    "leadEditorLabel": "主编及作者：",
-    "leadEditor": "夏洛特·林赛（Charlotte Lindsey）",
-
-    "designerLabel": "设计：",
-    "designer": "严恩·勒弗洛克（Yann le Floc'h）",
-
-    "projectManagerLabel": "项目官员：",
-    "projectManager": "希瑟·玛丽·勒森（Heather Marie Leson）",
-
-    "copyeditorLabel": "版权编辑：",
-    "copyeditor": "珍·克雷顿（Jen Claydon）",
-
-    "contributions": "《2026年世界灾害报告》汇集了来自人道主义领域60多位从业者和研究者的100余篇书面供稿，还呈现了政府、学术界、民间社会等各界人士的见解。这些贡献以「来稿洞见」专栏形式贯穿全书，并逐一标注了每位作者及其所属机构。",
-    "research": "红十字会与红新月会国际联合会索尔费里诺学院牵头开展了一项为期两个月的快速社区情报研究，由来自10个国家红会的40名志愿者和工作人员组成调研团队。他们以社区研究员身份，采访了132名受人道主义危机影响的志愿者和社区成员。研究发现由密歇根大学、诺森比亚大学及纽卡斯尔大学开放实验室的志愿学术人员进行整合，确保保留了地方特色。报告全文穿插着精选的受访者原话。"
   }
 }

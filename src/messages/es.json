@@ -14,6 +14,7 @@
     "nav": {
       "logoAlt": "Logotipo de la FICR",
       "brand": "FICR | Academia Solferino",
+      "discover": "Descubrir",
       "about": "Acerca de",
       "bookmarks": "Marcadores",
       "download": "Descargar",
@@ -119,7 +120,9 @@
     "sections": {
       "continue": "Continuar",
       "comingSoon": "Próximamente",
-      "expandChapter": "Expandir detalles del capítulo"
+      "expandChapter": "Expandir detalles del capítulo",
+      "notAvailable": "No Disponible",
+      "download": "Descargar"
     }
   },
   "ReportChapterPage": {
@@ -243,6 +246,23 @@
       "title": "Próximamente",
       "description": "La experiencia del Informe Mundial sobre Desastres de la FICR estará disponible pronto."
     }
+  },
+  "Engagement": {
+    "breadcrumbHome": "Página principal",
+    "breadcrumbCurrent": "Descubrir",
+    "heroTitle": "Descubre el manual interactivo",
+    "heroSubtitle": "Aprendizajes multimedia, experiencias vividas y recomendaciones prácticas para políticas y práctica.",
+    "heroAlt": "Banner Descubre el manual interactivo",
+    "browseTopics": "Explorar temas",
+    "browseOperationalImpact": "Impacto operativo",
+    "browseResponseStrategy": "Estrategia de respuesta",
+    "browseGovernance": "Gobernanza",
+    "selectedCount": "{count} seleccionado(s)",
+    "quotesTitle": "Citas",
+    "loadingQuotes": "Cargando citas…",
+    "noQuotesMatch": "Ninguna cita coincide con los filtros seleccionados.",
+    "errorLoadingQuotes": "No se pudieron cargar las citas. Inténtalo de nuevo.",
+    "filtersActive": "{count, plural, one {# filtro activo} other {# filtros activos}}"
   },
   "ContributionInsight": {
     "title": "Contribution Insight"
