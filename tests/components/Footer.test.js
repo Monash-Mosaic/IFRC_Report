@@ -285,14 +285,14 @@ describe('Footer', () => {
       await renderFooter();
       const disinformerLink = screen.getByText('Disinformer');
       expect(disinformerLink).toBeInTheDocument();
-      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/disinformer');
+      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/coming-soon');
     });
 
     it('renders Ctrl + Alt + Prebunk game link with correct href', async () => {
       await renderFooter();
       const prebunkLink = screen.getByText('Ctrl + Alt + Prebunk');
       expect(prebunkLink).toBeInTheDocument();
-      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/prebunk');
+      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/coming-soon');
     });
 
     it('Download Report link uses dynamic download link from reportModule', async () => {
