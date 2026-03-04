@@ -75,7 +75,7 @@ export default async function sitemap() {
     priority: 1.0,
   });
 
-  const staticPageEntries = ['/about', '/acknowledgement'];
+  const staticPageEntries = ['/about', '/acknowledgement', '/engagement'];
   staticPageEntries.forEach((pathname) => {
     items.push({
       url: buildDefaultUrl(pathname),
