@@ -174,14 +174,10 @@ exports[`Footer Rendering matches snapshot 1`] = `
               Read Report
             </a>
             <a
+              download=""
               href="https://example.com/download.pdf"
             >
               Download Report
-            </a>
-            <a
-              href="/issue"
-            >
-              Report an Issue
             </a>
           </div>
           <div

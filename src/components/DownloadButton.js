@@ -1,11 +1,11 @@
 'use client';
 
-import { Download } from 'lucide-react';
 import { trackPdfDownload } from '@/lib/gtm';
 
-export default function DownloadButton({ url, chapter, language, ariaLabel }) {
-  const handleClick = () => {
+export default function DownloadLink({ url, onClick = () => {}, chapter, language, ariaLabel, className, children, ...props }) {
+  const handleClick = (e) => {
     trackPdfDownload({ url, chapter, language });
+    onClick(e);
   };
 
   return (
@@ -13,10 +13,11 @@ export default function DownloadButton({ url, chapter, language, ariaLabel }) {
       href={url}
       download
       onClick={handleClick}
-      className="text-gray-600 hover:text-red-600 transition-colors pe-2"
+      className={className}
       aria-label={ariaLabel}
+      {...props}
     >
-      <Download className="w-5 h-5 sm:w-6 sm:h-6" />
+      {children}
     </a>
   );
 }

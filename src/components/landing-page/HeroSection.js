@@ -3,6 +3,7 @@ import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
 import HeroMediaBlock from './HeroMediaBlock';
 import ShareButton from '@/components/ShareButton';
+import DownloadButton from '@/components/DownloadButton';
 
 export default function HeroSection({ messages }) {
   return (
@@ -25,18 +26,18 @@ export default function HeroSection({ messages }) {
           </Link>
 
           <div className="flex-1 md:flex-none">
-            <a
-              href={messages.downloadLink}
+            <DownloadButton
+              url={messages.downloadLink}
               alt="alt text"
               target="_blank"
-              className="w-full h-full px-3 md:px-6 py-2 md:py-3 border-2 border-red-600 text-red-600 bg-[] hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none"
               rel="noopener noreferrer"
+              className="w-full h-full px-3 md:px-6 py-2 md:py-3 border-2 border-red-600 text-red-600 bg-[] hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap focus:outline-none"
             >
               <span className="text-xs font-bold md:text-base">
                 {messages.buttonTexts.download}
               </span>
               <Download className="w-3 h-3 font-bold md:w-5 md:h-5 flex-shrink-0" />
-            </a>
+            </DownloadButton>
           </div>
 
           <ShareButton label={messages.buttonTexts.share} url={messages.url} title={messages.title} />

@@ -13,8 +13,9 @@ export const category = 'تقرير سنوي';
 export const releaseDate = new Date('2025-11-15');
 
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
-  size: 19_389_263,
+  // TODO: Update with the full report file details
+  // url: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_AR.pdf',
+  // size: 19_389_263,
 };
 
 export const testimonialsList = [
@@ -75,8 +76,7 @@ export const chapters = {
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_AR.pdf',
     thumbnail: '/wdr25/chapters/Synthesis.jpg',
     thumbnailOverlay: 'red',
     released: true,

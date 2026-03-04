@@ -58,7 +58,7 @@ jest.mock('@/reports', () => ({
   getVisibleReports: jest.fn(() => ({
     wdr25: {
       chapters: {
-        'chapter-02-en': {
+        'synthesis-en': {
           downloadLink: 'https://example.com/download.pdf',
         },
       },
@@ -68,8 +68,8 @@ jest.mock('@/reports', () => ({
     wdr25: {
       languages: { en: 'world-disasters-report-2025' },
       chapters: {
-        'chapter-02': {
-          languages: { en: 'chapter-02-en' },
+        synthesis: {
+          languages: { en: 'synthesis-en' },
         },
       },
     },
@@ -269,11 +269,9 @@ describe('Footer', () => {
       expect(screen.getByText('Download Report')).toBeInTheDocument();
     });
 
-    it('renders Report an Issue link with correct href', async () => {
+    it('does not render Report an Issue link', async () => {
       await renderFooter();
-      const issueLink = screen.getByText('Report an Issue');
-      expect(issueLink).toBeInTheDocument();
-      expect(issueLink.closest('a')).toHaveAttribute('href', '/issue');
+      expect(screen.queryByText('Report an Issue')).not.toBeInTheDocument();
     });
 
     it('renders games section with translated heading', async () => {

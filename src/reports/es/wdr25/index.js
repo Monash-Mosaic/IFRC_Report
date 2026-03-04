@@ -12,8 +12,9 @@ export const category = 'Informe Anual';
 export const releaseDate = new Date('2025-11-15');
 
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
-  size: 19_389_263,
+  // TODO: Update with the full report file details
+  // url: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Synthesis_SP.pdf',
+  // size: 19_389_263,
 };
 
 export const testimonialsList = [

@@ -123,7 +123,8 @@
       "expandChapter": "توسيع تفاصيل الفصل",
       "notAvailable": "غير متاح",
       "download": "تحميل"
-    }
+    },
+    "downloadFullReport": "تحميل التقرير الكامل"
   },
   "ReportChapterPage": {
     "tocTitle": "في هذا الفصل"
