@@ -71,7 +71,7 @@ export const chapters = {
   synthesis: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: -5,
+      chapterNumber: -2,
       chapterPrefix: 'Synthesis',
     },
     component: Synthesis.default,
@@ -84,32 +84,10 @@ export const chapters = {
     thumbnailOverlay: 'red',
     released: true,
   },
-  acknowledgement: {
-    metadata: {
-      chapterKey: 'acknowledgement',
-      chapterNumber: -4,
-      chapterPrefix: 'Acknowledgement',
-    },
-    title: 'Acknowledgement',
-    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Acknowledgments_EN.pdf',
-    thumbnailOverlay: 'blue',
-    released: true,
-  },
-  foreword: {
-    metadata: {
-      chapterKey: 'foreword',
-      chapterNumber: -3,
-      chapterPrefix: 'Foreword',
-    },
-    title: 'Foreword',
-    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Foreword_EN.pdf', 
-    thumbnailOverlay: 'red',
-    released: true,
-  },
   acronyms: {
     metadata: {
       chapterKey: 'acronyms',
-      chapterNumber: -2,
+      chapterNumber: -1,
       chapterPrefix: 'Acronyms',
     },
     title: 'Acronyms',
@@ -127,8 +105,7 @@ export const chapters = {
     title: Introduction.title,
     subtitle: Introduction.subtitle,
     tableOfContents: Introduction.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Introduction_EN.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Introduction_EN.pdf',
     thumbnail: '/wdr25/chapters/Intro.jpg',
     thumbnailOverlay: 'blue',
     released: true,
@@ -143,8 +120,7 @@ export const chapters = {
     title: Chapter01.title,
     subtitle: Chapter01.subtitle,
     tableOfContents: Chapter01.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter01_EN.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter01_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter1.png',
     thumbnailOverlay: 'red',
     released: true,
@@ -206,7 +182,6 @@ export const chapters = {
       chapterNumber: 4,
       chapterPrefix: 'Chapter 4',
     },
-    component: Chapter02.default,
     title:
       'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
     subtitle: 'Harmful Information and Operational Realities',
@@ -214,7 +189,7 @@ export const chapters = {
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
-    released: true,
+    released: false,
   },
   'chapter-05': {
     metadata: {
@@ -273,7 +248,7 @@ export const chapters = {
     thumbnailOverlay: 'red',
     released: true,
   },
-  'glossary': {
+  glossary: {
     metadata: {
       chapterKey: 'glossary',
       chapterNumber: 9,
@@ -284,7 +259,7 @@ export const chapters = {
     thumbnailOverlay: 'red',
     released: true,
   },
-  'annex2': {
+  annex2: {
     metadata: {
       chapterKey: 'annex2',
       chapterNumber: 10,
