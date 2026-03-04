@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
@@ -108,6 +108,7 @@ function ShareActionItem({ action, className, style }) {
 
 export default function HeroSection({ locale = 'en', messages }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const shareContainerRef = useRef(null);
 
   const getShareUrl = () =>
     typeof window !== 'undefined' ? window.location.href : '';
@@ -119,6 +120,20 @@ export default function HeroSection({ locale = 'en', messages }) {
     setIsShareOpen((open) => !open);
   };
 
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (shareContainerRef.current && !shareContainerRef.current.contains(e.target)) {
+        setIsShareOpen(false);
+      }
+    }
+    if (isShareOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isShareOpen]);
+
+  const closeShare = () => setIsShareOpen(false);
+
   const shareActions = [
     {
       key: 'copy',
@@ -127,7 +142,10 @@ export default function HeroSection({ locale = 'en', messages }) {
       label: messages.buttonTexts.copyLink,
       desktopOffset: 97,
       desktopTop: 22,
-      onClick: () => copyShareLink({ url: getShareUrl() }),
+      onClick: () => {
+        copyShareLink({ url: getShareUrl() });
+        closeShare();
+      },
     },
     {
       key: 'linkedin',
@@ -137,7 +155,7 @@ export default function HeroSection({ locale = 'en', messages }) {
       desktopOffset: 148,
       desktopTop: 22,
       Wrapper: LinkedinShareButton,
-      wrapperProps: { url: getShareUrl(), title: shareTitle, summary: shareTitle },
+      wrapperProps: { url: getShareUrl(), title: shareTitle, summary: shareTitle, onClick: closeShare },
     },
     {
       key: 'facebook',
@@ -147,7 +165,7 @@ export default function HeroSection({ locale = 'en', messages }) {
       desktopOffset: 199,
       desktopTop: 19,
       Wrapper: FacebookShareButton,
-      wrapperProps: { url: getShareUrl(), hashtag: '#IFRC' },
+      wrapperProps: { url: getShareUrl(), hashtag: '#IFRC', onClick: closeShare },
     },
     {
       key: 'whatsapp',
@@ -156,7 +174,10 @@ export default function HeroSection({ locale = 'en', messages }) {
       label: messages.buttonTexts.shareWhatsApp,
       desktopOffset: 255,
       desktopTop: 20,
-      onClick: () => shareToWhatsApp({ url: getShareUrl(), text: shareTitle, separator: '\n' }),
+      onClick: () => {
+        shareToWhatsApp({ url: getShareUrl(), text: shareTitle, separator: '\n' });
+        closeShare();
+      },
     },
   ];
 
@@ -194,7 +215,7 @@ export default function HeroSection({ locale = 'en', messages }) {
             </a>
           </div>
 
-          <div className="relative flex-none">
+          <div className="relative flex-none" ref={shareContainerRef}>
             <button
               type="button"
               onClick={handleShareToggle}
@@ -211,57 +232,36 @@ export default function HeroSection({ locale = 'en', messages }) {
             </button>
 
             {isShareOpen && (
-              <>
-                {/* Mobile panel – vertical, below the button (Figma 328-1101) */}
-                <div className="absolute top-full mt-1 left-1/2 -translate-x-1/2 z-40 md:hidden">
-                  <div className="flex flex-col items-center gap-[22px] px-[6px] py-[7px] bg-white rounded-[8px] border-2 border-red-600">
-                    <button
-                      type="button"
-                      onClick={() => setIsShareOpen(false)}
-                      className="w-[47px] h-[45px] rounded-[8px] shrink-0 flex items-center justify-center hover:brightness-95 active:brightness-90 transition-all duration-150"
-                      style={{ backgroundColor: CLOSE_BG }}
-                      aria-label={messages.buttonTexts.closeShare}
-                    >
-                      <span className="w-[35px] h-[35px]">
-                        <GgCloseR />
-                      </span>
-                    </button>
+              <div
+                className={`absolute bottom-[calc(100%+12px)] z-40 w-[316px] ${isRtl ? 'left-0' : 'right-0'}`}
+                role="menu"
+              >
+                <div className="relative w-full min-h-[76px] bg-white rounded-[8px] border-2 border-red-600 overflow-hidden shadow-lg">
+                  <button
+                    type="button"
+                    onClick={() => setIsShareOpen(false)}
+                    className={`absolute top-0 w-[76px] h-[76px] hover:brightness-95 active:brightness-90 transition-all duration-150 ${isRtl ? 'right-0 rounded-r-[8px]' : 'left-0 rounded-l-[8px]'}`}
+                    style={{ backgroundColor: CLOSE_BG }}
+                    aria-label={messages.buttonTexts.closeShare}
+                  >
+                    <span className="absolute" style={{ left: 21, top: 20, width: 35, height: 35 }}>
+                      <GgCloseR />
+                    </span>
+                  </button>
 
-                    {shareActions.map((action) => (
-                      <ShareActionItem key={action.key} action={action} className="shrink-0" />
-                    ))}
-                  </div>
+                  {shareActions.map((action) => (
+                    <ShareActionItem
+                      key={action.key}
+                      action={action}
+                      className="absolute"
+                      style={{
+                        top: action.desktopTop,
+                        [isRtl ? 'right' : 'left']: action.desktopOffset,
+                      }}
+                    />
+                  ))}
                 </div>
-
-                {/* Desktop panel – horizontal, to the side (Figma 301-171) */}
-                <div className={`absolute top-0 z-40 hidden md:block ${isRtl ? 'right-full mr-1' : 'left-full ml-1'}`}>
-                  <div className="relative w-[316px] h-[76px] bg-white rounded-[8px] border-2 border-red-600 overflow-hidden">
-                    <button
-                      type="button"
-                      onClick={() => setIsShareOpen(false)}
-                      className={`absolute top-0 w-[76px] h-[76px] hover:brightness-95 active:brightness-90 transition-all duration-150 ${isRtl ? 'right-0 rounded-r-[8px]' : 'left-0 rounded-l-[8px]'}`}
-                      style={{ backgroundColor: CLOSE_BG }}
-                      aria-label={messages.buttonTexts.closeShare}
-                    >
-                      <span className="absolute" style={{ left: 21, top: 20, width: 35, height: 35 }}>
-                        <GgCloseR />
-                      </span>
-                    </button>
-
-                    {shareActions.map((action) => (
-                      <ShareActionItem
-                        key={action.key}
-                        action={action}
-                        className="absolute"
-                        style={{
-                          top: action.desktopTop,
-                          [isRtl ? 'right' : 'left']: action.desktopOffset,
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </>
+              </div>
             )}
           </div>
         </div>
