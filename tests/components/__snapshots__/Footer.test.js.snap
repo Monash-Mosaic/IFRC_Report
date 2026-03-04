@@ -193,12 +193,12 @@ exports[`Footer Rendering matches snapshot 1`] = `
               Disinformation Games
             </p>
             <a
-              href="/disinformer"
+              href="/coming-soon"
             >
               Disinformer
             </a>
             <a
-              href="/prebunk"
+              href="/coming-soon"
             >
               Ctrl + Alt + Prebunk
             </a>

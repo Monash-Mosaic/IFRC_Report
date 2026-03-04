@@ -129,8 +129,8 @@ export default async function Footer() {
             <div className="flex flex-col items-center gap-2 text-center lg:items-start lg:text-left">
               <p className="font-semibold">{t('games')}</p>
 
-              <Link href="/disinformer">Disinformer</Link>
-              <Link href="/prebunk">Ctrl + Alt + Prebunk</Link>
+              <Link href="/coming-soon">Disinformer</Link>
+              <Link href="/coming-soon">Ctrl + Alt + Prebunk</Link>
             </div>
 
           </div>
