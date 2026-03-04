@@ -44,6 +44,14 @@ export const routing = defineRouting({
       ru: '/отчеты/[report]/[chapter]',
       es: '/reportaje/[report]/[chapter]',
     },
+    '/coming-soon': {
+      en: '/coming-soon',
+      fr: '/coming-soon',
+      zh: '/coming-soon',
+      ar: '/coming-soon',
+      ru: '/coming-soon',
+      es: '/coming-soon',
+    },
     '/search': {
       en: '/search',
       fr: '/recherche',
