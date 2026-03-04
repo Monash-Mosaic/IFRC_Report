@@ -187,7 +187,6 @@ export const chapters = {
     subtitle: Chapter04.subtitle,
     tableOfContents: Chapter04.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter04_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
     released: true,
