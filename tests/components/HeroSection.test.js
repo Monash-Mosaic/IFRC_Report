@@ -446,25 +446,30 @@ describe('HeroSection', () => {
       expect(screen.getAllByLabelText('Share to WhatsApp').length).toBeGreaterThanOrEqual(1);
     });
 
-    it('has Figma-spec desktop panel (316×76)', () => {
+    it('has Figma-spec share panel (316×76) above the button', () => {
       const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
       fireEvent.click(screen.getByText('Share Report').closest('button'));
 
-      const desktopPanel = container.querySelector('.w-\\[316px\\].h-\\[76px\\]');
-      expect(desktopPanel).toBeInTheDocument();
-      expect(desktopPanel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600');
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('w-[316px]', 'right-0');
+
+      const panel = popover.querySelector('.min-h-\\[76px\\]');
+      expect(panel).toBeInTheDocument();
+      expect(panel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600');
     });
 
-    it('has Figma-spec mobile panel with vertical layout', () => {
+    it('renders unified popover above the share button (mobile and desktop)', () => {
       const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
       fireEvent.click(screen.getByText('Share Report').closest('button'));
 
-      const mobileWrapper = container.querySelector('.md\\:hidden');
-      expect(mobileWrapper).toBeInTheDocument();
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('bottom-[calc(100%+12px)]');
 
-      const mobilePanel = mobileWrapper.querySelector('.flex-col');
-      expect(mobilePanel).toBeInTheDocument();
-      expect(mobilePanel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600');
+      const panel = popover.querySelector('.rounded-\\[8px\\]');
+      expect(panel).toBeInTheDocument();
+      expect(panel).toHaveClass('bg-white', 'border-2', 'border-red-600');
     });
 
     it('has close tiles with correct background color', () => {
@@ -476,16 +481,16 @@ describe('HeroSection', () => {
       });
     });
 
-    it('positions desktop panel to the right (LTR) for English', () => {
+    it('positions popover aligned right (LTR) for English', () => {
       const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
       fireEvent.click(screen.getByText('Share Report').closest('button'));
 
-      const desktopWrapper = container.querySelector('.left-full.ml-1');
-      expect(desktopWrapper).toBeInTheDocument();
-      expect(desktopWrapper).toHaveClass('hidden', 'md:block');
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('right-0');
     });
 
-    it('positions desktop panel to the left (RTL) for Arabic', () => {
+    it('positions popover aligned left (RTL) for Arabic', () => {
       const arabicProps = {
         locale: 'ar',
         messages: {
@@ -503,8 +508,9 @@ describe('HeroSection', () => {
       );
       fireEvent.click(screen.getByText('مشاركة').closest('button'));
 
-      const desktopWrapper = container.querySelector('.right-full.mr-1');
-      expect(desktopWrapper).toBeInTheDocument();
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('left-0');
     });
 
     it('copies link to clipboard when copy button is clicked', async () => {
