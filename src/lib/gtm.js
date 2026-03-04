@@ -1,12 +1,11 @@
 'use client';
 
-import { sendGTMEvent, sendGAEvent } from '@next/third-parties/google';
+import { sendGAEvent } from '@next/third-parties/google';
 
 function pushEvent(eventName, params) {
   if (typeof window === 'undefined') return;
 
   sendGAEvent('event', eventName, params);
-  sendGTMEvent({ event: eventName, ...params });
 }
 
 export function trackShare({ platform, url, text }) {

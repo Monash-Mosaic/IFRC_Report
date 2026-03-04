@@ -1,4 +1,4 @@
-import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import { notFound } from 'next/navigation';
@@ -73,8 +73,7 @@ export default async function RootLayout({ children, params }) {
       <body
         className={`${GeistSans.variable} ${GeistMono.variable}  ${bespokeSerif.variable} locale-${locale} antialiased`}
       >
-        {process.env.NEXT_PUBLIC_GTM_ID && <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />}
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         <NextIntlClientProvider>
           {children}
           <ReportIncidentWidget />
