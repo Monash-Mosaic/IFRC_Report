@@ -69,10 +69,10 @@ export default async function Home({ params }) {
   const baseUrl = getBaseUrl();
 
   // Get the report data for the current locale
-  const reportModule = getVisibleReports(locale)?.wdr25;
+  const reportModule = getVisibleReports(locale)?.wdr26;
   const testimonialsList = reportModule?.testimonialsList || [];
   const featuredVideos = reportModule?.featuredVideos || [];
-  const chapterSlug = reportUriMap['wdr25'].chapters['synthesis'].languages[locale];
+  const chapterSlug = reportUriMap['wdr26'].chapters['synthesis'].languages[locale];
   // Executive Summary translations
   const executiveSummary = {
     title: t('landingPage.executiveSummary.title'),
@@ -88,7 +88,7 @@ export default async function Home({ params }) {
       href: {
         pathname: '/reports/[report]/[chapter]',
         params: {
-          report: reportUriMap['wdr25'].languages[locale],
+          report: reportUriMap['wdr26'].languages[locale],
           chapter: chapterSlug,
         },
       },
@@ -110,7 +110,7 @@ export default async function Home({ params }) {
       href: {
         pathname: '/reports/[report]',
         params: {
-          report: reportUriMap['wdr25'].languages[locale],
+          report: reportUriMap['wdr26'].languages[locale],
         },
       },
     }),

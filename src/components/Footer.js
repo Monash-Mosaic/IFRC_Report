@@ -15,15 +15,15 @@ export default async function Footer() {
 
   /* ================= DYNAMIC REPORT LINKS ================= */
 
-  const reportModule = getVisibleReports(locale)?.wdr25;
+  const reportModule = getVisibleReports(locale)?.wdr26;
 
   const chapterSlug =
-    reportUriMap['wdr25'].chapters['synthesis'].languages[locale];
+    reportUriMap['wdr26'].chapters['synthesis'].languages[locale];
 
   const readReportLink = {
     pathname: '/reports/[report]',
     params: {
-      report: reportUriMap['wdr25'].languages[locale],
+      report: reportUriMap['wdr26'].languages[locale],
     },
   };
 
