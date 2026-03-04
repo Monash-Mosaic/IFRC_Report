@@ -34,7 +34,7 @@ export const routing = defineRouting({
       zh: '/报告',
       ar: '/تقارير',
       ru: '/отчеты',
-      es: '/informe ',
+      es: '/informe',
     },
     '/reports/[report]': {
       en: '/reports/[report]',
