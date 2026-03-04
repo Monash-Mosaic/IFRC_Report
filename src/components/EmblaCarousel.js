@@ -19,6 +19,7 @@ export default function EmblaCarousel({
   slideClassName = '',
   slideWidth = 'auto',
   showArrows = true,
+  arrowsPosition = 'bottom',
   loop = true,
   align = 'start',
 }) {
@@ -158,9 +159,18 @@ export default function EmblaCarousel({
     </div>
   );
 
+  const navigationControls = showArrows && shouldShowControls && totalPages > 1 && (
+    <div className="flex items-center justify-center space-x-4">
+      {renderNavigationButton('prev', scrollPrev, prevBtnDisabled, 'Previous slide')}
+      {renderNavigationButton('next', scrollNext, nextBtnDisabled, 'Next slide')}
+    </div>
+  );
+
   return (
     <section className={`space-y-8 ${className}`}>
       {title && <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{title}</h2>}
+
+      {arrowsPosition === 'top' && navigationControls}
 
       <div className={`relative ${containerClassName}`}>
         <div className="overflow-hidden embla__viewport" ref={emblaRef} dir={getDirection(locale)}>
@@ -170,16 +180,7 @@ export default function EmblaCarousel({
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      {showArrows && shouldShowControls && totalPages > 1 && (
-        <div className="flex items-center justify-center space-x-4">
-          {/* Previous Arrow */}
-          {renderNavigationButton('prev', scrollPrev, prevBtnDisabled, 'Previous slide')}
-
-          {/* Next Arrow */}
-          {renderNavigationButton('next', scrollNext, nextBtnDisabled, 'Next slide')}
-        </div>
-      )}
+      {arrowsPosition === 'bottom' && navigationControls}
     </section>
   );
 }
