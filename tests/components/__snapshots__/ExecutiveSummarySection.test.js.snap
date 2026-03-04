@@ -25,7 +25,7 @@ exports[`ExecutiveSummarySection renders ExecutiveSummarySection with all conten
               class="object-cover"
               data-fill="true"
               data-testid="mock-image"
-              src="/wdr25/summary.png"
+              src="/wdr25/summary.jpg"
             />
           </div>
           <h3
@@ -113,7 +113,7 @@ exports[`ExecutiveSummarySection renders ExecutiveSummarySection with all conten
           class="object-cover"
           data-fill="true"
           data-testid="mock-image"
-          src="/wdr25/summary.png"
+          src="/wdr25/summary.jpg"
         />
       </div>
     </div>
