@@ -197,6 +197,7 @@ export default async function ReportDetailPage({ params }) {
                 expandChapter: t('sections.expandChapter'),
                 notAvailable: t('sections.notAvailable'),
                 download: t('sections.download'),
+                locale,
               }}
             />
           ))}
