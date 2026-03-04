@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
+import { Download } from 'lucide-react';
 import Breadcrumb from '@/components/Breadcrumb';
 import SubscribeBox from '@/components/SubscribeBox';
 import ChapterCard from '@/components/ChapterCard';
@@ -131,6 +132,8 @@ export default async function ReportDetailPage({ params }) {
     locale,
   });
 
+  const fullReportDownloadUrl = reportData.chapters?.synthesis?.downloadLink;
+
   const chapterEntries = Object.entries(chapters)
     .filter(([_, chapter]) => chapter.released)
     .map(([chapterKey, chapter]) => {
@@ -201,6 +204,19 @@ export default async function ReportDetailPage({ params }) {
               }}
             />
           ))}
+          {locale === 'en' && fullReportDownloadUrl && (
+            <div className="flex justify-center mt-8">
+              <a
+                href={fullReportDownloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors"
+              >
+                <Download className="w-5 h-5 flex-shrink-0" />
+                <span>{t('downloadFullReport')}</span>
+              </a>
+            </div>
+          )}
           {showSubscribeSection && (
             <div className="mt-6">
               <SubscribeBox locale={locale} />

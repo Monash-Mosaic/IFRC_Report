@@ -123,7 +123,8 @@
       "expandChapter": "Expand chapter details",
       "notAvailable": "Not Available",
       "download": "Download"
-    }
+    },
+    "downloadFullReport": "Download Full Report"
   },
   "ReportChapterPage": {
     "tocTitle": "In This Chapter"
