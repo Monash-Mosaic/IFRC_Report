@@ -132,8 +132,6 @@ export default async function ReportDetailPage({ params }) {
     locale,
   });
 
-  const fullReportDownloadUrl = reportData.chapters?.synthesis?.downloadLink;
-
   const chapterEntries = Object.entries(chapters)
     .filter(([_, chapter]) => chapter.released)
     .map(([chapterKey, chapter]) => {
@@ -204,10 +202,10 @@ export default async function ReportDetailPage({ params }) {
               }}
             />
           ))}
-          {locale === 'en' && fullReportDownloadUrl && (
+          {locale === 'en' && reportFile?.url && (
             <div className="flex justify-center mt-8">
               <a
-                href={fullReportDownloadUrl}
+                href={reportFile.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors"
