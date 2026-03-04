@@ -14,6 +14,7 @@
     "nav": {
       "logoAlt": "IFRC Logo",
       "brand": "IFRC | solferino academy",
+      "discover": "Discover",
       "about": "About",
       "bookmarks": "Bookmarks",
       "download": "Download",
@@ -292,6 +293,23 @@
     "contributions": "The <italic>World Disasters Report 2026</italic> features over 100 written contributions from more than 60 practitioners and researchers across the humanitarian sector, as well as from governments, academia, civil society and beyond. These contributions appear throughout the report in Contributor Insight boxes, acknowledging the individual authors and their respective organizations.",
 
     "research": "The <bold>IFRC Solferino Academy</bold> led a two-month rapid community intelligence study with 40 volunteers and staff from 10 National Societies. Acting as community researchers, they interviewed 132 volunteers and community members affected by humanitarian crises. Findings were synthesised by volunteer academics from the University of Michigan, Northumbria University and Open Lab (Newcastle University), ensuring that local nuance was preserved. Selected quotes appear throughout the report."
+  },
+  "Engagement": {
+    "breadcrumbHome": "Home Page",
+    "breadcrumbCurrent": "Discover",
+    "heroTitle": "Discover the Interactive Playbook",
+    "heroSubtitle": "Multimedia insights, lived experiences, and actionable recommendations for policy and practice.",
+    "heroAlt": "Discover the Interactive Playbook banner",
+    "browseTopics": "Browse Topics",
+    "browseOperationalImpact": "Operational Impact",
+    "browseResponseStrategy": "Response Strategy",
+    "browseGovernance": "Governance",
+    "selectedCount": "{count} selected",
+    "quotesTitle": "Quotes",
+    "loadingQuotes": "Loading quotes…",
+    "noQuotesMatch": "No quotes match the selected filters.",
+    "errorLoadingQuotes": "Could not load quotes. Please try again.",
+    "filtersActive": "{count, plural, one {# filter active} other {# filters active}}"
   },
   "Footer": {
     "report": "Report",
