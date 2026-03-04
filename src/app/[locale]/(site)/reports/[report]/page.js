@@ -190,7 +190,7 @@ export default async function ReportDetailPage({ params }) {
               report={decodedReport}
               released={chapter.released}
               hasPage={chapter.hasPage}
-              downloadLink={chapter.downloadLink}
+              downloadLink={chapter?.downloadLink}
               translations={{
                 continue: t('sections.continue'),
                 comingSoon: t('sections.comingSoon'),

@@ -92,7 +92,7 @@ export default async function Home({ params }) {
         },
       },
     }),
-    downloadLink: reportModule.chapters[chapterSlug].downloadLink,
+    downloadLink: reportModule.chapters[chapterSlug]?.downloadLink,
   };
   // Hero Section translations
   const heroMessage = {
