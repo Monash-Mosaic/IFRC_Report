@@ -1,15 +1,19 @@
 import Image from 'next/image';
 
+// Intrinsic dimensions (21:9) – browser scales via w-full h-auto
+const BANNER_WIDTH = 2100;
+const BANNER_HEIGHT = 900;
+
 export default function DiscoverHero({ imageSrc = '/engagement/discover-banner.png', imageAlt = 'Discover the Interactive Playbook' }) {
   return (
     <section className="w-full max-w-[100vw] overflow-x-hidden pt-6 pb-6 md:pt-8 md:pb-8">
-      {/* Full-width block: aspect ratio for consistent sizing; min-height for small viewports */}
-      <div className="relative w-full min-w-0 overflow-hidden bg-slate-100 aspect-[21/9] min-h-[200px] sm:min-h-[260px] md:min-h-[320px] lg:min-h-[380px]">
+      <div className="w-full min-w-0 overflow-hidden bg-slate-100">
         <Image
           src={imageSrc}
           alt={imageAlt}
-          fill
-          className="object-cover object-[34%_50%]"
+          width={BANNER_WIDTH}
+          height={BANNER_HEIGHT}
+          className="w-full h-auto block"
           priority
           sizes="100vw"
         />
