@@ -137,7 +137,9 @@
     "sections": {
       "continue": "Continuer",
       "comingSoon": "Bientôt disponible",
-      "expandChapter": "Développer les détails du chapitre"
+      "expandChapter": "Développer les détails du chapitre",
+      "notAvailable": "Non disponible",
+      "download": "Télécharger"
     }
   },
   "ReportChapterPage": {

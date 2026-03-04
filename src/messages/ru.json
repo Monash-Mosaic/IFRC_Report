@@ -119,7 +119,9 @@
     "sections": {
       "continue": "Продолжить",
       "comingSoon": "Скоро",
-      "expandChapter": "Развернуть детали главы"
+      "expandChapter": "Развернуть детали главы",
+      "notAvailable": "Недоступно",
+      "download": "Загрузить"
     }
   },
   "ReportChapterPage": {

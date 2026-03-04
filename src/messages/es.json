@@ -119,7 +119,9 @@
     "sections": {
       "continue": "Continuar",
       "comingSoon": "Próximamente",
-      "expandChapter": "Expandir detalles del capítulo"
+      "expandChapter": "Expandir detalles del capítulo",
+      "notAvailable": "No Disponible",
+      "download": "Descargar"
     }
   },
   "ReportChapterPage": {
