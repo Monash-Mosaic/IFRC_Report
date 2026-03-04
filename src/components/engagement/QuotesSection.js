@@ -114,6 +114,10 @@ function getIconsForHarm(harmStr) {
   return Array.from(byIcon.values());
 }
 
+/** Fixed height so all cards match; quote text scrolls when long */
+const QUOTE_CARD_HEIGHT = 340;
+const QUOTE_CARD_WIDTH = 280;
+
 function QuoteCard({ quote }) {
   const chapterTitle = CHAPTER_TITLES[quote.chapter];
   const chapterLabel = formatChapterLabel(quote.chapter);
@@ -122,17 +126,17 @@ function QuoteCard({ quote }) {
   return (
     <div
       className="flex-shrink-0 bg-white rounded-xl border-2 border-[#ee2435] flex flex-col"
-      style={{ width: '280px' }}
+      style={{ width: `${QUOTE_CARD_WIDTH}px`, height: `${QUOTE_CARD_HEIGHT}px` }}
     >
-      <div className="p-5 flex flex-col gap-4">
-        {/* Quote text */}
-        <p className="text-sm text-slate-800 leading-relaxed">
+      {/* Scrollable quote + icons; fixed card height */}
+      <div className="p-5 flex flex-col gap-4 flex-1 min-h-0 overflow-hidden">
+        <div className="text-sm text-slate-800 leading-relaxed overflow-y-auto overscroll-contain pr-1">
           &ldquo;{quote.text}&rdquo;
-        </p>
+        </div>
 
         {/* TOH icons grouped together; hover shows TOH name in tooltip */}
         {tohItems.length > 0 && (
-          <div className="flex flex-wrap gap-2 overflow-visible">
+          <div className="flex flex-wrap gap-2 overflow-visible shrink-0">
             {tohItems.map((item, i) => {
               const Icon = item.Icon;
               const tooltipText = item.labels && item.labels.length > 0 ? item.labels.join(', ') : '';
@@ -159,7 +163,7 @@ function QuoteCard({ quote }) {
       </div>
 
       {/* Footer */}
-      <div className="px-5 py-4 border-t border-slate-100">
+      <div className="px-5 py-4 border-t border-slate-100 shrink-0">
         {chapterLabel && (
           <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
             {chapterLabel}
