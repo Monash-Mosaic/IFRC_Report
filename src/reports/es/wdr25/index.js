@@ -66,7 +66,7 @@ export const chapterRelease = false;
 export const chapters = {
   síntesis: {
     metadata: {
-      chapterKey: 'síntesis',
+      chapterKey: 'synthesis',
       chapterNumber: -1,
       chapterPrefix: 'Síntesis',
     },
