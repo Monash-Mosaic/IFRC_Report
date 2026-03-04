@@ -175,7 +175,7 @@ export default async function ReportDetailPage({ params }) {
         <hr className="border-gray-300 mb-10" />
 
         {/* Chapter Cards Grid */}
-        <div className="grid gap-8 grid-cols-1">
+        <div className="grid gap-8 grid-cols-1" data-ga-section="list">
           {chapterEntries.map((chapter) => (
             <ChapterCard
               key={chapter.key}
@@ -197,6 +197,7 @@ export default async function ReportDetailPage({ params }) {
                 expandChapter: t('sections.expandChapter'),
                 notAvailable: t('sections.notAvailable'),
                 download: t('sections.download'),
+                locale,
               }}
             />
           ))}

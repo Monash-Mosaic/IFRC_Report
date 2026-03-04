@@ -5,6 +5,7 @@ import ExecutiveSummarySection from '@/components/landing-page/ExecutiveSummaryS
 import { getVisibleReports, isLocaleReleased, reportUriMap } from '@/reports';
 import EmblaCarousel from '@/components/EmblaCarousel';
 import VideoCard from '@/components/landing-page/VideoCard';
+import VideoCardTracker from '@/components/landing-page/VideoCardTracker';
 import TestimonialCard from '@/components/landing-page/TestimonialCard';
 import { getPathname } from '@/i18n/navigation';
 import { getBaseUrl } from '@/lib/base-url';
@@ -132,28 +133,33 @@ export default async function Home({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <main className="max-w-full md:max-w-8/10 py-4 mx-auto px-4 space-y-16">
-        <HeroSection messages={heroMessage} />
-        <ExecutiveSummarySection messages={executiveSummary} />
+        <div data-ga-section="hero">
+          <HeroSection messages={heroMessage} />
+        </div>
+        <div data-ga-section="executive_summary">
+          <ExecutiveSummarySection messages={executiveSummary} />
+        </div>
 
         {/* Featured Videos Section */}
-        <div>
+        <div data-ga-section="featured_videos">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.featuredVideos.title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {featuredVideos.map((video, index) => (
-              <VideoCard
-                key={index}
-                title={video.title}
-                description={video.description}
-                url={video.url}
-              />
+              <VideoCardTracker key={index} title={video.title} url={video.url}>
+                <VideoCard
+                  title={video.title}
+                  description={video.description}
+                  url={video.url}
+                />
+              </VideoCardTracker>
             ))}
           </div>
         </div>
 
         {/* Citations Section */}
-        <div>
+        <div data-ga-section="quotes">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">
             {t('landingPage.testimonials.title')}
           </h2>

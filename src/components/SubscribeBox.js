@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import Modal from 'react-modal';
 import { X } from 'lucide-react';
 import { subscribeReport } from '@/app/actions/subscribe-report';
+import { trackFormSubmit } from '@/lib/gtm';
 
 const initialState = { success: false, error: null };
 
@@ -25,6 +26,12 @@ export default function SubscribeBox({ locale, className = '' }) {
     const justFinished = wasPendingRef.current && !pending;
     wasPendingRef.current = pending;
     if (!justFinished || (!state?.success && !state?.error)) return;
+    if (state?.success) {
+      trackFormSubmit({
+        formName: 'subscribe_report',
+        url: typeof window !== 'undefined' ? window.location.pathname : '',
+      });
+    }
     const nextType = state?.success ? 'success' : 'error';
     const timer = setTimeout(() => {
       setResultType(nextType);

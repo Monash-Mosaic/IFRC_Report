@@ -4,6 +4,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
 <div>
   <footer
     class="w-full bg-white border-t border-gray-200"
+    data-ga-section="footer"
   >
     <div
       class="max-w-7xl mx-auto px-6 py-12"

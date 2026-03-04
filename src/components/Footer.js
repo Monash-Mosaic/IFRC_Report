@@ -33,7 +33,7 @@ export default async function Footer() {
   /* ======================================================== */
 
   return (
-    <footer className="w-full bg-white border-t border-gray-200">
+    <footer className="w-full bg-white border-t border-gray-200" data-ga-section="footer">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start gap-12">

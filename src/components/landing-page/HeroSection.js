@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Share } from 'lucide-react';
 import { Eye } from 'lucide-react';
 import { Download } from 'lucide-react';
 import HeroMediaBlock from './HeroMediaBlock';
+import ShareButton from '@/components/ShareButton';
 
 export default function HeroSection({ messages }) {
   return (
@@ -39,12 +39,7 @@ export default function HeroSection({ messages }) {
             </a>
           </div>
 
-          <button className="w-12 md:w-auto px-2 md:px-6 py-2 md:py-3 text-red-600 font-medium transition-colors cursor-pointer inline-flex items-center justify-center gap-1 md:gap-2 whitespace-nowrap border-2 border-red-600 rounded-lg md:border-none md:underline">
-            <span className="hidden md:inline text-xs md:text-base">
-              {messages.buttonTexts.share}
-            </span>
-            <Share className="w-4 h-4 md:w-4 md:h-4" />
-          </button>
+          <ShareButton label={messages.buttonTexts.share} url={messages.url} title={messages.title} />
         </div>
       </div>
     </section>
