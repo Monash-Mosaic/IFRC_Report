@@ -148,7 +148,7 @@ export default async function ReportDetailPage({ params }) {
         },
         hasPage: !!chapter.component,
         thumbnail: chapter.thumbnail,
-        downloadLink: chapter.downloadLink,
+        downloadLink: chapter?.downloadLink,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
         released: chapter.released,
         sortOrder: chapter.metadata.chapterNumber,
