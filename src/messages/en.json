@@ -291,6 +291,16 @@
 
     "research": "The <bold>IFRC Solferino Academy</bold> led a two-month rapid community intelligence study with 40 volunteers and staff from 10 National Societies. Acting as community researchers, they interviewed 132 volunteers and community members affected by humanitarian crises. Findings were synthesised by volunteer academics from the University of Michigan, Northumbria University and Open Lab (Newcastle University), ensuring that local nuance was preserved. Selected quotes appear throughout the report."
   },
+  "Footer": {
+    "report": "Report",
+    "readReport": "Read report",
+    "downloadReport": "Download report",
+    "reportIssue": "Report an issue",
+    "games": "Games",
+    "world": "World",
+    "disasters": "Disasters",
+    "reportTitle": "Report",
+    "year": "2026"},
   "ContributionInsight": {
     "title": "Contributor Insight"
   },
