@@ -2,6 +2,7 @@ import * as Synthesis from './exec-summary.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter05 from './chapter-05.mdx';
 import * as Chapter08 from './chapter-08.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
@@ -196,10 +197,11 @@ export const chapters = {
       chapterNumber: 5,
       chapterPrefix: 'Chapter 5',
     },
-    title: 'Navigating Regulation, Rights and Societal Resilience',
-    subtitle: 'Information Landscape and Humanitarian Contexts',
+    component: Chapter05.default,
+    title: Chapter05.title,
+    subtitle: Chapter05.subtitle,
+    tableOfContents: Chapter05.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter05_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.png',
     thumbnailOverlay: 'red',
     released: true,
