@@ -4,7 +4,7 @@ import * as Synthesis from './exec-summary.mdx';
 export const title = 'Rapport mondial sur les catastrophes 2026';
 
 export const description =
-  'Rapport annuel 2025 de la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge, détaillant la réponse mondiale aux catastrophes et les efforts humanitaires.';
+  'Rapport annuel 2026 de la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge, détaillant la réponse mondiale aux catastrophes et les efforts humanitaires.';
 
 export const author = "Secrétariat de l'IFRC";
 

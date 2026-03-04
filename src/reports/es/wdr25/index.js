@@ -1,6 +1,6 @@
 import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
-export const title = 'Informe Mundial sobre Desastres 2025';
+export const title = 'Informe Mundial sobre Desastres 2026';
 
 export const description =
   'Informe Anual 2025 de la Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja, que detalla la respuesta global ante desastres y los esfuerzos humanitarios.';
