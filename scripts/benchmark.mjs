@@ -25,13 +25,13 @@ Options:
 
 Examples:
   npm run benchmark -- --url https://wdr26.org --connections 100 --duration 30
-  npm run benchmark -- --url http://localhost:3000 --paths /,/en/wdr25/chapter-02
+  npm run benchmark -- --url http://localhost:3000 --paths /,/en/wdr26/chapter-02
 `;
 
 function parseArgs(argv) {
   const args = {
     url: null,
-    paths: ['/', '/en', '/en/reports/wdr25', '/en/reports/wdr25/chapter-02'],
+    paths: ['/', '/en', '/en/reports/wdr26', '/en/reports/wdr26/chapter-02'],
     connections: 50,
     duration: 20,
     warmup: 5,

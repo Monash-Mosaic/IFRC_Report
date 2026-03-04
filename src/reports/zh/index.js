@@ -1,4 +1,4 @@
-import * as WDR25 from './wdr25';
+import * as wdr26 from './wdr26';
 
 export const categories = [
   '年度报告',
@@ -42,5 +42,5 @@ export const acknowledgementContributors = {
 };
 
 export const reports = {
-  wdr25: WDR25,
+  wdr26: wdr26,
 };

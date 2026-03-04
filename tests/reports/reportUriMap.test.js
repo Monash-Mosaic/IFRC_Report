@@ -6,21 +6,21 @@ describe('reportUriMap', () => {
 
     expectedLocales.forEach((locale) => {
       expect(reportUriMap.uri[locale]).toBeDefined();
-      expect(reportUriMap.uri[locale].wdr25).toBe('wdr25');
+      expect(reportUriMap.uri[locale].wdr26).toBe('wdr26');
     });
 
-    expect(reportUriMap.wdr25.languages).toMatchObject({
-      ar: 'wdr25',
-      en: 'wdr25',
-      es: 'wdr25',
-      fr: 'wdr25',
-      ru: 'wdr25',
-      zh: 'wdr25',
+    expect(reportUriMap.wdr26.languages).toMatchObject({
+      ar: 'wdr26',
+      en: 'wdr26',
+      es: 'wdr26',
+      fr: 'wdr26',
+      ru: 'wdr26',
+      zh: 'wdr26',
     });
   });
 
   it('builds chapter-level mappings with reverse lookups', () => {
-    const chapter = reportUriMap.wdr25.chapters['chapter-02'];
+    const chapter = reportUriMap.wdr26.chapters['chapter-02'];
 
     expect(chapter.number).toBe(2);
     expect(chapter.languages).toMatchObject({
@@ -32,29 +32,29 @@ describe('reportUriMap', () => {
       zh: '章节-02',
     });
 
-    expect(reportUriMap.wdr25.chapters.uri.en['chapter-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.es['capitulo-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.fr['chapitre-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.ru['глава-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.zh['章节-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.ar['الفصل-02']).toBe('chapter-02');
+    expect(reportUriMap.wdr26.chapters.uri.en['chapter-02']).toBe('chapter-02');
+    expect(reportUriMap.wdr26.chapters.uri.es['capitulo-02']).toBe('chapter-02');
+    expect(reportUriMap.wdr26.chapters.uri.fr['chapitre-02']).toBe('chapter-02');
+    expect(reportUriMap.wdr26.chapters.uri.ru['глава-02']).toBe('chapter-02');
+    expect(reportUriMap.wdr26.chapters.uri.zh['章节-02']).toBe('chapter-02');
+    expect(reportUriMap.wdr26.chapters.uri.ar['الفصل-02']).toBe('chapter-02');
   });
 });
 
 describe('report release helpers', () => {
   it('returns false for unknown locale or report', () => {
-    expect(isReportReleased('xx', 'wdr25', 'preview')).toBe(false);
+    expect(isReportReleased('xx', 'wdr26', 'preview')).toBe(false);
     expect(isReportReleased('en', 'unknown-report', 'preview')).toBe(false);
   });
 
   it('respects locale release gating', () => {
-    expect(isReportReleased('es', 'wdr25', 'preview')).toBe(true);
-    expect(isReportReleased('en', 'wdr25', 'preview')).toBe(true);
+    expect(isReportReleased('es', 'wdr26', 'preview')).toBe(true);
+    expect(isReportReleased('en', 'wdr26', 'preview')).toBe(true);
   });
 
   it('filters visible reports by locale release', () => {
-    expect(getVisibleReports('es', 'preview')).toHaveProperty('wdr25');
-    expect(getVisibleReports('en', 'preview')).toHaveProperty('wdr25');
+    expect(getVisibleReports('es', 'preview')).toHaveProperty('wdr26');
+    expect(getVisibleReports('en', 'preview')).toHaveProperty('wdr26');
   });
 });
 
@@ -65,7 +65,7 @@ describe('reportUriMap error branches', () => {
 
   const buildMockLocaleModule = (chapters) => ({
     reports: {
-      wdr25: {
+      wdr26: {
         chapters,
       },
     },
@@ -111,7 +111,7 @@ describe('reportUriMap error branches', () => {
         mockLocaleModules(localeModules);
         require('../../src/reports');
       });
-    }).toThrow('Duplicate canonical chapter number "1" in report "wdr25".');
+    }).toThrow('Duplicate canonical chapter number "1" in report "wdr26".');
   });
 
   it('throws on duplicate locale chapter mappings', () => {
@@ -138,7 +138,7 @@ describe('reportUriMap error branches', () => {
         mockLocaleModules(localeModules);
         require('../../src/reports');
       });
-    }).toThrow('Duplicate chapter slug mapping for locale "fr" in report "wdr25".');
+    }).toThrow('Duplicate chapter slug mapping for locale "fr" in report "wdr26".');
   });
 
   it('skips chapters without canonical mapping', () => {
@@ -165,6 +165,6 @@ describe('reportUriMap error branches', () => {
       ({ reportUriMap: mockedReportUriMap } = require('../../src/reports'));
     });
 
-    expect(mockedReportUriMap.wdr25.chapters.uri.es).toEqual({});
+    expect(mockedReportUriMap.wdr26.chapters.uri.es).toEqual({});
   });
 });

@@ -120,7 +120,7 @@ try {
     slugger.reset();
     for (const [report, { chapters }] of Object.entries(reports)) {
       for (const [chapter, content] of Object.entries(chapters)) {
-        if (!content.released) {
+        if (!content.released || !content.component) {
           console.info(`[build-search-index] Skipping ${locale} ${report} ${chapter} as it is not released in the current environment`);
           continue;
         }

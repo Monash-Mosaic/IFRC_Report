@@ -5,13 +5,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 jest.mock('next-intl', () => ({
   useTranslations: (namespace) => (key) => {
     const translations = {
-      'Home.landingPage.heroSection.title': 'World Disasters Report 2025 Test Title',
+      'Home.landingPage.heroSection.title': 'World Disasters Report 2026 Test Title',
       'Home.landingPage.heroSection.description':
         'This is a comprehensive test description for the hero section that provides detailed information about the World Disasters Report and its importance in humanitarian work.',
       'Home.landingPage.heroSection.buttonTexts.read': 'Read Report',
       'Home.landingPage.heroSection.buttonTexts.download': 'Download PDF',
       'Home.landingPage.heroSection.buttonTexts.share': 'Share Report',
-      'Home.landingPage.heroSection.heroAlt': 'World Disasters Report 2025 hero image',
+      'Home.landingPage.heroSection.heroAlt': 'World Disasters Report 2026 hero image',
     };
 
     // Check if we're testing with French locale (for custom content test)
@@ -63,18 +63,18 @@ jest.mock('@/i18n/navigation', () => ({
 const defaultProps = {
   locale: 'en',
   messages: {
-    title: 'World Disasters Report 2025',
+    title: 'World Disasters Report 2026',
     description:
-      'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.',
+      'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2026.',
     buttonTexts: {
       read: 'Read Report',
       download: 'Download PDF',
       share: 'Share Report',
     },
-    heroAlt: 'World Disasters Report 2025 hero image',
+    heroAlt: 'World Disasters Report 2026 hero image',
   },
-  url: '/reports/wdr25',
-  downloadLink: '/reports/wdr25.pdf',
+  url: '/reports/wdr26',
+  downloadLink: '/reports/wdr26.pdf',
 };
 
 const buildHeroMessages = (props) => ({
@@ -99,7 +99,7 @@ describe('HeroSection', () => {
     // Should show description
     expect(
       screen.getByText(
-        'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.'
+        'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2026.'
       )
     ).toBeInTheDocument();
 
@@ -111,7 +111,7 @@ describe('HeroSection', () => {
     // Should render HeroVideo with correct alt text
     const heroVideo = screen.getByTestId('mock-hero-video');
     expect(heroVideo).toBeInTheDocument();
-    expect(heroVideo).toHaveAttribute('data-alt', 'World Disasters Report 2025 hero image');
+    expect(heroVideo).toHaveAttribute('data-alt', 'World Disasters Report 2026 hero image');
 
     expect(container).toBeInTheDocument();
   });
@@ -127,7 +127,7 @@ describe('HeroSection', () => {
     // Should still render content (locale is passed but doesn't affect rendering directly)
     expect(
       screen.getByText(
-        'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2025.'
+        'Explore the most comprehensive analysis of global disasters and humanitarian responses in 2026.'
       )
     ).toBeInTheDocument();
   });
@@ -168,7 +168,7 @@ describe('HeroSection', () => {
     // Check that read button is a Link component with correct href
     const readLink = screen.getByTestId('mock-link');
     expect(readLink).toBeInTheDocument();
-    expect(readLink).toHaveAttribute('href', '/reports/wdr25');
+    expect(readLink).toHaveAttribute('href', '/reports/wdr26');
     expect(readLink).toHaveTextContent('Read Report');
 
     // Should have correct Link styling with responsive classes
@@ -314,7 +314,7 @@ describe('HeroSection', () => {
 
     // Should use proper heading hierarchy
     const h1 = screen.getByRole('heading', { level: 1 });
-    expect(h1).toHaveTextContent('World Disasters Report 2025');
+    expect(h1).toHaveTextContent('World Disasters Report 2026');
     expect(h1).toHaveClass(
       'text-4xl',
       'md:text-7xl/18',

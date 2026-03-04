@@ -149,19 +149,19 @@ Install `ffmpeg`:
 
 ### Generating Assets
 
-1. Ensure your source MP4 video exists at: `public/wdr25/wdr_hero_video.mp4`
+1. Ensure your source MP4 video exists at: `public/wdr26/wdr_hero_video.mp4`
 2. Run the generation script:
    ```bash
    npm run hero:assets
    ```
 
 This will generate:
-- `public/wdr25/hero/poster.webp` - First frame as poster image
-- `public/wdr25/hero/fallback-muted.mp4` - Muted MP4 fallback
-- `public/wdr25/hero/hls/480p.m3u8` + segments - 480p HLS variant
-- `public/wdr25/hero/hls/1080p.m3u8` + segments - 1080p HLS variant
-- `public/wdr25/hero/hls/master.m3u8` - ABR master playlist
-- `public/wdr25/hero/hls/480p_only.m3u8` - 480p-only playlist for low bandwidth
+- `public/wdr26/hero/poster.webp` - First frame as poster image
+- `public/wdr26/hero/fallback-muted.mp4` - Muted MP4 fallback
+- `public/wdr26/hero/hls/480p.m3u8` + segments - 480p HLS variant
+- `public/wdr26/hero/hls/1080p.m3u8` + segments - 1080p HLS variant
+- `public/wdr26/hero/hls/master.m3u8` - ABR master playlist
+- `public/wdr26/hero/hls/480p_only.m3u8` - 480p-only playlist for low bandwidth
 
 
 ## Benchmarking (Load Test)
@@ -177,5 +177,5 @@ npm run benchmark -- --url http://localhost:3000 --connections 50 --duration 20
 ```
 
 Notes:
-- By default it tests: `/`, `/en`, `/en/reports/wdr25`, `/en/reports/wdr25/chapter-02` (override with `--paths /,/en/wdr25/chapter-02`)
+- By default it tests: `/`, `/en`, `/en/reports/wdr26`, `/en/reports/wdr26/chapter-02` (override with `--paths /,/en/wdr26/chapter-02`)
 - It does not fail the process on HTTP non-2xx by default (use `--fail-on-non2xx` if desired)

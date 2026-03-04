@@ -11,10 +11,10 @@ export const metadata = {
     apple: '/apple-icon.jpg',
   },
   openGraph: {
-    images: ['/wdr25/ifrc_logo.jpg'],
+    images: ['/wdr26/ifrc_logo.jpg'],
   },
   twitter: {
-    images: ['/wdr25/ifrc_logo.jpg'],
+    images: ['/wdr26/ifrc_logo.jpg'],
   },
 };
 
