@@ -119,7 +119,9 @@
     "sections": {
       "continue": "متابعة",
       "comingSoon": "قريباً",
-      "expandChapter": "توسيع تفاصيل الفصل"
+      "expandChapter": "توسيع تفاصيل الفصل",
+      "notAvailable": "غير متاح",
+      "download": "تحميل"
     }
   },
   "ReportChapterPage": {

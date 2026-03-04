@@ -144,7 +144,7 @@ export const chapters = {
     subtitle: Chapter01.subtitle,
     tableOfContents: Chapter01.tableOfContents,
     downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+      'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter01_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter1.png',
     thumbnailOverlay: 'red',
     released: true,
@@ -159,7 +159,7 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
-    downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter02_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter2.png',
     released: true,
     audios: [
@@ -192,13 +192,13 @@ export const chapters = {
       chapterNumber: 3,
       chapterPrefix: 'Chapter 3',
     },
-    component: Chapter02.default,
     title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
     subtitle: 'Harmful Narratives that Thrive',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter03_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
-    released: false,
+    released: true,
   },
   'chapter-04': {
     metadata: {
@@ -210,10 +210,11 @@ export const chapters = {
     title:
       'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
     subtitle: 'Harmful Information and Operational Realities',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter04_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-05': {
     metadata: {
@@ -221,13 +222,13 @@ export const chapters = {
       chapterNumber: 5,
       chapterPrefix: 'Chapter 5',
     },
-    component: Chapter02.default,
     title: 'Navigating Regulation, Rights and Societal Resilience',
     subtitle: 'Information Landscape and Humanitarian Contexts',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter05_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-06': {
     metadata: {
@@ -235,13 +236,13 @@ export const chapters = {
       chapterNumber: 6,
       chapterPrefix: 'Chapter 6',
     },
-    component: Chapter02.default,
     title: 'Rooted in Resilience: Community-first approach to Harmful Information',
     subtitle: 'The Importance of Community for Resilience',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter06_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-07': {
     metadata: {
@@ -249,13 +250,13 @@ export const chapters = {
       chapterNumber: 7,
       chapterPrefix: 'Chapter 7',
     },
-    component: Chapter02.default,
     title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
     subtitle: 'Humanitarian Action in the Era of Instant Narratives',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter07_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-08': {
     metadata: {
@@ -267,8 +268,7 @@ export const chapters = {
     title: Chapter08.title,
     subtitle: Chapter08.subtitle,
     tableOfContents: Chapter08.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter08_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter8.png',
     thumbnailOverlay: 'red',
     released: true,

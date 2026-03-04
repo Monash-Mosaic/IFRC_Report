@@ -146,6 +146,7 @@ export default async function ReportDetailPage({ params }) {
           pathname: '/reports/[report]/[chapter]',
           params: { report: decodedReport, chapter: chapterKey },
         },
+        hasPage: !!chapter.component,
         thumbnail: chapter.thumbnail,
         downloadLink: chapter.downloadLink,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
@@ -188,12 +189,14 @@ export default async function ReportDetailPage({ params }) {
               continueHref={chapter.continueHref}
               report={decodedReport}
               released={chapter.released}
-              page={!!chapter.continueHref}
+              hasPage={chapter.hasPage}
               downloadLink={chapter.downloadLink}
               translations={{
                 continue: t('sections.continue'),
                 comingSoon: t('sections.comingSoon'),
                 expandChapter: t('sections.expandChapter'),
+                notAvailable: t('sections.notAvailable'),
+                download: t('sections.download'),
               }}
             />
           ))}

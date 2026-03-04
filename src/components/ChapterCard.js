@@ -11,10 +11,10 @@ export default async function ChapterCard({
   thumbnailOverlay = 'red',
   tableOfContents = [],
   continueHref,
-  page,
   downloadLink,
-  report,
+  hasPage,
   released = true,
+  report,
   translations = {},
 }) {
   const thumbnailBgClass = thumbnailOverlay === 'blue' ? 'bg-blue-500' : 'bg-red-500';
@@ -93,7 +93,7 @@ export default async function ChapterCard({
                 <Download className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
             )}
-            {released && page ? (
+            {hasPage && released ? (
               <Link
                 href={continueHref}
                 className="border border-red-600 text-red-600 bg-white hover:bg-red-50 px-4 py-1.5 sm:px-8 sm:py-2.5 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap"
@@ -102,9 +102,13 @@ export default async function ChapterCard({
               </Link>
             ) : released ? (
               <span className="border border-gray-300 text-gray-400 bg-gray-50 px-4 py-1.5 sm:px-8 sm:py-2.5 rounded text-xs sm:text-sm font-medium whitespace-nowrap cursor-default">
+                {translations.notAvailable}
+              </span>
+            ) : (
+              <span className="border border-gray-300 text-gray-400 bg-gray-50 px-4 py-1.5 sm:px-8 sm:py-2.5 rounded text-xs sm:text-sm font-medium whitespace-nowrap cursor-default">
                 {translations.comingSoon}
               </span>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

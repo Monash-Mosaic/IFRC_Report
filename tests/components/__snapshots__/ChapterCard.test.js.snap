@@ -112,7 +112,7 @@ exports[`ChapterCard renders with all content 1`] = `
           </details>
         </div>
         <div
-          class="md:flex-none flex justify-end shrink-0 mt-5"
+          class="md:flex-none flex justify-end items-center gap-3 shrink-0 mt-5"
         >
           <a
             class="border border-red-600 text-red-600 bg-white hover:bg-red-50 px-4 py-1.5 sm:px-8 sm:py-2.5 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap"

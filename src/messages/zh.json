@@ -119,7 +119,9 @@
     "sections": {
       "continue": "继续",
       "comingSoon": "即将推出",
-      "expandChapter": "展开章节详情"
+      "expandChapter": "展开章节详情",
+      "notAvailable": "不可用",
+      "download": "下载"
     }
   },
   "ReportChapterPage": {

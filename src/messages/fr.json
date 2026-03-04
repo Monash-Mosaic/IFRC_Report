@@ -76,7 +76,7 @@
             "id": 1,
             "title": "Sous-titre",
             "description": "Texte du corps pour tout ce que vous souhaitez ajouter au sous-titre.",
-            "thumbnailSrc": "/wdr25/thumbnail1.png",
+            "thumbnailSrc": "/wdr26/thumbnail1.png",
             "thumbnailAlt": "Miniature de la vidéo en vedette",
             "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
           },
@@ -84,7 +84,7 @@
             "id": 2,
             "title": "Sous-titre",
             "description": "Texte du corps pour tout ce que vous souhaitez développer sur le point principal.",
-            "thumbnailSrc": "/wdr25/thumbnail2.png",
+            "thumbnailSrc": "/wdr26/thumbnail2.png",
             "thumbnailAlt": "Miniature de la vidéo en vedette",
             "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           }
@@ -137,7 +137,9 @@
     "sections": {
       "continue": "Continuer",
       "comingSoon": "Bientôt disponible",
-      "expandChapter": "Développer les détails du chapitre"
+      "expandChapter": "Développer les détails du chapitre",
+      "notAvailable": "Non disponible",
+      "download": "Télécharger"
     }
   },
   "ReportChapterPage": {

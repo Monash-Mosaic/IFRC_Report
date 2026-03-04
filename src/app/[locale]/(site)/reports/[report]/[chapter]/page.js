@@ -1,5 +1,4 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 
 import {
@@ -91,12 +90,14 @@ export async function generateStaticParams() {
     const reports = getVisibleReports(locale);
     for (const reportKey of Object.keys(reports)) {
       const report = reports[reportKey];
-      for (const chapterKey of Object.keys(report.chapters)) {
-        params.push({
-          locale,
-          report: reportKey,
-          chapter: chapterKey,
-        });
+      for (const [chapterKey, chapter] of Object.entries(report.chapters)) {
+        if (chapter.component) {
+          params.push({
+            locale,
+            report: reportKey,
+            chapter: chapterKey,
+          });
+        }
       }
     }
   }
