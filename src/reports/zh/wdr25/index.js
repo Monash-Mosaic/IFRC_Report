@@ -1,7 +1,7 @@
 import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
 
-export const title = '国际红十字与红新月联合会 2026 年度报告';
+export const title = '红十字会与红新月会国际联合会 2026 年世界灾害报告';
 
 export const description =
   '国际红十字与红新月联合会 2026 年度报告，详述全球灾害响应与人道救援工作。';
@@ -69,7 +69,7 @@ export const chapters = {
     metadata: {
       chapterKey: 'synthesis',
       chapterNumber: 0,
-      chapterPrefix: '合成',
+      chapterPrefix: '综合报告',
     },
     component: Synthesis.default,
     title: Synthesis.title,
