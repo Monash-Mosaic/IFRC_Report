@@ -286,7 +286,7 @@ export default function QuotesSection({ selectedTag }) {
           slideWidth={280}
           loop={false}
           showArrows={true}
-          arrowsPosition="top"
+          arrowsPosition="bottom"
           className="!space-y-4"
           containerClassName="pb-3"
         >
