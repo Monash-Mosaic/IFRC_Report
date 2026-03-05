@@ -131,11 +131,6 @@ export default async function AboutPage({ params }) {
               <p className="whitespace-pre-line">{t('addressText')}</p>
             </div>
 
-            <div>
-              <h3 className="font-semibold mb-1">{t('postalAddressTitle')}</h3>
-              <p className="whitespace-pre-line">{t('postalAddressText')}</p>
-            </div>
-
             <div className="whitespace-pre-line">
               {t('contactLine')}
             </div>
@@ -150,11 +145,6 @@ export default async function AboutPage({ params }) {
               <p className="whitespace-pre-line">
                 {t('copyrightText')}
               </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-1">{t('isbnTitle')}</h3>
-              <p className="whitespace-pre-line">{t('isbnText')}</p>
             </div>
 
             {/* PDF URL */}
