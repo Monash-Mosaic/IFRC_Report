@@ -54,17 +54,18 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Quick Guide to Your Limitless Application',
+    title: 'World Disasters Report 2026',
     description:
       "Are you having trouble applying for Limitless? Do you not know where to start? Don't worry. Zikomo is here to tell you how, why and where to apply for the IFRC Limitless Youth Innovation Academy 2024",
-    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
+    url: 'https://www.youtube.com/watch?v=nabMyC5cVrU',
   },
   {
     id: 2,
-    title: 'Dive in the localisation of aid — An inclusive initiative',
+    title:
+      'World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information',
     description:
       'In this episode, Victoire from Cameroon Red Cross discusses the significance of involving local people in implementing humanitarian action in vulnerable community through the involvement of local people.',
-    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
+    url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
 ];
 
