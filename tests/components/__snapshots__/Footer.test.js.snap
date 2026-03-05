@@ -169,7 +169,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
               Report
             </p>
             <a
-              href="{"pathname":"/reports/[report]","params":{"report":"world-disasters-report-2025"}}"
+              href="{"pathname":"/reports/[report]","params":{"report":"wdr26"}}"
             >
               Read Report
             </a>
