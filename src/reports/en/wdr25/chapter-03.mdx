@@ -1,0 +1,1167 @@
+import {
+  Anchor,
+  Box,
+  ChapterImage,
+  Contributor,
+  ContributorEntity,
+  ContributorName,
+  ContributorRole,
+  ContributorTag,
+  ColumParagraphs,
+  ColumParagraph,
+  Definition,
+  DefinitionDescription,
+  EndnotesLink,
+  FeatureImage,
+  Reccomendations,
+  ReccomendationsTitle,
+  SmallQuote,
+  SmallQuoteAuthor,
+  HeadingLabel,
+  TableLabel,
+  TohInsight,
+  ChapterLink,
+  QuestionAnswerBox,
+  QuestionAnswerBoxTitle,
+  QuestionAnswerBoxBody
+} from '@/components/CustomComponents';
+
+import {
+  Deprivational,
+  Digital,
+  Informational,
+  Longitudinal,
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+} from '@/components/icons/toh';
+
+import { TypologyOfHarm } from '@/types/TypologyOfHarm';
+
+export const title =
+  'Chapter 3';
+
+export const subtitle = 'Global and local: Dynamics of harmful information in a connected world';
+
+<ChapterImage imagePath="/wdr25/chapter-03/v-LBN0533-AB_opt6.png" title="v-LBN0533-AB" />
+
+# Introduction: Harmful narratives that thrive
+
+Climate change, vaccine hesitancy and migration are among the issues on which harmful information thrives, crossing borders and continually being reshaped by local contexts, narratives and political agendas. These same issues also contribute to humanitarian crises. Humanitarian organizations therefore face a delicate balancing act: they must meet urgent needs while navigating what can and cannot be said, avoiding controversies that could inflame tensions or compromise perceptions of neutrality.
+
+At the heart of this challenge lies the power of narrative. Narratives shape how people interpret information and decide whom to trust and whether to engage with humanitarian actors. They are reinforced by lived experience, public discourse, media coverage and digital engagement. When there is a gap between dominant narratives and people’s daily realities, trust erodes and alternative or harmful narratives often emerge. These narratives frequently define identity by portraying certain individuals or groups as outsiders, threats or illegitimate – as the ‘other’. Such framing generates fear, fuels exclusion, dehumanizes and normalizes hostility. For example, displaced populations may be cast not as victims of a crisis but as threats to national stability or competition for scarce resources. In this way, narrative shapes perception and the notion of the ‘other’ shapes belonging – who is trusted or untrusted, legitimate or illegitimate.
+
+Narratives also simplify complexity, evoke emotion and may weaken social cohesion. In today’s information ecosystem, humanitarian organizations must contend not only with physical threats but also with digital and cyber ones. They are increasingly framed as ineffective responders, political tools or even foreign agents. This makes it harder to ensure that accurate, trusted information reaches the people who need it most and can be distinguished from harmful content. In contested or sensitive environments, people may instead turn to digital communities for answers – even when these communities amplify harmful messaging driven by actors lacking expertise or clear political or economic agendas.
+
+Malicious actors exploit people’s limited capacity to process information by amplifying feelings of fear, grievance and crisis. This does not just create short-term confusion – it entrenches long-term mistrust. The consequences are real. Harmful narratives influence how communities perceive risk, how they respond during emergencies and how they prepare for future shocks, including disasters. In moments of crisis, harmful narratives can fuel denial, panic or resistance – ultimately undermining life-saving interventions.
+
+# <HeadingLabel index="3.1" />Local and global interplay
+
+The relationship between local realities and global narratives is a continuous feedback loop. What resonates globally may not resonate locally, while local experiences – though vital – too rarely shape global communication approaches. Global messaging risks missing the mark when it fails to reflect lived realities, priorities or the linguistic, cultural and political contexts of communities. Even when factually accurate, such messaging may be perceived as tone-deaf, abstract or slow to adapt. Yet local dynamics have already influenced – and must continue to influence – global humanitarian positioning and diplomacy. These moments must be captured and applied.
+
+Community insights and lived experiences are critical to strategies for countering or responding to harmful information, including by challenging flawed assumptions, surfacing blind spots and revealing opportunities for trust-building that global actors might otherwise overlook. Importantly, communities are not passive. Local voices are actively pushing back, using digital platforms to counter harmful information, reclaim narratives and assert agency. These efforts should be recognized, amplified and better connected to global strategies.
+
+The information landscape is complex: harmful narratives resonate differently depending on political, historical, social, cultural and economic contexts. Understanding this nuance is essential for shaping responses that are relevant, respectful and effective. Narratives that target humanitarian organizations are often deliberately designed to erode trust, challenge neutrality and disrupt access to affected populations and other stakeholders. They frequently exploit allegations of misconduct, misuse of aid or funds, operational inefficiencies and failures to uphold humanitarian principles – particularly neutrality and impartiality.
+
+In some settings, humanitarian actors are framed as being too closely aligned with governments, undermining perceptions of independence. In others, they are portrayed as detached from communities, reinforcing views of elitism, foreignness or lack of local legitimacy. Such portrayals often feed into broader narratives of neocolonialism or external interference, further complicating acceptance and access. These risks demand both strategic foresight and renewed commitment to inclusion, transparency and sustained community engagement – ensuring that humanitarian action is both principled and trusted at every level.
+
+<Box
+index="3.1"
+types={[TypologyOfHarm.Physical, TypologyOfHarm.Psychological
+, TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational, TypologyOfHarm.Deprivational]}
+>
+## Crossing borders, losing truth: The humanitarian cost of misinformation in migration
+
+Trust is essential to humanitarian action. Without the trust of affected populations, public authorities and donors, humanitarian organizations cannot reach or respond effectively to the needs of the most vulnerable people, including many migrants. Yet in an era of misinformation, that trust is increasingly at risk, especially for migrants who experience harm, discrimination and exploitation along their journeys. When misinformation erodes trust and fuels fear, migrants may avoid seeking critical assistance and support, with life-threatening consequences.
+
+Evidence from research led by the Red Cross Red Crescent Global Migration Lab (the Lab)[^1], involving over 20,000 migrants across 34 countries, highlights how misinformation impacts migrants’ willingness and ability to access humanitarian assistance and protection. Studies related to the COVID-19 pandemic, trust in humanitarian action, and missing migrant women and children consistently show that inaccurate or inaccessible information undermines safety and dignity throughout migration journeys.[^2]
+
+During the COVID-19 pandemic, a study by the Lab involving more than 3,200 migrants across eight countries confirmed that a major barrier to accessing health services – including COVID-19 treatment and vaccines – was the lack of accessible information, particularly in migrants’ languages and via trusted channels.[^3] As one migrant in the UK explained, “people are very confused … they are not getting the right information ... They do not know what to do or even where to go to get information …” In a parallel survey of 52 National Red Cross and Red Crescent Societies, 90% confirmed these concerns, reporting that poor availability of translated information and limited awareness of how and where to access vaccines were key barriers to migrants staying healthy and safe.[^4] This lack of reliable information fuelled vaccine hesitancy and heightened health risks – exacerbating migrants’ vulnerabilities.[^5]
+
+Beyond public health emergencies, misinformation continues to endanger migrants.
+Research with 16,000 migrants across 15 countries found that access to accurate,
+practical information – such as contact details for services or legal guidance – was
+crucial to reducing exploitation and ensuring safer journeys. Without it, many migrants
+are forced to rely on unverified sources of information. As one migrant in Australia
+highlighted: “… we suffer from dodgy [unreliable] information provided to us by migration
+agents, for example”. Misinformation also fosters mistrust in humanitarian organizations,
+especially when they are not perceived as independent, but as aligned with authorities.
+This perception deters migrants from seeking essential support out of fear of arrest,
+detention or deportation.[^6]
+
+Research by the Lab on missing migrant women and children, based on discussions with over 800 participants across 17 countries, further reinforces how misinformation and distrust contribute to increased vulnerability and loss of life during migration.[^7] Migrants cited limited access to accurate information about how to access essential services and route-specific risks as key factors in exposure to threats, including human trafficking. Many migrants reported receiving false or misleading information before departure, often online or from smugglers – which shaped unrealistic expectations and led to harm. As one migrant in Africa noted, “My journey was just misinformation… at times you might ask questions and still get wrong answers.” Another in the Americas said, “The information did not help me at all because it was all a lie, the guide scammed us...” Social media, while helpful in some cases for staying connected, was often described as a “double-edged sword” – a source of both connection and harmful information.
+
+Misinformation and disinformation about migrants also impact their safety, dignity and well-being by shaping public opinion and policy. As highlighted by the Kaldor Centre for International Refugee Law, misinformation about migrants is increasing globally, undermining social cohesion and causing harm.[^8] In countries where migrants are portrayed as threats, public discourse tends to support more restrictive migration policies and reduced access to essential services, increasing vulnerability.[^9]
+
+Existing research, including studies by the Lab, underscores the critical role of information – and misinformation – in shaping migrants’ trust in and access to humanitarian assistance and protection. To address this, communication strategies must ensure that migrants receive clear, relevant and trustworthy information across all stages of their journey – in countries of origin, transit, destination and return. This information must be delivered in ways that reflect migrants’ diverse needs, including language, gender, age and access to technology. Importantly, migrants in the Lab’s research identified family and friends who had previously migrated as their most trusted source of information. This highlights the value of engaging migrant communities and local networks in designing and delivering life-saving information.
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Nicole Hoagland
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Adviser for Global Policy & Engagement
+      </ContributorEntity>
+
+      <ContributorRole>
+        Red Cross Red Crescent Global Migration Lab
+      </ContributorRole>
+    </Contributor>
+        <Contributor>
+      <ContributorName>
+        Magdalena Arias Cubas
+      </ContributorName>
+
+      <ContributorEntity>
+        Research Lead
+      </ContributorEntity>
+
+      <ContributorRole>
+        Red Cross Red Crescent Global Migration Lab
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+
+<Box index="3.2">
+## UNHCR information integrity
+
+In 2023, the UN High Commissioner for Refugees (UNHCR) launched a two-year ECHO-funded project to enhance UNHCR and humanitarian partners’ understanding of and responses to misinformation, disinformation and hate speech (MDH) on digital platforms. The project included research, development of tools and guidance, advocacy and three field-based pilots. One of these pilots focused on the Rohingya. Its objectives were to:
+
+<ol className="list-decimal marker:text-[#ee2435] ps-6 space-y-4">
+
+<li>
+Improve understanding of how MDH develops, spreads and impacts the protection of Rohingya.
+</li>
+
+<li>
+Develop an action plan and tools to help UNHCR and partners respond to and mitigate the impacts of MDH targeting Rohingya.
+</li>
+
+<li>
+Develop a strategy and recommendations for short- and medium-term work, ensuring collaboration with relevant actors and communities.
+</li>
+
+</ol>
+
+The pilot aimed to strengthen responses to MDH affecting displaced populations and humanitarian actors. Activities included country-level assessments to identify trends, protection impacts, and key partnerships and advocacy entry points. A regional multistakeholder meeting and follow-up webinar brought together UN agencies, civil society, digital rights organizations, journalists, academics and the private sector to share lessons learned and elaborate potential responses.
+
+**The pilot tested a range of responses, including:**
+
+- direct advocacy with technology companies to address harmful content and impersonation
+
+- capacity‑building workshops and crisis communications training incorporating MDH and social media risk
+
+- country‑tailored social media listening methodologies
+
+- development of guidance and recommendations for specific incidents and general operational responses.
+
+Regional collaboration and advocacy efforts were key to raising awareness and promoting coordinated responses to MDH targeting Rohingya.
+
+The pilot also benefited from partnerships at global and regional levels, including those strengthened by the Global Refugee Forum Multistakeholder Pledge on Digital Protection. Guided by an advisory group of refugee experts, this initiative now includes 25 pledges from governments, the private sector, civil society and international organizations.
+
+The pilot itself established new partnerships and built a baseline understanding of MDH trends to inform future analysis. Refugee-led initiatives have demonstrated the value of community-driven responses.
+
+Key lessons from the pilot show that MDH is complex and constantly evolving, requiring flexible and adaptable responses. MDH campaigns can be coordinated or emerge
+organically. They may be driven by political agendas, financial gain or identity-based
+narratives. Local context matters – tailored responses informed by real-time monitoring
+are essential. Linking online and offline insights adds value, but sustained monitoring is
+resource intensive and most useful if undertaken with the aim of informing programmes
+and/or tailored advocacy. Integrating MDH strategies into emergency preparedness
+is increasingly important and more must be done to include forcibly displaced and
+stateless persons in designing and delivering actions to respond to online information
+integrity risks.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Gisella Lomax
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Advisor, Information Integrity
+      </ContributorEntity>
+
+      <ContributorRole>
+        UNHCR
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+<Box index="3.3">
+## What drives trust at the community level?
+
+Across contexts – from the Sahel to Syria – local actors consistently enjoy higher trust and lower hostility in online spaces compared to their international counterparts. In Burkina Faso, Mali and Niger, local NGOs received virtually no negative comments across several months of monitoring, even when addressing sensitive topics such as reproductive health or gender-based violence. This trust is often rooted in perceived cultural alignment, local presence and visibility of known individuals, which often shields them from broader anti-aid or anti-foreign narratives.[^10]
+
+However, trust alone does not guarantee reach. In the Sahel, local NGOs frequently operate in low-engagement digital environments, limiting their ability to shape public discourse. Posts by local organizations often go unnoticed unless amplified by media or influencers. In some cases, external visibility without narrative control can backfire. For example, when a Burkinabè local NGO initiative on female genital mutilation was featured by a third-party media outlet, it 
+<ChapterLink
+  href="https://insecurityinsight.org/wp-content/uploads/2025/05/8TRACK1.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+>faced backlash</ChapterLink> that had not occurred when the messaging came directly from the organization itself. Conversely, when female empowerment is promoted by trusted local figures, it can generate positive engagement. For example, Facebook posts by a Burkinabè artist and UNDP Goodwill Ambassador celebrating a women’s vocational training initiative were 
+<ChapterLink
+  href="https://insecurityinsight.org/wp-content/uploads/2025/07/16.-Tracking-Aid-Narratives-on-Social-Media_-Emerging-Trends-in-the-Sahel-.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+> widely praised and avoided the criticism</ChapterLink> often directed at content associated with aid agencies.
+
+In 2024, the Goodwill Ambassador posted content supporting UNDP’s role and received only positive comments, in sharp contrast to the general scepticism surrounding UN entities. This demonstrates that trusted messengers can act as a 
+<ChapterLink
+  href="https://insecurityinsight.org/wp-content/uploads/2024/10/11.-Protecting-the-Humanitarian-Space-in-Burkina-Faso-July-September-2024.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+>buffer against harmful narratives</ChapterLink>. Yet, influencer engagement must be strategic and context aware. In June 2025,
+<ChapterLink
+  href="https://insecurityinsight.org/wp-content/uploads/2025/06/11.-Tracking-Aid-Narratives-on-Social-Media_-Emerging-Trends-in-the-Sahel-.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+>UNICEF faced backlash</ChapterLink> following the appointment of a new foreign representative in Burkina Faso, with 85% of user comments expressing suspicion, often invoking sovereignty and anti-imperialist narratives. The stark difference in public sentiment toward local leaders versus institutional figures reflected complex dynamics and it is not always clear how much of the reaction is organic or coordinated.
+
+In Syria, the contrast was similarly pronounced. In the monitored posts, local responders like the White Helmets attracted significantly more positive engagement than UN agencies, which were often criticized for perceived regime bias or bureaucratic distance. Community trust was strongly tied to 
+<ChapterLink
+  href="https://insecurityinsight.org/wp-content/uploads/2025/02/Calls-for-Aid-Local-Resilience-and-Distrust-Syria-February-2025.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+>transparency, visible impact and narrative ownership on social media.</ChapterLink> When local organizations shared stories of their work and impact, they generated more positive engagement than when UN agencies shared similar content. This suggests that the way content is framed and the messenger’s perceived connection to the community can significantly influence public sentiment.
+
+To strengthen digital resilience, aid actors should invest in amplifying credible local voices, support community content creators and co-produce messaging with those already seen as legitimate. When humanitarian communication is grounded in relationships and proximity, it becomes far more effective in navigating contested digital spaces.
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Christina Wille
+      </ContributorName>
+
+      <ContributorEntity>
+        Director
+      </ContributorEntity>
+
+      <ContributorRole>
+        Insecurity Insight
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Clara de Solages
+      </ContributorName>
+
+      <ContributorEntity>
+        Researcher
+      </ContributorEntity>
+
+      <ContributorRole>
+        Insecurity Insight
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+# <HeadingLabel index="3.2" />When words harm: The International Red Cross and Red Crescent Movement’s call to action
+
+In its Appeal to States included in the resolution on neutral, independent, impartial humanitarian action[^11] at the 2024 Council of Delegates,[^12] the International Red Cross and Red Crescent Movement called on governments to take all appropriate measures to prevent, stop and remedy “any abuse, pressure, misinformation, disinformation and dehumanizing rhetoric”, particularly when spread by social media. The appeal emphasized the serious harm such content causes to the physical, psychological and reputational well-being of people in vulnerable situations, as well as to the staff and volunteers of the Movement.
+
+By explicitly recognizing harmful information – whether in the form of disinformation, misinformation or dehumanizing rhetoric – as a global issue with profound humanitarian consequences, the Movement marked a pivotal moment. It was the first time that these issues had been directly addressed in its history, dating back to the inaugural international conference in 1867. While earlier themes had touched on information, they focused largely on coordination and modalities for information sharing[^13] rather than on the humanitarian dangers of harmful information.
+
+No specific resolutions have previously addressed propaganda, despite its widespread use in wartime. Under international humanitarian law, the use of propaganda, misinformation or disinformation during armed conflict is not per se prohibited, though certain forms may violate specific rules.[^14]
+
+The 2024 resolution further expressed concern over the spread of malicious ICT activities intended to cause, instigate or amplify harm to civilians and other protected persons and objects in armed conflict. It acknowledged that such activities may directly harm humanitarian organizations by:
+
+- enabling data breaches and disinformation that target them
+
+- undermining trust and threatening the safety of personnel, premises and assets
+
+- threatening humanitarian access and the ability to deliver life‑saving assistance.[^15]
+
+These threats underscore a critical shift: the Movement has now placed – at its highest platform – harmful information and malicious digital activity firmly within the realm of humanitarian concern, recognizing them as urgent threats to lives, dignity and principled humanitarian action.
+
+Three months after the Movement’s statutory meetings, the World Economic Forum released its _Global Risks Report 2025_ ,[^16] based on the Global Risks Perception Survey 2024–2025. This describes a year marked by escalating conflicts, extreme weather events amplified by climate change, widespread societal and political polarization and continued technological advances accelerating the spread of false and misleading information. For the second consecutive year, misinformation and disinformation were ranked as the top global risk projected for 2027.[^17] The report underscores how false or misleading content is complicating geopolitics – shaping voter behaviour and distorting realities in conflict zones. The growing use of digital platforms and surge in AI-generated content are fuelling the spread of divisive misinformation and disinformation. As polarization deepens, algorithmic bias – and its role in amplifying misleading content – may become more pervasive. The report further warns that the vulnerabilities linked to citizens’ online activities are deepening alongside societal and political divisions, trends which risk fundamentally eroding individuals’ trust in information and institutions.[^18]
+
+# <HeadingLabel index="3.3" /> The evolving nexus between cyberattacks and harmful information
+
+The growing intersection between cyberattacks and harmful information campaigns has amplified the impact of both. Coordinated information operations often accompany cyber incidents: shaping narratives, sowing confusion and manipulating public perceptions. The objective is not only to influence specific outcomes but also to erode trust in institutions. This means that cybersecurity must go beyond encryption, firewalls and digital hygiene to encompass information resilience – the capacity to withstand, detect and respond to narrative manipulation.
+
+As discussed in see <span className="text-purple-600">Chapter 1, on page  29</span>, the digital and cyber domains are largely shaped by two distinct perspectives:
+
+- **Content:**
+  Information, narratives, platforms and applications. Content influences hearts and minds and is typically governed through the lens of values, rights and public trust. Key concerns include control of the information space, foreign influence, censorship and threats to freedom of expression.
+
+- **Cables:**
+  The physical infrastructure, hardware and networks that enable connectivity. This perspective is dominated by sovereignty, security and strategic power, with debates centred on who owns, builds and operates the infrastructure. Key concerns include surveillance, cybersecurity, strategic autonomy and economic dependence.
+
+These dual perspectives lead to very different governance approaches and interpretations of sovereignty, control and threat in the context of international security. The tension between them has surfaced in discussions (such as those at the UN Open-Ended Working Group on ICTs[^19]) where some states emphasize the need to promote respect for the non-binding norms of responsible state behaviour and foster international cooperation, while others stress the importance of preserving state sovereignty, minimizing external dependencies and controlling critical ICT infrastructure. Understanding these divergent perspectives is essential. They shape the broader information environment in which foreign influence operations, harmful information campaigns and cyber incidents occur – contexts that increasingly determine whether humanitarian organizations can operate safely and the space for principled humanitarian action. States have expressed concern that malicious ICT activities targeting international and humanitarian organizations undermine their safety, independence and public trust.[^20]
+
+Harmful information campaigns – including influence operations and other forms of foreign information manipulation and interference[^21] – are carried out by both domestic and foreign actors using increasingly sophisticated strategies to shape public opinion. These campaigns often deploy content that appears locally produced and organic. Common tactics include:
+
+- coordinated inauthentic behaviour
+
+- cyberattacks
+
+- fake websites and social media accounts
+
+- algorithmic amplification of diverse narratives
+
+- impersonation of trusted entities
+
+- engagement manipulation through trolls, propagandists, hashtags and bots
+
+- spread of divisive content across platforms.
+
+These tools are routinely used to erode trust, deepen polarization and influence political processes, including elections and broader national security priorities.
+
+Meta defines coordinated inauthentic behaviour as “coordinated efforts to manipulate public debate for a strategic goal, in which fake accounts are central to the operation. In each case, people coordinate with one another and use fake accounts to mislead others about who they are and what they are doing.”[^22] Meta, with over 3 billion users globally (including on Facebook, Instagram, Messenger, WhatsApp and Threads), employs a combination of automated systems and manual review to detect and remove accounts and pages of coordinated inauthentic behaviour networks.
+
+What makes an influence operation malign? Scholarly and policy research examines factors such as:
+
+<ol className="list-decimal marker:text-[#ee2435] ps-6 space-y-4">
+
+<li>
+Transparency of origin – Who is behind the operation?
+</li>
+
+<li>
+Content – What is the quality of the content? What activities are
+being conducted? How is the content being distributed?
+</li>
+
+<li>
+Calls to action – Who is the target audience and to what end? 
+</li>
+
+</ol>
+
+By applying such criteria, analysts and policymakers can better distinguish between influence activities that are part of ordinary public discourse and those that undermine public trust, polarize societies or exploit informational ecosystems for strategic ends.
+
+## <HeadingLabel index="3.3.1" />Frameworks for understanding and responding to harmful information
+
+Some strategic approaches to adversarial information operations aim to pre-emptively weaken perceived adversaries by shaping global narratives and influencing public perception. One widely cited framework is the ‘4 D model’,[^23] which outlines four core tactics:
+
+- _dismiss_ the allegations or the critic
+
+- _distort_ the facts or narrative
+
+- _distract_ attention away from the main issue
+
+- _dismay_ the audience through intimidation or fear‑mongering.
+
+These tactics are often executed through tools such as trolls, sock puppet accounts (see see <span className="text-purple-600">Annex I: Glossary, on page 353</span>) and coordinated disinformation campaigns. By exploiting trust within users’ peer-to-peer networks, disinformation operatives encourage individuals to share false or manipulated content – giving it the appearance of credibility as it spreads organically. This social endorsement effect makes falsehoods appear more persuasive when they come from someone within a user’s own community.
+
+The original 4 D model has been extended and incorporated in the DISARM Framework, which adds a fifth tactic – divide.[^24] _Divide_ seeks to exploit pre-existing social, political or cultural tensions or divisions within or between communities. Two core principles underpin many of these tactics:
+
+- **Believability:**
+  effective falsehoods contain a grain of truth, build on existing biases or familiar narratives, subtly reinforcing what the audience already believes.
+
+- **Extension:**
+  damaging falsehoods are designed to persist, spreading across time and platforms. Even efforts at denial unintentionally amplify its visibility.
+
+**Social media algorithms exacerbate these dynamics by rewarding content that provokes strong reactions, especially outrage.** But virality is incompatible with complexity: as content spreads, it strips away nuance and context, leaving behind simplified, polarizing messages that fuel division and distrust.[^25]
+
+Frameworks such as the ABCDE Framework[^26] provide a structured method for analysing influence operations, breaking them down into five key dimensions:
+
+- Actors – Who is behind the operation? This includes originators, sources and content amplifiers.
+
+- Behaviours – What tactics, techniques and procedures are being used?
+
+- Content – What narratives are being pushed? Includes narrative themes, audience targeting and messaging strategies.
+
+- Degree – How extensive is the operation? This measures reach, scale and amplification of content or narratives.
+
+- Effect – What is the impact? This evaluates the resulting harm, influence or disruption caused.
+
+Together, such frameworks can help practitioners understand not just how influence operations work, but also who is behind them, what they aim to achieve and why they matter in the broader information environment.
+
+Attribution – the ability to identify the actor or entity responsible for creating or spreading harmful information – is one of the most difficult yet critical challenges in today’s information environment. Harmful narratives often appear organic, circulating through local voices, anonymous accounts or recycled content, but may in fact be amplified or initiated by coordinated networks, political actors or commercial interests. Sophisticated tactics such as impersonation of trusted organizations, use of inauthentic accounts or AI-generated content further obscure origins, making attribution complex and contested.
+
+Similar to cyber operations, public attribution of a malicious actor in harmful information operations carries real risks: it can escalate tensions and endanger staff. Attribution therefore requires a cautious, evidence-based approach that combines technical analysis, cross-sector collaboration and community insights. Importantly, the focus should be less on public naming and shaming, and more on understanding patterns, intent and impact to inform proportionate and principled responses.
+
+# <HeadingLabel index="3.4" /> Addressing harmful information, strengthening early warning and response
+
+The spread of harmful information before, during and after crises is not new but the rapid circulation of unverified content on social media has made its effects far more acute, particularly when it interferes with crisis response. Harmful narratives often undermine trust in whether authorities or other actors are accurately representing the crisis, mislead communities about aid distribution, and distort the perceived severity of events.
+
+In September 2024, Hurricane Helene (a powerful Atlantic hurricane) made landfall in the US, causing catastrophic damage and the reported loss of 251 lives. In the aftermath, harmful information spread rapidly online. False claims alleged that government disaster relief funds were being redirected to ‘house illegal immigrants’ or to unrelated international crises. Other rumours falsely stated that federal aid was capped at $750 per person, required repayment or could result in the forfeiting of recipients’ homes. These narratives exploited public fear, uncertainty and prejudice, eroding trust, disrupting aid efforts and forcing authorities to divert time and resources into countering it.[^27]
+
+<Box index="3.4" types={[TypologyOfHarm.Social, TypologyOfHarm.Informational]}>
+## Misinformation surge during Hurricane Helene
+
+In autumn 2024, the American Red Cross moved swiftly to prepare for and respond to Hurricane Helene as it brought devastation to communities across the south-eastern US and drew global attention.
+
+On-the-ground response efforts were complicated by a surge in online misinformation. False claims circulated alleging the American Red Cross was confiscating donated items, taking over local relief efforts, or absent from affected communities – all untrue. For many people already unsure about where to seek help, these inaccurate claims only deepened uncertainty. To combat confusion, the National Society issued a direct public rebuttal, using a simple social media graphic and a clear statement on its website to set the record straight – providing clarity without amplifying false narratives.
+
+<Anchor meta="Fig 3.1">
+  Social media graphic used to rebut false claims, 2024
+</Anchor>
+<FeatureImage
+  src="/wdr25/chapter-03/fig-3-1.png"
+  width={700}
+  height={700}
+/>
+
+Underlying the communications response was a dual commitment: safeguarding the organization’s reputation through calm and credible messaging, and shaping the public narrative through consistent storytelling that reaffirmed the humanitarian mission.
+
+Social media listening team members tracked sentiment in real time, ensuring the response remained measured and emotionally intelligent. Strategic storytelling reinforced Red Cross operational efforts through media interviews and live updates from affected communities. Rather than stepping back, the American Red Cross leaned into its humanitarian mission.
+
+Even in a hostile online climate, public support remained strong. Donations, volunteer interest and trust indicators held steady – or improved – reflecting the strength of an emotionally anchored, mission-driven supporter base. Years of trusted messaging and credibility helped buffer the organization against viral falsehoods.
+
+The crisis emphasized the need to prepare not only for physical disasters but also for digital misinformation. Like logistical planning before a storm, the National Society continues to monitor online trends and social mentions, address emerging misinformation, deploy proactive storytelling and provide internal guidance to employees and volunteers for awareness and alignment. These efforts aim to safeguard reputation and maintain public trust, especially among younger, digitally native audiences.
+
+This challenge isn’t unique to any one organization. In times of crisis, heightened emotions often fuel distortion. What Hurricane Helene revealed was not just the fragility of public perception, but also the need for intentional, value-driven reputation management.
+
+Helene reaffirmed that rapid, compassionate communication matters. Communities look to the Red Cross not only for help in a crisis, but also for truth when confusion spreads. As misinformation evolves, our guiding principle remains the same: truth must always move faster than doubt or distortion.
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Jodi Sheedy
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Director, Communications Strategy 
+      </ContributorEntity>
+
+      <ContributorRole>
+        American Red Cross
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+
+While disasters often cannot be prevented, robust early warning systems and effective emergency response are essential to minimizing impact. To be effective, warnings must reach at-risk populations rapidly, in the appropriate language and format, and with attention to diverse needs and contexts. Crucially, they must come from trusted sources so that people believe and act on them. Achieving this requires that early warning systems be co-designed with the communities they serve, in close collaboration with the local actors who play a central role in communicating and delivering these messages.[^28]
+
+<SmallQuote>
+  For me personally, what needs to be done to reduce fake news and strengthen preparedness for
+  danger is to encourage people on a daily basis, without waiting for danger to arise, by informing
+  them about what to do when a cyclone hits. And also to organize training for as many people as
+  possible.”
+</SmallQuote>
+
+<SmallQuoteAuthor>Community member, Madagascar</SmallQuoteAuthor>
+
+<Box index="3.5">
+## Trusted warnings, timely action: Addressing a missing link in early warning systems
+
+The Global Disaster Preparedness Center led a 
+<ChapterLink
+  href="https://preparecenter.org/site/meet-researchers/"
+  target="_blank"
+  rel="noopener noreferrer"
+>research initiative across 15 locally led projects</ChapterLink> in 14 countries,[^29] examining the accessibility and actionability of early warning systems for ‘last mile’ communities – those hardest to reach and most vulnerable due to systemic social and structural challenges.
+
+A consistent finding across contexts – from Brazil to Nepal, Albania to Malawi – was the central role of trust. The research showed that even scientifically accurate forecasts often fail to trigger early action when messages are mistrusted, sources are doubted or the information is confusing or inaccessible. This initiative is notable for centring community voices and documenting not only the barriers to effective early warning, but also practical strategies for building trust and improving the inclusivity and accessibility of early warning systems for underserved groups.
+
+**Key Insights**
+
+Mistrust and misinformation did not emerge as abstract risks but as some of the most significant barriers to translating early warning into early action. In Brazil’s coastal communities,
+<ChapterLink
+  href="https://preparecenter.org/resource/pcews-inclusive-risk-communication-brazil/"
+  target="_blank"
+  rel="noopener noreferrer"
+>a lack of clear differentiation between official alerts and misinformation</ChapterLink> created confusion and undermined confidence in the warnings. Without recognisable formats or clear source attribution, people struggled to verify which messages were credible and what guidance to follow.
+
+Mistrust was particularly strong in areas where communities had repeatedly experienced ‘false alarms’ — warnings not followed by actual hazards. In Odisha, India, this 
+<ChapterLink
+  href="https://preparecenter.org/resource/womens-barriers-to-early-warning-systems-in-odisha-india/"
+  target="_blank"
+  rel="noopener noreferrer"
+>contributed to a ‘cry wolf’ effect</ChapterLink>, leading many residents to ignore future alerts. Religious fatalism also played a role in eroding trust, with some individuals placing greater faith in divine protection than in institutional warnings.
+<ChapterLink
+  href="https://preparecenter.org/resource/fishers-on-the-first-mile-early-warning-early-action-by-traditional-fishers-of-southwestern-india/"
+  target="_blank"
+  rel="noopener noreferrer"
+>Another study from India</ChapterLink> highlighted how frequent alerts forced people who rely on daily labour wages to choose between heeding early action warnings or losing income, making trust in alerts especially critical when livelihoods are at stake.
+
+Another common source of mistrust was the use of unclear or overly technical language. Studies from 
+<ChapterLink
+  href="https://preparecenter.org/resource/last-mile-utilization-and-actionability-of-ew-eswatini/"
+  target="_blank"
+  rel="noopener noreferrer"
+>Eswatini</ChapterLink>,
+<ChapterLink
+  href="https://preparecenter.org/resource/inclusive-ews-rural-albania/"
+  target="_blank"
+  rel="noopener noreferrer"
+>Albania</ChapterLink>
+and
+<ChapterLink
+  href="https://preparecenter.org/resource/barriers-to-access-ew-messages-among-plwncds-in-nepal/"
+  target="_blank"
+  rel="noopener noreferrer"
+>Nepal</ChapterLink>
+showed that early warnings often relied on jargon, unfamiliar terminology or were not translated into local languages. When messages are difficult to understand or feel irrelevant to local realities, they become inaccessible – and trust quickly breaks down.
+
+Trust is a critical factor in whether communities act on early warnings. Addressing gaps in communication and strengthening confidence in official alert systems is essential to ensure that people respond to accurate information, especially when harmful or misleading messages circulate alongside official alerts.
+
+**Lessons and solutions**
+
+The research confirms that trust is foundational to effective early warning. Several strategies emerged to strengthen trust:
+
+- **Leverage trusted messengers**
+  : People are more likely to act on alerts delivered by individuals or organizations they know, such as community volunteers, religious leaders, local organizations or friends and family members. Familiarity builds credibility, highlighting the need to involve and train local networks to improve both reach and trust.
+
+- **Make messages clear and locally relevant**
+  : Alerts should use plain, non‑technical language and be delivered in the local languages or dialects of the target community. Including visuals and culturally familiar references can help people better understand the messages, evaluate their risk and respond appropriately.
+
+- **Ensure official information is easily recognisable**
+  : Consistent formats, clear source attribution and delivery through trusted channels help communities trust and distinguish official alerts from misinformation. Strengthening digital literacy and working with local media can further reduce confusion and improve trust in risk communications.
+
+- **Establish two‑way communication**
+  : Communities value feedback loops that allow them to ask questions, report issues and shape future messages. A participatory approach strengthens both trust and responsiveness to early warning systems. When combined with ongoing awareness‑raising efforts and community education, it builds understanding of local risks and how early warning systems work – making people more likely to recognize and act on alerts when it matters most.
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Vladislav Kavaleuski
+      </ContributorName>
+
+      <ContributorEntity>
+        Program Manager, Knowledge Management
+      </ContributorEntity>
+
+      <ContributorRole>
+        IFRC, Global Disaster Preparedness Center 
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+<Box index="3.6">
+## Strengthening trust, inclusion and community engagement in early warning, early action
+
+In eastern Nepal, formal early warning dissemination channels have struggled to reach remote, disaster-prone communities. As a result, warning messages have not been well-understood, trusted or acted on. To address this gap, the Nepal Red Cross Society, with support from the Finnish Red Cross, has been implementing the Reducing Disaster Impact through Inclusive Preparedness and Anticipatory Action (REDI) project in 15 communities, reaching nearly 65,000 people since 2023.
+
+The project has introduced an inclusive multichannel communication strategy to bridge the information divide. People-centred approaches and diverse communication channels help ensure that everyone receives warning messages in time to react. Protocols have been developed for rapid communication by local government authorities and stakeholders, and sirens are being installed in strategic locations. Nepal Red Cross Society volunteers conduct door-to-door visits and organize information sessions to reach individuals who may be inaccessible via SMS alerts or social media, or who simply prefer face-to-face communication.
+
+Several lessons have emerged on how to enhance early warning systems and build trust. Locally led, inclusive systems are more effective because people see themselves reflected in them. Local knowledge and familiar communication practices provide a strong foundation. During the last monsoon season, for example, upstream communities monitored rainfall and alerted downstream communities to take immediate action, saving lives.
+
+Real-life experiences and community drills have improved awareness of evacuation procedures, safe spaces and individual responsibilities. They have also fostered trust that no one, especially those in vulnerable situations, will be left behind. Addressing urgent needs, such as strengthening irrigation channels and constructing retaining walls, was crucial in establishing initial trust within communities. Ongoing awareness raising on weather forecasts, their limitations and the function of early warning systems remains crucial.
+
+Importantly, people’s mindsets have shifted from reactive to proactive, enabling earlier action based on trusted, localized information and growing confidence in their ability to respond. When a community is cohesive and empowered to drive its own development, people become active agents of resilience. This empowerment spreads across the community, making it safer and more resilient for everyone.
+<ContributorTag>
+<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <Contributor>
+      <ContributorName>
+        Sagar Shrestha
+      </ContributorName>
+
+      <ContributorEntity>
+        Director, Disaster<br/>
+        Management Department
+      </ContributorEntity>
+
+      <ContributorRole>
+        Nepal Red Cross Society
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Sushma Shrestha
+      </ContributorName>
+
+      <ContributorEntity>
+        Country Manager for<br/>
+        Nepal and Bhutan
+      </ContributorEntity>
+
+      <ContributorRole>
+        Finnish Red Cross
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Paula Uski
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Specialist<br/>
+        on Climate Change<br/>
+        and Disaster Risk<br/>
+        Management
+      </ContributorEntity>
+
+      <ContributorRole>
+        Finnish Red Cross
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Mari Koistinen
+      </ContributorName>
+
+      <ContributorEntity>
+        Senior Specialist on<br/>
+        Protection, Gender<br/>
+        and Inclusion (PGI)
+      </ContributorEntity>
+
+      <ContributorRole>
+        Finnish Red Cross
+      </ContributorRole>
+    </Contributor>
+    </div>
+</ContributorTag>
+</Box>
+Ika Trijsburg from the University of Melbourne, in her research on disinformation in disasters in cities, highlights that local government is particularly well placed to counter disinformation due to its close proximity to communities and central role in shaping daily life. Its nearness to residents gives local government a nuanced understanding of local issues and grievances, allowing them to design interventions that are locally embedded and context specific. As the level of government most directly responsible for policy decisions and service delivery, it holds a unique position of influence. Moreover, city authorities are often perceived as the most trusted level of government, a critical advantage in the fight against disinformation. Trust is essential for ensuring that factual information is received, accepted and acted on. Strengthening this trust at the local level enhances community resilience against false or misleading narratives, especially during crises (Trijsburg, 2023).[^30]
+
+In framing preventive strategies for disaster-related harmful information, Trijsburg highlights the importance of understanding community risk factors and deploying coordinated strategies that focus on:
+
+- **Pre‑emption:**
+  Disinformation typically exploits existing political and societal tensions, encouraging people to buy into false narratives.
+
+- **Prebunking:**
+  Disaster‑related disinformation usually follows known narratives such as climate denialism, climate delayism, government distrust and prejudice. Prebunking involves proactively introducing information before disasters occur, helping communities recognize and refute false content.
+
+- **Debunking:**
+  When misinformation emerges, timely and simple corrective messaging – grounded in clear, accessible facts – can effectively counter it.
+
+<Definition>
+Prebunking
+</Definition>
+<DefinitionDescription>
+  The practice of anticipating false or misleading claims before they spread and preparing people
+  with accurate information, critical thinking tools or warnings in advance.
+</DefinitionDescription>
+
+<Definition>
+Debunking
+</Definition>
+<DefinitionDescription>
+  A reactive strategy that addresses harmful information after it has begun to circulate. Its
+  effectiveness depends on being timely, clear and delivered by trusted messengers. Effective
+  debunking not only identifies a claim as false but also explains why it is false.
+</DefinitionDescription>
+
+<Box index="3.7">
+## Using social listening to guide prebunking strategies in Scotland
+
+This initiative focused on anticipating misinformation before it spreads by equipping Scottish health officials with the skills to apply social listening insights to their vaccine communication strategies. Through World Health Organization Europe (WHO/Europe)-led training, participants learned how to identify early warning signs, such as rising concerns, shifts in tone and emotionally charged language, and use these insights to design messages that build critical thinking and resistance before misleading claims take root.
+
+Unlike debunking, which is reactive, prebunking is preventive. It prepares audiences to recognize potential misconceptions and question misleading claims before they take hold. In the Scotland training, the focus was on identifying early signals of hesitancy and understanding psychological factors, such as confirmation bias, that make certain narratives more persuasive than others. This proactive, audience-specific messaging was especially important in protecting public trust as human papillomavirus (HPV) vaccine uptake was beginning to decline.
+
+WHO/Europe worked with Scotland’s Ministry of Health to train health officials and physicians in the fundamentals of using social listening to inform their outreach. The training helped participants understand what makes misinformation persuasive and how to proactively address vulnerabilities. As a result, participants were better equipped to craft nuanced, evidence-aligned messages that pre-empted doubt among hesitant groups.
+
+Prebunking works best when rooted in real-time insights. By strengthening institutions’ capacity to anticipate and address risks early, this initiative showed how listening-led approaches can build trust, especially where health guidance must evolve with public concerns. It offers a practical, scalable model for embedding resilience in vaccine communication systems.
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Nancy Claxton
+      </ContributorName>
+
+      <ContributorEntity>
+        Regional Training Officer<br/>
+        in Risk Communication,<br/>
+        Community Engagement<br/>
+        and Infodemic<br/>
+        Management
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Cristiana Salvi
+      </ContributorName>
+
+      <ContributorEntity>
+        Regional Technical Advisor<br/>
+        for Community Resilience<br/>
+        and Protection<br/>
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Paco Pangalangan
+      </ContributorName>
+
+      <ContributorEntity>
+        Infodemic Management<br/>
+        Consultant 
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+  </ContributorTag>
+</Box>
+
+<Box index="3.8">
+## Training medical students in Moldova to debunk vaccine misinformation
+
+Medical students and public health specialists in Moldova were brought together to build practical skills for addressing false health claims already circulating in communities. What made it stand out was its real-world application: trained students went door-to-door to speak directly with community members, correcting vaccine myths and sharing accurate information through open conversational dialogue.
+
+This was a clear example of reactive yet responsible correction. Effective debunking is not just about identifying falsehoods, it’s about how you respond. The training focused on clear, evidence-led communication that avoided amplifying myths, instead starting and ending with facts. Participants learned to explain why specific claims were false in ways that maintained trust and reduced confusion. This hands-on, myth-busting approach supported vaccine uptake during a time of multiple, overlapping crises.
+
+The WHO Country Office in Moldova, in collaboration with WHO/Europe, organized the training for 30 participants including medical students, communication professionals and public health experts. After the training, participants engaged in community outreach, addressing people’s concerns directly and offering guidance tailored to local narratives and needs.
+
+Debunking is most effective when it is personal, contextual and trust-based. Training future frontline workers to respond effectively after falsehoods have spread builds long-term institutional capacity. The model is replicable – particularly in contexts where misinformation is already widespread and direct community engagement is possible.
+<ContributorTag>
+<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <Contributor>
+      <ContributorName>
+        Leonardo Palumbo
+      </ContributorName>
+
+      <ContributorEntity>
+        Community Engagement<br/>
+        Technical Officer
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Paco Pangalangan
+      </ContributorName>
+      <ContributorEntity>
+        Infodemic Management<br/>
+        Consultant 
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Cristiana Salvi
+      </ContributorName>
+
+      <ContributorEntity>
+        Regional Technical Advisor<br/>
+        for Community Resilience<br/>
+        and Protection<br/>
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    </div>
+  </ContributorTag>
+</Box>
+
+In Eswatini, as in many other contexts, entrenched rumours and misinformation, spread both through word of mouth and social media, posed a major challenge to the COVID-19 response. Delays in mobilizing partners and scaling up interventions created a critical gap, during which rumours gained traction, eroding public trust and fuelling vaccine hesitancy, especially among younger populations. To address this, the structured coordination of a Risk Communication and Community Engagement (RCCE) pillar created a platform for cross-sector collaboration and more effective response strategies. Central to this effort was a focus on dynamic community listening – ensuring that local concerns were actively heard, analysed and fed into decision-making processes. This community-driven approach enhanced the credibility of interventions and built greater trust in public health messaging. Identified priorities included keeping these listening systems active, adaptive and inclusive, while continuing efforts to address practical barriers to vaccine access to ensure that accurate information is matched by equitable service delivery.[^31]
+
+<SmallQuote>
+  It needed a number of teams who moved home to home sensitizing people just like the way they do
+  these mass immunization sessions. Because when you move home to home, you have access to meet most
+  of the people in their homes. So you can talk to them in the comfort of their compounds. So this
+  actually helps a lot.”
+</SmallQuote>
+
+<SmallQuoteAuthor>Community member, Uganda</SmallQuoteAuthor>
+
+# <HeadingLabel index="3.5" />Risk communication and community engagement
+
+RCCE[^32] is a cornerstone of the IFRC’s approach to managing public health crises and disasters. Developed jointly with WHO and UNICEF through the Collective Service,[^33] RCCE combines clear, timely communication with meaningful engagement and listening strategies to build trust, counter harmful information and support effective action. It involves:
+
+- **timely, accurate and actionable information**
+  delivered through trusted community channels to help people understand risks and take informed decisions
+
+- **community feedback systems**
+  that enable local actors to gather, analyse and respond to rumours, questions, concerns and misinformation
+
+- **two-way dialogue**
+  to foster local ownership and ensure that responses reflect diverse needs and experiences, particularly from groups that are marginalized
+
+- **Data for Action frameworks**[^34]
+  that integrate community insights into operational decision-making and support adaptive, responsive programming
+
+- **collective coordination**
+  , aligning and supporting national and local actors in their efforts to meaningfully engage with communities.
+
+This approach has proven especially effective in fragile and complex contexts, where trust and community participation are essential. It reinforces the understanding that communication is not a one-way flow of information, but a dynamic exchange grounded in respect, transparency and shared responsibility.
+
+<Box index="3.9">
+## WHO: Building resilient emergency systems (part 1 of 2)
+
+Risk communication, community engagement and infodemic management (RCCE-IM) are central to effective public health emergency management. Mandated by the International Health Regulations, RCCE-IM is a strategic pillar of preparedness and response, influencing how societies navigate crises and protect their most vulnerable populations.
+
+Since 2020, the WHO/Europe has responded to a series of complex emergencies, including the COVID-19 pandemic, disasters and armed conflicts such as the war in Ukraine, the 2023 earthquake in Türkiye and the mpox outbreak in Central Africa. In every crisis, people’s actions and decisions, shaped by trust and access to information, have been central to achieving improved health outcomes. Public health measures only succeed when communities trust the guidance and the messengers who work with them to co-develop and co-deliver interventions. RCCE-IM helps bridge this gap by meaningfully engaging diverse communities, with a particular focus on those most at risk at each step of preparedness and response. A key development has been the inclusion of infodemic management as a core component of RCCE, monitoring health narratives to identify and counter false information, thereby helping to ensure that people can make informed decisions to protect their health in an emergency.
+
+**Core lessons learned**
+
+Through numerous health responses, WHO/Europe has identified key lessons on how RCCE-IM improves emergency response and saves lives – insights which can inform capacity-building efforts, including:
+
+<ol className="list-decimal marker:text-[#ee2435] ps-6 space-y-4">
+
+<li>
+**Embedding and sustaining RCCE‑IM:** Effective RCCE‑IM must be
+institutionally embedded across all phases of emergency management,
+from prevention and preparedness through to response and recovery. It is a
+necessary component in preparing for crises and supports response when
+there is sustained investment in infrastructure, human resources, training
+and systems by health authorities. Experience during COVID‑19 and earlier
+crises showed that countries with established, well‑resourced RCCE‑IM
+teams could act faster, owing to pre‑existing public trust.
+</li>
+
+<li>
+**Multisectoral and community engagement:** No single sector holds all
+the answers in a crisis. RCCE‑IM delivers the greatest impact when it is
+coordinated across sectors including health, education, civil protection and
+emergency services – and across all levels of government administration.
+Collaboration with community members and local stakeholders is also
+key. Trusted figures include faith leaders, youth advocates, family doctors,
+community health workers, community‑based groups, civil society
+organizations (CSOs) and educators. All play an important role. When
+meaningfully engaged, they can significantly increase reach, credibility
+and acceptability of messaging, because it is co‑developed with and for
+the communities they serve. Involving a diverse range of stakeholders
+ensures that communication efforts are relevant for at‑risk populations
+and marginalized groups, thus increasing the likelihood of acceptance of
+official guidance.
+</li>
+
+<li>
+**Evidence‑led, technical approach:** RCCE‑IM is an applied discipline that sits
+at the intersection of public health, risk communication and behavioural and
+social sciences. Successful interventions are grounded in:
+- ongoing community and social listening to understand evolving
+concerns and beliefs of different demographics and groups
+- strategies that bridge risk assessment and risk perception
+- operational research, behavioural insights and social science evidence.
+</li>
+
+</ol>
+
+By using real-time data and feedback, risk communication strategies can be rapidly adapted to audience needs, changing public health guidance, emerging misinformation and disinformation threats, and barriers to action. Integrating scientific rigour, monitoring and evaluation into RCCE-IM is essential to ensure relevance and effectiveness.
+
+<ol className="list-decimal marker:text-[#ee2435] ps-6 space-y-4">
+
+<li>
+**Transparency and communicating uncertainty:** Trust between health
+authorities, stakeholders and those it aims to serve is essential. A key
+determinant is early and transparent communication, even if all information
+is not yet known. The dynamic, fast‑changing nature of emergencies means
+that public health advice will evolve as new evidence emerges. Clearly
+communicating this uncertainty and updating guidance in a timely manner is
+crucial to maintaining credibility.
+</li>
+
+<li>
+**Two‑way communication and social listening:** People are not passive
+recipients of information, especially in a crisis. They experience anxiety and
+hold beliefs and attitudes that influence their decisions. Understanding
+what people think, feel and need is essential to craft messages and
+responses that resonate and are effective. Mechanisms for real‑time
+feedback (hotlines, social media, community dialogue – both online and
+offline) allow for responsive risk communication and rapid false information
+management. Effective social listening enables authorities to detect false or
+misleading information early. It enables correction of falsehoods to prebunk
+information before it can take root and address the issues that matter most
+to communities.
+</li>
+
+<li>
+**Managing misinformation and disinformation:** The scale and speed with
+which rumours, myths and false information circulate, especially through digital platforms and social media, can rapidly fuel confusion, sow distrust
+and undermine public health efforts. Infodemic management focuses on the
+proactive dissemination of accurate, timely public health information rather
+than only correcting misinformation and disinformation once detected.
+Multidisciplinary teams which include health authorities, other sectors,
+local authorities, CSOs, community leaders and key stakeholders must work
+together to identify and address information gaps. Through regular, tailored
+messaging and advocacy, these actors can help protect the public from
+misinformation and reinforce clear, actionable guidance. 
+</li>
+
+</ol>
+
+Proactive infodemic management involves:
+
+- routine monitoring for viral falsehoods and knowledge gaps
+
+- debunking false information that poses a risk to public health
+
+- prebunking – pre‑emptively addressing likely untrue and/or damaging rumours, and collaborating with trusted influencers and communication channels to disseminate public health advice and updates.
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Nancy Claxton
+      </ContributorName>
+
+      <ContributorEntity>
+        Regional Training Officer<br/>
+        in Risk Communication,<br/>
+        Community Engagement<br/>
+        and Infodemic<br/>
+        Management
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Leonardo Palumbo
+      </ContributorName>
+
+      <ContributorEntity>
+        Community Engagement<br/>
+        Technical Officer
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Paco Pangalangan
+      </ContributorName>
+
+      <ContributorEntity>
+        Infodemic Management<br/>
+        Consultant 
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Cristiana Salvi
+      </ContributorName>
+
+      <ContributorEntity>
+        Regional Technical Advisor<br/>
+        for Community Resilience<br/>
+        and Protection<br/>
+      </ContributorEntity>
+
+      <ContributorRole>
+        WHO/Europe
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+<Box index="3.10" types={[TypologyOfHarm.Physical, TypologyOfHarm.Societal, TypologyOfHarm.Informational, TypologyOfHarm.Deprivational]}>
+## Rumours and misinformation in epidemics: Insights from the French Red Cross Foundation
+
+Rumours and misinformation can have serious consequences during epidemics. The spread of unverified, false or inaccurate information about the causes, transmission and prevention of diseases, even when not intentional, can undermine public health messaging and practices – hindering public health response efforts and leading to poorer health outcomes. Over the past decade, the French Red Cross Foundation has supported more than 30 research projects on access to healthcare and epidemic response, both in France and internationally. These include studies on the Ebola virus disease outbreak in Guinea, the plague in Madagascar and COVID-19 in France, the Comoros and Senegal. These studies have generated valuable insights into some of the links between rumours, distrust and resistance to public health guidance provided by humanitarian actors.
+
+The circulation of false narratives, such as claims that viruses are political conspiracies or that preventive measures spread diseases, fuels suspicion and drives public distrust during epidemics. Such harmful narratives can become obstacles to the implementation of public health measures by humanitarian actors and lead to serious outcomes – ranging from refusals of disinfection or vaccination to delayed seeking of treatment, reduced reporting of cases or even attacks on humanitarian personnel. Each of these consequences contributes to the continued spread of diseases. In this context, research shows that locally led and culturally adapted community awareness programmes are key for (re)building trust in epidemics. These programmes are most effective when run by trusted community members and volunteers, co-developed with communities and aligned with local cultural practices.
+
+Drawing on this experience, the French Red Cross Foundation reasserts the importance of
+both quantitative and qualitative social science research to counter harmful information,
+support trust in the humanitarian sector and strengthen epidemic preparedness and
+response programmes. Far from being a luxury, research that is robust, participatory and
+community based appears essential to detect emerging narratives, inform context‑specific
+responses and ultimately save lives.
+<ContributorTag>
+    <Contributor>
+      <ContributorRole>
+        French Red Cross Foundation[^35]
+      </ContributorRole>
+    </Contributor>
+  </ContributorTag>
+</Box>
+
+# Concluding remarks: Navigating humanitarian action in a post‑trust information era
+
+Humanitarian action now unfolds within a highly contested information environment, characterized by Barclay as a ‘post-trust culture’,[^36] where truth plays a diminished role in shaping human decision-making. In this environment, technology amplifies and instrumentalizes information, allowing harmful narratives to spread quickly, especially where reliable information is scarce.
+
+The threat landscape is complex and diverse, involving state agencies, proxy groups, non-state actors, hacktivists, criminal networks, bots, click farms, coordinated collectives and individuals. Such actors exploit polarization, fuel mistrust and disrupt humanitarian response. Harmful information is no longer just a communications challenge, it is a crisis affecting humanitarian access and action, as well as safety of staff and volunteers. Addressing it requires a shift in mindset and a recognition that trust, truth and information access are foundational to humanitarian impact.
+
+Misinformation and disinformation remain among the top risks in the World Economic Forum’s _Global Risks Perception Survey_ , underscoring the continuing scale and sophistication of false content. This trend intersects with political and societal polarization, algorithmic amplification and deepening digital divides. Without deliberate efforts and cooperation to counter human and systemic bias, algorithmic models risk producing harmful and unjust outcomes, particularly in communities living in fragile and marginalized situations.[^37]
+
+To respond effectively, humanitarian organizations must prioritize three actions:
+
+<ol className="list-decimal marker:text-[#ee2435] ps-6 space-y-4">
+
+<li>
+ Equip communities and volunteers with accurate, trusted
+information and preparedness tools that strengthen local resilience
+and help counter the influence of harmful narratives.
+</li>
+
+<li>
+Invest in community‑led strategies that elevate local
+voices, feedback and leadership, particularly where digital
+inclusion and information access remain limited.
+</li>
+
+<li>
+ Advance global cooperation and policy coherence, including
+ethical AI governance, platform accountability and protection
+frameworks for humanitarian information systems.
+</li>
+
+</ol>
+
+Humanitarian action must be grounded not only in principles, but also in a nuanced understanding of today’s information dynamics. Navigating this environment requires collective resolve, cross-sectoral innovation and a renewed commitment to trust, inclusion and integrity in the digital age.
+
+see <span className="text-purple-600">Chapter  6, on page  211</span> explores inoculation theory and other key strategies for responding to harmful information.
+
+# Asks, aims and recommendations
+
+<ReccomendationsTitle>Asks</ReccomendationsTitle>
+
+<Reccomendations>
+ Strengthen global cooperation on platform accountability, AI governance and the protection of humanitarian information by embedding
+human rights, preparedness, accountability
+and
+collaboration
+into legal and policy frameworks. Invest in community‑led resilience, preparedness and feedback systems that empower all community members, ensure access to information and protect vulnerable populations – applying a clear rights‑based approach in practice.
+
+</Reccomendations>
+
+<ReccomendationsTitle>Aims</ReccomendationsTitle>
+
+<Reccomendations>
+  Prevent harmful information from undermining humanitarian access and action.
+</Reccomendations>
+
+<Reccomendations>
+  Strengthen community resilience: equip communities and volunteers with trusted information,
+  preparedness tools and locally grounded strategies to counter harmful narratives.
+</Reccomendations>
+
+<Reccomendations>
+  Advance policy coherence by embedding humanitarian perspectives in digital and AI governance.
+</Reccomendations>
+
+<ReccomendationsTitle>Recommendations</ReccomendationsTitle>
+
+#### States and policy‑makers
+
+- Champion the protection of humanitarian information within legal and policy frameworks for AI governance and platform accountability.
+
+- Counter harmful narratives that stigmatize communities and/or principled humanitarian organizations, while avoiding the politicization of humanitarian action.
+
+- Reaffirm the importance of safe, unhindered humanitarian access and promote understanding of humanitarian mandates, including the auxiliary role of National Societies as independent yet recognized partners to public authorities.
+
+- Engage with humanitarian actors to ensure timely, accurate and locally relevant communication strategies that support humanitarian action.
+
+- Ensure national information laws and policies comply with international law.
+
+#### Technology platforms
+
+- Provide locally adapted tools, including multilingual translation, culturally relevant fact‑checking and accessibility features.
+
+- Amplify verified humanitarian information in crises by engaging with humanitarian and community actors.
+
+- Monitor how humanitarian narratives are reshaped locally and mitigate harmful reinterpretations.
+
+- Adapt and/or cool algorithms during crises to reduce amplification of harmful narratives.
+
+- Strengthen partnerships with humanitarian organizations and community media to ensure reliable, timely and life‑saving messages reach affected populations.
+
+#### Humanitarian actors
+
+- Co‑create inclusive, locally relevant messages with communities, journalists and trusted influencers for contextual, cultural and linguistic relevance.
+
+- Monitor perceptions of humanitarian action and adapt real‑time messaging across online and offline channels.
+
+- Build resilience through training, capacity‑building and embedding harmful information management in humanitarian diplomacy, risk and behaviour change.
+
+- Document and share insights and lessons learned on combating harmful information to support continuous adaptation and strengthen collective resilience.
+
+#### Community and local leaders
+
+- Contextualize and disseminate verified humanitarian information in ways that reflect community priorities.
+
+- Engage communities directly through peer‑to‑peer networks, dialogue and locally led initiatives to address harmful information.
+
+- Identify trust gaps and communicate concerns directly to humanitarian actors and authorities.
+
+
+<ChapterImage
+  imagePath="/wdr25/chapter-03/03.jpg"
+  width={900}
+  height={1200}
+/>
+
+# Endnotes
+
+[^1]: The Red Cross Red Crescent (RCRC) Global Migration Lab, hosted by the Australian Red Cross and Kenya Red Cross Society, conducts research on topics of critical importance in providing humanitarian assistance and protecting migrants in vulnerable situations to inform the International Red Cross and Red Crescent Movement’s operational programming and humanitarian diplomacy.
+
+[^2]: RCRC Global Migration Lab. *Locked down and left out? Why access to basic services for migrants is critical to our COVID-19 response and recovery.* (2021) <EndnotesLink>https://www.redcross.org.au/globalassets/cms/documents/migration-services/en-exec-sum-rcrc-global-migration-lab-locked-down-left-out-covid19.pdf</EndnotesLink>;  
+RCRC Global Migration Lab. *Sight Unseen: A vision for effective access to COVID-19 vaccines for migrants.* (2021) <EndnotesLink>https://www.redcross.org.au/globalassets/cms/documents/migration-services/rcrc-gml-sight-unseen-covid19-vaccines-final.pdf</EndnotesLink>;  
+RCRC Global Migration Lab. *Migrants’ Perspectives: Building Trust in Humanitarian Action.* (2022) <EndnotesLink>https://www.redcross.org.au/globalassets/cms/global-migration-lab/gml-migpers_buildtrust_english.pdf</EndnotesLink>;  
+Red Cross Red Crescent Global Migration Lab and ICRC Central Tracing Agency. *Towards Safer Journeys: Migrant women and children’s experiences of separation, going missing or dying.* (2025) <EndnotesLink>https://www.redcross.org.au/globalassets/cms/global-migration-lab/towards-safer-journeys_summary-report_eng.pdf</EndnotesLink>
+
+[^3]: Ibid. (2021)
+
+[^4]: RCRC Global Migration Lab. *Sight Unseen: A vision for effective access to COVID-19 vaccines for migrants.* (2021) <EndnotesLink>https://www.redcross.org.au/globalassets/cms/documents/migration-services/rcrc-gml-sight-unseen-covid19-vaccines-final.pdf</EndnotesLink>
+
+[^5]: See, for example, Loomba, S., de Figueiredo, A., Piatek, SJ. et al. Measuring the impact of COVID-19 vaccine misinformation on vaccination intent in the UK and USA. *Nature Human Behaviour.* 2021:5, 337–348. <EndnotesLink>https://doi.org/10.1038/s41562-021-01056-1</EndnotesLink>; Knights, F., Carter, J., Deal, A. et al. *Impact of COVID-19 on Migrants’ Access to Primary Care: A National Qualitative Study.* medRxiv. 2021. <EndnotesLink>https://doi.org/10.1101/2021.01.12.21249692</EndnotesLink>; Deal, A., Haywood, SE., Huda, M. et al. *Strategies and action points to ensure equitable uptake of COVID-19 vaccinations: a national qualitative interview study to explore the views of undocumented migrants, asylum seekers, and refugees.* *J Migr Health.* 2021:4:100050. <EndnotesLink>https://doi.org/10.1016/j.jmh.2021.100050</EndnotesLink>;  
+ABC News. “Misinformation about COVID vaccines is putting Australia’s diverse communities at risk, experts say.” 4 March 2021. <EndnotesLink>https://www.abc.net.au/news/2021-03-04/covid-19-vaccine-misinformation-cald-communities/13186936</EndnotesLink>;  
+ABC News. “Multilingual women are countering vaccine hesitancy in Victoria’s culturally diverse communities.” 16 May 2021. <EndnotesLink>https://www.abc.net.au/news/2021-05-16/workers-hired-to-counter-vaccine-hesitancy-migrant-communities/100141280</EndnotesLink>
+
+[^6]: RCRC Global Migration Lab. *Migrants’ Perspectives: Building Trust in Humanitarian Action.* (2022) <EndnotesLink>https://www.redcross.org.au/globalassets/cms/global-migration-lab/gml-migpers_buildtrust_english.pdf</EndnotesLink>
+
+[^7]: Red Cross Red Crescent Global Migration Lab and ICRC Central Tracing Agency. *Towards Safer Journeys: migrant women and children’s experiences of separation, going missing or dying – summary report.* (2025) <EndnotesLink>https://www.redcross.org.au/globalassets/cms/global-migration-lab/towards-safer-journeys_summary-report_eng.pdf</EndnotesLink>
+
+[^8]: Kaldor Centre for International Refugee Law. *Countering Misinformation about Refugees and Migrants.* (2025) <EndnotesLink>https://www.unsw.edu.au/content/dam/pdfs/law/kaldor/resource/2025-03-countering-misinformation-refugees.pdf</EndnotesLink>
+
+[^9]: Joint Research Centre. *Public discourse on migration shaped by misinformation and conspiracy theories.* (2025) <EndnotesLink>https://joint-research-centre.ec.europa.eu/jrc-news-and-updates/public-discourse-migration-shaped-misinformation-and-conspiracy-theories-2025-06-05_en</EndnotesLink>
+
+[^10]: Insecurity Insight. *The Shrinking Humanitarian Space on Social Media: Insights from Burkina Faso, Mali and Niger.* (2025) <EndnotesLink>https://insecurityinsight.org/wp-content/uploads/2025/09/Learning-from-Social-Media-Narratives-in-the-Sahel.pdf</EndnotesLink>
+
+[^11]: Council of Delegates of the International Red Cross and Red Crescent Movement. Resolution CD/24/R-NIIHA, “Neutral, Independent and Impartial Humanitarian Action,” including the Appeal to States, adopted 2024. <EndnotesLink>https://rcrcconference.org/app/uploads/2024/09/CoD24_8DR-Draft-Res-NIIHA-EN.pdf</EndnotesLink>
+
+[^12]: The Council of Delegates of the International Red Cross and Red Crescent Movement includes the ICRC, IFRC and 191 National Red Cross and Red Crescent Societies. <EndnotesLink>https://rcrcconference.org/council-of-delegate/</EndnotesLink>
+
+[^13]: IFRC. *Principles and Rules for Red Cross and Red Crescent Disaster Relief.* (1986) p.4. See also Disaster Relief Commission of the Red Cross and Red Crescent Movement. *Report of the Disaster Relief Commission.* (1991) p.6; IFRC. *International Disaster Response Laws.* (2004) <EndnotesLink>https://www.ifrc.org/sites/default/files/2021-07/Principles_Rules_Red_Cross_Red_Crescent_Humanitarian_Assistance_EN.pdf</EndnotesLink>
+
+[^14]: ICRC. *Harmful Information: Misinformation, Disinformation and Hate Speech in Armed Conflict and Other Situations of Violence: ICRC Initial Findings and Perspectives on Adapting Protection Approaches.* (2021) p.11 <EndnotesLink>https://www.icrc.org/en/publication/4556-harmful-information-misinformation-disinformation-and-hate-speech-armed-conflict</EndnotesLink>
+
+[^15]: 34th International Conference of the Red Cross and Red Crescent. Resolution 2: *Protecting civilians and other protected persons and objects against the potential human cost of ICT activities during armed conflict.* (2024).
+
+[^16]: World Economic Forum. *Global Risks Report 2025.* (2025) <EndnotesLink>https://reports.weforum.org/docs/WEF_Global_Risks_Report_2025.pdf</EndnotesLink>
+
+[^17]: Ibid. In answer to the question: “Please estimate the likely impact (severity) of the following risks over a 2-year and 10-year period.”
+
+[^18]: Ibid., pp. 34–35.
+
+[^19]: The first *Open-Ended Working Group on Developments in the Field of Information and Telecommunications in the Context of International Security* was established under UN General Assembly Resolution 73/27 (2018) and held its mandate from 2019 to 2021. The second group (*Open-Ended Working Group on Security of and in the Use of Information and Communications Technologies 2021–2025*) was established under UNGA Resolution 75/240 (2020).
+
+[^20]: UN Open-Ended Working Group on Security of and in the Use of Information and Communications Technologies (OEWG). *Summary Report of the Chair.* (2023) para. 21. See also OEWG. Letter from the OEWG Chair. <EndnotesLink>https://docs-library.unoda.org/Open-Ended_Working_Group_on_Information_and_Communication_Technologies_-_(2021)/Letter_from_OEWG_Chair_10_July_2025.pdf</EndnotesLink>, para. 22.
+
+[^21]: European External Action Service (EEAS). *Information Integrity and Countering Foreign Information Manipulation & Interference (FIMI).* (2023) <EndnotesLink>https://www.eeas.europa.eu/eeas/information-integrity-and-countering-foreign-information-manipulation-interference-fimi_en</EndnotesLink>
+
+[^22]: Meta. Transparency Center — Transparency Reports and Threat Reporting. <EndnotesLink>https://transparency.meta.com/</EndnotesLink>
+
+[^23]: Nimmo, B. *4 D’s of Disinformation.* CyberwarCon. <EndnotesLink>https://www.cyberwarcon.com/ben-nimmo</EndnotesLink>
+
+[^24]: DISARM Foundation. *DISARM Framework.* <EndnotesLink>https://www.disarm.foundation/framework</EndnotesLink>; <EndnotesLink>https://disarmframework.herokuapp.com</EndnotesLink>
+
+[^25]: Singer, PW. and Brooking, ET. *LikeWar: The Weaponization of Social Media.* (2018) pp. 206, 208–209.
+
+[^26]: Pamment, J. *The EU’s Role in Fighting Disinformation: An EU Disinformation Framework.* Future Threats, Future Solutions; No. 2. Lund University Publications. <EndnotesLink>https://lup.lub.lu.se/record/9d229c4e-5705-4ac0-b81f-c0f41579392a</EndnotesLink>
+
+[^27]: Craig, J. “I saw the Hurricane Helene response up close. This is how disaster relief actually works.” *Vox.* 17 November 2024. <EndnotesLink>https://www.vox.com/future-perfect/384734/hurricane-helene-asheville-response-fema-volunteers-climate-change</EndnotesLink>
+
+[^28]: IFRC. *The Cost of Doing Nothing: The Humanitarian Price of Climate Change and How it can be Avoided.* (2019) p.24 <EndnotesLink>https://www.ifrc.org/sites/default/files/2021-07/2019-IFRC-CODN-EN.pdf</EndnotesLink>
+
+[^29]: Albania, Bangladesh, Brazil, Eswatini, Ethiopia, India, Indonesia, Kenya, Malawi, Namibia, Nepal, Nigeria, the Philippines and Viet Nam.
+
+[^30]: Trijsburg, I. “Disinformation Thrives on Division in Our Cities.” *Pursuit*, University of Melbourne. 31 August 2023. <EndnotesLink>https://pursuit.unimelb.edu.au/articles/disinformation-thrives-on-division-in-our-cities</EndnotesLink>
+
+[^31]: IFRC Community Engagement Hub. *National-Level Risk Communication and Community Engagement Coordination in COVID-19: Case study from Eswatini.* (2022) <EndnotesLink>https://communityengagementhub.org/wp-content/uploads/sites/2/2022/05/20220525_SolidarityFund_CaseStudies_Eswatini.pdf</EndnotesLink>
+
+[^32]: IFRC. *Risk Communication and Community Engagement (RCCE) Action Plan Guidance COVID-19 Preparedness and Response.* (2020) <EndnotesLink>https://www.who.int/publications/i/item/risk-communication-and-community-engagement-%28rcce%29-action-plan-guidance</EndnotesLink>
+
+[^33]: WHO. “The Collective Service: supporting RCCE in emergencies.” <EndnotesLink>https://www.who.int/news/item/07-12-2021-the-collective-service-supporting-rcce-in-emergencies</EndnotesLink>
+
+[^34]: WHO. The Collective Service. *Data Handbook for Risk Communication and Community Engagement (RCCE).* (2022) <EndnotesLink>https://www.rcce-collective.net/resource/rcce-data-for-action-handbook</EndnotesLink>
+
+[^35]: Founded in 2010, the French Red Cross Foundation is an entity dedicated to humanitarian and social research. It reflects the French Red Cross’ commitment to mobilizing scientific knowledge, ethical reflection and social innovation to support its actions. The Foundation fosters the production of scientific knowledge through academic partnerships and postdoctoral fellowships awarded to independent social scientists. It is an active member of RC3, the research consortium of the International Red Cross and Red Crescent Movement.
+
+[^36]: Barclay, DA. *Disinformation: The Nature of Facts and Lies in the Post-Trust Era.* (2022) p.xv.
+
+[^37]: World Economic Forum. *Global Risks Report 2025.* (2025) <EndnotesLink>https://reports.weforum.org/docs/WEF_Global_Risks_Report_2025.pdf</EndnotesLink>
