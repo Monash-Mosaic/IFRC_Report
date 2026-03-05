@@ -49,17 +49,16 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Limitless 申请快速指南',
+    title: 'World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information',
     description:
-      '申请 Limitless 遇到问题了吗？不知道从哪里开始？别担心。Zikomo 在这里告诉你如何、为什么以及在哪里申请 2024 年 IFRC Limitless 青年创新学院',
-    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
+      'The International Federation of Red Cross and Red Crescent Societies (IFRC) launches the World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information.',
+    url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
   {
     id: 2,
-    title: '深入探讨援助本地化——一项包容性倡议',
-    description:
-      '在本期节目中，喀麦隆红十字会的 Victoire 讨论了通过当地人民的参与，让当地人民参与在脆弱社区实施人道主义行动的重要性。',
-    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
+    title: 'World Disasters Report 2026',
+    description: 'World Disasters Report 2026',
+    url: 'https://youtu.be/nabMyC5cVrU',
   },
 ];
 
