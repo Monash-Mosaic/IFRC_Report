@@ -50,13 +50,13 @@ jest.mock('next-intl/server', () => ({
 // Mock reports module
 const mockReadReportLink = {
   pathname: '/reports/[report]',
-  params: { report: 'world-disasters-report-2025' },
+  params: { report: 'wdr26' },
 };
 const mockDownloadLink = 'https://example.com/download.pdf';
 
 jest.mock('@/reports', () => ({
   getVisibleReports: jest.fn(() => ({
-    wdr25: {
+    wdr26: {
       chapters: {
         'synthesis-en': {
           downloadLink: 'https://example.com/download.pdf',
@@ -65,8 +65,8 @@ jest.mock('@/reports', () => ({
     },
   })),
   reportUriMap: {
-    wdr25: {
-      languages: { en: 'world-disasters-report-2025' },
+    wdr26: {
+      languages: { en: 'wdr26' },
       chapters: {
         synthesis: {
           languages: { en: 'synthesis-en' },
