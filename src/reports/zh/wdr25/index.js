@@ -49,15 +49,34 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information',
-    description:
-      'The International Federation of Red Cross and Red Crescent Societies (IFRC) launches the World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information.',
+    title: '2026年世界灾害报告：有害信息时代的真相、信任与人道行动',
+    description: `国际红十字与红新月运动（IFRC）发布《2026年世界灾害报告：有害信息时代的真相、信任与人道行动》。
+
+在一个谣言传播比救援队还快的世界里，有害信息已成为人道行动面临的关键挑战。《2026年世界灾害报告》将有害信息视为事实上的人道主义危机——它削弱获得援助的机会、侵蚀信任、破坏社会凝聚力，并增加工作人员、志愿者和社区面临的风险。
+
+报告通过八个章节，探讨错误信息、虚假信息和去人性化叙事如何重塑灾害应对、突发公共卫生事件、移民与冲突。报告汇集了近100位撰稿人、60个组织和30多个国家红会与红新月会的见解，基于全球真实案例和社区视角。
+
+报告首次提出伤害类型学，描绘有害信息对生理、心理、社会和行动层面的影响。报告探讨这些伤害如何破坏备灾、响应与恢复——以及为何应对它们已不再可选。
+
+《2026年世界灾害报告》超越分析本身。它为人道行为体、政府、技术平台和社区提供实用建议，以加强信息韧性、维护有原则的人道行动并重建信任。
+
+在当今的紧急状况中，信息可以决定获取、安全与尊严。`,
     url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
   {
     id: 2,
-    title: 'World Disasters Report 2026',
-    description: 'World Disasters Report 2026',
+    title: '真相、信任与人道行动：《2026年世界灾害报告》',
+    description: `《2026年世界灾害报告》探讨当今人道行动面临的最紧迫挑战之一：有害信息。
+
+从灾害和突发卫生事件到移民与冲突，有害信息正在重塑危机——影响谁被信任、谁获得帮助、谁被置于风险之中。
+
+报告借鉴全球100多位撰稿人和各国红会与红新月会的见解，提出新的框架，以理解有害信息如何造成生理、心理、社会和行动层面的伤害。
+
+报告首次配有创新的互动手册，使读者能够在线浏览章节、高亮与分享见解、获取亲历经验与多媒体内容，并以更动态的方式阅读报告。
+
+除分析外，报告还提供实用建议，以维护人道原则、保护人道工作者并在危机时期重建信任。
+
+因为今天，信息可以决定获取、安全与尊严。`,
     url: 'https://youtu.be/nabMyC5cVrU',
   },
 ];
