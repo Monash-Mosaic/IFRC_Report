@@ -219,7 +219,7 @@ export default function HeroSection({ locale = 'en', messages }) {
             <button
               type="button"
               onClick={handleShareToggle}
-              className="p-[6px] border-3 border-[#ee2435] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] bg-white inline-flex items-center justify-center hover:bg-[#EE2435] hover:text-white group transition-colors cursor-pointer md:w-[173px] md:h-[76px] md:p-0 md:border-2 md:shadow-sm md:gap-3"
+              className="p-[6px] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] bg-white inline-flex items-center justify-center hover:bg-[#EE2435] hover:text-white group transition-colors cursor-pointer md:w-[173px] md:h-[76px] md:p-0 md:shadow-sm md:gap-3"
               aria-expanded={isShareOpen}
               aria-label={messages.buttonTexts.share}
             >
