@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Eye } from 'lucide-react';
+import { Eye, Share } from 'lucide-react';
 import { Download } from 'lucide-react';
 import HeroMediaBlock from './HeroMediaBlock';
 import { isRtlLocale } from '@/i18n/helper';
