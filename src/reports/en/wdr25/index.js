@@ -55,14 +55,33 @@ export const featuredVideos = [
   {
     id: 1,
     title: 'World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information',
-    description:
-      'The International Federation of Red Cross and Red Crescent Societies (IFRC) launches the World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information.',
+    description: `The International Federation of Red Cross and Red Crescent Societies (IFRC) launches the World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information.
+
+In a world where rumours can spread faster than rescue teams, harmful information has become a defining challenge for humanitarian action. The 2026 edition of the World Disasters Report frames harmful information as a de facto humanitarian crisis — one that undermines access to aid, erodes trust, destabilizes social cohesion and increases risks for staff, volunteers and communities.
+
+Across eight chapters, the Report examines how misinformation, disinformation and dehumanizing narratives are reshaping disaster response, public health emergencies, migration and conflict. It brings together insights from nearly 100 contributors, 60 organizations and over 30 Red Cross and Red Crescent National Societies, grounded in real-world case studies and community perspectives from around the globe.
+
+For the first time, the Report presents a typology of harm, mapping the physical, psychological, societal and operational impacts of harmful information. It explores how these harms disrupt preparedness, response and recovery — and why responding to them is no longer optional.
+
+The World Disasters Report 2026 goes beyond analysis. It provides practical recommendations for humanitarian actors, governments, technology platforms and communities to strengthen information resilience, safeguard principled humanitarian action and rebuild trust.
+
+In today's emergencies, information can determine access, safety and dignity.`,
     url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
   {
     id: 2,
-    title: 'World Disasters Report 2026',
-    description: 'World Disasters Report 2026',
+    title: 'Truth, Trust and Humanitarian Action: The World Disasters Report 2026',
+    description: `The World Disasters Report 2026 explores one of the most urgent challenges facing humanitarian action today: harmful information.
+
+From disasters and health emergencies to migration and conflict, harmful information is reshaping crises—affecting who is trusted, who receives help, and who is left at risk.
+
+Drawing on insights from more than 100 contributors and Red Cross and Red Crescent National Societies worldwide, the report introduces a new framework for understanding how harmful information causes physical, psychological, societal and operational harm.
+
+For the first time, the report is accompanied by an innovative interactive playbook, allowing readers to explore chapters online, highlight and share insights, access lived experiences and multimedia content, and navigate the report in a more dynamic way.
+
+Beyond analysis, the report provides practical recommendations to help safeguard humanitarian principles, protect humanitarian workers and rebuild trust in times of crisis.
+
+Because today, information can determine access, safety and dignity.`,
     url: 'https://youtu.be/nabMyC5cVrU',
   },
 ];
