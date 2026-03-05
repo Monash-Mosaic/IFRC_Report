@@ -58,7 +58,7 @@
           "download": "下载报告",
           "share": "分享"
         },
-        "heroAlt": "《世界灾难报告》主题图片，展示人道主义工作者正在行动"
+        "heroAlt": "《世界灾害报告》主题图片，展示人道主义工作者正在行动"
       },
       "executiveSummary": {
         "title": "综合报告",
@@ -137,7 +137,7 @@
   "ComingSoon": {
     "meta": {
       "title": "即将上线",
-      "description": "IFRC《世界灾难报告》数字体验即将上线。"
+      "description": "IFRC《世界灾害报告》数字体验即将上线。"
     }
   },
   "ReportSubscribe": {
@@ -231,9 +231,9 @@
     "breadcrumbCurrent": "关于",
     "pageTitle": "关于我们",
     "topicHeading": "红十字会与红新月会国际联合会",
-    "body": "红十字会与红新月会国际联合会(IFRC)是全球最大的人道主义网络，由 191 个国家红十字会与红新月会及约 1500 万志愿者组成。我们的志愿者在危机或灾害发生之前、期间及之后始终驻守社区。我们在全球最偏远复杂的环境中开展工作，拯救生命并维护人类尊严。我们助力社区建设成为更强大、更有韧性的家园，让民众享有安全健康的生活，并获得蓬勃发展的机遇。",
+    "body": "红十字会与红新月会国际联合会(IFRC)是全球最大的人道主义网络，由191个国家红十字会与红新月会及约1500万志愿者组成。我们的志愿者在危机或灾害发生之前、期间及之后始终驻守社区。我们在全球最偏远复杂的环境中开展工作，拯救生命并维护人类尊严。我们助力社区建设成为更强大、更有韧性的家园，让民众享有安全健康的生活，并获得蓬勃发展的机遇。",
     "coverPhotoTitle": "封面照片",
-    "coverPhotoText": "黎巴嫩巴拉杰内堡难民营，2025年 9 月 10 日。这种以人为本的方法降低了获取服务的障碍和犹豫心理，同时在艰难环境中维持了尊严、信任和照护的连续性。",
+    "coverPhotoText": "黎巴嫩巴拉杰内堡难民营，2025年9月10日。这种以人为本的方法降低了获取服务的障碍和犹豫心理，同时在艰难环境中维持了尊严、信任和照护的连续性。",
     "insidePhotosTitle": "内页图片",
     "insidePhotosText": "Syrian Arab Red Crescent • Lama Chidiac, IFRC • Aki Kolehmainen, Finnish Red Cross • Syrian Arab Red Crescent • Lama Chidiac, IFRC • IFRC • Paul Wu, IFRC • IFRC and Ecuadorean Red Cross • Pakistan Red Crescent • IFRC",
     "contactUsTitle": "联系我们",
