@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Download } from 'lucide-react';
 import { Eye } from 'lucide-react';
+import DownloadButton from '@/components/DownloadButton';
 
 export default function ExecutiveSummarySection({ messages }) {
   return (
@@ -19,7 +20,7 @@ export default function ExecutiveSummarySection({ messages }) {
             {/* Image - Mobile: After title | Desktop: Hidden (appears in right column) */}
             <div className="lg:hidden relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200">
               <Image
-                src="/wdr25/summary.png"
+                src="/wdr25/summary.jpg"
                 alt={messages.summaryAlt}
                 fill
                 className="object-cover"
@@ -44,22 +45,22 @@ export default function ExecutiveSummarySection({ messages }) {
               {messages.buttonTexts.read}
               <Eye className="w-5 h-5 flex-shrink-0" />
             </Link>
-            <a
-              href={messages.downloadLink}
+            <DownloadButton
+              url={messages.downloadLink}
               alt="alt text"
-              target="_blank"
-              className="px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+              target="_blank" 
               rel="noopener noreferrer"
+              className="px-6 py-3 border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 whitespace-nowrap"
             >
               {messages.buttonTexts.download}
               <Download className="w-5 h-5 flex-shrink-0" />
-            </a>
+            </DownloadButton>
           </div>
         </div>
 
         {/* Image Column - Desktop: Right | Mobile: Hidden (appears inline above) */}
         <div className="hidden lg:block relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200">
-          <Image src="/wdr25/summary.png" alt={messages.summaryAlt} fill className="object-cover" />
+          <Image src="/wdr25/summary.jpg" alt={messages.summaryAlt} fill className="object-cover" />
         </div>
       </div>
     </section>

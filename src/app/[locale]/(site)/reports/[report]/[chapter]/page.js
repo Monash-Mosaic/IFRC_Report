@@ -1,5 +1,4 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 
 import {
@@ -18,6 +17,7 @@ import { getBaseUrl } from '@/lib/base-url';
 import HighlightToolbar from '@/components/HighlightToolbar';
 
 import ActiveHeadingTracker from '@/components/ActiveHeadingTracker';
+import TocClickTracker from '@/components/TocClickTracker';
 
 export async function generateMetadata({ params }) {
   const { locale, report, chapter } = await params;
@@ -91,12 +91,14 @@ export async function generateStaticParams() {
     const reports = getVisibleReports(locale);
     for (const reportKey of Object.keys(reports)) {
       const report = reports[reportKey];
-      for (const chapterKey of Object.keys(report.chapters)) {
-        params.push({
-          locale,
-          report: reportKey,
-          chapter: chapterKey,
-        });
+      for (const [chapterKey, chapter] of Object.entries(report.chapters)) {
+        if (chapter.component) {
+          params.push({
+            locale,
+            report: reportKey,
+            chapter: chapterKey,
+          });
+        }
       }
     }
   }
@@ -189,7 +191,7 @@ export default async function ReportChapterPage({ params }) {
             <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 
             <div className="xl:hidden mb-8">
-              <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+              <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg" data-ga-section="toc">
                 <TableOfContent
                   chapterTableOfContents={chapterTableOfContents}
                   title={t('tocTitle')}
@@ -210,12 +212,13 @@ export default async function ReportChapterPage({ params }) {
                   whatsappSeparator="\n"
                   containerSelector="#highlight-layer-root"
                 />
+                <TocClickTracker />
               </div>
             </div>
           </div>
 
           <div className="hidden xl:block w-80 flex-shrink-0">
-            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto">
+            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto" data-ga-section="toc">
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}

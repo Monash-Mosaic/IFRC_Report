@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
@@ -22,9 +23,12 @@ export default async function ComingSoonLayout({ children, params }) {
               <Image src="/wdr25/ifrc_logo.jpg" alt="Logo" width={70} height={70} />
             </Link>
           </div>
-          <p className="text-2xl font-bold uppercase tracking-wide text-[#ee2333] pe-4">
-            {t('comingSoonLabel')}
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-2xl font-bold uppercase tracking-wide text-[#ee2333] pe-4">
+              {t('comingSoonLabel')}
+            </p>
+            <LocaleSwitcher />
+          </div>
         </div>
       </header>
       <div className="min-h-screen bg-white">

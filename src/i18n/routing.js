@@ -4,6 +4,14 @@ export const routing = defineRouting({
   locales: ['en', 'fr', 'zh', 'ar', 'ru', 'es'],
   defaultLocale: 'en',
   pathnames: {
+    '/engagement': {
+      en: '/engagement',
+      fr: '/decouvrir',
+      zh: '/发现',
+      ar: '/اكتشف',
+      ru: '/обзор',
+      es: '/descubrir',
+    },
     '/about': {
       en: '/about',
       fr: '/a-propos',
@@ -26,7 +34,7 @@ export const routing = defineRouting({
       zh: '/报告',
       ar: '/تقارير',
       ru: '/отчеты',
-      es: '/reportaje ',
+      es: '/informe',
     },
     '/reports/[report]': {
       en: '/reports/[report]',
@@ -34,7 +42,7 @@ export const routing = defineRouting({
       zh: '/报告/[report]',
       ar: '/تقارير/[report]',
       ru: '/отчеты/[report]',
-      es: '/reportaje/[report]',
+      es: '/informe/[report]',
     },
     '/reports/[report]/[chapter]': {
       en: '/reports/[report]/[chapter]',
@@ -42,7 +50,15 @@ export const routing = defineRouting({
       zh: '/报告/[report]/[chapter]',
       ar: '/تقارير/[report]/[chapter]',
       ru: '/отчеты/[report]/[chapter]',
-      es: '/reportaje/[report]/[chapter]',
+      es: '/informe/[report]/[chapter]',
+    },
+    '/coming-soon': {
+      en: '/coming-soon',
+      fr: '/coming-soon',
+      zh: '/coming-soon',
+      ar: '/coming-soon',
+      ru: '/coming-soon',
+      es: '/coming-soon',
     },
     '/search': {
       en: '/search',

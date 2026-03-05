@@ -23,7 +23,7 @@ export default async function Breadcrumb({ locale, ariaLabel = '', items = [] })
         <li>
           <Link
             href="/"
-            className="text-red-600 hover:text-red-700 transition-colors flex items-center gap-1"
+            className="text-gray-900 hover:text-gray-700 transition-colors flex items-center gap-1"
           >
             <Home className="w-4 h-4" />
           </Link>
@@ -36,7 +36,7 @@ export default async function Breadcrumb({ locale, ariaLabel = '', items = [] })
                 {item.key ? t(item.key) : item.label}
               </Link>
             ) : (
-              <span className="text-red-600 font-medium">{item.key ? t(item.key) : item.label}</span>
+              <span className="text-gray-900 font-semibold">{item.key ? t(item.key) : item.label}</span>
             )}
           </li>
         ))}

@@ -35,11 +35,14 @@ const defaultProps = {
     params: { report: 'wdr25', chapter: 'chapter-01' },
   },
   report: 'wdr25',
+  hasPage: true,
   released: true,
   translations: {
     continue: 'Continue',
     comingSoon: 'Coming Soon',
     expandChapter: 'Expand chapter',
+    notAvailable: 'Not Available',
+    download: 'Download',
   },
 };
 

@@ -16,8 +16,10 @@ export const category = 'Annual Report';
 
 export const releaseDate = new Date('2025-11-15');
 
+const fullReportUrl = 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf';
+
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
+  url: fullReportUrl,
   size: 19_389_263,
 };
 
@@ -66,22 +68,32 @@ export const featuredVideos = [
   },
 ];
 
-export const chapterRelease = false;
+export const chapterRelease = true;
 
 export const chapters = {
   synthesis: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: -1,
+      chapterNumber: -2,
       chapterPrefix: 'Synthesis',
     },
     component: Synthesis.default,
     title: Synthesis.title,
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_EN.pdf',
     thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  acronyms: {
+    metadata: {
+      chapterKey: 'acronyms',
+      chapterNumber: -1,
+      chapterPrefix: 'Acronyms',
+    },
+    title: 'Acronyms',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Acronyms_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -95,8 +107,7 @@ export const chapters = {
     title: Introduction.title,
     subtitle: Introduction.subtitle,
     tableOfContents: Introduction.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Introduction_EN.pdf',
     thumbnail: '/wdr25/chapters/Intro.jpg',
     thumbnailOverlay: 'blue',
     released: true,
@@ -111,11 +122,10 @@ export const chapters = {
     title: Chapter01.title,
     subtitle: Chapter01.subtitle,
     tableOfContents: Chapter01.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter01_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter1.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-02': {
     metadata: {
@@ -127,7 +137,7 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
-    downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter02_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter2.png',
     released: true,
     audios: [
@@ -163,6 +173,7 @@ export const chapters = {
     component: Chapter03.default,
     title: Chapter03.title,
     subtitle: Chapter03.subtitle,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter03_EN.pdf',
     tableOfContents: Chapter03.tableOfContents,
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
@@ -174,14 +185,14 @@ export const chapters = {
       chapterNumber: 4,
       chapterPrefix: 'Chapter 4',
     },
-    component: Chapter02.default,
     title:
       'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
     subtitle: 'Harmful Information and Operational Realities',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter04_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-05': {
     metadata: {
@@ -189,13 +200,13 @@ export const chapters = {
       chapterNumber: 5,
       chapterPrefix: 'Chapter 5',
     },
-    component: Chapter02.default,
     title: 'Navigating Regulation, Rights and Societal Resilience',
     subtitle: 'Information Landscape and Humanitarian Contexts',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter05_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-06': {
     metadata: {
@@ -203,13 +214,13 @@ export const chapters = {
       chapterNumber: 6,
       chapterPrefix: 'Chapter 6',
     },
-    component: Chapter02.default,
     title: 'Rooted in Resilience: Community-first approach to Harmful Information',
     subtitle: 'The Importance of Community for Resilience',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter06_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-07': {
     metadata: {
@@ -217,13 +228,13 @@ export const chapters = {
       chapterNumber: 7,
       chapterPrefix: 'Chapter 7',
     },
-    component: Chapter02.default,
     title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
     subtitle: 'Humanitarian Action in the Era of Instant Narratives',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter07_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.png',
     thumbnailOverlay: 'red',
-    released: false,
+    released: true,
   },
   'chapter-08': {
     metadata: {
@@ -235,9 +246,30 @@ export const chapters = {
     title: Chapter08.title,
     subtitle: Chapter08.subtitle,
     tableOfContents: Chapter08.tableOfContents,
-    downloadLink:
-      'https://www.ifrc.org/sites/default/files/2021-05/20201116_WorldDisasters_Full.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter08_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter8.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  glossary: {
+    metadata: {
+      chapterKey: 'glossary',
+      chapterNumber: 9,
+      chapterPrefix: 'Glossary',
+    },
+    title: 'Glossary',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Glossary_EN.pdf',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  annex2: {
+    metadata: {
+      chapterKey: 'annex2',
+      chapterNumber: 10,
+      chapterPrefix: 'Annex 2',
+    },
+    title: 'Annex 2',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Annex2_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },
