@@ -48,15 +48,34 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information',
-    description:
-      'The International Federation of Red Cross and Red Crescent Societies (IFRC) launches the World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information.',
+    title: 'Informe Mundial sobre Desastres 2026: Verdad, confianza y acción humanitaria en la era de la información perjudicial',
+    description: `La Federación Internacional de Sociedades de la Cruz Roja y de la Media Luna Roja (FICR) presenta el Informe Mundial sobre Desastres 2026: Verdad, confianza y acción humanitaria en la era de la información perjudicial.
+
+En un mundo donde los rumores pueden propagarse más rápido que los equipos de rescate, la información perjudicial se ha convertido en un desafío definitorio para la acción humanitaria. La edición 2026 del Informe Mundial sobre Desastres presenta la información perjudicial como una crisis humanitaria de hecho — una que socava el acceso a la ayuda, erosiona la confianza, desestabiliza la cohesión social y aumenta los riesgos para el personal, los voluntarios y las comunidades.
+
+A lo largo de ocho capítulos, el Informe examina cómo la desinformación, las noticias falsas y las narrativas deshumanizadoras están reconfigurando la respuesta ante desastres, las emergencias de salud pública, la migración y los conflictos. Reúne las perspectivas de casi 100 colaboradores, 60 organizaciones y más de 30 Sociedades Nacionales de la Cruz Roja y de la Media Luna Roja, basadas en estudios de caso reales y perspectivas comunitarias de todo el mundo.
+
+Por primera vez, el Informe presenta una tipología del daño, cartografiando los impactos físicos, psicológicos, sociales y operativos de la información perjudicial. Explora cómo estos daños alteran la preparación, la respuesta y la recuperación — y por qué responder a ellos ya no es opcional.
+
+El Informe Mundial sobre Desastres 2026 va más allá del análisis. Ofrece recomendaciones prácticas para los actores humanitarios, los gobiernos, las plataformas tecnológicas y las comunidades para fortalecer la resiliencia informativa, salvaguardar la acción humanitaria basada en principios y reconstruir la confianza.
+
+En las emergencias actuales, la información puede determinar el acceso, la seguridad y la dignidad.`,
     url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
   {
     id: 2,
-    title: 'World Disasters Report 2026',
-    description: 'World Disasters Report 2026',
+    title: 'Verdad, confianza y acción humanitaria: Informe Mundial sobre Desastres 2026',
+    description: `El Informe Mundial sobre Desastres 2026 explora uno de los desafíos más urgentes que enfrenta la acción humanitaria en la actualidad: la información perjudicial.
+
+Desde desastres y emergencias sanitarias hasta la migración y los conflictos, la información perjudicial está reconfigurando las crisis — afectando en quién se confía, quién recibe ayuda y quién queda en situación de riesgo.
+
+Basándose en las perspectivas de más de 100 colaboradores y Sociedades Nacionales de la Cruz Roja y de la Media Luna Roja en todo el mundo, el informe presenta un nuevo marco para comprender cómo la información perjudicial causa daños físicos, psicológicos, sociales y operativos.
+
+Por primera vez, el informe va acompañado de un innovador manual interactivo que permite a los lectores explorar los capítulos en línea, resaltar y compartir perspectivas, acceder a experiencias vividas y contenido multimedia, y navegar el informe de forma más dinámica.
+
+Más allá del análisis, el informe ofrece recomendaciones prácticas para salvaguardar los principios humanitarios, proteger a los trabajadores humanitarios y reconstruir la confianza en tiempos de crisis.
+
+Porque hoy, la información puede determinar el acceso, la seguridad y la dignidad.`,
     url: 'https://youtu.be/nabMyC5cVrU',
   },
 ];
