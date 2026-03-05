@@ -2,6 +2,7 @@ import * as Synthesis from './exec-summary.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter03 from './chapter-03.mdx';
 import * as Chapter08 from './chapter-08.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
@@ -169,10 +170,11 @@ export const chapters = {
       chapterNumber: 3,
       chapterPrefix: 'Chapter 3',
     },
-    title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
-    subtitle: 'Harmful Narratives that Thrive',
+    component: Chapter03.default,
+    title: Chapter03.title,
+    subtitle: Chapter03.subtitle,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter03_EN.pdf',
-    tableOfContents: [],
+    tableOfContents: Chapter03.tableOfContents,
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
     released: true,
