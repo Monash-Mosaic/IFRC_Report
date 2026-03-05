@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -39,5 +39,16 @@ next-env.d.ts
 
 # cloudflare wrangler
 .wrangler
+# Search database (regenerated on build)
+data/search.db
+
+scripts/wdr25/data
+scripts/wdr25/output
 # Search index artifacts (regenerated on build)
 data/
+
+# lock files (project uses npm)
+pnpm-lock.yaml
+
+# test reports
+report.json

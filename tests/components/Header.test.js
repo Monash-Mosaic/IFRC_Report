@@ -37,6 +37,7 @@ jest.mock('next-intl/server', () => ({
     const namespace = typeof arg === 'string' ? arg : arg?.namespace;
     return (key) => {
       const translations = {
+        'Home.nav.discover': 'Discover',
         'Home.nav.about': 'About',
         'Home.nav.acknowledgement': 'Acknowledgement',
         'Home.nav.search': 'Search',
@@ -60,6 +61,7 @@ describe('Header', () => {
     await renderHeader();
 
     expect(screen.getByAltText('Logo')).toBeInTheDocument();
+    expect(screen.getAllByText('Discover').length).toBeGreaterThan(0);
     expect(screen.getAllByText('About').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Acknowledgement').length).toBeGreaterThan(0);
     expect(screen.getAllByTestId('locale-switcher')).toHaveLength(2);

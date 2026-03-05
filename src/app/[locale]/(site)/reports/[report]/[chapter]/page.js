@@ -1,8 +1,13 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 
-import { getVisibleReports, isLocaleReleased, isReportReleased, reportsByLocale, reportUriMap } from '@/reports';
+import {
+  getVisibleReports,
+  isLocaleReleased,
+  isReportReleased,
+  reportsByLocale,
+  reportUriMap,
+} from '@/reports';
 import { getPathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import SidebarPanel from '@/components/SidebarPanel';
@@ -12,7 +17,7 @@ import { getBaseUrl } from '@/lib/base-url';
 import HighlightToolbar from '@/components/HighlightToolbar';
 
 import ActiveHeadingTracker from '@/components/ActiveHeadingTracker';
-
+import TocClickTracker from '@/components/TocClickTracker';
 
 export async function generateMetadata({ params }) {
   const { locale, report, chapter } = await params;
@@ -21,7 +26,10 @@ export async function generateMetadata({ params }) {
   const reportData = reportsByLocale[locale]?.reports?.[decodedReport];
   const chapterData = reportData?.chapters?.[decodedChapter];
   const { title: reportTitle } = reportData;
-  const { metadata: { chapterPrefix }, title: chapterTitle } = chapterData;
+  const {
+    metadata: { chapterPrefix },
+    title: chapterTitle,
+  } = chapterData;
   const reportKey = reportUriMap.uri[locale][decodedReport];
   const chapterKey = reportUriMap[reportKey].chapters.uri[locale][decodedChapter];
 
@@ -33,17 +41,14 @@ export async function generateMetadata({ params }) {
     .filter(([loc]) => isLocaleReleased(loc))
     .map(([loc, uri]) => {
       const href = buildHref(uri);
-            return [
-              loc,
-              getPathname({ locale: loc, href }),
-            ];
+      return [loc, getPathname({ locale: loc, href })];
     });
-    languages.push([
-      'x-default',
+  languages.push([
+    'x-default',
     languages
-        .find(([loc, url]) => loc === routing.defaultLocale)[1]
-        .replace(`/${routing.defaultLocale}/`, '/'),
-    ]);
+      .find(([loc, url]) => loc === routing.defaultLocale)[1]
+      .replace(`/${routing.defaultLocale}/`, '/'),
+  ]);
   const metaTitle = `${reportTitle} > ${chapterPrefix}`;
   const canonical = getPathname({ locale, href: buildHref(decodedChapter) });
   return {
@@ -77,18 +82,23 @@ export async function generateMetadata({ params }) {
   };
 }
 
+export const dynamic = 'force-static';
+export const dynamicParams = false; 
+
 export async function generateStaticParams() {
   const params = [];
   for (const locale of Object.keys(reportsByLocale)) {
     const reports = getVisibleReports(locale);
     for (const reportKey of Object.keys(reports)) {
       const report = reports[reportKey];
-      for (const chapterKey of Object.keys(report.chapters)) {
-        params.push({
-          locale,
-          report: reportKey,
-          chapter: chapterKey,
-        });
+      for (const [chapterKey, chapter] of Object.entries(report.chapters)) {
+        if (chapter.component) {
+          params.push({
+            locale,
+            report: reportKey,
+            chapter: chapterKey,
+          });
+        }
       }
     }
   }
@@ -101,14 +111,6 @@ export default async function ReportChapterPage({ params }) {
   const decodedChapter = decodeURIComponent(chapter);
   const baseUrl = getBaseUrl();
   const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
-  if (
-    !reportsByLocale[locale] ||
-    !reportsByLocale[locale].reports[decodedReport] ||
-    !reportsByLocale[locale].reports[decodedReport].chapters[decodedChapter] ||
-    !isReportReleased(locale, decodedReport)
-  ) {
-    notFound();
-  }
   setRequestLocale(locale);
   const reportData = reportsByLocale[locale].reports[decodedReport];
   const { chapters, title: reportTile, description, author, releaseDate } = reportData;
@@ -119,7 +121,7 @@ export default async function ReportChapterPage({ params }) {
     audios = [],
     videos = [],
     tableOfContents: chapterTableOfContents,
-    metadata: { chapterPrefix }
+    metadata: { chapterPrefix },
   } = chapters[decodedChapter];
 
   const chapterJsonLd = {
@@ -149,7 +151,7 @@ export default async function ReportChapterPage({ params }) {
 
   const t = await getTranslations({
     namespace: 'ReportChapterPage',
-    locale
+    locale,
   });
 
   return (
@@ -168,28 +170,28 @@ export default async function ReportChapterPage({ params }) {
             <Breadcrumb
               locale={locale}
               items={[
-                { 
+                {
                   label: reportTile,
                   href: {
                     pathname: '/reports/[report]',
                     params: {
-                      report: decodedReport
-                    }
-                  }
+                      report: decodedReport,
+                    },
+                  },
                 },
-                { label: chapterPrefix }
+                { label: chapterPrefix },
               ]}
             />
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
             </div>
 
-            <div className="mb-8 text-black text-4xl font-extrabold">{chapterTitle}</div>
+            <div className="mb-8 text-black text-5xl font-extrabold text-right">{chapterTitle}</div>
 
             <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 
             <div className="xl:hidden mb-8">
-              <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+              <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg" data-ga-section="toc">
                 <TableOfContent
                   chapterTableOfContents={chapterTableOfContents}
                   title={t('tocTitle')}
@@ -210,16 +212,17 @@ export default async function ReportChapterPage({ params }) {
                   whatsappSeparator="\n"
                   containerSelector="#highlight-layer-root"
                 />
+                <TocClickTracker />
               </div>
             </div>
           </div>
 
           <div className="hidden xl:block w-80 flex-shrink-0">
-            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto">
+            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto" data-ga-section="toc">
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}
-              ></TableOfContent>
+              />
             </div>
           </div>
         </div>

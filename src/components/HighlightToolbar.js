@@ -17,6 +17,7 @@ import {
   WhatsappIcon,
 } from 'next-share';
 import { shareOrCopy } from '@/lib/share';
+import { trackShare, trackTextHighlight } from '@/lib/gtm';
 
 const COLOR_META = [
   { key: 'yellow', name: 'Yellow', rgba: 'rgba(253, 224, 71, 0.55)', circleClass: 'bg-yellow-300' },
@@ -490,6 +491,8 @@ export default function HighlightToolbar({
   const onShare = async () => {
     if (!selectedText) return;
 
+    trackShare({ platform: 'web_share', url: shareUrl, text: selectedText });
+
     await shareOrCopy({
       title: shareTitle,
       text: selectedText,
@@ -513,6 +516,8 @@ export default function HighlightToolbar({
 
     const quote = window.getSelection().toString().trim();
     const urlKey = getUrlKey();
+
+    trackTextHighlight({ text: quote, url: urlKey, color: colorKey });
 
     const existing = await getHighlightsByUrlKey(urlKey);
     const overlapping = existing.filter((h) =>
@@ -652,22 +657,29 @@ export default function HighlightToolbar({
         </button>
 
         {/* Social share icons */}
-        <FacebookShareButton url={shareUrl} hashtag={hashtag}>
-          <FacebookIcon size={iconSize} round={round} />
-        </FacebookShareButton>
+        <span onClick={() => trackShare({ platform: 'facebook', url: shareUrl, text: selectedText })}>
+          <FacebookShareButton url={shareUrl} hashtag={hashtag}>
+            <FacebookIcon size={iconSize} round={round} />
+          </FacebookShareButton>
+        </span>
 
-        <LinkedinShareButton
-            url={shareUrl}
-            title={selectedText}
-            summary={selectedText}
-        >
-          <LinkedinIcon size={iconSize} round={round} />
-        </LinkedinShareButton>  
+        <span onClick={() => trackShare({ platform: 'linkedin', url: shareUrl, text: selectedText })}>
+          <LinkedinShareButton
+              url={shareUrl}
+              title={selectedText}
+              summary={selectedText}
+          >
+            <LinkedinIcon size={iconSize} round={round} />
+          </LinkedinShareButton>
+        </span>
 
         {/* WhatsApp: keep icon, custom handler */}
         <button
           type="button"
-          onClick={() => shareToWhatsApp({ url: shareUrl, text: selectedText, separator: whatsappSeparator })}
+          onClick={() => {
+            trackShare({ platform: 'whatsapp', url: shareUrl, text: selectedText });
+            shareToWhatsApp({ url: shareUrl, text: selectedText, separator: whatsappSeparator });
+          }}
           className="inline-flex"
           title="Share to WhatsApp"
           aria-label="Share to WhatsApp"

@@ -19,7 +19,7 @@
     "format": "prettier --write $(git diff --name-only --diff-filter=ACM HEAD | grep -E '\\.(js|jsx|ts|tsx|json|css|md)$')",
     "test": "jest",
     "ci:build": "opennextjs-cloudflare build",
-    "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions --coverage --ci --json --outputFile=report.json",
+    "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions --coverage --ci --json --outputFile=report.json --coveragePathIgnorePatterns='/packages/'",
     "test:watch": "jest --watch"
   },
   "workspaces": [
@@ -43,7 +43,9 @@
     "geist": "^1.7.0",
     "hls.js": "^1.6.15",
     "jsonc-parser": "^3.3.1",
+    "lodash": "^4.17.23",
     "lucide-react": "^0.563.0",
+    "min-indent": "^1.0.1",
     "next": "^16.1.6",
     "next-intl": "^4.8.2",
     "next-share": "^0.27.0",
@@ -57,6 +59,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@getbrevo/brevo": "^4.0.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -76,6 +79,7 @@
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "3.8.1",
+    "react-modal": "^3.16.3",
     "schema-dts": "^1.1.5",
     "tailwindcss": "^4.2.1",
     "ts-node": "^10.9.2",

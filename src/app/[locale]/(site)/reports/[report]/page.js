@@ -1,8 +1,11 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
+import DownloadLink from '@/components/DownloadButton';
 
+import { Download } from 'lucide-react';
 import Breadcrumb from '@/components/Breadcrumb';
+import SubscribeBox from '@/components/SubscribeBox';
 import ChapterCard from '@/components/ChapterCard';
 import HeroMediaBlock from '@/components/landing-page/HeroMediaBlock';
 import { getPathname } from '@/i18n/navigation';
@@ -108,6 +111,7 @@ export default async function ReportDetailPage({ params }) {
   setRequestLocale(locale);
   const reportData = reportsByLocale[locale].reports[decodedReport];
   const { chapters, title: reportTile, description, author, releaseDate, reportFile } = reportData;
+  const showSubscribeSection = !reportData.chapterRelease;
   const reportJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Report',
@@ -130,8 +134,8 @@ export default async function ReportDetailPage({ params }) {
   });
 
   const chapterEntries = Object.entries(chapters)
+    .filter(([_, chapter]) => chapter.released)
     .map(([chapterKey, chapter]) => {
-      const chapterNumber = chapter.metadata?.chapterNumber;
       const chapterPrefix = chapter.metadata?.chapterPrefix || '';
 
       return {
@@ -144,7 +148,9 @@ export default async function ReportDetailPage({ params }) {
           pathname: '/reports/[report]/[chapter]',
           params: { report: decodedReport, chapter: chapterKey },
         },
+        hasPage: !!chapter.component,
         thumbnail: chapter.thumbnail,
+        downloadLink: chapter?.downloadLink,
         thumbnailOverlay: chapter.thumbnailOverlay || 'red',
         released: chapter.released,
         sortOrder: chapter.metadata.chapterNumber,
@@ -171,7 +177,7 @@ export default async function ReportDetailPage({ params }) {
         <hr className="border-gray-300 mb-10" />
 
         {/* Chapter Cards Grid */}
-        <div className="grid gap-8 grid-cols-1">
+        <div className="grid gap-8 grid-cols-1" data-ga-section="list">
           {chapterEntries.map((chapter) => (
             <ChapterCard
               key={chapter.key}
@@ -185,31 +191,49 @@ export default async function ReportDetailPage({ params }) {
               continueHref={chapter.continueHref}
               report={decodedReport}
               released={chapter.released}
+              hasPage={chapter.hasPage}
+              downloadLink={chapter?.downloadLink}
               translations={{
                 continue: t('sections.continue'),
                 comingSoon: t('sections.comingSoon'),
                 expandChapter: t('sections.expandChapter'),
+                notAvailable: t('sections.notAvailable'),
+                download: t('sections.download'),
+                locale,
               }}
             />
           ))}
+          {reportFile?.url && (
+            <div className="flex justify-center mt-8">
+              <DownloadLink
+                href={reportFile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors"
+              >
+                <Download className="w-5 h-5 flex-shrink-0" />
+                <span>{t('downloadFullReport')}</span>
+              </DownloadLink>
+            </div>
+          )}
+          {showSubscribeSection && (
+            <div className="mt-6">
+              <SubscribeBox locale={locale} />
+            </div>
+          )}
         </div>
 
-        {/* Placeholder for future email subscription section */}
-        {!reportData.chapterRelease && (
-          <div className="mt-10 bg-gray-100 rounded-lg p-8 min-h-[120px]" />
+        {/* Hero Video Section — show when subscribe box is shown; same container as content */}
+        {showSubscribeSection && (
+          <div className="mt-6">
+            <HeroMediaBlock
+              title={tHome('landingPage.heroSection.title')}
+              description={tHome('landingPage.heroSection.description')}
+              heroAlt={tHome('landingPage.heroSection.heroAlt')}
+            />
+          </div>
         )}
       </div>
-
-      {/* Hero Video Section */}
-      {!reportData.chapterRelease && (
-        <div className="mt-8">
-          <HeroMediaBlock
-            title={tHome('landingPage.heroSection.title')}
-            description={tHome('landingPage.heroSection.description')}
-            heroAlt={tHome('landingPage.heroSection.heroAlt')}
-          />
-        </div>
-      )}
     </div>
   );
 }

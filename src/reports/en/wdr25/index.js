@@ -1,6 +1,10 @@
+import * as Synthesis from './exec-summary.mdx';
+import * as Introduction from './introduction.mdx';
+import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter08 from './chapter-08.mdx';
 
-export const title = 'World Disaster Report 2025';
+export const title = 'World \n Disaster\n Report\n\n 2026';
 
 export const description =
   "The International Federation of Red Cross and Red Crescent Societies' Annual Report for 2025, detailing global disaster response and humanitarian efforts.";
@@ -11,8 +15,10 @@ export const category = 'Annual Report';
 
 export const releaseDate = new Date('2025-11-15');
 
+const fullReportUrl = 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf';
+
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
+  url: fullReportUrl,
   size: 19_389_263,
 };
 
@@ -67,27 +73,55 @@ export const chapters = {
   synthesis: {
     metadata: {
       chapterKey: 'synthesis',
-      chapterNumber: 0,
+      chapterNumber: -2,
       chapterPrefix: 'Synthesis',
     },
-    component: Chapter02.default,
-    title: 'Truth, Trust and Humanitarian Action in the Age of Harmful Information',
-    subtitle: null,
-    tableOfContents: [],
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_EN.pdf',
     thumbnail: '/wdr25/chapters/Synthesis.jpg',
     thumbnailOverlay: 'red',
+    released: true,
+  },
+  acronyms: {
+    metadata: {
+      chapterKey: 'acronyms',
+      chapterNumber: -1,
+      chapterPrefix: 'Acronyms',
+    },
+    title: 'Acronyms',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Acronyms_EN.pdf',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  introduction: {
+    metadata: {
+      chapterKey: 'introduction',
+      chapterNumber: 0,
+      chapterPrefix: 'Introduction',
+    },
+    component: Introduction.default,
+    title: Introduction.title,
+    subtitle: Introduction.subtitle,
+    tableOfContents: Introduction.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Introduction_EN.pdf',
+    thumbnail: '/wdr25/chapters/Intro.jpg',
+    thumbnailOverlay: 'blue',
     released: true,
   },
   'chapter-01': {
     metadata: {
       chapterKey: 'chapter-01',
       chapterNumber: 1,
-      chapterPrefix: 'Chapter 1',
+      chapterPrefix: 'Chapter 01',
     },
-    component: Chapter02.default,
-    title: 'Crisis, Chaos and Confusion: Understanding Harmful Information',
-    subtitle: null,
-    tableOfContents: [],
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter01_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter1.png',
     thumbnailOverlay: 'red',
     released: true,
@@ -102,7 +136,7 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
-    downloadLink: 'https://www.dfat.gov.au/sites/default/files/vic-cef.pdf',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter02_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter2.png',
     released: true,
     audios: [
@@ -135,9 +169,9 @@ export const chapters = {
       chapterNumber: 3,
       chapterPrefix: 'Chapter 3',
     },
-    component: Chapter02.default,
     title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
     subtitle: 'Harmful Narratives that Thrive',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter03_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter3.png',
     thumbnailOverlay: 'blue',
@@ -149,9 +183,10 @@ export const chapters = {
       chapterNumber: 4,
       chapterPrefix: 'Chapter 4',
     },
-    component: Chapter02.default,
-    title: 'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
+    title:
+      'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
     subtitle: 'Harmful Information and Operational Realities',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter04_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.png',
     thumbnailOverlay: 'red',
@@ -163,9 +198,9 @@ export const chapters = {
       chapterNumber: 5,
       chapterPrefix: 'Chapter 5',
     },
-    component: Chapter02.default,
     title: 'Navigating Regulation, Rights and Societal Resilience',
     subtitle: 'Information Landscape and Humanitarian Contexts',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter05_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.png',
     thumbnailOverlay: 'red',
@@ -177,9 +212,9 @@ export const chapters = {
       chapterNumber: 6,
       chapterPrefix: 'Chapter 6',
     },
-    component: Chapter02.default,
     title: 'Rooted in Resilience: Community-first approach to Harmful Information',
     subtitle: 'The Importance of Community for Resilience',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter06_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.png',
     thumbnailOverlay: 'red',
@@ -191,9 +226,9 @@ export const chapters = {
       chapterNumber: 7,
       chapterPrefix: 'Chapter 7',
     },
-    component: Chapter02.default,
     title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
     subtitle: 'Humanitarian Action in the Era of Instant Narratives',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter07_EN.pdf',
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.png',
     thumbnailOverlay: 'red',
@@ -203,13 +238,36 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-08',
       chapterNumber: 8,
-      chapterPrefix: 'Chapter 8',
+      chapterPrefix: 'Chapter 08',
     },
-    component: Chapter02.default,
-    title: "What's Next for Truth and Trust? Toward a Resilient Humanitarian Sector",
-    subtitle: 'The Stakes of Harmful Information',
-    tableOfContents: [],
+    component: Chapter08.default,
+    title: Chapter08.title,
+    subtitle: Chapter08.subtitle,
+    tableOfContents: Chapter08.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter08_EN.pdf',
     thumbnail: '/wdr25/chapters/Chapter8.png',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  glossary: {
+    metadata: {
+      chapterKey: 'glossary',
+      chapterNumber: 9,
+      chapterPrefix: 'Glossary',
+    },
+    title: 'Glossary',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Glossary_EN.pdf',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  annex2: {
+    metadata: {
+      chapterKey: 'annex2',
+      chapterNumber: 10,
+      chapterPrefix: 'Annex 2',
+    },
+    title: 'Annex 2',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Annex2_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },

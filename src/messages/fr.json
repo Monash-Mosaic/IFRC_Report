@@ -14,11 +14,12 @@
     "nav": {
       "logoAlt": "Logo de l'IFRC",
       "brand": "IFRC | académie solferino",
+      "discover": "Découvrir",
       "about": "À propos",
       "bookmarks": "Signets",
       "download": "Télécharger",
       "search": "Recherche",
-      "acknowledgement": "Reconnaissance",
+      "acknowledgement": "Remerciements",
       "searchPlaceholder": "Recherchez dans le Rapport mondial sur les catastrophes 2026..."
     },
     "comingSoonLabel": "Bientôt disponible",
@@ -65,7 +66,7 @@
         "heroAlt": "Image principale du Rapport sur les catastrophes dans le monde montrant des travailleurs humanitaires en action"
       },
       "executiveSummary": {
-        "title": "Résumé exécutif",
+        "title": "Synthèse",
         "subtitle": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
         "description": "À un point critique : contrer les informations nuisibles, défendre l'humanité",
         "buttonTexts": {
@@ -142,8 +143,11 @@
     "sections": {
       "continue": "Continuer",
       "comingSoon": "Bientôt disponible",
-      "expandChapter": "Développer les détails du chapitre"
-    }
+      "expandChapter": "Développer les détails du chapitre",
+      "notAvailable": "Non disponible",
+      "download": "Télécharger"
+    },
+    "downloadFullReport": "Télécharger le rapport complet"
   },
   "ReportChapterPage": {
     "tocTitle": "Sur cette chapitre"
@@ -173,6 +177,18 @@
       "title": "Bientôt disponible",
       "description": "L’expérience du Rapport mondial sur les catastrophes de l’IFRC arrive bientôt."
     }
+  },
+  "ReportSubscribe": {
+    "headline": "Le rapport complet arrive bientôt.",
+    "placeholder": "Rejoignez notre liste e-mail",
+    "submit": "S'abonner",
+    "submitting": "Inscription…",
+    "successTitle": "Merci de nous avoir rejoints !",
+    "successMessage": "Nous vous enverrons un e-mail lorsque le nouveau contenu sera disponible.",
+    "close": "Fermer",
+    "emailRequired": "L'adresse e-mail est requise",
+    "invalidEmail": "Veuillez entrer une adresse e-mail valide.",
+    "subscribeError": "Nous n'avons pas pu vous ajouter à la liste. Veuillez réessayer plus tard."
   },
   "ReportIncident": {
     "trigger": "Signaler une erreur",
@@ -268,7 +284,7 @@
     "breadcrumbCurrent": "Remerciements",
     "pageTitle": "Remerciements",
     "intro": "La <bold>Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge</bold> (IFRC) remercie chaleureusement les organisations suivantes pour le soutien apporté à la production et à la publication du Rapport mondial sur les catastrophes de l’IFRC 2026 :",
-    "translation": "Les coûts de traduction des éditions russe et chinoise ont été généreusement pris en charge par l’Académie de la Croix-Rouge russe et l’Académie internationale de la Croix-Rouge en Chine.",
+    "translation": "Les coûts de traduction de l’édition chinoise ont été généreusement pris en charge par l’Académie internationale de la Croix-Rouge en Chine, tandis que la traduction en russe a été réalisée par le Centre linguistique de la Croix-Rouge russe.",
     "leadEditorLabel": "Rédactrice en chef et auteure :",
     "leadEditor": "Charlotte Lindsey Curtet",
     "designerLabel": "Concepteur :",
@@ -279,5 +295,70 @@
     "copyeditor": "Jen Claydon",
     "contributions": "Le Rapport mondial sur les catastrophes 2026 comprend plus de 100 contributions écrites provenant de plus de 60 praticiens et chercheurs du secteur humanitaire, ainsi que de gouvernements, du milieu universitaire, de la société civile et d’autres acteurs. Ces contributions apparaissent tout au long du rapport dans des encadrés « Contributor Insight », reconnaissant les auteurs individuels et leurs organisations respectives.",
     "research": "<bold>L’Académie Solferino de l’IFRC</bold> a mené une étude rapide d’intelligence communautaire de deux mois avec 40 volontaires et membres du personnel issus de 10 Sociétés nationales. Agissant en tant que chercheurs communautaires, ils ont interrogé 132 volontaires et membres de communautés touchées par des crises humanitaires. Les résultats ont été synthétisés par des universitaires bénévoles de l’Université du Michigan, de l’Université de Northumbria et d’Open Lab (Université de Newcastle), garantissant la préservation des nuances locales. Des citations sélectionnées figurent tout au long du rapport."
+  },
+  "Engagement": {
+    "breadcrumbHome": "Page d'accueil",
+    "breadcrumbCurrent": "Découvrir",
+    "heroTitle": "Découvrez le guide interactif",
+    "heroSubtitle": "Aperçus multimédias, expériences vécues et recommandations concrètes pour les politiques et la pratique.",
+    "heroAlt": "Bannière Découvrez le guide interactif",
+    "browseTopics": "Parcourir les sujets",
+    "browseOperationalImpact": "Impact opérationnel",
+    "browseResponseStrategy": "Stratégie de réponse",
+    "browseGovernance": "Gouvernance",
+    "selectedCount": "{count} sélectionné(s)",
+    "quotesTitle": "Citations",
+    "loadingQuotes": "Chargement des citations…",
+    "noQuotesMatch": "Aucune citation ne correspond aux filtres sélectionnés.",
+    "errorLoadingQuotes": "Impossible de charger les citations. Veuillez réessayer.",
+    "filtersActive": "{count, plural, one {# filtre actif} other {# filtres actifs}}"
+  },
+  "Footer": {
+    "report": "Rapport",
+    "readReport": "Lire le rapport",
+    "downloadReport": "Télécharger le rapport",
+    "reportIssue": "Signaler un problème",
+    "games": "Jeux",
+    "world": "Monde",
+    "disasters": "Catastrophes",
+    "reportTitle": "Rapport",
+    "year": "2026"
+  },
+
+  "ContributionInsight": {
+    "title": "Aperçu des Contributions"
+  },
+  "TohIcons": {
+    "deprivational": "Privation",
+    "societal": "Sociétal",
+    "digital": "Numérique",
+    "longitudinal": "Longitudinal",
+    "physical": "Physique",
+    "psychological": "Psychologique",
+    "social": "Social",
+    "informational": "Informationnel"
+  },
+  "Acknowledgements": {
+    "meta": {
+      "title": "Remerciements et contributeurs",
+      "description": "Reconnaissance des organisations et des personnes qui ont soutenu la production, la traduction et la publication du Rapport sur les catastrophes dans le monde 2026 de la Fédération internationale."
+    },
+    "breadcrumbHome": "Page d'accueil",
+    "breadcrumbCurrent": "Remerciements",
+    "pageTitle": "Remerciements",
+    "intro": "La <bold>Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge</bold> désire exprimer sa gratitude aux organisations suivantes pour le soutien qu'ils ont apporté à la production et à la publication de l'édition 2026 de son <italic>Rapport sur les catastrophes dans le monde</italic> :",
+    "translation": "Les frais de traduction des versions russe et chinoise ont été généreusement pris en charge respectivement par l'Académie de la Croix-Rouge russe et l'Académie internationale de la Croix-Rouge en Chine.",
+    "leadEditorLabel": "Rédactrice en chef et autrice :",
+    "leadEditor": "Charlotte Lindsey Curtet",
+    "designerLabel": "Conception et mise en page :",
+    "designer": "Yann le Floc'h",
+    "projectManagerLabel": "Responsable de projet :",
+    "projectManager": "Heather Marie Leson",
+    "copyeditorLabel": "Réviseure linquistique :",
+    "copyeditor": "Jen Claydon",
+    "frenchEditorLabel": "Responsable de la version française :",
+    "frenchEditor": "Florence Marot",
+    "contributions": "Le <italic>Rapport sur les catastrophes dans le monde 2026</italic> comprend près de 100 contributions écrites de plus de 60 praticiens et chercheurs du secteur humanitaire, ainsi que de gouvernements, de milieux académiques, de la société civile et bien au-delà. Ces contributions apparaissent tout au long du rapport dans des encadrés intitulés « Perspectives des contributeurs », qui mentionnent les auteurs individuels et leurs organisations respectives. En ce qui concerne la présente <italic>Synthèse</italic>, elle prend appui sur cette expertise collective sans toutefois citer ou mentionner les différents contributeurs.",
+    "research": "L' <bold>Académie Solferino de la Fédération internationale</bold> a mené une étude rapide de deux mois sur les connaissances communautaires avec 40 volontaires et membres du personnel de 10 Sociétés nationales. Agissant en tant que chercheurs communautaires, ils ont interrogé 132 volontaires et membres de communautés touchées par des crises humanitaires. Les résultats ont été synthétisés par des universitaires bénévoles de l'Université du Michigan, de l'Université de Northumbria et de l'Open Lab (Université de Newcastle), afin de préserver les nuances locales. Des citations sélectionnées apparaissent tout au long du rapport."
   }
 }

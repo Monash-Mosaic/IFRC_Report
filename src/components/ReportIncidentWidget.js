@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useActionState } from 'react';
 import { useTranslations } from 'next-intl';
 import { MessageCircle, X } from 'lucide-react';
 import { reportIncident } from '@/app/actions/report-incident';
+import { trackFormSubmit } from '@/lib/gtm';
 
 const initialState = { success: false, error: null };
 
@@ -31,6 +32,15 @@ export default function ReportIncidentWidget() {
     setDismissedSuccess(true);
     setDescription('');
   };
+
+  useEffect(() => {
+    if (state?.success && !dismissedSuccess) {
+      trackFormSubmit({
+        formName: 'report_incident',
+        url: formLocation || (typeof window !== 'undefined' ? window.location.pathname : ''),
+      });
+    }
+  }, [state?.success, dismissedSuccess, formLocation]);
 
   const showSuccess = state?.success && !dismissedSuccess;
 
@@ -77,7 +87,7 @@ export default function ReportIncidentWidget() {
                 rows={8}
                 required
                 disabled={pending}
-                className="min-h-[160px] w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-red-600 focus:outline-none focus:ring-1 focus:ring-red-600 disabled:bg-gray-100"
+                className="min-h-[160px] w-full rounded border border-gray-300 bg-white text-gray-900 placeholder-gray-500 px-3 py-2 text-sm focus:border-red-600 focus:outline-none focus:ring-1 focus:ring-red-600 disabled:bg-gray-100"
               />
               {state?.error && (
                 <p className="text-sm text-red-600">{state.error}</p>

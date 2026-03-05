@@ -1,9 +1,10 @@
 import * as Chapter02 from './chapter-02.mdx';
+import * as Synthesis from './exec-summary.mdx';
 
-export const title = '国际红十字与红新月联合会 2025 年度报告';
+export const title = '红十字会与红新月会国际联合会 2026 年世界灾害报告';
 
 export const description =
-  '国际红十字与红新月联合会 2025 年度报告，详述全球灾害响应与人道救援工作。';
+  '国际红十字与红新月联合会 2026 年度报告，详述全球灾害响应与人道救援工作。';
 
 export const author = 'IFRC 秘书处';
 
@@ -12,8 +13,9 @@ export const category = '年度报告';
 export const releaseDate = new Date('2025-11-15');
 
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
-  size: 19_389_263,
+  // TODO: Update with the full report file details
+  // url: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf',
+  // size: 19_389_263,
 };
 
 export const testimonialsList = [
@@ -64,6 +66,22 @@ export const featuredVideos = [
 export const chapterRelease = false;
 
 export const chapters = {
+  合成: {
+    metadata: {
+      chapterKey: 'synthesis',
+      chapterNumber: 0,
+      chapterPrefix: '综合报告',
+    },
+    component: Synthesis.default,
+    title: Synthesis.title,
+    subtitle: Synthesis.subtitle,
+    tableOfContents: Synthesis.tableOfContents,
+    // downloadLink:
+    //   'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf',
+    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
   '章节-02': {
     metadata: {
       chapterKey: 'chapter-02',

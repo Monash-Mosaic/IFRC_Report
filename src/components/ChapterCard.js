@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import DownloadButton from '@/components/DownloadButton';
+import { Download } from 'lucide-react';
 
 export default async function ChapterCard({
   chapterKey,
@@ -11,8 +13,10 @@ export default async function ChapterCard({
   thumbnailOverlay = 'red',
   tableOfContents = [],
   continueHref,
-  report,
+  downloadLink,
+  hasPage,
   released = true,
+  report,
   translations = {},
 }) {
   const thumbnailBgClass = thumbnailOverlay === 'blue' ? 'bg-blue-500' : 'bg-red-500';
@@ -70,24 +74,41 @@ export default async function ChapterCard({
                     <h3 className="text-sm sm:text-lg font-semibold text-black leading-snug">{title}</h3>
                     {subtitle && <p className="text-xs sm:text-sm text-gray-500 font-semibold mt-0.5 sm:mt-1">{subtitle}</p>}
                   </div>
-                  <div className="shrink-0 mt-1 sm:mt-5">
+                  {tableOfContents.length > 0 && (<div className="shrink-0 mt-1 sm:mt-5">
                     <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-black transition-transform duration-200 group-open:rotate-180" />
-                  </div>
+                  </div>)}
                 </div>
               </summary>
               <div className="mt-2 sm:mt-3">{renderTocItems(tableOfContents)}</div>
             </details>
           </div>
 
-          {/* Continue / Coming Soon button */}
-          <div className="md:flex-none flex justify-end shrink-0 mt-5">
-            {released ? (
+          {/* Actions: Download Icons + Continue / Coming Soon button */}
+          <div className="md:flex-none flex justify-end items-center gap-3 shrink-0 mt-5">
+            {downloadLink && (
+              <DownloadButton
+                url={downloadLink}
+                chapter={chapterLabel}
+                language={translations.locale || ''}
+                ariaLabel={translations.download}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-red-600 transition-colors pe-2"
+              >
+                <Download className="w-5 h-5 sm:w-6 sm:h-6" />
+              </DownloadButton>
+            )}
+            {hasPage && released ? (
               <Link
                 href={continueHref}
                 className="border border-red-600 text-red-600 bg-white hover:bg-red-50 px-4 py-1.5 sm:px-8 sm:py-2.5 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap"
               >
                 {translations.continue}
               </Link>
+            ) : released ? (
+              <span className="border border-gray-300 text-gray-400 bg-gray-50 px-4 py-1.5 sm:px-8 sm:py-2.5 rounded text-xs sm:text-sm font-medium whitespace-nowrap cursor-default">
+                {translations.notAvailable}
+              </span>
             ) : (
               <span className="border border-gray-300 text-gray-400 bg-gray-50 px-4 py-1.5 sm:px-8 sm:py-2.5 rounded text-xs sm:text-sm font-medium whitespace-nowrap cursor-default">
                 {translations.comingSoon}
