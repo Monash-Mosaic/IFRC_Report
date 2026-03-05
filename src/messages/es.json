@@ -217,9 +217,9 @@
     "isbnTitle": "ISBN",
     "isbnText": "978-2-9701289-8-4",
     "pdfUrlTitle": "URL del PDF",
-    "pdfUrlText": "www.ifrc.org/document/IFRC-Worlds-Disasters-Report-2026",
+    "pdfUrlText": "https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf",
     "webUrlTitle": "URL de la versión web",
-    "webUrlText": "www.ifrcwdr26.com"
+    "webUrlText": "https://www.ifrc.org/document/world-disasters-report-2026"
   },
   "Acknowledgements": {
     "meta": {

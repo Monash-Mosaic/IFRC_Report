@@ -48,17 +48,16 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Guía Rápida para tu Aplicación Limitless',
+    title: 'World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information',
     description:
-      '¿Tienes problemas para solicitar Limitless? ¿No sabes por dónde empezar? No te preocupes. Zikomo está aquí para contarte cómo, por qué y dónde solicitar la Academia de Innovación Juvenil IFRC Limitless 2024',
-    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
+      'The International Federation of Red Cross and Red Crescent Societies (IFRC) launches the World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information.',
+    url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
   {
     id: 2,
-    title: 'Sumérgete en la localización de la ayuda — Una iniciativa inclusiva',
-    description:
-      'En este episodio, Victoire de la Cruz Roja de Camerún analiza la importancia de involucrar a la población local en la implementación de acciones humanitarias en comunidades vulnerables a través de la participación de la población local.',
-    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
+    title: 'World Disasters Report 2026',
+    description: 'World Disasters Report 2026',
+    url: 'https://youtu.be/nabMyC5cVrU',
   },
 ];
 
