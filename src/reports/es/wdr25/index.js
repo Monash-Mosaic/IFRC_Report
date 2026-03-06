@@ -94,7 +94,7 @@ export const chapters = {
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Synthesis_SP.pdf',
-    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnail: '/wdr25/chapters/Synthesis.webp',
     thumbnailOverlay: 'red',
     released: true,
   },

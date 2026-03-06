@@ -28,7 +28,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
                   alt="IFRC"
                   class="h-12 w-auto object-contain"
                   height="40"
-                  src="/wdr25/ifrc_logo.jpg"
+                  src="/wdr25/ifrc_logo.webp"
                   width="120"
                 />
               </a>
