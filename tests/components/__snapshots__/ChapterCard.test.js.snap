@@ -21,7 +21,7 @@ exports[`ChapterCard renders with all content 1`] = `
               alt="Crisis, Chaos and Confusion: Understanding Harmful Information"
               class="object-cover"
               sizes="(max-width: 640px) 80px, 112px"
-              src="/wdr25/chapters/Chapter1.png"
+              src="/wdr25/chapters/Chapter1.webp"
             />
             <div
               class="absolute inset-0 bg-red-500/30"

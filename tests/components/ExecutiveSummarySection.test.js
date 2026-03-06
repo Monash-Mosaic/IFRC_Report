@@ -150,7 +150,7 @@ describe('ExecutiveSummarySection', () => {
     // Should show images (now there are two for responsive design)
     const images = screen.getAllByTestId('mock-image');
     expect(images.length).toBe(2); // One for mobile, one for desktop
-    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.jpg');
+    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.webp');
     expect(images[0]).toHaveAttribute(
       'alt',
       'Executive Summary cover featuring a person in humanitarian context'
@@ -289,7 +289,7 @@ describe('ExecutiveSummarySection', () => {
     const images = screen.getAllByTestId('mock-image');
 
     // Should have correct image attributes (check first image)
-    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.jpg');
+    expect(images[0]).toHaveAttribute('src', '/wdr25/summary.webp');
     expect(images[0]).toHaveAttribute(
       'alt',
       'Executive Summary cover featuring a person in humanitarian context'
