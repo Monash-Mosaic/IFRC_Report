@@ -56,7 +56,12 @@
         "buttonTexts": {
           "read": "Leer informe",
           "download": "Descargar informe",
-          "share": "Compartir"
+          "share": "Compartir",
+          "closeShare": "Cerrar menú de compartir",
+          "copyLink": "Copiar enlace",
+          "shareLinkedIn": "Compartir en LinkedIn",
+          "shareFacebook": "Compartir en Facebook",
+          "shareWhatsApp": "Compartir en WhatsApp"
         },
         "heroAlt": "Imagen principal del Informe Mundial sobre Desastres mostrando a trabajadores humanitarios en acción"
       },

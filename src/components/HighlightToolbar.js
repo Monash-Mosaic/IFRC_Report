@@ -16,6 +16,7 @@ import {
   LinkedinIcon,
   WhatsappIcon,
 } from 'next-share';
+import { shareOrCopy } from '@/lib/share';
 import { trackShare, trackTextHighlight } from '@/lib/gtm';
 
 const COLOR_META = [
@@ -306,36 +307,19 @@ export default function HighlightToolbar({
     return r;
   }, [containerEl]);
 
+  const TOOLBAR_HEIGHT_EST = 52;
+  const GAP = 12;
+
   const setToolbarPositionFromRect = useCallback((rect) => {
-    if (!containerEl) return;
+    const x = rect.left + rect.width / 2;
+    let y = rect.top - TOOLBAR_HEIGHT_EST - GAP;
 
-    const TOOLBAR_HEIGHT_EST = 52;
-    const GAP = 12;
-
-    // rect is viewport-based; convert to page coords
-    const scrollX = window.scrollX || window.pageXOffset;
-    const scrollY = window.scrollY || window.pageYOffset;
-
-    const xPage = rect.left + rect.width / 2 + scrollX;
-
-    // prefer above selection
-    let yPage = rect.top + scrollY - TOOLBAR_HEIGHT_EST - GAP;
-
-    // if too close to top, put below selection
-    if (rect.top - TOOLBAR_HEIGHT_EST - GAP < 8) {
-      yPage = rect.bottom + scrollY + GAP;
+    if (y < 0) {
+      y = rect.bottom + GAP;
     }
 
-    // convert page coords -> container coords
-    const containerRect = containerEl.getBoundingClientRect();
-    const containerLeft = containerRect.left + scrollX;
-    const containerTop = containerRect.top + scrollY;
-
-    const x = xPage - containerLeft;
-    const y = yPage - containerTop;
-
     setPos({ x, y });
-  }, [containerEl]);
+  }, []);
 
 
   // Restore highlights on mount
@@ -452,6 +436,34 @@ export default function HighlightToolbar({
     };
   }, [containerEl, getSelectionRangeSafe, setToolbarPositionFromRect]);
 
+  // Reposition toolbar on scroll so it tracks the highlighted text
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let rafId = null;
+
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const range = getSelectionRangeSafe();
+        if (!range) {
+          setIsVisible(false);
+          setSelectedText('');
+          setActiveHighlightGroupId(null);
+          return;
+        }
+        setToolbarPositionFromRect(range.getBoundingClientRect());
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll, { passive: true, capture: true });
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [isVisible, getSelectionRangeSafe, setToolbarPositionFromRect]);
+
   const shareUrl = useMemo(() => {
     if (typeof window === 'undefined') return '';
     return window.location.href;
@@ -481,30 +493,11 @@ export default function HighlightToolbar({
 
     trackShare({ platform: 'web_share', url: shareUrl, text: selectedText });
 
-    const composed = `${selectedText}\n${shareUrl}`;
-
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: shareTitle,
-          text: selectedText,
-          url: shareUrl,
-        });
-      } else {
-        await navigator.clipboard.writeText(composed);
-      }
-    } catch {
-      try {
-        const ta = document.createElement('textarea');
-        ta.value = composed;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-      } catch {
-        // ignore
-      }
-    }
+    await shareOrCopy({
+      title: shareTitle,
+      text: selectedText,
+      url: shareUrl,
+    });
 
     window.getSelection()?.removeAllRanges();
     setIsVisible(false);
@@ -619,7 +612,7 @@ export default function HighlightToolbar({
 
   return (
     <div
-      className="absolute z-50"
+      className="fixed z-50"
       style={{
         left: `${pos.x}px`,
         top: `${pos.y}px`,

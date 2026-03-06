@@ -3,7 +3,7 @@
 exports[`HighlightToolbar matches snapshot when toolbar is visible 1`] = `
 <div>
   <div
-    class="absolute z-50"
+    class="fixed z-50"
     style="left: 140px; top: 36px; transform: translateX(-50%);"
   >
     <div
