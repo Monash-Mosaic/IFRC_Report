@@ -77,7 +77,7 @@
             "id": 1,
             "title": "Sous-titre",
             "description": "Texte du corps pour tout ce que vous souhaitez ajouter au sous-titre.",
-            "thumbnailSrc": "/wdr25/thumbnail1.png",
+            "thumbnailSrc": "/wdr25/thumbnail1.webp",
             "thumbnailAlt": "Miniature de la vidéo en vedette",
             "url": "https://www.youtube.com/watch?v=o8NiE3XMPrM"
           },
@@ -85,7 +85,7 @@
             "id": 2,
             "title": "Sous-titre",
             "description": "Texte du corps pour tout ce que vous souhaitez développer sur le point principal.",
-            "thumbnailSrc": "/wdr25/thumbnail2.png",
+            "thumbnailSrc": "/wdr25/thumbnail2.webp",
             "thumbnailAlt": "Miniature de la vidéo en vedette",
             "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           }

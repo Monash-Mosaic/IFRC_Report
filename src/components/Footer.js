@@ -46,7 +46,7 @@ export default async function Footer() {
               <div className="flex flex-col items-center gap-3 w-[160px] mt-3">
                 <Link href="https://www.ifrc.org">
                   <Image
-                    src="/wdr25/ifrc_logo.jpg"
+                    src="/wdr25/ifrc_logo.webp"
                     alt="IFRC"
                     width={120}
                     height={40}

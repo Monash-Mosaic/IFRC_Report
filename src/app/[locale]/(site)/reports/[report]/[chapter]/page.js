@@ -66,7 +66,7 @@ export async function generateMetadata({ params }) {
       url: canonical,
       images: [
         {
-          url: '/wdr25/ifrc_logo.jpg',
+          url: '/wdr25/ifrc_logo.webp',
           width: 1200,
           height: 630,
           alt: metaTitle,
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: metaTitle,
       description: chapterTitle,
-      images: ['/wdr25/ifrc_logo.jpg'],
+      images: ['/wdr25/ifrc_logo.webp'],
     },
   };
 }

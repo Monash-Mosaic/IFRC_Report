@@ -20,7 +20,7 @@ export default function ExecutiveSummarySection({ messages }) {
             {/* Image - Mobile: After title | Desktop: Hidden (appears in right column) */}
             <div className="lg:hidden relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200">
               <Image
-                src="/wdr25/summary.jpg"
+                src="/wdr25/summary.webp"
                 alt={messages.summaryAlt}
                 fill
                 className="object-cover"
@@ -60,7 +60,7 @@ export default function ExecutiveSummarySection({ messages }) {
 
         {/* Image Column - Desktop: Right | Mobile: Hidden (appears inline above) */}
         <div className="hidden lg:block relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-200">
-          <Image src="/wdr25/summary.jpg" alt={messages.summaryAlt} fill className="object-cover" />
+          <Image src="/wdr25/summary.webp" alt={messages.summaryAlt} fill className="object-cover" />
         </div>
       </div>
     </section>

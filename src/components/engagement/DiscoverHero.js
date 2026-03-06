@@ -4,7 +4,7 @@ import Image from 'next/image';
 const BANNER_WIDTH = 2100;
 const BANNER_HEIGHT = 900;
 
-export default function DiscoverHero({ imageSrc = '/engagement/discover-banner.png', imageAlt = 'Discover the Interactive Playbook' }) {
+export default function DiscoverHero({ imageSrc = '/engagement/discover-banner.webp', imageAlt = 'Discover the Interactive Playbook' }) {
   return (
     <section className="w-full max-w-[100vw] overflow-x-hidden pt-6 pb-6 md:pt-8 md:pb-8">
       <div className="w-full min-w-0 overflow-hidden bg-slate-100">

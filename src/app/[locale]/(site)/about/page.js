@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
     .filter((loc) => isLocaleReleased(loc))
     .map((loc) => [loc, getPathname({ locale: loc, href: '/about' })]);
   languages.push(['x-default', '/about']);
-  const image = new URL('/wdr25/ifrc_logo.jpg', getBaseUrl()).toString();
+  const image = new URL('/wdr25/ifrc_logo.webp', getBaseUrl()).toString();
 
   return {
     title,
