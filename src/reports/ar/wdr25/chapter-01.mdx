@@ -12,7 +12,6 @@ import {
   Definition,
   DefinitionDescription,
   EndnotesLink,
-  FeatureImage,
   Reccomendations,
   ReccomendationsTitle,
   SmallQuote,
@@ -72,7 +71,7 @@ export const subtitle = '';
 
 خلال الاستجابة لفيضانات فالنسيا في إسبانيا عام 2024، زعمت معلومات مضللة أن المساعدات تُحوَّل إلى المهاجرين بدلًا من وصولها إلى المجتمعات المتضررة من الكارثة، ما غذّى سرديات معادية للأجانب. وعلى نحو مماثل، في ساوثبورت (المملكة المتحدة) عام 2024، وبعد مقتل وإصابة عدد من الأطفال في ورشة رقص، انتشرت شائعات كاذبة ومحتوى تحريضي يشير إلى أن المعتدي طالب لجوء مسلم. وقد أجّجت هذه السردية مشاعر معادية للمهاجرين ومعادية للإسلام، ما أدى إلى احتجاجات عنيفة وأعمال شغب خارج مسجد وأثار اضطرابات أوسع في عدة مدن.
 
-<div id="box-1-1-link-source-ar"></div>
+<div className="target:scroll-mt-[100px]" id="box-1-1-link-source-ar"></div>
 
 <Box
   index="1.1"
@@ -114,8 +113,8 @@ export const subtitle = '';
       خلال الدانا، كانت الفئات الأكثر تعرضًا للتضليل هي موظفونا ومتطوعونا (داخل الميدان وخارجه)، وشركاؤنا وحلفاؤنا، وبالطبع المستفيدون. كما استُهدف المهاجرون ضمن المعلومات الضارة – وهذه المنشورات غذّت بالضرورة كراهية الأجانب – لكنها في هذه الحالة استُخدمت أكثر كأداة لاستهداف الصليب الأحمر الإسباني. وقد تأثرت هذه الفئات عاطفيًا بدرجات متفاوتة ونقدّر أن بعضهم اختبر أيضًا قدرًا من تراجع الثقة في المنظمة.
     </ColumParagraph>
     <ColumParagraph>
-      <FeatureImage
-        src="/wdr25/chapter-01/fig-1-1-c_opt.webp"
+      <ChapterImage
+        imagePath="/wdr25/chapter-01/fig-1-1-c_opt.webp"
         width={782}
         height={1366}
       />
@@ -227,11 +226,9 @@ export const subtitle = '';
 <Box index="1.3" types={[]}>
   ## المستجيبون الأوائل للمعلومات: بناء مرونة السرديات في الاستجابة الإنسانية
 
-<FeatureImage
-  src="/wdr25/chapter-01/WDR25-008.webp"
-  description="في أبريل 2015، تفجّرت في بوروندي توترات ما قبل الانتخابات وما صاحبها من عنف، مما أدى إلى إصابة أكثر من 600 شخص ووقوع عدد من الوفيات في العاصمة بوجمبورا. وقد فرّ أكثر من 120,000 بوروندي إلى الدول المجاورة."
-  width={706}
-  height={318}
+<ChapterImage
+  imagePath="/wdr25/chapter-01/WDR25-008.webp"
+  caption="في أبريل 2015، تفجّرت في بوروندي توترات ما قبل الانتخابات وما صاحبها من عنف، مما أدى إلى إصابة أكثر من 600 شخص ووقوع عدد من الوفيات في العاصمة بوجمبورا. وقد فرّ أكثر من 120,000 بوروندي إلى الدول المجاورة."
 />
 
 
@@ -550,7 +547,7 @@ export const subtitle = '';
 <ChapterImage imagePath="/wdr25/chapter-01/01.webp" />
 
 <table class="w-full table-auto border-separate border-spacing-2">
-  <caption id="typology-of-harm-ar" class="caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
+  <caption id="typology-of-harm-ar" class="target:scroll-mt-[100px] caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
     <TableLabel index="1.1" label="جدول" /> <span>تصنيف أنواع الضرر</span>{' '}
     <a
       href="#box-1-1-link-source-ar"
