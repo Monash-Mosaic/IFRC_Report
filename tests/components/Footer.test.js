@@ -64,6 +64,20 @@ jest.mock('@/reports', () => ({
       },
     },
   })),
+  reportsByLocale: {
+    en: {
+      wdr26: {
+        reportFile: {
+          url: 'https://example.com/download.pdf',
+        },
+        chapters: {
+          'synthesis': {
+            downloadLink: 'https://example.com/download.pdf',
+          },
+        },
+      },
+    },
+  },
   reportUriMap: {
     wdr26: {
       languages: { en: 'wdr26' },
@@ -354,12 +368,6 @@ describe('Footer', () => {
       expect(screen.getByText('Download Report')).toBeInTheDocument();
       expect(screen.getByText('Disinformation Games')).toBeInTheDocument();
       expect(screen.getByText('2025')).toBeInTheDocument();
-    });
-
-    it('uses locale from getLocale to build report links', async () => {
-      const { getVisibleReports } = require('@/reports');
-      await renderFooter();
-      expect(getVisibleReports).toHaveBeenCalledWith('en');
     });
   });
 

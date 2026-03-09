@@ -3,7 +3,7 @@ import { Link } from '@/i18n/navigation';
 import { getTranslations, getLocale } from 'next-intl/server';
 import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 import DownloadLink from '@/components/DownloadButton';
-import { getVisibleReports, reportUriMap } from '@/reports';
+import { reportsByLocale, reportUriMap } from '@/reports';
 
 export default async function Footer({ locale }) {
   const t = await getTranslations({
@@ -16,10 +16,10 @@ export default async function Footer({ locale }) {
 
   /* ================= DYNAMIC REPORT LINKS ================= */
 
-  const reportModule = getVisibleReports(locale)?.wdr26;
+  const reportModule = reportsByLocale[locale]?.wdr26;
 
   const chapterSlug =
-    reportUriMap['wdr26'].chapters['synthesis'].languages[locale];
+    reportUriMap['wdr26']?.chapters['synthesis']?.languages[locale];
 
   const readReportLink = {
     pathname: '/reports/[report]',
@@ -28,7 +28,7 @@ export default async function Footer({ locale }) {
     },
   };
 
-  const downloadReportLink = reportModule?.reportFile?.url || reportModule?.chapters?.[chapterSlug]?.downloadLink;
+  const downloadReportLink = reportModule?.reportFile?.url || reportModule?.chapters?.[chapterSlug]?.downloadLink || '#';
 
   /* ======================================================== */
 
