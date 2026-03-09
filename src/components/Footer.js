@@ -5,10 +5,11 @@ import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 import DownloadLink from '@/components/DownloadButton';
 import { getVisibleReports, reportUriMap } from '@/reports';
 
-export default async function Footer() {
-
-  const t = await getTranslations('Footer');
-  const locale = await getLocale();
+export default async function Footer({ locale }) {
+  const t = await getTranslations({
+    namespace: 'Footer',
+    locale,
+  });
 
   const iconClass =
     "p-1 text-gray-400 hover:text-gray-700 transition";

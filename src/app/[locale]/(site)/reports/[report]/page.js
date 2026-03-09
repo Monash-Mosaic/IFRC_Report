@@ -103,7 +103,7 @@ export default async function ReportDetailPage({ params }) {
   const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   if (
     !hasLocale(Object.keys(reportsByLocale), locale) ||
-    !reportsByLocale[locale].reports[decodedReport] ||
+    !reportsByLocale[locale]?.reports[decodedReport] ||
     !isReportReleased(locale, decodedReport)
   ) {
     notFound();
