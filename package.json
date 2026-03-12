@@ -43,7 +43,7 @@
     "hls.js": "^1.6.15",
     "jsonc-parser": "^3.3.1",
     "lodash": "^4.17.23",
-    "lucide-react": "^0.563.0",
+    "lucide-react": "^0.577.0",
     "min-indent": "^1.0.1",
     "next": "^16.1.6",
     "next-intl": "^4.8.2",
