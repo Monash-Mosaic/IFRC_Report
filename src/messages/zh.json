@@ -282,6 +282,7 @@
     "browseTopics": "浏览主题",
     "browseOperationalImpact": "运营影响",
     "browseResponseStrategy": "应对策略",
+    "browseHarm": "危害类型",
     "browseGovernance": "治理",
     "selectedCount": "已选 {count} 项",
     "quotesTitle": "引述",
