@@ -72,7 +72,7 @@
     "baseline-browser-mapping": "^2.9.19",
     "cloudflared": "^0.7.1",
     "cssnano": "^7.1.2",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "^16.1.6",
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.2.0",
