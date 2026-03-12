@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 
 // Helper to render async server components
 async function renderFooter() {
-  const FooterResolved = await Footer();
+  const FooterResolved = await Footer({ locale: 'en' });
   await act(async () => {
     render(FooterResolved);
   });
@@ -30,7 +30,7 @@ jest.mock('@/i18n/navigation', () => ({
 
 // Mock next-intl/server — component is now a server component (async)
 jest.mock('next-intl/server', () => ({
-  getTranslations: jest.fn((namespace) => Promise.resolve((key) => {
+  getTranslations: jest.fn((options) => Promise.resolve((key) => {
     const translations = {
       'Footer.report': 'Report',
       'Footer.readReport': 'Read Report',
@@ -42,7 +42,7 @@ jest.mock('next-intl/server', () => ({
       'Footer.reportTitle': 'Report',
       'Footer.year': '2025',
     };
-    return translations[`${namespace}.${key}`] || key;
+    return translations[`${options.namespace}.${key}`] || key;
   })),
   getLocale: jest.fn(() => Promise.resolve('en')),
 }));
@@ -64,6 +64,20 @@ jest.mock('@/reports', () => ({
       },
     },
   })),
+  reportsByLocale: {
+    en: {
+      wdr26: {
+        reportFile: {
+          url: 'https://example.com/download.pdf',
+        },
+        chapters: {
+          'synthesis': {
+            downloadLink: 'https://example.com/download.pdf',
+          },
+        },
+      },
+    },
+  },
   reportUriMap: {
     wdr26: {
       languages: { en: 'wdr26' },
@@ -100,7 +114,7 @@ describe('Footer', () => {
     });
 
     it('matches snapshot', async () => {
-      const FooterResolved = await Footer();
+      const FooterResolved = await Footer({ locale: 'en' });
       const { container } = render(FooterResolved);
       expect(container).toMatchSnapshot();
     });
@@ -354,14 +368,6 @@ describe('Footer', () => {
       expect(screen.getByText('Download Report')).toBeInTheDocument();
       expect(screen.getByText('Disinformation Games')).toBeInTheDocument();
       expect(screen.getByText('2025')).toBeInTheDocument();
-    });
-
-    it('uses locale from getLocale to build report links', async () => {
-      const { getLocale } = require('next-intl/server');
-      const { getVisibleReports } = require('@/reports');
-      await renderFooter();
-      expect(getLocale).toHaveBeenCalled();
-      expect(getVisibleReports).toHaveBeenCalledWith('en');
     });
   });
 

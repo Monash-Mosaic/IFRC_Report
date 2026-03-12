@@ -56,6 +56,10 @@ export async function generateMetadata({ params }) {
   };
 }
 
+// This is to improve the performance and the correctly return 404 instead of 500
+export const dynamic = 'force-static';
+export const dynamicParams = false; 
+
 export async function generateStaticParams() {
   return routing.locales.filter((l) => isLocaleReleased(l)).map((locale) => ({ locale }));
 }

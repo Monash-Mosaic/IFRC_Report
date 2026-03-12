@@ -218,7 +218,7 @@ export default async function ReportChapterPage({ params }) {
           </div>
 
           <div className="hidden xl:block w-80 flex-shrink-0">
-            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto" data-ga-section="toc">
+            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto top-[100px]" data-ga-section="toc">
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}

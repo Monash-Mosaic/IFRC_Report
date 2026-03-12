@@ -186,7 +186,7 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-03',
       chapterNumber: 3,
-      chapterPrefix: 'Chapter 3',
+      chapterPrefix: 'Chapter 03',
     },
     component: Chapter03.default,
     title: Chapter03.title,
@@ -201,7 +201,7 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-04',
       chapterNumber: 4,
-      chapterPrefix: 'Chapter 4',
+      chapterPrefix: 'Chapter 04',
     },
     title:
       'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
@@ -216,7 +216,7 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-05',
       chapterNumber: 5,
-      chapterPrefix: 'Chapter 5',
+      chapterPrefix: 'Chapter 05',
     },
     title: 'Navigating Regulation, Rights and Societal Resilience',
     subtitle: 'Information Landscape and Humanitarian Contexts',
@@ -230,7 +230,7 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-06',
       chapterNumber: 6,
-      chapterPrefix: 'Chapter 6',
+      chapterPrefix: 'Chapter 06',
     },
     title: 'Rooted in Resilience: Community-first approach to Harmful Information',
     subtitle: 'The Importance of Community for Resilience',
@@ -244,7 +244,7 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-07',
       chapterNumber: 7,
-      chapterPrefix: 'Chapter 7',
+      chapterPrefix: 'Chapter 07',
     },
     title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
     subtitle: 'Humanitarian Action in the Era of Instant Narratives',
