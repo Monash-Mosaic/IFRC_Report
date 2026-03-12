@@ -173,6 +173,7 @@ jobs:
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
           CLOUDFLARE_ENV: ''
           NEXT_PUBLIC_GA_ID: ${{ env.NEXT_PUBLIC_GA_ID }}
+          NEXT_PUBLIC_CF_BEACON_TOKEN: ${{ env.NEXT_PUBLIC_CF_BEACON_TOKEN }}
         run: |
           LOG=$(npm run upload -- --tag $(git describe --tags --always) 2>&1 | tee /dev/stderr)
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
