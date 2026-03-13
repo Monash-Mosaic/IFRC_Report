@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Globe, ChevronDown } from 'lucide-react';
+import { trackLocaleSwitch } from '@/lib/gtm';
 
 export default function LocaleSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,11 @@ export default function LocaleSwitcher() {
    */
   const switchLocale = (newLocale) => {
     if (newLocale !== locale) {
+      trackLocaleSwitch({
+        fromLocale: locale,
+        toLocale: newLocale,
+        url: typeof window !== 'undefined' ? window.location.pathname : '',
+      });
       router.replace('/', { locale: newLocale });
       router.refresh();
     }

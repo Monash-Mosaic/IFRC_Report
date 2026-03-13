@@ -13,7 +13,8 @@ export const category = 'Rapport annuel';
 export const releaseDate = new Date('2025-11-15');
 
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
+  // TODO: Update with the full report file details
+  // url: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_FR.pdf',
   size: 19_389_263,
 };
 
@@ -48,17 +49,35 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Guide Rapide pour votre Demande Limitless',
-    description:
-      "Vous avez des difficultés à postuler pour Limitless ? Vous ne savez pas par où commencer ? Ne vous inquiétez pas. Zikomo est là pour vous dire comment, pourquoi et où postuler pour l'Académie d'Innovation Jeunesse IFRC Limitless 2024",
-    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
+    title: 'Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l\'ère de l\'information nocive',
+    description: `La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (FICR) présente le Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l'ère de l'information nocive.
+
+Dans un monde où les rumeurs peuvent se propager plus vite que les équipes de secours, l'information nocive est devenue un défi majeur pour l'action humanitaire. L'édition 2026 du Rapport mondial sur les catastrophes présente l'information nocive comme une crise humanitaire de fait — qui compromet l'accès à l'aide, érode la confiance, déstabilise la cohésion sociale et accroît les risques pour le personnel, les volontaires et les communautés.
+
+À travers huit chapitres, le Rapport examine comment la désinformation, les fausses nouvelles et les récits déshumanisants refaçonnent la réponse aux catastrophes, les urgences sanitaires, les migrations et les conflits. Il rassemble les points de vue de près de 100 contributeurs, 60 organisations et plus de 30 Sociétés nationales de la Croix-Rouge et du Croissant-Rouge, ancrés dans des études de cas réels et des perspectives communautaires du monde entier.
+
+Pour la première fois, le Rapport présente une typologie des préjudices, cartographiant les impacts physiques, psychologiques, sociétaux et opérationnels de l'information nocive. Il explore comment ces préjudices perturbent la préparation, la réponse et le relèvement — et pourquoi y répondre n'est plus optionnel.
+
+Le Rapport mondial sur les catastrophes 2026 va au-delà de l'analyse. Il fournit des recommandations pratiques aux acteurs humanitaires, aux gouvernements, aux plateformes technologiques et aux communautés pour renforcer la résilience informationnelle, sauvegarder l'action humanitaire fondée sur les principes et reconstruire la confiance.
+
+Dans les urgences d'aujourd'hui, l'information peut déterminer l'accès, la sécurité et la dignité.`,
+    url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
   {
     id: 2,
-    title: "Plongée dans la localisation de l'aide — Une initiative inclusive",
-    description:
-      "Dans cet épisode, Victoire de la Croix-Rouge camerounaise discute de l'importance d'impliquer les populations locales dans la mise en œuvre de l'action humanitaire dans les communautés vulnérables par la participation des populations locales.",
-    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
+    title: 'Vérité, confiance et action humanitaire : Rapport mondial sur les catastrophes 2026',
+    description: `Le Rapport mondial sur les catastrophes 2026 explore l'un des défis les plus urgents auxquels l'action humanitaire est confrontée aujourd'hui : l'information nocive.
+
+Des catastrophes et urgences sanitaires aux migrations et conflits, l'information nocive refaçonne les crises — en affectant qui fait confiance, qui reçoit de l'aide et qui est laissé en danger.
+
+S'appuyant sur les points de vue de plus de 100 contributeurs et des Sociétés nationales de la Croix-Rouge et du Croissant-Rouge dans le monde, le rapport introduit un nouveau cadre pour comprendre comment l'information nocive cause des préjudices physiques, psychologiques, sociétaux et opérationnels.
+
+Pour la première fois, le rapport est accompagné d'un guide interactif innovant, permettant aux lecteurs d'explorer les chapitres en ligne, de souligner et partager des points de vue, d'accéder à des expériences vécues et à du contenu multimédia, et de naviguer dans le rapport de manière plus dynamique.
+
+Au-delà de l'analyse, le rapport fournit des recommandations pratiques pour sauvegarder les principes humanitaires, protéger les travailleurs humanitaires et reconstruire la confiance en temps de crise.
+
+Car aujourd'hui, l'information peut déterminer l'accès, la sécurité et la dignité.`,
+    url: 'https://youtu.be/nabMyC5cVrU',
   },
 ];
 
@@ -76,7 +95,7 @@ export const chapters = {
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_FR.pdf',
-    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnail: '/wdr25/chapters/Synthesis.webp',
     thumbnailOverlay: 'red',
     released: true,
   },

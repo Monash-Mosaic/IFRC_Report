@@ -105,16 +105,20 @@ exports[`HighlightToolbar matches snapshot when toolbar is visible 1`] = `
           />
         </svg>
       </button>
-      <button>
-        <span
-          data-testid="facebook-icon"
-        />
-      </button>
-      <button>
-        <span
-          data-testid="linkedin-icon"
-        />
-      </button>
+      <span>
+        <button>
+          <span
+            data-testid="facebook-icon"
+          />
+        </button>
+      </span>
+      <span>
+        <button>
+          <span
+            data-testid="linkedin-icon"
+          />
+        </button>
+      </span>
       <button
         aria-label="Share to WhatsApp"
         class="inline-flex"

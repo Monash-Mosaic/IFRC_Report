@@ -4,6 +4,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
 <div>
   <footer
     class="w-full bg-white border-t border-gray-200"
+    data-ga-section="footer"
   >
     <div
       class="max-w-7xl mx-auto px-6 py-12"
@@ -27,7 +28,7 @@ exports[`Footer Rendering matches snapshot 1`] = `
                   alt="IFRC"
                   class="h-12 w-auto object-contain"
                   height="40"
-                  src="/wdr25/ifrc_logo.jpg"
+                  src="/wdr25/ifrc_logo.webp"
                   width="120"
                 />
               </a>
@@ -168,19 +169,15 @@ exports[`Footer Rendering matches snapshot 1`] = `
               Report
             </p>
             <a
-              href="{"pathname":"/reports/[report]","params":{"report":"world-disasters-report-2025"}}"
+              href="{"pathname":"/reports/[report]","params":{"report":"wdr26"}}"
             >
               Read Report
             </a>
             <a
+              download=""
               href="https://example.com/download.pdf"
             >
               Download Report
-            </a>
-            <a
-              href="/issue"
-            >
-              Report an Issue
             </a>
           </div>
           <div
@@ -192,12 +189,12 @@ exports[`Footer Rendering matches snapshot 1`] = `
               Disinformation Games
             </p>
             <a
-              href="/disinformer"
+              href="/coming-soon"
             >
               Disinformer
             </a>
             <a
-              href="/prebunk"
+              href="/coming-soon"
             >
               Ctrl + Alt + Prebunk
             </a>
