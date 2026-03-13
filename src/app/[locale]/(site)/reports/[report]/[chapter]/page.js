@@ -166,7 +166,7 @@ export default async function ReportChapterPage({ params }) {
       {/* Main Content */}
       <div className="flex-1 p-8">
         <div className="max-w-7xl mx-auto flex gap-6">
-          <div className="flex-1 max-w-4xl mx-auto">
+          <div className="flex-1 min-w-0 max-w-4xl mx-auto">
             <Breadcrumb
               locale={locale}
               items={[
@@ -203,7 +203,7 @@ export default async function ReportChapterPage({ params }) {
               <div className="relative" id="highlight-layer-root">
                 <ActiveHeadingTracker containerSelector="#highlight-layer-root" />
 
-                <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
+                <article className="grid grid-cols-1 gap-8 text-black leading-relaxed break-words">
                   <Chapter />
                 </article>
 
