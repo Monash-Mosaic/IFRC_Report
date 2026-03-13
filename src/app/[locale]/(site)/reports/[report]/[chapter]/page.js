@@ -202,7 +202,7 @@ export default async function ReportChapterPage({ params }) {
               <div className="relative" id="highlight-layer-root">
                 <ActiveHeadingTracker containerSelector="#highlight-layer-root" />
 
-                <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
+                <article className="chapter-content grid grid-cols-1 gap-8 text-black leading-relaxed">
                   <Chapter />
                 </article>
 

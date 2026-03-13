@@ -179,7 +179,7 @@ describe('CustomComponents primitives', () => {
       </ColumParagraphs>
     );
 
-    expect(container.firstChild).toHaveClass('md:grid-cols-2');
+    expect(container.firstChild).toHaveStyle({ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' });
     expect(screen.getByText('First column')).toBeInTheDocument();
     expect(screen.getByText('Second column')).toBeInTheDocument();
   });

@@ -1,6 +1,5 @@
 'use client'
 import { useRef } from 'react'
-import propTypes from 'prop-types'
 
 // Supported orientation keywords for tooltip placement.
 const orientations = {
@@ -120,11 +119,6 @@ const Tooltip = ({ children, tooltipText, orientation = 'right' }) => {
       {children}
     </div>
   )
-}
-
-Tooltip.propTypes = {
-  orientation: propTypes.oneOf(['top', 'left', 'right', 'bottom']),
-  tooltipText: propTypes.string.isRequired,
 }
 
 export default Tooltip;

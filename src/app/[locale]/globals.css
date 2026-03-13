@@ -3,6 +3,53 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --chapter-body-indent: 18%;
+}
+
+article.chapter-content {
+  padding-inline-start: var(--chapter-body-indent);
+}
+
+article.chapter-content > h1,
+article.chapter-content > h2,
+article.chapter-content > h3,
+article.chapter-content > h4,
+article.chapter-content > nav,
+article.chapter-content > div,
+article.chapter-content > blockquote,
+article.chapter-content > aside,
+article.chapter-content > section,
+article.chapter-content > img,
+article.chapter-content > figure {
+  margin-inline-start: calc(-1 * var(--chapter-body-indent));
+  width: calc(100% + var(--chapter-body-indent));
+  max-width: calc(100% + var(--chapter-body-indent));
+}
+
+article.chapter-content > ul > li,
+article.chapter-content > ol > li {
+  margin-block-end: 1rem;
+}
+
+article.chapter-content section[data-footnotes] ol,
+article.chapter-content .footnotes ol {
+  columns: 2;
+  column-gap: 2.5rem;
+  list-style-position: inside;
+}
+
+article.chapter-content section[data-footnotes] ol li,
+article.chapter-content .footnotes ol li {
+  break-inside: avoid;
+  margin-block-end: 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+article.chapter-content section[data-footnotes] ol li::marker,
+article.chapter-content .footnotes ol li::marker {
+  color: #ee2435;
+  font-weight: 600;
 }
 
 @theme inline {
