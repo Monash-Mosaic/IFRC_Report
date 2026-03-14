@@ -56,7 +56,12 @@
         "buttonTexts": {
           "read": "Read report",
           "download": "Download report",
-          "share": "Share"
+          "share": "Share",
+          "closeShare": "Close share menu",
+          "copyLink": "Copy link",
+          "shareLinkedIn": "Share to LinkedIn",
+          "shareFacebook": "Share to Facebook",
+          "shareWhatsApp": "Share to WhatsApp"
         },
         "heroAlt": "World Disasters Report hero image showing humanitarian workers in action"
       },

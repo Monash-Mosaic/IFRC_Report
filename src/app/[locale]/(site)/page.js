@@ -108,6 +108,11 @@ export default async function Home({ params }) {
       read: t('landingPage.heroSection.buttonTexts.read'),
       download: t('landingPage.heroSection.buttonTexts.download'),
       share: t('landingPage.heroSection.buttonTexts.share'),
+      closeShare: t('landingPage.heroSection.buttonTexts.closeShare'),
+      copyLink: t('landingPage.heroSection.buttonTexts.copyLink'),
+      shareLinkedIn: t('landingPage.heroSection.buttonTexts.shareLinkedIn'),
+      shareFacebook: t('landingPage.heroSection.buttonTexts.shareFacebook'),
+      shareWhatsApp: t('landingPage.heroSection.buttonTexts.shareWhatsApp'),
     },
     url: getPathname({
       locale,

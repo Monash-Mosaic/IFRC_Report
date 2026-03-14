@@ -14,7 +14,6 @@ jest.mock('next-intl', () => ({
       'Home.landingPage.heroSection.heroAlt': 'World Disasters Report 2025 hero image',
     };
 
-    // Check if we're testing with French locale (for custom content test)
     if (key === 'title' && mockHeroSection?.customContent?.title) {
       return mockHeroSection.customContent.title;
     }
@@ -60,6 +59,27 @@ jest.mock('@/i18n/navigation', () => ({
   ),
 }));
 
+// Mock i18n helper for RTL detection
+jest.mock('@/i18n/helper', () => ({
+  isRtlLocale: (locale) => locale === 'ar',
+  getDirection: (locale) => (locale === 'ar' ? 'rtl' : 'ltr'),
+}));
+
+// Mock next-share components
+jest.mock('next-share', () => ({
+  FacebookShareButton: ({ children, ...props }) => (
+    <div data-testid="facebook-share-button" data-url={props.url} data-hashtag={props.hashtag}>
+      {children}
+    </div>
+  ),
+  LinkedinShareButton: ({ children, ...props }) => (
+    <div data-testid="linkedin-share-button" data-url={props.url} data-title={props.title}>
+      {children}
+    </div>
+  ),
+  WhatsappIcon: () => <div data-testid="whatsapp-icon" />,
+}));
+
 const defaultProps = {
   locale: 'en',
   messages: {
@@ -70,6 +90,11 @@ const defaultProps = {
       read: 'Read Report',
       download: 'Download PDF',
       share: 'Share Report',
+      closeShare: 'Close share menu',
+      copyLink: 'Copy link',
+      shareLinkedIn: 'Share to LinkedIn',
+      shareFacebook: 'Share to Facebook',
+      shareWhatsApp: 'Share to WhatsApp',
     },
     heroAlt: 'World Disasters Report 2025 hero image',
   },
@@ -143,6 +168,11 @@ describe('HeroSection', () => {
           read: 'Lire le Rapport',
           download: 'Télécharger PDF',
           share: 'Partager Rapport',
+          closeShare: 'Fermer le menu de partage',
+          copyLink: 'Copier le lien',
+          shareLinkedIn: 'Partager sur LinkedIn',
+          shareFacebook: 'Partager sur Facebook',
+          shareWhatsApp: 'Partager sur WhatsApp',
         },
         heroAlt: 'Custom hero alt text for testing',
       },
@@ -197,7 +227,7 @@ describe('HeroSection', () => {
   it('has correct button styling and behavior', () => {
     render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
 
-    // Check download button styling (now using anchor tag)
+    // Check download button styling (anchor tag)
     const downloadLink = screen.getByText('Download PDF').closest('a');
     expect(downloadLink).toHaveClass(
       'w-full',
@@ -221,38 +251,32 @@ describe('HeroSection', () => {
     expect(downloadLink).toHaveAttribute('target', '_blank');
     expect(downloadLink).toHaveTextContent('Download PDF');
 
-    // Check share button styling
+    // Check share button styling – responsive: mobile icon-only, desktop 173×76
     const shareSpan = screen.getByText('Share Report');
     const shareButton = shareSpan.closest('button');
     expect(shareButton).toHaveClass(
-      'w-12',
-      'md:w-auto',
-      'px-2',
-      'md:px-6',
-      'py-2',
-      'md:py-3',
-      'text-red-600',
-      'font-medium',
-      'transition-colors',
-      'cursor-pointer',
+      'bg-white',
+      'rounded-[8px]',
       'inline-flex',
       'items-center',
       'justify-center',
-      'gap-1',
-      'md:gap-2',
-      'whitespace-nowrap',
-      'border-2',
-      'border-red-600',
-      'rounded-lg',
-      'md:border-none',
-      'md:underline'
+      'hover:bg-[#EE2435]',
+      'hover:text-white',
+      'group',
+      'transition-colors',
+      'cursor-pointer',
+      'md:w-[173px]',
+      'md:h-[76px]'
     );
+    expect(shareButton).toHaveAttribute('aria-expanded', 'false');
+    expect(shareButton).toHaveAttribute('aria-label', 'Share Report');
 
-    // Buttons should be clickable (even though no onClick handlers are defined)
+    // Share text hidden on mobile, visible on md+ with correct Tailwind classes
+    expect(shareSpan).toHaveClass('hidden', 'md:inline', 'text-lg', 'font-medium', 'leading-[150%]');
+
+    // Buttons should be clickable without crashing
     fireEvent.click(downloadLink);
     fireEvent.click(shareButton);
-
-    // Should not crash when clicked
     expect(downloadLink).toBeInTheDocument();
     expect(shareButton).toBeInTheDocument();
   });
@@ -290,6 +314,11 @@ describe('HeroSection', () => {
           read: '',
           download: '',
           share: '',
+          closeShare: '',
+          copyLink: '',
+          shareLinkedIn: '',
+          shareFacebook: '',
+          shareWhatsApp: '',
         },
         heroAlt: '',
       },
@@ -324,14 +353,14 @@ describe('HeroSection', () => {
       'text-end'
     );
 
-    // Should have buttons with proper role (only Share button, Download is now a link)
+    // Before opening panel: only the Share button visible
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(1); // Only Share button (Download is now a link, Read is a Link)
+    expect(buttons).toHaveLength(1);
     expect(buttons[0]).toHaveTextContent('Share Report');
 
     // Should have links with proper role (Read and Download)
     const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(2); // Read and Download links
+    expect(links).toHaveLength(2);
     const readLink = links.find((link) => link.textContent.includes('Read Report'));
     const downloadLink = links.find((link) => link.textContent.includes('Download PDF'));
     expect(readLink).toBeInTheDocument();
@@ -383,5 +412,128 @@ describe('HeroSection', () => {
     expect(downloadLink).toBeInTheDocument();
     expect(shareButton).toBeInTheDocument();
     expect(readLink).toBeInTheDocument();
+  });
+
+  describe('Share panel', () => {
+    it('opens when Share button is clicked and closes when close button is clicked', () => {
+      render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+
+      expect(screen.queryAllByLabelText('Close share menu')).toHaveLength(0);
+
+      const shareButton = screen.getByText('Share Report').closest('button');
+      fireEvent.click(shareButton);
+
+      const closeButtons = screen.getAllByLabelText('Close share menu');
+      expect(closeButtons.length).toBeGreaterThanOrEqual(1);
+      expect(shareButton).toHaveAttribute('aria-expanded', 'true');
+
+      fireEvent.click(closeButtons[0]);
+      expect(screen.queryAllByLabelText('Close share menu')).toHaveLength(0);
+      expect(shareButton).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('renders all social share buttons when expanded', () => {
+      render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      fireEvent.click(screen.getByText('Share Report').closest('button'));
+
+      expect(screen.getAllByLabelText('Copy link').length).toBeGreaterThanOrEqual(1);
+      expect(screen.getAllByTestId('linkedin-share-button').length).toBeGreaterThanOrEqual(1);
+
+      const fbButtons = screen.getAllByTestId('facebook-share-button');
+      expect(fbButtons.length).toBeGreaterThanOrEqual(1);
+      expect(fbButtons[0]).toHaveAttribute('data-hashtag', '#IFRC');
+
+      expect(screen.getAllByLabelText('Share to WhatsApp').length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('has Figma-spec share panel (316×76) above the button', () => {
+      const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      fireEvent.click(screen.getByText('Share Report').closest('button'));
+
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('w-[316px]', 'right-0');
+
+      const panel = popover.querySelector('.min-h-\\[76px\\]');
+      expect(panel).toBeInTheDocument();
+      expect(panel).toHaveClass('bg-white', 'rounded-[8px]', 'border-2', 'border-red-600');
+    });
+
+    it('renders unified popover above the share button (mobile and desktop)', () => {
+      const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      fireEvent.click(screen.getByText('Share Report').closest('button'));
+
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('bottom-[calc(100%+12px)]');
+
+      const panel = popover.querySelector('.rounded-\\[8px\\]');
+      expect(panel).toBeInTheDocument();
+      expect(panel).toHaveClass('bg-white', 'border-2', 'border-red-600');
+    });
+
+    it('has close tiles with correct background color', () => {
+      render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      fireEvent.click(screen.getByText('Share Report').closest('button'));
+
+      screen.getAllByLabelText('Close share menu').forEach((btn) => {
+        expect(btn).toHaveStyle({ backgroundColor: 'rgba(251,208,211,0.53)' });
+      });
+    });
+
+    it('positions popover aligned right (LTR) for English', () => {
+      const { container } = render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      fireEvent.click(screen.getByText('Share Report').closest('button'));
+
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('right-0');
+    });
+
+    it('positions popover aligned left (RTL) for Arabic', () => {
+      const arabicProps = {
+        locale: 'ar',
+        messages: {
+          title: 'تقرير الكوارث العالمي',
+          description: 'وصف التقرير',
+          buttonTexts: { read: 'قراءة التقرير', download: 'تحميل التقرير', share: 'مشاركة', closeShare: 'إغلاق قائمة المشاركة', copyLink: 'نسخ الرابط', shareLinkedIn: 'مشاركة عبر لينكدإن', shareFacebook: 'مشاركة عبر فيسبوك', shareWhatsApp: 'مشاركة عبر واتساب' },
+          heroAlt: 'صورة التقرير',
+        },
+        url: '/ar/reports/wdr25',
+        downloadLink: '/reports/wdr25.pdf',
+      };
+
+      const { container } = render(
+        <HeroSection locale="ar" messages={buildHeroMessages(arabicProps)} />
+      );
+      fireEvent.click(screen.getByText('مشاركة').closest('button'));
+
+      const popover = container.querySelector('[role="menu"]');
+      expect(popover).toBeInTheDocument();
+      expect(popover).toHaveClass('left-0');
+    });
+
+    it('copies link to clipboard when copy button is clicked', async () => {
+      const mockWriteText = jest.fn().mockResolvedValue(undefined);
+      Object.assign(navigator, { clipboard: { writeText: mockWriteText } });
+
+      render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      fireEvent.click(screen.getByText('Share Report').closest('button'));
+      fireEvent.click(screen.getAllByLabelText('Copy link')[0]);
+
+      await new Promise((r) => setTimeout(r, 0));
+      expect(mockWriteText).toHaveBeenCalledWith(window.location.href);
+    });
+
+    it('toggles panel closed when Share button is clicked again', () => {
+      render(<HeroSection messages={buildHeroMessages(defaultProps)} />);
+      const shareButton = screen.getByText('Share Report').closest('button');
+
+      fireEvent.click(shareButton);
+      expect(screen.getAllByLabelText('Close share menu').length).toBeGreaterThanOrEqual(1);
+
+      fireEvent.click(shareButton);
+      expect(screen.queryAllByLabelText('Close share menu')).toHaveLength(0);
+    });
   });
 });
