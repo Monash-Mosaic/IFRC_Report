@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 
 // Helper to render async server components
 async function renderFooter() {
-  const FooterResolved = await Footer();
+  const FooterResolved = await Footer({ locale: 'en' });
   await act(async () => {
     render(FooterResolved);
   });
@@ -30,7 +30,7 @@ jest.mock('@/i18n/navigation', () => ({
 
 // Mock next-intl/server — component is now a server component (async)
 jest.mock('next-intl/server', () => ({
-  getTranslations: jest.fn((namespace) => Promise.resolve((key) => {
+  getTranslations: jest.fn((options) => Promise.resolve((key) => {
     const translations = {
       'Footer.report': 'Report',
       'Footer.readReport': 'Read Report',
@@ -42,7 +42,7 @@ jest.mock('next-intl/server', () => ({
       'Footer.reportTitle': 'Report',
       'Footer.year': '2025',
     };
-    return translations[`${namespace}.${key}`] || key;
+    return translations[`${options.namespace}.${key}`] || key;
   })),
   getLocale: jest.fn(() => Promise.resolve('en')),
 }));
@@ -50,26 +50,40 @@ jest.mock('next-intl/server', () => ({
 // Mock reports module
 const mockReadReportLink = {
   pathname: '/reports/[report]',
-  params: { report: 'world-disasters-report-2025' },
+  params: { report: 'wdr26' },
 };
 const mockDownloadLink = 'https://example.com/download.pdf';
 
 jest.mock('@/reports', () => ({
   getVisibleReports: jest.fn(() => ({
-    wdr25: {
+    wdr26: {
       chapters: {
-        'chapter-02-en': {
+        'synthesis-en': {
           downloadLink: 'https://example.com/download.pdf',
         },
       },
     },
   })),
+  reportsByLocale: {
+    en: {
+      wdr26: {
+        reportFile: {
+          url: 'https://example.com/download.pdf',
+        },
+        chapters: {
+          'synthesis': {
+            downloadLink: 'https://example.com/download.pdf',
+          },
+        },
+      },
+    },
+  },
   reportUriMap: {
-    wdr25: {
-      languages: { en: 'world-disasters-report-2025' },
+    wdr26: {
+      languages: { en: 'wdr26' },
       chapters: {
-        'chapter-02': {
-          languages: { en: 'chapter-02-en' },
+        synthesis: {
+          languages: { en: 'synthesis-en' },
         },
       },
     },
@@ -100,7 +114,7 @@ describe('Footer', () => {
     });
 
     it('matches snapshot', async () => {
-      const FooterResolved = await Footer();
+      const FooterResolved = await Footer({ locale: 'en' });
       const { container } = render(FooterResolved);
       expect(container).toMatchSnapshot();
     });
@@ -123,7 +137,7 @@ describe('Footer', () => {
     it('renders IFRC logo with correct attributes', async () => {
       await renderFooter();
       const ifrcLogo = screen.getByAltText('IFRC');
-      expect(ifrcLogo).toHaveAttribute('src', '/wdr25/ifrc_logo.jpg');
+      expect(ifrcLogo).toHaveAttribute('src', '/wdr25/ifrc_logo.webp');
       expect(ifrcLogo).toHaveAttribute('width', '120');
       expect(ifrcLogo).toHaveAttribute('height', '40');
     });
@@ -269,11 +283,9 @@ describe('Footer', () => {
       expect(screen.getByText('Download Report')).toBeInTheDocument();
     });
 
-    it('renders Report an Issue link with correct href', async () => {
+    it('does not render Report an Issue link', async () => {
       await renderFooter();
-      const issueLink = screen.getByText('Report an Issue');
-      expect(issueLink).toBeInTheDocument();
-      expect(issueLink.closest('a')).toHaveAttribute('href', '/issue');
+      expect(screen.queryByText('Report an Issue')).not.toBeInTheDocument();
     });
 
     it('renders games section with translated heading', async () => {
@@ -285,14 +297,14 @@ describe('Footer', () => {
       await renderFooter();
       const disinformerLink = screen.getByText('Disinformer');
       expect(disinformerLink).toBeInTheDocument();
-      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/disinformer');
+      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/coming-soon');
     });
 
     it('renders Ctrl + Alt + Prebunk game link with correct href', async () => {
       await renderFooter();
       const prebunkLink = screen.getByText('Ctrl + Alt + Prebunk');
       expect(prebunkLink).toBeInTheDocument();
-      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/prebunk');
+      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/coming-soon');
     });
 
     it('Download Report link uses dynamic download link from reportModule', async () => {
@@ -356,14 +368,6 @@ describe('Footer', () => {
       expect(screen.getByText('Download Report')).toBeInTheDocument();
       expect(screen.getByText('Disinformation Games')).toBeInTheDocument();
       expect(screen.getByText('2025')).toBeInTheDocument();
-    });
-
-    it('uses locale from getLocale to build report links', async () => {
-      const { getLocale } = require('next-intl/server');
-      const { getVisibleReports } = require('@/reports');
-      await renderFooter();
-      expect(getLocale).toHaveBeenCalled();
-      expect(getVisibleReports).toHaveBeenCalledWith('en');
     });
   });
 

@@ -123,7 +123,8 @@
       "expandChapter": "Expand chapter details",
       "notAvailable": "Not Available",
       "download": "Download"
-    }
+    },
+    "downloadFullReport": "Download Full Report"
   },
   "ReportChapterPage": {
     "tocTitle": "In This Chapter"
@@ -247,9 +248,9 @@
     "isbnTitle": "ISBN",
     "isbnText": "978-2-9701289-8-4",
     "pdfUrlTitle": "PDF URL",
-    "pdfUrlText": "www.ifrc.org/document/IFRC-Worlds-Disasters-Report-2026",
+    "pdfUrlText": "https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf",
     "webUrlTitle": "Web version URL",
-    "webUrlText": "www.ifrcwdr26.com"
+    "webUrlText": "https://www.ifrc.org/document/world-disasters-report-2026"
   },
   "ContributionInsight": {
     "title": "Contribution Insight"
@@ -274,7 +275,7 @@
     "pageTitle": "Acknowledgements",
     "intro": "The <bold>International Federation of Red Cross and Red Crescent Societies</bold> (IFRC) gratefully acknowledges the support provided by the following organizations for the production and publication of the IFRC <italic>World Disasters Report 2026</italic>:",
 
-    "translation": "Translation costs for the Russian and Chinese editions were generously provided by the Academy of the Russian Red Cross and the International Academy of Red Cross in China.",
+    "translation": "Translation costs for the Chinese edition were generously provided by the International Academy of Red Cross in China while the Russian translation was carried out by the Russian Red Cross Linguistic Centre.",
 
     "leadEditorLabel": "Lead Editor and Author:",
     "leadEditor": "Charlotte Lindsey Curtet",

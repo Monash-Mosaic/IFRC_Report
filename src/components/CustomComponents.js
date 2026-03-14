@@ -441,6 +441,7 @@ function chunkByPredicate(array, predicate) {
 export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...props }) => {
   const c = await getTranslations('ContributionInsight');
   const [h2, ...rest] = Children.toArray(children);
+  const modifiedH2 = React.cloneElement(h2, { className: 'target:scroll-mt-[200px] font-bold text-3xl' });
   const contributorTagIndex = rest.findIndex((child) => child.type === ContributorTag);
   const contributorTag = contributorTagIndex >= 0 ? rest.splice(contributorTagIndex, 1) : [];
   const splittedByAnchor = chunkByPredicate(rest, (child) => child.type === Anchor);
@@ -467,7 +468,7 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
             </div>
           </div>
         </div>
-        {<Spotlight>{h2}</Spotlight>}
+        {<Spotlight>{modifiedH2}</Spotlight>}
       </div>
       {splittedByAnchor.map((chunk, index) => {
         if (chunk[0].type === Anchor) {
@@ -564,14 +565,13 @@ export function ChapterImage({
         </div>
       ) : null}
       <div
-        className="relative overflow-hidden  select-none w-full rounded-lg"
+        className="overflow-hidden select-none w-full rounded-lg"
         style={{
           maxWidth: width,
-          aspectRatio: `${width} / ${height}`,
           margin: '0 auto',
         }}
       >
-        <Image src={imagePath} alt={alt} fill className="object-cover" />
+        <Image src={imagePath} alt={alt} width={width} height={height} className="w-full h-auto" />
       </div>
       {caption ? (
         <figcaption className="mt-2 max-w-[900px] mx-auto text-right text-sm text-slate-600">
@@ -584,7 +584,7 @@ export function ChapterImage({
 
 export function EndnotesLink({ children, ...props }) {
   return (
-    <span className="underline decoration-[#68ACFD]" {...props}>
+    <span className="underline decoration-[#68ACFD] wrap-break-word break-all" {...props}>
       {children}
     </span>
   );

@@ -1,6 +1,15 @@
 import '@testing-library/jest-dom';
 import { loadEnvConfig } from '@next/env';
 
+jest.mock('@next/third-parties/google', () => ({
+  __esModule: true,
+  GoogleAnalytics: () => null,
+  GoogleTagManager: () => null,
+  YouTubeEmbed: () => null,
+  sendGAEvent: jest.fn(),
+  sendGTMEvent: jest.fn(),
+}));
+
 // Mock fetch for testing environment
 global.fetch = jest.fn();
 

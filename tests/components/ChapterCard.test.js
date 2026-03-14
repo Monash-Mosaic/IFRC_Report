@@ -24,7 +24,7 @@ const defaultProps = {
   chapterLabel: 'Chapter 1',
   title: 'Crisis, Chaos and Confusion: Understanding Harmful Information',
   subtitle: 'An overview of harmful information',
-  thumbnail: '/wdr25/chapters/Chapter1.png',
+  thumbnail: '/wdr25/chapters/Chapter1.webp',
   thumbnailOverlay: 'red',
   tableOfContents: [
     { id: '1', value: 'Defining Harmful Information' },
@@ -67,7 +67,7 @@ describe('ChapterCard', () => {
 
     const img = screen.getByAltText('Crisis, Chaos and Confusion: Understanding Harmful Information');
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('src', '/wdr25/chapters/Chapter1.png');
+    expect(img).toHaveAttribute('src', '/wdr25/chapters/Chapter1.webp');
   });
 
   it('renders chapter label fallback when no thumbnail', async () => {

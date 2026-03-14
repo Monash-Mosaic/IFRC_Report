@@ -5,8 +5,11 @@ import { getBaseUrl } from '@/lib/base-url';
 import { isLocaleReleased } from '@/reports/release';
 import Breadcrumb from '@/components/Breadcrumb';
 
+export const dynamic = 'force-static';
+export const dynamicParams = false; 
+
 export async function generateStaticParams() {
-  return routing.locales.filter((l) => isLocaleReleased(l)).map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }) {
@@ -22,7 +25,7 @@ export async function generateMetadata({ params }) {
     .filter((loc) => isLocaleReleased(loc))
     .map((loc) => [loc, getPathname({ locale: loc, href: '/about' })]);
   languages.push(['x-default', '/about']);
-  const image = new URL('/wdr25/ifrc_logo.jpg', getBaseUrl()).toString();
+  const image = new URL('/wdr25/ifrc_logo.webp', getBaseUrl()).toString();
 
   return {
     title,
@@ -131,11 +134,6 @@ export default async function AboutPage({ params }) {
               <p className="whitespace-pre-line">{t('addressText')}</p>
             </div>
 
-            <div>
-              <h3 className="font-semibold mb-1">{t('postalAddressTitle')}</h3>
-              <p className="whitespace-pre-line">{t('postalAddressText')}</p>
-            </div>
-
             <div className="whitespace-pre-line">
               {t('contactLine')}
             </div>
@@ -150,11 +148,6 @@ export default async function AboutPage({ params }) {
               <p className="whitespace-pre-line">
                 {t('copyrightText')}
               </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-1">{t('isbnTitle')}</h3>
-              <p className="whitespace-pre-line">{t('isbnText')}</p>
             </div>
 
             {/* PDF URL */}

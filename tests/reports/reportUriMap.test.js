@@ -1,26 +1,24 @@
 import { reportUriMap, isReportReleased, getVisibleReports } from '@/reports';
 
+const reportKeys = Object.keys(reportUriMap).filter((key) => key !== 'uri');
+const activeReportKey = reportKeys[0];
+
 describe('reportUriMap', () => {
   it('builds report-level mappings for all locales', () => {
     const expectedLocales = ['ar', 'en', 'es', 'fr', 'ru', 'zh'];
 
     expectedLocales.forEach((locale) => {
       expect(reportUriMap.uri[locale]).toBeDefined();
-      expect(reportUriMap.uri[locale].wdr25).toBe('wdr25');
+      expect(reportUriMap.uri[locale][activeReportKey]).toBe(activeReportKey);
     });
 
-    expect(reportUriMap.wdr25.languages).toMatchObject({
-      ar: 'wdr25',
-      en: 'wdr25',
-      es: 'wdr25',
-      fr: 'wdr25',
-      ru: 'wdr25',
-      zh: 'wdr25',
-    });
+    expect(reportUriMap[activeReportKey].languages).toMatchObject(
+      Object.fromEntries(expectedLocales.map((locale) => [locale, activeReportKey]))
+    );
   });
 
   it('builds chapter-level mappings with reverse lookups', () => {
-    const chapter = reportUriMap.wdr25.chapters['chapter-02'];
+    const chapter = reportUriMap[activeReportKey].chapters['chapter-02'];
 
     expect(chapter.number).toBe(2);
     expect(chapter.languages).toMatchObject({
@@ -32,29 +30,29 @@ describe('reportUriMap', () => {
       zh: '章节-02',
     });
 
-    expect(reportUriMap.wdr25.chapters.uri.en['chapter-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.es['capitulo-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.fr['chapitre-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.ru['глава-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.zh['章节-02']).toBe('chapter-02');
-    expect(reportUriMap.wdr25.chapters.uri.ar['الفصل-02']).toBe('chapter-02');
+    expect(reportUriMap[activeReportKey].chapters.uri.en['chapter-02']).toBe('chapter-02');
+    expect(reportUriMap[activeReportKey].chapters.uri.es['capitulo-02']).toBe('chapter-02');
+    expect(reportUriMap[activeReportKey].chapters.uri.fr['chapitre-02']).toBe('chapter-02');
+    expect(reportUriMap[activeReportKey].chapters.uri.ru['глава-02']).toBe('chapter-02');
+    expect(reportUriMap[activeReportKey].chapters.uri.zh['章节-02']).toBe('chapter-02');
+    expect(reportUriMap[activeReportKey].chapters.uri.ar['الفصل-02']).toBe('chapter-02');
   });
 });
 
 describe('report release helpers', () => {
   it('returns false for unknown locale or report', () => {
-    expect(isReportReleased('xx', 'wdr25', 'preview')).toBe(false);
+    expect(isReportReleased('xx', activeReportKey, 'preview')).toBe(false);
     expect(isReportReleased('en', 'unknown-report', 'preview')).toBe(false);
   });
 
   it('respects locale release gating', () => {
-    expect(isReportReleased('es', 'wdr25', 'preview')).toBe(true);
-    expect(isReportReleased('en', 'wdr25', 'preview')).toBe(true);
+    expect(isReportReleased('es', activeReportKey, 'preview')).toBe(true);
+    expect(isReportReleased('en', activeReportKey, 'preview')).toBe(true);
   });
 
   it('filters visible reports by locale release', () => {
-    expect(getVisibleReports('es', 'preview')).toHaveProperty('wdr25');
-    expect(getVisibleReports('en', 'preview')).toHaveProperty('wdr25');
+    expect(getVisibleReports('es', 'preview')).toHaveProperty(activeReportKey);
+    expect(getVisibleReports('en', 'preview')).toHaveProperty(activeReportKey);
   });
 });
 

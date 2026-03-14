@@ -2,38 +2,38 @@ import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { getTranslations, getLocale } from 'next-intl/server';
 import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
+import DownloadLink from '@/components/DownloadButton';
+import { reportsByLocale, reportUriMap } from '@/reports';
 
-import { getVisibleReports, reportUriMap } from '@/reports';
-
-export default async function Footer() {
-
-  const t = await getTranslations('Footer');
-  const locale = await getLocale();
+export default async function Footer({ locale }) {
+  const t = await getTranslations({
+    namespace: 'Footer',
+    locale,
+  });
 
   const iconClass =
     "p-1 text-gray-400 hover:text-gray-700 transition";
 
   /* ================= DYNAMIC REPORT LINKS ================= */
 
-  const reportModule = getVisibleReports(locale)?.wdr25;
+  const reportModule = reportsByLocale[locale]?.wdr26;
 
   const chapterSlug =
-    reportUriMap['wdr25'].chapters['chapter-02'].languages[locale];
+    reportUriMap['wdr26']?.chapters['synthesis']?.languages[locale];
 
   const readReportLink = {
     pathname: '/reports/[report]',
     params: {
-      report: reportUriMap['wdr25'].languages[locale],
+      report: reportUriMap['wdr26'].languages[locale],
     },
   };
 
-  const downloadReportLink =
-    reportModule?.chapters?.[chapterSlug]?.downloadLink ?? '#';
+  const downloadReportLink = reportModule?.reportFile?.url || reportModule?.chapters?.[chapterSlug]?.downloadLink || '#';
 
   /* ======================================================== */
 
   return (
-    <footer className="w-full bg-white border-t border-gray-200">
+    <footer className="w-full bg-white border-t border-gray-200" data-ga-section="footer">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start gap-12">
@@ -47,7 +47,7 @@ export default async function Footer() {
               <div className="flex flex-col items-center gap-3 w-[160px] mt-3">
                 <Link href="https://www.ifrc.org">
                   <Image
-                    src="/wdr25/ifrc_logo.jpg"
+                    src="/wdr25/ifrc_logo.webp"
                     alt="IFRC"
                     width={120}
                     height={40}
@@ -116,21 +116,17 @@ export default async function Footer() {
               </Link>
 
               {/* Native <a> tag per PR review — external download link */}
-              <a href={downloadReportLink}>
+              <DownloadLink url={downloadReportLink} >
                 {t('downloadReport')}
-              </a>
-
-              <Link href="/issue">
-                {t('reportIssue')}
-              </Link>
+              </DownloadLink>
             </div>
 
             {/* Games */}
             <div className="flex flex-col items-center gap-2 text-center lg:items-start lg:text-left">
               <p className="font-semibold">{t('games')}</p>
 
-              <Link href="/disinformer">Disinformer</Link>
-              <Link href="/prebunk">Ctrl + Alt + Prebunk</Link>
+              <Link href="/coming-soon">Disinformer</Link>
+              <Link href="/coming-soon">Ctrl + Alt + Prebunk</Link>
             </div>
 
           </div>

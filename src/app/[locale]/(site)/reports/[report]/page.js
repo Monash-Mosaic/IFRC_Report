@@ -1,7 +1,9 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
+import DownloadLink from '@/components/DownloadButton';
 
+import { Download } from 'lucide-react';
 import Breadcrumb from '@/components/Breadcrumb';
 import SubscribeBox from '@/components/SubscribeBox';
 import ChapterCard from '@/components/ChapterCard';
@@ -63,7 +65,7 @@ export async function generateMetadata({ params }) {
       url: canonical,
       images: [
         {
-          url: '/wdr25/ifrc_logo.jpg',
+          url: '/wdr25/ifrc_logo.webp',
           width: 1200,
           height: 630,
           alt: title,
@@ -74,7 +76,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/wdr25/ifrc_logo.jpg'],
+      images: ['/wdr25/ifrc_logo.webp'],
     },
   };
 }
@@ -101,7 +103,7 @@ export default async function ReportDetailPage({ params }) {
   const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   if (
     !hasLocale(Object.keys(reportsByLocale), locale) ||
-    !reportsByLocale[locale].reports[decodedReport] ||
+    !reportsByLocale[locale]?.reports[decodedReport] ||
     !isReportReleased(locale, decodedReport)
   ) {
     notFound();
@@ -175,7 +177,7 @@ export default async function ReportDetailPage({ params }) {
         <hr className="border-gray-300 mb-10" />
 
         {/* Chapter Cards Grid */}
-        <div className="grid gap-8 grid-cols-1">
+        <div className="grid gap-8 grid-cols-1" data-ga-section="list">
           {chapterEntries.map((chapter) => (
             <ChapterCard
               key={chapter.key}
@@ -197,9 +199,23 @@ export default async function ReportDetailPage({ params }) {
                 expandChapter: t('sections.expandChapter'),
                 notAvailable: t('sections.notAvailable'),
                 download: t('sections.download'),
+                locale,
               }}
             />
           ))}
+          {reportFile?.url && (
+            <div className="flex justify-center mt-8">
+              <DownloadLink
+                href={reportFile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-red-600 text-red-600 bg-white hover:bg-red-600 hover:text-white rounded-lg font-medium transition-colors"
+              >
+                <Download className="w-5 h-5 flex-shrink-0" />
+                <span>{t('downloadFullReport')}</span>
+              </DownloadLink>
+            </div>
+          )}
           {showSubscribeSection && (
             <div className="mt-6">
               <SubscribeBox locale={locale} />
