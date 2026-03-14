@@ -304,6 +304,7 @@
     "browseTopics": "Browse Topics",
     "browseOperationalImpact": "Operational Impact",
     "browseResponseStrategy": "Response Strategy",
+    "browseHarm": "Types of Harm",
     "browseGovernance": "Governance",
     "selectedCount": "{count} selected",
     "quotesTitle": "Quotes",
