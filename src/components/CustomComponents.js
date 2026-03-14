@@ -257,9 +257,47 @@ export function Anchor({ children, meta, ...props }) {
   );
 }
 
+export function ChapterContents({ items = [], title = 'Contents', ...props }) {
+  return (
+    <nav className="mb-12" aria-label={title} {...props}>
+      <h2 className="text-3xl font-bold text-black mb-8">{title}</h2>
+      <ul className="list-none m-0 p-0 space-y-0">
+        {items.map(({ id, index, label, page }) => (
+          <li
+            key={id}
+            className="flex items-baseline py-2 border-b border-gray-200 last:border-b-0"
+          >
+            {index && (
+              <span className="text-[#ee2435] text-xs font-medium w-8 shrink-0">{index}</span>
+            )}
+            {!index && <span className="w-8 shrink-0" />}
+            <a
+              href={`#${id}`}
+              className="text-black font-bold hover:text-[#ee2435] hover:underline shrink-0"
+            >
+              {label}
+            </a>
+            <span className="flex-1 min-w-4" aria-hidden />
+            {page != null && (
+              <span className="text-black text-sm tabular-nums shrink-0">{page}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
 export function ColumParagraphs({ children, count = 2, ...props }) {
   return (
-    <div className={`grid gap-6 md:grid-cols-${count}`} {...props}>
+    <div
+      style={{
+        display: 'grid',
+        gap: '1.5rem',
+        gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))`,
+      }}
+      {...props}
+    >
       {children}
     </div>
   );
@@ -601,7 +639,7 @@ export function ChapterLink({ children, ...props }) {
 export function HeadingLabel({ index, className = '', ...props }) {
   return (
     <span
-      className={`inline-block align-top me-3 text-[#fe4d60] text-2xl font-medium ${className}`}
+      className={`inline-block align-baseline me-3 text-[#ee2435] text-sm font-medium ${className}`}
       {...props}
     >
       {index}
@@ -640,6 +678,7 @@ const CustomComponents = {
   SideNote,
   ChapterQuote,
   Anchor,
+  ChapterContents,
   ColumParagraphs,
   ColumParagraph,
   FeatureImage,
