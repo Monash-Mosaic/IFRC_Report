@@ -1,6 +1,5 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -12,6 +11,7 @@ import OutboundLinkTracker from '@/components/OutboundLinkTracker';
 import ScrollDepthTracker from '@/components/ScrollDepthTracker';
 import './globals.css';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -71,15 +71,20 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={locale} dir={dir}>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable}  ${bespokeSerif.variable} locale-${locale} antialiased`}
+        className={`${GeistSans.variable} ${bespokeSerif.variable} locale-${locale} antialiased`}
       >
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         <NextIntlClientProvider>
           {children}
           <ReportIncidentWidget />
           <OutboundLinkTracker />
           <ScrollDepthTracker />
         </NextIntlClientProvider>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
+        />}
       </body>
     </html>
   );
