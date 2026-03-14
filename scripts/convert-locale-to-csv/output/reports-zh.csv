@@ -1,0 +1,166 @@
+key,value
+report.categories[0],年度报告
+report.categories[1],战略
+report.categories[2],DREF
+report.categories[3],紧急呼吁
+report.categories[4],灾害管理
+report.categories[5],健康与护理
+report.categories[6],国家协会发展
+report.categories[7],气候变化
+report.categories[8],移民
+report.categories[9],倡导
+report.categories[10],其他
+report.reports.wdr25.author,IFRC 秘书处
+report.reports.wdr25.category,年度报告
+report.reports.wdr25.chapters.章节-02.metadata.chapterKey,chapter-02
+report.reports.wdr25.chapters.章节-02.metadata.chapterNumber,2
+report.reports.wdr25.chapters.章节-02.metadata.chapterPrefix,第02章
+report.reports.wdr25.chapters.章节-02.title,""
+report.reports.wdr25.chapters.章节-02.subtitle,""
+report.reports.wdr25.chapters.章节-02.audios[0].id,intro
+report.reports.wdr25.chapters.章节-02.audios[0].name,第02章 - 概述
+report.reports.wdr25.chapters.章节-02.audios[0].duration,02:31
+report.reports.wdr25.chapters.章节-02.audios[0].url,https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3
+report.reports.wdr25.chapters.章节-02.audios[1].id,section-1
+report.reports.wdr25.chapters.章节-02.audios[1].name,第1节：主要发现
+report.reports.wdr25.chapters.章节-02.audios[1].duration,04:12
+report.reports.wdr25.chapters.章节-02.audios[1].url,https://samplelib.com/lib/preview/mp3/sample-15s.mp3
+report.reports.wdr25.chapters.章节-02.videos[0].id,summary
+report.reports.wdr25.chapters.章节-02.videos[0].name,章节摘要
+report.reports.wdr25.chapters.章节-02.videos[0].duration,03:45
+report.reports.wdr25.chapters.章节-02.videos[0].url,https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+report.reports.wdr25.chapters.章节-02.videos[0].thumbnail,/window.svg
+report.reports.wdr25.description,国际红十字与红新月联合会 2025 年度报告，详述全球灾害响应与人道救援工作。
+report.reports.wdr25.featuredVideos[0].id,1
+report.reports.wdr25.featuredVideos[0].title,Limitless 申请快速指南
+report.reports.wdr25.featuredVideos[0].description,申请 Limitless 遇到问题了吗？不知道从哪里开始？别担心。Zikomo 在这里告诉你如何、为什么以及在哪里申请 2024 年 IFRC Limitless 青年创新学院
+report.reports.wdr25.featuredVideos[0].url,https://www.youtube.com/watch?v=k5WL45qWU78
+report.reports.wdr25.featuredVideos[1].id,2
+report.reports.wdr25.featuredVideos[1].title,深入探讨援助本地化——一项包容性倡议
+report.reports.wdr25.featuredVideos[1].description,在本期节目中，喀麦隆红十字会的 Victoire 讨论了通过当地人民的参与，让当地人民参与在脆弱社区实施人道主义行动的重要性。
+report.reports.wdr25.featuredVideos[1].url,https://www.youtube.com/watch?v=_8cmKGTOluo
+report.reports.wdr25.reportFile.url,/reports/wdr2025.pdf
+report.reports.wdr25.reportFile.size,19389263
+report.reports.wdr25.testimonialsList[0].id,1
+report.reports.wdr25.testimonialsList[0].quote,在COVID-19期间，信息太多了，我感到迷茫，不知道该相信什么
+report.reports.wdr25.testimonialsList[0].name,阿卜杜勒 M.
+report.reports.wdr25.testimonialsList[0].country,阿富汗
+report.reports.wdr25.testimonialsList[0].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[1].id,2
+report.reports.wdr25.testimonialsList[1].quote,在AI时代生活让我害怕：哪里是真相，哪里是错误信息
+report.reports.wdr25.testimonialsList[1].name,克莱尔
+report.reports.wdr25.testimonialsList[1].country,英国
+report.reports.wdr25.testimonialsList[1].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[2].id,3
+report.reports.wdr25.testimonialsList[2].quote,我希望有一根魔法棒能帮助我区分错误信息和真相
+report.reports.wdr25.testimonialsList[2].name,王丽
+report.reports.wdr25.testimonialsList[2].country,中国
+report.reports.wdr25.testimonialsList[2].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.testimonialsList[3].id,4
+report.reports.wdr25.testimonialsList[3].quote,社交媒体传播虚假信息如此之快，以至于在为时已晚之前很难验证什么是真的
+report.reports.wdr25.testimonialsList[3].name,玛丽亚 S.
+report.reports.wdr25.testimonialsList[3].country,菲律宾
+report.reports.wdr25.testimonialsList[3].avatar,/avatar/avatar-2.svg
+report.reports.wdr25.testimonialsList[4].id,5
+report.reports.wdr25.testimonialsList[4].quote,在灾难期间，错误信息可能比灾难本身更危险
+report.reports.wdr25.testimonialsList[4].name,詹姆斯 K.
+report.reports.wdr25.testimonialsList[4].country,肯尼亚
+report.reports.wdr25.testimonialsList[4].avatar,/avatar/avatar-1.svg
+report.reports.wdr25.title,国际红十字与红新月联合会 2025 年度报告
+message.Metadata.titleTemplate,%s | IFRC
+message.Metadata.defaultTitle,IFRC 世界灾害报告 2026
+message.Home.meta.title,国际红十字报告主页
+message.Home.meta.description,欢迎来到IFRC报告
+message.Home.nav.logoAlt,国际红十字与红新月联合会标志
+message.Home.nav.brand,国际红十字会 | 索尔费里诺学院
+message.Home.nav.about,关于
+message.Home.nav.bookmarks,书签
+message.Home.nav.download,下载
+message.Home.nav.search,搜索
+message.Home.nav.acknowledgement,鸣谢
+message.Home.comingSoonLabel,即将上线
+message.Home.footer.worldDisastersReport,世界灾害报告
+message.Home.footer.chapters.title,报告章节
+message.Home.footer.chapters.chapter1,第一章
+message.Home.footer.chapters.chapter2,第二章
+message.Home.footer.chapters.chapter3,第三章
+message.Home.footer.games.title,虚假信息游戏
+message.Home.footer.games.disinformer,Disinformer
+message.Home.footer.games.ctrlAltPrebunk,Ctrl+Alt+Prebunk
+message.Home.footer.social.facebook,Facebook
+message.Home.footer.social.linkedin,LinkedIn
+message.Home.footer.social.youtube,YouTube
+message.Home.footer.social.instagram,Instagram
+message.Home.footer.social.x,X (Twitter)
+message.Home.footer.copyright,© {year} 国际红十字与红新月联合会。保留所有权利。
+message.Home.footer.orgFull,国际红十字与红新月联合会
+message.Home.footer.privacyPolicy,隐私政策
+message.Home.footer.termsOfService,服务条款
+message.Home.footer.contact,联系我们
+message.Home.landingPage.heroSection.title,"世界
+灾难
+报告"
+message.Home.landingPage.heroSection.description,真相、信任与有害信息时代的人道行动
+message.Home.landingPage.heroSection.buttonTexts.read,阅读报告
+message.Home.landingPage.heroSection.buttonTexts.download,下载报告
+message.Home.landingPage.heroSection.buttonTexts.share,分享
+message.Home.landingPage.heroSection.heroAlt,《世界灾难报告》主题图片，展示人道主义工作者正在行动
+message.Home.landingPage.executiveSummary.title,执行摘要
+message.Home.landingPage.executiveSummary.subtitle,关键时刻：对抗有害信息，保护人性
+message.Home.landingPage.executiveSummary.description,关键时刻：对抗有害信息，保护人性
+message.Home.landingPage.executiveSummary.buttonTexts.read,阅读
+message.Home.landingPage.executiveSummary.buttonTexts.download,下载
+message.Home.landingPage.executiveSummary.summaryAlt,报告摘要封面，呈现人道主义背景下的个人
+message.Home.landingPage.featuredVideos.title,全球精选视频
+message.Home.landingPage.testimonials.title,引言与生活经验
+message.Home.videoCard.backToThumbnail,返回缩略图
+message.Home.videoCard.videoAriaLabel,播放视频
+message.ReportListingPage.meta.title,报告与出版物
+message.ReportListingPage.meta.description,访问和管理 IFRC 报告与出版物
+message.ReportListingPage.title,报告与出版物
+message.ReportListingPage.description,访问和管理 IFRC 报告与出版物
+message.ReportListingPage.filter.label,类别
+message.ReportListingPage.filter.all,所有类别
+message.ReportListingPage.dateRange.label,日期范围
+message.ReportListingPage.dateRange.all,全部时间
+message.ReportListingPage.search.label,搜索
+message.ReportListingPage.search.placeholder,搜索报告…
+message.ReportListingPage.docList.label,所有报告
+message.ReportListingPage.docList.showing,"{count, plural, =0 {未找到报告} =1 {显示 # 份报告} other {显示 # 份报告}}"
+message.ReportListingPage.docList.download,下载报告
+message.ReportListingPage.docList.readInteractiveAlt,阅读交互式报告
+message.ReportDetailPage.backToDocuments,返回报告
+message.ReportDetailPage.tableOfContent,目录
+message.ReportDetailPage.bookmark,书签
+message.ReportDetailPage.bookmarkAria,"{action, select, add {添加书签} remove {移除书签} other {未知}}，用于 {section}"
+message.ReportDetailPage.sections.continue,继续
+message.ReportChapterPage.back,返回
+message.ReportChapterPage.tocTitle,在本章节
+message.LocaleSwitcher.ariaLabel,选择语言
+message.LocaleSwitcher.title,选择语言
+message.LocaleSwitcher.language,语言
+message.ComingSoon.meta.title,即将上线
+message.ComingSoon.meta.description,IFRC《世界灾难报告》数字体验即将上线。
+message.SidebarPanel.expandSidebar,展开侧边栏
+message.SidebarPanel.closeSidebar,关闭侧边栏
+message.SidebarPanel.back,返回
+message.SidebarPanel.resources,资源
+message.SidebarPanel.chapterResourcesPanel,章节资源面板
+message.SidebarPanel.panel.notes,笔记
+message.SidebarPanel.panel.audios,音频
+message.SidebarPanel.panel.videos,视频
+message.SidebarPanel.chapterNotes,章节笔记
+message.SidebarPanel.myNotes,我的笔记
+message.SidebarPanel.bookmarks,书签
+message.SidebarPanel.audio,音频
+message.SidebarPanel.videos,视频
+message.SidebarPanel.loading,加载中
+message.SidebarPanel.noMediaAvailable.audio,本章节没有可用音频
+message.SidebarPanel.noMediaAvailable.videos,本章节没有可用视频
+message.SidebarPanel.selectMediaToPlay.audio,选择要播放的音频
+message.SidebarPanel.selectMediaToPlay.videos,选择要播放的视频
+message.SidebarPanel.playerForAccessibility.audio,音频播放器以增强可访问性
+message.SidebarPanel.playerForAccessibility.videos,视频播放器以增强可访问性
+message.SidebarPanel.closeMediaPanel,关闭媒体面板
+message.SidebarPanel.duration,时长
+message.SidebarPanel.videoCard.backToThumbnail,返回缩略图
