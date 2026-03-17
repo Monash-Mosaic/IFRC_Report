@@ -2,11 +2,8 @@ import * as Synthesis from './exec-summary.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
-<<<<<<< HEAD
 import * as Chapter05 from './chapter-05.mdx';
-=======
 import * as Chapter03 from './chapter-03.mdx';
->>>>>>> main
 import * as Chapter08 from './chapter-08.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
@@ -227,12 +224,8 @@ export const chapters = {
     subtitle: Chapter05.subtitle,
     tableOfContents: Chapter05.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter05_EN.pdf',
-<<<<<<< HEAD
-    thumbnail: '/wdr25/chapters/Chapter5.png',
-=======
     tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.webp',
->>>>>>> main
     thumbnailOverlay: 'red',
     released: true,
   },
