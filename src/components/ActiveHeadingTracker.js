@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import debounce from "lodash/debounce";
 
 export default function ActiveHeadingTracker({
   containerSelector = 'article',
@@ -12,13 +13,13 @@ export default function ActiveHeadingTracker({
   useEffect(() => {
     let disposed = false;
 
-    const setHash = (id) => {
+    const setHash = debounce((id) => {
       if (!id) return;
       const url = new URL(window.location.href);
       if (url.hash === `#${id}`) return;
       url.hash = id;
       window.history.replaceState({}, '', url.toString());
-    };
+    }, 100);
 
     const setup = () => {
       const container = document.querySelector(containerSelector);
@@ -83,6 +84,7 @@ export default function ActiveHeadingTracker({
     return () => {
       disposed = true;
       cleanupRef.current?.();
+      setHash.cancel();
     };
   }, [containerSelector, headingSelector, rootMargin]);
 

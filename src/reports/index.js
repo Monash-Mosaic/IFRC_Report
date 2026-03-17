@@ -28,7 +28,7 @@ const CANONICAL_LOCALE = 'en';
 const buildReportUriMap = (reportsByLocaleMap) => {
 // Example output structure:
 // {
-//   wdr25: { // canonical report key
+//   wdr26: { // canonical report key
 //     chapters: {
 //       'chapter-02': { // canonical chapter key
 //         number: 2,
@@ -63,33 +63,33 @@ const buildReportUriMap = (reportsByLocaleMap) => {
 //       }
 //     },
 //     languages: { // locale to localized report slug
-//       ar: 'wdr25',
-//       en: 'wdr25',
-//       fr: 'wdr25',
-//       ru: 'wdr25',
-//       zh: 'wdr25',
-//       es: 'wdr25',
+//       ar: 'wdr26',
+//       en: 'wdr26',
+//       fr: 'wdr26',
+//       ru: 'wdr26',
+//       zh: 'wdr26',
+//       es: 'wdr26',
 //     },
 //   },
 //   uri: { // locale to localized report slug to canonical report key
 //          // NOTE: this allow same localized slug to map to different canonical keys in different locales
 //     en: {
-//       wdr25: 'wdr25',
+//       wdr26: 'wdr26',
 //     },
 //     fr: {
-//       wdr25: 'wdr25',
+//       wdr26: 'wdr26',
 //     },
 //     zh: {
-//       wdr25: 'wdr25',
+//       wdr26: 'wdr26',
 //     },
 //     ar: {
-//       wdr25: 'wdr25',
+//       wdr26: 'wdr26',
 //     },
 //     ru: {
-//       wdr25: 'wdr25',
+//       wdr26: 'wdr26',
 //     },
 //     es: {
-//       wdr25: 'wdr25',
+//       wdr26: 'wdr26',
 //     },
 //   },
 // };

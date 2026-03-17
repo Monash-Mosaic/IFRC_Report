@@ -17,6 +17,7 @@ import { getBaseUrl } from '@/lib/base-url';
 import HighlightToolbar from '@/components/HighlightToolbar';
 
 import ActiveHeadingTracker from '@/components/ActiveHeadingTracker';
+import TocClickTracker from '@/components/TocClickTracker';
 
 export async function generateMetadata({ params }) {
   const { locale, report, chapter } = await params;
@@ -65,7 +66,7 @@ export async function generateMetadata({ params }) {
       url: canonical,
       images: [
         {
-          url: '/wdr25/ifrc_logo.jpg',
+          url: '/wdr25/ifrc_logo.webp',
           width: 1200,
           height: 630,
           alt: metaTitle,
@@ -76,7 +77,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: metaTitle,
       description: chapterTitle,
-      images: ['/wdr25/ifrc_logo.jpg'],
+      images: ['/wdr25/ifrc_logo.webp'],
     },
   };
 }
@@ -165,7 +166,7 @@ export default async function ReportChapterPage({ params }) {
       {/* Main Content */}
       <div className="flex-1 p-8">
         <div className="max-w-7xl mx-auto flex gap-6">
-          <div className="flex-1 max-w-4xl mx-auto">
+          <div className="flex-1 min-w-0 max-w-4xl mx-auto">
             <Breadcrumb
               locale={locale}
               items={[
@@ -190,7 +191,7 @@ export default async function ReportChapterPage({ params }) {
             <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 
             <div className="xl:hidden mb-8">
-              <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg">
+              <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg" data-ga-section="toc">
                 <TableOfContent
                   chapterTableOfContents={chapterTableOfContents}
                   title={t('tocTitle')}
@@ -202,7 +203,7 @@ export default async function ReportChapterPage({ params }) {
               <div className="relative" id="highlight-layer-root">
                 <ActiveHeadingTracker containerSelector="#highlight-layer-root" />
 
-                <article className="grid grid-cols-1 gap-8 text-black leading-relaxed">
+                <article className="grid grid-cols-1 gap-8 text-black leading-relaxed break-words">
                   <Chapter />
                 </article>
 
@@ -211,12 +212,13 @@ export default async function ReportChapterPage({ params }) {
                   whatsappSeparator="\n"
                   containerSelector="#highlight-layer-root"
                 />
+                <TocClickTracker />
               </div>
             </div>
           </div>
 
           <div className="hidden xl:block w-80 flex-shrink-0">
-            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto">
+            <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto top-[100px]" data-ga-section="toc">
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}

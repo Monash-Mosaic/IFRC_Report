@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { ChevronDown, Download } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import DownloadButton from '@/components/DownloadButton';
+import { Download } from 'lucide-react';
 
 export default async function ChapterCard({
   chapterKey,
@@ -84,14 +86,17 @@ export default async function ChapterCard({
           {/* Actions: Download Icons + Continue / Coming Soon button */}
           <div className="md:flex-none flex justify-end items-center gap-3 shrink-0 mt-5">
             {downloadLink && (
-              <a
-                href={downloadLink}
-                download
+              <DownloadButton
+                url={downloadLink}
+                chapter={chapterLabel}
+                language={translations.locale || ''}
+                ariaLabel={translations.download}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-600 hover:text-red-600 transition-colors pe-2"
-                aria-label={translations.download}
               >
                 <Download className="w-5 h-5 sm:w-6 sm:h-6" />
-              </a>
+              </DownloadButton>
             )}
             {hasPage && released ? (
               <Link

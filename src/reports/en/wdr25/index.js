@@ -2,7 +2,11 @@ import * as Synthesis from './exec-summary.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+<<<<<<< HEAD
 import * as Chapter05 from './chapter-05.mdx';
+=======
+import * as Chapter03 from './chapter-03.mdx';
+>>>>>>> main
 import * as Chapter08 from './chapter-08.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
@@ -16,8 +20,10 @@ export const category = 'Annual Report';
 
 export const releaseDate = new Date('2025-11-15');
 
+const fullReportUrl = 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf';
+
 export const reportFile = {
-  url: '/reports/wdr2025.pdf',
+  url: fullReportUrl,
   size: 19_389_263,
 };
 
@@ -52,17 +58,35 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Quick Guide to Your Limitless Application',
-    description:
-      "Are you having trouble applying for Limitless? Do you not know where to start? Don't worry. Zikomo is here to tell you how, why and where to apply for the IFRC Limitless Youth Innovation Academy 2024",
-    url: 'https://www.youtube.com/watch?v=k5WL45qWU78',
+    title: 'World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information',
+    description: `The International Federation of Red Cross and Red Crescent Societies (IFRC) launches the World Disasters Report 2026: Truth, Trust and Humanitarian Action in the Age of Harmful Information.
+
+In a world where rumours can spread faster than rescue teams, harmful information has become a defining challenge for humanitarian action. The 2026 edition of the World Disasters Report frames harmful information as a de facto humanitarian crisis — one that undermines access to aid, erodes trust, destabilizes social cohesion and increases risks for staff, volunteers and communities.
+
+Across eight chapters, the Report examines how misinformation, disinformation and dehumanizing narratives are reshaping disaster response, public health emergencies, migration and conflict. It brings together insights from nearly 100 contributors, 60 organizations and over 30 Red Cross and Red Crescent National Societies, grounded in real-world case studies and community perspectives from around the globe.
+
+For the first time, the Report presents a typology of harm, mapping the physical, psychological, societal and operational impacts of harmful information. It explores how these harms disrupt preparedness, response and recovery — and why responding to them is no longer optional.
+
+The World Disasters Report 2026 goes beyond analysis. It provides practical recommendations for humanitarian actors, governments, technology platforms and communities to strengthen information resilience, safeguard principled humanitarian action and rebuild trust.
+
+In today's emergencies, information can determine access, safety and dignity.`,
+    url: 'https://www.youtube.com/watch?v=jaoy6Wgi5qg',
   },
   {
     id: 2,
-    title: 'Dive in the localisation of aid — An inclusive initiative',
-    description:
-      'In this episode, Victoire from Cameroon Red Cross discusses the significance of involving local people in implementing humanitarian action in vulnerable community through the involvement of local people.',
-    url: 'https://www.youtube.com/watch?v=_8cmKGTOluo',
+    title: 'Truth, Trust and Humanitarian Action: The World Disasters Report 2026',
+    description: `The World Disasters Report 2026 explores one of the most urgent challenges facing humanitarian action today: harmful information.
+
+From disasters and health emergencies to migration and conflict, harmful information is reshaping crises—affecting who is trusted, who receives help, and who is left at risk.
+
+Drawing on insights from more than 100 contributors and Red Cross and Red Crescent National Societies worldwide, the report introduces a new framework for understanding how harmful information causes physical, psychological, societal and operational harm.
+
+For the first time, the report is accompanied by an innovative interactive playbook, allowing readers to explore chapters online, highlight and share insights, access lived experiences and multimedia content, and navigate the report in a more dynamic way.
+
+Beyond analysis, the report provides practical recommendations to help safeguard humanitarian principles, protect humanitarian workers and rebuild trust in times of crisis.
+
+Because today, information can determine access, safety and dignity.`,
+    url: 'https://youtu.be/nabMyC5cVrU',
   },
 ];
 
@@ -80,7 +104,7 @@ export const chapters = {
     subtitle: Synthesis.subtitle,
     tableOfContents: Synthesis.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_EN.pdf',
-    thumbnail: '/wdr25/chapters/Synthesis.jpg',
+    thumbnail: '/wdr25/chapters/Synthesis.webp',
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -106,7 +130,7 @@ export const chapters = {
     subtitle: Introduction.subtitle,
     tableOfContents: Introduction.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Introduction_EN.pdf',
-    thumbnail: '/wdr25/chapters/Intro.jpg',
+    thumbnail: '/wdr25/chapters/Intro.webp',
     thumbnailOverlay: 'blue',
     released: true,
   },
@@ -121,7 +145,7 @@ export const chapters = {
     subtitle: Chapter01.subtitle,
     tableOfContents: Chapter01.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter01_EN.pdf',
-    thumbnail: '/wdr25/chapters/Chapter1.png',
+    thumbnail: '/wdr25/chapters/Chapter1.webp',
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -136,7 +160,7 @@ export const chapters = {
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter02_EN.pdf',
-    thumbnail: '/wdr25/chapters/Chapter2.png',
+    thumbnail: '/wdr25/chapters/Chapter2.webp',
     released: true,
     audios: [
       {
@@ -166,13 +190,14 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-03',
       chapterNumber: 3,
-      chapterPrefix: 'Chapter 3',
+      chapterPrefix: 'Chapter 03',
     },
-    title: 'Global and Local: Dynamics of Harmful Information in a Connected World',
-    subtitle: 'Harmful Narratives that Thrive',
+    component: Chapter03.default,
+    title: Chapter03.title,
+    subtitle: Chapter03.subtitle,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter03_EN.pdf',
-    tableOfContents: [],
-    thumbnail: '/wdr25/chapters/Chapter3.png',
+    tableOfContents: Chapter03.tableOfContents,
+    thumbnail: '/wdr25/chapters/Chapter3.webp',
     thumbnailOverlay: 'blue',
     released: true,
   },
@@ -180,14 +205,14 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-04',
       chapterNumber: 4,
-      chapterPrefix: 'Chapter 4',
+      chapterPrefix: 'Chapter 04',
     },
     title:
       'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
     subtitle: 'Harmful Information and Operational Realities',
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter04_EN.pdf',
     tableOfContents: [],
-    thumbnail: '/wdr25/chapters/Chapter4.png',
+    thumbnail: '/wdr25/chapters/Chapter4.webp',
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -195,14 +220,19 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-05',
       chapterNumber: 5,
-      chapterPrefix: 'Chapter 5',
+      chapterPrefix: 'Chapter 05',
     },
     component: Chapter05.default,
     title: Chapter05.title,
     subtitle: Chapter05.subtitle,
     tableOfContents: Chapter05.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter05_EN.pdf',
+<<<<<<< HEAD
     thumbnail: '/wdr25/chapters/Chapter5.png',
+=======
+    tableOfContents: [],
+    thumbnail: '/wdr25/chapters/Chapter5.webp',
+>>>>>>> main
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -210,13 +240,13 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-06',
       chapterNumber: 6,
-      chapterPrefix: 'Chapter 6',
+      chapterPrefix: 'Chapter 06',
     },
     title: 'Rooted in Resilience: Community-first approach to Harmful Information',
     subtitle: 'The Importance of Community for Resilience',
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter06_EN.pdf',
     tableOfContents: [],
-    thumbnail: '/wdr25/chapters/Chapter6.png',
+    thumbnail: '/wdr25/chapters/Chapter6.webp',
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -224,13 +254,13 @@ export const chapters = {
     metadata: {
       chapterKey: 'chapter-07',
       chapterNumber: 7,
-      chapterPrefix: 'Chapter 7',
+      chapterPrefix: 'Chapter 07',
     },
     title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
     subtitle: 'Humanitarian Action in the Era of Instant Narratives',
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter07_EN.pdf',
     tableOfContents: [],
-    thumbnail: '/wdr25/chapters/Chapter7.png',
+    thumbnail: '/wdr25/chapters/Chapter7.webp',
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -245,7 +275,7 @@ export const chapters = {
     subtitle: Chapter08.subtitle,
     tableOfContents: Chapter08.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter08_EN.pdf',
-    thumbnail: '/wdr25/chapters/Chapter8.png',
+    thumbnail: '/wdr25/chapters/Chapter8.webp',
     thumbnailOverlay: 'red',
     released: true,
   },

@@ -8,8 +8,11 @@ import { isLocaleReleased } from '@/reports/release';
 import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 
+export const dynamic = 'force-static';
+export const dynamicParams = false; 
+
 export async function generateStaticParams() {
-  return routing.locales.filter((l) => isLocaleReleased(l)).map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }) {
@@ -25,7 +28,7 @@ export async function generateMetadata({ params }) {
     .filter((loc) => isLocaleReleased(loc))
     .map((loc) => [loc, getPathname({ locale: loc, href: '/acknowledgement' })]);
   languages.push(['x-default', '/acknowledgement']);
-  const image = new URL('/wdr25/ifrc_logo.jpg', getBaseUrl()).toString();
+  const image = new URL('/wdr25/ifrc_logo.webp', getBaseUrl()).toString();
 
   return {
     title,
