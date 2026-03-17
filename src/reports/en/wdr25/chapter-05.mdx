@@ -17,8 +17,20 @@ import {
   ReccomendationsTitle,
   SmallQuote,
   SmallQuoteAuthor,
+  TableLabel,
   ChapterLink
 } from '@/components/CustomComponents';
+
+import {
+  Deprivational,
+  Digital,
+  Informational,
+  Longitudinal,
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+} from '@/components/icons/toh';
 
 import { TypologyOfHarm } from '@/types/TypologyOfHarm';
 
@@ -86,7 +98,7 @@ One notable multilateral initiative is the Freedom Online Coalition, a group of 
 <Box index="5.1">
 ## Estonia: Upholding freedom while countering harmful information
 
-Estonia ranks among the freest and most digitally advanced societies, with a culture that values openness and democratic resilience. According to Freedom House's **_Freedom on the Net_** report, Estonia has one of the world's most open online environments, with no state-imposed restrictions on expression. The 2025 **_World Press Freedom Index_** ranks Estonia second globally, emphasizing a robust legal and political framework that enables journalists to operate safely and independently.
+Estonia ranks among the freest and most digitally advanced societies, with a culture that values openness and democratic resilience. According to Freedom House's <span className="font-medium italic">Freedom on the Net</span> report, Estonia has one of the world's most open online environments, with no state-imposed restrictions on expression. The 2025 <span className="font-medium italic">World Press Freedom Index</span> ranks Estonia second globally, emphasizing a robust legal and political framework that enables journalists to operate safely and independently.
 
 Estonia distinguishes clearly between free media and hostile propaganda. We do not engage in counter-propaganda but instead enforce EU sanctions to limit harmful disinformation. This regulatory, rather than ideological, approach safeguards facts and democratic integrity. Estonia's response is multifaceted, combining regulation, education and public engagement.
 
@@ -99,12 +111,14 @@ Our lesson is clear: freedom must be protected as a core value, but it must also
   <ContributorTag>
     <Contributor>
       <ContributorName>Maarja Kask</ContributorName>
-      <ContributorEntity>Third Secretary, Department for International Organisations and Human Rights</ContributorEntity>
+      <ContributorEntity>Third Secretary, Department for International<br/> 
+      Organisations and Human Rights</ContributorEntity>
       <ContributorRole>Ministry of Foreign Affairs of Estonia</ContributorRole>
     </Contributor>
     <Contributor>
       <ContributorName>Silver Küngas</ContributorName>
-      <ContributorEntity>First Secretary, Department for International Organisations and Human Rights</ContributorEntity>
+      <ContributorEntity>First Secretary, Department for International<br/>
+      Organisations and Human Rights</ContributorEntity>
       <ContributorRole>Ministry of Foreign Affairs of Estonia</ContributorRole>
     </Contributor>
   </ContributorTag>
@@ -141,7 +155,8 @@ As seen in Libya, local journalists, relief organizations and digital rights def
     </Contributor>
     <Contributor>
       <ContributorName>Marwa Fatafta</ContributorName>
-      <ContributorEntity>Middle East and North Africa Policy and Advocacy Director</ContributorEntity>
+      <ContributorEntity>Middle East and North Africa Policy<br/> 
+      and Advocacy Director</ContributorEntity>
       <ContributorRole>Access Now</ContributorRole>
     </Contributor>
   </ContributorTag>
@@ -184,12 +199,15 @@ These dynamics underscore the importance of visibility, transparency and trust-b
 <Box index="5.3">
 ## Audiences increasingly rely on social media for news despite concerns about information quality
 
-Social media and video networks have become increasingly central to how people access news in recent years, while other forms of news consumption have dwindled. Data from the Reuters Institute _Digital News Report 2025_ show that social media overtook television as a source of news in the US for the first time, and in many Latin American, Asian and African countries, social media has been the main source of news for some time.
+Social media and video networks have become increasingly central to how people access news in recent years, while other forms of news consumption have dwindled. Data from the Reuters Institute <span className="font-medium italic">Digital News Report 2025</span> show that social media overtook television as a source of news in the US for the first time, and in many Latin American, Asian and African countries, social media has been the main source of news for some time.
 
 Generational shifts are driving much of this change. While older adults (55+) continue to rely on traditional media for news, everyone else is now effectively digital-first. Within that online space, younger groups have become less likely to go directly to a news website or app – and more likely to consume news via social media or video networks. Across the 48 countries surveyed, 44% of under-25s and 38% of those aged 25–34 prefer accessing news through platforms, while just a quarter of each group prefer going directly to news websites. Respondents cite convenience and relevance of the news they see through platforms as key reasons – it is often encountered while doing other online activities.
 
 <Anchor meta="Fig 5.2">
-  Proportion of each age group that say each are their 'main source' of news, 2025
+    Proportion of each age group that say each are their 'main source' of news, 2025
+    <span className="block text-base font-light text-slate-500 mt-1">
+      Aggregate data from 48 countries
+    </span>
 </Anchor>
 
 <FeatureImage
@@ -200,6 +218,9 @@ Generational shifts are driving much of this change. While older adults (55+) co
 
 <Anchor meta="Fig 5.3">
   Proportion of under‑25s who prefer to access news via websites or social networks, 2015–2025
+    <span className="block text-base font-light text-slate-500 mt-1">
+      Aggregate data from 48 countries
+    </span>
 </Anchor>
 
 <FeatureImage
@@ -212,6 +233,9 @@ The specific platforms used for news have also changed over time. While Facebook
 
 <Anchor meta="Fig 5.4">
   Proportion of respondents who used each as a source of news in the past week, 2014–2025
+    <span className="block text-base font-light text-slate-500 mt-1">
+      Selected countries
+    </span>
 </Anchor>
 
 <FeatureImage
@@ -224,12 +248,15 @@ Across these crowded digital platforms, news organizations must compete for atte
 
 Our data show that traditional news media particularly struggle to retain audience attention on video platforms, where algorithmic recommendations – rather than, e.g., the suggestions of friends – play a dominant role. While audiences still tend to pay more attention to traditional news media and journalists on Facebook, online creators and personalities now outperform established news media on platforms like TikTok and Snapchat.
 
-Even as audiences are embracing platform-based consumption for news, many express concern about the reliability of the information they find there. Facebook (the most used platform for news) and TikTok (the fastest growing platform for news) are seen as the biggest problems when it comes to misinformation, with around half of global respondents perceiving each as a major threat. Although trust in news overall has declined in many countries, findings repeatedly show that traditional news media are _still_ trusted much more than social media or search platforms when it comes to important news.
+Even as audiences are embracing platform-based consumption for news, many express concern about the reliability of the information they find there. Facebook (the most used platform for news) and TikTok (the fastest growing platform for news) are seen as the biggest problems when it comes to misinformation, with around half of global respondents perceiving each as a major threat. Although trust in news overall has declined in many countries, findings repeatedly show that traditional news media are <span className="font-medium italic">still</span> trusted much more than social media or search platforms when it comes to important news.
 
 Across markets, 58% of respondents say they worry about distinguishing true from false news on the internet – a concern that is much higher in Africa and parts of Latin America. When people need to check information that they suspect is false, the most widely cited source is a 'news brand I trust' (38%), ahead of official sources, search engines and fact-checking websites. Even among those who say they would verify information via social media and search engines, it is 'trusted news brands' that people are most likely to be using. In most countries, these trusted sources tend to be the brands (and websites) of news organizations with a reputation for impartial news such as the BBC in the UK, ARD in Germany and NHK in Japan.
 
 <Anchor meta="Fig 5.5">
   Top 3 news brands used to check whether something is true
+      <span className="block text-base font-light text-slate-500 mt-1">
+      Trusted brands
+    </span>
 </Anchor>
 
 <FeatureImage
@@ -242,6 +269,9 @@ Concerns about (hyper) personalization, polarization and misinformation and disi
 
 <Anchor meta="Fig 5.6">
   Net difference between proportion of respondents who think generative AI will make news more or less of each
+    <span className="block text-base font-light text-slate-500 mt-1">
+      Average score across 31 countries
+    </span>
 </Anchor>
 
 <FeatureImage
@@ -258,12 +288,12 @@ Looking ahead, a central challenge will be how to safeguard trustworthy informat
     <Contributor>
       <ContributorName>Amy Ross</ContributorName>
       <ContributorEntity>Research Fellow</ContributorEntity>
-      <ContributorRole>Reuters Institute for the Study of Journalism, University of Oxford</ContributorRole>
+      <ContributorRole>Reuters Institute for the Study of<br/> Journalism, University of Oxford</ContributorRole>
     </Contributor>
     <Contributor>
       <ContributorName>Nic Newman</ContributorName>
       <ContributorEntity>Senior Research Associate</ContributorEntity>
-      <ContributorRole>Reuters Institute for the Study of Journalism, University of Oxford</ContributorRole>
+      <ContributorRole>Reuters Institute for the Study of<br/> Journalism, University of Oxford</ContributorRole>
     </Contributor>
   </ContributorTag>
 </Box>
@@ -302,7 +332,7 @@ Ratings indicate a source's overall trustworthiness and risk of publishing false
   <ContributorTag>
     <Contributor>
       <ContributorName>Chine Labbe</ContributorName>
-      <ContributorEntity>Senior Vice President, Partnerships, and Managing Editor, Europe and Canada</ContributorEntity>
+      <ContributorEntity>Senior Vice President, Partnerships, and<br/> Managing Editor, Europe and Canada</ContributorEntity>
       <ContributorRole>NewsGuard Technologies</ContributorRole>
     </Contributor>
   </ContributorTag>
@@ -403,7 +433,7 @@ The UK remains committed to working with partners to counter harmful information
     <Contributor>
       <ContributorName>Laure Beaufils</ContributorName>
       <ContributorEntity>Director Humanitarian, Food Security and Resilience</ContributorEntity>
-      <ContributorRole>Foreign, Commonwealth and Development Office, Government of the United Kingdom of Great Britain and Northern Ireland</ContributorRole>
+      <ContributorRole>Foreign, Commonwealth and Development Office, Government of the<br/> United Kingdom of Great Britain and Northern Ireland</ContributorRole>
     </Contributor>
   </ContributorTag>
 </Box>
@@ -413,6 +443,8 @@ The UN General Assembly's resolution on 'Countering disinformation for the promo
 # <HeadingLabel index="5.7" /> Red Cross and Red Crescent Appeal to States
 
 Since the Statutory Meetings of the International Red Cross and Red Crescent Movement began in 1867, themes related to information have rarely been addressed.[^20] However, 2024 marked a turning point with the adoption of an Appeal to States to take action against harmful information and dehumanizing rhetoric.
+
+**Appeal to States:**
 
 <DefinitionDescription>
   "We appeal to States to take all appropriate measures to prevent, stop and remedy any abuse,
@@ -615,11 +647,122 @@ There are, of course, overlaps between supply-side and demand-side solutions. Mi
   Taxonomy of solutions – supply side versus demand side
 </Anchor>
 
-<FeatureImage
-  src="/wdr25/chapter-05/Table-5-1.png"
-  width={900}
-  height={600}
-/>
+
+<div className="overflow-x-auto">
+  <table className="w-full border-separate border-spacing-x-6 border-spacing-y-0 text-left">
+    <thead>
+      <tr>
+        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-xl font-bold w-1/3">
+          Demand-side solutions
+        </th>
+        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-xl font-bold w-1/3" colSpan={2}>
+          Supply-side solutions
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th className="border-b border-[#8a8a8a] pb-2 text-base font-semibold">
+          Suppression of poor-quality information
+        </th>
+        <th className="border-b border-[#8a8a8a] pb-2 text-base font-semibold">
+          Promotion of a healthy information ecosystem
+        </th>
+      </tr>
+    </thead>
+
+    <tbody className="text-slate-700">
+
+      <tr>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Media literacy training</strong><br />
+          <span className="text-sm text-slate-500">
+            Assisting audiences to better distinguish between what is true and false
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Controlling information flows</strong><br />
+          <span className="text-sm text-slate-500">
+            Includes content suppression, downranking of content, removal of bots and de-platforming to restrict what information is shown
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Increasing quality information</strong><br />
+          <span className="text-sm text-slate-500">
+            Attempts by YouTube to increase quality of content and by Google to highlight accurate information
+          </span>
+        </td>
+      </tr>
+
+      <tr>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Community participation</strong><br />
+          <span className="text-sm text-slate-500">
+            Includes journalists’ efforts to establish trust in and engagement with high-quality information, as well as to develop citizen journalism
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>AI and content moderation</strong><br />
+          <span className="text-sm text-slate-500">
+            Using AI to distinguish between true, false and illegal information and supplementing with human content moderators where required
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Advancing AI</strong><br />
+          <span className="text-sm text-slate-500">
+            Using AI to promote good-quality information, while recognizing current limitations
+          </span>
+        </td>
+      </tr>
+
+      <tr>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Fact-checking</strong><br />
+          <span className="text-sm text-slate-500">
+            Includes labelling and browser extensions that audiences can use
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Regulation and laws</strong><br />
+          <span className="text-sm text-slate-500">
+            Hate speech laws existing in many parts of the world, such as NetzDG and the Digital Services Act
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Support for high-quality journalism</strong><br />
+          <span className="text-sm text-slate-500">
+            Policies such as funding the BBC, giving subscription vouchers, tax credits and subsidies, and relying on innovation funds and philanthropic or donor support
+          </span>
+        </td>
+      </tr>
+
+      <tr>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Raising awareness</strong><br />
+          <span className="text-sm text-slate-500">
+            Reporting on the platforms for a stronger understanding of the effects of misinformation and disinformation
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Defamation lawsuits</strong><br />
+          <span className="text-sm text-slate-500">
+            Demonstrating repercussions for actively spreading lies, such as the 2023 lawsuit U.S. Dominion v. Fox News Network about voting machines
+          </span>
+        </td>
+        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+          <strong>Healthy journalism business model</strong><br />
+          <span className="text-sm text-slate-500">
+            Engaging with private and public sector adverts to ensure a healthy supply of advertising revenue can fund journalism
+          </span>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div className="text-right text-sm text-slate-500 mt-2">
+  Source: Schiffrin, 2017
+</div>
 
   <ContributorTag>
     <Contributor>
