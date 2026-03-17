@@ -239,11 +239,7 @@ export const chapters = {
     subtitle: Chapter06.subtitle,
     tableOfContents: Chapter06.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter06_EN.pdf',
-<<<<<<< HEAD
-    thumbnail: '/wdr25/chapters/Chapter6.png',
-=======
     thumbnail: '/wdr25/chapters/Chapter6.webp',
->>>>>>> 4013eb9 (Remove empty tableOfContents entries for Chapter 6 and Chapter 7 in the WDR25 report index.)
     thumbnailOverlay: 'red',
     released: true,
   },
@@ -258,11 +254,7 @@ export const chapters = {
     subtitle: Chapter07.subtitle,
     tableOfContents: Chapter07.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter07_EN.pdf',
-<<<<<<< HEAD
-    thumbnail: '/wdr25/chapters/Chapter7.png',
-=======
     thumbnail: '/wdr25/chapters/Chapter7.webp',
->>>>>>> 4013eb9 (Remove empty tableOfContents entries for Chapter 6 and Chapter 7 in the WDR25 report index.)
     thumbnailOverlay: 'red',
     released: true,
   },
