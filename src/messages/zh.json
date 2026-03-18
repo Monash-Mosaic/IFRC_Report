@@ -56,7 +56,12 @@
         "buttonTexts": {
           "read": "阅读报告",
           "download": "下载报告",
-          "share": "分享"
+          "share": "分享",
+          "closeShare": "关闭分享菜单",
+          "copyLink": "复制链接",
+          "shareLinkedIn": "分享到LinkedIn",
+          "shareFacebook": "分享到Facebook",
+          "shareWhatsApp": "分享到WhatsApp"
         },
         "heroAlt": "《世界灾害报告》主题图片，展示人道主义工作者正在行动"
       },
