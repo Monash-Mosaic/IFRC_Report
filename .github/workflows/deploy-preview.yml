@@ -65,7 +65,7 @@ jobs:
           output: comment, report-markdown
 
       - name: Post coverage comment
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           message: ${{ steps.coverage.outputs.report }}
 
