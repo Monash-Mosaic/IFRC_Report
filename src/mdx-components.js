@@ -27,7 +27,7 @@ const components = {
       {...props}
     />
   ),
-  li: (props) => <li {...props} />,
+  li: (props) => <li className="mb-3" {...props} />,
   // blockquote: (props) => <blockquote {...props} />,
   // code: (props) => <code {...props} />,
   // pre: (props) => <pre {...props} />,

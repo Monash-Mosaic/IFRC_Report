@@ -3,6 +3,9 @@ import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
 import * as Chapter03 from './chapter-03.mdx';
+import * as Chapter04 from './chapter-04.mdx';
+import * as Chapter06 from './chapter-06.mdx';
+import * as Chapter07 from './chapter-07.mdx';
 import * as Chapter08 from './chapter-08.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
@@ -203,11 +206,11 @@ export const chapters = {
       chapterNumber: 4,
       chapterPrefix: 'Chapter 04',
     },
-    title:
-      'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
-    subtitle: 'Harmful Information and Operational Realities',
+    component: Chapter04.default,
+    title: Chapter04.title,
+    subtitle: Chapter04.subtitle,
+    tableOfContents: Chapter04.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter04_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.webp',
     thumbnailOverlay: 'red',
     released: true,
@@ -232,10 +235,11 @@ export const chapters = {
       chapterNumber: 6,
       chapterPrefix: 'Chapter 06',
     },
-    title: 'Rooted in Resilience: Community-first approach to Harmful Information',
-    subtitle: 'The Importance of Community for Resilience',
+    component: Chapter06.default,
+    title: Chapter06.title,
+    subtitle: Chapter06.subtitle,
+    tableOfContents: Chapter06.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter06_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.webp',
     thumbnailOverlay: 'red',
     released: true,
@@ -246,10 +250,11 @@ export const chapters = {
       chapterNumber: 7,
       chapterPrefix: 'Chapter 07',
     },
-    title: 'Upholding Humanitarian Principles in the Age of Echo Chambers',
-    subtitle: 'Humanitarian Action in the Era of Instant Narratives',
+    component: Chapter07.default,
+    title: Chapter07.title,
+    subtitle: Chapter07.subtitle,
+    tableOfContents: Chapter07.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter07_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.webp',
     thumbnailOverlay: 'red',
     released: true,
