@@ -75,8 +75,6 @@ async function createPlatformProxy() {
     persist: {
       path: pathResolve(projectRoot, '.wrangler', 'state', 'v3'),
     },
-    // Force local-only in CI to avoid Cloudflare Access auth (no browser)
-    ...(process.env.CI && { experimental: { remoteBindings: false } }),
   });
 }
 
