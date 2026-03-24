@@ -10,6 +10,7 @@ import * as Chapter06 from './chapter-06.mdx';
 import * as Chapter07 from './chapter-07.mdx';
 import * as Chapter08 from './chapter-08.mdx';
 import * as Glossary from './glossary.mdx';
+import * as Annex02 from './annex-02.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
 
@@ -297,7 +298,10 @@ export const chapters = {
       chapterNumber: 10,
       chapterPrefix: 'Annex 2',
     },
-    title: 'Annex 2',
+    component: Annex02.default,
+    title: Annex02.title,
+    subtitle: Annex02.subtitle,
+    tableOfContents: Annex02.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Annex2_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
