@@ -8,6 +8,7 @@ import * as Chapter04 from './chapter-04.mdx';
 import * as Chapter06 from './chapter-06.mdx';
 import * as Chapter07 from './chapter-07.mdx';
 import * as Chapter08 from './chapter-08.mdx';
+import * as Glossary from './glossary.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
 
@@ -282,7 +283,8 @@ export const chapters = {
       chapterNumber: 9,
       chapterPrefix: 'Glossary',
     },
-    title: 'Glossary',
+    component: Glossary.default,
+    title: "Glossary",
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Glossary_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
