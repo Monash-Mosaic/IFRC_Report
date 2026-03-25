@@ -1,4 +1,5 @@
 import * as Synthesis from './exec-summary.mdx';
+import * as Acronyms from './acronyms.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
@@ -114,7 +115,8 @@ export const chapters = {
       chapterNumber: -1,
       chapterPrefix: 'Acronyms',
     },
-    title: 'Acronyms',
+    component: Acronyms.default,
+    title: Acronyms.title,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Acronyms_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
