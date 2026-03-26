@@ -300,7 +300,6 @@ export const chapters = {
     },
     component: Annex02.default,
     title: Annex02.title,
-    subtitle: Annex02.subtitle,
     tableOfContents: Annex02.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Annex2_EN.pdf',
     thumbnailOverlay: 'red',
