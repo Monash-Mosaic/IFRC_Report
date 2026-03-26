@@ -284,7 +284,7 @@ export const chapters = {
       chapterPrefix: 'Glossary',
     },
     component: Glossary.default,
-    title: "Glossary",
+    title: Glossary.title,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Glossary_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
