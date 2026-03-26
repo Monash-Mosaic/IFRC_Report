@@ -281,7 +281,7 @@ export const chapters = {
     metadata: {
       chapterKey: 'glossary',
       chapterNumber: 9,
-      chapterPrefix: 'Glossary',
+      chapterPrefix: 'Annex 1',
     },
     component: Glossary.default,
     title: Glossary.title,
