@@ -1,4 +1,5 @@
 import * as Acronyms from './acronyms.mdx';
+import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
 
@@ -109,6 +110,20 @@ export const chapters = {
     component: Acronyms.default,
     title: Acronyms.title,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Acronyms_FR.pdf',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'chapitre-01': {
+    metadata: {
+      chapterKey: 'chapter-01',
+      chapterNumber: 1,
+      chapterPrefix: 'Chapitre 01',
+    },
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    thumbnail: '/wdr25/chapters/Chapter1.webp',
     thumbnailOverlay: 'red',
     released: true,
   },
