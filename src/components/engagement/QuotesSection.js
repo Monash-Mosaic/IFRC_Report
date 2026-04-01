@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { QuoteIcon, Monitor, Wifi, Smartphone, Activity, User, Building2 } from 'lucide-react';
 import EmblaCarousel from '@/components/EmblaCarousel';
+import Link from 'next/link';
 
 const TAG_COLUMN_MAP = {
   psychological:         { column: 'harm',        label: 'Psychological' },
@@ -98,6 +99,15 @@ function formatChapterLabel(chapterCode) {
   return m ? `Chapter ${m[1]}` : chapterCode;
 }
 
+function getChapterUrl(chapterCode, locale) {
+  if (!chapterCode || typeof chapterCode !== 'string') return '#';
+  const m = chapterCode.trim().match(/^CH(\d+)$/i);
+  if (!m) return '#';
+
+  const chapterNumber = m[1].padStart(2, '0');
+  return `/${locale}/reports/wdr26/chapter-${chapterNumber}`;
+}
+
 /** Resolve quote harm tags to TOH icons with labels (unique by Icon, ordered). Only icons that match are returned. */
 function getIconsForHarm(harmStr) {
   const tags = parseTags(harmStr).map((t) => t.toLowerCase().trim());
@@ -118,7 +128,7 @@ function getIconsForHarm(harmStr) {
 const QUOTE_CARD_HEIGHT = 340;
 const QUOTE_CARD_WIDTH = 280;
 
-function QuoteCard({ quote }) {
+function QuoteCard({ quote, locale }) {
   const chapterTitle = CHAPTER_TITLES[quote.chapter];
   const chapterLabel = formatChapterLabel(quote.chapter);
   const tohItems = getIconsForHarm(quote.harm);
@@ -165,9 +175,12 @@ function QuoteCard({ quote }) {
       {/* Footer */}
       <div className="px-5 py-4 border-t border-slate-100 shrink-0">
         {chapterLabel && (
-          <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
+          <Link
+            href={getChapterUrl(quote.chapter, locale)}
+            className="text-xs font-bold text-[#ee2435] underline underline-offset-2"
+          >
             {chapterLabel}
-          </span>
+          </Link>
         )}
         {chapterTitle && (
           <span className="text-xs font-bold text-slate-800 ml-1">
@@ -291,7 +304,7 @@ export default function QuotesSection({ selectedTag }) {
           containerClassName="pb-3"
         >
           {filtered.map((quote) => (
-            <QuoteCard key={quote.id} quote={quote} />
+            <QuoteCard key={quote.id} quote={quote} locale={locale} />
           ))}
         </EmblaCarousel>
       )}
