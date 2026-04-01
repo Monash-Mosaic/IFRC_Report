@@ -1,3 +1,4 @@
+import * as Glossary from './glossary.mdx';
 import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
 
@@ -96,6 +97,17 @@ export const chapters = {
     tableOfContents: Synthesis.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_FR.pdf',
     thumbnail: '/wdr25/chapters/Synthesis.webp',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  glossaire: {
+    metadata: {
+      chapterKey: 'glossary',
+      chapterNumber: 9,
+      chapterPrefix: 'Glossaire',
+    },
+    component: Glossary.default,
+    title: Glossary.title,
     thumbnailOverlay: 'red',
     released: true,
   },
