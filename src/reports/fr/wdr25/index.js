@@ -109,6 +109,9 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
+    downloadLink: '',
+    thumbnail: '/wdr25/chapters/Chapter2.webp',
+    released: true,
     audios: [
       {
         id: 'intro',
