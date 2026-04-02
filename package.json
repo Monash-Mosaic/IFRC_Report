@@ -46,7 +46,7 @@
     "lucide-react": "^0.577.0",
     "min-indent": "^1.0.1",
     "next": "~16.1.7",
-    "next-intl": "^4.8.3",
+    "next-intl": "^4.9.0",
     "next-share": "^0.27.0",
     "postcss": "^8.5.8",
     "react": "^19.2.4",
