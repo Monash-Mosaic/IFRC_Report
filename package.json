@@ -36,7 +36,7 @@
     "@opennextjs/cloudflare": "^1.17.1",
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@types/mdx": "^2.0.13",
-    "dexie": "^4.3.0",
+    "dexie": "^4.4.2",
     "embla-carousel-react": "^8.6.0",
     "flexsearch": "^0.8.212",
     "geist": "^1.7.0",
