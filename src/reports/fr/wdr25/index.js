@@ -108,6 +108,7 @@ export const chapters = {
     },
     component: Acronyms.default,
     title: Acronyms.title,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Acronyms_FR.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },
