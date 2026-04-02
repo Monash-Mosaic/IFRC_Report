@@ -109,7 +109,7 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
-    downloadLink: '',
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter02_FR.pdf',
     thumbnail: '/wdr25/chapters/Chapter2.webp',
     released: true,
     audios: [
