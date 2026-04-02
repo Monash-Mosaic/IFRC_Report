@@ -1,5 +1,6 @@
 import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
+import * as Annex02 from './annex-02.mdx';
 
 export const title = 'Rapport mondial sur les catastrophes 2026';
 
@@ -133,4 +134,17 @@ export const chapters = {
       },
     ],
   },
+    annex2: {
+      metadata: {
+        chapterKey: 'annex2',
+        chapterNumber: 10,
+        chapterPrefix: 'Annexe 2',
+      },
+      component: Annex02.default,
+      title: Annex02.title,
+      tableOfContents: Annex02.tableOfContents,
+      downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Annex2_FR.pdf',
+      thumbnailOverlay: 'red',
+      released: true,
+    },
 };

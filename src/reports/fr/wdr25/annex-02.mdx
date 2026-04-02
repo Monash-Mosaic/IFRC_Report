@@ -1,0 +1,257 @@
+import {
+  Box,
+  ContributorSpotlight,
+  ContributorSpotlightName,
+  ContributorSpotlightPosition,
+  ContributorSpotlightRole,
+  Contributors,
+  TohInsight,
+  ChapterQuote,
+  ChapterImage,
+  Contributor,
+  ContributorEntity,
+  ContributorName,
+  ContributorRole,
+  ContributorTag,
+  EndnotesLink,
+  SideNote,
+  SmallQuote,
+  SmallQuoteAuthor,
+  Spotlight,
+  QuestionAnswerBox,
+  QuestionAnswerBoxTitle,
+  QuestionAnswerBoxBody,
+  Definition,
+  DefinitionDescription,
+  HeadingLabel,
+  Anchor,
+  ReccomendationsTitle,
+  Reccomendations
+} from '@/components/CustomComponents';
+
+export const title = 'Le rôle des données dans la prise de décisions humanitaires';
+
+<ChapterImage
+  imagePath="/wdr25/annex-2/p-SLE1407-AB_fmt1.webp"
+  width={900}
+  height={600}
+/>
+
+import { TypologyOfHarm } from '@/types/TypologyOfHarm';
+
+# <HeadingLabel index="A2.1"/>Les données sont importantes pour éclairer les décisions et orienter les actions
+
+Les premières questions posées lors de l’évaluation d’une catastrophe ou d’une crise portent sur l’ampleur et la gravité de la situation et les endroits ou les personnes qui seront les plus touchés par ses effets. Pour y répondre, nous avons besoin de données et, ces dernières années, le volume de données produites à cette fin a explosé. En conséquence, la capacité de développer des méthodes systématiques d’allocation des ressources, de ciblage de l’aide et d’anticipation des crises s’est rapidement améliorée. Ces méthodes permettent aux organisations humanitaires de s’appuyer sur des données probantes pour guider leurs principes et leurs règles dans le but de fournir une aide là où elle est le plus nécessaire.
+
+Pour bâtir une base de données probantes aux fins d’une prise de décisions fondée sur des principes, il faut être tout à fait au clair sur ce que les données montrent – et ne montrent pas –, sur la manière dont elles ont été collectées, produites ou transformées, et sur leur mise à jour et leur fiabilité, en prenant appui sur les expériences passées. Les données présentées et analysées dans ce rapport ont été rassemblées dans une base de données de bases de données, la Montandon Global Crisis Data Bank, qui est conçue pour être le plus grand registre ouvert et en libre accès au monde pour les données sur les aléas, leurs impacts et les interventions engagées pour y faire face.
+
+L’un des principaux objectifs de la base de données Montandon est de servir de base de référence pour les tendances mondiales, comme présenté ci-dessous. En outre, nous collectons une grande variété de données afin de nous aider à trianguler, à établir le degré de confiance que nous devons accorder aux prévisions et à sélectionner les informations les plus utiles pour notre réseau de la Fédération internationale et au-delà.
+
+Nous sommes reconnaissants envers les nombreux partenaires qui ont collaboré à la création de la base de données Montandon et qui ont travaillé sans relâche pour collecter des données sur le terrain et chez eux afin d’alimenter notre intelligence collective.
+
+# <HeadingLabel index="A2.2"/> Tendances récentes
+
+Les données de 2020 à 2024 fournissent un aperçu illustratif de ce que nous savons, comment nous le savons et comment les données sont utilisées pour évoluer vers des approches plus anticipatives des crises humanitaires[^1].
+
+Sur la base des cinq années de données sur les crises et leurs impacts, nous nous sommes employés à répondre aux questions clés suivantes :
+
+- Combien de catastrophes se produisent ?
+
+- Où se produisent les catastrophes ?
+
+- Quelle est la gravité des catastrophes ?
+
+- Comment les communautés réagissent-elles – ou quelles mesures anticipatives prennent-elles – avec ou sans le soutien des acteurs internationaux ?
+
+- À quelles questions pouvons-nous répondre avec certitude et à l’aide de quelles données ?
+
+Le nombre de personnes touchées par des catastrophes a augmenté de manière constante entre 2020 et 2024 selon deux indicateurs : les personnes touchées (<a href="#fig-a2-1-a" className="text-[#ee2435] hover:underline">Figure A2.1.a</a>) et les déplacements (<a href="#fig-a2-1-b" className="text-[#ee2435] hover:underline">Figure A2.1.b</a>).
+
+<Anchor meta="Fig A2.1.a" id="fig-a2-1-a">
+    Nombre de personnes touchées par une catastrophe, par année (2020-2024)
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-d1a.webp"
+  width={900}
+  height={600}
+  caption="Source : Centre de recherche sur l’épidémiologie des catastrophes (CRED), Base de données sur les situations d’urgence (EM-DAT)"
+/>
+
+<Anchor meta="Fig A2.1.b" id="fig-a2-1-b">
+    Nombre de déplacements du fait d’une catastrophe, par année (2020-2024) 
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-d1b.webp"
+  width={900}
+  height={600}
+  caption= "Source : Centre pour la surveillance des déplacements internes (IDMC)"
+/>
+
+
+Les augmentations reflètent à la fois une hausse du nombre d’événements (catastrophes) et des améliorations dans la manière dont ils sont enregistrés. Le Centre pour la surveillance des déplacements internes (IDMC), par exemple, a enregistré 14 348 catastrophes individuelles entre 2020 et 2024 (inclus)
+(<a href="#fig-a2-2" className="text-[#ee2435] hover:underline">figure A2.2</a>)[^2].
+
+<Anchor meta="Fig A2.2" id="fig-a2-2">
+    Nombre de catastrophes enregistrées par an (2020-2024)
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-d2.webp"
+  width={900}
+  height={600}
+  caption = "Source : Montandon et Service de surveillance financière d’OCHA"
+/>
+
+Les données montrent également que la plupart des catastrophes sont gérées au moyen des capacités des acteurs nationaux et locaux. Si l’on compare le plus grand nombre total estimé d’événements (enregistré par l’IDMC) avec le nombre d’événements qui ont déclenché une intervention humanitaire internationale (tels qu’enregistrés par la Fédération internationale et le Bureau de la coordination des affaires humanitaires des Nations unies), on constate que dans la très grande majorité des cas, les gouvernements nationaux et les communautés locales ont mené leurs interventions sans demander, directement ou indirectement, une assistance internationale.
+
+<Anchor meta="Fig A2.3" id="fig-a2-3">
+    Number of requests by National Societies for international assistance, 2020-2024
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-d3-new-tight.webp"
+  width={900}
+  height={600}
+  caption = "Source: IFRC GO (DREF et appels d’urgence)"
+/>
+
+La <a href="#fig-a2-3" className="text-[#ee2435] hover:underline">figure A2.3</a> montre le nombre de demandes d’assistance internationale reçues par la Fédération internationale de la part des Sociétés nationales, la plupart concernant des inondations. Le fait que la grande majorité des catastrophes soient gérées principalement au niveau national et local est à la fois approprié et révélateur de résilience. En effet, la majorité des catastrophes sont causées par des aléas fréquents et de faible intensité qui touchent un nombre relativement restreint de personnes et de communautés. Par exemple, sur les 14 348 catastrophes ayant entraîné des déplacements de population enregistrées par l’IDMC, plus de la moitié (7 642 événements, soit 53 %) ont déplacé 100 personnes ou moins, principalement en raison d’inondations, de tempêtes et de glissements de terrain localisés (<a href="#fig-a2-4" className="text-[#ee2435] hover:underline">Figure A2.4</a>).
+
+<Anchor meta="Fig A2.4" id="fig-a2-4">
+    Number of events that displaced 100 or fewer people, by hazard type, 2020–2024
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-d4-rgb.webp"
+  width={900}
+  height={600}
+  caption = "Source : Montandon/IDMC-Base de données mondiale sur les déplacements internes (GIDD)"
+/>
+
+Les catastrophes ont toujours existé, mais nous sommes désormais mieux à même de détecter et de comprendre les tendances grâce à des investissements plus importants et des améliorations dans la collecte de données, en particulier pour les événements de moindre ampleur.
+
+Depuis des décennies, la Fédération internationale alloue ses fonds et mobilise l’aide humanitaire internationale en fonction de l’ampleur des catastrophes, en renforçant les capacités des Sociétés nationales en matière de réduction des risques de catastrophe, de préparation et d’intervention pour gérer les catastrophes de moindre ampleur, en utilisant le Fonds d’urgence pour l’intervention en cas de catastrophe (DREF) pour les catastrophes de moyenne et grande ampleur, et en lançant des appels d’urgence pour les catastrophes majeures plus rares (<a href="#fig-a2-5" className="text-[#ee2435] hover:underline">Figure A2.5</a>).
+
+<Anchor meta="Fig A2.5" id="fig-a2-5">
+  Comment la Fédération internationale et les autres acteurs humanitaires gèrent les risques
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-d5.webp"
+  width={900}
+  height={600}
+/>
+
+## <HeadingLabel index="A2.2.1"/>Où se produisent les catastrophes?
+La répartition géographique des catastrophes enregistrées révèle des tendances frappantes : 84 % des événements (catastrophes) se sont produits dans seulement 37 pays (figure A2.6). À première vue, ces pays semblent très divers, allant de pays à revenu élevé à des pays à revenu intermédiaire supérieur, intermédiaire inférieur et faible. Cependant, ils ont en commun à la fois une exposition aux risques et la capacité d’enregistrer systématiquement les impacts des catastrophes de petite, moyenne et grande ampleur, souvent dans des zones à forte densité de population. Une comparaison entre les impacts enregistrés en Afrique et les risques de catastrophe (<a href="#fig-a2-6" className="text-[#ee2435] hover:underline">figures A2.6</a> et <a href="#fig-a2-7" className="text-[#ee2435] hover:underline">A2.7</a>) indique que de nombreux pays n’ont probablement pas signalé tous les impacts.
+
+<Anchor meta="Fig A2.6" id="fig-a2-6">
+    Pays où la plupart des catastrophes sont enregistrées (2020-2024)
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-d6-wide.webp"
+  width={900}
+  height={600}
+  caption = "Source: Montandon/IDMC-GIDD"
+/>
+
+
+<Anchor meta="Fig A2.7" id="fig-a2-7">
+     Pays d’Afrique classés selon le risque d’inondations et de cyclones
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-annex-2/fig-A-2-7.webp"
+  width={900}
+  height={600}
+  caption = "Source: IFRC GO et indice de risque INFORM"
+/>
+
+## <HeadingLabel index="A2.2.2"/>Quelle est la gravité des catastrophes?
+
+Entre 2020 et 2024, les catastrophes ont touché quelque 697 millions de personnes[^3], provoqué 105 millions de déplacements et causé la mort de 271000 personnes[^4]. La gravité des catastrophes, telle qu’indiquée par le nombre de personnes ayant besoin d’une aide humanitaire, a également augmenté pendant cette période, passant de 192 millions de personnes en janvier 2020 à plus de 433 millions de personnes à la fin de 2024[^5]. Selon le Groupe d’experts intergouvernemental sur l’évolution du climat (GIEC), « les changements climatiques induits par l’homme, notamment la fréquence et l’intensité accrues des phénomènes extrêmes, ont eu des effets néfastes généralisés et causé des pertes et des dommages à la nature et aux populations, au-delà de la variabilité climatique naturelle»[^6]. Étant donné que les aléas hydrométéorologiques sont à l’origine de la plupart de ces catastrophes, comme le montrent les figures A2.3 et A2.4 ci-dessus, le nombre de personnes tuées, déplacées ou autrement touchées par des catastrophes devrait augmenter au cours des prochaines années.
+
+## <HeadingLabel index="A2.2.3"/>Où le manque de données complique‑t-il la réponse à ces questions? 
+
+Les données brossent un tableau assez complet dans certaines parties du monde (Amérique du Nord et du Sud, Europe, Asie), mais pas dans d’autres (Afrique), et les impacts de certains aléas sont largement sous-estimés, en particulier concernant les vagues de chaleur extrême et les maladies. Étant donné que ces deux types d’aléas sont influencés par les conditions météorologiques et climatiques, notre compréhension des risques et de la manière de les gérer nécessite davantage de ressources et d’attention au niveau international.
+
+Notre capacité de collecter des données sur les catastrophes s’est améliorée ces dernières années, mais les récentes coupes dans les financements alloués à de nombreuses organisations de collecte de données, qui sont souvent indépendantes et de petite taille, menace l’écosystème des données probantes. La base de données factuelles sur laquelle s’appuient les interventions humanitaires efficaces et fondées sur des principes pour établir les priorités et mettre en œuvre les mesures nécessaires s’en trouve donc considérablement appauvrie.
+
+# Conclusions: enseignementstirés et perspectives d’avenir
+
+- Combien de catastrophes se produisent ? De nombreuses sources clés montrent une tendance à la hausse. Par exemple, les chiffres de l’IDMC font état de 14 348 événements entre 2020 et 2024, contre 5 664 au cours des cinq années précédentes (2015-2019). Cependant, cela s’explique en partie par les investissements récents dans des méthodes d’enregistrement et de validation des événements, en particulier les catastrophes de moindre ampleur.
+
+- Où se produisent les catastrophes ? La répartition géographique des catastrophes enregistrées est assez concentrée, 84 % des événements se produisant dans seulement 37 pays. Plusieurs facteurs, qui se recoupent souvent, expliquent cette situation : ces pays sont vulnérables aux catastrophes en raison du nombre élevé de personnes et de biens exposés aux aléas naturels ; et ils sont capables d’enregistrer les impacts lorsque des catastrophes se produisent. Ces chiffres suggèrent également que les catastrophes sont largement sous-signalées dans la plupart des pays d’Afrique subsaharienne, où des millions de personnes sont exposées aux inondations, à la sécheresse et à d’autres aléas, alors que relativement peu d’événements sont enregistrés.
+
+- Au cours de cette période, les catastrophes ont touché quelque 697 millions de personnes[^7]
+  , provoqué 105 millions de déplacements et causé la mort de 271000 personnes[^8]
+  . Les aléas hydrométéorologiques étant à l’origine de la plupart de ces catastrophes, ces chiffres devraient augmenter dans les années à venir.
+
+- Comment les communautés réagissent-elles – ou quelles mesures anticipatives prennent-elles – avec ou sans le soutien des acteurs internationaux ? Environ 94 % des catastrophes sont gérées par les gouvernements nationaux et les communautés sans aide internationale, ce qui démontre leur résilience intrinsèque.
+
+- À quelles questions pouvons-nous répondre avec certitude et à l’aide de quelles données ? Il est paradoxal que les pays les plus exposés aux aléas manquent souvent de capacités institutionnelles pour collecter systématiquement des données sur les impacts des catastrophes. En conséquence, les nombreuses catastrophes gérées par les acteurs locaux et grâce à la résilience des communautés restent sous-signalées. Les risques croissants qui pèsent sur le financement des organisations et des services de collecte de gestion des données et informations humanitaires menacent d’aggraver cette situation.
+
+# Exigences, objectifs et recommandations
+
+<ReccomendationsTitle>**Exigence**</ReccomendationsTitle>
+
+<Reccomendations>
+  Poursuivre l’investissement dans les systèmes de données sur les catastrophes aux niveaux local,
+  national et international, en apportant un soutien particulier aux Sociétés nationales et aux
+  acteurs locaux afin de renforcer leurs capacités de collecte, d’analyse et de partage des données.
+</Reccomendations>
+
+<ReccomendationsTitle>**Objectif**</ReccomendationsTitle>
+
+<Reccomendations>
+  Permettre une action humanitaire et une prise de décision davantage fondées sur des données
+  probantes grâce à l’amélioration de la collecte, de l’analyse et de l’utilisation des données.
+</Reccomendations>
+
+<ReccomendationsTitle>**Recommandations**</ReccomendationsTitle>
+
+
+#### États et décideurs
+
+- Investir dans des systèmes complets et fiables de collecte de données sur les catastrophes.
+
+- Garantir une plus grande transparence et l’utilisation de processus d’allocation de fonds fondés sur des données probantes.
+
+#### Acteurs humanitaires
+
+- S’engager à produire et à mettre en commun les données probantes les plus solides possibles, plutôt que de favoriser la production de données probantes isolées.
+
+- Travailler en toute transparence pour tenir compte des lacunes, des limites et des biais des données afin de garantir une utilisation appropriée des informations et des données probantes.
+
+#### Communautés et dirigeants locaux
+
+- Insister pour participer à la collecte et à l’analyse des données et affirmer votre rôle essentiel dans la validation des données et des éléments probants produits par d’autres.
+
+- Collaborer avec les acteurs humanitaires et les donateurs pour garantir que les connaissances des communautés sont prises en compte dans les réponses et les interventions en cours.
+
+<ChapterImage
+  imagePath="/wdr25/annex-2/02_opt.webp"
+  width={900}
+  height={600}
+/>
+
+# Endnotes
+
+[^1]: Les données analysées aux fins des conclusions du rapport proviennent de la base de données, la plus grande base de données ouverte et en libre accès au monde sur les catastrophes, qui intègre des données provenant de plusieurs sources répertoriant les risques naturels et leurs impacts. Montandon.
+
+[^2]: Nous utilisons le terme « déplacements » plutôt que « personnes déplacées », car une partie des 160 millions de déplacements concerne des personnes qui ont été déplacées plusieurs fois.
+
+[^3]: Compte tenu de la manière dont les données sur les populations touchées sont collectées, toute personne qui a été touchée par plus d’une catastrophe au cours de cette période est comptabilisée plusieurs fois.
+
+[^4]: D’après Montandon, EM-DAT et IDMC-GIDD.
+
+[^5]: Commission européenne. Indice de gravité INFORM. https://drmkc.jrc.ec.europa.eu/inform-index/INFORM-Severity/Severity-Facts-Figures
+
+[^6]: GIEC. *Climate Change 2022: Impacts, Adaptation and Vulnerability. Contribution of Working Group II to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change.* (Cambridge University Press, 2022). http://www.ipcc.ch/report/ar6/wg2/downloads/report/IPCC_AR6_WGII_SummaryForPolicymakers.pdf
+
+[^7]: Compte tenu de la manière dont les données sur les populations touchées sont collectées, toute personne qui a été touchée par plus d’une catastrophe au cours de cette période est comptabilisée plusieurs fois.
+
+[^8]: D’après Montandon, EM-DAT et IDMC-GIDD.
