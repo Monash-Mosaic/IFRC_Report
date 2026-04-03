@@ -104,7 +104,7 @@ jobs:
         uses: AnimMouse/setup-cloudflared/tunnel@v2
         with:
           cloudflare_tunnel_credential: ${{ secrets.CLOUDFLARE_TUNNEL_CREDENTIAL }}
-          cloudflare_tunnel_id: ${{ vars.CLOUDFLARE_TUNNEL_ID }}
+          cloudflare_tunnel_id: ${{ secrets.CLOUDFLARE_TUNNEL_ID }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
