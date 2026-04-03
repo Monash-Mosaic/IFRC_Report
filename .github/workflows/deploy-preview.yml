@@ -112,26 +112,20 @@ jobs:
           CF_D1_SEARCH_DB_ID_PREVIEW: ${{ secrets.CF_D1_SEARCH_DB_ID_PREVIEW }}
         run: node scripts/ci/inject-d1-database-ids.mjs
 
-      - name: Write secrets to .env for build index
-        run: echo "CLOUDFLARE_ACCESS_CLIENT_SECRET=${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}" >> .env
-
       - name: Build search index (preview)
         env:
           CLOUDFLARE_ACCESS_CLIENT_SECRET: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
-          CLOUDFLARE_ACCESS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}
+          CLOUDFLARE_ACCESS_CLIENT_ID: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_ID }}
           CLOUDFLARE_ENV: preview
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
-        run: |
-          echo "CLOUDFLARE_ACCESS_ACCOUNT_ID=${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}" >> .env
-          echo "CLOUDFLARE_ACCESS_CLIENT_SECRET=${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}" >> .env
-          npm run build:search
+        run: npm run build:search
 
       - name: Deploy to Cloudflare (preview for PR)
         id: deploy
         if: ${{ github.event_name == 'pull_request' }}
         env:
           CLOUDFLARE_ACCESS_CLIENT_SECRET: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
-          CLOUDFLARE_ACCESS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}
+          CLOUDFLARE_ACCESS_CLIENT_ID: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_ID }}
           CLOUDFLARE_ENV: preview
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
           NEXT_PUBLIC_SITE_URL: ${{ format('{0}-{1}.{2}.workers.dev', steps.preview.outputs.branch_slug, vars.CLOUDFLARE_WORKER_NAME, vars.CLOUDFLARE_WORKERS_SUBDOMAIN) }}
@@ -149,7 +143,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         env:
           CLOUDFLARE_ACCESS_CLIENT_SECRET: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
-          CLOUDFLARE_ACCESS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}
+          CLOUDFLARE_ACCESS_CLIENT_ID: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_ID }}
           CLOUDFLARE_ENV: ""
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
         run: npm run build:search
@@ -159,7 +153,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         env:
           CLOUDFLARE_ACCESS_CLIENT_SECRET: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
-          CLOUDFLARE_ACCESS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}
+          CLOUDFLARE_ACCESS_CLIENT_ID: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_ID }}
           NEXT_PUBLIC_SITE_URL: ${{ env.NEXT_PUBLIC_PREVIEW_SITE_URL }}
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
           CLOUDFLARE_ENV: "preview"
@@ -174,7 +168,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         env:
           CLOUDFLARE_ACCESS_CLIENT_SECRET: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
-          CLOUDFLARE_ACCESS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}
+          CLOUDFLARE_ACCESS_CLIENT_ID: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_ID }}
           NEXT_PUBLIC_SITE_URL: ${{ env.NEXT_PUBLIC_SITE_URL }}
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
           CLOUDFLARE_ENV: ""
@@ -283,7 +277,7 @@ jobs:
       - name: Remove FlexSearch tables for closed PR namespace
         env:
           CLOUDFLARE_ACCESS_CLIENT_SECRET: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
-          CLOUDFLARE_ACCESS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}
+          CLOUDFLARE_ACCESS_CLIENT_ID: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_ID }}
           FLEXSEARCH_DB_ENV: preview
           FLEXSEARCH_TARGET_NAMESPACE: ${{ steps.preview.outputs.branch_slug }}
         run: node scripts/ci/cleanup-flexsearch-tables.mjs

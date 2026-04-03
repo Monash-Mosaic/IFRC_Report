@@ -61,7 +61,6 @@ function extractInlineText(node) {
 
   return parts.join('\n').replace(/\s+/g, ' ').trim();
 }
-console.log(process.env)
 const { reportsByLocale } = report;
 const indices = Object.fromEntries(Object.keys(reportsByLocale).map(e => [e, []]));
 const cloudflareEnvironment = process.env.CLOUDFLARE_ENV;
