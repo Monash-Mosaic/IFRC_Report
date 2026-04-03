@@ -118,6 +118,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_ENV: preview
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
+          WRANGLER_LOG: debug
         run: npm run build:search
 
       - name: Deploy to Cloudflare (preview for PR)
