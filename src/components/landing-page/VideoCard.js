@@ -1,21 +1,27 @@
 import { extractYouTubeVideoId } from '@/utils/video_util';
-import { YouTubeEmbed } from '@next/third-parties/google';
 
 export default function VideoCard({ title, description, url }) {
   const youtubeVideoId = extractYouTubeVideoId(url);
+  const embedSrc = youtubeVideoId
+    ? `https://www.youtube.com/embed/${youtubeVideoId}?rel=0`
+    : null;
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full">
-      {/* YouTube Player */}
-      <div className="relative aspect-video bg-gray-900">
-        {youtubeVideoId ? (
-          <YouTubeEmbed videoid={youtubeVideoId} params="rel=0" />
+      <div className="relative aspect-video w-full overflow-hidden bg-black">
+        {embedSrc ? (
+          <iframe
+            title={title}
+            className="absolute inset-0 h-full w-full border-0"
+            src={embedSrc}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         ) : (
           // Fallback to native HTML video for non-YouTube URLs
-          <video
-            className="w-full h-full object-cover"
-            controls
-          >
+          <video className="absolute inset-0 h-full w-full object-cover" controls>
             <source src={url} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

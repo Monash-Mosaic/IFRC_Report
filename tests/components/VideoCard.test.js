@@ -1,15 +1,6 @@
 import VideoCard from '@/components/landing-page/VideoCard';
 import { render, screen } from '@testing-library/react';
 
-// Mock YouTubeEmbed component
-jest.mock('@next/third-parties/google', () => ({
-  YouTubeEmbed: ({ videoid, params }) => (
-    <div data-testid="mock-youtube-embed" data-videoid={videoid} data-params={params}>
-      YouTube Player: {videoid}
-    </div>
-  ),
-}));
-
 const defaultProps = {
   title: 'Test Video Title',
   description: 'This is a test video description that explains the content of the video.',
@@ -36,12 +27,15 @@ describe('VideoCard', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders a YouTube embed for YouTube URLs', () => {
+  it('renders a YouTube iframe for YouTube URLs', () => {
     render(<VideoCard {...defaultProps} />);
 
-    const youtubeEmbed = screen.getByTestId('mock-youtube-embed');
-    expect(youtubeEmbed).toHaveAttribute('data-videoid', 'dQw4w9WgXcQ');
-    expect(youtubeEmbed).toHaveAttribute('data-params', 'rel=0');
+    const iframe = screen.getByTitle('Test Video Title');
+    expect(iframe.tagName).toBe('IFRAME');
+    expect(iframe).toHaveAttribute(
+      'src',
+      'https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0'
+    );
   });
 
   it('renders an HTML5 video for non-YouTube URLs', () => {
@@ -72,8 +66,11 @@ describe('VideoCard', () => {
         <VideoCard title="YouTube Video" description="Video" url={url} />
       );
 
-      const youtubeEmbed = screen.getByTestId('mock-youtube-embed');
-      expect(youtubeEmbed).toHaveAttribute('data-videoid', 'dQw4w9WgXcQ');
+      const iframe = screen.getByTitle('YouTube Video');
+      expect(iframe).toHaveAttribute(
+        'src',
+        expect.stringContaining('embed/dQw4w9WgXcQ')
+      );
 
       unmount();
     }
