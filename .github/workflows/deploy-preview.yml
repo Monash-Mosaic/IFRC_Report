@@ -112,13 +112,19 @@ jobs:
           CF_D1_SEARCH_DB_ID_PREVIEW: ${{ secrets.CF_D1_SEARCH_DB_ID_PREVIEW }}
         run: node scripts/ci/inject-d1-database-ids.mjs
 
+      - name: Write secrets to .env for build index
+        run: echo "CLOUDFLARE_ACCESS_CLIENT_SECRET=${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}" >> .env
+
       - name: Build search index (preview)
         env:
           CLOUDFLARE_ACCESS_CLIENT_SECRET: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
           CLOUDFLARE_ACCESS_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}
           CLOUDFLARE_ENV: preview
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
-        run: npm run build:search
+        run: |
+          echo "CLOUDFLARE_ACCESS_ACCOUNT_ID=${{ secrets.CLOUDFLARE_ACCESS_ACCOUNT_ID }}" >> .env
+          echo "CLOUDFLARE_ACCESS_CLIENT_SECRET=${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}" >> .env
+          npm run build:search
 
       - name: Deploy to Cloudflare (preview for PR)
         id: deploy
