@@ -97,14 +97,11 @@ jobs:
         with:
           lfs: true
 
-      - name: Setup cloudflared
-        uses: AnimMouse/setup-cloudflared@v2
-        
-      - name: Setup cloudflared tunnel
-        uses: AnimMouse/setup-cloudflared/tunnel@v2
+      - uses: Voodoo262/cloudflare-access-proxy@v1  # start the proxy server
         with:
-          cloudflare_tunnel_credential: ${{ secrets.CLOUDFLARE_TUNNEL_CREDENTIAL }}
-          cloudflare_tunnel_id: ${{ secrets.CLOUDFLARE_TUNNEL_ID }}
+          cf-access-client-id: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_ID }}
+          cf-access-client-secret: ${{ secrets.CLOUDFLARE_ACCESS_CLIENT_SECRET }}
+          target-url: 'https://ifrc-wdr-playbook-preview.monash-mosaic.workers.dev'
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -128,7 +125,6 @@ jobs:
           CLOUDFLARE_ENV: preview
           NEXT_PUBLIC_GIT_TAG: ${{ steps.preview.outputs.branch_slug }}
           WRANGLER_LOG: debug
-          WRANGLER_LOG_SANITIZE: false
         run: npm run build:search
 
       - name: Deploy to Cloudflare (preview for PR)
@@ -248,10 +244,6 @@ jobs:
               description: state === 'success' ? 'Preview deployed' : 'Preview deploy failed',
               target_url: previewUrl || undefined,
             });
-
-      - name: Shutdown and view logs of cloudflared
-        if: '! cancelled()'
-        uses: AnimMouse/setup-cloudflared/shutdown@v2
 
   cleanup_preview_tables:
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.head.repo.full_name == github.repository }}
