@@ -11,9 +11,7 @@ const wranglerConfigPath = pathResolve(projectRoot, 'wrangler.jsonc');
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 const PROD_DB_PATH = ['d1_databases', 0, 'database_id'];
-const PREVIEW_DB_PATH = ['env', 'preview', 'd1_databases', 0, 'database_id'];
 const PROD_DB_REMOTE_PATH = ['d1_databases', 0, 'remote'];
-const PREVIEW_DB_REMOTE_PATH = ['env', 'preview', 'd1_databases', 0, 'remote'];
 
 function requireEnv(name) {
   const value = process.env[name]?.trim();
@@ -76,13 +74,10 @@ async function run() {
   }
 
   assertJsoncPathExists(tree, PROD_DB_PATH);
-  assertJsoncPathExists(tree, PREVIEW_DB_PATH);
 
   let output = configRaw;
   output = applyJsoncUpdate(output, PROD_DB_PATH, prodId);
-  output = applyJsoncUpdate(output, PREVIEW_DB_PATH, previewId);
   output = applyJsoncUpdate(output, PROD_DB_REMOTE_PATH, true);
-  output = applyJsoncUpdate(output, PREVIEW_DB_REMOTE_PATH, true);
 
   await writeFile(wranglerConfigPath, output, 'utf8');
   console.log('[inject-d1-database-ids] Updated wrangler.jsonc with CI-provided D1 database IDs and remote bindings.');
