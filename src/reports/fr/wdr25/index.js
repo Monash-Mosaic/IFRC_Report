@@ -1,6 +1,6 @@
 import * as Chapter02 from './chapter-02.mdx';
 import * as Synthesis from './exec-summary.mdx';
-
+import * as Chapter06 from './chapter-06.mdx'
 export const title = 'Rapport mondial sur les catastrophes 2026';
 
 export const description =
@@ -133,4 +133,19 @@ export const chapters = {
       },
     ],
   },
+  'chapitre-06': {
+      metadata: {
+        chapterKey: 'chapter-06',
+        chapterNumber: 6,
+        chapterPrefix: 'Chapitre 06',
+      },
+      component: Chapter06.default,
+      title: Chapter06.title,
+      subtitle: Chapter06.subtitle,
+      tableOfContents: Chapter06.tableOfContents,
+      downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter06_FR.pdf',
+      thumbnail: '/wdr25/chapters/Chapter6.webp',
+      thumbnailOverlay: 'red',
+      released: true,
+    },
 };
