@@ -2,21 +2,41 @@ import {
   Anchor,
   Box,
   ChapterImage,
-  ColumParagraph,
-  ColumParagraphs,
   Contributor,
   ContributorEntity,
   ContributorName,
   ContributorRole,
   ContributorTag,
+  ColumParagraphs,
+  ColumParagraph,
+  Definition,
+  DefinitionDescription,
   HeadingLabel,
   EndnotesLink,
+  PullQuote,
   Reccomendations,
   ReccomendationsTitle,
   SmallQuote,
   SmallQuoteAuthor,
   TableLabel,
+  TohInsight,
+  ChapterLink,
+  QuestionAnswerBox,
+  QuestionAnswerBoxTitle,
+  QuestionAnswerBoxBody,
 } from '@/components/CustomComponents';
+
+import {
+  Deprivational,
+  Digital,
+  Informational,
+  Longitudinal,
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+} from '@/components/icons/toh';
+
 import { TypologyOfHarm } from '@/types/TypologyOfHarm';
 
 export const title =
@@ -25,7 +45,7 @@ export const subtitle = 'Importance des communautés pour la résilience';
 
 <ChapterImage imagePath="/wdr25/chapter-06/p-PAK3260-AB_opt.png" title="p-PAK3260-AB" />
 
-## Introduction&nbsp;: Importance des communautés pour la résilience
+# Introduction&nbsp;: Importance des communautés pour la résilience
 
 À une époque caractérisée par des extrêmes climatiques record, un nombre croissant de catastrophes et de situations d'urgence et la réduction des budgets humanitaires, il n'a jamais été aussi impératif de se préparer avant que les crises ne frappent. Aujourd'hui, les situations d'urgence ne touchent plus seulement le monde physique, mais aussi le monde de l'information. Les informations préjudiciables ont le pouvoir d'amplifier les peurs, d'éroder la confiance et de perturber les activités de préparation et d'intervention. Elles exacerbent les vulnérabilités et les tensions existantes, aggravant les risques dans des contextes où la confiance est déjà fragile. Comme la réduction des risques de catastrophe, la lutte contre les informations préjudiciables requiert un changement fondamental, à savoir le passage d'interventions réactives au renforcement proactif de la résilience. Il faut pour cela placer au cœur des stratégies humanitaires le soutien aux activités dirigées au niveau local, l'investissement en amont des crises et l'élimination des causes profondes des risques<sup>1</sup>.
 
@@ -57,15 +77,11 @@ Si les communautés locales sont en première ligne face aux risques posés par 
 
 Le Guide de la Croix-Rouge et du Croissant-Rouge sur l'engagement communautaire et la redevabilité<sup>6</sup> présente cinq objectifs cruciaux pour mobiliser les communautés à tous les stades des programmes&nbsp;:
 
-<ol className="list-decimal marker:text-[#ee2435] [&_p]:mb-3 ps-6 space-y-4">
-  <li>Saisir le contexte et les besoins de la communauté&nbsp;;</li>
-  <li>
-    Mettre en œuvre des programmes et des opérations de meilleure qualité et plus efficaces&nbsp;;
-  </li>
-  <li>Favoriser la confiance, l'accès et l'acceptation des communautés&nbsp;;</li>
-  <li>Renforcer l'appropriation et la résilience des communautés&nbsp;;</li>
-  <li>Respecter ses engagements et faire preuve de redevabilité envers les communautés.</li>
-</ol>
+1. Saisir le contexte et les besoins de la communauté.
+2. Mettre en œuvre des programmes et des opérations de meilleure qualité et plus efficaces.
+3. Favoriser la confiance, l'accès et l'acceptation des communautés.
+4. Renforcer l'appropriation et la résilience des communautés.
+5. Respecter ses engagements et faire preuve de redevabilité envers les communautés.
 
 Ces objectifs sont particulièrement pertinents dans le contexte des informations préjudiciables, qui se propagent souvent dans des environnements caractérisés par une confiance faible, des besoins d'information non satisfaits ou l'exclusion sociale. La participation des communautés tout au long de la conception, de la mise en œuvre et de l'évaluation des interventions et des programmes visant à contrer les informations préjudiciables contribue à garantir que les interventions sont pertinentes et adaptées au contexte culturel, à la situation de crise et à l'évolution du paysage de l'information. Elle permet aussi aux praticiens de repérer les lacunes en matière d'information, les tensions sociales et les dynamiques de pouvoir qui peuvent influencer la manière dont les messages sont diffusés, interprétés ou reçus. Dans certains cas, le processus d'élaboration conjointe de mesures de lutte contre les informations peut lui-même servir à nouer des liens, contribuant à restaurer la confiance, à favoriser le dialogue et à créer un espace propice à la résolution des problèmes au niveau local. Qu'il s'agisse de contrer des informations préjudiciables ou de répondre à des défis plus généraux en matière de résilience, les activités CEA restent essentielles pour une action humanitaire efficace et fondée sur des principes.
 
@@ -114,36 +130,38 @@ Il existe une certaine curiosité culturelle mutuelle, mais des lacunes subsiste
 Cette recherche appuie la conception de programmes qui sont techniquement solides, orientés par des considérations éthiques et ancrés dans la société. Elle vise à favoriser la confiance en promouvant l'utilisation sûre et responsable des données et encourage l'utilisation d'outils d'intelligence artificielle approuvés par la Fédération internationale dans un cadre éthique clair. L'objectif est de renforcer l'intervention humanitaire grâce à une prise de décision inclusive et adaptée au contexte, qui tient compte du point de vue des personnes les plus touchées.
 
 <ContributorTag>
-  <Contributor>
-    <ContributorName>Andrés Caro</ContributorName>
-    <ContributorEntity>Spécialiste, Science des données sociales</ContributorEntity>
-    <ContributorRole>
-      Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
-    </ContributorRole>
-  </Contributor>
-  <Contributor>
-    <ContributorName>Carla Guananga</ContributorName>
-    <ContributorEntity>
-      Responsable principale, Engagement des communautés et redevabilité
-    </ContributorEntity>
-    <ContributorRole>
-      Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
-    </ContributorRole>
-  </Contributor>
-  <Contributor>
-    <ContributorName>Carolina Cortés</ContributorName>
-    <ContributorEntity>Responsable, Engagement des communautés et redevabilité</ContributorEntity>
-    <ContributorRole>
-      Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
-    </ContributorRole>
-  </Contributor>
-  <Contributor>
-    <ContributorName>Gracia Banegas</ContributorName>
-    <ContributorEntity>Graphiste</ContributorEntity>
-    <ContributorRole>
-      Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
-    </ContributorRole>
-  </Contributor>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <Contributor>
+      <ContributorName>Andrés Caro</ContributorName>
+      <ContributorEntity>Spécialiste, Science des données sociales</ContributorEntity>
+      <ContributorRole>
+        Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>Carla Guananga</ContributorName>
+      <ContributorEntity>
+        Responsable principale, Engagement des communautés et redevabilité
+      </ContributorEntity>
+      <ContributorRole>
+        Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>Carolina Cortés</ContributorName>
+      <ContributorEntity>Responsable, Engagement des communautés et redevabilité</ContributorEntity>
+      <ContributorRole>
+        Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>Gracia Banegas</ContributorName>
+      <ContributorEntity>Graphiste</ContributorEntity>
+      <ContributorRole>
+        Délégation de groupe de pays pour l'Amérique centrale, Fédération internationale
+      </ContributorRole>
+    </Contributor>
+  </div>
 </ContributorTag>
 
 </Box>
@@ -154,23 +172,31 @@ Pour comprendre comment les communautés gèrent l'information, il faut cartogra
 
 Les principales sources d'information d'une personne, qui sont souvent ses proches, les chefs religieux, les anciens des communautés et les groupes de pairs, déterminent la manière dont elle reçoit et interprète un message et comment elle y réagit. Ces interprétations sont en outre influencées par les normes sociales, les croyances culturelles et la mémoire collective, qui influent sur la confiance accordée aux informations, leur remise en question ou leur rejet. Les informations préjudiciables exploitent souvent ces dynamiques, comblant les lacunes là où les informations fiables, opportunes, ou pertinentes au niveau local font défaut ou n'inspirent pas confiance. Lorsque la communication officielle ne trouve pas d'écho ou n'atteint pas le public cible, les informations préjudiciables peuvent devenir plus convaincantes, non pas parce qu'elles sont plus exactes, mais parce qu'elles semblent plus familières, plus accessibles ou plus en phase avec les expériences vécues et les perceptions.
 
-<Box index="6.2">
+<Box index="6.2" types={[TypologyOfHarm.Societal, TypologyOfHarm.Informational]}>
 
 ## Réponse du Croissant-Rouge du Yémen aux informations préjudiciables&nbsp;: Renforcer la confiance des communautés
 
 La prolifération de la désinformation et de la mésinformation constitue une menace grave et multiforme pour le Croissant-Rouge du Yémen, entravant fortement ses opérations humanitaires et mettant en péril la sécurité de ses volontaires. De fausses informations parviennent à la Société nationale au travers des médias sociaux, des rapports de terrain, des interactions directes avec les communautés et de sa ligne d'assistance téléphonique, et se manifestent de plusieurs manières préjudiciables. Exemples&nbsp;:
 
-**1 Difficultés relatives à l'accès humanitaire et idées fausses sur l'emblème**
+<ol className="list-decimal marker:text-[#ee2435] [&_p]:mb-3 ps-6 space-y-4">
+  <li>
+    <strong>Difficultés relatives à l'accès humanitaire et idées fausses sur l'emblème</strong>
 
 Un problème persistant est l'interprétation erronée des emblèmes, en particulier celui de la croix rouge. Dans certaines communautés, la présence de cet emblème sur les articles de secours et les bannières, à côté du logo du Croissant-Rouge du Yémen, est interprétée à tort comme un signe d'appartenance religieuse par les partenaires. Ce malentendu a un impact négatif sur les interactions locales, nuisant à la coopération des dirigeants communautaires et suscitant un certain degré d'opposition aux initiatives de la Société nationale.
 
 Les idées fausses qui en résultent créent d'importants obstacles à l'accès, ce qui a une incidence directe sur la capacité du Croissant-Rouge du Yémen de fournir de l'aide et de garantir la bonne mise en œuvre de ses programmes. Pour y remédier, il privilégie la diplomatie humanitaire en intensifiant ses discussions avec les décideurs communautaires et les personnalités influentes. Par le dialogue, la Société nationale a clarifié la signification humanitaire universelle de l'emblème et la nature neutre et indépendante de ses partenariats. Elle a organisé de nombreuses réunions pour présenter son mandat, expliquer l'objet de son action et activement corriger les idées fausses. En outre, elle organise pour des personnes influentes des communautés, des séances de communication consacrées aux opérations, qui mettent l'accent sur les principes humanitaires de neutralité, d'impartialité et d'indépendance. En communiquant de manière proactive avec les dirigeants locaux, la Société nationale vise à instaurer la confiance, à garantir que sa mission humanitaire est clairement comprise et acceptée, et à renforcer l'acceptation et le soutien au sein de la communauté.
 
-**2 Renforcer la confiance au sein des communautés grâce à une communication proactive**
+  </li>
+
+  <li>
+    <strong>Renforcer la confiance au sein des communautés grâce à une communication proactive</strong>
 
 **Transparence et communication proactives&nbsp;:** Ce succès est essentiellement fondé sur le principe de transparence totale. Lors de toutes les distributions de secours – en cas d'inondations, d'autres catastrophes ou de programmes de transferts monétaires – le Croissant-Rouge du Yémen place bien en évidence des bannières présentant clairement et en détail les critères d'éligibilité. Ces bannières précisent quelles sont les conditions exactes à remplir pour obtenir de l'aide, et quels sont les produits distribués et leur quantité. Cette mesure simple mais efficace ne laisse aucune place à l'ambiguïté et contre directement les rumeurs préjudiciables selon lesquelles certaines personnes ou certains groupes seraient injustement exclus. En faisant passer la conversation de la spéculation à une compréhension commune du processus de distribution, on garantit que les communautés savent comment et pourquoi les décisions sont prises, ce qui renforce la confiance dans le processus de distribution.
 
 **Donner les moyens d'agir aux communautés par la redevabilité&nbsp;:** En plus de la transparence, le Croissant-Rouge du Yémen a également renforcé la redevabilité en mettant à la disposition des membres des communautés des voies directes de retour d'information et de réclamation. Des lignes téléphoniques et des guichets consacrés aux réclamations sur les sites de distribution encouragent les bénéficiaires et les non-bénéficiaires à faire part de leurs préoccupations. Des sujets qui pourraient autrement être des points de friction se transforment en possibilités de communication directe&nbsp;: du personnel qualifié peut immédiatement résoudre les problèmes, clarifier les critères d'éligibilité et expliquer les principes humanitaires qui guident l'action de la Société nationale. Cette boucle de rétroaction proactive permet non seulement d'apaiser les préoccupations, mais aussi de démontrer l'engagement de la Société nationale en faveur de l'équité et de la redevabilité, ce qui renforce son statut de partenaire de confiance.
+
+  </li>
+</ol>
 
 Au fil du temps, cette stratégie a permis à la fois de résoudre des problèmes immédiats et de modifier radicalement la façon dont l'action du Croissant-Rouge du Yémen est perçue dans les communautés les plus vulnérables. En transformant une source de rumeurs dommageables en une histoire de confiance et de responsabilisation des communautés, l'organisation a consolidé sa réputation d'acteur humanitaire responsable et fiable.
 
@@ -186,7 +212,15 @@ Au fil du temps, cette stratégie a permis à la fois de résoudre des problème
 
 </Box>
 
-<Box index="6.3">
+<Box
+  index="6.3"
+  types={[
+    TypologyOfHarm.Physical,
+    TypologyOfHarm.Psychological,
+    TypologyOfHarm.Societal,
+    TypologyOfHarm.Informational,
+  ]}
+>
 
 ## Séance de questions-réponses avec la Société du Croissant-Rouge du Kirghizistan
 
@@ -212,13 +246,53 @@ Dans le cas de la vaccination des enfants, ce sont en fin de compte les enfants 
 
 Les stratégies utilisées par la Société nationale pour lutter contre l'hésitation vaccinale dans les programmes de promotion de la vaccination contre le Covid-19 et de la vaccination des enfants comprennent les activités suivantes&nbsp;:
 
-a **Mobiliser les chefs religieux et les dirigeants communautaires&nbsp;:** Au Kirghizistan, l'hésitation vaccinale est souvent motivée par de fausses croyances, par exemple que les vaccins fabriqués dans certains pays sont moins sûrs ou moins efficaces ou qu'ils ne sont pas halal. Grâce à ses relations avec les dirigeants locaux et les personnes qui jouissent de la confiance de la population, la Société du Croissant-Rouge du Kirghizistan est bien placée pour gérer les rumeurs et contrer la mésinformation, ce qui est essentiel pour instaurer la confiance et améliorer les résultats en matière de santé. Cette approche s'est avérée efficace. Entre avril et septembre 2025, des volontaires formés du Croissant-Rouge ont collaboré avec 337 chefs religieux, leur donnant les moyens de diffuser des informations exactes et de promouvoir la vaccination au sein de leurs communautés. Ces dirigeants continuent d'expliquer l'importance de la vaccination d'un point de vue religieux, en diffusant des messages qui combinent les informations sanitaires fondées sur des données probantes et les interprétations religieuses.
-
-b **Écouter les communautés et adapter les stratégies de communication&nbsp;:** la Société du Croissant-Rouge du Kirghizistan dispose de canaux de retour d'information des communautés bien établis, notamment des lignes téléphoniques d'urgence, des réunions communautaires et des plateformes numériques, ce qui lui permet de recueillir régulièrement les préoccupations des communautés, de les analyser et d'y donner suite. Le personnel est formé à l'écoute active et à la communication respectueuse, ce qui permet une gestion efficace des retours d'information. Sur la base des commentaires de la communauté, la Société nationale adapte ses messages clés afin de mieux répondre aux préoccupations.
-
-c **Prendre contact individuellement avec les parents réticents à faire vacciner leurs enfants&nbsp;:** Malgré les efforts du ministère de la Santé, un groupe de parents est encore hésitant vis-à-vis des vaccins, et leurs enfants n'ont donc reçu aucune dose ou sont sous-vaccinés. S'appuyant sur ses activités antérieures (qui lui ont permis d'atteindre plus de 2&nbsp;000 familles dont les enfants n'avaient reçu aucune dose en 2023-2024), la Société nationale a constaté qu'un contact individuel était souvent nécessaire. Des volontaires formés se rendent dans les foyers avec des agents de santé locaux pour répondre aux craintes et aux hésitations par une écoute active, un soutien émotionnel et des informations précises et adaptées.
-
-d **Utiliser les médias, y compris les médias sociaux&nbsp;:** Au Kirghizistan, les informations préjudiciables se propagent en grande partie par les médias sociaux. Pour y remédier, depuis 2023, la Société nationale s'associe à des blogueurs et à des influenceurs qui partagent des informations exactes et des expériences de vaccination positives avec leurs abonnés. Parallèlement, elle soutient les parents et les aidants qui promeuvent activement la vaccination des enfants sur les médias sociaux et d'autres forums publics. Pour toucher un public plus large, elle collabore en outre avec des agences de communication, en vue de créer du contenu et de diffuser des messages dans le cadre d'émissions radio et de séquences télévisées.
+<ul className="list-disc marker:text-[#ee2435] ps-6 space-y-4">
+  <li>
+    **Mobiliser les chefs religieux et les dirigeants communautaires&nbsp;:** Au Kirghizistan,
+    l'hésitation vaccinale est souvent motivée par de fausses croyances, par exemple que les vaccins
+    fabriqués dans certains pays sont moins sûrs ou moins efficaces ou qu'ils ne sont pas halal.
+    Grâce à ses relations avec les dirigeants locaux et les personnes qui jouissent de la confiance
+    de la population, la Société du Croissant-Rouge du Kirghizistan est bien placée pour gérer les
+    rumeurs et contrer la mésinformation, ce qui est essentiel pour instaurer la confiance et
+    améliorer les résultats en matière de santé. Cette approche s'est avérée efficace. Entre avril
+    et septembre 2025, des volontaires formés du Croissant-Rouge ont collaboré avec 337 chefs
+    religieux, leur donnant les moyens de diffuser des informations exactes et de promouvoir la
+    vaccination au sein de leurs communautés. Ces dirigeants continuent d'expliquer l'importance de
+    la vaccination d'un point de vue religieux, en diffusant des messages qui combinent les
+    informations sanitaires fondées sur des données probantes et les interprétations religieuses.
+  </li>
+  <li>
+    **Écouter les communautés et adapter les stratégies de communication&nbsp;:** la Société du
+    Croissant-Rouge du Kirghizistan dispose de canaux de retour d'information des communautés bien
+    établis, notamment des lignes téléphoniques d'urgence, des réunions communautaires et des
+    plateformes numériques, ce qui lui permet de recueillir régulièrement les préoccupations des
+    communautés, de les analyser et d'y donner suite. Le personnel est formé à l'écoute active et à
+    la communication respectueuse, ce qui permet une gestion efficace des retours d'information. Sur
+    la base des commentaires de la communauté, la Société nationale adapte ses messages clés afin de
+    mieux répondre aux préoccupations.
+  </li>
+  <li>
+    **Prendre contact individuellement avec les parents réticents à faire vacciner leurs
+    enfants&nbsp;:** Malgré les efforts du ministère de la Santé, un groupe de parents est encore
+    hésitant vis-à-vis des vaccins, et leurs enfants n'ont donc reçu aucune dose ou sont
+    sous-vaccinés. S'appuyant sur ses activités antérieures (qui lui ont permis d'atteindre plus de
+    2&nbsp;000 familles dont les enfants n'avaient reçu aucune dose en 2023-2024), la Société
+    nationale a constaté qu'un contact individuel était souvent nécessaire. Des volontaires formés
+    se rendent dans les foyers avec des agents de santé locaux pour répondre aux craintes et aux
+    hésitations par une écoute active, un soutien émotionnel et des informations précises et
+    adaptées.
+  </li>
+  <li>
+    **Utiliser les médias, y compris les médias sociaux&nbsp;:** Au Kirghizistan, les informations
+    préjudiciables se propagent en grande partie par les médias sociaux. Pour y remédier, depuis
+    2023, la Société nationale s'associe à des blogueurs et à des influenceurs qui partagent des
+    informations exactes et des expériences de vaccination positives avec leurs abonnés.
+    Parallèlement, elle soutient les parents et les aidants qui promeuvent activement la vaccination
+    des enfants sur les médias sociaux et d'autres forums publics. Pour toucher un public plus
+    large, elle collabore en outre avec des agences de communication, en vue de créer du contenu et
+    de diffuser des messages dans le cadre d'émissions radio et de séquences télévisées.
+  </li>
+</ul>
 
     </li>
     <li>
@@ -240,7 +314,17 @@ Dans le cadre de la promotion de la vaccination contre le Covid-19 pendant la pa
 
 </Box>
 
-<Box index="6.4">
+<Box
+  index="6.4"
+  types={[
+    TypologyOfHarm.Physical,
+    TypologyOfHarm.Psychological,
+    TypologyOfHarm.Social,
+    TypologyOfHarm.Societal,
+    TypologyOfHarm.Informational,
+    TypologyOfHarm.Deprivational,
+  ]}
+>
 
 ## La désinformation a alimenté les attaques contre les activités humanitaires lors des manifestations de 2019 en Équateur
 
@@ -432,90 +516,81 @@ Ce phénomène touche les humanitaires eux-mêmes. Pendant la pandémie de Covid
 
 Même lorsque la confiance règne, d'autres facteurs peuvent empêcher la bonne transmission d'informations exactes aux communautés. À Sri Lanka, un chercheur communautaire a expliqué pourquoi les systèmes étaient importants&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;Certes, la confiance règne, mais la manière dont les informations sont communiquées est
   discutable. Il manque souvent à la Croix-Rouge et aux gouvernements un système de communication
   structuré et efficace. La confiance seule ne suffit pas sans un système adéquat de communication
   rapide d'informations vérifiées. Même les organisations qui jouissent de la confiance des
   communautés risquent de ne pas pouvoir répondre à leurs besoins pendant les catastrophes.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 Les inefficacités structurelles peuvent également causer des dommages directs. Un autre membre d'une communauté a observé&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;La lenteur ou le retard de la fourniture d'informations nuit à l'efficacité des opérations
   de sauvetage. Lorsque la paperasserie et les obstacles administratifs empêchent la fourniture
   rapide de secours, la bonne volonté est gaspillée, et cela peut faire plus de dégâts que des
   informations carrément fausses.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 La culture est tout aussi importante. Un chercheur communautaire en Ouganda a expliqué&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;La culture contribue fortement à façonner les modes de pensée et la perception des
   informations transmises à la communauté. Les personnes vérifient les informations par
   l'intermédiaire de leurs dirigeants.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 À Madagascar, un chercheur communautaire a donné un exemple frappant de la manière dont les codes culturels façonnent l'interprétation&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;Dans certaines régions de Madagascar, l'arrivée de deux hommes sans chapeau dans un village
   signale traditionnellement qu'il y a eu un décès, ce qui illustre l'importance des codes culturels
   dans la communication. La compréhension et le respect de ces pratiques peuvent améliorer
   l'efficacité des campagnes de sensibilisation.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 Le raisonnement des communautés est également fondé sur l'expérience. Un chercheur communautaire en Bolivie a souligné&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;Ils ont reçu les mêmes informations d'autres médecins, mais ils croyaient toujours ce que
   leur disaient leurs proches. Leur raisonnement était&nbsp;: 'Si le Covid est comparable à un rhume
   et que, par le passé, nous avons utilisé des plantes pour nous soigner, nous pouvons faire pareil
   pour le Covid.' Ils ne sont pas irrationnels, ils continuent de se fonder sur des faits et des
   expériences.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 Il est donc essentiel de repérer quels sont les groupes en qui la population a confiance au sein d'une culture. La recherche a montré que les anciens, les guérisseurs traditionnels, les chefs religieux et les femmes étaient particulièrement influents. En Zambie, un membre d'une communauté a décrit l'influence des femmes&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;Les femmes sont parmi les personnes les plus influentes lorsqu'il s'agit de promouvoir la
   santé au sein des communautés et même des familles. Elles sont puissantes face à la santé
   publique.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 En Bolivie, un membre d'une communauté a insisté sur le rôle décisif des mères&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;Les mères ont joué un rôle très important. Les informations dont elles disposaient n'ont
   même pas été remises en question, elles ont été crues et respectées. Les mères et la confiance
   dont elles jouissaient ont fait la différence.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 Par ailleurs, la disponibilité des outils numériques remodèle et parfois remet en question les structures traditionnelles. Un membre d'une communauté zambienne a observé&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;L'arrivée d'Internet a ravivé et amplifié d'anciennes superstitions, permettant leur
   diffusion rapide et leur donnant une nouvelle vie.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 Ce constat est partagé par un chercheur communautaire de Madagascar qui a mis l'accent sur le défi intergénérationnel&nbsp;:
 
-<SmallQuote>
+<PullQuote>
   «&nbsp;Traditionnellement, les chefs locaux sont les points focaux de la diffusion et de la
   vérification des informations. Aujourd'hui, les jeunes commencent à diffuser rapidement des
   informations sur les médias sociaux sans passer par les canaux de vérification
   traditionnels.&nbsp;»
-</SmallQuote>
-<SmallQuoteAuthor></SmallQuoteAuthor>
+</PullQuote>
 
 Prises ensemble, ces remarques montrent que la confiance ne suffit pas à renforcer la résilience face aux informations préjudiciables. Une communication efficace dépend de l'interaction entre la confiance, la compréhension culturelle et l'efficacité structurelle. Elle garantit que les communautés non seulement reçoivent l'information, mais sont aussi en mesure de l'utiliser à bon escient.
 
@@ -537,7 +612,7 @@ Parallèlement, il est essentiel de renforcer l'éducation aux médias et l'édu
 
 ## La communauté d'abord&nbsp;: Enseignements tirés de l'engagement des communautés
 
-**Cas 1&nbsp;: Pourquoi l'engagement des communautés est-il important pour les alertes précoces&nbsp;?**
+## Cas 1&nbsp;: Pourquoi l'engagement des communautés est-il important pour les alertes précoces&nbsp;?
 
 Une étude récente<sup>22</sup> menée dans les districts de Nsanje et Phalombe au Malawi a montré que la participation des communautés était essentielle pour que les informations sur les changements climatiques soient diffusées, pour que les populations les croient et pour qu'elles agissent en conséquence. La plupart des personnes reçoivent des informations sur le climat et l'alerte précoce lors de réunions communautaires dirigées par des acteurs locaux de confiance, principalement des fonctionnaires, des ONG, la Croix-Rouge du Malawi, des dirigeants locaux et des vulgarisateurs. Ces acteurs utilisent des méthodes familières telles que les mégaphones et le dialogue direct pour améliorer la compréhension et inciter à l'action. Les alertes précoces formelles, y compris les alertes aux inondations ou à la sécheresse, sont diffusées par des émissions de radio, des fonctionnaires locaux et des ONG.
 
@@ -553,7 +628,7 @@ Surtout, une communication efficace s'appuie sur les réseaux communautaires exi
 
 Cette approche ancrée dans la communauté renforce la capacité de détecter les informations préjudiciables et d'y répondre, ce qui contribue à améliorer la résilience avant, pendant et après les crises. En ancrant les systèmes d'alerte précoce dans des structures communautaires et en utilisant des méthodes de communication familières qui jouissent de la confiance des communautés, les acteurs humanitaires peuvent lutter contre la mésinformation et la désinformation, garantissant ainsi la fourniture d'informations rapides et exploitables à ceux qui en ont le plus besoin.
 
-**Cas 2&nbsp;: Une approche axée sur les communautés pour faire face aux informations préjudiciables pendant la pandémie de Covid-19**
+## Cas 2&nbsp;: Une approche axée sur les communautés pour faire face aux informations préjudiciables pendant la pandémie de Covid-19
 
 Les informations préjudiciables prospèrent lorsque la confiance est faible ou que les besoins d'information des communautés ne sont pas satisfaits. L'engagement de la Fédération internationale en faveur des activités CEA, qui est intégré dans ses politiques et dans la Stratégie 2030, est fondé sur l'idée qu'une participation réelle et inclusive de la communauté est essentielle pour renforcer la confiance mutuelle et la résilience durable.
 
@@ -569,7 +644,7 @@ Les informations préjudiciables prospèrent lorsque la confiance est faible ou 
 
 - **Malawi<sup>28</sup>&nbsp;:** Les épidémies simultanées de Covid-19 et de choléra ont alimenté la peur, les rumeurs et le scepticisme à l'égard des vaccins, et entraîné la propagation de fausses informations sur la stérilité. Des contacts directs avec les chefs traditionnels, les agents de santé, et les groupes de jeunes et de femmes, dans le cadre de visites à domicile et de dialogues, ont permis de rétablir la confiance érodée par des messages incohérents. Des retards initiaux dans l'intégration des retours d'information de la communauté ont limité dans un premier temps les réactions aux mensonges. **Point central&nbsp;:** Les crises cumulées amplifient les informations préjudiciables. Une communication opportune, inclusive et cohérente, diffusée par des pairs jugés fiables, est essentielle pour rétablir la confiance.
 
-**Cas 3&nbsp;: Népal<sup>29</sup>&nbsp;: Restaurer la confiance dans les vaccins grâce à une collaboration suivie au niveau local**
+## Cas 3&nbsp;: Népal<sup>29</sup>&nbsp;: Restaurer la confiance dans les vaccins grâce à une collaboration suivie au niveau local
 
 Au Népal, la confiance n'a pas été instaurée au moyen de la communication de masse, mais par des interactions personnelles répétées. Dans le district rural de Banke, durement touché par le Covid-19 et les fausses informations sur les vaccins, la confiance a commencé à s'instaurer lorsque des volontaires de la Croix-Rouge connus dans la communauté se sont rendus dans les foyers et ont écouté sans porter de jugement. La démonstration directe de l'innocuité du vaccin s'est avérée plus convaincante que les seules informations techniques.
 
@@ -655,7 +730,7 @@ La Société de la Croix-Rouge du Japon a toujours appliqué une stratégie de c
 
 </Box>
 
-<Box index="6.9">
+<Box index="6.9" types={[TypologyOfHarm.Social, TypologyOfHarm.Informational]}>
 
 ## Renforcer l'intégrité de l'information&nbsp;: vers une approche préventive et inclusive de la désinformation
 
@@ -667,7 +742,9 @@ Dans la région du Sahel et en Afrique centrale, les rumeurs et la désinformati
 
 Face à ce risque, il ne suffit pas de contrer la désinformation, car cette approche est intrinsèquement réactive. Il faut investir de manière proactive et préventive dans la promotion de l'intégrité de l'information<sup>34</sup>.
 
-**1 Combler les vides&nbsp;:**
+<ol className="list-decimal marker:text-[#ee2435] [&_p]:mb-3 ps-6 space-y-4">
+  <li>
+    <strong>Combler les vides&nbsp;:</strong>
 
 La première étape de cette approche préventive consiste à agir avant que la rumeur et la désinformation ne deviennent la réponse la plus accessible à l'insécurité causée par le manque d'informations crédibles. Le meilleur moyen d'y parvenir est de renforcer la capacité des journalistes et des médias locaux à fournir des informations fiables, opportunes et pertinentes, accessibles dans les langues locales et disponibles sur des plateformes en ligne et hors ligne. Cette approche précède la vérification des faits, qui vise à repérer la désinformation et à y réagir après qu'elle s'est propagée. Elle diffère également de la démystification préventive, qui se concentre spécifiquement sur les sujets susceptibles de donner lieu à la propagation de fausses informations.
 
@@ -683,13 +760,19 @@ L'accessibilité dépend également des technologies utilisées pour diffuser le
 
 Les technologies numériques et l'IA peuvent renforcer la capacité d'écoute à grande échelle et améliorer l'efficacité de la production de contenu. Cependant, ces outils ont un coût et nécessitent une formation et une adaptation des pratiques professionnelles. Ils sont par ailleurs assortis de questions éthiques et doivent être utilisés de manière transparente. Tous les contenus générés par l'IA doivent être examinés par des humains afin d'éviter que des informations incomplètes, sans mention de la source ou réductrices, voire de la désinformation, ne soient diffusées. Ce point est particulièrement important dans les situations de conflit armé, de crise humanitaire et de fracture numérique. Les systèmes d'IA utilisent essentiellement des données numériques produites dans des langues majoritaires&nbsp;; ils ne sont pas neutres et reflètent souvent des préjugés culturels, linguistiques et idéologiques. En conséquence, ces technologies peuvent appuyer, mais non remplacer, la présence sur le terrain, la connaissance du contexte et le contact humain.
 
-**2 Renforcement de la maîtrise de l'information et des médias, au moyen des médias et avec les communautés&nbsp;:**
+  </li>
+
+  <li>
+    <strong>Renforcement de la maîtrise de l'information et des médias, au moyen des médias et avec les communautés&nbsp;:</strong>
 
 S'ajoutant aux efforts visant à améliorer la fourniture d'informations en renforçant la qualité et l'accessibilité du contenu informatif, une deuxième étape essentielle pour prévenir les effets de la désinformation consiste à améliorer la demande. L'idée est de donner au public les capacités d'évaluer la qualité du contenu qu'il rencontre, et qu'il choisit de consommer et de diffuser.
 
 L'éducation à l'information et aux médias au travers des médias peut être favorisée principalement de deux façons&nbsp;: premièrement par **une plus grande transparence**, en expliquant comment les journalistes recueillent, traitent et hiérarchisent l'information, et deuxièmement en concevant des **rubriques spécialisées** telles que des segments réguliers de vérification des faits et des programmes éducatifs axés sur des thèmes vulnérables à la désinformation.
 
 Ces initiatives permettent d'alerter et de sensibiliser le public en utilisant des exemples concrets de désinformation, tout en présentant des moyens de s'en prémunir. Parallèlement, et en s'inspirant de l'action de la Fondation Hirondelle concernant les médias menée dans le Sahel et l'Afrique centrale, des espaces physiques de discussion et de dialogue peuvent être établis dans les quartiers ou les villages pour y parler des informations qui circulent au sein d'une communauté. Ces forums, animés par des journalistes locaux en partenariat avec des stations de radio communautaires, des dirigeants locaux ou des médiateurs, permettent de dissiper les rumeurs et de diffuser des informations vérifiées. En outre, les programmes publics interactifs enregistrés en direct dans les communautés, plutôt que dans des studios, permettent aux membres des communautés d'apprendre comment fonctionnent les médias.
+
+  </li>
+</ol>
 
 <ContributorTag>
   <Contributor>
@@ -713,7 +796,15 @@ Les volontaires ne sont pas des personnes extérieures qui viennent apporter une
 
 À une époque caractérisée par les informations préjudiciables et la méfiance croissante du public, les volontaires humanitaires sont à la fois un atout vital et un groupe de plus en plus vulnérable. Du fait de leur proximité avec les communautés et de leurs expériences de vie, ils sont parmi les interlocuteurs qui inspirent le plus confiance dans l'écosystème humanitaire, mais cette confiance est mise à l'épreuve. Les volontaires sont fréquemment exposés aux soupçons, à la mésinformation et aux accusations visant les organisations humanitaires, en particulier lorsque des discours préjudiciables se répandent en échappant à tout contrôle.
 
-<Box index="6.10">
+<Box
+  index="6.10"
+  types={[
+    TypologyOfHarm.Physical,
+    TypologyOfHarm.Psychological,
+    TypologyOfHarm.Societal,
+    TypologyOfHarm.Informational,
+  ]}
+>
 
 ## Bâtir la confiance&nbsp;: le rôle des volontaires dans la lutte contre la désinformation
 
@@ -785,21 +876,60 @@ Le Cadre comporte huit éléments différents&nbsp;:
 
 Sur la base de l'expérience de BBC Media Action dans des dizaines de pays et de situations de crise, plusieurs principes propres à renforcer la confiance des communautés et leur résilience face aux informations préjudiciables peuvent être recensés&nbsp;:
 
-- **Commencer par écouter&nbsp;:** la confiance se construit par une communication à double sens. En écoutant les préoccupations, les questions et les points de vue, même lorsqu'ils comprennent des malentendus ou des discours préjudiciables, il est possible de jeter les fondements d'une relation respectueuse et d'une intervention plus efficace.
-
-- **Investir avant la crise&nbsp;:** la mise en place de voies de communication inspirant la confiance, le soutien aux médias locaux indépendants et l'établissement de partenariats avec les dirigeants communautaires sont des tâches à accomplir avant toute crise. Ces relations déterminent la rapidité avec laquelle les informations seront acceptées en cas de situation d'urgence et la crédibilité qui leur sera accordée.
-
-- **Renforcer les capacités des communautés&nbsp;:** les acteurs doivent pouvoir communiquer au sein de leur propre communauté et représenter ses intérêts dans les systèmes conçus pour les aider.
-
-- **Collaborer avec des messagers jouissant de la confiance de la communauté&nbsp;:** la confiance de la communauté repose souvent sur des individus – animateurs de radio locaux, agents de santé, chefs religieux – qui n'appartiennent pas nécessairement à des réseaux humanitaires formels. En les soutenant et en les dotant des moyens nécessaires, on garantit que des informations vitales parviennent aux communautés, et que celles-ci les jugent crédibles et agissent en conséquence.
-
-- **Rendre la communication pertinente au niveau local&nbsp;:** la langue, le ton, le moment et le cadre sont autant d'éléments importants. Les messages doivent répondre aux préoccupations réelles des communautés, en utilisant les langues locales, des formats familiers et des histoires auxquelles elles peuvent s'identifier, qui font le lien entre les conseils et leur vie réelle.
-
-- **Faire preuve de transparence sur les incertitudes&nbsp;:** dans les crises qui évoluent rapidement, il vaut mieux expliquer ce que l'on ignore encore que de risquer de devoir procéder ultérieurement à des corrections qui nuisent à la crédibilité. En admettant que des incertitudes persistent, il est possible de renforcer la confiance et de réduire l'espace où prospèrent les spéculations préjudiciables.
-
-- **Intégrer des marques de vérification et de fiabilité&nbsp;:** à l'ère des contenus générés et manipulés par l'IA, adopter des méthodes vérifiables, telles que les technologies relatives à la provenance des contenus, par exemple la Coalition for Content Provenance and Authenticity (C2PA), afin de rendre les informations humanitaires identifiables, authentiques et plus difficiles à fausser.
-
-- **Poursuivre le dialogue après la crise&nbsp;:** la communication d'après-crise est essentielle pour le relèvement, l'apprentissage et la préparation. Elle permet également d'entretenir les réseaux de confiance afin qu'ils puissent être activés rapidement lors de la situation d'urgence suivante.
+<ol className="list-decimal marker:text-[#ee2435] ps-6 space-y-4">
+  <li>
+    **Commencer par écouter&nbsp;:** la confiance se construit par une communication à double sens.
+    En écoutant les préoccupations, les questions et les points de vue, même lorsqu'ils comprennent
+    des malentendus ou des discours préjudiciables, il est possible de jeter les fondements d'une
+    relation respectueuse et d'une intervention plus efficace.
+  </li>
+  <li>
+    **Investir avant la crise&nbsp;:** la mise en place de voies de communication inspirant la
+    confiance, le soutien aux médias locaux indépendants et l'établissement de partenariats avec les
+    dirigeants communautaires sont des tâches à accomplir avant toute crise. Ces relations
+    déterminent la rapidité avec laquelle les informations seront acceptées en cas de situation
+    d'urgence et la crédibilité qui leur sera accordée.
+  </li>
+  <li>
+    **Renforcer les capacités des communautés&nbsp;:** les acteurs doivent pouvoir communiquer au
+    sein de leur propre communauté et représenter ses intérêts dans les systèmes conçus pour les
+    aider.
+  </li>
+  <li>
+    **Collaborer avec des messagers jouissant de la confiance de la communauté&nbsp;:** la confiance
+    de la communauté repose souvent sur des individus – animateurs de radio locaux, agents de santé,
+    chefs religieux – qui n'appartiennent pas nécessairement à des réseaux humanitaires formels. En
+    les soutenant et en les dotant des moyens nécessaires, on garantit que des informations vitales
+    parviennent aux communautés, et que celles-ci les jugent crédibles et agissent en conséquence.
+  </li>
+  <li>
+    **Rendre la communication pertinente au niveau local&nbsp;:** la langue, le ton, le moment et le
+    cadre sont autant d'éléments importants. Les messages doivent répondre aux préoccupations
+    réelles des communautés, en utilisant les langues locales, des formats familiers et des
+    histoires auxquelles elles peuvent s'identifier, qui font le lien entre les conseils et leur vie
+    réelle.
+  </li>
+  <li>
+    **Faire preuve de transparence sur les incertitudes&nbsp;:** dans les crises qui évoluent
+    rapidement, il vaut mieux expliquer ce que l'on ignore encore que de risquer de devoir procéder
+    ultérieurement à des corrections qui nuisent à la crédibilité. En admettant que des incertitudes
+    persistent, il est possible de renforcer la confiance et de réduire l'espace où prospèrent les
+    spéculations préjudiciables.
+  </li>
+  <li>
+    **Intégrer des marques de vérification et de fiabilité&nbsp;:** à l'ère des contenus générés et
+    manipulés par l'IA, adopter des méthodes vérifiables, telles que les technologies relatives à la
+    provenance des contenus, par exemple la Coalition for Content Provenance and Authenticity
+    (C2PA), afin de rendre les informations humanitaires identifiables, authentiques et plus
+    difficiles à fausser.
+  </li>
+  <li>
+    **Poursuivre le dialogue après la crise&nbsp;:** la communication d'après-crise est essentielle
+    pour le relèvement, l'apprentissage et la préparation. Elle permet également d'entretenir les
+    réseaux de confiance afin qu'ils puissent être activés rapidement lors de la situation d'urgence
+    suivante.
+  </li>
+</ol>
 
 En fondant ces principes sur des partenariats à long terme et une appropriation partagée de l'espace d'information, les acteurs humanitaires peuvent améliorer la résilience des communautés de l'intérieur, en réduisant l'espace propice à la prolifération des informations préjudiciables et en renforçant le tissu social qui sous-tend une réponse efficace aux crises.
 
@@ -830,6 +960,11 @@ Et la communication est par dessus tout un acte de rapprochement, qui permet d'i
 
 ## Diffusion d'informations préjudiciables lors des inondations liées à une dépression isolée à des niveaux élevés à Valence (Espagne) en 2024 (partie 2 sur 2)
 
+<span className="text-purple-600">
+  (Voir le chapitre 1 – Diffusion d'informations préjudiciables lors des inondations liées à une
+  dépression isolée à des niveaux élevés à Valence (Espagne) en 2024 (partie 1 sur 2), page 32)
+</span>
+
 Fin octobre 2024, Valence a été frappée par des inondations parmi les plus meurtrières de l'histoire récente de l'Espagne, causée par une dépression isolée à des niveaux élevés (DANA ou «goutte froide»). Des précipitations intenses se sont abattues pendant plusieurs heures, submergeant les capacités des infrastructures, causant la mort de 236 personnes et dévastant les communautés.
 
 Pour plus d'informations sur les inondations de Valence en 2024 et la diffusion d'informations préjudiciables, voir également le chapitre 1 de ce rapport.
@@ -849,28 +984,14 @@ Dès le premier jour des inondations, les messages contre la Croix-Rouge ont for
   octobre-décembre 2024
 </Anchor>
 
-<div className="not-prose mb-4">
-  <img
-    src="/wdr25/chapter-06/fig-6-1.webp"
-    alt="Évolution du ton des messages concernant la Croix-Rouge espagnole sur les médias sociaux, octobre-décembre 2024"
-    className="w-full h-auto"
-    loading="lazy"
-  />
-</div>
+<ChapterImage imagePath="/wdr25/chapter-06/fig-6-1.webp" />
 
 <Anchor meta="Fig 6.2">
   Proportion de messages positifs, neutres et négatifs concernant la Croix-Rouge espagnole sur les
   médias sociaux, octobre-décembre 2024
 </Anchor>
 
-<div className="not-prose mb-4">
-  <img
-    src="/wdr25/chapter-06/fig-6-2.webp"
-    alt="Proportion de messages positifs, neutres et négatifs concernant la Croix-Rouge espagnole sur les médias sociaux, octobre-décembre 2024"
-    className="w-full h-auto"
-    loading="lazy"
-  />
-</div>
+<ChapterImage imagePath="/wdr25/chapter-06/fig-6-2.webp" />
 
 Rien qu'en novembre et décembre, le journal <span className="italic">La Gaceta</span> a publié 32 articles critiquant la Croix-Rouge espagnole. Au cours de la même période, 104 messages contre la Croix-Rouge espagnole ont été publiés par des personnalités politiques. Les groupes pro-israéliens ont également saisi cette occasion pour amplifier les publications négatives visant la Croix-Rouge.
 
@@ -1043,9 +1164,11 @@ Comme nous l'avons vu plus haut dans le rapport, la migration reste l'une des qu
 
 Les personnes migrantes elles-mêmes se fient souvent à des sources informelles, telles que leur famille, leurs amis et les réseaux sociaux, avant et pendant leur voyage. Les obstacles à l'accès à l'information sont également considérables. Il arrive que les personnes migrantes renoncent à se procurer des informations de crainte d'être repérées, expulsées ou victimes de discrimination. Les barrières linguistiques, les restrictions en matière de connectivité et le sentiment que les voies officielles ne sont pas dignes de confiance ne font qu'aggraver le problème. De tels contextes sont propices à la propagation d'informations préjudiciables, en raison des lacunes en matière d'accès, des craintes et de l'exclusion. Il est donc d'autant plus important de veiller à ce que les personnes migrantes reçoivent en temps voulu des informations exactes et qu'elles jugent crédibles, qui leur permettent de prendre des décisions en connaissance de cause et qui protègent leur dignité et leurs droits.
 
-<Box>
-
-**Commentaires fréquents des contributeurs au rapport – Cinq éléments essentiels&nbsp;:**
+<QuestionAnswerBox>
+<QuestionAnswerBoxTitle>
+  Commentaires fréquents des contributeurs au rapport&nbsp;: Cinq éléments essentiels
+</QuestionAnswerBoxTitle>
+<QuestionAnswerBoxBody>
 
 <ol className="list-decimal marker:text-[#ee2435] [&_p]:mb-3 ps-6 space-y-4">
   <li>
@@ -1077,9 +1200,10 @@ Les personnes migrantes elles-mêmes se fient souvent à des sources informelles
   </li>
 </ol>
 
-</Box>
+</QuestionAnswerBoxBody>
+</QuestionAnswerBox>
 
-## Conclusions&nbsp;: De la communication à la collaboration
+# Conclusions&nbsp;: De la communication à la collaboration
 
 Pour lutter efficacement contre les informations préjudiciables, il ne suffit pas de diffuser des messages, il faut aussi changer radicalement d'état d'esprit, pour passer de la diffusion d'informations au soutien à la participation et à la capacité d'action. Trop souvent, les activités de communication sont conçues comme des flux à sens unique, où les acteurs externes déterminent quelles informations sont pertinentes ou importantes, comment elles sont formulées et qui peut s'exprimer. Cette approche descendante risque non seulement de renforcer les déséquilibres de pouvoir existants, mais aussi d'empêcher la prise en compte des idées, des expériences et des priorités des personnes en détresse.
 
@@ -1101,151 +1225,71 @@ Les éléments essentiels de la communication stratégique à l'ère numérique,
 
 En fin de compte, la résilience face aux informations préjudiciables n'est pas renforcée grâce à une meilleure communication, mais par de meilleures relations. En investissant dans les voix locales, l'appropriation communautaire et les approches inclusives, le secteur humanitaire peut aller au-delà des contre-discours réactifs, pour se diriger vers une réponse plus durable, fondée sur des principes et centrée sur les personnes. L'évolution progressive vers le partage de l'autorité suppose de reconnaître que la confiance et la légitimité ne découlent pas de la diffusion de faits, mais d'une réelle participation, du dialogue et de la responsabilité mutuelle.
 
+**Note&nbsp;:** L'auteur remercie chaleureusement les personnes suivantes pour leur contribution à la section 6.3 et les informations tirées des citations de membres des communautés incluses dans chaque chapitre&nbsp;: Ewané Fabrice Adrien, Nnang Minkoulou Pauline Santana, Essounga Jeanne Claris, Hadidjatou Sali, Fadma Mahamat, Imashela Abram Nambayo, Mambepa Mulilo, Mubila Majaluwa, Ziyi Min, Chen Xi Iris, Pengye Zhang, Mark Cainen, David Mackay, Andriamirado Malalatiana Michel, Rasoanomenjanahary Elisah Nahavitatsara, Rakotolava Safidinirina Précila, Be Ravololona Stanicia, Raveloson Elodye Larissa, Raharimanana Hery-Zo, Aaron Onyede, Ocaya Sunday, Hadaya Alli, Abdalla Fouda, Zinab Al Mohammad, Safa Al-Kuhlani, Dr Abrar Hayder Alameen Ahmed, Ron Adamba, Odero Otieno Wycliffe, Angellah Praygod Mochawa, Naomi Odwa, Joseph Karanja, Martha David Ibon, Guisel Guadalupe Serrano, Ximena Carmen Vicente Machaca, Samantha Mendez, Nicol Victoria Grimaldis Oño, Navindu Ratnayaka, M.E Praveen Waas, Suvini Rathnayake et Sachintha Ayeshka Abeysinghe.
+
 # Exigences, objectifs et recommandations
 
-<ColumParagraphs>
-  <ColumParagraph>
-    <ReccomendationsTitle>Exigence</ReccomendationsTitle>
-    <Reccomendations>
-      Placer les communautés au centre de la résilience face à l'information en investissant dans
-      l'inclusion, la redevabilité et la collaboration. Il faut notamment soutenir les mécanismes de
-      retour d'information, la vérification locale et les discours issus de la communauté, qui
-      renforcent les systèmes d'information jouissant de la confiance de la population locale, et
-      ainsi permettent la mise en œuvre d'une action humanitaire fondée sur des principes et une
-      intervention en cas de crise plus efficace.
-    </Reccomendations>
-  </ColumParagraph>
+<ReccomendationsTitle>Exigences</ReccomendationsTitle>
 
-  <ColumParagraph>
-    <ReccomendationsTitle>Objectifs</ReccomendationsTitle>
-    <Reccomendations>
-      Renforcer l'action humanitaire fondée sur des principes en intégrant les voix et les systèmes
-      de vérification des communautés dans les écosystèmes de l'information.
-    </Reccomendations>
-    <Reccomendations>
-      Veiller à ce que les interventions humanitaires soient fondées sur des principes et
-      redevables, en utilisant des informations et des discours qui expriment les perspectives
-      locales, reflètent la diversité des voix d'une communauté et favorisent la confiance et
-      l'inclusion dans la prise de décision.
-    </Reccomendations>
-    <Reccomendations>
-      Renforcer la résilience opérationnelle en veillant à ce que des voix diverses guident les
-      décisions et les interventions humanitaires.
-    </Reccomendations>
-  </ColumParagraph>
-</ColumParagraphs>
+<Reccomendations>
+  Placer les communautés au centre de la résilience face à l'information en investissant dans
+  **l'inclusion**, **la redevabilité** et **la collaboration**. Il faut notamment soutenir les
+  mécanismes de retour d'information, la vérification locale et les discours issus de la communauté,
+  qui renforcent les systèmes d'information jouissant de la confiance de la population locale, et
+  ainsi permettent la mise en œuvre d'une action humanitaire fondée sur des principes et une
+  intervention en cas de crise plus efficace.
+</Reccomendations>
+
+<ReccomendationsTitle>Objectifs</ReccomendationsTitle>
+
+<Reccomendations>
+  Renforcer l'action humanitaire fondée sur des principes en intégrant les voix et les systèmes de
+  vérification des communautés dans les écosystèmes de l'information.
+</Reccomendations>
+
+<Reccomendations>
+  Veiller à ce que les interventions humanitaires soient fondées sur des principes et redevables, en
+  utilisant des informations et des discours qui expriment les perspectives locales, reflètent la
+  diversité des voix d'une communauté et favorisent la confiance et l'inclusion dans la prise de
+  décision.
+</Reccomendations>
+
+<Reccomendations>
+  Renforcer la résilience opérationnelle en veillant à ce que des voix diverses guident les
+  décisions et les interventions humanitaires.
+</Reccomendations>
 
 <ReccomendationsTitle>Recommandations</ReccomendationsTitle>
 
 #### États et décideurs
 
-<ColumParagraphs>
-  <ColumParagraph>
-    <ul className="list-['-'] marker:text-[#ee2435] ps-6 space-y-4 [&_li]:ps-3">
-      <li>
-        Soutenir les activités de vérification et de communication dirigées par les communautés en
-        finançant le suivi des rumeurs, le journalisme indépendant et les canaux inclusifs (radio,
-        points d'accès numériques et formats hors ligne) dans les langues locales.
-      </li>
-      <li>
-        Renforcer les écosystèmes de l'information essentiels à l'action humanitaire en investissant
-        dans les capacités locales et l'éducation à l'information, et en plaidant en faveur de
-        mesures plus strictes de la part des plateformes technologiques et de mesures proactives
-        face aux informations préjudiciables.
-      </li>
-    </ul>
-  </ColumParagraph>
-  <ColumParagraph>
-    <ul className="list-['-'] marker:text-[#ee2435] ps-6 space-y-4 [&_li]:ps-3">
-      <li>
-        Donner des moyens d'agir aux acteurs locaux de confiance, notamment les groupes de jeunes,
-        les réseaux de femmes et les médias communautaires, au moyen de partenariats, de ressources
-        et de garanties, et les intégrer dans les écosystèmes d'information locaux pour appuyer la
-        vérification des informations, les retours d'information et l'action humanitaire fondée sur
-        des principes pendant les crises.
-      </li>
-    </ul>
-  </ColumParagraph>
-</ColumParagraphs>
+- Soutenir les activités de vérification et de communication dirigées par les communautés en finançant le suivi des rumeurs, le journalisme indépendant et les canaux inclusifs (radio, points d'accès numériques et formats hors ligne) dans les langues locales.
+
+- Renforcer les écosystèmes de l'information essentiels à l'action humanitaire en investissant dans les capacités locales et l'éducation à l'information, et en plaidant en faveur de mesures plus strictes de la part des plateformes technologiques et de mesures proactives face aux informations préjudiciables.
+
+- Donner des moyens d'agir aux acteurs locaux de confiance, notamment les groupes de jeunes, les réseaux de femmes et les médias communautaires, au moyen de partenariats, de ressources et de garanties, et les intégrer dans les écosystèmes d'information locaux pour appuyer la vérification des informations, les retours d'information et l'action humanitaire fondée sur des principes pendant les crises.
 
 #### Acteurs humanitaires
 
-<ColumParagraphs>
-  <ColumParagraph>
-    <ul className="list-['-'] marker:text-[#ee2435] ps-6 space-y-4 [&_li]:ps-3">
-      <li>
-        Renforcer la redevabilité et la confiance grâce à des messages élaborés en commun, des
-        boucles de retour d'information communautaires, des rapports transparents et des examens
-        conjoints avec les communautés, tout en veillant à ce que la collaboration soit conforme aux
-        principes humanitaires et ne soit pas politisée.
-      </li>
-      <li>
-        Mettre en place des systèmes d'alerte précoce et d'action rapide pour surveiller les schémas
-        d'information et les discours qui nuisent à l'action humanitaire, amplifier la portée des
-        messagers de confiance et permettre la prise de mesures opportunes au niveau local, tout en
-        préservant la vie privée.
-      </li>
-      <li>
-        Soutenir les contenus produits par les communautés en permettant la diffusion sûre et
-        indépendante de récits et d'informations pertinentes au niveau local dans les langues
-        locales, tout en prenant des mesures solides de protection de l'intégrité personnelle pour
-        protéger les contributeurs et garantir l'inclusion.
-      </li>
-    </ul>
-  </ColumParagraph>
-  <ColumParagraph>
-    <ul className="list-['-'] marker:text-[#ee2435] ps-6 space-y-4 [&_li]:ps-3">
-      <li>
-        Soutenir les journalistes et les médias locaux en renforçant leur capacité de produire des
-        contenus multilingues opportuns et accessibles sur les plateformes en ligne et hors ligne
-        tout en préservant la neutralité et en évitant tout alignement sur des positions politiques,
-        afin de favoriser une intervention humanitaire en cas de crise fondée sur des principes et
-        un écosystème d'information local résilient.
-      </li>
-      <li>
-        Procéder à des évaluations et en tirer des enseignements en mesurant la confiance, la
-        qualité de la participation, l'inclusion des voix marginalisées et la rapidité des mesures
-        correctrices - à l'aide de données anonymisées ou ventilées - et diffuser les enseignements
-        tirés pour faciliter l'amélioration des interventions humanitaires fondées sur des principes
-        dans tous les contextes.
-      </li>
-      <li>
-        Veiller à ce que la communication stratégique dans les contextes humanitaires combine le bon
-        public, le bon message, le bon moment et le bon messager, compte dûment tenu de
-        l'interdépendance de ces éléments, afin de contrer efficacement les informations
-        préjudiciables et de soutenir les interventions fondées sur des principes et adaptées au
-        contexte.
-      </li>
-    </ul>
-  </ColumParagraph>
-</ColumParagraphs>
+- Renforcer la redevabilité et la confiance grâce à des messages élaborés en commun, des boucles de retour d'information communautaires, des rapports transparents et des examens conjoints avec les communautés - tout en veillant à ce que la collaboration soit conforme aux principes humanitaires et ne soit pas politisée.
+
+- Mettre en place des systèmes d'alerte précoce et d'action rapide pour surveiller les schémas d'information et les discours qui nuisent à l'action humanitaire, amplifier la portée des messagers de confiance et permettre la prise de mesures opportunes au niveau local - tout en préservant la vie privée.
+
+- Soutenir les contenus produits par les communautés en permettant la diffusion sûre et indépendante de récits et d'informations pertinentes au niveau local dans les langues locales, tout en prenant des mesures solides de protection de l'intégrité personnelle pour protéger les contributeurs et garantir l'inclusion.
+
+- Soutenir les journalistes et les médias locaux en renforçant leur capacité de produire des contenus multilingues opportuns et accessibles sur les plateformes en ligne et hors ligne - tout en préservant la neutralité et en évitant tout alignement sur des positions politiques - afin de favoriser une intervention humanitaire en cas de crise fondée sur des principes et un écosystème d'information local résilient.
+
+- Procéder à des évaluations et en tirer des enseignements en mesurant la confiance, la qualité de la participation, l'inclusion des voix marginalisées et la rapidité des mesures correctrices - à l'aide de données anonymisées ou ventilées - et diffuser les enseignements tirés pour faciliter l'amélioration des interventions humanitaires fondées sur des principes dans tous les contextes.
+
+- Veiller à ce que la communication stratégique dans les contextes humanitaires combine le bon public, le bon message, le bon moment et le bon messager, compte dûment tenu de l'interdépendance de ces éléments, afin de contrer efficacement les informations préjudiciables et de soutenir les interventions fondées sur des principes et adaptées au contexte.
 
 #### Communautés et dirigeants locaux
 
-<ColumParagraphs>
-  <ColumParagraph>
-    <ul className="list-['-'] marker:text-[#ee2435] ps-6 space-y-4 [&_li]:ps-3">
-      <li>
-        Générer et amplifier les discours issus de la communauté qui renforcent la confiance et
-        soutiennent une action humanitaire fondée sur des principes pendant les crises.
-      </li>
-      <li>
-        Servir d'intermédiaires de confiance en facilitant, le cas échéant, le dialogue entre les
-        acteurs humanitaires, les autorités et les populations en détresse afin de garantir la
-        responsabilité mutuelle, tout en respectant et en soutenant le rôle des organisations
-        humanitaires dotées de principes.
-      </li>
-    </ul>
-  </ColumParagraph>
-  <ColumParagraph>
-    <ul className="list-['-'] marker:text-[#ee2435] ps-6 space-y-4 [&_li]:ps-3">
-      <li>
-        Garantir l'inclusivité des systèmes d'information locaux afin que différentes voix, y
-        compris les groupes marginalisés, soient représentées et entendues.
-      </li>
-    </ul>
-  </ColumParagraph>
-</ColumParagraphs>
+- Générer et amplifier les discours issus de la communauté qui renforcent la confiance et soutiennent une action humanitaire fondée sur des principes pendant les crises.
+
+- Servir d'intermédiaires de confiance en facilitant, le cas échéant, le dialogue entre les acteurs humanitaires, les autorités et les populations en détresse afin de garantir la responsabilité mutuelle, tout en respectant et en soutenant le rôle des organisations humanitaires dotées de principes.
+
+- Garantir l'inclusivité des systèmes d'information locaux afin que différentes voix, y compris les groupes marginalisés, soient représentées et entendues.
 
 ## Notes de fin
 
