@@ -38,7 +38,7 @@ const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
   source: 'WDR26-FR-08.with-links-and-endnotes.xml',
-  mdx: 'french_chapter_08.mdx',
+  mdx: 'chapter_08.mdx',
   endnotesSource: 'endnotes.json',
 };
 
@@ -744,7 +744,7 @@ const convertToMDXAst = (node, index, parent) => {
       return [new FootnoteReference(identifierIndex, identifierIndex)];
     default:
       console.log('Unhandled node:', node.name);
-      return [];
+      return node.children || [];;
   }
 };
 
