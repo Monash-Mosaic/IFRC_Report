@@ -1,4 +1,5 @@
 import * as WDR26 from './wdr25';
+import * as Chapter08 from './chapter-08.mdx';
 
 export const categories = [
   'Rapport annuel',
@@ -47,4 +48,24 @@ export const acknowledgementContributors = {
 
 export const reports = {
   wdr26: WDR26,
+};
+
+
+// 
+export const chapters = {
+  'chapter-08': {
+    metadata: {
+      chapterKey: 'chapter-08',
+      chapterNumber: 8,
+      chapterPrefix: 'Chapitre 08',
+    },
+    component: Chapter08.default,
+    title: Chapter08.title,
+    subtitle: Chapter08.subtitle,
+    tableOfContents: Chapter08.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter08_FR.pdf',
+    thumbnail: '/wdr25/chapters/Chapter8.webp',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
 };
