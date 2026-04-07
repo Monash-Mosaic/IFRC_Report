@@ -1,5 +1,5 @@
 import * as WDR26 from './wdr25';
-import * as Chapter08 from './chapter-08.mdx';
+import * as Chapter08 from './chapter_08.mdx';
 
 export const categories = [
   'Rapport annuel',
