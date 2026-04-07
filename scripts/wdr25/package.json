@@ -11,13 +11,16 @@
   "dependencies": {
     "estree-util-to-js": "^2.0.0",
     "mdast-builder": "^1.1.1",
+    "mdast-util-gfm-footnote": "^2.1.0",
     "mdast-util-mdx": "^3.0.0",
     "mdast-util-to-markdown": "^2.1.2",
     "my-next-app": "file:../..",
+    "prettier": "^3.8.1",
     "remark-stringify": "^11.0.0",
     "unified": "^11.0.5",
     "unist-builder": "^4.0.0",
     "unist-util-flatmap": "^1.0.0",
+    "unist-util-visit": "^5.1.0",
     "xast-util-from-xml": "^4.0.0",
     "xml-js": "^1.6.11"
   }

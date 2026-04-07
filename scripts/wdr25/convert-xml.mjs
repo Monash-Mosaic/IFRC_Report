@@ -37,8 +37,8 @@ console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: 'WDR26-FR-08.with-links-and-endnotes.xml',
-  mdx: 'chapter_08.mdx',
+  source: 'WDR26-Executive-Summary-EN.xmlks-and-endnotes\.xml',
+  mdx: '1.mdx',
   endnotesSource: 'endnotes.json',
 };
 
@@ -744,7 +744,7 @@ const convertToMDXAst = (node, index, parent) => {
       return [new FootnoteReference(identifierIndex, identifierIndex)];
     default:
       console.log('Unhandled node:', node.name);
-      return node.children || [];;
+      return [];
   }
 };
 
