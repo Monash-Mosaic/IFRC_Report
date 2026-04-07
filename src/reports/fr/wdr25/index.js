@@ -142,7 +142,6 @@ export const chapters = {
     },
     component: Chapter07.default,
     title: Chapter07.title,
-    subtitle: Chapter07.subtitle,
     tableOfContents: Chapter07.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter07_FR.pdf',
     thumbnail: '/wdr25/chapters/Chapter7.webp',
