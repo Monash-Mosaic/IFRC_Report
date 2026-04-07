@@ -1,6 +1,14 @@
 import VideoCard from '@/components/landing-page/VideoCard';
 import { render, screen } from '@testing-library/react';
 
+jest.mock('@next/third-parties/google', () => ({
+  YouTubeEmbed: ({ videoid, params, style }) => (
+    <div data-testid="mock-youtube-embed" data-videoid={videoid} data-params={params} data-style={style}>
+      YouTube Player: {videoid}
+    </div>
+  ),
+}));
+
 const defaultProps = {
   title: 'Test Video Title',
   description: 'This is a test video description that explains the content of the video.',
@@ -27,15 +35,13 @@ describe('VideoCard', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders a YouTube iframe for YouTube URLs', () => {
+  it('renders YouTubeEmbed for YouTube URLs', () => {
     render(<VideoCard {...defaultProps} />);
 
-    const iframe = screen.getByTitle('Test Video Title');
-    expect(iframe.tagName).toBe('IFRAME');
-    expect(iframe).toHaveAttribute(
-      'src',
-      'https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0'
-    );
+    const embed = screen.getByTestId('mock-youtube-embed');
+    expect(embed).toHaveAttribute('data-videoid', 'dQw4w9WgXcQ');
+    expect(embed).toHaveAttribute('data-params', 'rel=0');
+    expect(embed).toHaveAttribute('data-style', 'width:100%;height:100%');
   });
 
   it('renders an HTML5 video for non-YouTube URLs', () => {
@@ -66,11 +72,8 @@ describe('VideoCard', () => {
         <VideoCard title="YouTube Video" description="Video" url={url} />
       );
 
-      const iframe = screen.getByTitle('YouTube Video');
-      expect(iframe).toHaveAttribute(
-        'src',
-        expect.stringContaining('embed/dQw4w9WgXcQ')
-      );
+      const embed = screen.getByTestId('mock-youtube-embed');
+      expect(embed).toHaveAttribute('data-videoid', 'dQw4w9WgXcQ');
 
       unmount();
     }
@@ -80,7 +83,14 @@ describe('VideoCard', () => {
     const { container } = render(<VideoCard {...defaultProps} />);
 
     const card = container.firstChild;
-    expect(card).toHaveClass('bg-white', 'rounded-2xl', 'overflow-hidden', 'shadow-sm', 'h-full');
+    expect(card).toHaveClass(
+      'bg-white',
+      'rounded-2xl',
+      'overflow-hidden',
+      'shadow-sm',
+      'h-full',
+      'min-w-0'
+    );
 
     const content = container.querySelector('.p-6.space-y-3');
     expect(content).toBeInTheDocument();

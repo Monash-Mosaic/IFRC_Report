@@ -3,20 +3,24 @@
 exports[`VideoCard renders VideoCard with title and description 1`] = `
 <div>
   <div
-    class="bg-white rounded-2xl overflow-hidden shadow-sm h-full"
+    class="bg-white rounded-2xl overflow-hidden shadow-sm h-full min-w-0"
   >
     <div
       class="relative aspect-video w-full overflow-hidden bg-black"
     >
-      <iframe
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen=""
-        class="absolute inset-0 h-full w-full border-0"
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-        title="Test Video Title"
-      />
+      <div
+        class="absolute inset-0 [&>*]:!absolute [&>*]:!inset-0 [&>*]:!h-full [&>*]:!w-full [&_lite-youtube]:block [&_lite-youtube]:!h-full [&_lite-youtube]:!w-full [&_lite-youtube]:!max-w-none"
+      >
+        <div
+          data-params="rel=0"
+          data-style="width:100%;height:100%"
+          data-testid="mock-youtube-embed"
+          data-videoid="dQw4w9WgXcQ"
+        >
+          YouTube Player: 
+          dQw4w9WgXcQ
+        </div>
+      </div>
     </div>
     <div
       class="p-6 space-y-3"
