@@ -1,4 +1,5 @@
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter08 from './chapter-08.mdx';
 import * as Synthesis from './exec-summary.mdx';
 
 export const title = 'Rapport mondial sur les catastrophes 2026';
@@ -49,7 +50,7 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title: 'Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l\'ère de l\'information nocive',
+    title: "Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l'ère de l'information nocive",
     description: `La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (FICR) présente le Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l'ère de l'information nocive.
 
 Dans un monde où les rumeurs peuvent se propager plus vite que les équipes de secours, l'information nocive est devenue un défi majeur pour l'action humanitaire. L'édition 2026 du Rapport mondial sur les catastrophes présente l'information nocive comme une crise humanitaire de fait — qui compromet l'accès à l'aide, érode la confiance, déstabilise la cohésion sociale et accroît les risques pour le personnel, les volontaires et les communautés.
@@ -81,7 +82,7 @@ Car aujourd'hui, l'information peut déterminer l'accès, la sécurité et la di
   },
 ];
 
-export const chapterRelease = false;
+export const chapterRelease = true;
 
 export const chapters = {
   synthèse: {
@@ -132,5 +133,21 @@ export const chapters = {
         thumbnail: '/window.svg',
       },
     ],
+    released: true,
+  },
+  'chapitre-08': {
+    metadata: {
+      chapterKey: 'chapter-08',
+      chapterNumber: 8,
+      chapterPrefix: 'Chapitre 08',
+    },
+    component: Chapter08.default,
+    title: Chapter08.title,
+    subtitle: Chapter08.subtitle,
+    tableOfContents: Chapter08.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter08_FR.pdf',
+    thumbnail: '/wdr25/chapters/Chapter8.webp',
+    thumbnailOverlay: 'red',
+    released: true,
   },
 };
