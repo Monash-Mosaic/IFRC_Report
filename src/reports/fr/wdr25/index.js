@@ -104,10 +104,11 @@ export const chapters = {
     metadata: {
       chapterKey: 'glossary',
       chapterNumber: 9,
-      chapterPrefix: 'Glossaire',
+      chapterPrefix: 'Annexe 1',
     },
     component: Glossary.default,
     title: Glossary.title,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Glossary_FR.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },
