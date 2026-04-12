@@ -10,10 +10,8 @@ const wranglerConfigPath = pathResolve(projectRoot, 'wrangler.jsonc');
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-const PROD_DB_PATH = ['d1_databases', 0, 'database_id'];
-const PREVIEW_DB_PATH = ['env', 'preview', 'd1_databases', 0, 'database_id'];
-const PROD_DB_REMOTE_PATH = ['d1_databases', 0, 'remote'];
-const PREVIEW_DB_REMOTE_PATH = ['env', 'preview', 'd1_databases', 0, 'remote'];
+const DB_PATH = ['d1_databases', 0, 'database_id'];
+const DB_REMOTE_PATH = ['d1_databases', 0, 'remote'];
 
 function requireEnv(name) {
   const value = process.env[name]?.trim();
@@ -52,11 +50,9 @@ function applyJsoncUpdate(configRaw, path, value) {
 }
 
 async function run() {
-  const prodId = requireEnv('CF_D1_SEARCH_DB_ID_PROD');
-  const previewId = requireEnv('CF_D1_SEARCH_DB_ID_PREVIEW');
+  const prodId = requireEnv('CF_D1_SEARCH_DB_ID');
 
   assertUuid('CF_D1_SEARCH_DB_ID_PROD', prodId);
-  assertUuid('CF_D1_SEARCH_DB_ID_PREVIEW', previewId);
 
   const configRaw = await readFile(wranglerConfigPath, 'utf8');
 
@@ -75,14 +71,11 @@ async function run() {
     throw new Error(`Invalid wrangler.jsonc: ${printParseErrorCode(firstError.error)} at offset ${firstError.offset}`);
   }
 
-  assertJsoncPathExists(tree, PROD_DB_PATH);
-  assertJsoncPathExists(tree, PREVIEW_DB_PATH);
+  assertJsoncPathExists(tree, DB_PATH);
 
   let output = configRaw;
-  output = applyJsoncUpdate(output, PROD_DB_PATH, prodId);
-  output = applyJsoncUpdate(output, PREVIEW_DB_PATH, previewId);
-  output = applyJsoncUpdate(output, PROD_DB_REMOTE_PATH, true);
-  output = applyJsoncUpdate(output, PREVIEW_DB_REMOTE_PATH, true);
+  output = applyJsoncUpdate(output, DB_PATH, prodId);
+  output = applyJsoncUpdate(output, DB_REMOTE_PATH, true);
 
   await writeFile(wranglerConfigPath, output, 'utf8');
   console.log('[inject-d1-database-ids] Updated wrangler.jsonc with CI-provided D1 database IDs and remote bindings.');
