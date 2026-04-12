@@ -11,7 +11,8 @@ const withMDX = createMDX({
       [
         'rehype-autolink-headings',
         {
-          behavior: 'wrap',
+          // `wrap` nests <a> inside the heading when remark-gfm adds footnote ref links — invalid HTML / hydration errors.
+          behavior: 'append',
         },
       ],
       ['@stefanprobst/rehype-extract-toc', {}],
