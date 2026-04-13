@@ -12,7 +12,7 @@
     "start:esbuild": "npm run build && node dist/index.js"
   },
   "devDependencies": {
-    "esbuild": "^0.27.0"
+    "esbuild": "^0.28.0"
   },
   "dependencies": {
     "cloudflared": "^0.7.1",
