@@ -52,39 +52,4 @@
 	// Using worker.dev domain for staging (production preview) environment
 	"preview_urls": true,
 	"workers_dev": true,
-	"env": {
-		"preview": {
-			"vars": {
-				"ENVIRONMENT": "development",
-			},
-			"preview_urls": true,
-			"workers_dev": true,
-			"services": [
-				{
-					"binding": "WORKER_SELF_REFERENCE",
-					"service": "ifrc-wdr-playbook-preview",
-				},
-			],
-			"images": {
-				"binding": "IMAGES",
-			},
-			"d1_databases": [
-				{
-					"binding": "SEARCH_DB",
-					"database_name": "ifrc-wdr-search-preview",
-					"database_id": "00000000-0000-0000-0000-000000000000",
-				},
-			],
-			"observability": {
-				"enabled": true,
-				"logs": {
-					"enabled": true,
-					"invocation_logs": true,
-				},
-				"traces": {
-					"enabled": true,
-				},
-			},
-		}
-	}
 }
