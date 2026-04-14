@@ -1,6 +1,8 @@
 import * as Acronyms from './acronyms.mdx';
+import * as Glossary from './glossary.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter07 from './chapter-07.mdx';
 import * as Synthesis from './exec-summary.mdx';
 
 export const title = 'Rapport mondial sur les catastrophes 2026';
@@ -161,5 +163,31 @@ export const chapters = {
         thumbnail: '/window.svg',
       },
     ],
+  },
+  'chapitre-07': {
+    metadata: {
+      chapterKey: 'chapter-07',
+      chapterNumber: 7,
+      chapterPrefix: 'Chapitre 07',
+    },
+    component: Chapter07.default,
+    title: Chapter07.title,
+    tableOfContents: Chapter07.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter07_FR.pdf',
+    thumbnail: '/wdr25/chapters/Chapter7.webp',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  glossaire: {
+    metadata: {
+      chapterKey: 'glossary',
+      chapterNumber: 9,
+      chapterPrefix: 'Annexe 1',
+    },
+    component: Glossary.default,
+    title: Glossary.title,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Glossary_FR.pdf',
+    thumbnailOverlay: 'red',
+    released: true,
   },
 };
