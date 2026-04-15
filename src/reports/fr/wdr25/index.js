@@ -187,7 +187,7 @@ export const chapters = {
       },
     ],
   },
-  'chapter-03': {
+  'chapitre-03': {
     metadata: {
       chapterKey: 'chapter-03',
       chapterNumber: 3,
@@ -202,7 +202,7 @@ export const chapters = {
     thumbnailOverlay: 'blue',
     released: true,
   },
-  'chapter-04': {
+  'chapitre-04': {
     metadata: {
       chapterKey: 'chapter-04',
       chapterNumber: 4,
@@ -217,7 +217,7 @@ export const chapters = {
     thumbnailOverlay: 'red',
     released: true,
   },
-  'chapter-05': {
+  'chapitre-05': {
     metadata: {
       chapterKey: 'chapter-05',
       chapterNumber: 5,
@@ -232,7 +232,7 @@ export const chapters = {
     thumbnailOverlay: 'red',
     released: true,
   },
-  'chapter-06': {
+  'chapitre-06': {
     metadata: {
       chapterKey: 'chapter-06',
       chapterNumber: 6,
@@ -255,13 +255,14 @@ export const chapters = {
     },
     component: Chapter07.default,
     title: Chapter07.title,
+    subtitle: Chapter07.subtitle,
     tableOfContents: Chapter07.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter07_FR.pdf',
     thumbnail: '/wdr25/chapters/Chapter7.webp',
     thumbnailOverlay: 'red',
     released: true,
   },
-  'chapter-08': {
+  'chapitre-08': {
     metadata: {
       chapterKey: 'chapter-08',
       chapterNumber: 8,
