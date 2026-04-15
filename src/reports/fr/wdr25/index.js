@@ -1,6 +1,10 @@
+import * as Acronyms from './acronyms.mdx';
+import * as Glossary from './glossary.mdx';
+import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter07 from './chapter-07.mdx';
 import * as Synthesis from './exec-summary.mdx';
-import * as Chapter05 from './chapter-05.mdx';
+import * as Annex02 from './annex-02.mdx';
 
 export const title = 'Rapport mondial sur les catastrophes 2026';
 
@@ -100,6 +104,33 @@ export const chapters = {
     thumbnailOverlay: 'red',
     released: true,
   },
+  acronymes: {
+    metadata: {
+      chapterKey: 'acronyms',
+      chapterNumber: -1,
+      chapterPrefix: 'Acronymes',
+    },
+    component: Acronyms.default,
+    title: Acronyms.title,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Acronyms_FR.pdf',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  'chapitre-01': {
+    metadata: {
+      chapterKey: 'chapter-01',
+      chapterNumber: 1,
+      chapterPrefix: 'Chapitre 01',
+    },
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter01_FR.pdf',
+    thumbnail: '/wdr25/chapters/Chapter1.webp',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
   'chapitre-02': {
     metadata: {
       chapterKey: 'chapter-02',
@@ -110,6 +141,9 @@ export const chapters = {
     title: Chapter02.title,
     subtitle: Chapter02.subtitle,
     tableOfContents: Chapter02.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter02_FR.pdf',
+    thumbnail: '/wdr25/chapters/Chapter2.webp',
+    released: true,
     audios: [
       {
         id: 'intro',
@@ -134,18 +168,42 @@ export const chapters = {
       },
     ],
   },
-  'chapitre-05': {
-    metadata: {
-      chapterKey: 'chapter-05',
-      chapterNumber: 5,
-      chapterPrefix: 'Chapitre 05',
+    annex2: {
+      metadata: {
+        chapterKey: 'annex2',
+        chapterNumber: 10,
+        chapterPrefix: 'Annexe 2',
+      },
+      component: Annex02.default,
+      title: Annex02.title,
+      tableOfContents: Annex02.tableOfContents,
+      downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Annex2_FR.pdf',
+      thumbnailOverlay: 'red',
+      released: true,
     },
-    component: Chapter05.default,
-    title: Chapter05.title,
-    subtitle: Chapter05.subtitle,
-    tableOfContents: Chapter05.tableOfContents,
-    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter05_FR.pdf',
-    thumbnail: '/wdr25/chapters/Chapter5.webp',
+  'chapitre-07': {
+    metadata: {
+      chapterKey: 'chapter-07',
+      chapterNumber: 7,
+      chapterPrefix: 'Chapitre 07',
+    },
+    component: Chapter07.default,
+    title: Chapter07.title,
+    tableOfContents: Chapter07.tableOfContents,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter07_FR.pdf',
+    thumbnail: '/wdr25/chapters/Chapter7.webp',
+    thumbnailOverlay: 'red',
+    released: true,
+  },
+  glossaire: {
+    metadata: {
+      chapterKey: 'glossary',
+      chapterNumber: 9,
+      chapterPrefix: 'Annexe 1',
+    },
+    component: Glossary.default,
+    title: Glossary.title,
+    downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Glossary_FR.pdf',
     thumbnailOverlay: 'red',
     released: true,
   },
