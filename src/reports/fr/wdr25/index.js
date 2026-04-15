@@ -24,7 +24,6 @@ export const category = 'Rapport annuel';
 export const releaseDate = new Date('2026-03-26');
 
 export const reportFile = {
-  // TODO: Update with the full report file details
   url: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_FullReport_FR.pdf',
 };
 
