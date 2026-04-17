@@ -1,121 +1,872 @@
 import {
-  ChapterQuote,
-  ContributorRole,
+  Box,
   ContributorSpotlight,
   ContributorSpotlightName,
   ContributorSpotlightPosition,
   ContributorSpotlightRole,
   Contributors,
+  TohInsight,
+  ChapterQuote,
+  ChapterLink,
+  ChapterImage,
+  Contributor,
+  ContributorEntity,
+  ContributorName,
+  ContributorRole,
+  ContributorTag,
+  EndnotesLink,
   SideNote,
   SmallQuote,
   SmallQuoteAuthor,
   Spotlight,
+  QuestionAnswerBox,
+  QuestionAnswerBoxTitle,
+  QuestionAnswerBoxBody,
+  Definition,
+  DefinitionDescription,
+  HeadingLabel,
+  Anchor,
+  ReccomendationsTitle,
+  Reccomendations
 } from '@/components/CustomComponents';
 
+import { TypologyOfHarm } from '@/types/TypologyOfHarm';
+
+<ChapterImage imagePath="/wdr25/chapter-02/p-TUR0752-AB_fmt.webp" title="p-TUR0752-AB" />
+
 export const title =
-  'Information Nocive et Érosion de la Confiance dans l\'Action Humanitaire : Rôle de la Vérité, de la Confiance et de la Technologie';
-export const subtitle = 'Le Terrain Mouvant de la Confiance';
+  'Informations préjudiciables et érosion de la confiance dans l’action humanitaire : le rôle de la vérité, de la confiance et de la technologie';
+
+export const subtitle = 'Le terrain instable de la confiance';
 
 <ChapterQuote>
-  « Pour être persuasifs, nous devons être crédibles ; pour être crédibles, nous devons être dignes de confiance ; pour être dignes de confiance, nous devons être véridiques. »
+  « Pour être persuasif, il faut être cru ; pour être cru, il faut être crédible ; pour être
+  crédible, il faut dire la vérité. »
 </ChapterQuote>
 
-Ainsi parlait Ed Murrow, le journaliste et correspondant américain durant la Seconde Guerre mondiale. Le principe reste valable : la vérité (exactitude et honnêteté) et la crédibilité (compétence, cohérence, fiabilité) restent essentielles pour construire la confiance institutionnelle. Pourtant, dans le paysage informationnel actuel, l'application de ce principe est devenue bien plus complexe et contestée à une époque marquée par l'information nocive.
+C’est ce qu’affirmait Edward R. Murrow, journaliste et correspondant américain pendant la Seconde Guerre mondiale. Ce principe reste valable aujourd’hui : la vérité (l’exactitude et l’honnêteté) et la crédibilité (la compétence, la cohérence et la fiabilité) demeurent essentielles pour instaurer la confiance institutionnelle. Pourtant, dans le paysage médiatique que nous connaissons aujourd’hui, sa mise en œuvre est devenue beaucoup plus complexe et polémique à une époque où les informations préjudiciables sont omniprésentes.
 
-En temps de crise ou d'incertitude – et ce sont des temps profondément incertains – les gens se tournent de plus en plus vers les sources d'information qu'ils perçoivent comme pertinentes et alignées sur leur expérience personnelle et vécue, plutôt que vers celles uniquement fondées sur l'exactitude factuelle. La vérité seule ne persuade plus toujours. L'émotion, l'identité et la répétition peuvent ancrer les fausses croyances de manière puissante, parfois nocive. Dans un tel environnement, parvenir à un accord sur ce qui constitue un fait est difficile. Pour les organisations humanitaires, dont l'accès, l'acceptation et la capacité à opérer dépendent de la confiance, naviguer dans cet espace informationnel fragmenté et chargé d'émotion est devenu non seulement un défi opérationnel, mais aussi un risque sécuritaire.
+En période de crise ou d’incertitude (et nous vivons actuellement une période profondément incertaine), les populations se tournent de plus en plus vers des sources d’information qu’elles jugent pertinentes et en adéquation avec leur expérience personnelle, plutôt que vers celles qui se fondent uniquement sur l’exactitude des faits. La vérité ne suffit plus toujours à convaincre. Les émotions, le sentiment d’identité et la répétition peuvent renforcer les conceptions erronées, parfois de manière néfaste. Dans un tel environnement, il est même difficile de s’entendre sur ce que constitue un fait. Pour les organisations humanitaires (dont l’accès aux populations, l’acceptation et l’intervention dépendent de la confiance qui leur est accordée), la gestion de cet espace d’information fragmenté et émotionnel représente non seulement un défi opérationnel, mais aussi un risque qui compromet la sécurité.
 
-# Encouragés à l'Hostilité
+# <HeadingLabel index="2.1" /> Incitation à l’hostilité
 
-Cette dynamique en ligne...
+Ce phénomène en ligne a été qualifié de « bulle de filtres[^1]», un terme utilisé pour expliquer comment les moteurs de recherche et les plateformes de médias sociaux proposent des contenus que les algorithmes pensent que nous voulons voir, en fonction de nos recherches, de nos « likes » et de nos clics. Selon Eli Pariser, le fait d’être confiné dans de telles chambres d’écho réduit l’exposition à des perspectives diverses et augmente le risque d’isolement de nos opinions ou de rejet des points de vue opposés et de certaines sources d’information en raison du biais de confirmation[^2] .
 
-<SideNote>
-  Le biais de confirmation désigne la tendance à rechercher, favoriser et se souvenir des informations qui confirment nos croyances existantes, tout en ignorant ou en rejetant les preuves contradictoires.
-</SideNote>
+<Definition>Le biais de confirmation</Definition>
+<DefinitionDescription>
+  Le **biais de confirmation** désigne la tendance à rechercher, privilégier et mémoriser des informations d’une manière qui confirment les croyances préexistantes, en écartant ou négligeant les preuves contradictoires.
 
-Bien que certaines études...
+</DefinitionDescription>
+
+Bien que certaines analyses montrent que les utilisateurs d’Internet sont exposés à des opinions divergentes, ces interactions suscitent souvent de l’agacement ou de l’hostilité plutôt qu’une réflexion ou des débats[^3]. Les algorithmes accentuent ce phénomène en relayant les contenus qui divisent, car l’hostilité stimule les interactions, lesquelles génèrent des profits pour les entreprises qui exploitent les plateformes. Comme le souligne Pariser, les plateformes « nous incitent à nous battre les uns contre les autres lorsque nous nous connectons ». Ce processus est exacerbé par un certain **effet de désinhibition en ligne** , qui incite les individus à exprimer plus librement leurs opinions en raison de facteurs tels que l’anonymat (leur identité reste cachée), l’invisibilité (les personnes avec lesquelles ils communiquent ne les voient pas) et l’asynchronisme (ils n’échangent pas en temps réel)[^4].
+
+Ces dynamiques contribuent à l’érosion de notre réalité commune. On entend de plus en plus souvent dire que les conséquences des catastrophes sont exagérées, que les traitements médicaux scientifiquement validés sont dangereux ou que les atrocités dénoncées sont inventées ou amplifiées. Cette situation est le reflet de ce que beaucoup qualifient de « monde post-vérité », dans lequel les populations sont particulièrement vulnérables aux informations préjudiciables et à la polarisation croissante sur ce qui est considéré comme vrai ou faux. Une telle polarisation augmente les risques de troubles sociaux, de violence et même de conflits armés. Ce monde post-vérité présente en outre un niveau secondaire de manipulation, les institutions faisant elles-mêmes l’objet d’une surveillance étroite et leur légitimité étant de plus en plus contestée. Dans certains contextes, la polarisation entre des dynamiques politiques, sociales ou géopolitiques opposées a créé un environnement dans lesquelles les pouvoirs publics peuvent remettre en cause ou rejeter des processus ou des résultats établis, malgré l’absence de preuves claires d’ingérence ou d’actes répréhensibles. L’érosion de la crédibilité des institutions soulève d’importantes questions quant à la confiance du public. Les Sociétés nationales de la Croix-Rouge et du Croissant-Rouge, en leur qualité d’acteurs humanitaires mandatés par les pouvoirs publics, sont ainsi confrontées à des risques accrus pour leur réputation lorsque la confiance dans les structures de gouvernance se détériore.
+
+Internet facilite plus que jamais la recherche d’informations qui confirment les croyances préexistantes, un phénomène parfois appelé « illusion Google ». Les espaces numériques accentuent le biais de confirmation en permettant aux utilisateurs de trouver des communautés qui partagent les mêmes idées et de citer des informations qui confortent leurs opinions, tout en ignorant les informations contradictoires[^5] ou les avis de spécialistes. Si Internet donne accès à une mine de connaissances, il accélère également la diffusion d’informations préjudiciables, encourage les querelles plutôt que le dialogue, et favorise les théories du complot au détriment des preuves[^6].
+
+Les chercheurs Kavanagh et Rich (2018) ont qualifié ce phénomène de « dégradation de la vérité ». Celui-ci s’articule autour de quatre tendances connexes : 1) un désaccord croissant sur les faits et les interprétations analytiques des faits et des données ; 2) un effacement de la frontière entre les opinions et les faits ; 3) une augmentation du volume relatif, et de l’influence qui en résulte, des opinions et des expériences personnelles à propos des faits ; et 4) une perte de confiance dans les sources d’information factuelle autrefois respectées[^7]. Au lieu de s’appuyer sur les faits pour étayer nos convictions, l’information (quelle que soit sa véracité) est de plus en plus utilisée pour justifier les croyances préexistantes des individus et des groupes auxquels ils s’identifient. Comme le concluent les chercheurs : « \[n]ous refusons désormais de nous mettre d’accord sur des questions aussi fondamentales que ce qui constitue une preuve, un fait ou une vérité[^8] ».
+
+# <HeadingLabel index="2.2" />Comment la confiance se perd-elle?
+
+La confiance repose sur des attentes, suppose une certaine vulnérabilité et se construit progressivement, mais une fois brisée, elle peut être perdue à jamais. Rousseau et al. (1998) la définissent comme « un état psychologique qui se caractérise par l’acceptation de la vulnérabilité engendrée par les attentes positives nourries quant aux intentions ou au comportement d’autrui[^9]». Cette définition met en évidence une dimension essentielle : la confiance exige d’accepter la vulnérabilité par rapport à ceux à qui elle est accordée.
+
+Nous faisons souvent confiance à ce qui correspond à notre vision du monde ou à celle de notre communauté, plutôt qu’à ce qui est factuellement exact. Les campagnes d’informations préjudiciables exploitent cette tendance, en déformant la vérité et en réduisant la visibilité et l’influence des sources crédibles. Dans les contextes où les médias indépendants et la confiance du public dans les institutions demeurent solides, le concept de crédibilité fondée sur la vérité défini par Edward R. Murrow continue de sous-tendre une communication efficace. Cependant, lorsque l’information est instrumentalisée, la force de persuasion repose souvent davantage sur la résonance émotionnelle, l’identité sociale ou la perception de l’autorité que sur la vérité.
 
 <SmallQuote>
-  « Je pense que la principale chose qui manque aux gens est qu'ils devraient prendre le temps de vérifier l'information auprès des sources correctes car dans la plupart des cas, ce que les gens voient ou entendent simplement est ce qu'ils finissent par redistribuer à d'autres personnes. »
+  Selon moi, le principal problème est que les personnes ne prennent pas le temps de vérifier les
+  informations auprès de sources fiables car, dans la plupart des cas, ils finissent par répéter ce
+  qu’ils ont vu ou entendu. »
 </SmallQuote>
 
-<SmallQuoteAuthor>Chercheur Communautaire, Zambie</SmallQuoteAuthor>
+<SmallQuoteAuthor>Membre de la communauté, Zambie</SmallQuoteAuthor>
 
-La confiance du public a également été érodée...
+La confiance du public a également été ébranlée par le sentiment généralisé que les gouvernements n’ont pas su gérer des crises telles que la pandémie de Covid-19 et la crise climatique[^10]. Ce sentiment est particulièrement répandu au sein des communautés marginalisées et à risque qui considèrent souvent les autorités comme des sources d’exigences plutôt que comme des prestataires de services nécessaires. Paradoxalement, ce sont précisément ces personnes qui sont les plus vulnérables en cas de crise, mais l’exclusion dont elles sont victimes les rend généralement plus méfiantes à l’égard de ceux qui leur viennent en aide[^11].
 
-<Spotlight>Confiance, Désinformation et Puissance du Lien Local dans la Réponse aux Crises</Spotlight>
+Comme le souligne le psychologue Joe Pierre, la réticence à la vaccination alimentée par la mésinformation « pourrait bien finir par être plus meurtrière que toute autre croyance erronée à laquelle nous ayons été confrontés[^12]». Bien que les plateformes de médias sociaux aient pris des mesures pour modifier leurs algorithmes et ainsi freiner la diffusion de certaines informations médicales erronées, le mal était déjà fait[^13].
 
-Depuis plus d'une décennie, les ONG occupent...
+Selon le Rapport sur les catastrophes dans le monde 2022 de la Fédération internationale : Confiance, équité et action locale – Tirer les enseignements de la pandémie de Covid-19 pour éviter la prochaine crise mondiale, de nombreuses études indiquent que « la confiance était l’un des facteurs prédisant le mieux la réussite ou l’échec d’un pays pour gérer la pandémie[^14]». Un grand nombre de communautés avaient un accès extrêmement limité à l’éducation et à l’information en matière de santé[^15]. Les informations diffusées par les médias sociaux ou les organes publics d’information étaient souvent considérées comme peu fiables, et beaucoup de personnes ne comprenaient pas les raisons justifiant la mise en œuvre des mesures de santé publique. Dans plusieurs pays, les gouvernements ont dispensé des conseils contradictoires et des croyances simplistes ou fausses se sont répandues, comme l’idée que le Covid-19 n’était dangereux que pour les personnes âgées et cliniquement vulnérables[^16] ou qu’il « ne tu\[ait] pas les personnes noires[^17]». Ces discours, alimentés par de fausses informations relatives aux vaccins (telles que les rumeurs de stérilité ou d’implantation de micropuces) et les croyances opposées à la vaccination profondément ancrées, ont conduit à des comportements néfastes, notamment le refus de se faire vacciner et le non-respect des mesures sanitaires qui sauvent des vies.
 
-<Contributors>Diana Medina, Coordinatrice Régionale Asie-Pacifique</Contributors>
-<Contributors>Engagement Communautaire et Redevabilité (CEA)</Contributors>
-<ContributorRole>Fédération Internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge</ContributorRole>
+Pierre définit les croyances comme « des représentations cognitives de la réalité passée, présente et future, qui englobent nos expériences intérieures, le monde qui nous entoure et ce qui se trouve au-delà[^18]». Il les considère comme des jugements probabilistes et souligne que nous entretenons bon nombre d’entre elles avec une conviction excessive, souvent sans prendre en considération un niveau d’incertitude suffisant. Nous avons tendance à adopter un point de vue absolu, même sur des questions qui justifieraient davantage une approche probabiliste tenant compte de l’incertitude et de la complexité. Décider à qui faire confiance ou non revient souvent à évaluer la crédibilité d’une source, en s’appuyant sur notre perception de sa fiabilité et de son expertise. Lorsque ces perceptions sont faussées, les fondements mêmes de l’action humanitaire et des mesures de santé publique sont menacés.
 
-# Confiance dans les Institutions
+<Box
+  index="2.1"
+  types={[TypologyOfHarm.Deprivational, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+>
 
-La confiance est cruciale pour la légitimité...
+## La confiance, la mésinformation et le pouvoir des relations au niveau local pour faire face aux crises
 
-<ContributorSpotlight>
-  <ContributorSpotlightName>Hodan Ismail-Shukry, Volontaire</ContributorSpotlightName>
-  <ContributorSpotlightRole>Croix-Rouge kényane</ContributorSpotlightRole>
-</ContributorSpotlight>
+Dans un monde de plus en plus connecté, la mésinformation, la désinformation et les discours préjudiciables constituent de graves menaces qui nuisent à l’action humanitaire, à la santé publique et à la cohésion sociale. Il est essentiel de comprendre comment ces dynamiques voient le jour et évoluent afin de concevoir des programmes et des interventions efficaces dirigés par les communautés.
 
-...ses volontaires – ancrés dans les communautés locales et dignes de confiance – restent son atout le plus efficace.
+La pandémie de Covid-19 a très bien illustré ce phénomène, comme en témoignent les interventions menées par plusieurs Sociétés nationales de la Croix-Rouge et du Croissant-Rouge auprès des communautés autochtones et isolées d’Amérique latine. Dans de nombreuses régions reculées, les communautés se sont opposées aux mesures de santé publique en raison d’une profonde méfiance à l’égard des autorités et d’une vision culturelle de la maladie qui diffère des modèles médicaux. Au Pérou, par exemple, les agents de santé ont été qualifiés de « démons blancs » et accusés d’avoir introduit le virus dans les communautés. Ces croyances n’étaient pas simplement le résultat de la mésinformation : elles reflétaient des conceptions traditionnelles de la maladie et ont été exacerbées par un accès limité à des informations précises et culturellement pertinentes. Souvent, les messages de santé publique étaient diffusés dans une seule langue et ne tenaient pas compte des perspectives des communautés en matière de santé et de guérison. Dans ce contexte, les fausses informations se sont rapidement propagées par le bouche-à-oreille et la mésinformation a été accentuée par les dirigeants locaux.
 
-<ContributorSpotlight>
-  <ContributorSpotlightName>Jacobo Castellanos</ContributorSpotlightName>
-  <ContributorSpotlightRole>Coordinateur, Technologie, Menaces et Opportunités</ContributorSpotlightRole>
-  <ContributorSpotlightPosition>WITNESS</ContributorSpotlightPosition>
-</ContributorSpotlight>
+Pour remédier à ces difficultés, les autorités sanitaires se sont tournées vers la Société nationale afin de faciliter le dialogue mais aussi d’identifier et de surmonter les différences dans la perception de la maladie et du traitement. En collaborant avec des chefs religieux et communautaires de confiance, elles ont pu contrer les rumeurs préjudiciables et promouvoir l’importance de la vaccination tout en respectant les croyances et coutumes locales.
 
-...ses principes restent les outils essentiels pour atteindre les plus vulnérables.
+Cette expérience montre que pour instaurer la confiance, il ne suffit pas de transmettre des informations. Il faut s’attacher réellement à écouter les populations, à comprendre les différentes perceptions culturelles, à identifier des valeurs communes et à communiquer de manière transparente tout au long des interventions. En nous fiant à des messages génériques ou à des hypothèses, nous risquons de nous éloigner des communautés que nous cherchons à aider et d’ignorer les réalités complexes auxquelles elles font face.
 
-# Conclusions : Confiance, Vérité et Préparation
+L’image que renvoient les Sociétés nationales constitue pour elles un défi permanent. Leur rôle d’auxiliaire est souvent mal expliqué ou mal compris, ce qui entraîne confusion et méfiance. Dans les contextes marqués par des divisions politiques, une Société nationale peut être considérée comme un prolongement du gouvernement ou une force d’opposition, voire les deux. Ces perceptions contradictoires peuvent compromettre la sécurité des volontaires et entraver l’accès humanitaire.
 
-Nous vivons déjà une crise de l'information. La préparation future aux urgences doit inclure un accès équitable à une information fiable, soutenu par des systèmes d'alerte précoce qui servent toutes les communautés, en particulier les plus vulnérables. L'information nocive n'érode pas seulement la confiance dans l'action humanitaire, elle alimente les divisions sociétales et sape la coopération à un moment où l'unité est urgemment nécessaire pour faire face aux défis mondiaux.
+Pour relever efficacement ces défis, les Sociétés nationales ont besoin de formations ciblées et d’outils pratiques leur permettant de surveiller les informations préjudiciables et d’y réagir. Il est essentiel de disposer de lignes directrices claires, d’une terminologie commune et de mécanismes de coordination renforcée au sein du Mouvement et avec les partenaires externes. Collecter des données probantes relatives aux effets des informations préjudiciables sur l’accès et la sécurité permettrait également d’orienter l’élaboration de stratégies d’atténuation efficaces.
 
-Comme l'a averti le Forum Économique Mondial (FEM), la mésinformation et la désinformation ne sont plus seulement des problèmes de communication – ce sont des menaces systémiques qui aggravent presque tous les autres risques mondiaux. Le Rapport sur les Risques Mondiaux 2025 souligne que : « La mésinformation, la désinformation et la polarisation sociétale restent des risques actuels clés » et comment la propagation accélérée d'informations fausses ou trompeuses amplifie d'autres risques majeurs – des conflits armés entre États aux événements météorologiques extrêmes.
+En fin de compte, les solutions les plus pérennes sont celles qui émanent des communautés. Le renforcement du pouvoir d’action des personnes grâce à la maîtrise des technologies numériques et de l’information, conjuguée à un dialogue tenant compte des spécificités culturelles, constitue le fondement de la confiance, de la pensée critique et de la prise de décisions éclairées. Surveiller la confiance au niveau communautaire et renforcer la transparence peut contribuer à consolider les relations entre les Sociétés nationales et les communautés qu’elles servent.
 
-Dans un espace informationnel aussi fragmenté et contesté, les voix des populations affectées risquent d'être étouffées, déformées ou cooptées. La confiance ne peut être exigée ; elle doit être construite par une action répétée, la transparence, la redevabilité et l'intégrité. La résilience face à l'information nocive nécessite plus que simplement corriger les faussetés, elle exige un engagement soutenu, l'ouverture et une participation significative. Les organisations humanitaires doivent aussi communiquer activement qui elles sont, ce qu'elles font, leur impact et pourquoi elles agissent – en présentant un argument clair et convaincant pour une action humanitaire principielle et pour la préservation d'un espace humanitaire neutre et impartial, libre de toute influence politique. Malgré les barrières posées par les perceptions polarisées, les organisations humanitaires principielles peuvent maintenir – et même reconstruire – la confiance et l'acceptation face à l'information nocive. Une question cruciale pour l'avenir est de savoir si la confiance et la proximité au niveau communautaire peuvent servir de pare-feu contre la propagation ou l'impact de l'information nocive. Les chapitres 3 et 6 exploreront cette question.
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Diana Medina
+      </ContributorName>
 
-## Demandes, Objectifs et Recommandations
+      <ContributorEntity>
+        Coordonnatrice régionale pour l’Asie-Pacifique, Engagement des  <br/>
+        communautés et redevabilité (CEA)
+      </ContributorEntity>
 
-**Demandes :** Placer la confiance au centre de l'action humanitaire en veillant à ce que les droits, l'inclusivité, la redevabilité et la transparence guident la communication, l'engagement et la rétroaction avec les communautés.
 
-### Objectifs :
+      <ContributorRole>
+       Fédération internationale
+      </ContributorRole>
+    </Contributor>
 
-- Réduire l'incertitude grâce à une communication et un engagement opportuns, transparents et cohérents avant, pendant et après les crises.
-- Renforcer la légitimité et la redevabilité en s'alignant sur les priorités communautaires et en suivant la confiance.
-- Protéger le personnel et les volontaires avec des garanties, des compétences et un engagement inclusif pour opérer en sécurité dans des espaces informationnels contestés.
-- Autonomiser les communautés : Construire des systèmes de rétroaction et de participation bidirectionnels qui permettent aux personnes d'exprimer leurs préoccupations, d'influencer les décisions et de contrer les récits nocifs.
+  </ContributorTag>
+</Box>
 
-## Recommandations
+# <HeadingLabel index="2.3" /> Confiance dans les institutions
 
-**Pour les Gouvernements et les Décideurs Politiques :**
+La confiance est essentielle pour garantir la légitimité, l’efficacité et l’acceptation de l’action humanitaire. Ce point a été clairement souligné à l’occasion de la Conférence internationale du Mouvement international de la Croix-Rouge et du Croissant-Rouge de 2019, qui a reconnu que la confiance dans l’action humanitaire fondée sur des principes est indispensable pour venir en aide aux personnes vulnérables et a encouragé tous les membres de la Conférence à agir en vue de la préserver et de la développer[^19].
 
-1. Développer des cadres politiques fondés sur les droits qui protègent l'information fiable lors de crises humanitaires.
-2. Intégrer l'édification de la confiance dans les plans de préparation et de réponse aux crises.
-3. Investir dans des systèmes d'alerte précoce et de surveillance pour détecter et contrer les récits nocifs.
-4. Soutenir les Sociétés nationales dans leur rôle auxiliaire en veillant au respect de leur indépendance, neutralité et intégrité.
-5. Assurer des réponses rapides aux faussetés qui menacent l'accès, l'action et la sécurité humanitaires.
+La décision d’inscrire la confiance à l’ordre du jour reflétait des préoccupations mondiales plus larges, à savoir la perte de confiance dans les institutions et les gouvernements, l’accroissement de la vigilance publique et les appels en faveur d’un renforcement de la redevabilité. Lorsque la compréhension des règles et règlements du Mouvement est limitée, les risques pour la réputation augmentent et la confiance diminue. Comme le souligne le rapport de la Commission[^20], « \[l]a confiance est la ressource la plus importante pour l’avenir de l’action humanitaire. Elle repose sur l’humilité, l’honnêteté et la transparence ». Trois grandes priorités ont alors été définies :
 
-**Pour les Plateformes Technologiques :**
+1. L'engagement communautaire et la redevabilité ;
 
-1. Détecter et atténuer le contenu nocif qui sape l'action humanitaire et la confiance.
-2. Partager en toute sécurité les données et insights pertinents avec les acteurs humanitaires pour soutenir la réponse en temps réel.
-3. Garantir que les outils de modération, de vérification des faits et d'IA fonctionnent dans des environnements multilingues à faible bande passante.
-4. Collaborer avec les acteurs humanitaires sur les mécanismes de vérification et d'étiquetage pour amplifier le contenu crédible.
+2. La création d’un environnement propice à une action humanitaire fondée sur des principes ;
 
-**Pour les Acteurs Humanitaires :**
+3. L’intégrité et le partage des risques.
 
-1. Développer des politiques, lignes directrices, normes et métriques (ex. : Indice de Confiance Communautaire et Engagement Communautaire et Redevabilité) pour mesurer et suivre la confiance et l'information nocive, et guider les réponses.
-2. Intégrer la confiance comme un atout opérationnel à travers la préparation, la réponse et le relèvement.
-3. Communiquer de manière transparente et inclusive, corriger rapidement les faussetés et co-créer les messages avec les communautés.
-4. Former le personnel et les volontaires à la gestion des rumeurs, à la sécurité numérique (incluant la protection contre le harcèlement en ligne) et à l'engagement culturellement sensible.
-5. Renforcer l'analyse en temps réel des retours communautaires et la réponse à ceux-ci, en s'adaptant visiblement aux préoccupations et en partageant les leçons apprises pour construire une résilience collective.
+Bien que les informations préjudiciables n’aient pas encore été considérées comme une préoccupation majeure, l’accent mis sur la confiance, la vérité et la transparence traduisait un consensus croissant quant à la nécessité pour le Mouvement et les États de redoubler d’efforts en vue de gagner la confiance des populations. Le rapport mettait également en lumière un plus vaste défi : préserver l’espace nécessaire à une action humanitaire fondée sur des principes, ce que le Mouvement ne peut réaliser seul[^21]. Cette idée a été réaffirmée dans la résolution du Conseil des Délégués de 2024 intitulée « Appel à respecter et soutenir l’action humanitaire fondée sur des principes[^22]» qui rappelle les engagements collectifs pris par le Mouvement en vue de renforcer l’intégrité, la redevabilité et la confiance.
 
-**Pour les Communautés et les Leaders Locaux :**
+Il convient de noter que la confiance dans l’action humanitaire ne dépend pas uniquement des efforts déployés par les acteurs humanitaires, mais également de la création d’un environnement propice à sa mise en œuvre, dans lequel une action fondée sur des principes, efficace et responsable est encouragée. Pour ce faire, les États et autres acteurs doivent établir des cadres juridiques, politiques et opérationnels qui garantissent le respect des principes humanitaires, un financement souple et axé sur les besoins, la protection de l’accès humanitaire et une délimitation claire des rôles et responsabilités des différentes parties prenantes. Comme il a été souligné au cours des discussions menées par les membres de la Commission en 2019, les États jouent un rôle décisif car leurs politiques et leurs pratiques peuvent soit favoriser la confiance et permettre une action humanitaire fondée sur des principes, soit l’entraver. Ils ont également la responsabilité de soutenir et de faciliter l’intervention de la Société nationale dans leur pays, conformément à leur rôle d’auxiliaire des pouvoirs publics. La création d’un tel environnement exige un dialogue constant, un partage des responsabilités et un engagement à éliminer les obstacles qui compromettent la confiance. Sans ces conditions, même les efforts humanitaires bien intentionnés risquent d’être ralentis, politisés ou considérés comme partiaux, ce qui finit par éroder la confiance qu’ils visent pourtant à instaurer. Quatre ans plus tard, la XXXIV Conférence internationale a reconnu que les informations préjudiciables faisaient partie intégrante de cette crise de confiance plus profonde.
 
-1. Agir comme des intermédiaires de confiance en amplifiant l'information vérifiée et en contrant les rumeurs.
-2. Partenarier avec les acteurs humanitaires pour co-créer des systèmes de suivi des rumeurs et de vérification.
-3. Entretenir la confiance par le dialogue dans les écoles, les institutions religieuses et les centres communautaires.
-4. S'engager dans la rétroaction et la recherche participative pour s'assurer que les réponses reflètent les priorités locales.
+Le Baromètre de confiance Edelman, qui évalue chaque année la confiance accordée aux institutions dans 28 pays, a mis en évidence une érosion de la confiance dans les ONG. L’analyse des données recueillies au cours des 25 dernières années fournit de précieuses informations aux acteurs humanitaires qui opèrent dans cet environnement fragile où la confiance accordée aux ONG est en pleine mutation.
+
+<Box
+  index="2.2"
+>
+## Instaurer la confiance à l’ère de la redevabilité
+
+Depuis plus d’une décennie, les ONG occupent une place unique dans le paysage mondial de la confiance.
+
+Selon les données du Baromètre de confiance Edelman, les ONG étaient considérées comme les institutions les plus dignes de confiance sur 21 marchés entre 2012 et 2018, avant d’être rattrapées par les entreprises en 2019. En 2021, cependant, les ONG ont été dépassées par les entreprises, qui sont toujours considérées comme les institutions les plus dignes de confiance en 2025. Néanmoins, la confiance dans les ONG demeure importante, celles-ci se classant systématiquement devant les gouvernements et les médias.
+
+La confiance inébranlable du public dans les ONG peut s’expliquer par la perception de leur intégrité morale. Depuis que l’agence Edelman a commencé à évaluer l’éthique et la compétence en 2020, les ONG ont toujours été considérées comme les institutions les plus éthiques. Toutefois, le public a moins confiance dans leur capacité d’obtenir des résultats. En 2025, elles ont obtenu un score de compétence inférieur de 15 points à celui des entreprises.
+
+Ces résultats contrastés (une excellente réputation en matière d’éthique, mais des doutes quant à leur efficacité opérationnelle) soulèvent un problème majeur : si le public estime que les ONG accomplissent un travail louable, il n’est pas tout aussi convaincu de son efficacité.
+
+On observe une tendance similaire dans les opinions sur le traitement égal et équitable de tous les individus. Depuis 2020, la grande majorité des personnes interrogées s’accordent à dire que les ONG contribuent efficacement à un changement positif, mais seule une minorité estime qu’elles servent les intérêts de toutes les populations de manière égale et équitable. Si le public reconnaît que les ONG font du bon travail, ce résultat montre qu’il craint que leur action ne bénéficie pas équitablement à toutes les populations.
+
+Ces perceptions pourraient en partie expliquer pourquoi la confiance est désormais davantage accordée aux entreprises, lesquelles sont considérées comme plus susceptibles d’obtenir des résultats. Les entreprises ont en outre amélioré leur image en matière d’éthique, en se positionnant comme les institutions les mieux à même d’avoir un impact à grande échelle.
+
+En ce qui concerne les ONG, leur capacité de préserver la confiance du public depuis plus d’une décennie témoigne d’un engagement sans faille dans leur mission, mais à une époque où les attentes des parties prenantes sont de plus en plus élevées, cette confiance doit être renforcée par l’obtention de résultats mesurables et équitables.
+
+**Pour accroître la confiance, les ONG peuvent :**
+
+- présenter clairement les résultats obtenus, en mettant en évidence non seulement les activités menées par l’organisation, mais aussi les mesures efficaces et leurs effets ;
+
+- nouer des partenariats avec d’autres acteurs, en collaborant étroitement avec des entreprises, les gouvernements et des groupes locaux afin d’unir leurs forces et de toucher un plus grand nombre de personnes ;
+
+- renforcer la confiance au niveau local, en soutenant les dirigeants locaux et en tenant compte des retours d’informations des communautés afin que les efforts déployés répondent aux besoins réels ;
+
+- communiquer de manière plus efficace, en privilégiant les messages qui mettent en lumière des réussites et des résultats concrets, et pas seulement des valeurs ;
+
+- faire preuve de souplesse et essayer de nouvelles méthodes, pour continuer de s’améliorer en apprenant, en s’adaptant et en expérimentant des solutions innovantes.
+
+<ContributorTag>
+  <Contributor>
+    <ContributorName>
+      Institut de la confiance Edelman
+    </ContributorName>
+
+  </Contributor>
+
+</ContributorTag>
+</Box>
+
+Selon les études réalisées par l’Organisation de coopération et de développement économiques (OCDE), la confiance dans les institutions publiques repose sur deux piliers fondamentaux : d’une part, la **compétence** (c’est-à-dire la capacité de répondre aux attentes grâce à l’efficacité opérationnelle, aux moyens à disposition et à des jugements éclairés) et, d’autre part, les **intentions** (agir de bonne foi, en se fondant sur des valeurs et des principes). La confiance évolue : les individus la développent et l’ajustent en fonction de leurs expériences personnelles et des informations dont ils disposent. En revanche, la méfiance ne découle souvent pas des performances réelles, mais des impressions de partialité, de cynisme, de désengagement ou de la crainte d’être trahi[^23].
+
+L’efficacité et même la faisabilité de l’action humanitaire dépendent de la confiance d’un large éventail de parties prenantes, notamment les populations touchées, les gouvernements, les acteurs non étatiques, les donateurs et les entreprises technologiques. Sans confiance, le secteur humanitaire risque de perdre l’accès, le soutien et la légitimité dont il a tant besoin.
+
+<Box
+  index="2.3"
+  types={[TypologyOfHarm.Social, TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+>
+## L’expérience de la Croix-Rouge libanaise en matière de lutte contre les informations préjudiciables dans les crises humanitaires
+
+Au cours des récentes crises successives au Liban, la Croix-Rouge libanaise, qui compte plus de 12 000 volontaires à travers le pays, s’est heurtée à d’importantes difficultés liées à la propagation d’informations préjudiciables pour assurer des services vitaux. Au plus fort de la pandémie de Covid-19, de fausses informations ont été relayées, affirmant que les volontaires de la Société nationale contribuaient à la propagation du virus. Après l’explosion au port de Beyrouth en 2020, des informations erronées ont laissé entendre que l’aide a été distribuée de manière partiale. De même, de fausses rumeurs ont circulé selon lesquelles la Croix-Rouge libanaise vendait des unités de sang. Pendant l’épidémie de choléra, certains discours trompeurs affirmaient que les vaccins et les sels de réhydratation orale étaient dangereux. Ils ont ainsi mis en danger les volontaires et le personnel et affaibli la confiance du public.
+
+Les informations préjudiciables ont perturbé les opérations humanitaires et touché de manière disproportionnée les groupes vulnérables, notamment les personnes âgées vivant dans des zones isolées, les migrants et les communautés déplacées, ainsi que les volontaires de la Croix-Rouge libanaise. Beaucoup d’entre eux avaient un accès limité à des informations numériques vérifiées ou étaient coupés des canaux de communication officiels.
+
+La Société nationale a donc mis à profit sa réputation acquise de longue date et déployé des stratégies de communication ciblées. Dans le cadre de la lutte contre la pandémie de Covid-19, elle a mis en place une ligne d’assistance téléphonique pour les situations non urgentes afin de répondre aux questions de la population. Pendant l’épidémie de choléra, elle a organisé des séances de sensibilisation en personne pour contrer les rumeurs. Divers outils, tels qu’un mécanisme de suivi des rumeurs au sein des communautés, une ligne d’assistance téléphonique permettant de transmettre des retours d’informations, des communiqués de presse publiés en temps opportun et des publications en temps réel sur les réseaux sociaux, se sont avérés essentiels. Cependant, le manque de maîtrise des outils numériques, en particulier dans les zones reculées, a compromis l’efficacité des interventions.
+
+L’impartialité de la Croix-Rouge libanaise a également été remise en question dans certaines régions, en particulier dans les zones accueillant des réfugiés. La Société nationale a rapidement réagi aux rumeurs affirmant qu’elle favorisait les réfugiés dans la distribution de l’aide en apportant des précisions factuelles afin de réaffirmer son impartialité et sa neutralité.
+
+Pour renforcer la résilience face aux informations préjudiciables, il ne suffit pas d’adopter des stratégies de communication fondées sur la réactivité. Le statut reconnu de la Croix-Rouge libanaise – tant par les plus hautes autorités que par les acteurs locaux – de partenaire humanitaire neutre et fiable a été essentiel pour préserver la confiance du public et l’accès opérationnel. Les principes humanitaires fondamentaux d’impartialité, de neutralité et d’indépendance sont de plus en plus remis en cause par la propagation de fausses informations. Bien que des directives aient été adoptées en matière de communication, la Société nationale continue de renforcer et d’affiner ses mesures de protection pour lutter contre les contenus préjudiciables. Mais surtout, ses volontaires, qui jouissent de la confiance des communautés locales et y sont ancrés, restent l’atout le plus efficace de l’organisation pour préserver la confiance et assurer la continuité de l’action humanitaire fondée sur des principes qui sauve des vies.
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Georges Kettaneh
+      </ContributorName>
+
+      <ContributorEntity>
+        Secrétaire général
+      </ContributorEntity>
+
+
+      <ContributorRole>
+       Croix-Rouge libanaise
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+<Box
+  index="2.4"
+>
+## Croix-Rouge canadienne : aller au-delà de l’image de marque et évaluer la confiance face aux informations préjudiciables
+
+La Croix-Rouge canadienne réalise chaque année une étude afin de mieux comprendre ce qui favorise la confiance des Canadiens et comment celle-ci influence la mission humanitaire et les activités de l’organisation. Cette étude avait pour objectif d’aller au-delà des outils traditionnellement utilisés pour évaluer les points forts d’une marque, tels que la notoriété, l’attitude et les caractéristiques distinctives, afin d’en savoir plus sur les facteurs qui entretiennent la confiance.
+
+Face à la multiplication des informations préjudiciables, la Croix-Rouge canadienne doit absolument continuer à bénéficier d’une confiance importante afin de rester une source d’information crédible tant pour les communautés que pour ses partenaires. Ces dernières années, le niveau de confiance a baissé dans tous les secteurs au Canada, reflétant ainsi les tendances mondiales liées à la prolifération des informations préjudiciables en ligne et à l’affaiblissement des médias traditionnels (médias audiovisuels et presse écrite).
+
+L’année 2025 a marqué la quatrième année consécutive de cette étude, qui comprend également de courtes enquêtes réalisées à la suite d’événements importants et d’interventions d’urgence.
+
+Les résultats montrent systématiquement que, parmi les organisations œuvrant dans le même domaine ou d’autres secteurs, la Croix-Rouge canadienne occupe la première place en matière de confiance. Cette solide réputation fait de l’organisation un porte-parole digne de confiance en temps de crise au niveau communautaire et un partenaire de choix au sein de la société civile et auprès du gouvernement.
+
+Les études relatives à la confiance évaluent trois éléments fondamentaux :
+
+1. La capacité (compétence) – «Je peux compter sur la Croix-Rouge canadienne
+pour intervenir avec compétence et efficacité.»
+
+L’ensemble des connaissances, aptitudes et compétences qui permettent à la Société
+nationale de fournir des services, d’atteindre ses objectifs et d’assumer ses responsabilités.
+
+2.  La bienveillance (bonne volonté) – «La Croix-Rouge canadienne veille au
+bien-être de ses parties prenantes.»
+
+La mesure dans laquelle la Société nationale s’acquitte de son devoir de diligence et fait
+preuve d’humanité envers toutes les parties prenantes.
+
+3. L’intégrité (moralité) – «Je peux compter sur la Croix-Rouge canadienne pour
+agir de manière juste.»
+
+La mesure dans laquelle la Société nationale adhère systématiquement aux principes éthiques et aux valeurs morales largement acceptés.
+
+La compréhension des facteurs qui favorisent la confiance, mais aussi des moyens de la renforcer et de la préserver fait désormais partie intégrante de l’approche stratégique de la Croix-Rouge canadienne, tant au niveau de la gouvernance (conseil d’administration) qu’au niveau des équipes de direction chargées des opérations, des relations avec les parties prenantes, de la philanthropie et de la communication.
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Nathan Huculak
+      </ContributorName>
+
+      <ContributorEntity>
+        Responsable de la communication
+      </ContributorEntity>
+
+
+      <ContributorRole>
+       Croix-Rouge canadienne
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+
+# <HeadingLabel index="2.4"/>Intégrité, perception et fondements fragiles de la confiance
+
+Les cas de comportements répréhensibles tels que les cas d’abus, d’exploitation, de fraude ou d’irrégularités dans la gestion ont gravement érodé la confiance du public, en particulier lorsque les organisations humanitaires interviennent sans faire preuve de transparence ou d’empathie. Les scandales liés à des abus sexuels au sein de certaines organisations ont montré combien la confiance peut s’effondrer rapidement[^24]. La politisation de l’aide (lorsque des gouvernements, des acteurs armés ou d’autres parties manipulent l’action humanitaire à des fins politiques) nuit encore davantage à l’image de neutralité et laisse les communautés sceptiques quant aux motivations des acteurs du secteur.
+
+Dans le contexte actuel marqué par la transparence numérique et une surveillance constante, les acteurs humanitaires ne sont plus les seuls, ni même les premiers à rendre compte des actions qu’ils mènent. Ils doivent désormais rivaliser avec les gouvernements et les acteurs non étatiques pour asseoir leur légitimité, mais aussi avec les communautés elles-mêmes, qui s’expriment, s’organisent et remettent en question les interventions déployées de manière de plus en plus fréquente et en temps réel.
+
+Il est donc primordial de s’attaquer aux problèmes d’intégrité. Les allégations de partialité, de corruption ou d’irrégularités dans la gestion peuvent détourner l’attention des activités vitales et ébranler la confiance tant au sein des organisations humanitaires que de la population. Le déclin général de la confiance dans les institutions se traduit par une surveillance accrue de l’intégrité des Sociétés nationales et des autres composantes du Mouvement. Cette situation exige de promouvoir activement les mandats, les principes et les activités, mais aussi d’adopter des approches stratégiques solides pour faire face aux problèmes de gestion, aux atteintes à la réputation et aux risques connexes.
+
+Par ailleurs, les organisations humanitaires sont confrontées à des exigences sans précédent en matière de comptes rendus, de respect des règles et de preuve de leur impact. Les échecs doivent être reconnus et affrontés de manière ouverte et transparente. En parallèle, des efforts concertés doivent être déployés dans tous les secteurs afin de lutter contre la diffusion intentionnelle d’informations préjudiciables, une pratique à la fois immorale et dangereuse.
+
+Enfin, le manque de localisation de l’aide humanitaire ou la lenteur des progrès en la matière alimente encore davantage la méfiance. De nombreuses communautés considèrent l’action humanitaire comme un processus descendant, dirigé par des acteurs internationaux dont la représentation locale et la compréhension du contexte sont limitées. Le secteur est parfois perçu comme dominé par l’Occident, ce qui est renforcé par les normes, les codes de conduite et les mécanismes de coordination élaborés par des organisations du Nord.
+
+<Box
+  index="2.5"
+>
+## Croix-Rouge costaricienne : renforcer les opérations d’urgence grâce à des flux d’informations vérifiées
+
+Le Costa Rica est un petit pays qui présente une extraordinaire diversité géographique. Sur un territoire d’un peu plus de 51 000 kilomètres carrés, il regroupe des chaînes de montagnes, des volcans actifs, des vallées fertiles, des forêts tropicales, de vastes côtes sur l’océan Pacifique et la mer des Caraïbes, ainsi qu’un large territoire maritime qui dépasse sa superficie terrestre. Cette richesse naturelle façonne les moyens de subsistance, la culture et l’identité de sa population, et positionne le Costa Rica comme un chef de file mondialement reconnu en matière de conservation de l’environnement et de développement durable.
+
+Dans le même temps, cette géographie diversifiée et l’exposition à des conditions climatiques dynamiques font que les risques naturels y sont une réalité récurrente. Des facteurs atmosphériques et géographiques convergent pour générer des phénomènes météorologiques extrêmes tels que des inondations, des tempêtes et des sécheresses, qui déclenchent régulièrement des situations d’urgence et affectent les communautés sur l’ensemble du territoire.
+
+Selon l’Institut national de la statistique et des recensements, 85,4 % des ménages costariciens ont accès à Internet. L’accès généralisé aux réseaux numériques permet aux Costariciens de bénéficier de meilleures possibilités d’éducation et d’outils améliorés de gestion des risques de catastrophe, tels que les systèmes d’alerte précoce. Cependant, cette connectivité a parfois conduit à la diffusion rapide de fausses informations en ligne, y compris pendant les situations d’urgence, qui offrent aux acteurs malveillants des possibilités d’exploiter la peur et l’incertitude du public.
+
+Les problèmes les plus fréquents surviennent lorsque des informations inexactes circulent sur les plateformes de messagerie. Ces messages sont souvent conçus pour devenir viraux, susciter l’inquiétude et, ainsi, semer le doute dans l’esprit du public quant à la capacité du Système national de gestion des risques de faire face aux menaces. Ils visent aussi parfois à semer la confusion chez les premiers intervenants et perturber l’allocation des ressources lors des opérations d’aide humanitaire.
+
+La Croix-Rouge costaricienne reconnaît que le renforcement des capacités de gestion des catastrophes est essentiel pour relever des défis tels que la diffusion de fausses informations dans les communautés, qui ont une influence directe sur la prise de décision opérationnelle et les ressources destinées à l’intervention humanitaire.
+
+Depuis 2023, la Société nationale a mis en place un processus d’amélioration continue au sein de son Centre des opérations d’urgence, axé sur quatre domaines clés : l’optimisation des processus ; la mise à jour du plan d’intervention en cas de catastrophe ; le renforcement des capacités (avec la formation d’une cinquantaine de personnes, notamment en gestion de l’information) ; et le renforcement de la coordination au niveau national.
+
+Le Centre met désormais l’accent sur l’analyse des informations et de la situation, en assurant le traitement des données depuis leur réception jusqu’à leur vérification, leur filtrage et leur interprétation, afin de générer des résultats exploitables. Les principaux résultats sont les suivants :
+
+1. Prise de décision opérationnelle: les informations filtrées, vérifiées et
+analysées permettent de prendre des décisions rapides et précises
+concernant l’allocation des ressources essentielles, minimisant ainsi
+le risque de les utiliser dans des situations qui ne nécessitent pas
+d’intervention humanitaire.
+
+2. Stratégies de diffusion de l’information et produits :
+
+- Visibilité accrue de la Croix-Rouge costaricienne à la télévision, à la
+radio et sur les réseaux sociaux, grâce à des porte-parole formés
+qui fournissent des informations fiables, combattent les contenus
+préjudiciables et diffusent des conseils précis. Il s’agit notamment de
+souligner l’importance de rechercher des informations auprès des
+canaux officiels nationaux et communautaires alignés sur le Système
+national de gestion des risques.
+
+- Rapports statistiques : des infographies fondées sur des données et
+diffusées par les canaux institutionnels permettent au public et aux
+institutions de rester informés des interventions humanitaires.
+
+- Canaux de consultation publique: les lignes de contact de la Société
+nationale permettent au public d’accéder à des informations précises et
+de fournir des retours. 
+
+3. Rapports et mises à jour: les rapports de situation, les mises à jour de la
+plateforme de données et les informations sur le financement, telles que les
+allocations du DREF, s’appuient sur des données fiables et actualisées, ce qui
+réduit les erreurs.
+
+**Lutter contre la désinformation en tant que mesure anticipative**
+
+La Croix-Rouge costaricienne met en œuvre des plans d’action précoce financés par le DREF, l’accent étant mis en particulier sur la diffusion d’informations précises, par exemple en ce qui concerne la dispersion des cendres volcaniques. Le Costa Rica compte plus de 400 structures volcaniques, dont trois – Rincón de la Vieja, Poás et Turrialba – sont classées par l’Observatoire volcanologique et sismologique du Costa Rica au niveau d’activité 2 (« alerte »), exposant les communautés voisines et leurs moyens de subsistance au risque d’éruptions potentielles et de dommages associés.
+
+L’augmentation de l’activité volcanique peut affecter la santé et les moyens de subsistance des communautés, et les mythes ou les fausses informations peuvent amplifier ces impacts. Pour y remédier, les mesures préventives consistent à fournir des informations précises et en temps opportun aux communautés exposées afin de prévenir les risques pour la santé et les pertes de moyens de subsistance et d’orienter les mesures d’atténuation des risques. Ces mesures comprennent les éléments suivants :
+
+- Contenus numériques partagés par la Croix-Rouge costaricienne sur ses comptes de réseaux sociaux, élaborés en collaboration avec des institutions technico-scientifiques.
+
+- Dialogue avec les médias pour expliquer les mesures du plan d’action précoce et l’activité volcanique actuelle.
+
+- Sensibilisation des communautés par le biais d’activités d’engagement communautaire et de redevabilité (activités CEA) menées en face-à-face, telles que des groupes de discussion, des conférences et des séances de questions-réponses, en coordination avec les autorités locales.
+
+**Exemples de réussite**
+
+**Situation d’urgence liée aux inondations, novembre 2024.** Lors de la situation d’urgence causée par de fortes pluies, des inondations et des glissements de terrain, la Société nationale a mis en œuvre une stratégie de communication axée sur la transparence, la prévention et l’accès rapide à des informations vérifiées. Au total, 92 mises à jour officielles ont été diffusées par différents canaux, et le dialogue quotidien avec les médias a permis de donner aux communautés des informations sur les interventions humanitaires et de diffuser des messages clés de prévention et de sécurité, contribuant ainsi à contrer les rumeurs et la désinformation.
+
+**Activité volcanique, mars 2025.** Lorsque l’activité du volcan Poás s’est considérablement intensifiée et que le niveau d’alerte a été relevé à 3 (« précaution »), le plan d’action d’urgence relatif à la dispersion des cendres volcaniques a été activé comme prévu. Cette communication précoce a fourni aux communautés des conseils pratiques pour protéger leur santé et leurs moyens de subsistance, remplaçant avec succès les informations erronées par des informations scientifiques et opportunes.
+  <ContributorTag>
+    <Contributor>
+
+      <ContributorRole>
+       Croix-Rouge costaricienne
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+</Box>
+
+L’actuel processus de « réinitialisation » ou « renouveau » du secteur humanitaire, qui résulte de la réduction inédite des financements depuis 2025 et entraîne une restructuration généralisée ou des coupes dans les programmes, accentue la propagation d’informations préjudiciables. Les clôtures soudaines de programmes, les licenciements de personnel et les incertitudes, qui sont souvent communiqués de manière inadéquate aux communautés touchées, créent un vide qui est rapidement comblé par les informations préjudiciables, la méfiance et les discours politiques. Lorsque les communautés ne participent pas de manière significative ou que les changements sont mal expliqués, des rumeurs circulent selon lesquelles l’aide serait politisée, détournée ou supprimée. Les détracteurs et les acteurs de mauvaise foi exploitent cette incertitude pour discréditer l’action humanitaire. Sans une communication claire et transparente et sans une véritable prise en compte des voix locales, le processus de réinitialisation ou de renouveau du secteur risque de devenir un terrain propice aux soupçons, à la polarisation et aux discours préjudiciables.
+
+
+
+# <HeadingLabel index="2.5"/> Déclin de l’expertise et incidence sur la confiance
+
+L’érosion de la confiance dans les connaissances spécialisées, décrite comme la « mort de l’expertise » (Nichols), a renforcé le scepticisme du public à l’égard des informations faisant autorité. La promesse d’un accès et d’une expression libres sur Internet a rendu floue la limite entre les informations fiables et les informations préjudiciables, ce qui permet aux deux de coexister. Les unes nous orientent, tandis que les autres nous induisent en erreur[^25]. **Les émotions influencent souvent les croyances avant même que des données probantes ne soient prises en compte.** S’il est essentiel de remettre en question les affirmations et d’évaluer les sources, ce processus s’effectue de plus en plus en dehors des cadres traditionnels de l’expertise.
+
+Les organisations humanitaires sont généralement considérées comme des acteurs spécialistes du domaine, reconnus pour leurs compétences techniques, leur expérience opérationnelle et leurs connaissances juridiques et politiques. Cependant, cette légitimité n’est pas immuable : elle dépend du contexte, du comportement et de la capacité des organisations de répondre aux attentes croissantes en matière de localisation, de redevabilité et d’efficacité.
+
+En parallèle, le paysage de l’information a radicalement changé. Les médias sociaux ont donné aux communautés les moyens de rivaliser avec les gardiens traditionnels du savoir et des discours, en donnant plus de poids aux voix de leurs pairs qu’à celles des spécialistes institutionnels ou diplômés. Comme le souligne l’ouvrage The Death of Expertise, « \[l]es faits et la raison sont assiégés sur plusieurs fronts[^26]». Il convient de noter que le Baromètre de confiance Edelman a indiqué pour la première fois en 2006 que les pairs (c’est-à-dire « les personnes comme moi ») étaient considérés comme l’une des sources d’information les plus crédibles.
+
+Dans ce contexte, l’expertise seule ne suffit plus. La confiance doit être constamment gagnée en faisant preuve de transparence, d’humilité et de réactivité. Ce changement soulève des questions essentielles qui seront abordées dans la prochaine section : dans quels cas les organisations humanitaires ne sont-elles pas dignes de confiance et doivent-elles faire l’objet de critiques constructives, d’évaluations et d’un dialogue ouvert ? Dans quelle mesure la méfiance est-elle délibérément entretenue afin d’éroder la confiance et la légitimité ? Comment faire la différence entre les deux ?
+
+<Box
+  index="2.6"
+>
+## Façonner la confiance
+
+La confiance a-t-elle de l’importance lorsque vous avez faim ? Lorsque votre priorité est d’être efficace ? Lorsque vos informations sont étayées par des données scientifiques ?
+
+La réponse est oui, car l’aide fournie en tenant compte des capacités réelles des personnes permet de mettre en place un système qui peut perdurer au-delà des cycles de financement. La confiance devient partie intégrante des relations avec les communautés, favorise l’émergence de solutions locales et contribue à éviter les tensions susceptibles d’accroître les risques au lieu de les réduire.
+
+Trop souvent, les discussions relatives à la confiance dans le secteur humanitaire se concentrent sur les menaces externes, c’est-à-dire les facteurs qui échappent au contrôle des organisations humanitaires, tels que les utilisations malveillantes, les algorithmes polarisateurs, la réduction des budgets consacrés à l’aide ou l’évolution des normes sociales. S’il est important de comprendre ces changements et défis, une grande partie de ce qui renforce ou fragilise la confiance relève de notre contrôle. Nous pouvons faire beaucoup dans ce secteur pour garantir la confiance.
+
+La confiance est relationnelle, conditionnelle et multidimensionnelle. C’est pourquoi elle peut parfois être perçue comme trop abstraite ou trop intangible pour être traduite en actions concrètes. Le Trust Framework (cadre de confiance) vise à remédier à cette situation. Il a été élaboré dans le cadre du projet <ChapterLink
+  href="https://internews.org/areas-of-expertise/humanitarian/projects/rooted-in-trust/"
+  target="_blank"
+  rel="noopener noreferrer">Rooted in Trust</ChapterLink> à l’issue de consultations menées dans plus de dix situations de crise différentes. Il décompose la confiance en quatre éléments fondamentaux, à savoir l’exactitude, la proximité, l’intention et le contrôle, chacun comprenant trois sous-éléments qui déterminent la manière dont les personnes perçoivent les organisations qui les entourent. Ce cadre permet de repérer des décalages qui pourraient autrement nous échapper. Par exemple, même si nos informations sont factuellement correctes, elles peuvent paraître trop lisses et déconnectées des discussions actuelles. Il pourrait également mettre en évidence le fait que les populations perçoivent le personnel et les partenaires locaux comme « des étrangers » et non comme « des membres de la communauté », car ils ne sont pas considérés comme suffisamment indépendants du système d’aide international auquel ils sont associés.
+
+Élaborer des programmes fondés sur la confiance ne signifie pas ignorer les risques. Il s’agit plutôt d’une situation comparable à celle d’un parent qui regarde son enfant se rendre seul à l’école à vélo pour la première fois : pleinement conscient des risques, il choisit néanmoins de le laisser partir seul afin qu’il puisse gagner en indépendance. La confiance exige une certaine indépendance, de l’espace et non du contrôle, afin que les individus puissent participer de manière active, signaler les lacunes, s’adapter et changer de cap si nécessaire. En effet, l’autonomie va de pair avec la responsabilité. La confiance multiplie les possibilités.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Stijn Aelbers
+      </ContributorName>
+
+      <ContributorEntity>
+        Consultant dans le secteur humanitaire
+      </ContributorEntity>
+
+    </Contributor>
+
+  </ContributorTag>
+
+</Box>
+
+# <HeadingLabel index="2.6"/> L'engagement communautaire et la redevabilité : un pont vers la confiance
+
+
+<SmallQuote>
+L’avantage que nous avions, c’est que lorsque nous avons enfin
+pu nous rendre sur place pour procéder à une évaluation et
+échanger avec les dirigeants communautaires, nous avons pu
+comparer les informations publiées dans la presse ou celles qui
+nous étaient parfois fournies par les municipalités avec ce que
+les membres de la communauté eux-mêmes nous racontaient.
+Nous avons sans hésiter donné crédit à leurs propos, car il y
+avait d’énormes différences entre ce qu’ils nous disaient et
+ce qui était rapporté dans les médias au sujet des pertes, des
+répercussions, des dégâts, des familles déplacées, etc. C’est
+pourquoi nous nous sommes toujours efforcés de recueillir
+des informations auprès des personnes qui souffraient à ce
+moment-là, celles qui étaient réellement confrontées à la crise.»
+</SmallQuote>
+<SmallQuoteAuthor>Membre de la communauté, Bolivie</SmallQuoteAuthor>
+
+Les activités d'engagement communautaire et de redevabilité (CEA) sont essentielles pour instaurer et entretenir la confiance. Celle-ci repose sur la proximité, la participation inclusive, une communication transparente et opportune, ainsi que sur une prise de décisions communes avec les personnes et les communautés. Ces activités permettent en outre aux communautés d’avoir accès à des informations exactes, pertinentes et susceptibles de sauver des vies, ce qui est indispensable non seulement pour mener une action humanitaire efficace, mais aussi pour assurer la sécurité du personnel et des opérations[^27].
+
+<Definition>Engagements du Mouvement en matière d’interaction avec les communautés et de redevabilité[^28]</Definition>
+<DefinitionDescription>
+  On entend par
+**engagement communautaire**
+(ou interaction avec les communautés) l’ensemble des modalités de travail collaboratives par lesquelles le Mouvement associe les personnes et les communautés à son action, d’une part pour en garantir l’efficacité, l’inclusion, la redevabilité et les bienfaits sur le long terme, et d’autre part pour donner aux personnes et aux communautés les moyens de l’orienter de telle manière qu’elle génère en leur faveur des changements positifs et améliore durablement leur existence. Il s’agit notamment de mettre en place des mécanismes pour recueillir leur parole et interagir et communiquer avec elles de manière systématique afin de mieux cerner la diversité de leurs besoins, de leurs vulnérabilités et de leurs capacités ; pour collecter leurs réactions et leurs points de vue sur leurs priorités et leurs préférences, en tenir compte et y donner suite ; et pour faire en sorte qu’elles puissent, en toute sécurité et sans discrimination, participer activement aux décisions qui les concernent.
+
+</DefinitionDescription>
+
+<TohInsight
+  align="right"
+  types={[
+    TypologyOfHarm.Physical,
+    TypologyOfHarm.Psychological,
+    TypologyOfHarm.Societal,
+    TypologyOfHarm.Deprivational,
+  ]}
+/>
+
+L’interaction avec les communautés a joué un rôle décisif dans le rétablissement de la confiance lors de l’épidémie d’Ebola qui a frappé la République démocratique du Congo en 2018. La peur, les rumeurs et les fausses informations ont attisé la méfiance, ce qui a parfois donné lieu à des actes de violence à l’encontre des équipes de la Croix-Rouge, en particulier celles qui procédaient aux inhumations sans risque et dans la dignité. Cette réticence a entravé l’accès aux soins vitaux et a probablement contribué à la propagation du virus dans les communautés vulnérables.
+
+Pour y remédier, la Croix-Rouge de la République démocratique du Congo a fait des activités CEA le pilier de sa stratégie. Des volontaires ont échangé quotidiennement avec les communautés afin de répondre à leurs préoccupations et de rétablir la confiance. Grâce à un système de retour d’information inédit, ils ont recueilli plus de 394 000 commentaires, ce qui a permis aux acteurs humanitaires d’adapter leurs approches aux réalités locales. Les volontaires ont également fait du porte-à-porte pour informer la population sur la manière de prévenir, dépister et traiter Ebola, animé des émissions radio, organisé des séances de cinéma itinérantes et mené des actions de sensibilisation auprès des groupes vulnérables, notamment les personnes handicapées, les enfants et les associations de femmes. Ces mesures ont permis d’obtenir des résultats significatifs : le taux de réussite des inhumations sans risque et dans la dignité est resté élevé (80 %), et la réticence des communautés à l’égard de ces pratiques a considérablement diminué, passant de 79 % au cours des deux premiers mois de l’opération à seulement 8 % en septembre 2019. La confiance, le dialogue et l’action menée au niveau local se sont avérés essentiels pour enrayer la propagation du virus[^29].
+
+<QuestionAnswerBox>
+  <QuestionAnswerBoxTitle>Les volontaires du Croissant-Rouge du Yémen et la confiance
+que leur accordent les communautés qu’ils servent</QuestionAnswerBoxTitle>
+  <QuestionAnswerBoxBody>
+Grâce à une communication externe cohérente et transparente, le Croissant-Rouge
+du Yémen s’est forgé une réputation d’organisation digne de confiance au sein des
+communautés yéménites. Fort d’un solide réseau de volontaires répartis dans ses
+22 sections, la Société nationale s’appuie sur des personnes qui entretiennent des
+liens étroits avec les communautés qu’elles servent. En général, un volontaire et une
+volontaire s’occupent de 20 ménages, ce qui favorise des échanges fondés sur l’égalité
+de genre et une connaissance approfondie des réalités locales.
+
+Ces volontaires jouent un rôle de premier plan dans la sélection des nouveaux membres
+du personnel et des nouveaux volontaires, en veillant à ce que les opinions politiques, les
+origines tribales ou les convictions religieuses des individus ne nuisent pas à leur capacité de collaborer efficacement avec les dirigeants et les membres des communautés.
+Ce processus de sélection rigoureux et inclusif contribue à maintenir des relations de
+travail harmonieuses et renforce la confiance accordée au Croissant-Rouge du Yémen.
+En adoptant des approches communautaires, la Société nationale s’assure que ses
+interventions sont adaptées à la culture locale et acceptées par la population, ce qui
+est essentiel pour réduire véritablement les risques de catastrophe et mettre en œuvre
+d’autres initiatives humanitaires.[^30]
+</QuestionAnswerBoxBody>
+</QuestionAnswerBox>
+
+La confiance est difficile à instaurer et encore plus difficile à rétablir une fois perdue. La Fédération internationale la considère comme l’un des principaux facteurs permettant de garantir la réussite d’une intervention d’urgence, ce qui rend la préparation fondamentalement dépendante de son développement au sein des communautés et des sociétés. C’est pourquoi elle a mis au point **l’indice de confiance des communautés** , un outil fondé sur des données probantes qui permet de mesurer et de renforcer la confiance entre les Sociétés nationales de la Croix-Rouge et du Croissant-Rouge et les communautés qu’elles servent. Cet indice suit l’évolution de la confiance et permet d’identifier les facteurs qui l’influencent dans différents contextes. En mettant en évidence les obstacles qui nuisent à la confiance, il sert de guide pour mener des activités adaptées qui favorisent les comportements fondés sur la confiance, améliorent l’acceptation par les communautés et renforcent l’efficacité des programmes. Il permet en outre d’établir un lien entre la confiance et le respect des règles, la bonne gouvernance et une prise de décisions inclusive et éclairée par les communautés, ce qui contribue à accroître la redevabilité et les résultats.
+
+<Box
+  index="2.7"
+
+>
+## La confiance dans les organisations locales demeure malgré l’évolution du paysage médiatique
+
+L’analyse des données de **l’indice de confiance des communautés** recueillies dans sept pays entre 2022 et 2024 fournit des informations importantes sur l’évolution de la confiance accordée aux Sociétés nationales de la Croix-Rouge et du Croissant-Rouge dans un monde de plus en plus marqué par la mésinformation et la désinformation. L’indice mesure deux dimensions fondamentales de la confiance, soit les (qui reflètent les perceptions de l’efficacité, des aptitudes et des capacités d’une organisation) et les (qui recouvrent l’éthique, l’intégrité et l’adéquation avec les intérêts de la communauté).
+
+Dans l’ensemble, les communautés affichent un niveau de confiance élevé dans leurs Sociétés nationales, la note moyenne étant de 8,15 sur 10. Toutefois, un examen plus approfondi met en évidence de nouvelles préoccupations en matière d’éthique, notamment en ce qui concerne la transparence, la neutralité et la prise en compte des retours d’information des communautés.
+
+La transparence se révèle être un défi majeur. Dans la quasi-totalité des cas étudiés (figure 2.1), elle est le facteur qui obtient le score le plus bas, avec une note moyenne de seulement 6,34 sur 10. Nombre de communautés pensent que les acteurs humanitaires sont réticents à reconnaître ouvertement leurs erreurs ou leurs défaillances, un sentiment renforcé par les exigences en matière de redevabilité en temps réel qui sont inhérentes à l’ère numérique. Cette tendance est particulièrement manifeste en Mongolie, en Équateur et au Zimbabwe, où le manque de transparence dans la communication peut favoriser la propagation de fausses informations.
+
+<Anchor meta="Fig 2.1">
+  Comparaison entre les données de l’indice de confiance des communautés collectées dans sept pays pour toutes les composantes analysées
+</Anchor>
+
+<ChapterImage
+  imagePath="/wdr25/FR-chapter-02/Fig-2-1.webp"
+  width={900}
+  height={600}
+/>
+
+Par ailleurs, la neutralité est de plus en plus remise en question dans les environnements polarisés et marqués par les tensions politiques que nous connaissons aujourd’hui. Elle affiche le deuxième score le plus bas, la note moyenne étant de 7,31 sur 10. Dans les situations où les organisations humanitaires étaient autrefois largement considérées comme impartiales, ces hypothèses sont désormais contestées. Au Zimbabwe, par exemple, les scores de neutralité ont chuté, passant à 2,2 sur 10 au sein de la population et à seulement 1,03 parmi les bénéficiaires de l’aide. Dans de tels contextes, le principe de neutralité risque d’être fragilisé par des discours polémiques et des messages politisés, ce qui menace les fondements mêmes de la confiance.
+
+La prise en compte limitée des retours d’information de la communauté vient accentuer ces préoccupations. Bien qu’elle soit essentielle pour rectifier les informations erronées et favoriser le dialogue, elle constitue le troisième frein à la confiance, avec une note moyenne de 7,74 sur 10, ce qui signifie que de nombreuses communautés hésitent à exprimer leurs inquiétudes ou leurs plaintes. L’absence de mécanismes de retour d’information efficaces empêche les acteurs humanitaires de répondre aux besoins locaux et de mener des interventions adaptées. Sans canaux de communication clairs, accessibles et inclusifs, la confiance est plus susceptible de se détériorer, les rumeurs peuvent se répandre et les organisations humanitaires risquent d’être perçues comme déconnectées de la réalité ou irresponsables.
+
+Ces conclusions montrent que, dans cet environnement informationnel complexe, il ne suffit pas de fournir de l’aide. Pour préserver et renforcer la confiance, les organisations humanitaires doivent s’engager à communiquer de manière transparente, neutre et réactive, afin de répondre aux attentes des communautés et d’accroître leur résilience face aux fausses informations.
+
+**Les jeunes et le déficit de confiance: un fossé qui se creuse**
+
+Les jeunes interrogés (âgés de 18 à 30 ans) ont systématiquement déclaré avoir moins confiance dans les Sociétés nationales que les générations plus âgées. Si ce constat peut traduire des changements générationnels plus profonds dans la perception de la légitimité des institutions, il révèle également une importante vulnérabilité : si les acteurs humanitaires ne sont pas perçus comme dignes de confiance par les jeunes, souvent plus actifs dans les espaces numériques, les fausses informations risquent de combler ce vide. Les jeunes sont particulièrement sensibles à ce qu’ils considèrent comme de l’hypocrisie, une communication opaque ou des valeurs inadaptées, et pardonnent moins facilement les erreurs qui ne sont pas reconnues.
+
+**Le rôle du dialogue pour lutter contre la méfiance**
+
+Le dialogue est l’un des facteurs les plus efficaces pour préserver la confiance. Le niveau de confiance est légèrement plus élevé (8,5 contre 7,8) dans les communautés qui entretiennent des relations avec les Sociétés nationales que dans celles qui n’ont pas de liens avec elles. On constate donc que le dialogue local et participatif permet de contrer les effets déstabilisateurs des informations préjudiciables. À l’inverse, l’absence de dialogue ou de relations de proximité peut alimenter la suspicion, ce qui compromet l’accès humanitaire, la neutralité et la sécurité.
+
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Gefra Fulane
+      </ContributorName>
+
+      <ContributorEntity>
+        Coordinatrice de la recherche, Engagement communautaire et <br/>
+redevabilité (CEA)
+      </ContributorEntity>
+
+
+      <ContributorRole>
+       Fédération internationale, Genève
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+
+</Box>
+
+# <HeadingLabel index="2.7"/>Faits et émotions : un problème de perception
+
+À une époque où le volume d’informations préjudiciables se multiplie et la méfiance du public augmente, les organisations humanitaires font face à un défi croissant : une communication fondée sur des principes et des faits a souvent du mal à rivaliser avec des récits chargés d’émotion, des contenus polarisants et des discours façonnés par les opinions. Même, ou peut-être surtout, lorsqu’ils sont fondés sur des données probantes et la neutralité, les messages humanitaires sont souvent noyés par des voix plus fortes qui exploitent les émotions, en particulier en ligne. Ce phénomène pose un problème de perception important. La confiance et l’intégrité peuvent être remises en question et les principes peuvent sembler être détachés de la réalité ou être perçus comme le signe d’un manque d’empathie.
+
+Il en résulte un problème de confiance et de perception : la neutralité, les faits et la rationalité sont de plus en plus mal compris ou mis en doute. Lorsque les émotions et la polarisation sont les moteurs de l’engagement, même les communications bien intentionnées risquent d’être perçues comme politiques ou partiales, ce qui fausse la perception qu’ont les communautés de l’action humanitaire et sape la crédibilité de ceux qui s’engagent à mener une action humanitaire fondée sur des principes. Pour éviter les écueils dans ce contexte, il faut un engagement soutenu des communautés, en particulier hors ligne, où le dialogue peut favoriser les liens de proximité et la confiance. En ligne, cela peut inclure de reconnaître les limites de la communication et, dans certains cas, de fermer les sections de commentaires ou de s’abstenir de répondre lorsqu’il n’est pas possible d’entretenir un dialogue de bonne foi.
+
+Parmi les sept Principes fondamentaux du Mouvement international de la Croix-Rouge et du Croissant-Rouge[^31], les principes de neutralité et d’impartialité sont souvent les moins bien compris et ceux qui suscitent le plus de controverses, ce qui est quelque peu ironique, étant donné que l’objectif de la neutralité est précisément d’éviter les controverses. La neutralité, essentiellement, n’est pas une fin en soi, mais un moyen de préserver la confiance et l’accès dans des environnements polarisés ou politisés.
+
+Trouver un moyen de mener une action humanitaire fondée sur des principes est l’essence même de ce qu’est – et n’est pas – l’humanitarisme. Selon les détracteurs de la neutralité, « dans les situations d’injustice, la neutralité aide l’oppresseur, jamais la victime[^32]». Ils mettent en garde contre l’indifférence morale ou politique, le silence ou la passivité face à l’injustice, la violence, l’oppression ou la discrimination. Parfois, certaines composantes du Mouvement sont accusées de garder le silence ou d’être complices, notamment lors des conflits armés. Ne pas s’exprimer risque de créer un vide informationnel que d’autres peuvent combler, ce qui érode la confiance. Pourtant, prendre la parole peut être tout aussi risqué, car les déclarations peuvent être perçues comme une « prise de position », en particulier dans les sections de commentaires en ligne, où les échanges sont limités et chargés d’émotion. Ainsi, les principes humanitaires sont récupérés par des discours politiques qui peuvent en déformer l’objectif. De plus amples informations sur les Principes fondamentaux, y compris certains dilemmes tels que celui de l’équivalence, sont présentées au <span className='text-purple-600'>Chapitre 7, page 287</span>.
+
+La neutralité est généralement définie en précisant ce qu’elle n’est pas. On oublie souvent que faire preuve de neutralité ne signifie pas rester neutre face à la souffrance. Il ne s’agit pas de se montrer indifférent ou de nier l’injustice, mais plutôt de s’abstenir de prendre parti dans les conflits ou de se mêler à des controverses d’ordre politique, racial, religieux ou idéologique. Cette discipline permet aux acteurs humanitaires de gagner la confiance de toutes les parties et de venir en aide aux personnes dans le besoin.
+
+Dans l’actuel écosystème de l’information, où les parties belligérantes utilisent activement les plateformes en ligne pour diffuser des discours polarisés et où les civils prennent part à des débats numériques, rester neutre exige également de ne pas se laisser entraîner dans une guerre des mots. Le principe de neutralité doit être respecté tant en ligne que hors ligne. En somme, il s’agit d’instaurer la confiance afin d’atteindre un objectif : permettre la mise en œuvre d’une action humanitaire impartiale. Pour la préserver, les acteurs humanitaires qui se fondent sur des principes doivent constamment plaider en faveur de la protection d’un espace humanitaire neutre et impartial, exempt de toute influence politique. Les États ont également un rôle essentiel à jouer dans cette entreprise. La capacité de protéger et d’aider les victimes des conflits armés, conformément aux Conventions de Genève de 1949 et à leurs Protocoles additionnels, dépend souvent du strict respect des principes d’humanité, d’impartialité, de neutralité et d’indépendance. Ces principes demeurent indispensables pour atteindre les personnes les plus vulnérables et gagner leur confiance.
+
+Cela ne signifie pas pour autant que les composantes du Mouvement font toujours le bon choix dans ce qu’elles disent – ou décident de ne pas dire. Il est essentiel de choisir le bon moment, de faire preuve de cohérence et de clarté, ce qui n’est pas toujours aisé. Ces dilemmes sont examinés plus en détail au <span className='text-purple-600'>Chapitre 7, page 287</span>, consacré aux Principes fondamentaux.
+
+<Box
+  index="2.8"
+
+>
+## Une action humanitaire fondée sur des principes compromise
+
+Les Principes fondamentaux du Mouvement international de la Croix-Rouge et du Croissant-Rouge (humanité, impartialité, neutralité, indépendance, volontariat, unité et universalité) constituent le socle éthique d’une action humanitaire fondée sur des principes. Parmi ceux-ci, la **neutralité** et l’ **impartialité** sont particulièrement essentielles pour garantir la confiance, l’accès et l’efficacité dans des environnements instables.
+
+Le principe de **neutralité** exige du Mouvement qu’il s’abstienne de prendre parti dans les conflits ou de s’engager dans des controverses d’ordre politique, racial, religieux ou idéologique. Il est fondamental pour préserver la crédibilité et garantir l’accès à toutes les personnes touchées par une crise. L’ **impartialité** , quant à elle, requiert que l’aide soit fournie uniquement en fonction des besoins, sans discrimination d’aucune sorte. Ensemble, ces principes protègent la capacité du Mouvement de servir les populations vulnérables de manière équitable et impartiale.
+
+Cependant, il est de plus en plus difficile de les faire respecter. La politisation de l’aide, la diffusion de fausses informations et la polarisation croissante de la société ont créé des environnements où la neutralité et l’impartialité sont souvent mal comprises ou instrumentalisées. Les acteurs humanitaires font face à des dilemmes, comme celui de reporter ou non la fourniture de l’aide en raison de problèmes de sécurité, de déterminer l’approche à adopter vis-à-vis des financements assortis de conditions qui ne bénéficient pas aux populations d’accueil ou encore comment rester neutres tout en collaborant avec les acteurs politiques. Par exemple, accepter des financements qui excluent certains groupes peut remettre en cause l’impartialité et donner l’impression d’un parti pris politique. De même, le fait qu’une Société nationale soutienne publiquement un parti politique nuit à la neutralité et sape la confiance du public et des donateurs. Même les volontaires qui expriment leurs opinions politiques alors qu’ils portent leur uniforme – ou en privé sur les médias sociaux – peuvent porter atteinte à l’image de neutralité du Mouvement.
+
+Pour affronter ces dilemmes, il faut faire preuve de transparence, de discernement et d’un engagement sans faille envers les sept Principes fondamentaux. Le Mouvement doit continuer d’expliquer aux parties prenantes et au public ce que sous-tend une action humanitaire fondée sur des principes et en quoi elle est importante, en particulier dans le monde extrêmement complexe et polarisé que nous connaissons aujourd’hui.
+
+**Enseignements tirés:**
+
+- Partout dans le monde, on observe un mépris croissant des principes fondamentaux qui guident l’action humanitaire, à savoir ceux d’humanité, de neutralité, d’impartialité et d’indépendance.
+
+- La polarisation accrue, la politisation de l’aide et les discours déshumanisants alimentent la méfiance, compromettent l’accès aux communautés et exposent les personnes les plus vulnérables à des risques encore plus importants.
+
+- Sauver des vies n’est pas un acte politique mais un impératif humanitaire dont les États ont confié la mise en œuvre aux Sociétés nationales de la Croix-Rouge et du Croissant-Rouge.
+
+- La neutralité et l’impartialité ne sont pas des idéaux abstraits : elles sont essentielles pour intervenir dans des environnements complexes et polarisés. Lorsque ces principes sont ignorés ou remis en cause, les conséquences ne se limitent pas à mettre en danger les travailleurs humanitaires, elles mettent également en péril les personnes qui ont besoin de protection et d’assistance.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Anna Bowen
+      </ContributorName>
+
+      <ContributorEntity>
+        Coordinatrice régionale, Diplomatie humanitaire
+      </ContributorEntity>
+
+      <ContributorRole>
+       Bureau régional pour l’Europe de la Fédération internationale 
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+
+</Box>
+
+# <HeadingLabel index="2.8" /> Réagir aux informations préjudiciables : renforcer la confiance en temps de crise
+
+Pour réagir aux informations préjudiciables, il ne suffit pas d’augmenter le volume de la communication ou de réfuter les mensonges. Ces mesures prises isolément ne contribuent pas à l’instauration de la confiance et pourraient même être contre-productives dans des situations de troubles politiques et sociaux ou de discrimination. Les réponses efficaces ne se limitent pas à contrer les discours. Elles visent à entraver la propagation d’informations préjudiciables et à renforcer la résilience, tant dans les organisations que dans la société. La confiance se crée au travers de la proximité, de l’éducation, de l’accès aux services et de l’appropriation[^33]. Surtout, elle ne peut généralement pas être instaurée en pleine crise, elle doit être cultivée au fil du temps.
+
+<SmallQuote>
+  La confiance est le fondement de l’action humanitaire. Sans elle, nous ne pouvons pas venir en
+  aide à ceux qui en ont le plus besoin. Elle favorise la coopération ainsi qu’une communication
+  ouverte, et permet aux communautés de faire appel à nous en cas de crise, car elles savent que
+  nous viendrons à leur secours et que nous les aiderons à se relever. En tant que volontaire et
+  membre de l’équipe d’intervention de la Croix-Rouge, j’ai pu constater à quel point la confiance
+  nous permet de venir en aide aux personnes les plus vulnérables sans qu’elles s’y opposent, de
+  renforcer leur résilience et de les encourager à participer aux efforts de reconstruction et de
+  préparation. Pour sauver des vies, il ne suffit pas d’être rapide ou compétent, il faut aussi
+  avoir établi de solides relations de confiance, car dans les situations d’urgence, la confiance
+  joue un rôle déterminant. »
+</SmallQuote>
+
+<SmallQuoteAuthor>Hodan Ismail-Shukry, volontaire, Croix-Rouge du Kenya</SmallQuoteAuthor>
+
+La pandémie de Covid-19, la plus vaste catastrophe des dernières décennies, a mis en évidence de profondes fractures en matière de confiance, tant au sein des pays qu’entre eux. Les informations préjudiciables sont devenues un obstacle de taille qui nuit aux efforts de santé publique et alimente les divisions sociales. Dans les pays où il régnait un climat de confiance, les mesures de santé publique telles que la distanciation sociale et la vaccination ont été davantage respectées. En revanche, dans ceux où la confiance était faible, ces mêmes mesures ont été politisées, contestées et fragmentées. Nous pouvons en tirer un enseignement essentiel : la confiance est fondamentale pour se préparer et réagir aux crises, et elle s’est révélée être l’un des facteurs prédisant le mieux la réussite des interventions. La préparation revêt par nature une dimension locale : elle repose sur la proximité, une mobilisation soutenue et la transparence, et ce bien avant qu’une crise ne survienne.
+
+Selon Hugo Slim, spécialiste des questions humanitaires, la confiance dans l’action humanitaire est mise à rude épreuve et les organisations doivent répondre à des questions difficiles : les parties à un conflit peuvent-elles croire en la neutralité et l’impartialité des travailleurs humanitaires ? Les personnes vulnérables peuvent-elles compter sur les organisations humanitaires pour leur fournir une aide équitable et les traiter avec dignité ? Les gouvernements donateurs et les donateurs en général peuvent-ils avoir la certitude que leurs contributions seront utilisées à bon escient ? Les organisations humanitaires peuvent-elles se faire confiance et œuvrer ensemble pour une cause commune[^34]? Slim explique que les organisations humanitaires elles-mêmes ont contribué à ce déficit de confiance. Les études réalisées par Grand Challenges Canada font également ce constat, soulignant que le manque de transparence dans la communication, les mandats contradictoires et l’incapacité de protéger les communautés lorsque nécessaire peuvent exacerber la méfiance. Ces défaillances érodent non seulement la confiance du public, mais créent également un climat propice à la propagation d’informations préjudiciables, ce qui renforce encore davantage le scepticisme et la réticence à faire confiance aux organisations humanitaires[^35].
+
+# <HeadingLabel index="2.9" /> Transparence et identifiabilité : les piliers de la confiance
+
+La viralité numérique est rarement spontanée ; elle est souvent délibérément orchestrée par un petit nombre de comptes influents qui dominent l’économie de l’attention et façonne ainsi les croyances et les comportements sur toutes les plateformes. Comme le soulignent Singer et Brooking : « \[s]ur les médias sociaux, chacun a le droit d’avancer des faits, mais rares sont ceux qui se forgent leur propre opinion. Ce sont d’autres personnes qui fabriquent les croyances qui deviennent virales en ligne[^36]. » Dans cet environnement, l’identifiabilité devient l’un des piliers de la confiance. Celle-ci ne dépend pas seulement de **ce qui est dit** , mais aussi de **celui qui le dit** , qu’il s’agisse d’un individu, d’une institution, d’un troll ou d’un système d’IA. Plus précisément, « \[l’identifiabilité] permet de répondre à certaines des questions que la confiance nous incite à nous poser : les institutions et les individus qui se cachent derrière la myriade de sites Web auxquels on peut accéder ont-ils une identité reconnaissable et durable[^37]? ». L’identifiabilité favorise une bonne réputation ainsi que la redevabilité, et aide à distinguer les sources crédibles des acteurs malveillants[^38].
+
+Le Rapport Bengio sur la sûreté de l’IA (<span className='text-purple-600'>Chapitre  1, page  69</span>) souligne que la diffusion rapide de contenus générés par l’IA pourrait fragiliser davantage la confiance dans l’environnement informationnel. L’IA à usage général est désormais capable de produire (et de diffuser) des contenus à la fois exacts et erronés, y compris des contenus médiatiques synthétiques, à une échelle sans précédent. Par conséquent, un plus grand nombre de personnes risquent de se méfier des informations communiquées, ce qui pourrait nuire au débat public (et aux processus démocratiques le cas échéant). Les acteurs malveillants peuvent exploiter cette ambiguïté et cette méfiance en tirant parti de ce que les spécialistes appellent le « dividende du menteur », c’est-à-dire en considérant les preuves réelles comme fausses. Cependant, les sociétés peuvent s’adapter progressivement, en mettant au point de nouvelles normes et de nouveaux outils permettant d’évaluer la crédibilité, comme elles l’ont fait avec les technologies précédentes telles que le montage d’images, de vidéos et d’enregistrements audio[^39]. Toutefois, tant que ces normes ne seront pas établies, l’incertitude et la méfiance risquent de s’accentuer.
+
+Pour les acteurs humanitaires, il est essentiel de surveiller en temps réel l’environnement informationnel et l’environnement opérationnel (en ligne et hors ligne) afin d’identifier les différents types d’informations préjudiciables et les discours qui y sont associés, mais aussi de comprendre leurs conséquences et dangers potentiels. Cependant, les outils et systèmes de vérification des informations disponibles ne sont pas adaptés à la vitesse et à l’ampleur de la propagation des informations préjudiciables, notamment en raison des contraintes financières auxquelles ils sont confrontés.
+
+<Box
+  index="2.9"
+
+>
+## La provenance vérifiable et le défi que représente la confiance à l’ère numérique
+
+Dans les crises humanitaires comme dans d’autres contextes, les images et les vidéos sont des outils essentiels pour coordonner les interventions, communiquer avec les communautés touchées, mener des actions de plaidoyer et rendre compte. Mais à l’heure où les médias synthétiques et les contenus manipulés sont de plus en plus accessibles et difficiles à repérer, il est plus urgent que jamais de déterminer à quoi et à qui faire confiance.
+
+La « provenance vérifiable » peut constituer un outil essentiel dans le cadre d’une stratégie plus large destinée à renforcer la confiance et la résilience numériques. L’objectif est de vérifier de manière cryptographique l’origine, l’historique et l’intégrité d’un contenu numérique. Diverses initiatives telles que la <ChapterLink
+  href="https://c2pa.org/"
+  target="_blank"
+  rel="noopener noreferrer">Coalition for Content Provenance and Authenticity (C2PA)</ChapterLink>visent à mettre au point des normes techniques ouvertes et intersectorielles afin d’associer des métadonnées sécurisées aux fichiers numériques. Ces normes peuvent aider à déterminer si une image a été modifiée, qui l’a publiée et quels outils ont été utilisés, ce qui permet de garantir son authenticité et la confiance numérique. Cependant, identifier la provenance n’est pas une solution miracle. Ce processus présente certains risques, tels que la divulgation d’informations sensibles, la facilitation de la surveillance, l’augmentation de la dépendance à l’égard des grandes plateformes et des outils propriétaires, et l’accroissement du déficit de confiance entre les contenus vérifiables et ceux qui ne le sont pas. Il convient donc de <ChapterLink
+  href="https://www.gen-ai.witness.org/wp-content/uploads/2025/07/Human_Rights_in_Standards%E2%80%93UPDATED.pdf"
+  target="_blank"
+  rel="noopener noreferrer">façonner l’écosystème de la provenance</ChapterLink>(normes, législation et mise en œuvre) en mettant l’accent sur la confidentialité, l’accès équitable, les rapports de force et la protection des droits humains.
+
+Dans les contextes où l’IA générative peut entraver l’aide humanitaire ou dans lesquels les preuves numériques sont déterminantes pour appliquer le droit, les outils permettant de vérifier la provenance peuvent contribuer à préserver la vérité. Cependant, ces derniers doivent être déployés dans le respect des droits humains, en tenant compte des réalités locales et en soutenant pleinement les efforts humanitaires.
+  <ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Jacobo Castellanos
+      </ContributorName>
+
+      <ContributorEntity>
+        Coordonnateur, Technologies, menaces et possibilités
+      </ContributorEntity>
+
+
+      <ContributorRole>
+       WITNESS
+      </ContributorRole>
+    </Contributor>
+
+  </ContributorTag>
+  
+</Box>
+
+La transparence est une condition indispensable pour instaurer la confiance et un principe fondamental du Code de conduite pour le Mouvement international de la Croix-Rouge et du Croissant-Rouge et pour les ONG lors des opérations de secours en cas de catastrophes. Elle favorise la redevabilité en garantissant une communication claire et honnête entre les organisations humanitaires et les populations touchées. La transparence fait partie intégrante des principales normes sectorielles, notamment les Standards communs du projet Sphère, qui mettent l’accent sur les mécanismes de retour d’information et la participation, les Principes et bonnes pratiques d’action humanitaire et les Lignes directrices de la Fédération internationale pour l’évaluation des situations d’urgence.
+
+<Definition>Engagements du Mouvement
+en matière d’interaction avec les
+communautés et de redevabilité[^40]</Definition>
+<DefinitionDescription>
+  On entend par
+**redevabilité**
+la responsabilité partagée par toutes les composantes du Mouvement d’user de leur pouvoir et de leurs ressources de manière équitable et responsable en veillant à toujours placer l’intérêt des personnes et des communautés qu’elles s’emploient à aider au centre des décisions de sorte que l’action humanitaire réponde le mieux possible à leurs attentes, tout en protégeant et préservant leurs droits et leur dignité et en renforçant leur résilience face aux situations de crise ou aux facteurs de vulnérabilité auxquels elles sont exposées. Cela implique de garantir aux personnes un accès équitable à une assistance adaptée à leurs besoins, leurs priorités et leurs préférences, de les tenir informées et de leur donner la possibilité d’exprimer leurs points de vue et de participer aux décisions qui les concernent.
+
+Par redevabilité, on entend aussi la responsabilité
+partagée par toutes les composantes du Mouvement
+de : veiller à ce que les membres de leur personnel et
+leurs volontaires s’acquittent de toutes les obligations
+juridiques et éthiques qui leur incombent s’agissant de
+protéger et préserver l’intégrité et la dignité de celles et
+ceux que le Mouvement s’emploie à aider ; prévenir les
+risques d’exploitation et d’abus sexuels, de corruption et
+de détournement de ressources ; et prendre rapidement
+les mesures correctives qui s’imposent dans les situations
+où les principes qui sous-tendent l’action humanitaire du
+Mouvement ne sont pas respectés. Il est également essentiel
+de veiller à ce que les mesures correctives soient mises en
+œuvre de manière cohérente, sans faire deux poids deux
+mesures, tant au niveau des mesures elles-mêmes que des
+attentes relatives à la conduite des Sociétés nationales.
+Dans la pratique, cette tâche peut s’avérer difficile et
+il n’est pas toujours aisé d’appliquer ces mesures.
+</DefinitionDescription>
+
+# Conclusions: confiance, vérité et préparation 
+
+Nous traversons déjà une crise de l’information. À l’avenir, la préparation aux situations d’urgence devra inclure un accès équitable à des informations fiables, soutenu par des systèmes, notamment d’alerte précoce, qui desservent toutes les communautés, en particulier les plus exposées. Les informations préjudiciables ne font pas qu’éroder la confiance dans l’action humanitaire, elles alimentent les divisions au sein des sociétés et nuisent à la coopération, au moment même où l’unité est nécessaire de toute urgence pour faire face aux défis mondiaux.
+
+Comme l’a signalé le Forum économique mondial, la mésinformation et la désinformation ne sont plus seulement des problèmes de communication, mais constituent désormais des menaces systémiques qui aggravent la quasi-totalité des autres risques mondiaux. Le Rapport sur les risques mondiaux 2025 souligne que « la mésinformation, la désinformation et la polarisation sociétale restent des risques majeurs » et explique comment la propagation accélérée d’informations fausses ou trompeuses accentue d’autres risques importants, tels que les conflits armés entre États ou les phénomènes météorologiques extrêmes[^41].
+
+Dans un espace d’information aussi fragmenté et polémique, les voix des populations touchées risquent d’être noyées, déformées ou cooptées. La confiance ne peut être exigée ; elle doit être obtenue par la répétition des activités, la transparence, la redevabilité et l’intégrité. La résilience face aux informations préjudiciables ne consiste pas seulement à réfuter les mensonges, elle requiert une mobilisation soutenue, une ouverture et une réelle participation. Les organisations humanitaires doivent en outre communiquer activement sur ce qu’elles sont, ce qu’elles font, leur impact et les raisons pour lesquelles elles agissent, en présentant des arguments clairs et convaincants en faveur d’une action humanitaire fondée sur des principes et de la préservation d’un espace humanitaire neutre et impartial, libre de toute influence politique. Malgré les obstacles que pose la polarisation des perceptions, les organisations humanitaires qui se conforment à des principes peuvent préserver – et même rétablir – la confiance et l’acceptation face aux informations préjudiciables. À l’avenir, une question essentielle sera de savoir si la confiance et la proximité au niveau communautaire peuvent servir de pare-feu face à la propagation ou aux effets des informations préjudiciables. Ce sujet est abordé aux <span className='text-purple-600'>Chapitre 3, page 147</span>, et <span className='text-purple-600'>Chapitre 6, page 282</span>.
+
+# Exigences, objectifs et recommandations
+
+<ReccomendationsTitle>Exigences</ReccomendationsTitle>
+
+<Reccomendations>
+  Placer la confiance au cœur de l’action humanitaire en veillant à ce que les notions de droits, de
+  dignité, d’inclusion, de redevabilité, de transparence et de retours d'information guident la
+  manière dont les organisations communiquent et dialoguent avec les communautés.
+</Reccomendations>
+
+<ReccomendationsTitle>Objectifs</ReccomendationsTitle>
+
+<Reccomendations>
+  Réduire les incertitudes par une communication et un dialogue opportuns, transparents et cohérents
+  avant, pendant et après les crises.
+</Reccomendations>
+
+<Reccomendations>
+  Renforcer la légitimité et la redevabilité en s’alignant sur les priorités des communautés et en
+  surveillant l’évolution du niveau de confiance.
+</Reccomendations>
+
+<Reccomendations>
+  Protéger le personnel et les volontaires en leur fournissant des garanties, en les dotant de
+  compétences et en assurant une mobilisation inclusive afin qu’ils puissent travailler en toute
+  sécurité dans les espaces d’information polémiques.
+</Reccomendations>
+
+<Reccomendations>
+  Donner les moyens d’agir aux communautés : mettre en place des systèmes de retour d’information et
+  de participation à double sens qui permettent aux personnes d’exprimer leurs préoccupations,
+  d’influencer les décisions et de contrer les discours préjudiciables.
+</Reccomendations>
+
+### Recommandations
+
+#### États et décideurs
+
+- Définir des cadres politiques fondés sur les droits qui garantissent l’accès à des informations fiables dans les crises humanitaires.
+
+- Intégrer des activités d’instauration de la confiance dans les plans de préparation et d’intervention en cas de crise.
+
+- Investir dans des systèmes d’alerte précoce et de surveillance pour repérer et contrer les discours préjudiciables.
+
+- Soutenir les Sociétés nationales dans leur rôle d’auxiliaires en veillant à ce que leur indépendance, leur impartialité, leur neutralité et leur intégrité soient respectées.
+
+- Garantir la réfutation rapide des mensonges qui compromettent l’accès, l’action et la sécurité des acteurs humanitaires.
+
+#### Plateformes technologiques
+
+- Repérer les contenus préjudiciables qui nuisent à l’action humanitaire et sapent la confiance et atténuer leurs effets.
+
+- Communiquer en toute sécurité les données et les informations pertinentes aux acteurs humanitaires afin de faciliter les interventions en temps réel.
+
+- Veiller à ce que les outils de modération, de vérification des faits et d’intelligence artificielle fonctionnent dans les environnements multilingues où la bande passante est faible.
+
+- Collaborer avec les acteurs humanitaires en matière de mécanismes de vérification et de signalement afin d’amplifier la portée des contenus crédibles.
+
+#### Acteurs humanitaires
+
+- Élaborer des politiques, des lignes directrices, des normes et des mesures (par exemple, l’indice de confiance des communautés ou les activités d’engagement des communautés et de redevabilité) permettant d’évaluer et de suivre le niveau de confiance et les informations préjudiciables, et d’orienter les interventions.
+
+- Faire de la confiance un atout opérationnel intégré dans la préparation, l’intervention et le relèvement.
+
+- Communiquer de manière transparente et inclusive, en réfutant rapidement les mensonges et en élaborant des messages en collaboration avec les communautés.
+
+- Former le personnel et les volontaires à la gestion des rumeurs, à la sécurité numérique (y compris la protection contre le harcèlement en ligne) et à la communication tenant compte des sensibilités culturelles.
+
+- Renforcer l’analyse en temps réel des retours d’information des communautés et les réponses qui y sont apportées, en s’adaptant visiblement aux préoccupations, en démontrant l’impact produit et en diffusant les enseignements tirés afin de renforcer la résilience collective.
+
+#### Communautés et dirigeants locaux
+
+- Agir en tant qu’intermédiaires de confiance en amplifiant les informations vérifiées et en réfutant les rumeurs.
+
+- Établir des partenariats avec les acteurs humanitaires pour créer en collaboration des systèmes de suivi et de vérification des rumeurs.
+
+- Entretenir la confiance par le dialogue dans les écoles, les institutions religieuses et les centres communautaires.
+
+- Participer à des processus participatifs de retours d'information et de recherche pour garantir que les interventions tiennent compte des priorités locales.
+
+# Notes de fin
+
+[^1]: Voir Pariser, E. *The Filter Bubble: What the Internet Is Hiding from You.*
+
+[^2]: *Ibid.*
+
+[^3]: Pierre, J. *False: How Mistrust, Disinformation, and Motivated Reasoning Make Us Believe Things That Aren’t True*, 2025, p.39.
+
+[^4]: Voir John Suler (psychologue à l’Université Rider, 2004) mentionné dans Pierre, J. *False: How Mistrust, Disinformation, And Motivated Reasoning Make Us Believe Things That Aren’t True*, 2025, p.40.
+
+[^5]: *Ibid.*, p.50 et 59.
+
+[^6]: Nichols, T. *The Death of Expertise: The Campaign against Established Knowledge and Why it Matters*, 2024, p.50–58 et p.134–139.
+
+[^7]: Kavanagh, J., et Rich, M.D. *Truth Decay: An Initial Exploration of the Diminishing Role of Facts and Analysis in American Public Life*, 2018, p.3.
+
+[^8]: Cité dans Pierre, J. *False: How Mistrust, Disinformation, And Motivated Reasoning Make Us Believe Things That Aren’t True*, 2025, p.59.
+
+[^9]: Rousseau, D.M., Sitkin, S.B., Burt, R.S., *et al.*, « Not So Different After All: A Cross-Discipline View of Trust », *Academy of Management Review*, vol.23, no3, 1998, p.395.
+
+[^10]: Edelman, « Edelman Trust Barometer », 2022.
+
+[^11]: Bavel, J.J.V., Baicker, K., Boggio, P.S., *et al.*, « Using social and behavioural science to support COVID-19 pandemic response », *Nature Human Behaviour*, vol.4, 2020, p.460–471. https://doi.org/10.1038/s41562-020-0884-z
+
+[^12]: Pierre, J. *False: How Mistrust, Disinformation, And Motivated Reasoning Make Us Believe Things That Aren’t True*, 2025, p.45.
+
+[^13]: *Ibid.*, p.52.
+
+[^14]: IFRC, *Rapport sur les catastrophes dans le monde 2022: Confiance, équité et action locale – Tirer les enseignements de la pandémie de Covid-19 pour éviter la prochaine crise mondiale*, 2022, p.75. https://www.ifrc.org/fr/document/rapport-sur-les-catastrophes-dans-monde-2022
+
+[^15]: Royston, G., Pakenham-Walsh, N. et Zielinski, C., « Universal access to essential health information: accelerating progress towards universal health coverage and other SDG health targets », *BMJ Global Health*, 5:e002475, 2020. https://doi.org/10.1136/bmjgh-2020-002475
+
+[^16]: King’s College London, « COVID-19 Monitor: Public attitudes and behaviours », 2020.
+
+[^17]: Erlach, E., Nichol, B., Reader, S., *et al.*, « Using Community Feedback to Guide the COVID-19 Response in Sub-Saharan Africa: Red Cross and Red Crescent Approach and Lessons Learned from Ebola », *Health Security*, vol.19, no1, 2021, p.13–20.
+
+[^18]: Pierre, J. *False: How Mistrust, Disinformation, And Motivated Reasoning Make Us Believe Things That Aren’t True*, 2025.
+
+[^19]: XXXIIIe Conférence internationale de la Croix-Rouge et du Croissant-Rouge, *Résolution: Agir aujourd’hui pour façonner le monde de demain* (33IC/19/R6), 2019. https://rcrcconference.org/app/uploads/2019/12/33IC-R6-Act-today-shape-tomorrow_ADOPTED-clean_fr.pdf
+
+[^20]: XXXIIIe Conférence internationale de la Croix-Rouge et du Croissant-Rouge, *Rapport de synthèse de la Commission III: La confiance dans l’action humanitaire*, 2019. https://rcrcconference.org/app/uploads/2020/05/33IC-Commission-III-Trust-in-humanitarian-action-report_FINAL-fr.pdf
+
+[^21]: XXXIIIe Conférence internationale de la Croix-Rouge et du Croissant-Rouge, *Rapport de synthèse de la Commission III: La confiance dans l’action humanitaire*, 2019. https://rcrcconference.org/app/uploads/2020/05/33IC-Commission-III-Trust-in-humanitarian-action-report_FINAL-fr.pdf
+
+[^22]: Conseil des Délégués du Mouvement international de la Croix-Rouge et du Croissant-Rouge, *Résolution 5: Appel à respecter et soutenir l’action humanitaire fondée sur des principes* (CD/24/R5), 2024.
+
+[^23]: OCDE, *An updated OECD framework on drivers of trust in public institutions to meet current and future challenges*, 2021, p.41. https://doi.org/10.1787/b6c5478c-en
+
+[^24]: Voir par exemple Slawson, N., « Oxfam government funding cut off after Haiti scandal », *The Guardian*, 16 février 2018. http://www.theguardian.com/world/2018/feb/16/oxfam-government-funding-cut-off-after-haiti-scandal
+
+[^25]: Levitin, D.J. *A Field Guide To Lies: Critical Thinking in the Information Age*, 2016, p.x–xi, p.123–128, p.129–130, p.152–154.
+
+[^26]: Nichols, T. *The Death of Expertise: The Campaign against Established Knowledge and Why it Matters*, 2024, p.xiii.
+
+[^27]: Conseil des Délégués, *Résolution 1: Engagements du Mouvement en matière d’interaction avec les communautés et de redevabilité* (CD/19/R1, annexe), 2019.
+
+[^28]: *Ibid.*
+
+[^29]: IFRC, « Placing communities at the centre of the Ebola response », 13 septembre 2019. https://www.ifrc.org/article/placing-communities-centre-ebola-response
+
+[^30]: *Navigating Fragility, Conflict and Violence to Strengthen Community Resilience: A Handbook for Disaster Risk Reduction Practitioners*, 2024, p.38. https://www.climatecentre.org/wp-content/uploads/Full-Handbook_RCCC-Navigating-fragility-conflict-and-violence-to-strengthen-community-resilience.pdf
+
+[^31]: Les sept Principes fondamentaux sont l’humanité, l’impartialité, la neutralité, l’indépendance, le volontariat, l’unité et l’universalité. Ils sont mentionnés dans le Préambule des Statuts du Mouvement international de la Croix-Rouge et du Croissant-Rouge, adoptés en 1986.
+
+[^32]: Cette citation est généralement attribuée à Desmond Tutu. Tutu, D. *No Future Without Forgiveness*, 1999.
+
+[^33]: IFRC, *Rapport sur les catastrophes dans le monde 2022: Confiance, équité et action locale*, résumé, 2022, p.10. https://www.ifrc.org/sites/default/files/2023-04/2022_WDR_Full_FR_LR.pdf
+
+[^34]: Slim, H., « Trust Me – I’m a Humanitarian », 2019. https://blogs.icrc.org/law-and-policy/2019/10/24/trust-humanitarian
+
+[^35]: Ayala Iacucci, A. *Misinformation, Disinformation, and Hate Speech in Humanitarian Contexts*, 2024, p.31. https://humanitariangrandchallenge.org/wp-content/uploads/2024/11/MDH-Scoping-Study_Full-report.pdf
+
+[^36]: Singer, P.W., et Brooking, E.T. *LikeWar: The Weaponization of Social Media*, 2018, p.127.
+
+[^37]: Nissenbaum, H. « Will Security Enhance Trust Online, or Supplant It? » dans Kramer, R.M., et Cook, K.S. *Trust and Distrust in Organizations*, 2004, p.166.
+
+[^38]: *Ibid.*
+
+[^39]: Bengio, Y., Mindermann, S., Privitera, D., *et al.* *International Scientific Report on the Safety of Advanced AI*, 2025. https://internationalaisafetyreport.org
+
+[^40]: Conseil des Délégués, *Résolution 1: Engagements du Mouvement en matière d’interaction avec les communautés et de redevabilité* (CD/19/R1, annexe), 2019.
+
+[^41]: Forum économique mondial, *Global Risks Report 2025*, 2025, p.13. https://reports.weforum.org/docs/WEF_Global_Risks_Report_2025.pdf
