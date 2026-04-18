@@ -58,8 +58,7 @@ export const testimonialsList = [
 export const featuredVideos = [
   {
     id: 1,
-    title:
-      "Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l'ère de l'information nocive",
+    title: 'Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l\'ère de l\'information nocive',
     description: `La Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge (FICR) présente le Rapport mondial sur les catastrophes 2026 : Vérité, confiance et action humanitaire à l'ère de l'information nocive.
 
 Dans un monde où les rumeurs peuvent se propager plus vite que les équipes de secours, l'information nocive est devenue un défi majeur pour l'action humanitaire. L'édition 2026 du Rapport mondial sur les catastrophes présente l'information nocive comme une crise humanitaire de fait — qui compromet l'accès à l'aide, érode la confiance, déstabilise la cohésion sociale et accroît les risques pour le personnel, les volontaires et les communautés.
