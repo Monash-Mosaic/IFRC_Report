@@ -212,6 +212,7 @@ export const chapters = {
     title: Chapter04.title,
     subtitle: Chapter04.subtitle,
     tableOfContents: Chapter04.tableOfContents,
+    sectionNumbers: Chapter04.sectionNumbers,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-03/WDR2026_Chapter04_FR.pdf',
     thumbnail: '/wdr25/chapters/Chapter4.webp',
     thumbnailOverlay: 'red',

@@ -121,6 +121,7 @@ export default async function ReportChapterPage({ params }) {
     audios = [],
     videos = [],
     tableOfContents: chapterTableOfContents,
+    sectionNumbers: chapterSectionNumbers = {},
     metadata: { chapterPrefix },
   } = chapters[decodedChapter];
 
@@ -195,6 +196,8 @@ export default async function ReportChapterPage({ params }) {
                 <TableOfContent
                   chapterTableOfContents={chapterTableOfContents}
                   title={t('tocTitle')}
+                  maxDepth={1}
+                  sectionNumbers={chapterSectionNumbers}
                 />
               </div>
             </div>
@@ -222,6 +225,8 @@ export default async function ReportChapterPage({ params }) {
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
                 title={t('tocTitle')}
+                maxDepth={1}
+                sectionNumbers={chapterSectionNumbers}
               />
             </div>
           </div>
