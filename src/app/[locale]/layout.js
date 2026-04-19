@@ -72,7 +72,6 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale} dir={dir}>
       <body
         className={`${GeistSans.variable} ${bespokeSerif.variable} locale-${locale} antialiased`}
-        suppressHydrationWarning
       >
         <NextIntlClientProvider>
           {children}
