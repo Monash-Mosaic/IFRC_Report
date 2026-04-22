@@ -9,14 +9,12 @@
  *   chapterTableOfContents?: Toc,
  *   title?: string,
  *   maxDepth?: number,
- *   sectionNumbers?: Record<string, string>,
  * }} props
  */
 export default function TableOfContent({
   chapterTableOfContents = [],
   title,
   maxDepth = Number.POSITIVE_INFINITY,
-  sectionNumbers = {},
 }) {
   const processedToc = chapterTableOfContents.map((item) =>
     item.id === 'endnotes' ? { ...item, children: [] } : item
@@ -34,23 +32,16 @@ export default function TableOfContent({
     const listClass = level === 1 ? 'ps-2 m-0 list-none' : 'ps-4 mt-2 list-none';
     return (
       <ul className={listClass}>
-        {items.map(({ id, value, children = [] }) => {
-          const trimmedValue = typeof value === 'string' ? value.trim() : value;
-          const sectionNumber = sectionNumbers[trimmedValue];
-          return (
-            <li key={id} className="mb-2">
-              <a href={`#${id}`}>
-                <div className="text-[#495057] font-bold hover:text-black hover:underline">
-                  {sectionNumber ? (
-                    <span className="text-[#fe4d60] me-2 font-medium">{sectionNumber}</span>
-                  ) : null}
-                  {trimmedValue}
-                </div>
-              </a>
-              {renderItems(children, level + 1)}
-            </li>
-          );
-        })}
+        {items.map(({ id, value, children = [] }) => (
+          <li key={id} className="mb-2">
+            <a href={`#${id}`}>
+              <div className="text-[#495057] font-bold hover:text-black hover:underline">
+                {value}
+              </div>
+            </a>
+            {renderItems(children, level + 1)}
+          </li>
+        ))}
       </ul>
     );
   };

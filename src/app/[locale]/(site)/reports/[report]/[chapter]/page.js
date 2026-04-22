@@ -121,8 +121,6 @@ export default async function ReportChapterPage({ params }) {
     audios = [],
     videos = [],
     tableOfContents: chapterTableOfContents,
-    sectionNumbers: chapterSectionNumbers = {},
-    tocTitle: chapterTocTitle,
     metadata: { chapterPrefix },
   } = chapters[decodedChapter];
 
@@ -196,9 +194,7 @@ export default async function ReportChapterPage({ params }) {
               <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg" data-ga-section="toc">
                 <TableOfContent
                   chapterTableOfContents={chapterTableOfContents}
-                  title={chapterTocTitle || t('tocTitle')}
-                  maxDepth={1}
-                  sectionNumbers={chapterSectionNumbers}
+                  title={t('tocTitle')}
                 />
               </div>
             </div>
@@ -225,9 +221,7 @@ export default async function ReportChapterPage({ params }) {
             <div className="sticky right-4 top-8 p-6 mb-8 max-h-[80vh] overflow-y-auto top-[100px]" data-ga-section="toc">
               <TableOfContent
                 chapterTableOfContents={chapterTableOfContents}
-                title={chapterTocTitle || t('tocTitle')}
-                maxDepth={1}
-                sectionNumbers={chapterSectionNumbers}
+                title={t('tocTitle')}
               />
             </div>
           </div>

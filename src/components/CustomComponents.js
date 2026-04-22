@@ -224,56 +224,7 @@ export function ReccomendationsTitle({ children, ...props }) {
 
 export function Reccomendations({ children, ...props }) {
   return (
-    <div
-      aria-label="Reccomendations"
-      style={{ fontWeight: 700, marginTop: '1rem' }}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
-
-export function ReccomendationsColumns({ children, ...props }) {
-  const childArray = React.Children.toArray(children).filter(
-    (child) => !(typeof child === 'string' && child.trim() === '')
-  );
-  return (
-    <div
-      aria-label="ReccomendationsColumns"
-      style={{ display: 'flex', flexWrap: 'wrap' }}
-      {...props}
-    >
-      {childArray.map((child, i) => (
-        <div
-          key={i}
-          style={{
-            flex: '1 1 300px',
-            minWidth: 0,
-            paddingInlineStart: i === 0 ? 0 : '1.5rem',
-            paddingInlineEnd: i === 0 ? '1.5rem' : 0,
-            borderInlineStart: i === 0 ? 'none' : '1px solid #d4d4d4',
-            marginTop: i === 0 ? 0 : undefined,
-          }}
-        >
-          {child}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export function ReccomendationsBullets({ children, ...props }) {
-  return (
-    <div
-      className="[&_ul]:my-0 [&_ul]:ps-4 [&_li]:break-inside-avoid [&_li]:mb-3"
-      style={{
-        columnCount: 2,
-        columnGap: '3rem',
-        columnRule: '1px solid #d4d4d4',
-      }}
-      {...props}
-    >
+    <div aria-label="Reccomendations" style={{ fontWeight: 700 }} {...props}>
       {children}
     </div>
   );
