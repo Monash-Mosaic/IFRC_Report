@@ -19,8 +19,8 @@ export default function HeaderNavLinks({ links, mobile = false }) {
   return links.map((link) => {
     const isActive = isActivePath(pathname, link.href);
     const colorClasses = isActive
-      ? 'text-red-700 hover:text-red-900'
-      : 'text-gray-700 hover:text-gray-900';
+      ? 'text-red-700 hover:text-red-700'
+      : 'text-gray-700 hover:text-red-700';
 
     return (
       <Link
