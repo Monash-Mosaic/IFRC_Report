@@ -3,7 +3,7 @@ export const localeRelease = {
   fr: { production: true, preview: true },
   zh: { production: true, preview: true },
   ar: { production: true, preview: true },
-  ru: { production: false, preview: true },
+  ru: { production: true, preview: true },
   es: { production: true, preview: true },
 };
 
