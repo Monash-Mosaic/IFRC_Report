@@ -4,8 +4,8 @@ export const routing = defineRouting({
   locales: ['en', 'fr', 'zh', 'ar', 'ru', 'es'],
   defaultLocale: 'en',
   pathnames: {
-    '/engagement': {
-      en: '/engagement',
+    '/discover': {
+      en: '/discover',
       fr: '/decouvrir',
       zh: '/发现',
       ar: '/اكتشف',
