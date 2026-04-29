@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { Menu, X } from 'lucide-react';
 import { Suspense } from 'react';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
+import HeaderNavLinks from '@/components/HeaderNavLinks';
 import SearchInput from './SearchInput';
 import SearchInputFallback from './SearchInputFallback';
 
@@ -18,6 +19,7 @@ export default async function Header({ locale }) {
 
   // Navigation links data to avoid duplication
   const navigationLinks = [
+    { href: '/', label: t('nav.home') },
     { href: '/engagement', label: t('nav.discover') },
     { href: '/about', label: t('nav.about') },
     { href: '/acknowledgement', label: t('nav.acknowledgement') },
@@ -44,16 +46,7 @@ export default async function Header({ locale }) {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center flex-1 justify-end ms-8">
           <div className="flex items-center space-x-8 me-8">
-            {navigationLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 hover:text-gray-900 text-sm font-medium text-nowrap"
-                prefetch={false}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <HeaderNavLinks links={navigationLinks} />
             <LocaleSwitcher />
           </div>
           <Suspense
@@ -85,16 +78,7 @@ export default async function Header({ locale }) {
       {/* Mobile Navigation Menu */}
       <div className="hidden peer-checked:block lg:hidden bg-white border-t border-gray-200 shadow-lg">
         <nav className="max-w-6xl mx-auto px-4 py-4 space-y-4">
-          {navigationLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block text-gray-700 hover:text-gray-900 text-sm font-medium py-2 border-b border-gray-100"
-              prefetch={false}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <HeaderNavLinks links={navigationLinks} mobile />
         </nav>
       </div>
     </header>
