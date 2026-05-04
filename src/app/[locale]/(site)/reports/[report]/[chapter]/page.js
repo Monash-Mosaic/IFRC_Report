@@ -182,13 +182,13 @@ export default async function ReportChapterPage({ params }) {
                 { label: chapterPrefix },
               ]}
             />
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
+            <div className="mb-8 text-right">
+              <h1 className="text-3xl font-bold text-black mb-6 [text-wrap:balance]">{reportTile}</h1>
             </div>
 
-            <div className="mb-8 text-black text-5xl font-extrabold text-right">{chapterTitle}</div>
+            <div className="mb-8 text-black text-5xl font-extrabold text-right [text-wrap:balance]">{chapterTitle}</div>
 
-            <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
+            <div className="mb-8 text-black text-3xl font-bold [text-wrap:balance]">{chapterSubTitle}</div>
 
             <div className="xl:hidden mb-8">
               <div className="p-6 bg-gray-50 border border-gray-200 rounded-lg" data-ga-section="toc">
