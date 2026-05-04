@@ -1,11 +1,15 @@
 import * as Synthesis from './exec-summary.mdx';
+import * as Acronyms from './acronyms.mdx';
 import * as Introduction from './introduction.mdx';
 import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter05 from './chapter-05.mdx';
 import * as Chapter03 from './chapter-03.mdx';
 import * as Chapter06 from './chapter-06.mdx';
 import * as Chapter07 from './chapter-07.mdx';
 import * as Chapter08 from './chapter-08.mdx';
+import * as Glossary from './glossary.mdx';
+import * as Annex02 from './annex-02.mdx';
 
 export const title = 'World \n Disaster\n Report\n\n 2026';
 
@@ -112,7 +116,8 @@ export const chapters = {
       chapterNumber: -1,
       chapterPrefix: 'Acronyms',
     },
-    title: 'Acronyms',
+    component: Acronyms.default,
+    title: Acronyms.title,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Acronyms_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
@@ -205,11 +210,11 @@ export const chapters = {
       chapterNumber: 4,
       chapterPrefix: 'Chapter 04',
     },
-    title:
-      'From Context to Consequence: Humanitarian Sector Voices on the Impact of Harmful Information',
-    subtitle: 'Harmful Information and Operational Realities',
+    component: Chapter04.default,
+    title: Chapter04.title,
+    subtitle: Chapter04.subtitle,
+    tableOfContents: Chapter04.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter04_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter4.webp',
     thumbnailOverlay: 'red',
     released: true,
@@ -220,10 +225,11 @@ export const chapters = {
       chapterNumber: 5,
       chapterPrefix: 'Chapter 05',
     },
-    title: 'Navigating Regulation, Rights and Societal Resilience',
-    subtitle: 'Information Landscape and Humanitarian Contexts',
+    component: Chapter05.default,
+    title: Chapter05.title,
+    subtitle: Chapter05.subtitle,
+    tableOfContents: Chapter05.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter05_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter5.webp',
     thumbnailOverlay: 'red',
     released: true,
@@ -239,7 +245,6 @@ export const chapters = {
     subtitle: Chapter06.subtitle,
     tableOfContents: Chapter06.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter06_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter6.webp',
     thumbnailOverlay: 'red',
     released: true,
@@ -255,7 +260,6 @@ export const chapters = {
     subtitle: Chapter07.subtitle,
     tableOfContents: Chapter07.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Chapter07_EN.pdf',
-    tableOfContents: [],
     thumbnail: '/wdr25/chapters/Chapter7.webp',
     thumbnailOverlay: 'red',
     released: true,
@@ -279,9 +283,10 @@ export const chapters = {
     metadata: {
       chapterKey: 'glossary',
       chapterNumber: 9,
-      chapterPrefix: 'Glossary',
+      chapterPrefix: 'Annex 1',
     },
-    title: 'Glossary',
+    component: Glossary.default,
+    title: Glossary.title,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Glossary_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,
@@ -292,7 +297,9 @@ export const chapters = {
       chapterNumber: 10,
       chapterPrefix: 'Annex 2',
     },
-    title: 'Annex 2',
+    component: Annex02.default,
+    title: Annex02.title,
+    tableOfContents: Annex02.tableOfContents,
     downloadLink: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Annex2_EN.pdf',
     thumbnailOverlay: 'red',
     released: true,

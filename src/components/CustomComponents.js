@@ -441,35 +441,32 @@ function chunkByPredicate(array, predicate) {
 export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...props }) => {
   const c = await getTranslations('ContributionInsight');
   const [h2, ...rest] = Children.toArray(children);
-  const modifiedH2 = React.cloneElement(h2, { className: 'target:scroll-mt-[200px] font-bold text-3xl' });
   const contributorTagIndex = rest.findIndex((child) => child.type === ContributorTag);
   const contributorTag = contributorTagIndex >= 0 ? rest.splice(contributorTagIndex, 1) : [];
   const splittedByAnchor = chunkByPredicate(rest, (child) => child.type === Anchor);
   return (
-    <div>
-      <div>
-        <div className="text-[#ee2435] grid grid-cols-[5%_95%] w-full h-auto" {...props}>
-          <div className="[border-inline-start:1px_solid_#ee2435]" />
-          <div className="flex items-center justify-between pt-4 pb-4">
-            <span>
-              {c('title')} {index}
-            </span>
-            <div className="flex items-center gap-3">
-              {types ? <TohInsight types={types} /> : null}
-              {arrowHref ? (
-                <a
-                  href={arrowHref}
-                  aria-label={arrowLabel ?? 'Jump to referenced content'}
-                  className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors"
-                >
-                  <ArrowRight className="w-5 h-5" strokeWidth={2.75} />
-                </a>
-              ) : null}
-            </div>
+    <div id={h2.props.id}>
+      <div className="text-[#ee2435] grid grid-cols-[5%_95%] w-full h-auto" {...props}>
+        <div className="[border-inline-start:1px_solid_#ee2435]" />
+        <div className="flex items-center justify-between pt-4 pb-4">
+          <span>
+            {c('title')} {index}
+          </span>
+          <div className="flex items-center gap-3">
+            {types ? <TohInsight types={types} /> : null}
+            {arrowHref ? (
+              <a
+                href={arrowHref}
+                aria-label={arrowLabel ?? 'Jump to referenced content'}
+                className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors"
+              >
+                <ArrowRight className="w-5 h-5" strokeWidth={2.75} />
+              </a>
+            ) : null}
           </div>
         </div>
-        {<Spotlight>{modifiedH2}</Spotlight>}
       </div>
+      {<Spotlight>{React.cloneElement(h2, { id: null })}</Spotlight>}
       {splittedByAnchor.map((chunk, index) => {
         if (chunk[0].type === Anchor) {
           return chunk[0];

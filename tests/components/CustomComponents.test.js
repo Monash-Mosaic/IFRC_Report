@@ -318,10 +318,12 @@ describe('CustomComponents async components', () => {
     });
 
     expect(heading).toBeInTheDocument();
-    expect(heading).toHaveAttribute('id');
+    // Box moves the heading's id to the wrapper div for anchor targeting
+    const anchorTarget = document.querySelector('#insight-1');
+    expect(anchorTarget).toBeInTheDocument();
+    expect(anchorTarget).toContainElement(heading);
     expect(screen.getByText('Box body')).toBeInTheDocument();
     expect(screen.getByText('Contributor Tag')).toBeInTheDocument();
-    expect(document.querySelector('#insight-1')).toBeInTheDocument();
     expect(screen.getByText('title 1')).toBeInTheDocument();
   });
 });

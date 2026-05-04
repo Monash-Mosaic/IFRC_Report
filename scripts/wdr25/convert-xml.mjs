@@ -37,8 +37,8 @@ console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: 'WDR26-Synthesis-FR.with-links-and-endnotes.xml',
-  mdx: 'WDR26-Executive-Summary-EN.mdx',
+  source: '5-SUMMRY.with-links-and-endnotes.xml',
+  mdx: 'exec_sum_ar.mdx',
   endnotesSource: 'endnotes.json',
 };
 
@@ -233,7 +233,9 @@ const isWhitespaceText = (node) => isText(node) && /^[\s\r\n\t]*$/.test(node.val
 
 const isContributorNode = (node) =>
   isElement(node) &&
-  (contributorTagNames.has(node.name) || node.name === 'contributor' || node.name === 'contributor-tag');
+  (contributorTagNames.has(node.name) ||
+    node.name === 'contributor' ||
+    node.name === 'contributor-tag');
 const isBoxTagName = (name) => typeof name === 'string' && name.includes('-box');
 
 const isAllowedBeforeContributors = (node) => {
@@ -578,13 +580,18 @@ const convertToMDXAst = (node, index, parent) => {
   switch (node.name) {
     case 'chapter-title':
       return [exportEsm('title', getTextContent(node))];
-    case 'subchapter-title':
+    case 'chapter-subtitle':
+    case 'h1-introduction':
       return [exportEsm('subtitle', getTextContent(node))];
     case 'anchor':
       figIndex += 1;
-      return [mdxJsxEl('Anchor', [
-        { name: 'meta', value: `Fig ${chapterIndex}.${figIndex}` }
-      ], extractTextChildren(node))];
+      return [
+        mdxJsxEl(
+          'Anchor',
+          [{ name: 'meta', value: `Fig ${chapterIndex}.${figIndex}` }],
+          extractTextChildren(node)
+        ),
+      ];
     case 'caption':
       return [mdxJsxEl('Caption', [], extractTextChildren(node))];
     case 'toh-body-box': {
@@ -600,16 +607,22 @@ const convertToMDXAst = (node, index, parent) => {
     }
     case 'box':
       insightIndex += 1;
-      const tohIndex = node.children.findIndex((n => n.type === 'mdxJsxFlowElement' && n.name === 'TohInsight'));
+      const tohIndex = node.children.findIndex(
+        (n) => n.type === 'mdxJsxFlowElement' && n.name === 'TohInsight'
+      );
       const toh = node.children.splice(tohIndex, 1);
-      const tohAttr = toh[0]?.attributes.find(attr => attr.name === 'types');
-      return [mdxJsxEl('Box', [
-            { name: 'index', value: `${chapterIndex}.${insightIndex}` },
-            tohAttr
-          ], node.children)];
+      const tohAttr = toh[0]?.attributes.find((attr) => attr.name === 'types');
+      return [
+        mdxJsxEl(
+          'Box',
+          [{ name: 'index', value: `${chapterIndex}.${insightIndex}` }, tohAttr],
+          node.children
+        ),
+      ];
     case 'h1-box':
     case 'h1-spotlight':
       return [heading(2, extractTextChildren(node))];
+    case 'h1-introduction':
     case 'h1-recommendations':
     case 'h1':
       return [heading(1, extractTextChildren(node))];
@@ -762,8 +775,6 @@ const components = new Set();
 visit(mdRoot, ['mdxJsxFlowElement'], (node) => components.add(node.name));
 
 addPaddingParagraphChildren(mdRoot);
-
-mapTOHIcons(mdRoot);
 
 mdRoot.children.unshift(importEsm('@/types/TypologyOfHarm', ['TypologyOfHarm']));
 if (components.size > 0) {

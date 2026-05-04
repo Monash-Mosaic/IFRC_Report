@@ -6,6 +6,20 @@ import { useTranslations } from 'next-intl';
 
 export const TAG_CATEGORIES = [
   {
+    id: 'harm',
+    labelKey: 'browseHarm',
+    column: 'harm',
+    tags: [
+      { id: 'psychological', label: 'Psychological' },
+      { id: 'societal', label: 'Societal' },
+      { id: 'social', label: 'Social' },
+      { id: 'informational', label: 'Informational' },
+      { id: 'digital_technological', label: 'Digital/technological' },
+      { id: 'physical', label: 'Physical' },
+      { id: 'deprivational', label: 'Deprivational/financial/economic' },
+    ],
+  },
+  {
     id: 'operational_impact',
     labelKey: 'browseOperationalImpact',
     column: 'operational',

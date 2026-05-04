@@ -14,6 +14,7 @@
     "nav": {
       "logoAlt": "Logotipo de la FICR",
       "brand": "FICR | Academia Solferino",
+      "home": "Inicio",
       "discover": "Descubrir",
       "about": "Acerca de",
       "bookmarks": "Marcadores",
@@ -257,6 +258,7 @@
     "browseTopics": "Explorar temas",
     "browseOperationalImpact": "Impacto operativo",
     "browseResponseStrategy": "Estrategia de respuesta",
+    "browseHarm": "Tipos de daño",
     "browseGovernance": "Gobernanza",
     "selectedCount": "{count} seleccionado(s)",
     "quotesTitle": "Citas",
