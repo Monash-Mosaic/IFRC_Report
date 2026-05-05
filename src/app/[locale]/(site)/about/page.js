@@ -120,6 +120,11 @@ export default async function AboutPage({ params }) {
             </div>
 
             <div>
+              <h3 className="font-semibold mb-1">{t('synthesisPhotoTitle')}</h3>
+              <p className="whitespace-pre-line">{t('synthesisPhotoText')}</p>
+            </div>
+
+            <div>
               <h3 className="font-semibold mb-1">{t('insidePhotosTitle')}</h3>
               <p className="whitespace-pre-line">{t('insidePhotosText')}</p>
             </div>
