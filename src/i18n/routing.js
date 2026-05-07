@@ -6,10 +6,10 @@ export const routing = defineRouting({
   pathnames: {
     '/discover': {
       en: '/discover',
-      fr: '/decouvrir',
+      fr: '/découvrir',
       zh: '/发现',
-      ar: '/اكتشف',
-      ru: '/обзор',
+      ar: '/يكتشف',
+      ru: '/обнаружить',
       es: '/descubrir',
     },
     '/about': {
