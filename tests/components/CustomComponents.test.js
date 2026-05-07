@@ -35,6 +35,7 @@ import CustomComponents, {
   FeatureImage,
   ChapterImage,
   Anchor,
+  InterChapterLink
 } from '@/components/CustomComponents';
 
 jest.mock('next-intl/server', () => ({
@@ -271,6 +272,50 @@ describe('CustomComponents primitives', () => {
         imageIndex={1}
       />
     );
+
+  it('renders InterChapterLink with href and children', () => {
+    render(<InterChapterLink href="/chapter-2">Go to Chapter 2</InterChapterLink>);
+  
+    const link = screen.getByRole('link', { name: 'Go to Chapter 2' });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/chapter-2');
+    expect(screen.getByText('Go to Chapter 2')).toBeInTheDocument();
+  });
+  
+  it('renders InterChapterLink with default purple styling on inner span', () => {
+    render(<InterChapterLink href="/chapter-3">Chapter 3</InterChapterLink>);
+  
+    const span = screen.getByText('Chapter 3');
+    expect(span).toHaveClass('text-purple-600', 'font-semibold');
+  });
+  
+  it('renders InterChapterLink with additional className merged onto span', () => {
+    render(
+      <InterChapterLink href="/chapter-4" className="underline">
+        Chapter 4
+      </InterChapterLink>
+    );
+  
+    const span = screen.getByText('Chapter 4');
+    expect(span).toHaveClass('text-purple-600', 'font-semibold', 'underline');
+  });
+  
+  it('renders InterChapterLink with empty className without trailing space', () => {
+    render(<InterChapterLink href="/chapter-5">Chapter 5</InterChapterLink>);
+  
+    const span = screen.getByText('Chapter 5');
+    expect(span.className).toBe('text-purple-600 font-semibold');
+  });
+  
+  it('passes extra props to the anchor element', () => {
+    render(
+      <InterChapterLink href="/chapter-6" data-testid="inter-link">
+        Chapter 6
+      </InterChapterLink>
+    );
+  
+    expect(screen.getByTestId('inter-link')).toHaveAttribute('href', '/chapter-6');
+  });
 
     expect(screen.getByAltText('Chapter image')).toBeInTheDocument();
     expect(screen.getByText('Figure Title')).toBeInTheDocument();
