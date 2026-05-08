@@ -598,7 +598,7 @@ export function ChapterLink({ children, ...props }) {
 export function InterChapterLink({ href, children, className = '', ...props }) {
   return (
     <a href={href} {...props}>
-      <span className={['text-purple-600 font-semibold', className].filter(Boolean).join(' ')}>{children}</span>
+      <span className={['text-purple-600', className].filter(Boolean).join(' ')}>{children}</span>
     </a>
   );
 }
