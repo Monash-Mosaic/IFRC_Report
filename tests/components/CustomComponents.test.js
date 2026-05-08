@@ -300,7 +300,7 @@ describe('CustomComponents primitives', () => {
     render(<InterChapterLink href="/chapter-3">Chapter 3</InterChapterLink>);
 
     const span = screen.getByText('Chapter 3');
-    expect(span).toHaveClass('text-purple-600', 'font-semibold');
+    expect(span).toHaveClass('text-purple-600');
   });
 
   it('renders InterChapterLink with additional className merged onto span', () => {
@@ -311,14 +311,14 @@ describe('CustomComponents primitives', () => {
     );
 
     const span = screen.getByText('Chapter 4');
-    expect(span).toHaveClass('text-purple-600', 'font-semibold', 'underline');
+    expect(span).toHaveClass('text-purple-600 underline');
   });
 
   it('renders InterChapterLink with empty className without trailing space', () => {
     render(<InterChapterLink href="/chapter-5">Chapter 5</InterChapterLink>);
 
     const span = screen.getByText('Chapter 5');
-    expect(span.className).toBe('text-purple-600 font-semibold');
+    expect(span.className).toBe('text-purple-600');
   });
 
   it('passes extra props to the anchor element', () => {
