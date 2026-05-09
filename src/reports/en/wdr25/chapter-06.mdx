@@ -23,7 +23,9 @@ import {
   ChapterLink,
   QuestionAnswerBox,
   QuestionAnswerBoxTitle,
-  QuestionAnswerBoxBody
+  QuestionAnswerBoxBody,
+  Table,
+  TableHeader
 } from '@/components/CustomComponents';
 
 import {
@@ -1012,18 +1014,18 @@ Effective communication requires strategic precision: understanding who needs th
 </div>
 
 <div className="overflow-x-auto">
-  <table className="w-full border-separate border-spacing-x-3 border-spacing-y-0 text-left">
-    <thead className="align-top">
+  <Table className="border-spacing-x-3 border-spacing-y-0 text-left">
+    <thead>
       <tr>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl font-bold w-[25%]">
+        <TableHeader className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl w-[25%]">
           Element
-        </th>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl font-bold w-[37%]">
+        </TableHeader>
+        <TableHeader className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl w-[37%]">
           Guiding questions
-        </th>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl font-bold w-[38%]">
+        </TableHeader>
+        <TableHeader className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl w-[38%]">
           Considerations in practice
-        </th>
+        </TableHeader>
       </tr>
     </thead>
 
@@ -1084,7 +1086,7 @@ Effective communication requires strategic precision: understanding who needs th
         </td>
       </tr>
     </tbody>
-  </table>
+  </Table>
 </div>
 # <HeadingLabel index="6.9" />Critical reflections: Challenges in practice
 

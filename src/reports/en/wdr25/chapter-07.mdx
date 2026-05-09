@@ -31,6 +31,8 @@ import {
   FundamentalPrinciples,
   FundamentalPrinciplesDescriptionBox,
   FundamentalPrinciplesDescriptionBoxBody,
+  Table,
+  TableHeader
 } from '@/components/CustomComponents';
 
 import { TypologyOfHarm } from '@/types/TypologyOfHarm';
@@ -1294,13 +1296,13 @@ specific ways that respond to the specific challenges posed by harmful informati
 
 <TableLabel index="7.1" className="font-normal" /> **Fundamental principles in the context of harmful information**
 
-<table className="w-full table-auto border-separate border-spacing-2">
-  <thead className="align-top">
+<Table className="table-auto border-spacing-2">
+  <thead>
     <tr>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Fundamental principle</th>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Components</th>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Contemporary relevance in harmful information age</th>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Underlying humanitarian values</th>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Fundamental principle</TableHeader>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Components</TableHeader>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Contemporary relevance in harmful information age</TableHeader>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Underlying humanitarian values</TableHeader>
     </tr>
   </thead>
   <tbody>
@@ -1347,7 +1349,7 @@ specific ways that respond to the specific challenges posed by harmful informati
       <td className="border-t-[1px] p-2 align-top">International cooperation<br/><br/>Mutual assistance<br/><br/>Global solidarity<br/><br/>Openness</td>
     </tr>
   </tbody>
-</table>
+</Table>
 
 ## <HeadingLabel index="7.9.1" /> Decision-making framework: Responding to harmful information while upholding humanitarian principles
 
@@ -1411,13 +1413,13 @@ partners and stakeholders?
 
 <TableLabel index="7.2" className="font-normal" />**Example matrix to map trade-offs between response and potential harm**
 
-<table className="w-full table-auto border-separate border-spacing-2">
-  <thead className="align-top">
+<Table className="table-auto border-spacing-2">
+  <thead>
     <tr>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Response</th>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Principles it supports</th>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Principles it risks being perceived as violating</th>
-      <th className="border-t-[2px] font-bold text-xl p-2 text-start">Potential harm</th>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Response</TableHeader>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Principles it supports</TableHeader>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Principles it risks being perceived as violating</TableHeader>
+      <TableHeader className="border-t-[2px] text-xl p-2 text-start">Potential harm</TableHeader>
     </tr>
   </thead>
   <tbody>
@@ -1440,7 +1442,7 @@ partners and stakeholders?
       <td className="border-t-[1px] p-2 align-top">Uneven messaging<br/><br/>Potential fragmentation of trust</td>
     </tr>
   </tbody>
-</table>
+</Table>
 
 <hr className="border-t border-black my-6" />
 

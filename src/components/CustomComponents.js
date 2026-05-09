@@ -628,6 +628,22 @@ export function FigureLabel({ index, label = 'Fig', className = '', ...props }) 
   );
 }
 
+export function Table({children, className = '', ...props}) {
+  return (
+    <table className={`w-full border-separate ${className}`} {...props}>
+      {children}
+    </table>
+  );
+}
+
+export function TableHeader({ children, className = '', ...props }) {
+  return (
+    <th className={`font-bold align-top ${className}`} {...props}>
+      {children}
+    </th>
+  );
+}
+
 const CustomComponents = {
   Box,
   H1Contributor,
@@ -664,6 +680,8 @@ const CustomComponents = {
   FundamentalPrinciples,
   FundamentalPrinciplesDescriptionBox,
   FundamentalPrinciplesDescriptionBoxBody,
+  Table,
+  TableHeader
 };
 
 export default CustomComponents;

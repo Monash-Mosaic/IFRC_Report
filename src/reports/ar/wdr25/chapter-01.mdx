@@ -19,6 +19,8 @@ import {
   HeadingLabel,
   TableLabel,
   TohInsight,
+  Table,
+  TableHeader
 } from '@/components/CustomComponents';
 
 import {
@@ -546,7 +548,7 @@ export const subtitle = '';
 
 <ChapterImage imagePath="/wdr25/chapter-01/01.webp" />
 
-<table class="w-full table-auto border-separate border-spacing-2">
+<Table className="table-auto border-spacing-2">
   <caption id="typology-of-harm-ar" class="target:scroll-mt-[100px] caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
     <TableLabel index="1.1" label="جدول" /> <span>تصنيف أنواع الضرر</span>{' '}
     <a
@@ -563,10 +565,10 @@ export const subtitle = '';
     <col className="w-[50%] md:w-[70%]" />
   </colgroup>
 
-  <thead className="align-top">
+  <thead>
     <tr>
-      <th class="border-t-[2px] font-bold text-2xl p-2 text-start" colSpan={2}>نوع الضرر</th>
-      <th class="border-t-[2px] font-bold text-2xl p-2 text-start">أمثلة على الضرر</th>
+      <TableHeader class="border-t-[2px] text-2xl p-2 text-start" colSpan={2}>نوع الضرر</TableHeader>
+      <TableHeader class="border-t-[2px] text-2xl p-2 text-start">أمثلة على الضرر</TableHeader>
     </tr>
   </thead>
 
@@ -654,7 +656,7 @@ export const subtitle = '';
       </td>
     </tr>
   </tbody>
-</table>
+</Table>
 
 <Box
   index="1.8"
