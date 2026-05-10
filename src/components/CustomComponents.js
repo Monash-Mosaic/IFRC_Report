@@ -638,7 +638,7 @@ export function Table({children, className = '', ...props}) {
 
 export function TableHeader({ children, className = '', ...props }) {
   return (
-    <th className={`font-bold align-top ${className}`} {...props}>
+    <th className={`border-t-[2px] border-[#3a3a3a] py-6 font-bold align-top ${className}`} {...props}>
       {children}
     </th>
   );
