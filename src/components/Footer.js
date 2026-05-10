@@ -16,7 +16,7 @@ export default async function Footer({ locale }) {
 
   /* ================= DYNAMIC REPORT LINKS ================= */
 
-  const reportModule = reportsByLocale[locale]?.wdr26;
+  const reportModule = reportsByLocale[locale]?.reports?.wdr26;
 
   const chapterSlug =
     reportUriMap['wdr26']?.chapters['synthesis']?.languages[locale];
@@ -27,7 +27,6 @@ export default async function Footer({ locale }) {
       report: reportUriMap['wdr26'].languages[locale],
     },
   };
-
   const downloadReportLink = reportModule?.reportFile?.url || reportModule?.chapters?.[chapterSlug]?.downloadLink || '#';
 
   /* ======================================================== */
@@ -56,10 +55,10 @@ export default async function Footer({ locale }) {
                 </Link>
 
                 <div className="flex gap-3">
-                  <Link href="https://www.facebook.com/IFRC/"><Facebook size={18} className={iconClass}/></Link>
-                  <Link href="https://www.youtube.com/user/ifrc"><Youtube size={18} className={iconClass}/></Link>
-                  <Link href="https://www.linkedin.com/company/ifrc/"><Linkedin size={18} className={iconClass}/></Link>
-                  <Link href="https://www.instagram.com/ifrc/"><Instagram size={18} className={iconClass}/></Link>
+                  <Link href="https://www.facebook.com/IFRC/"><Facebook size={18} className={iconClass} /></Link>
+                  <Link href="https://www.youtube.com/user/ifrc"><Youtube size={18} className={iconClass} /></Link>
+                  <Link href="https://www.linkedin.com/company/ifrc/"><Linkedin size={18} className={iconClass} /></Link>
+                  <Link href="https://www.instagram.com/ifrc/"><Instagram size={18} className={iconClass} /></Link>
                 </div>
               </div>
 
@@ -76,10 +75,10 @@ export default async function Footer({ locale }) {
                 </Link>
 
                 <div className="flex gap-3">
-                  <Link href="https://www.facebook.com/people/IFRC-Solferino-Academy/61572985566986/"><Facebook size={18} className={iconClass}/></Link>
-                  <Link href="https://www.youtube.com/@SolferinoAcademy"><Youtube size={18} className={iconClass}/></Link>
-                  <Link href="https://www.linkedin.com/company/ifrc-solferino-academy/"><Linkedin size={18} className={iconClass}/></Link>
-                  <Link href="https://www.instagram.com/ifrcsolferinoacademy/"><Instagram size={18} className={iconClass}/></Link>
+                  <Link href="https://www.facebook.com/people/IFRC-Solferino-Academy/61572985566986/"><Facebook size={18} className={iconClass} /></Link>
+                  <Link href="https://www.youtube.com/@SolferinoAcademy"><Youtube size={18} className={iconClass} /></Link>
+                  <Link href="https://www.linkedin.com/company/ifrc-solferino-academy/"><Linkedin size={18} className={iconClass} /></Link>
+                  <Link href="https://www.instagram.com/ifrcsolferinoacademy/"><Instagram size={18} className={iconClass} /></Link>
                 </div>
               </div>
 
@@ -96,8 +95,8 @@ export default async function Footer({ locale }) {
                 </Link>
 
                 <div className="flex gap-3">
-                  <Link href="https://www.linkedin.com/company/mosaic-monash-student-team/"><Linkedin size={18} className={iconClass}/></Link>
-                  <Link href="https://www.instagram.com/mosaic.monash/"><Instagram size={18} className={iconClass}/></Link>
+                  <Link href="https://www.linkedin.com/company/mosaic-monash-student-team/"><Linkedin size={18} className={iconClass} /></Link>
+                  <Link href="https://www.instagram.com/mosaic.monash/"><Instagram size={18} className={iconClass} /></Link>
                 </div>
               </div>
 
