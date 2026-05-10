@@ -220,12 +220,12 @@ export function AsksAims({ children, ...props }) {
   );
 }
 
-export function Asks({ children, ...props }) {
+export function Asks({ title = "Asks", children, ...props }) {
   return (
     <div {...props}>
       {/* Title NOT bold */}
       <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
-        Asks
+        {title}
       </div>
 
       {/* Content IS bold */}
@@ -236,12 +236,12 @@ export function Asks({ children, ...props }) {
   );
 }
 
-export function Aims({ children, ...props }) {
+export function Aims({ title = "Aims", children, ...props }) {
   return (
     <div className="mt-8 lg:mt-0" {...props}>
       {/* Title NOT bold */}
       <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
-        Aims
+        {title}
       </div>
 
       {/* Content IS bold */}
