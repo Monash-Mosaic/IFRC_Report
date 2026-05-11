@@ -217,11 +217,11 @@ export default function QuotesSection({ selectedTag }) {
         const headers = rows[0].map((h) => h.trim());
         const colIndex = {};
         headers.forEach((h, i) => { colIndex[h] = i; });
-        if (colIndex['Quote text (EN)'] == null) {
+        if (colIndex['Quote text'] == null) {
           setQuotes([]);
           return;
         }
-        const quoteTextIdx = colIndex['Quote text (EN)'];
+        const quoteTextIdx = colIndex['Quote text'];
         const isValidQuoteText = (val) => {
           if (!val || typeof val !== 'string') return false;
           const v = val.trim();
