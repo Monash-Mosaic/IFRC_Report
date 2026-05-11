@@ -5,7 +5,6 @@ import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
 import * as Chapter05 from './chapter-05.mdx';
 import * as Chapter03 from './chapter-03.mdx';
-import * as Chapter04 from './chapter-04.mdx';
 import * as Chapter06 from './chapter-06.mdx';
 import * as Chapter07 from './chapter-07.mdx';
 import * as Chapter08 from './chapter-08.mdx';
