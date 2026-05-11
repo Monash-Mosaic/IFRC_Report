@@ -4,12 +4,12 @@ export const routing = defineRouting({
   locales: ['en', 'fr', 'zh', 'ar', 'ru', 'es'],
   defaultLocale: 'en',
   pathnames: {
-    '/engagement': {
-      en: '/engagement',
-      fr: '/decouvrir',
+    '/discover': {
+      en: '/discover',
+      fr: '/découvrir',
       zh: '/发现',
-      ar: '/اكتشف',
-      ru: '/обзор',
+      ar: '/يكتشف',
+      ru: '/обнаружить',
       es: '/descubrir',
     },
     '/about': {

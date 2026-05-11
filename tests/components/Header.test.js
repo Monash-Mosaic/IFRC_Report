@@ -22,13 +22,13 @@ jest.mock('@/components/SearchInput', () => {
 });
 
 jest.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, className }) => (
-    <a href={href} className={className}>
+  Link: ({ children, href, className, prefetch, ...props }) => (
+    <a href={href} className={className} {...props}>
       {children}
     </a>
   ),
   useRouter: () => ({ push: pushMock }),
-  usePathname: () => '/current-path',
+  usePathname: () => '/',
   getPathname: ({ locale, href }) => `/${locale}${href}`,
 }));
 
@@ -37,6 +37,7 @@ jest.mock('next-intl/server', () => ({
     const namespace = typeof arg === 'string' ? arg : arg?.namespace;
     return (key) => {
       const translations = {
+        'Home.nav.home': 'Home',
         'Home.nav.discover': 'Discover',
         'Home.nav.about': 'About',
         'Home.nav.acknowledgement': 'Acknowledgement',
@@ -61,11 +62,22 @@ describe('Header', () => {
     await renderHeader();
 
     expect(screen.getByAltText('Logo')).toBeInTheDocument();
+    expect(screen.getAllByText('Home').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Discover').length).toBeGreaterThan(0);
     expect(screen.getAllByText('About').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Acknowledgement').length).toBeGreaterThan(0);
     expect(screen.getAllByTestId('locale-switcher')).toHaveLength(2);
     expect(screen.getAllByTestId('search-input')).toHaveLength(2);
+  });
+
+  it('marks the current tab with theme red styles', async () => {
+    await renderHeader();
+
+    const homeLinks = screen.getAllByRole('link', { name: 'Home' });
+    homeLinks.forEach((link) => {
+      expect(link).toHaveClass('text-red-700', 'hover:text-red-900');
+      expect(link).toHaveAttribute('aria-current', 'page');
+    });
   });
 
   it('uses a checkbox + label for the CSS-only mobile menu toggle', async () => {
