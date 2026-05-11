@@ -165,15 +165,28 @@ function QuoteCard({ quote }) {
       {/* Footer */}
       <div className="px-5 py-4 border-t border-slate-100 shrink-0">
         {chapterLabel && (
-          <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
-            {chapterLabel}
-          </span>
+          quote.url ? (
+            <a
+              href={quote.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-[#ee2435] underline underline-offset-2"
+            >
+              {chapterLabel}
+            </a>
+          ) : (
+            <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
+              {chapterLabel}
+            </span>
+          )
         )}
+
         {chapterTitle && (
           <span className="text-xs font-bold text-slate-800 ml-1">
             {chapterTitle}
           </span>
         )}
+
         {quote.country && (
           <div className="text-[10px] text-slate-400 mt-1">{quote.country}</div>
         )}
@@ -227,6 +240,7 @@ export default function QuotesSection({ selectedTag }) {
             operational: (row[colIndex['tag:operational_impact']] || '').trim(),
             response: (row[colIndex['tag:response_strategy']] || '').trim(),
             governance: (row[colIndex['tag:governance']] || '').trim(),
+            url: (row[colIndex['url']] || '').trim(),
           }));
         setQuotes(parsed);
       })
