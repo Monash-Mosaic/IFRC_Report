@@ -19,7 +19,9 @@ import {
   HeadingLabel,
   TableLabel,
   TohInsight,
-  ChapterLink
+  ChapterLink,
+  Table,
+  TableHeader
 } from '@/components/CustomComponents';
 
 import {
@@ -551,7 +553,7 @@ Laws, policies and plans underpin all aspects of disaster risk management (DRM),
 
 <ChapterImage imagePath="/wdr25/chapter-01/01.webp" />
 
-<table class="w-full table-auto border-separate border-spacing-2">
+<Table className="table-auto border-spacing-2">
   <caption id="typology-of-harm" class="target:scroll-mt-[100px] caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
     <TableLabel index="1.1" /> <span>Typology of harm</span>
     <a
@@ -570,8 +572,8 @@ Laws, policies and plans underpin all aspects of disaster risk management (DRM),
 
   <thead>
     <tr>
-      <th class="border-t-[2px] font-bold text-2xl p-2 text-start" colSpan={2}>Type of harm</th>
-      <th class="border-t-[2px] font-bold text-2xl p-2 text-start">Examples of harm</th>
+      <TableHeader className="text-2xl text-start" colSpan={2}>Type of harm</TableHeader>
+      <TableHeader className="text-2xl text-start">Examples of harm</TableHeader>
     </tr>
   </thead>
 
@@ -673,7 +675,7 @@ Laws, policies and plans underpin all aspects of disaster risk management (DRM),
       </td>
     </tr>
   </tbody>
-</table>
+</Table>
 
 <Box
   index="1.8"
