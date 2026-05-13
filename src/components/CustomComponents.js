@@ -580,10 +580,28 @@ export function ChapterImage({
 }
 
 export function EndnotesLink({ children, ...props }) {
+  const linkClass = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+
+  if (React.isValidElement(children) && children.type === 'a') {
+    return React.cloneElement(children, {
+      ...children.props,
+      ...props,
+      target: '_blank',
+      rel: 'noopener noreferrer',
+      className: [children.props.className, linkClass].filter(Boolean).join(' '),
+    });
+  }
+
   return (
-    <span className="underline decoration-[#68ACFD] wrap-break-word break-all" {...props}>
+    <a
+      href={children}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={linkClass}
+      {...props}
+    >
       {children}
-    </span>
+    </a>
   );
 }
 

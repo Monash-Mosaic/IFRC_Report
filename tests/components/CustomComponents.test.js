@@ -35,6 +35,7 @@ import CustomComponents, {
   FeatureImage,
   ChapterImage,
   Anchor,
+  EndnotesLink,
 } from '@/components/CustomComponents';
 
 jest.mock('next-intl/server', () => ({
@@ -284,6 +285,40 @@ describe('CustomComponents primitives', () => {
 
     expect(screen.getByAltText('Simple')).toBeInTheDocument();
     expect(screen.queryByRole('figcaption')).not.toBeInTheDocument();
+  });
+
+  it('renders EndnotesLink with correct href, target and rel for a string URL', () => {
+    const LINK_CLASS = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+
+    render(<EndnotesLink>https://www.example.com</EndnotesLink>);
+
+    const link = screen.getByRole('link', { name: 'https://www.example.com' });
+    expect(link).toHaveAttribute('href', 'https://www.example.com');
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(link).toHaveClass(...LINK_CLASS.split(' '));
+  });
+
+  it('clones EndnotesLink <a> child without double nesting and merges classNames', () => {
+    const LINK_CLASS = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+
+    render(
+      <EndnotesLink data-testid="endnotes-link" aria-label="External source">
+        <a href="https://www.example.com" className="child-class">
+          Click here
+        </a>
+      </EndnotesLink>
+    );
+
+    const link = screen.getByRole('link', { name: 'External source' });
+    expect(screen.getAllByRole('link')).toHaveLength(1);
+    expect(link).toHaveAttribute('href', 'https://www.example.com');
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(link).toHaveAttribute('data-testid', 'endnotes-link');
+    expect(link).toHaveClass('child-class');
+    expect(link).toHaveClass(...LINK_CLASS.split(' '));
+    expect(link).toHaveTextContent('Click here');
   });
 });
 
