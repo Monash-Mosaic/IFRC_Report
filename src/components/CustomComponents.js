@@ -580,7 +580,7 @@ export function ChapterImage({
 }
 
 export function EndnotesLink({ children, ...props }) {
-  const linkClass = 'underline decoration-[#68ACFD] wrap-break-word break-all text-[#68ACFD]';
+  const linkClass = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
 
   if (React.isValidElement(children) && children.type === 'a') {
     return React.cloneElement(children, {
