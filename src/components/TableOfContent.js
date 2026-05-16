@@ -17,7 +17,7 @@ export default function TableOfContent({
   maxDepth = Number.POSITIVE_INFINITY,
 }) {
   const processedToc = chapterTableOfContents.map((item) =>
-    item.id === 'endnotes' ? { ...item, children: [] } : item
+    (item.id === 'endnotes' || item.id === 'notes-de-fin') ? { ...item, children: [] } : item
   );
 
   /**
