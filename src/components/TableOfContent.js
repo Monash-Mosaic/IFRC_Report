@@ -16,11 +16,11 @@ export default function TableOfContent({
   title,
   maxDepth = Number.POSITIVE_INFINITY,
 }) {
+  const endnotesIds = ['endnotes', 'notes-de-fin', '尾注', 'حواشي-ختامية', 'referencias'];
   /* `remark-gfm` generates a hidden footnotes section with a `<h2 id="footnote-label">Footnotes</h2>`,
       and `rehype-extract-toc` can include that as an extra TOC entry.
       Filter out the generated footnote heading here so only real chapter headings remain.*/
   const processedToc = chapterTableOfContents.map((item) => {
-    const endnotesIds = ['endnotes', 'notes-de-fin', '尾注', 'حواشي-ختامية', 'referencias'];
     return (endnotesIds.includes(item.id)) ? { ...item, children: [] } : item;
   });
 
