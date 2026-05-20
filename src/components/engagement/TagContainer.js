@@ -58,7 +58,7 @@ export const TAG_CATEGORIES = [
 ];
 
 export default function TagContainer({ selectedTag, handleSelectionTag }) {
-  const t = useTranslations('Engagement');
+  const t = useTranslations('Discover');
   const selectedCount = Object.values(selectedTag).filter(Boolean).length;
 
   return (
