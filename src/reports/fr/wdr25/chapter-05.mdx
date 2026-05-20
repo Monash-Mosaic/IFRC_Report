@@ -18,7 +18,13 @@ import {
   SmallQuote,
   SmallQuoteAuthor,
   TableLabel,
-  ChapterLink
+  ChapterLink,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell
 } from '@/components/CustomComponents';
 
 import { TypologyOfHarm } from '@/types/TypologyOfHarm';
@@ -845,45 +851,45 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
   </Anchor>
 
   <div className="overflow-x-auto">
-    <table className="w-full border-separate border-spacing-x-6 border-spacing-y-0 text-left">
-      <thead>
-      <tr>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-xl font-bold w-1/3">
+    <Table>
+      <TableHead>
+      <TableRow>
+        <TableHeaderCell className="text-2xl w-1/3">
           Solutions axées
 
           sur la demande
-        </th>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-xl font-bold w-1/3" colSpan={2}>
+        </TableHeaderCell>
+        <TableHeaderCell className="text-2xl w-1/3" colSpan={2}>
           Solutions axées sur l’offre
-        </th>
-      </tr>
-      <tr>
+        </TableHeaderCell>
+      </TableRow>
+      <TableRow>
         <th></th>
-        <th className="border-b border-[#8a8a8a] pb-2 text-base font-semibold">
+        <TableHeaderCell className="border-[#8a8a8a] pt-2 pb-2 font-semibold">
           Suppression des informations
 
           de mauvaise qualité
-        </th>
-        <th className="border-b border-[#8a8a8a] pb-2 text-base font-semibold">
+        </TableHeaderCell>
+        <TableHeaderCell className="border-[#8a8a8a] pt-2 pb-2 font-semibold">
           Promotion d’un écosystème
 
           d’information sain
-        </th>
-      </tr>
-      </thead>
+        </TableHeaderCell>
+      </TableRow>
+      </TableHead>
 
-      <tbody className="text-slate-700">
+      <TableBody className="text-slate-700">
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Formation à la maîtrise des médias</strong><br />
           <span className="text-sm text-slate-500">
             Aider le public à mieux
 
             distinguer le vrai du faux
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>
             Contrôle des flux
 
@@ -897,8 +903,8 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             plateformes afin de restreindre
             les informations affichées
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Amélioration de la qualité des informations</strong><br />
           <span className="text-sm text-slate-500">
             Tentatives de YouTube pour
@@ -906,11 +912,11 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             et de Google pour mettre en
             avant les informations exactes
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Participation de la communauté</strong><br />
           <span className="text-sm text-slate-500">
             Comprend les efforts déployés
@@ -920,8 +926,8 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             qualité, ainsi que pour développer
             le journalisme citoyen
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>IA et modération des contenus</strong><br />
           <span className="text-sm text-slate-500">
             Utilisation de l’IA pour
@@ -931,8 +937,8 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             pour modérer les contenus
             lorsque cela est nécessaire
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Faire progresser l’IA</strong><br />
           <span className="text-sm text-slate-500">
             Utilisation de l’IA pour pro-
@@ -940,19 +946,19 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             qualité, tout en reconnaissant
             ses limites actuelles
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Vérification des faits</strong><br />
           <span className="text-sm text-slate-500">
             Comprend des étiquettes et
             des extensions de navigateur
             que le public peut utiliser
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Réglementation et lois</strong><br />
           <span className="text-sm text-slate-500">
             Lois contre les discours
@@ -962,8 +968,8 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             et la législation européenne
             sur les services numériques
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>
             Soutien au journa
             -lisme de qualité
@@ -977,11 +983,11 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             d’innovation et au soutien
             philanthropique ou de donateurs
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Sensibilisation</strong><br />
           <span className="text-sm text-slate-500">
             Reportages sur les plateformes
@@ -989,8 +995,8 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             des effets de la mésinformation
             et de la désinformation
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Poursuites pour diffamation</strong><br />
           <span className="text-sm text-slate-500">
             Démontrer les répercussions
@@ -1000,8 +1006,8 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             Dominion à Fox News Network
             au sujet des machines à voter
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>
             Modèle économique sain
             pour le journalisme
@@ -1013,11 +1019,11 @@ La professeure Anya Schiffrin de l’université Columbia a élaboré une « t
             publicitaires suffisants puissent
             financer le journalisme
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   </div>
 
   <div className="text-right text-sm text-slate-500 mt-2">
