@@ -66,13 +66,15 @@ jest.mock('@/reports', () => ({
   })),
   reportsByLocale: {
     en: {
-      wdr26: {
-        reportFile: {
-          url: 'https://example.com/download.pdf',
-        },
-        chapters: {
-          'synthesis': {
-            downloadLink: 'https://example.com/download.pdf',
+      reports: {
+        wdr26: {
+          reportFile: {
+            url: 'https://example.com/download.pdf',
+          },
+          chapters: {
+            'synthesis': {
+              downloadLink: 'https://example.com/download.pdf',
+            },
           },
         },
       },

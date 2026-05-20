@@ -1,0 +1,747 @@
+import {
+  Box,
+  ChapterImage,
+  Contributor,
+  ContributorEntity,
+  ContributorName,
+  ContributorRole,
+  ContributorTag,
+  QuestionAnswerBox,
+  QuestionAnswerBoxBody,
+  QuestionAnswerBoxTitle,
+  Reccomendations,
+  ReccomendationsTitle,
+  SmallQuote,
+  SmallQuoteAuthor,
+  HeadingLabel,
+  TohInsight,
+} from '@/components/CustomComponents';
+
+import { TypologyOfHarm } from '@/types/TypologyOfHarm';
+
+export const title =
+  'Du contexte aux conséquences : perspectives des acteurs humanitaires sur les effets des informations préjudiciables' ;
+
+export const subtitle = 'Informations préjudiciables et réalités opérationnelles' ;
+
+<ChapterImage imagePath="/wdr25/chapter-04/P-CMR381-AB_fmt.webp" title="P-CMR381-AB_fmt" />
+
+# Introduction : informations préjudiciables et réalités opérationnelles
+
+Nous vivons un moment historique aussi important que l’invention de l’imprimerie, qui modifie fondamentalement la manière dont l’information est produite et relayée, ainsi que le rapport à la fiabilité. Tout comme la révolution de l’imprimerie, les technologies numériques actuelles redistribuent le pouvoir, accélèrent la diffusion des idées et remettent en cause les gardiens traditionnels du savoir, en plus de favoriser la prolifération rapide d’informations et de discours préjudiciables. À eux seuls, le volume et la vitesse des flux d’informations actuels, combinés à des niveaux sans précédent d’accès à Internet et de connectivité, ont des répercussions profondes sur la société. L’information est devenue à la fois une marchandise, un atout et un risque.
+
+Cette transformation a des effets directs sur l’action humanitaire, tant pour le secteur lui-même que pour les populations qu’il sert. L’adoption généralisée des outils et des plateformes numériques, qui prend place à un rythme et à une échelle inimaginables il y a seulement dix ans, remodèle les modes de fonctionnement du secteur, ainsi que la façon dont les communautés s’approprient les informations et les interprètent dans les situations de crise.
+
+Dans ce nouveau contexte, une question pressante se pose : l’information elle-même est-elle devenue un obstacle à l’action humanitaire ? Ce chapitre s’appuie sur les perspectives des praticiens humanitaires pour offrir un aperçu critique de la manière dont les informations préjudiciables s’immiscent dans les contextes opérationnels, où elles orientent les décisions, tendent les relations avec les communautés et exposent l’action humanitaire à des défis et des risques de plus en plus dommageables.
+
+<QuestionAnswerBox>
+  <QuestionAnswerBoxTitle>Un monde connecté, une réalité complexe</QuestionAnswerBoxTitle>
+  <QuestionAnswerBoxBody>
+Selon l’Union internationale des télécommunications (UIT), environ 5,5 milliards de personnes (68 % de la population mondiale) étaient connectées à Internet en 2024. On dénombre désormais plus de 1,2 milliard de sites Web[^1], et plus de 5,24 milliards de personnes dans le monde utilisent les réseaux sociaux[^2], des chiffres en augmentation qui s’expliquent en grande partie par un accès accru au haut débit mobile dans les économies émergentes et les pays en développement.
+
+Les données démographiques des plateformes reflètent cette évolution : Facebook, autrefois concentré dans les pays à revenu élevé, compte aujourd’hui neuf de ses dix plus grandes bases d’utilisateurs dans des pays à revenu intermédiaire. Parmi les 20 premières bases d’utilisateurs, 14 se trouvent dans des pays à revenu intermédiaire, dont 9 dans des pays à revenu intermédiaire inférieur. Cette transition géographique et socioéconomique a non seulement élargi l’accès à l’information, mais aussi modifié son flux et sa nature.
+
+TikTok illustre également cette évolution. En 2025, la plateforme comptait environ 1,6 milliard d’utilisateurs actifs par mois[^3]. Son essor, également alimenté par l’accès mobile, suit une tendance similaire à celui de Facebook : neuf de ses dix principales bases d’utilisateurs se trouvent dans des pays à revenu intermédiaire. La plateforme est particulièrement populaire auprès des jeunes publics, avec environ 40 % d’utilisateurs âgés de 18 à 24 ans. Au départ, TikTok, comme d’autres plateformes de réseaux sociaux, était un espace de divertissement créatif, mais est aujourd’hui devenu un puissant moyen de fabriquer les discours, de mobiliser l’opinion et de diffuser des informations préjudiciables.
+
+Malgré ces changements radicaux, la fracture numérique reste une réalité mondiale criante. Selon l’UIT, 2,6 milliards de personnes – en grande majorité des femmes, des personnes âgées et des habitants des pays les moins avancés – ne sont toujours pas connectées. Cet écart continue de renforcer les inégalités mondiales en matière d’accès à l’information, aux services et aux possibilités.
+  </QuestionAnswerBoxBody>
+</QuestionAnswerBox>
+
+Depuis l’avènement du téléphone mobile, la distance entre les intervenants humanitaires et les communautés touchées par les crises diminue progressivement. Par ailleurs, les innovations technologiques de ces deux dernières décennies ont mis au jour certaines faiblesses des organisations humanitaires en ce qui concerne l’écoute des populations touchées, la collecte d’informations auprès de ces dernières et la redevabilité à leur égard, notamment la mise en place de véritables mécanismes de retours d’information. Aujourd’hui, la seule question que ces organisations peuvent se poser n’est pas celle de savoir si elles veulent interagir avec les communautés, mais comment le faire. Pourtant, à l’ère numérique, déterminer qui exprime réellement son opinion constitue un défi central. Dans les espaces numériques où l’identité, l’authenticité et l’influence sont de plus en plus floues, il est souvent difficile de savoir qui s’exprime. Les personnes touchées par une crise englobent un large éventail de groupes, allant des communautés locales aux populations de la diaspora, en passant par des individus ou des réseaux éloignés ayant des intérêts particuliers, qui façonnent tous le récit.
+
+Dans le même temps, l’écosystème de l’information s’est pollué, devenant parfois profondément toxique. Tout le monde dispose désormais d’une plateforme, y compris des acteurs qui ont une compréhension limitée du contexte ou qui ont l’intention délibérée de tromper ou de nuire. Cette pollution peut être organique ou orchestrée, ce qui soulève des questions urgentes sur la crédibilité, la redevabilité et l’opinion dans l’environnement humanitaire numérique. Dans le paysage informationnel bruyant et fragmenté d’aujourd’hui, il est plus difficile que jamais de déterminer si les acteurs humanitaires écoutent véritablement – et sont capables d’entendre – les personnes qu’ils cherchent à aider. Les risques d’une mauvaise interprétation de ce paysage n’ont jamais été aussi élevés et les conséquences d’une erreur d’appréciation plus graves.
+
+<SmallQuote>
+Il ne s’agit pas seulement d’images générées par l’IA : ils ont également réutilisé d’anciennes photos du tremblement de terre au Népal. Certaines personnes ne s’étaient absolument jamais rendues sur le site de la catastrophe, mais avec le modèle de trafic actuel, les vues en ligne sont synonymes d’argent. Beaucoup sont motivés par le profit, alors ils prennent de vieilles photos, les introduisent dans ChatGPT, ajoutent une légende en rapport avec l’actualité et produisent de fausses images. »
+</SmallQuote>
+
+<SmallQuoteAuthor>Membre de la communauté, Chine</SmallQuoteAuthor>
+
+Les institutions locales, nationales et internationales, en particulier celles qui opèrent dans des contextes fragiles ou dans des environnements politiquement instables, sont de plus en plus vulnérables face aux fausses allégations et aux discours préjudiciables. Les organisations humanitaires, en particulier, sont confrontées ces dernières années à une vague grandissante d’informations préjudiciables, à l’image de la tendance mondiale générale. Cette dynamique menace non seulement la crédibilité et la sécurité des travailleurs humanitaires, mais aussi la légitimité des institutions, la confiance des communautés et, en définitive, l’efficacité de l’action humanitaire. Sur les réseaux sociaux circulent des contenus inexacts ou trompeurs, souvent non vérifiés, non contrôlés et non contextualisés, créant un terrain fertile pour les préjudices. Dans des contextes institutionnels fragiles où la confiance est déjà faible, ces discours et cette immédiateté peuvent exacerber les divisions internes et la polarisation.
+
+Un exemple récent concerne la création de pages Facebook dont les noms laissent supposer une affiliation avec une composante du Mouvement international de la Croix-Rouge et du Croissant-Rouge. Gérées de manière anonyme, ces pages publiaient régulièrement des contenus prétendant révéler des informations confidentielles, notamment des allégations de corruption, de dysfonctionnement de la direction ou de conflits internes. Elles semblaient servir de plateformes d’alerte, mais leurs publications étaient souvent basées sur des informations ou des documents partiels ou sortis de leur contexte. Dans ces pages, l’utilisation de l’emblème de la croix rouge ou du croissant rouge et l’adoption d’un langage faisant écho aux valeurs humanitaires ont permis de cultiver une image de crédibilité et de légitimité qui a induit en erreur le public et les membres de la Société nationale et, en définitive, terni la réputation de cette dernière.
+
+Ce type de contenu, en particulier les vidéos, est beaucoup plus susceptible de tromper le public et de devenir viral que des textes ou des images, et son impact et sa portée s’en trouvent amplifiés. Un exemple notable est la vidéo dite « cash-in-trunks »[^4], qui a refait surface à plusieurs reprises depuis 2011, dans divers contextes, malgré les déclarations répétées et sans équivoque du CICR réfutant son authenticité.
+
+Les acteurs humanitaires eux-mêmes sont devenus des cibles mais aussi, parfois, des vecteurs involontaires d’informations préjudiciables. Le personnel et les volontaires peuvent partager à leur insu des contenus non vérifiés à travers des réseaux informels, contribuant ainsi à créer un climat de suspicion et de mécontentement. Parallèlement, des individus ou des groupes opérant par des voies non officielles peuvent détourner ou exploiter les emblèmes de la croix rouge et du croissant rouge, ainsi que le langage fondé sur les principes humanitaires, pour se présenter comme des voix crédibles, induire le public en erreur et étendre la portée des discours préjudiciables.
+
+<Box
+  index="4.1"
+>
+   ## Rôle de l’Observatoire national et stratégies pour lutter contre l’utilisation abusive de l’emblème
+
+Afin de surveiller, cartographier et combattre l’utilisation abusive de l’emblème de la croix rouge en Italie, la Croix-Rouge italienne a créé en 2018 l’Observatoire national pour la protection de l’emblème. Cet organisme est chargé de mener des actions de sensibilisation et de prendre des mesures correctives dans les cas d’utilisation abusive ayant un impact national, ainsi que de coordonner les réponses des sections locales. Le personnel et les volontaires de la Société nationale, ainsi que tout citoyen concerné, peuvent signaler les cas d’utilisation abusive de l’emblème sur une application dédiée.
+
+L’Observatoire constate actuellement une augmentation du nombre de signalements d’utilisations abusives dans les contenus publiés sur les réseaux sociaux. Ces utilisations, souvent très visibles, comportent un risque de diffusion de fausses informations concernant l’utilisation réglementée de l’emblème. En plus d’ébranler la confiance accordée au personnel et aux volontaires de la Croix-Rouge qui arborent l’emblème dans le cadre de leurs activités humanitaires, elles peuvent affaiblir son pouvoir protecteur en temps de conflit armé.
+
+En réaction, en 2025, l’Observatoire a préparé un « message de sensibilisation » destiné à être envoyé, depuis les comptes de réseaux sociaux de la Croix-Rouge italienne, aux utilisateurs ayant publié des contenus affichant à tort l’emblème. Ce message fournit des informations claires et accessibles sur sa bonne utilisation, montre combien il est important de le respecter et expose les conséquences humanitaires d’un mauvais usage. L’objectif est d’encourager les utilisateurs à supprimer ces contenus et de les sensibiliser, afin de contribuer à réduire la diffusion d’informations potentiellement préjudiciables ou trompeuses en rapport avec l’emblème.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Tommaso Natoli
+      </ContributorName>
+
+      <ContributorEntity>
+        Chef, Diplomatie humanitaire
+
+        et droit international
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge italienne
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Giulia Marcucci
+      </ContributorName>
+
+      <ContributorEntity>
+        Chargée de diplomatie humanitaire
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge italienne
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+# <HeadingLabel index="4.1" /> Les récits préjudiciables
+
+L’action humanitaire est fondamentalement locale. Pourtant, aujourd’hui, les récits qui façonnent sa perception sont de plus en plus influencés – et dans certains cas délibérément manipulés – par des acteurs sophistiqués disposant de ressources importantes, notamment des entreprises privées spécialisées dans la « désinformation à la demande », des acteurs étatiques et non étatiques et des groupes interposés. Leur portée et leur pouvoir s’étendent bien au-delà de l’utilisation traditionnelle de la propagande en temps de paix ou de conflit armé. Dans les crises et les conflits armés actuels, modeler l’espace informationnel est devenu un enjeu stratégique bien au-delà du contexte ou du champ de bataille. Les objectifs visant à détourner l’attention, tromper, dénigrer, distraire, consterner et diviser sont les marqueurs d’une profonde transformation de l’environnement informationnel dans lequel s’inscrit l’action humanitaire.
+
+Ne se limitant plus à des rumeurs ou à des perceptions erronées locales isolées, les discours préjudiciables font désormais partie d’un écosystème d’information dynamique, mondial et participatif, où les contenus sont produits, mis en forme et manipulés en temps réel. Comme l’observe Hugo Slim, spécialiste des questions humanitaires, les individus du monde entier ne sont pas seulement témoins des conflits, ils contribuent souvent activement à bâtir et/ou à amplifier les récits, parfois sans en saisir pleinement les conséquences. « Des millions de personnes utilisent leurs comptes sur les réseaux sociaux pour montrer la guerre, en énumérer les événements, décrire leur expérience et mener des campagnes à ce sujet. De nombreux observateurs éloignés de la guerre en sont désormais devenus des spectateurs en temps réel ; ils la découvrent en tant que consommateurs à distance et partisans sur Facebook, Twitter, Instagram et TikTok. Regarder la guerre et entrer dans son espace d’information en transférant, “likant” et commentant des contenus est désormais une routine[^5]. »
+
+Les efforts visant à préserver l’espace humanitaire à l’ère numérique doivent également tenir compte des nouvelles directives juridiques et politiques. Par exemple, le Manuel de Tallinn sur le droit international applicable aux cyberopérations[^6] se penche sur la façon dont le droit international en vigueur s’applique aux activités cybernétiques. Bien que juridiquement non contraignant, il est largement considéré comme une source fiable pour interpréter comment les normes juridiques internationales peuvent régir la conduite des États et des acteurs non étatiques dans le cyberespace, y compris pendant les conflits armés. Il affirme que le droit international humanitaire continue de s’appliquer dans le domaine numérique, y compris la protection du personnel humanitaire (règle 69) ; que les États ne peuvent pas interférer avec l’aide humanitaire impartiale apportée aux civils dans un conflit armé, que ce soit par des moyens cybernétiques ou d’autres méthodes (règle 131), ni utiliser à mauvais escient des emblèmes protégés (règle 70) ; et que le principe de distinction entre civils et combattants et entre biens civils et objectifs militaires reste applicable (règle 32).
+
+En juin 2021, un groupe d’experts juridiques internationaux a publié la Déclaration d’Oxford sur les protections du droit international dans le cyberespace : la réglementation des opérations et activités d’information[^7]. Celle-ci examine comment le droit international s’applique à la conduite d’opérations d’information par des acteurs étatiques et non étatiques, y compris celles comportant de la désinformation, de la mésinformation, des discours haineux et d’autres discours préjudiciables. Elle affirme que les États restent liés par leurs obligations existantes en matière de souveraineté, de non-ingérence, de droits humains et de droit international humanitaire, qui régissent également la conduite dans l’espace numérique.
+
+# <HeadingLabel index="4.2" /> Préjudices et répercussions des informations préjudiciables sur l’action humanitaire
+
+Les informations préjudiciables ne constituent pas une menace abstraite : elles ont des conséquences directes et concrètes sur les opérations humanitaires ; souvent elles sapent la confiance, perturbent l’accès à l’aide et mettent en danger à la fois le personnel et les communautés touchées. Des fausses accusations aux campagnes ciblées, les acteurs humanitaires du monde entier sont de plus en plus confrontés aux conséquences des récits trompeurs sur les opérations dans les situations de conflit armé, d’urgence de santé publique ou de catastrophe, ou sur le fonctionnement quotidien de leurs organisations, qu’elles soient locales ou internationales. Les cas et exemples suivants, fournis par diverses organisations humanitaires, illustrent la façon dont les informations préjudiciables ont tendu les relations communautaires, exacerbé la fragilité institutionnelle, entravé l’accès aux populations vulnérables et même mis en danger des interventions et des vies.
+
+<Box
+  index="4.2"
+  types={[TypologyOfHarm.Physical,TypologyOfHarm.Psychological,TypologyOfHarm.Social,TypologyOfHarm.Societal,TypologyOfHarm.Informational,TypologyOfHarm.Deprivational]}
+>
+   ## Conséquences de la mésinformation et de la désinformation sur la population rohingya, au Bangladesh, et témoignages tirés d’entretiens récents
+
+La désinformation et la mésinformation systématiques sur les réseaux sociaux ont des répercussions considérables et variées sur les personnes déplacées du Myanmar hébergées dans des camps au Bangladesh (en particulier à Cox’s Bazar). Le contenu de ces informations préjudiciables va de discours haineux en ligne (qui ont joué un rôle central dans la persécution et les violences à l’encontre de la minorité ethnique musulmane) à des rumeurs sur la réduction de l’aide humanitaire et des accusations préjudiciables selon lesquelles les personnes déplacées priveraient les Bangladais de la communauté d’accueil vivant dans le district de Cox’s Bazar de leurs possibilités.
+
+Au début de l’année 2025, BBC Media Action a interviewé huit jeunes hommes âgés de 18 à 34 ans vivant dans différents camps à Ukhia, à Cox’s Bazar. Ci-dessous figure une liste d’exemples illustrant les effets nocifs des informations préjudiciables, fausses ou trompeuses sur les personnes déplacées. Ces exemples portent non seulement sur les informations préjudiciables diffusées sur les réseaux sociaux, mais également sur des informations discriminatoires, préjudiciables et nuisibles publiées dans les médias locaux et nationaux bangladais.
+
+- **Des images recyclées ou accompagnées de légendes erronées** utilisées pour attiser la colère ou diffuser de fausses informations : des vidéos de feux de camp à Cox’s Bazar ont été republiées comme si elles montraient des attaques communautaires qui se produisaient ailleurs (par exemple à Tripura, en Inde), et des clips vidéo montrant des bateaux surchargés ont été présentés comme des « bateaux rohingyas se dirigeant vers l’Indonésie », alors qu’il s’agissait en réalité de ferries nationaux au Bangladesh.
+
+- **Désinformation en matière de santé :** des rumeurs sur le Covid-19 et les vaccins continuent de se répandre à l’intérieur des camps – par exemple : « les vaccins sont mortels/rendent stérile », « le Covid-19 est un canular » –, de même que des informations sur des remèdes trompeurs, souvent diffusées sur Facebook, WhatsApp ou par le bouche-à-oreille, et cette situation est aggravée par les restrictions d’accès à Internet de 2019-2020.
+
+- **Discours de haine et boucs émissaires :** publications déshumanisant les Rohingyas ou les qualifiant de criminels, d’« ingrats » et de vecteurs de maladies qui semblent s’être propagées dans les réseaux régionaux ont influencé les attitudes envers les personnes déplacées au Bangladesh.
+
+- **Allégations exagérées en matière de sécurité et de militantisme :** les publications sur les réseaux sociaux exagèrent ou déforment régulièrement les informations relatives à la criminalité ou au militantisme, présentant les camps comme contrôlés par des groupes armés et alimentant la peur et l’hostilité au sein des communautés d’accueil.
+
+- **Rumeurs autour d’événements très médiatisés :** des pics de désinformation apparaissent autour d’incidents tels que des annonces d’incendies, de réductions de l’aide, d’évacuations ou de rapatriement, comme les allégations virales concernant la présence de « troupes étrangères » à Cox’s Bazar, qui ont ensuite été démenties par des vérificateurs de faits locaux.
+
+Les campagnes de mésinformation et de désinformation circulent dans et autour des camps à travers les plateformes couramment utilisées telles que Facebook, WhatsApp/IMO, YouTube/TikTok, ainsi qu’à travers le partage hors ligne, de téléphone à téléphone (Bluetooth/SHAREit). Malgré les efforts déployés par les organisations humanitaires pour mettre en place des initiatives de suivi des rumeurs à Cox’s Bazar visant à contrer cette dynamique, celles-ci ont été reléguées au second plan en raison de coupes budgétaires successives depuis 2021.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Melissa Everleigh
+      </ContributorName>
+
+      <ContributorEntity>
+        Conseillère principale
+      </ContributorEntity>
+
+      <ContributorRole>
+        BBC Media Action
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+<Box
+  index="4.3"
+  types={[TypologyOfHarm.Psychological,TypologyOfHarm.Societal,TypologyOfHarm.Informational]}
+>
+   ## Croix-Rouge néo-zélandaise : observations tirées de l’intervention menée en 2022 suite aux phénomènes météorologiques extrêmes dans l’île du Nord
+
+En 2022 et 2023, la Nouvelle-Zélande a été fortement touchée par des phénomènes météorologiques extrêmes, notamment le cyclone Gabrielle, qui a causé des dégâts considérables dans de nombreuses communautés de l’île du Nord. L’état d’urgence national a été déclaré et la Croix-Rouge néo-zélandaise s’est jointe à de nombreuses autres organisations pour apporter son soutien. Elle a mobilisé des équipes de spécialistes dans tout le pays et lancé le Fonds néo-zélandais pour les catastrophes afin de permettre aux généreux Néo-Zélandais de venir en aide aux personnes touchées.
+
+Au cours des premiers mois de l’intervention, la Croix-Rouge néo-zélandaise a été la cible d’un volume important de désinformation et de mésinformation, notamment d’accusations non fondées de fraude, de détournement de fonds et de non-fourniture de services essentiels. La plupart de ces informations ont été diffusées sur les réseaux sociaux et, dans certains cas, ont été amplifiées par certains médias grand public et d’autres organismes à but non lucratif. Les attaques visaient souvent à la fois l’organisation et ses dirigeants. Nous ne nous y attendions pas et n’y étions pas pleinement préparés.
+
+En réponse, nous avons élaboré un plan de communication et d’engagement sous-tendu par des messages d’apaisement nuancés et cohérents pour énoncer les faits. Plusieurs canaux de communication fiables ont été utilisés pendant une longue période. Il était important pour la Croix-Rouge néo-zélandaise de ne pas se lancer dans des « discussions et débats réactifs » mal informés. Ce travail difficile et exigeant a nécessité du temps, des efforts et de la patience, mais il en valait la peine. Bien que l’opinion publique ait été initialement influencée négativement, elle est aujourd’hui encore plus favorable à la Société nationale qu’elle ne l’était avant 2022. Les principaux enseignements à tirer de cette expérience sont les suivants :
+
+- **La sensibilisation est essentielle :** n’attendez pas qu’une situation d’urgence se présente, aidez les gens à comprendre à l’avance ce que vous faites et pourquoi vous le faites.
+
+
+- **Formez des alliances :** collaborez avec d’autres acteurs, y compris les médias, pour amplifier vos messages correctifs, qui doivent être précis.
+
+
+- **Entrez en contact avec les communautés :** instaurez la confiance en dialoguant avec elles régulièrement avant, pendant et après les situations d’urgence. Vos sympathisants connectés sont plus enclins à remettre en question ou à signaler les informations erronées.
+
+
+- **Corrigez calmement :** répondez avec professionnalisme et fournissez des informations factuelles en citant des sources vérifiables. Évitez les propos incendiaires ou réactifs.
+
+
+- **Tenez compte de l’individu :** la mésinformation et la désinformation peuvent faire du tort. Veillez à ce que vos communications internes soient aussi solides que vos communications externes pour apporter soutien et réconfort à vos équipes.
+
+
+À une époque où une seule publication virale peut réduire à néant des années de bonne volonté, l’intégrité numérique doit être considérée comme essentielle. C’est notre nouvelle norme. En donnant la priorité à la transparence, à l’engagement communautaire et à la communication stratégique, une organisation peut protéger à la fois son personnel et sa réputation, tout en contribuant à un environnement informationnel plus sain et mieux informé.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Shane Chisholm
+      </ContributorName>
+
+      <ContributorEntity>
+        Directeur général, Engagement et entreprise
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge néo-zélandaise
+      </ContributorRole>
+    </Contributor>
+    <Contributor>
+      <ContributorName>
+        Sarah Stuart-Black
+      </ContributorName>
+
+      <ContributorEntity>
+        Secrétaire générale
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge néo-zélandaise
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+
+<Box
+  index="4.4"
+>
+   ## Maintenir la confiance en période de crise et face à des informations préjudiciables
+
+La Croix-Rouge canadienne a acquis une solide compréhension de base des ressorts de la confiance en réalisant tous les ans une étude exhaustive à partir d’enquêtes. Le cadre de référence ainsi obtenu lui permet de déployer des sondages ponctuels (questionnaires courts et fréquents) suite à des interventions d’urgence importantes ou des risques pour sa réputation, afin d’évaluer les effets positifs ou négatifs de ces événements sur la confiance envers l’organisation. La comparaison des résultats avec ceux du cadre de référence lui fournit des informations factuelles sur les contenus qui jouent véritablement un rôle dans la confiance envers l’organisation. Les sondages ponctuels peuvent également comporter des questions ciblées visant à mesurer les répercussions des informations préjudiciables en évaluant à la fois la croyance en des récits mensongers et l’influence de ces derniers sur les comportements et les résultats.
+
+<TohInsight
+  align="right"
+  underline
+  types={[TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+/>
+**Incendies de forêt à Jasper, 2024**
+
+En 2024, des incendies de forêt ont dévasté la petite ville montagneuse de Jasper, en Alberta. Toute la communauté a été contrainte d’évacuer les lieux et environ 30 % des habitations ont été détruites. La Croix-Rouge canadienne a réagi immédiatement en fournissant des abris d’urgence, une aide financière et toute une gamme de services de soutien individuel aux personnes évacuées.
+
+Un appel d’urgence aux dons a été lancé et les autorités provinciales et nationales se sont engagées à verser une somme équivalente aux dons recueillis. Les stratégies opérationnelles et de communication ont été axées sur une forte présence au sein de la communauté, un engagement visible et l’utilisation rapide des dons publics aux fins des opérations de secours.
+
+Au cours de l’intervention, une campagne de désinformation coordonnée a vu le jour, affirmant à tort que la Société nationale était absente sur le terrain et que les fonds ne profiteraient pas à la communauté. Le but était d’affaiblir le soutien du public. La Croix-Rouge canadienne a contesté et rectifié les fausses informations en temps réel et a mis en avant le succès de son opération de secours d’urgence et son impact sur la communauté.
+
+Une fois la transition assurée entre les secours et le rétablissement, des sondages ont permis de mesurer les niveaux de confiance et l’impact de la campagne de désinformation. Les résultats dévoilent une augmentation du niveau de confiance envers la Société nationale dans toute la région, tout comme lors des interventions précédentes, où la visibilité et l’efficacité de l’aide apportée avaient contribué à renforcer la confiance.
+
+Cependant, la croyance dans les affirmations qui sont au cœur du discours de désinformation est restée importante, ce qui souligne la nécessité d’adopter des stratégies préventives pour lutter contre les discours préjudiciables, même lorsque la confiance globale reste forte.
+
+<TohInsight
+  align="right"
+  underline
+  types={[TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+/>
+
+**Ouragan Fiona, 2022**
+
+L’ouragan Fiona qui s’est abattu dans l’est du Canada en 2022 a causé des dégâts dévastateurs dans quatre provinces, ce qui en fait l’une des catastrophes les plus coûteuses de l’histoire du Canada. Chaque province a géré ses propres opérations d’urgence, et la Croix-Rouge canadienne a été sollicitée pour soutenir ces opérations et administrer les programmes d’aide financière financés par les autorités locales, dont chacun présentait des critères d’éligibilité et des niveaux de soutien différents.
+
+Le manque de coordination des communications publiques entre autorités locales a créé une grande confusion et une grande frustration parmi les communautés qui cherchaient à obtenir de l’aide. Cette situation a été exacerbée par les difficultés opérationnelles rencontrées par la Croix-Rouge canadienne pour déployer rapidement des programmes à grande échelle, et une partie importante des critiques et des perceptions erronées qui en ont résulté ont été dirigées contre la Société nationale, qui était le « visage » le plus visible des efforts de secours.
+
+Face à cette situation, la Croix-Rouge canadienne a adopté une approche préventive en matière de communication publique : elle a mis ses dirigeants à la disposition des médias, coordonné les messages visant à améliorer l’accès à l’information et s’est largement exprimée sur les plateformes numériques pour corriger les informations erronées et orienter les gens vers des sources d’information fiables et des moyens pratiques d’accéder à l’aide.
+
+À la suite des opérations de secours, des sondages rapides ont permis d’évaluer la confiance envers l’organisation et son efficacité perçue. Ils comportaient également des questions spécifiques destinées à mesurer l’impact de la désinformation. Les résultats ont montré que de nombreuses personnes considéraient que, dans l’ensemble, l’intervention de la Croix-Rouge canadienne avait été lente ou mal gérée, une perception qui correspondait étroitement aux récits de mésinformation visant l’organisation pendant l’intervention. Cependant, les mêmes répondants ont également estimé que l’aide avait en fin de compte atteint les personnes dans le besoin. Globalement, le niveau de confiance envers la Croix-Rouge canadienne a augmenté dans toute la région, ce qui souligne la résilience de la confiance lorsque l’on entretient la transparence, la redevabilité et le suivi malgré la diffusion d’informations préjudiciables.
+
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Nathan Huculak
+      </ContributorName>
+
+      <ContributorEntity>
+        Chef de la communication
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge canadienne
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+
+
+<Box
+  index="4.5"
+  types={[TypologyOfHarm.Physical,TypologyOfHarm.Psychological,TypologyOfHarm.Societal,TypologyOfHarm.Informational]}
+>
+   ## Kenya : manifestations de la génération Z en 2024
+
+Au cours des manifestations de 2024 contre le projet de loi de finances, un tweet publié par un influenceur kenyan prétendait, à tort, que les véhicules de la Croix-Rouge du Kenya étaient utilisés pour transporter des politiciens. Cette fausse information a directement mis en danger les travailleurs humanitaires et les véhicules, car elles ont donné lieu à des attaques qui ont perturbé les opérations de premiers secours vitales.
+
+La Croix-Rouge du Kenya a réagi rapidement et de manière stratégique en publiant une série de messages publics sur les réseaux sociaux afin d’en atténuer l’impact. Elle a notamment :
+
+- fermement réfuté ces affirmations, précisant que ses véhicules n’étaient pas utilisés à des fins politiques ;
+
+- condamné les attaques contre le personnel et les biens humanitaires, tout en soulignant la nécessité de respecter l’espace humanitaire ;
+
+- réaffirmé son engagement envers les Principes fondamentaux, en particulier la neutralité ;
+
+- lancé une campagne de sensibilisation du public à l’aide de hashtags tels que #NotATarget, pour renforcer le message selon lequel les travailleurs humanitaires doivent être protégés et respectés en toutes circonstances.
+
+Le secrétaire général de la Croix-Rouge du Kenya, Ahmed Idris, a souligné : « L’action humanitaire repose sur la confiance. Lorsque des informations préjudiciables circulent, elles mettent des vies en danger et compromettent la neutralité qui nous permet d’atteindre les personnes en détresse. La lutte contre la désinformation est une nécessité, c’est une priorité si l’on veut protéger les communautés et leur garantir l’aide qu’elles méritent. »
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Safia Verjee
+      </ContributorName>
+
+      <ContributorEntity>
+        Directrice exécutive, Centre international pour les affaires humanitaires
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge du Kenya
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+<Box
+  index="4.6"
+  types={[TypologyOfHarm.Societal,TypologyOfHarm.Informational]}
+>
+   ## Réactions négatives à une campagne
+
+Au tout début du conflit en Ukraine, la Croix-Rouge bulgare a été confrontée à une vague d’informations préjudiciables circulant sur les réseaux sociaux. Les réactions négatives avaient été déclenchées par la politique de l’organisation, qui était de n’accepter que des articles neufs dans le cadre de sa campagne publique de dons destinés aux personnes touchées par le conflit arrivant en Bulgarie. Les critiques portaient principalement sur les raisons du refus d’articles d’occasion, et la confiance du public risquait de s’ébranler. Suivant la situation de près, la Société nationale a saisi toutes les occasions pour expliquer sa démarche, en soulignant les besoins urgents des personnes touchées, l’importance de préserver leur dignité et les raisons opérationnelles pour lesquelles elle n’acceptait que des articles neufs ou des dons financiers. Elle a ainsi pu gérer la situation, mais cet épisode a également mis en lumière les points à améliorer dans sa communication de crise.
+
+Cet incident s’est produit dans le contexte plus large d’une enquête de perception positive et d’une étude de marché menées par la Croix-Rouge bulgare aux fins de renforcer la collecte de fonds au niveau national et le développement de ses capacités, dans une perspective de durabilité à long terme. Les résultats ont montré un fort soutien du public et des entreprises, les scores les plus élevés étant obtenus pour les critères « Aide sur les sujets les plus importants », « Apporte une contribution visible à sa cause » et « Fonctionne de manière transparente, avec une bonne redevabilité ». Les actions et les campagnes de la Croix-Rouge bulgare lui valent une large visibilité et une forte reconnaissance, tout en suscitant une confiance solide de la part des grandes entreprises. La Société nationale occupe une position dominante par rapport aux autres organisations caritatives au niveau national, et cet avantage doit être préservé.
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Dre Sofia Stoimenova
+      </ContributorName>
+
+      <ContributorEntity>
+        Secrétaire en chef
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge bulgare
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+<Box
+  index="4.7"
+  types={[TypologyOfHarm.Societal,TypologyOfHarm.Informational,TypologyOfHarm.Deprivational]}
+>
+   ## Le système national d’approvisionnement en sang du Croissant-Rouge turc : garantir la sécurité, la transparence et la durabilité
+
+Le système national d’approvisionnement en sang de la Türkiye, qui repose entièrement sur des dons de sang volontaires, non rémunérés et réguliers, est géré par le Croissant-Rouge turc avec l’autorisation et sous la supervision du ministère de la Santé. Chaque jour, les dons de sang sont collectés dans environ 300 sites, avec le soutien de 18 centres régionaux de transfusion sanguine, 69 centres de don du sang et des équipes mobiles.
+
+Tout le sang donné est testé conformément aux normes nationales et internationales les plus strictes, dépisté pour les maladies infectieuses, séparé en composants et stocké de manière appropriée. Ce système est conçu non seulement pour répondre aux besoins immédiats des hôpitaux, mais aussi pour anticiper la demande prévisible grâce à un modèle de gestion des stocks soigneusement planifié. Cela garantit un approvisionnement rapide des hôpitaux dans tout le pays, y compris en cas d’urgence, la livraison étant basée uniquement sur les demandes officielles.
+
+Le don de sang en Türkiye est strictement volontaire. Les coûts de traitement et de préparation des composants sanguins sont entièrement pris en charge par l’organisme de sécurité sociale (Sosyal Güvenlik Kurumu). En Türkiye, comme dans d’autres pays d’Europe, le sang et les produits sanguins ne peuvent faire l’objet d’un commerce et il est illégal de demander un paiement aux patients. Le Croissant-Rouge turc n’a jamais considéré le sang comme une marchandise, et toute violation doit être immédiatement signalée aux autorités sanitaires.
+
+Malgré ce système transparent, éthique et humanitaire, des affirmations trompeuses et mensongères – « le sang donné est vendu », par exemple – circulent parfois en ligne. Une telle désinformation sape la confiance des donneurs, décourage la participation du public et compromet la durabilité d’un approvisionnement sûr en sang. Ces discours préjudiciables se propagent souvent plus rapidement que les clarifications officielles et touchent un public plus large, en particulier lorsqu’ils sont amplifiés par des informations incomplètes sur les réseaux sociaux ou des reportages sensationnalistes. Il est donc essentiel de lutter contre la désinformation si l’on veut préserver la confiance des donneurs de sang et assurer la pérennité du système.
+
+À cet effet, le Croissant-Rouge turc publie des informations actualisées et vérifiées en temps utile sur son <a href="https://www.kanver.org" className="text-red-600 font-semibold">site Web consacré aux services sanguins, Kanver</a>, et sur les réseaux sociaux. Sa stratégie de communication repose résolument sur la transparence, la traçabilité et la redevabilité, garantissant ainsi que le public reste correctement informé et pleinement mobilisé.
+
+Au-delà du fait que la préservation de la confiance du public exige de garantir l’exactitude technique des informations, elle constitue surtout le fondement même d’un système de don de sang volontaire et de l’action humanitaire. En renforçant cette confiance, le Croissant-Rouge turc garantit un approvisionnement en sang sûr et fiable, tout en renforçant l’esprit de solidarité sociale.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Dr Selami Kılıç
+      </ContributorName>
+
+      <ContributorEntity>
+        Directeur général des services de sang
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croissant-Rouge turc
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+
+Les informations préjudiciables ont des conséquences tangibles, tant en ligne que hors ligne. Celles-ci peuvent être directes ou indirectes, selon que le lien entre le préjudice et un incident spécifique peut être clairement établi ou non. La gravité du préjudice dépend de la portée, de l’ampleur, de la durée et de l’importance de l’incident – pour reprendre le vocabulaire de la cybersécurité – ainsi que de la résilience de la personne ou du groupe ciblé. Souvent, les préjudices sont multiples, cumulatifs et interdépendants. Une définition des préjudices s’appuyant sur les exemples et les documents rassemblés aux fins de ce rapport pourra se révéler utile pour améliorer l’efficacité des stratégies d’intervention et fournir les éléments nécessaires à l’élaboration des politiques.
+
+
+# <HeadingLabel index="4.3" /> Le principe de _« ne pas nuire »_ à l’ère des informations préjudiciables
+
+Le principe de « ne pas nuire »[^8] reste un critère éthique essentiel pour les acteurs humanitaires. Il garantit que les interventions ne contribuent pas involontairement à la souffrance ou n’aggravent pas les vulnérabilités existantes. Dans l’environnement numérique actuel saturé d’informations, ce principe dépasse le cadre des interventions physiques ou de l’aide matérielle pour inclure la manière de recueillir, traiter, communiquer et utiliser les informations. Il impose de les traiter avec le même niveau de soin et de responsabilité que tout autre aspect des programmes humanitaires, en veillant à anticiper les risques, minimiser les conséquences imprévues et donner la priorité à la dignité, à la sécurité et aux possibilités des personnes touchées dans chaque décision liée à la communication ou à l’information. Renforcer la **résilience en matière d’information** dans le cadre de l’action humanitaire nécessite de prendre plusieurs engagements clés :
+
+- évaluer les conséquences imprévues découlant de la façon dont l’information est produite, diffusée et communiquée ;
+
+- évaluer comment les pratiques en matière de communication et de données interagissent avec les dynamiques politiques, sociales et culturelles locales ;
+- concevoir des stratégies préventives d’atténuation des risques afin de réduire l’exposition à des informations préjudiciables et l’utilisation abusive des données ;
+
+- intégrer la responsabilité numérique et la responsabilité en matière de données à toutes les étapes de la planification et de l’intervention humanitaires.
+
+Pour concrétiser ces engagements, les acteurs humanitaires doivent renforcer leur compréhension de six concepts interdépendants :
+
+1. **Gérer l’information de manière responsable :** veiller à ce que les communications de l’organisation ne soient pas trompeuses, n’attisent pas les tensions et ne stigmatisent pas les individus ou les communautés. Éviter l’amplification de contenus non vérifiés ou chargés d’émotion qui pourraient inciter à la peur, à la méfiance ou à la violence.
+2. **Protéger les identités numériques :** protéger les données personnelles, les informations de localisation et les traces numériques des populations vulnérables. Reconnaître les risques liés à la surveillance, au profilage numérique et à l’exploitation.
+3. **Lutter contre les discours préjudiciables :** traiter de manière préventive les informations préjudiciables qui discréditent l’action humanitaire ou mettent en danger les populations touchées et les acteurs humanitaires. Adopter une communication stratégique adaptée au contexte qui renforce la confiance sans simplifier à l’excès ni dramatiser les crises complexes.
+4. **Comprendre l’écosystème de l’information :** déterminer qui crée, contrôle et consomme l’information, et qui en est exclu. Reconnaître les dynamiques de pouvoir au sein des paysages informationnels locaux et mondiaux et leur impact sur les perceptions et la confiance.
+5. **Garantir l’inclusion numérique :** reconnaître la fracture numérique, en particulier pour ce qui est de la représentation, des audiences et de la visibilité en ligne. Éviter les suppositions fondées uniquement sur la visibilité en ligne et veiller à ce que les voix des groupes non connectés ou marginalisés ne soient pas négligées.
+6. **Renforcer la résilience en matière d’information :** aider les communautés et les partenaires à gérer, vérifier et produire des informations fiables. Promouvoir la maîtrise de l’information non seulement comme un outil défensif, mais aussi comme un outil participatif qui permet aux individus de forger leur propre récit.
+
+Intégrer ces concepts dans la pratique humanitaire est essentiel si l’on veut respecter les normes éthiques et garantir une gestion de l’information conforme à l’impératif humanitaire qui dicte de protéger et d’aider sans causer davantage de préjudices.
+
+<Box
+  index="4.8"
+  types={[TypologyOfHarm.Societal,TypologyOfHarm.Informational]}
+>
+   ## Les contacts humains à l’ère de la désinformation
+
+À l’ère numérique, la production et la diffusion de contenus relevant de la mésinformation, de la malinformation et de la désinformation menacent fortement l’efficacité des interventions humanitaires[^9], en particulier dans le domaine de la santé mentale et du soutien psychosocial. Si les plateformes numériques dominent le paysage informationnel en raison de leur portée et de leur instantanéité, elles manquent souvent de la profondeur relationnelle nécessaire pour instaurer la confiance, fondement essentiel de services de santé mentale et de soutien psychosocial efficaces[^10].
+
+Le partage d’informations entre les personnes, en particulier au moyen d’actions de sensibilisation en face à face, reste crucial dans les situations de catastrophe. L’intervention menée par la Croix-Rouge albanaise lors du tremblement de terre de 2019 illustre bien ce point : des volontaires se sont rapidement mobilisés pour faire du porte-à-porte dans les zones difficiles d’accès afin d’y fournir des indications précises et un soutien psychosocial[^11]. Cette approche relationnelle a permis non seulement de diffuser rapidement des informations fiables, mais également de prodiguer un réconfort émotionnel et de garantir la cohésion communautaire[^12], deux facteurs de protection fondamentaux pour la santé mentale[^13].
+
+Ces exemples soulignent la valeur unique du modèle de volontariat du Mouvement international de la Croix-Rouge et du Croissant-Rouge, dans lequel les acteurs locaux – voisins, membres de la famille et amis – jouent le rôle de messagers dignes de confiance au sein même de leurs communautés[^14]. À une époque où la désinformation numérique érode la confiance du public et aggrave la détresse psychologique, la crédibilité des volontaires locaux sur le plan relationnel est indispensable.
+
+Afin de préserver l’intégrité et l’accessibilité des services de santé mentale et de soutien psychosocial, les acteurs humanitaires doivent investir dans des stratégies de communication hybrides qui combinent les outils numériques et les actions relationnelles et communautaires. Les recherches soulignent que la confiance, la pertinence culturelle et les relations interpersonnelles sont fondamentales pour garantir l’efficacité des services de santé mentale et de soutien psychosocial ; ce sont des qualités que les algorithmes ne peuvent reproduire à eux seuls[^15].
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Yasin Duman
+      </ContributorName>
+
+      <ContributorEntity>
+        Spécialiste de la recherche
+      </ContributorEntity>
+
+      <ContributorRole>
+        Centre pour la santé mentale et le soutien psychosocial du Mouvement international de la Croix-Rouge et du Croissant-Rouge
+      </ContributorRole>
+    </Contributor>
+        <Contributor>
+      <ContributorName>
+        Joshua Lee
+      </ContributorName>
+
+      <ContributorEntity>
+        Conseiller technique
+      </ContributorEntity>
+
+      <ContributorRole>
+        Centre pour la santé mentale et le soutien psychosocial du Mouvement international de la Croix-Rouge et du Croissant-Rouge
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+# <HeadingLabel index="4.4" /> Vulnérabilités et amplificateurs
+
+<SmallQuote>
+Pourquoi pensez-vous que certaines personnes refusent d’évacuer ou de sécuriser leur maison ? Les gens refusent de partir parce qu’ils ont peur qu’on leur vole leurs biens, mais aussi parce qu’ils ne font pas confiance aux informations qu’ils entendent, ils ont peur que ce ne soient que des mensonges, et surtout parce qu’ils n’écoutent pas ce que les autres disent. »
+</SmallQuote>
+
+<SmallQuoteAuthor>Membre de la communauté, Madagascar</SmallQuoteAuthor>
+
+Dans les situations d’urgence humanitaire, les informations préjudiciables n’existent pas hors de tout contexte. Les praticiens ne cessent de répéter que le risque et l’impact des informations préjudiciables – tant pour les populations touchées que pour les intervenants humanitaires eux-mêmes – sont amplifiés par une combinaison de vulnérabilités structurelles et de lacunes systémiques.
+
+Parmi les vulnérabilités souvent citées figure le faible niveau de maîtrise numérique, en particulier parmi les groupes marginalisés. Beaucoup n’ont pas les compétences ou les ressources nécessaires pour évaluer de manière critique la fiabilité des informations qu’ils reçoivent, en particulier sur les réseaux sociaux et les applications de messagerie, qui sont souvent leurs principales sources d’information. À cela s’ajoute la faiblesse des médias locaux indépendants, voire leur absence, qui laisse un vide facilement comblé par des discours à visée politique ou trompeurs.
+
+La mauvaise coordination en matière de gestion de l’information au sein des agences et entre elles est également mise en évidence. Dans des crises qui évoluent rapidement, une communication incohérente ou tardive de la part d’acteurs de confiance peut créer de la confusion et laisser place à la propagation de rumeurs. L’exploitation politique de l’argumentaire humanitaire, qui consiste à recourir intentionnellement à la désinformation pour discréditer les acteurs de l’aide ou manipuler la perception de la distribution de l’aide, constitue une menace croissante.
+
+Par ailleurs, de nombreux acteurs du secteur reconnaissent sans détour les lacunes de l’écosystème de l’information humanitaire. Il n’existe actuellement aucun protocole ou cadre commun pour gérer les rumeurs et lutter contre la désinformation à l’échelle des organisations. La formation sur les menaces numériques, l’éducation aux médias et l’analyse des discours restent insuffisantes, en particulier celles destinées au personnel de première ligne et aux volontaires. Enfin, la collaboration avec les plateformes technologiques, les médias locaux et les institutions universitaires est limitée et souvent ponctuelle, malgré le rôle essentiel que ces acteurs jouent dans la configuration des environnements informationnels.
+
+# <HeadingLabel index="4.5" /> De la fragmentation à la concentration : éviter la saturation et renforcer les capacités humanitaires
+
+Face à un afflux sans précédent d’informations fragmentées, changeantes et souvent préjudiciables, les acteurs humanitaires cherchent des moyens de faire le tri, d’éviter la saturation et de se concentrer sur le renforcement des capacités, de la confiance et de la résilience nécessaires pour éviter les écueils dans un environnement informationnel de plus en plus instable.
+
+<Box
+  index="4.9"
+  types={[TypologyOfHarm.Physical,TypologyOfHarm.Psychological,TypologyOfHarm.Social,TypologyOfHarm.Societal,TypologyOfHarm.Informational]}
+>
+   ## Renforcer la résilience de l’intérieur
+
+À la Croix-Rouge slovaque, nous considérons la menace des informations préjudiciables comme un sujet urgent et foncièrement actuel, en particulier dans notre région, où les récentes campagnes de désinformation ont considérablement contribué à la polarisation de la société. Dans ce contexte, nous avons choisi de commencer par renforcer la résilience face aux informations préjudiciables au sein de notre organisation, en nous concentrant sur les employés et les volontaires, qui sont souvent les plus exposés à ce phénomène. Pour soutenir cet objectif, nous avons élaboré un manuel électronique qui associe connaissances théoriques, définitions claires des termes clés et recommandations pratiques pour réagir dans des situations spécifiques. Il indique où et quand demander de l’aide, ainsi que des stratégies pour gérer le stress lié à la désinformation. Rédigée dans un langage accessible et simple, cette publication est destinée à un large éventail de groupes d’âge et de niveaux d’éducation, et accorde une attention particulière au contexte régional.
+
+Précédemment, nous avions mené une enquête en ligne auprès de 450 volontaires à travers la Slovaquie, dont un quart ont répondu. Les résultats sont éclairants : 55 % ont déclaré être fréquemment ou occasionnellement la cible d’accusations fondées sur la désinformation de la part d’inconnus. Parmi ces incidents, 40 % visaient spécifiquement la Croix-Rouge slovaque. Au total, 74 % des personnes interrogées ont exprimé un vif intérêt pour une formation sur ce sujet dispensée par le siège de la Croix-Rouge slovaque.
+
+Les informations préjudiciables constituent une menace omniprésente et souvent invisible, tant en ligne que hors ligne. Leur danger réside non seulement dans leur potentiel d’éroder la confiance que le public place dans notre organisation et de compromettre notre mission humanitaire, mais aussi dans les conséquences qu’elles engendrent au niveau individuel. Elles peuvent avoir des effets nocifs sur la santé mentale, réduire la motivation à poursuivre le travail humanitaire et même accroître la vulnérabilité face aux théories complotistes.
+
+En collaboration avec un expert slovaque en pensée critique, nous avons élaboré des scénarios d’attitudes appropriées à adopter dans les situations de désinformation courantes auxquelles notre personnel et nos volontaires sont confrontés sur le terrain. Un spécialiste en communication de la Croix-Rouge slovaque s’est assuré que les messages étaient conformes à la voix et aux valeurs de l’organisation, et a aidé à définir le cadre théorique requis. Le manuel électronique comprend des liens vers des ressources pertinentes en slovaque, notamment des sites Web consacrés à la gestion des informations préjudiciables dans le contexte régional. Il fournit également des contacts pour obtenir un soutien en matière de santé mentale et des conseils juridiques, en indiquant à quel moment il convient de solliciter une aide professionnelle. Grâce à sa structure pratique et à son contenu modulaire, cette ressource peut être facilement adaptée à d’autres contextes régionaux ou nationaux.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Zuzana Vongrejová
+      </ContributorName>
+
+      <ContributorEntity>
+        Spécialiste en communication
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge slovaque
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+<Box
+  index="4.10"
+>
+   ## Préparation à la communication de crise à la Croix-Rouge du Soudan du Sud
+
+**Planification d’urgence**
+
+La Croix-Rouge du Soudan du Sud a conçu un plan de communication de crise visant à anticiper et à combattre la diffusion d’informations préjudiciables dans les situations d’urgence. Ce plan définit des objectifs clairs, des messages clés, des publics cibles et des canaux de communication à utiliser en cas de crise. Pour le mettre en œuvre, la Société nationale a constitué un comité de communication de crise composé du secrétaire général, du responsable de la communication, du coordonnateur de la sécurité sur le terrain, du coordonnateur des partenariats et de représentants du centre des opérations d’urgence. Le responsable de la communication effectue une veille régulière afin de détecter toute mention de la Croix-Rouge du Soudan du Sud dans le discours public et signale les mentions négatives afin que des mesures immédiates soient prises. Le coordonnateur de la sécurité sur le terrain s’assure de la sécurité du personnel et des volontaires, tandis que le coordonnateur des partenariats garantir une coordination efficace avec les partenaires. Le centre des opérations d’urgence est constitué de responsables de département et de trois coordonnateurs régionaux qui facilitent la communication bidirectionnelle entre le siège et les sections.
+
+<TohInsight
+  align="right"
+  underline
+  types={[TypologyOfHarm.Societal, TypologyOfHarm.Informational]}
+/>
+
+**La communication de crise en pratique**
+
+Lorsque des discours préjudiciables visent la Croix-Rouge du Soudan du Sud, le comité de communication de crise se réunit immédiatement. Les rôles sont activés et une ligne de communication interne claire est établie afin de garantir la coordination des messages.
+
+La Société nationale a été confrontée à plusieurs défis de ce type. Récemment, un commandant d’une milice affiliée au gouvernement a porté une veste arborant le logo de la Croix-Rouge du Soudan du Sud dans une vidéo où il décrit les opérations de son groupe dans la région du Haut-Nil. La vidéo, devenue virale, a suscité de vives réactions. Quelques années plus tôt, le bureau de la Croix-Rouge du Soudan du Sud à Torit a été attaqué par des jeunes armés qui accusaient la Société nationale d’employer des étrangers ; plusieurs membres du personnel ont été battus et blessés. Dans les deux cas, la Société nationale a réagi rapidement. Une réunion d’urgence des équipes de communication de crise a été convoquée, des rôles ont été attribués et des lignes de communication internes ont été établies afin de garantir la coordination des messages et leur transmission à la section concernée. Le responsable de la communication a préparé des messages réactifs et défensifs conçus pour les interventions du secrétaire général dans les médias. Le personnel et les volontaires ont reçu des informations pratiques de la part du responsable de leur section.
+
+Dans le cas de l’utilisation abusive du logo, la Croix-Rouge du Soudan du Sud a choisi de ne pas communiquer avec les médias, car la publication n’avait pas attiré leur attention. Au lieu de cela, elle a privilégié la communication interne et la mobilisation de ses partenaires afin de gérer le risque pesant sur sa réputation et de préserver la confiance de manière préventive.
+
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Pascal Ladu
+      </ContributorName>
+
+      <ContributorEntity>
+        Responsable de la communication
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge du Soudan du Sud
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+Le système de surveillance à base communautaire (CBS) de la Fédération internationale joue un rôle important pour améliorer l’écoute des acteurs humanitaires et leur dialogue avec les communautés. Il crée les conditions pour que les volontaires formés et les acteurs locaux de la santé puissent signaler, directement depuis les communautés, des événements inhabituels ou des préoccupations en lien avec la santé. La surveillance à base communautaire fournit ainsi des informations en temps réel, souvent avant même que les systèmes de santé officiels n’en perçoivent les signaux. Ceux-ci peuvent être cliniques ou non cliniques – notamment les craintes de la communauté, la résistance aux interventions sanitaires et les rumeurs –, et mettre au jour les phénomènes de mésinformation, ainsi que la méfiance ou les changements de comportement susceptibles d’entraver les efforts humanitaires. Ancrée dans l’engagement local et mise en œuvre par des membres fiables de la communauté, la surveillance à base communautaire ne se limite pas à améliorer la surveillance : elle favorise la crédibilité et la confiance tout en renforçant la cohésion sociale. Cette approche participative soutient une communication bidirectionnelle entre communautés et acteurs humanitaires et permet ainsi de déployer des interventions adaptables fondées sur les retours d’expérience de la communauté. En alimentant directement les stratégies de communication sur les risques et d’engagement communautaire, elle contribue à faire le lien entre l’écoute et l’action. Ce faisant, elle démontre qu’une participation constructive peut renforcer à la fois l’efficacité opérationnelle et la confiance qu’inspirent les interventions humanitaires.
+
+<Box
+  index="4.11"
+  types={[TypologyOfHarm.Societal,TypologyOfHarm.Informational,TypologyOfHarm.Deprivational]}
+>
+   ## Combler le fossé : utiliser la technologie pour aider les volontaires communautaires à lutter contre la mésinformation, instaurer la confiance et réduire les épidémies
+
+En cas d’épidémie, la peur et la mésinformation se propagent souvent plus rapidement que la maladie elle-même. Lorsque la confiance dans les informations sanitaires ou l’accès à celles-ci sont faibles, les gens tardent à demander de l’aide, ce qui peut parfois avoir des conséquences fatales. Aux Fidji et aux Comores, des volontaires communautaires formés de la Croix-Rouge et du Croissant-Rouge sont en train de changer la donne grâce à l’utilisation de la plateforme Nyss®.
+
+Aux Fidji, la leptospirose (une maladie bactérienne) est endémique. L’accès limité aux informations sanitaires et la mésinformation généralisée suscitent la méfiance des communautés, et certaines personnes meurent chez elles sans même chercher à se faire soigner, ce qui alimente encore davantage la peur au sein des communautés. La Croix-Rouge des Fidji a formé des volontaires à la surveillance à base communautaire, lesquels utilisent la plateforme numérique Nyss® (développée par la Croix-Rouge de Norvège et ses partenaires) pour signaler les suspicions de leptospirose par SMS. En retour, ils reçoivent des informations sanitaires précises, approuvées par le ministère de la Santé, qu’ils peuvent communiquer localement aux membres de la communauté afin de contrer les rumeurs, de promouvoir la prévention et d’encourager la recherche rapide de soins. Les agents de santé signalent une augmentation de la fréquentation des centres de santé, un plus grand nombre de guérisons, une diminution des cas graves et une plus grande confiance de la communauté.
+
+« Les messages fournis par la plateforme Nyss® permettent de transmettre des informations correctes à la communauté, qui comprend alors ce qu’il se passe. » (chef d’équipe, Croix-Rouge des Fidji, district de Ba, Fidji.)
+
+Aux Comores, le choléra a réapparu début 2024 après 17 ans d’absence. L’expérience locale en matière de gestion du choléra étant limitée, les rumeurs se sont rapidement propagées. La Fédération internationale a apporté un soutien au Croissant-Rouge comorien en déployant une unité d’intervention d’urgence en santé publique et en formant 200 volontaires et 10 superviseurs à la surveillance à base communautaire dans 79 villages de l’île d’Anjouan, épicentre de l’épidémie. Les volontaires de la Société nationale ont envoyé près de 2 900 alertes sur la plateforme Nyss® et ont reçu des messages personnalisés approuvés par le ministère de la Santé, en français. Grâce à cela, les communautés ont pu agir rapidement et les patients ont été acheminés plus tôt vers les centres de traitement.
+
+Dans les deux pays, la surveillance à base communautaire a joué un rôle crucial : elle a permis aux volontaires locaux de mettre les communautés en relation avec les systèmes de santé, de lutter contre la mésinformation, d’enrayer la propagation des maladies, d’instaurer la confiance et de sauver des vies.
+
+<ContributorTag>
+    <Contributor>
+      <ContributorName>
+        Anine Kongelf
+      </ContributorName>
+
+      <ContributorEntity>
+        Analyste principale
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge australienne
+      </ContributorRole>
+    </Contributor>
+        <Contributor>
+      <ContributorName>
+        Abbey Byrne
+      </ContributorName>
+
+      <ContributorEntity>
+        Spécialiste principale
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge australienne
+      </ContributorRole>
+    </Contributor>
+        <Contributor>
+      <ContributorName>
+        Tonje Tingberg
+      </ContributorName>
+
+      <ContributorEntity>
+        Conseillère principale
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge australienne
+      </ContributorRole>
+    </Contributor>
+        <Contributor>
+      <ContributorName>
+        Lea Franconeri
+      </ContributorName>
+
+      <ContributorEntity>
+        Conseillère principale
+      </ContributorEntity>
+
+      <ContributorRole>
+        Croix-Rouge de Norvège
+      </ContributorRole>
+    </Contributor>
+</ContributorTag>
+</Box>
+
+# <HeadingLabel index="4.6" /> Quand les virus deviennent viraux : renforcer la résilience face aux informations préjudiciables en période de pandémie
+
+
+La pandémie de Covid-19 a créé un contexte propice à la prolifération d’informations préjudiciables. Deux facteurs clés ont contribué à cette situation : d’une part, la peur, l’incertitude et le doute généralisés, et d’autre part, la capacité sans précédent de créer et de diffuser rapidement des informations – y compris des contenus de mésinformation et de désinformation – sur Internet, les réseaux mobiles et les plateformes de réseaux sociaux. L’Organisation mondiale de la Santé (OMS) a indiqué qu’outre la propagation du virus Covid-19 lui-même, le monde connaissait une « infodémie », c’est-à-dire une surabondance d’informations, tant exactes qu’inexactes, circulant dans les espaces numériques et physiques pendant une épidémie ou une pandémie[^16]. Ce flot d’informations a semé la confusion dans l’esprit du public, ébranlé la confiance dans les sources crédibles et fait obstacle à l’adoption de comportements de protection.
+
+Pour y remédier, l’OMS a lancé plusieurs initiatives. La plateforme EARS (intervention précoce assistée par intelligence artificielle avec écoute sociale) a fourni des informations en temps réel sur les discussions en ligne concernant le Covid-19, ce qui a permis aux autorités sanitaires de mieux comprendre les préoccupations du public et de fournir des informations précises et opportunes. Le réseau d’information de l’OMS sur les épidémies (EPI-WIN) a contribué à rendre les informations scientifiques plus accessibles et publié des formations en ligne en soutien aux professionnels de santé et aux communautés[^17]. Enfin, l’OMS s’est employée à diffuser des messages de santé publique fondés sur des données probantes et à orienter les utilisateurs vers des sources fiables. Elle a encouragé le public à signaler les fausses informations et a collaboré avec les principales plateformes de réseaux sociaux afin de faire remonter en priorité les contenus scientifiques sur le Covid-19 dans les résultats de recherche.
+
+La campagne « Pause » (« PledgetoPause ») des Nations Unies[^18] encourage les gens à prendre un moment pour vérifier l’exactitude de toute information avant de la partager. Une étude[^19] menée par le Massachusetts Institute of Technology au Royaume-Uni et aux États-Unis a révélé que ce simple geste – faire une pause pour réfléchir à l’origine, à la crédibilité, à la pertinence et à l’exactitude d’un contenu avant de le partager par la voie d’un smartphone, d’un ordinateur ou des réseaux sociaux – réduisait considérablement le risque d’alimenter la mésinformation. Les participants exposés à la campagne étaient nettement moins susceptibles de faire circuler des titres trompeurs. La campagne reposait sur un postulat fort : interrompre, ne serait-ce que quelques secondes, l’impulsion de transmettre quelque chose – une envie souvent motivée par des émotions telles que l’excitation, la colère, la tristesse, l’exaltation ou même l’altruisme – peut créer un espace propice à une réflexion plus critique, à un meilleur jugement et à une moindre amplification des affirmations fausses ou trompeuses.
+
+Le Groupe de travail à composition non limitée des Nations Unies sur les technologies de l’information et de la communication (TIC) de 2021 a noté que « la pandémie de Covid-19 a démontré les risques et les conséquences des activités malveillantes qui cherchent à exploiter les vulnérabilités à un moment où les sociétés sont soumises à d’énormes pressions »[^20]. Ce faisant, le groupe établissait un lien clair entre l’infodémie liée au Covid-19 et l’utilisation malveillante des TIC, soulignant à quel point les pandémies peuvent créer un terrain fertile pour les cybermenaces et les informations préjudiciables. Ce même rapport indiquait également que : « Tout en convenant de la nécessité de protéger toutes les infrastructures critiques et les infrastructures d’information critiques qui soutiennent les services essentiels pour le public, tout en s’efforçant de garantir la disponibilité générale et l’intégrité de l’Internet, les États ont en outre conclu que la pandémie de Covid-19 avait accentué la nécessité de protéger les infrastructures de santé, y compris les services et les établissements médicaux, en appliquant les normes relatives aux infrastructures critiques, telles que celles approuvées par consensus dans la résolution 70/237 de l’Assemblée générale des Nations Unies »[^21].
+
+La réponse mondiale à l’infodémie liée au Covid-19 a marqué un tournant important ; elle a montré ce qu’il était possible de faire lorsqu’il existait un effort concerté et coordonné de haut niveau pour lutter contre les informations préjudiciables. Elle a également mis en lumière l’importance cruciale de la solidarité internationale dans ce domaine. L’accord de l’OMS sur les pandémies de mai 2025 reconnaît « qu’il est important d’instaurer la confiance et de veiller à l’échange d’informations en temps opportun pour éviter la mésinformation, la désinformation et la stigmatisation ». Il affirme explicitement le rôle fondamental d’une communication efficace et des efforts de sensibilisation du public et souligne combien il est important de renforcer les connaissances sur les pandémies et les informations fondées sur la science et les preuves, la communication sur les risques et la mobilisation des communautés[^22]. Il est à noter que l’accord sur les pandémies lui-même a été la cible d’une désinformation systématique. Son processus de négociation a été compliqué par de fausses allégations liées à la souveraineté nationale, aux mesures de lutte contre les pandémies, aux droits de propriété intellectuelle et à la liberté d’expression[^23], ce qui démontre que les cadres internationaux peuvent eux aussi être pris au piège de discours préjudiciables.
+
+# Conclusions : éviter les écueils dans un paysage informationnel hostile
+
+Les espaces virtuels ne sont pas des espaces de dialogue neutres. Les plateformes numériques se sont transformées en champs de bataille où la confiance et la vérité sont délibérément sapées et où les personnes, les communautés et même les nations subissent des attaques fondées sur des informations préjudiciables. Dans cet espace dense et instable, la frontière entre le vrai et le faux s’estompe. Les discours humanitaires doivent faire face à un flot écrasant de contenus émotionnels, politisés et parfois instrumentalisés.
+
+Il y a dix ans, on avait le sentiment que les flux d’information ne pouvaient être maîtrisés et n’avaient pas besoin de l’être[^24]. Cette perspective reflétait l’environnement numérique d’alors, caractérisé par l’émergence des plateformes de médias sociaux, dont le contenu généré par les utilisateurs traduisait en grande partie leur bonne volonté, non l’intention préjudiciable calculée d’acteurs malveillants. À l’époque, un appel progressiste visait à un renforcement de la participation, de la transparence et de la redevabilité. Mais le paysage actuel est complètement différent. Il ne s’agit plus de savoir si l’information doit être réglementée, mais quels aspects doivent être traités, comment, par qui et avec quelles garanties, en particulier sur le plan de la protection des droits et libertés fondamentaux. La recherche de cet équilibre est devenue l’un des principaux défis de notre époque.
+
+L’action humanitaire vise essentiellement à répondre aux besoins des personnes en situation de crise, et non à assurer la visibilité ou la réputation des organisations qui la mènent. Cependant, lorsque les projecteurs se détournent des communautés et se braquent sur les organisations – sous forme de critiques injustifiées ou d’informations préjudiciables ciblées –, leur sécurité et leur capacité d’opérer efficacement sont compromises. De plus en plus, les discours préjudiciables façonnent la perception que le public et la société ont de l’action humanitaire, restreignent l’accès, érodent la confiance et réduisent l’espace opérationnel alloué à une action humanitaire fondée sur des principes. Si un examen minutieux légitime est essentiel à la redevabilité et à l’amélioration, il doit être distingué de la distorsion délibérée des faits ou de la désinformation préjudiciable visant à délégitimer et à entraver les activités humanitaires. Les conséquences, mises en évidence tout au long du présent rapport, sont brutales : accès réduit, atteinte à la réputation, augmentation de la tension émotionnelle et des menaces pour la sécurité du personnel et des volontaires, retards opérationnels et perte de confiance du public.
+
+Ces dynamiques mettent en évidence l’urgence d’apporter des réponses plus coordonnées et systémiques. La lutte contre les informations préjudiciables requiert une collaboration et des investissements à l’échelle du secteur, ainsi qu’un dialogue en amont avec ceux qui façonnent et influencent l’environnement de l’information, au premier rang desquels les gouvernements et les entreprises technologiques (voir <span className='text-purple-600'>Chapitre 5, page 185</span>, pour un examen détaillé de leur rôle).
+
+Avant tout, cet environnement soulève des questions urgentes qu’aucune organisation ne peut résoudre seule, les défis transcendant le mandat ou le domaine d’influence de toute organisation individuelle. Les dilemmes exigent une réflexion collective et des approches communes :
+
+1. **Neutralité et discours préjudiciables :** Lorsque des discours déshumanisants ou discriminatoires sont propagés, parfois par des acteurs étatiques ou politiques, les humanitaires doivent-ils se taire pour préserver leur neutralité et leur accès, ou se faire entendre pour prévenir les préjudices ?
+2. **Démystification et risque pour l’accès :** Les mensonges doivent-ils être réfutés publiquement, même au risque de nuire à la neutralité ou à l’accès opérationnel ? Comment les acteurs humanitaires peuvent-ils réagir sans se laisser entraîner dans des débats politisés ou polarisés ?
+3. **Intégrité et polarisation :** Dans des écosystèmes d’information fragmentés et hostiles, comment les acteurs humanitaires peuvent-ils protéger l’intégrité de leur message et entretenir la confiance sans être cooptés, présentés sous un faux jour ou réduits au silence ?
+4. **Action collective et réponses fragmentées :** Quels sont les partenariats, les mécanismes et les normes internationales nécessaires pour protéger les organisations humanitaires contre les attaques utilisant l’information ? Le secteur doit-il plaider collectivement pour que les plateformes soient soumises à des politiques et à des cadres de gouvernance plus solides afin de préserver l’espace humanitaire ?
+5. **Prendre la parole ou se taire :** Lorsque des discours préjudiciables ciblent systématiquement des groupes en situation de vulnérabilité, notamment les personnes migrantes, et sont motivés par des intérêts étatiques ou politiques, quelle marge de manœuvre reste-t-il aux acteurs humanitaires pour réagir ? Comment peuvent-ils contrer ces discours sans compromettre leur neutralité ? À quel moment le silence est-il perçu comme une approbation tacite des discours discriminatoires ou déshumanisants, et quand le silence risque-t-il de se transformer en complicité ?
+
+Ces dilemmes mettent en évidence à quel point il est urgent que le secteur humanitaire trouve des stratégies collectives qui préservent une action humanitaire fondée sur des principes tout en protégeant les groupes à risque et en entretenant la confiance dans un écosystème de l’information de plus en plus hostile.
+
+# Exigences, objectifs et recommandations
+
+<ReccomendationsTitle>Exigences</ReccomendationsTitle>
+
+<Reccomendations>
+  Traiter les informations préjudiciables comme un risque opérationnel en intégrant la préparation, la redevabilité et la transparence dans toutes les phases de l’action humanitaire, de l’alerte précoce au relèvement, et mesurer les atteintes humaines, sociales et opérationnelles aussi rigoureusement que les impacts physiques.
+</Reccomendations>
+
+<ReccomendationsTitle>Objectifs</ReccomendationsTitle>
+
+<Reccomendations>
+  Protéger l’accès et l’action humanitaires en reconnaissant que les informations préjudiciables constituent un risque systémique.
+</Reccomendations>
+
+<Reccomendations>
+  Protéger les opérations et le personnel et préserver la confiance des communautés : intégrer l’analyse des informations préjudiciables et les interventions connexes dans toutes les phases de l’action humanitaire.
+</Reccomendations>
+
+<Reccomendations>
+  Renforcer la résilience en soutenant les interventions et en mesurant systématiquement les atteintes afin de guider l’action fondée sur des données probantes.
+</Reccomendations>
+
+### Recommandations
+
+#### États et décideurs
+
+- Renforcer la résilience de la société par des initiatives d’éducation à l’information et de sensibilisation du public.
+
+- Intégrer les risques liés aux informations préjudiciables dans les cadres de gestion des catastrophes et d’intervention en cas de crise.
+
+- Soutenir les mécanismes permettant de recenser et de traiter les incidents liés à des informations préjudiciables qui mettent en danger les civils ou perturbent les opérations humanitaires, en veillant à ce que les mandats des acteurs humanitaires dotés de principes soient respectés.
+
+- Soutenir la coopération internationale et faire respecter les normes applicables en ligne afin de protéger l’action humanitaire et les services essentiels.
+
+- Établir des lignes de financement flexibles pour les interventions menées face aux informations préjudiciables, en accordant la priorité au renforcement de la résilience locale et au suivi des rumeurs dirigé par les communautés.
+
+#### Plateformes technologiques
+
+- Adapter ou « calmer » les algorithmes pendant les crises humanitaires afin de réduire l’amplification des discours préjudiciables.
+
+- Donner la priorité aux informations faisant autorité provenant d’acteurs humanitaires, sanitaires et locaux dignes de confiance afin que des conseils opportuns et vitaux soient diffusés.
+
+- Mettre en œuvre des protocoles de crise qui rééquilibrent temporairement les algorithmes pour favoriser la sécurité et la fiabilité plutôt que l’optimisation de l’engagement.
+
+- Concevoir, en collaboration avec des acteurs humanitaires dotés de principes, des interventions transparentes et adaptées au contexte sur des plateformes qui respectent les droits humains des utilisateurs et protègent la sécurité des populations touchées par les crises.
+
+- Assurer un contrôle indépendant afin de trouver un équilibre entre la liberté d’expression et la nécessité de prévenir les atteintes causées aux civils, aux acteurs humanitaires et aux opérations.
+
+#### Acteurs humanitaires
+
+- Intégrer le suivi des informations préjudiciables dans les programmes, les évaluations et les systèmes d’alerte précoce.
+
+- Documenter, analyser et diffuser les informations exploitables et les enseignements tirés des incidents liés à des informations préjudiciables et de leurs incidences opérationnelles, afin de guider l’adaptation en temps réel et la résilience à long terme, sans entraver l’action humanitaire fondée sur des principes.
+
+- Renforcer la capacité du personnel et des volontaires de repérer et documenter les discours préjudiciables et d’y réagir en toute sécurité. Renforcer les systèmes de communication interne afin que le personnel et les volontaires soient informés, travaillent en coordination et puissent réagir de manière sûre et cohérente aux discours préjudiciables tout en respectant les principes humanitaires.
+
+- Investir dans la surveillance multilingue, la communication bidirectionnelle, les systèmes de vérification rapide et les partenariats avec des modérateurs locaux de confiance.
+
+- Faciliter la mise en place de centres de recherche régionaux afin de renforcer la surveillance, la mesure et l’évaluation des préjudices sur la base de données probantes.
+
+- Renforcer la collaboration et la formation du personnel et des volontaires humanitaires en matière de menaces numériques, de maîtrise de l’information et des médias et d’analyse des discours.
+
+#### Dirigeants communautaires et locaux
+
+- Créer en collaboration des systèmes de suivi des rumeurs et de retours d’information pour repérer rapidement les informations préjudiciables.
+
+- Vérifier les informations et amplifier les informations exactes par des voies locales de confiance.
+
+- Documenter les incidents liés à des informations préjudiciables qui nuisent à la sécurité, aux services ou à l’accès.
+
+- Favoriser le dialogue et la collaboration entre pairs afin de réduire la stigmatisation, la peur et la division.
+
+# Notes de fin
+[^1]: Netcraft, Web Server Survey (2025). www.netcraft.com/blog/april-2025-web-server-survey
+[^2]: Backlinko, Social Network Usage & Growth Statistics (2025). https://backlinko.com/social-media-users
+[^3]: Iqbal, M., TikTok Revenue and Usage Statistics (2025). www.businessofapps.com/data/tik-tok-statistic
+[^4]: CICR. « Insinuations malveillantes : le CICR condamne une vidéo montrant des caisses portant son logo remplies de liasses de billets de banque ». Article du 18 janvier 2018. https://www.icrc.org/fr/document/insinuations-malveillantes-le-cicr-condamne-une-video-montrant-des-caisses-portant-son-logo
+[^5]: Slim, H. Solferino 21 : Warfare, Civilians and Humanitarian Work in the 21st Century. (2022), p.55.
+[^6]: Schmitt, MN. (éd.) Tallinn Manual 2.0 on the International Law Applicable to Cyber Operations. (Cambridge University Press, 2017) https://doi.org/10.1017/9781316822524
+[^7]: Oxford Institute for Ethics, Law and Armed Conflict. The Oxford Statement on International Law Protections in Cyberspace : The Regulation of Information Operations and Activities. 2 juin 2021. www.elac.ox.ac.uk/the-oxford-process/the-statements-overview/the-oxford-statement-on-the-regulation-of-information-operations-and-activities
+[^8]: Anderson, M.B. Do No Harm : How Aid Can Support Peace or War. (1999)
+[^9]: Borges do Nascimento, I.J., Pizarro, A.B., Almeida, J.M. et al. Infodemics and health misinformation : a systematic review of reviews. Bulletin of the WHO 2022:100(9), 544–561. https://doi.org/10.2471/BLT.21.287654 ; Hilberts, S., Evers, S., Govers, M. et al. The impact of misinformation on social media in the context of natural disasters. European Journal of Public Health 2024:34. https://doi.org/10.1093/eurpub/ckae144.245
+[^10]: Brun, C., et Horst, C. Towards a Conceptualisation of Relational Humanitarianism. Journal of Humanitarian Affairs, 2023:5(1), 62–72. https://doi.org/10.7227/JHA.103 ; Yu, J., Bekerian, D.A., and Osback, C. Navigating the Digital Landscape : Challenges and Barriers to Effective Information Use on the Internet. Encyclopedia 2024:4(4), 1665–1680. https://doi.org/10.3390/encyclopedia4040109 ; CPI. Groupe de référence du CPI sur la santé mentale et le soutien psychosocial dans les situations d’urgence. (2007)
+[^11]: Venghaus, G. Albania : Final Evaluation of the 2019 Albania Earthquake Emergency Appeal. (2021) https://reliefweb.int/report/albania/albania-final-evaluation-2019-albania-earthquake-emergency-appeal-january-february ; Bureau de la Croix-Rouge auprès de l’UE. Actualités. Enhanced post-earthquake support to Albania. 21 février 2020. https://redcross.eu/latest-news/enhanced-post-earthquake-support-to-albania
+[^12]: Bureau de la Croix-Rouge auprès de l’UE. Actualités. Enhanced post-earthquake support to Albania. 21 février 2020. https://redcross.eu/latest-news/enhanced-post-earthquake-support-to-albania
+[^13]: CPI. Groupe de référence du CPI sur la santé mentale et le soutien psychosocial dans les situations d’urgence. (2007) ; Hetherington, E., McDonald, S., Wu, M. et al. Risk and Protective Factors for Mental Health and Community Cohesion After the 2013 Calgary Flood. Disaster Medicine and Public Health Preparedness 2018:12(4), 470–477. doi:10.1017/dmp.2017.91
+[^14]: Lindal, L. Community-based Psychosocial Support. Volunteer Manual. Centre de référence de la Fédération internationale pour le soutien psychosocial. (2023) https://pscentre.org/wp-content/uploads/2023/03/Community-based-Mental-Health-and-Psychosocial-Support-Volunteer-Manual-.pdf
+[^15]: Buitrago, DCC., Rattner, M., James, LE. et al. Barriers and Facilitators to Implementing a Community-Based Psychosocial Support Intervention Conducted In-Person and Remotely : A Qualitative Study in Quibdó, Colombia. Global Health, Science and Practice 2024:12(1) https://doi.org/10.9745/GHSP-D-23-00032
+[^16]: OMS. La sécurité sanitaire dans un monde numérique pendant les crises de santé publique, Relevé épidémiologique hebdomadaire 2024:99(04), 23–25. https://iris.who.int/handle/10665/375830
+[^17]: « Verified » est une initiative des Nations Unies, en collaboration avec Purpose, qui vise à fournir aux populations du monde entier des informations scientifiques fiables dans le cadre de la lutte contre le Covid-19. En collaboration avec les institutions des Nations Unies, des influenceurs, la société civile, des entreprises et des plateformes de réseaux sociaux, Verified crée et diffuse des informations fiables et précises et encourage les consommateurs à modifier leurs habitudes de consommation des médias afin de réduire et de stopper la propagation de la mésinformation en ligne. https://shareverified.com/en
+[^18]: Centre régional d’information des Nations Unies pour l’Europe occidentale. ‘UN Secretary-General launches #PledgetoPause to fight misinformation.’ News. 21 octobre 2020, https://unric.org/en/un-secretary-general-launches-pledgetopause-to-fight-misinformation
+[^19]: Nations Unies. ‘New MIT study says United Nations Pause Campaign slows spread of life-threatening misinformation. Press release.’ 1er juillet 2021. www.un.org/sites/un2.un.org/files/press_release_pause_campaign_final_1_july.pdf
+[^20]: Assemblée générale des Nations Unies. Groupe de travail à composition non limitée sur les développements dans le domaine de l’information et des télécommunications dans le contexte de la sécurité internationale. Rapport final de fond (A/AC.290/2021/CRP.2) du 10 mars 2021 (non traduit en français), par. 4. Le Groupe de travail à composition non limitée sur la sécurité des technologies de l’information et des communications et de leur utilisation, créé par l’Assemblée générale des Nations Unies (A/RES/75/240), a pour mandat de promouvoir un comportement responsable des États dans le cyberespace et de renforcer la sécurité et la stabilité de l’environnement des TIC.
+[^21]: Ibid, par. 26
+[^22]: OMS. Accord de l’OMS sur les pandémies. (2025) Article 16. https://apps.who.int/gb/ebwha/pdf_files/WHA78/A78_R1-fr.pdf
+[^23]: Finch, A., Klock, KA, Gostin, LO, et al. Safeguarding the Pandemic Agreement from Disinformation. Think Global Health. (2024) www.thinkglobalhealth.org/article/safeguarding-pandemic-agreement-disinformation
+[^24]: IFRC. Rapport sur les catastrophes dans le monde 2013 : Technologies et futur de l’action humanitaire (2013), p.172 www.ifrc.org/sites/default/files/WDR-2013.pdf (lien vers la version anglaise).
