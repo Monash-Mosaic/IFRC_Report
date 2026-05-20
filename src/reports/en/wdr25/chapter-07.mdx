@@ -32,7 +32,12 @@ import {
   FundamentalPrinciplesDescriptionBox,
   FundamentalPrinciplesDescriptionBoxBody,
   Table,
-  TableHeader
+  TableCaption,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell
 } from '@/components/CustomComponents';
 
 import { TypologyOfHarm } from '@/types/TypologyOfHarm';
@@ -1296,59 +1301,59 @@ specific ways that respond to the specific challenges posed by harmful informati
 
 <TableLabel index="7.1" className="font-normal" /> **Fundamental principles in the context of harmful information**
 
-<Table className="table-auto border-spacing-2">
-  <thead>
-    <tr>
-      <TableHeader className="text-xl text-start w-[25%] pb-2">Fundamental principle</TableHeader>
-      <TableHeader className="text-xl text-start w-[25%] pb-2">Components</TableHeader>
-      <TableHeader className="text-xl text-start w-[25%] pb-2">Contemporary relevance in harmful information age</TableHeader>
-      <TableHeader className="text-xl text-start w-[25%] pb-2">Underlying humanitarian values</TableHeader>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Humanity</td>
-      <td className="border-t-[1px] p-2 align-top">Alleviate and prevent suffering<br/><br/>Protect life and dignity<br/><br/>Respect and protect individuals</td>
-      <td className="border-t-[1px] p-2 align-top">Harmful information can endanger lives and increase suffering by undermining trust in humanitarian action, humanitarian actors and emergency information.<br/><br/>Combating it requires proactive, people-centred communication and engagement that protects dignity and well-being.</td>
-      <td className="border-t-[1px] p-2 align-top">Human dignity<br/><br/>Compassion<br/><br/>Well-being<br/><br/>Solidarity<br/><br/>Mutual understanding<br/><br/>Respect<br/><br/>Sympathy<br/><br/>Cooperation</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Impartiality</td>
-      <td className="border-t-[1px] p-2 align-top">Non-discrimination<br/><br/>Needs-based action, proportional response to degree of suffering<br/><br/>Prioritized on basis of urgency<br/><br/>No individual action or decision on the basis of prejudice or personal preference</td>
-      <td className="border-t-[1px] p-2 align-top">Harmful information can skew perceptions of who deserves humanitarian response, fuelling discrimination.<br/><br/>May shape funding and media attention, potentially sidelining less visible crises. Countering this helps reinforce equal access and fairness.</td>
-      <td className="border-t-[1px] p-2 align-top">Equality of rights<br/><br/>Respect for diversity<br/><br/>Objectivity<br/><br/>Acceptance</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Neutrality</td>
-      <td className="border-t-[1px] p-2 align-top">Not taking sides in armed conflicts<br/><br/>No engagement in controversies of a political, racial, religious or ideological nature</td>
-      <td className="border-t-[1px] p-2 align-top">Harmful information campaigns can portray humanitarian organizations as partisan or politically biased.<br/><br/>Strategic silence or lack of response may be misinterpreted.<br/><br/>Neutrality requires active narrative management and trusted community engagement.</td>
-      <td className="border-t-[1px] p-2 align-top">Trust and confidence<br/><br/>Self-control<br/><br/>Discipline<br/><br/>Freedom of action<br/><br/>Objectivity</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Independence</td>
-      <td className="border-t-[1px] p-2 align-top">Autonomy from political, economic, social, religious, racial or ideological influence<br/><br/>Autonomy from donor influence<br/><br/>Auxiliary role to public authorities for National Red Cross and Red Crescent Societies but with operational freedom and independence<br/><br/>Autonomy to act in accordance with the fundamental principles<br/><br/>Autonomy to act in accordance with the humanitarian principles</td>
-      <td className="border-t-[1px] p-2 align-top">Accusations of being too close to governments or too detached from communities are common in harmful narratives.<br/><br/>Maintaining perceived and actual independence is essential for credibility.</td>
-      <td className="border-t-[1px] p-2 align-top">Accountability<br/><br/>Operational integrity<br/><br/>Cooperation<br/><br/>Freedom of action</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Voluntary service</td>
-      <td className="border-t-[1px] p-2 align-top">Freely accepted commitment<br/><br/>No desire for material gain<br/><br/>Selflessness</td>
-      <td className="border-t-[1px] p-2 align-top">Volunteers may be targeted by harmful information or face reputational risks due to their association with organizations.<br/><br/>Support mechanisms to cope with and respond to harmful information must be built into digital volunteer engagement.</td>
-      <td className="border-t-[1px] p-2 align-top">Altruism<br/><br/>Spirit of service<br/><br/>Solidarity<br/><br/>Initiative<br/><br/>Discipline</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Unity</td>
-      <td className="border-t-[1px] p-2 align-top">One National Society per country<br/><br/>Open to all<br/><br/>Active across the whole country</td>
-      <td className="border-t-[1px] p-2 align-top">Harmful narratives may amplify internal divisions or portray humanitarian action as favouring certain groups, undermining collective identity and coherence in the Movement.<br/><br/>Ensuring consistent messaging, transparent communication and inclusive engagement across all components helps preserve unity and reinforce shared purpose.</td>
-      <td className="border-t-[1px] p-2 align-top">Cohesion<br/><br/>Inclusivity<br/><br/>Diversity<br/><br/>Trust<br/><br/>Common purpose<br/><br/>Acceptance</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Universality</td>
-      <td className="border-t-[1px] p-2 align-top">Equal status of National Societies<br/><br/>Solidarity and mutual support worldwide<br/><br/>Universal vocation</td>
-      <td className="border-t-[1px] p-2 align-top">Harmful information spreads rapidly across borders, shaping perceptions and reputations far beyond where a crisis occurs.<br/>Upholding the principle of universality requires coordinated responses, shared learning and solidarity across the Movement to maintain global trust and integrity.</td>
-      <td className="border-t-[1px] p-2 align-top">International cooperation<br/><br/>Mutual assistance<br/><br/>Global solidarity<br/><br/>Openness</td>
-    </tr>
-  </tbody>
+<Table>
+  <TableHead>
+    <TableRow>
+      <TableHeaderCell className="text-xl w-[25%] pb-4">Fundamental principle</TableHeaderCell>
+      <TableHeaderCell className="text-xl w-[25%] pb-4">Components</TableHeaderCell>
+      <TableHeaderCell className="text-xl w-[25%] pb-4">Contemporary relevance in harmful information age</TableHeaderCell>
+      <TableHeaderCell className="text-xl w-[25%] pb-4">Underlying humanitarian values</TableHeaderCell>
+    </TableRow>
+  </TableHead>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-bold">Humanity</TableCell>
+      <TableCell>Alleviate and prevent suffering<br/><br/>Protect life and dignity<br/><br/>Respect and protect individuals</TableCell>
+      <TableCell>Harmful information can endanger lives and increase suffering by undermining trust in humanitarian action, humanitarian actors and emergency information.<br/><br/>Combating it requires proactive, people-centred communication and engagement that protects dignity and well-being.</TableCell>
+      <TableCell>Human dignity<br/><br/>Compassion<br/><br/>Well-being<br/><br/>Solidarity<br/><br/>Mutual understanding<br/><br/>Respect<br/><br/>Sympathy<br/><br/>Cooperation</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Impartiality</TableCell>
+      <TableCell>Non-discrimination<br/><br/>Needs-based action, proportional response to degree of suffering<br/><br/>Prioritized on basis of urgency<br/><br/>No individual action or decision on the basis of prejudice or personal preference</TableCell>
+      <TableCell>Harmful information can skew perceptions of who deserves humanitarian response, fuelling discrimination.<br/><br/>May shape funding and media attention, potentially sidelining less visible crises. Countering this helps reinforce equal access and fairness.</TableCell>
+      <TableCell>Equality of rights<br/><br/>Respect for diversity<br/><br/>Objectivity<br/><br/>Acceptance</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Neutrality</TableCell>
+      <TableCell>Not taking sides in armed conflicts<br/><br/>No engagement in controversies of a political, racial, religious or ideological nature</TableCell>
+      <TableCell>Harmful information campaigns can portray humanitarian organizations as partisan or politically biased.<br/><br/>Strategic silence or lack of response may be misinterpreted.<br/><br/>Neutrality requires active narrative management and trusted community engagement.</TableCell>
+      <TableCell>Trust and confidence<br/><br/>Self-control<br/><br/>Discipline<br/><br/>Freedom of action<br/><br/>Objectivity</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Independence</TableCell>
+      <TableCell>Autonomy from political, economic, social, religious, racial or ideological influence<br/><br/>Autonomy from donor influence<br/><br/>Auxiliary role to public authorities for National Red Cross and Red Crescent Societies but with operational freedom and independence<br/><br/>Autonomy to act in accordance with the fundamental principles<br/><br/>Autonomy to act in accordance with the humanitarian principles</TableCell>
+      <TableCell>Accusations of being too close to governments or too detached from communities are common in harmful narratives.<br/><br/>Maintaining perceived and actual independence is essential for credibility.</TableCell>
+      <TableCell>Accountability<br/><br/>Operational integrity<br/><br/>Cooperation<br/><br/>Freedom of action</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Voluntary service</TableCell>
+      <TableCell>Freely accepted commitment<br/><br/>No desire for material gain<br/><br/>Selflessness</TableCell>
+      <TableCell>Volunteers may be targeted by harmful information or face reputational risks due to their association with organizations.<br/><br/>Support mechanisms to cope with and respond to harmful information must be built into digital volunteer engagement.</TableCell>
+      <TableCell>Altruism<br/><br/>Spirit of service<br/><br/>Solidarity<br/><br/>Initiative<br/><br/>Discipline</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Unity</TableCell>
+      <TableCell>One National Society per country<br/><br/>Open to all<br/><br/>Active across the whole country</TableCell>
+      <TableCell>Harmful narratives may amplify internal divisions or portray humanitarian action as favouring certain groups, undermining collective identity and coherence in the Movement.<br/><br/>Ensuring consistent messaging, transparent communication and inclusive engagement across all components helps preserve unity and reinforce shared purpose.</TableCell>
+      <TableCell>Cohesion<br/><br/>Inclusivity<br/><br/>Diversity<br/><br/>Trust<br/><br/>Common purpose<br/><br/>Acceptance</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Universality</TableCell>
+      <TableCell>Equal status of National Societies<br/><br/>Solidarity and mutual support worldwide<br/><br/>Universal vocation</TableCell>
+      <TableCell>Harmful information spreads rapidly across borders, shaping perceptions and reputations far beyond where a crisis occurs.<br/>Upholding the principle of universality requires coordinated responses, shared learning and solidarity across the Movement to maintain global trust and integrity.</TableCell>
+      <TableCell>International cooperation<br/><br/>Mutual assistance<br/><br/>Global solidarity<br/><br/>Openness</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
 
 ## <HeadingLabel index="7.9.1" /> Decision-making framework: Responding to harmful information while upholding humanitarian principles
@@ -1414,34 +1419,34 @@ partners and stakeholders?
 <TableLabel index="7.2" className="font-normal" />**Example matrix to map trade-offs between response and potential harm**
 
 <Table className="table-auto border-spacing-2">
-  <thead>
-    <tr>
-      <TableHeader className="text-xl text-start pb-2">Response</TableHeader>
-      <TableHeader className="text-xl text-start pb-2">Principles it supports</TableHeader>
-      <TableHeader className="text-xl text-start pb-2">Principles it risks being perceived as violating</TableHeader>
-      <TableHeader className="text-xl text-start pb-2">Potential harm</TableHeader>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Public response</td>
-      <td className="border-t-[1px] p-2 align-top">Humanity<br/><br/>Independence</td>
-      <td className="border-t-[1px] p-2 align-top">Neutrality Impartiality</td>
-      <td className="border-t-[1px] p-2 align-top">Political backlash<br/><br/>Misperception<br/><br/>Escalation of tensions<br/><br/>Reputational damage</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Silence or bilateral engagement</td>
-      <td className="border-t-[1px] p-2 align-top">Neutrality</td>
-      <td className="border-t-[1px] p-2 align-top">Humanity</td>
-      <td className="border-t-[1px] p-2 align-top">Mistrust<br/><br/>Disempowerment<br/><br/>Perception of complicity</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] font-bold p-2 align-top">Community-led response</td>
-      <td className="border-t-[1px] p-2 align-top">All principles (if done well)</td>
-      <td className="border-t-[1px] p-2 align-top">Impartiality</td>
-      <td className="border-t-[1px] p-2 align-top">Uneven messaging<br/><br/>Potential fragmentation of trust</td>
-    </tr>
-  </tbody>
+  <TableHead>
+    <TableRow>
+      <TableHeaderCell className="text-xl pb-4">Response</TableHeaderCell>
+      <TableHeaderCell className="text-xl pb-4">Principles it supports</TableHeaderCell>
+      <TableHeaderCell className="text-xl pb-4">Principles it risks being perceived as violating</TableHeaderCell>
+      <TableHeaderCell className="text-xl pb-4">Potential harm</TableHeaderCell>
+    </TableRow>
+  </TableHead>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-bold">Public response</TableCell>
+      <TableCell>Humanity<br/><br/>Independence</TableCell>
+      <TableCell>Neutrality Impartiality</TableCell>
+      <TableCell>Political backlash<br/><br/>Misperception<br/><br/>Escalation of tensions<br/><br/>Reputational damage</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Silence or bilateral engagement</TableCell>
+      <TableCell>Neutrality</TableCell>
+      <TableCell>Humanity</TableCell>
+      <TableCell>Mistrust<br/><br/>Disempowerment<br/><br/>Perception of complicity</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-bold">Community-led response</TableCell>
+      <TableCell>All principles (if done well)</TableCell>
+      <TableCell>Impartiality</TableCell>
+      <TableCell>Uneven messaging<br/><br/>Potential fragmentation of trust</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
 
 <hr className="border-t border-black my-6" />

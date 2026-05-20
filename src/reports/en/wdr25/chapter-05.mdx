@@ -20,7 +20,12 @@ import {
   TableLabel,
   ChapterLink,
   Table,
-  TableHeader
+  TableCaption,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell
 } from '@/components/CustomComponents';
 
 import {
@@ -651,114 +656,114 @@ There are, of course, overlaps between supply-side and demand-side solutions. Mi
 
 
 <div className="overflow-x-auto">
-  <Table className="border-spacing-x-6 border-spacing-y-0 text-left">
-    <thead>
-      <tr>
-        <TableHeader className="text-2xl w-1/3">
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell className="text-2xl w-1/3">
           Demand-side solutions
-        </TableHeader>
-        <TableHeader className="text-2xl w-1/3" colSpan={2}>
+        </TableHeaderCell>
+        <TableHeaderCell className="text-2xl w-1/3" colSpan={2}>
           Supply-side solutions
-        </TableHeader>
-      </tr>
-      <tr>
+        </TableHeaderCell>
+      </TableRow>
+      <TableRow>
         <th></th>
-        <th className="border-t-2 border-[#8a8a8a] pb-2 text-base font-semibold">
+        <TableHeaderCell className="border-[#8a8a8a] pt-2 pb-2 font-semibold">
           Suppression of poor-quality information
-        </th>
-        <th className="border-t-2 border-[#8a8a8a] pb-2 text-base font-semibold">
+        </TableHeaderCell>
+        <TableHeaderCell className="border-[#8a8a8a] pt-2 pb-2 font-semibold">
           Promotion of a healthy information ecosystem
-        </th>
-      </tr>
-    </thead>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHead>
 
-    <tbody className="text-slate-700">
+    <TableBody className="text-slate-700">
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Media literacy training</strong><br />
           <span className="text-sm text-slate-500">
             Assisting audiences to better distinguish between what is true and false
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Controlling information flows</strong><br />
           <span className="text-sm text-slate-500">
             Includes content suppression, downranking of content, removal of bots and de-platforming to restrict what information is shown
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Increasing quality information</strong><br />
           <span className="text-sm text-slate-500">
             Attempts by YouTube to increase quality of content and by Google to highlight accurate information
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Community participation</strong><br />
           <span className="text-sm text-slate-500">
             Includes journalists’ efforts to establish trust in and engagement with high-quality information, as well as to develop citizen journalism
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>AI and content moderation</strong><br />
           <span className="text-sm text-slate-500">
             Using AI to distinguish between true, false and illegal information and supplementing with human content moderators where required
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Advancing AI</strong><br />
           <span className="text-sm text-slate-500">
             Using AI to promote good-quality information, while recognizing current limitations
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Fact-checking</strong><br />
           <span className="text-sm text-slate-500">
             Includes labelling and browser extensions that audiences can use
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Regulation and laws</strong><br />
           <span className="text-sm text-slate-500">
             Hate speech laws existing in many parts of the world, such as NetzDG and the Digital Services Act
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Support for high-quality journalism</strong><br />
           <span className="text-sm text-slate-500">
             Policies such as funding the BBC, giving subscription vouchers, tax credits and subsidies, and relying on innovation funds and philanthropic or donor support
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+      <TableRow>
+        <TableCell>
           <strong>Raising awareness</strong><br />
           <span className="text-sm text-slate-500">
             Reporting on the platforms for a stronger understanding of the effects of misinformation and disinformation
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Defamation lawsuits</strong><br />
           <span className="text-sm text-slate-500">
             Demonstrating repercussions for actively spreading lies, such as the 2023 lawsuit U.S. Dominion v. Fox News Network about voting machines
           </span>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6">
+        </TableCell>
+        <TableCell>
           <strong>Healthy journalism business model</strong><br />
           <span className="text-sm text-slate-500">
             Engaging with private and public sector adverts to ensure a healthy supply of advertising revenue can fund journalism
           </span>
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-    </tbody>
+    </TableBody>
   </Table>
 </div>
 
