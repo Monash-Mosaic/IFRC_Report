@@ -1,8 +1,12 @@
 'use client';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { QuoteIcon, Monitor, Wifi, Smartphone, Activity, User, Building2 } from 'lucide-react';
-import EmblaCarousel from '@/components/EmblaCarousel';
+import { QuoteIcon } from 'lucide-react';
+import QuoteTile from '@/components/engagement/QuoteTile';
+import QuotesPagination from '@/components/engagement/QuotesPagination';
+import { parseTags } from '@/lib/quoteHarmIcons';
+
+const TILES_PER_PAGE = 3;
 
 const TAG_COLUMN_MAP = {
   psychological:         { column: 'harm',        label: 'Psychological' },
@@ -32,29 +36,7 @@ const TAG_COLUMN_MAP = {
   technology_governance: { column: 'governance',  label: 'Technology governance and platform accountability' },
 };
 
-const CHAPTER_TITLES = {
-  CH1: 'Crisis Chaos and Confusion',
-  CH2: 'Trust, Perception and Harmful Information',
-  CH3: 'Detecting and Understanding Harmful Information',
-  CH4: 'Protecting Reputation and Maintaining Trust',
-  CH5: 'Regulation and Rights in the Information Environment',
-  CH6: 'Community Voices and Lived Experiences',
-  CH7: 'National Society Case Studies',
-  CH8: 'Recommendations and the Path Forward',
-};
-
-// Types of Harm (TOH): map harm tag labels to icon + display name for tooltip
-const HARM_TAG_TO_ICON = [
-  { label: 'psychological', displayLabel: 'Psychological', Icon: User },
-  { label: 'societal', displayLabel: 'Societal', Icon: Building2 },
-  { label: 'social', displayLabel: 'Social', Icon: Smartphone },
-  { label: 'informational', displayLabel: 'Informational', Icon: Wifi },
-  { label: 'digital/technological', displayLabel: 'Digital/technological', Icon: Monitor },
-  { label: 'physical', displayLabel: 'Physical', Icon: Activity },
-  { label: 'deprivational/financial/economic', displayLabel: 'Deprivational/financial/economic', Icon: Activity },
-];
-
-/** Parse TSV (tab-separated) so commas in descriptions don't break parsing. Use when exporting from Sheets. */
+/** Parse TSV (tab-separated) so commas in descriptions don't break parsing. */
 function parseTSV(text) {
   return parseDelimited(text, '\t');
 }
@@ -87,107 +69,13 @@ function parseDelimited(text, delimiter) {
   return rows;
 }
 
-function parseTags(str) {
-  return (str || '').split(';').map((t) => t.trim()).filter(Boolean);
-}
-
-/** CH1 -> "Chapter 1", CH2 -> "Chapter 2", etc. */
-function formatChapterLabel(chapterCode) {
-  if (!chapterCode || typeof chapterCode !== 'string') return '';
-  const m = chapterCode.trim().match(/^CH(\d+)$/i);
-  return m ? `Chapter ${m[1]}` : chapterCode;
-}
-
-/** Resolve quote harm tags to TOH icons with labels (unique by Icon, ordered). Only icons that match are returned. */
-function getIconsForHarm(harmStr) {
-  const tags = parseTags(harmStr).map((t) => t.toLowerCase().trim());
-  const byIcon = new Map();
-  for (const { label, displayLabel, Icon } of HARM_TAG_TO_ICON) {
-    const labelNorm = label.toLowerCase();
-    const matches = tags.some((t) => t.includes(labelNorm) || labelNorm.includes(t));
-    if (matches) {
-      const existing = byIcon.get(Icon);
-      if (existing) existing.labels.push(displayLabel);
-      else byIcon.set(Icon, { Icon, labels: [displayLabel] });
-    }
-  }
-  return Array.from(byIcon.values());
-}
-
-/** Fixed height so all cards match; quote text scrolls when long */
-const QUOTE_CARD_HEIGHT = 340;
-const QUOTE_CARD_WIDTH = 280;
-
-function QuoteCard({ quote }) {
-  const chapterTitle = CHAPTER_TITLES[quote.chapter];
-  const chapterLabel = formatChapterLabel(quote.chapter);
-  const tohItems = getIconsForHarm(quote.harm);
-
-  return (
-    <div
-      className="flex-shrink-0 bg-white rounded-xl border-2 border-[#ee2435] flex flex-col"
-      style={{ width: `${QUOTE_CARD_WIDTH}px`, height: `${QUOTE_CARD_HEIGHT}px` }}
-    >
-      {/* Scrollable quote + icons; fixed card height */}
-      <div className="p-5 flex flex-col gap-4 flex-1 min-h-0 overflow-hidden">
-        <div className="text-sm text-slate-800 leading-relaxed overflow-y-auto overscroll-contain pr-1">
-          &ldquo;{quote.text}&rdquo;
-        </div>
-
-        {/* TOH icons grouped together; hover shows TOH name in tooltip */}
-        {tohItems.length > 0 && (
-          <div className="flex flex-wrap gap-2 overflow-visible shrink-0">
-            {tohItems.map((item, i) => {
-              const Icon = item.Icon;
-              const tooltipText = item.labels && item.labels.length > 0 ? item.labels.join(', ') : '';
-              return (
-                <div
-                  key={i}
-                  className="relative group flex items-center justify-center w-9 h-9 rounded-full bg-[#ee2435] cursor-help shrink-0"
-                  title={tooltipText}
-                >
-                  <Icon size={16} className="text-white" strokeWidth={1.8} />
-                  {tooltipText && (
-                    <span
-                      className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 text-xs font-medium text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity z-20 whitespace-nowrap"
-                      role="tooltip"
-                    >
-                      {tooltipText}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-
-      {/* Footer */}
-      <div className="px-5 py-4 border-t border-slate-100 shrink-0">
-        {chapterLabel && (
-          <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
-            {chapterLabel}
-          </span>
-        )}
-        {chapterTitle && (
-          <span className="text-xs font-bold text-slate-800 ml-1">
-            {chapterTitle}
-          </span>
-        )}
-        {quote.country && (
-          <div className="text-[10px] text-slate-400 mt-1">{quote.country}</div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 export default function QuotesSection({ selectedTag }) {
   const t = useTranslations('Discover');
   const locale = useLocale();
   const [quotes, setQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     fetch('/engagement/engagement_tab.tsv')
@@ -248,11 +136,25 @@ export default function QuotesSection({ selectedTag }) {
     );
   }, [quotes, selectedTag]);
 
+  const totalPages = Math.max(1, Math.ceil(filtered.length / TILES_PER_PAGE));
+
+  useEffect(() => {
+    setPage(0);
+  }, [filtered]);
+
+  useEffect(() => {
+    if (page > totalPages - 1) setPage(Math.max(0, totalPages - 1));
+  }, [page, totalPages]);
+
+  const pageQuotes = useMemo(() => {
+    const start = page * TILES_PER_PAGE;
+    return filtered.slice(start, start + TILES_PER_PAGE);
+  }, [filtered, page]);
+
   const activeCount = Object.values(selectedTag).filter(Boolean).length;
 
   return (
     <div>
-      {/* Section header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <QuoteIcon size={16} className="text-[#ee2435]" />
@@ -281,19 +183,20 @@ export default function QuotesSection({ selectedTag }) {
           {t('noQuotesMatch')}
         </div>
       ) : (
-        <EmblaCarousel
-          locale={locale}
-          slideWidth={280}
-          loop={false}
-          showArrows={true}
-          arrowsPosition="bottom"
-          className="!space-y-4"
-          containerClassName="pb-3"
-        >
-          {filtered.map((quote) => (
-            <QuoteCard key={quote.id} quote={quote} />
-          ))}
-        </EmblaCarousel>
+        <div className="space-y-6">
+          <div className="flex flex-col gap-6">
+            {pageQuotes.map((quote) => (
+              <QuoteTile key={quote.id} quote={quote} />
+            ))}
+          </div>
+          <QuotesPagination
+            locale={locale}
+            page={page}
+            totalPages={totalPages}
+            onPrev={() => setPage((p) => Math.max(0, p - 1))}
+            onNext={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+          />
+        </div>
       )}
     </div>
   );
