@@ -1,19 +1,19 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import QuotesSection from '@/components/engagement/QuotesSection';
 
-const engagementTranslations = {
-  'Engagement.quotesTitle': 'Quotes',
-  'Engagement.loadingQuotes': 'Loading quotes…',
-  'Engagement.noQuotesMatch': 'No quotes match the selected filters.',
-  'Engagement.errorLoadingQuotes': 'Could not load quotes. Please try again.',
-  'Engagement.filtersActive': (params) => `${params?.count ?? 0} filter(s) active`,
+const discoverTranslations = {
+  'Discover.quotesTitle': 'Quotes',
+  'Discover.loadingQuotes': 'Loading quotes…',
+  'Discover.noQuotesMatch': 'No quotes match the selected filters.',
+  'Discover.errorLoadingQuotes': 'Could not load quotes. Please try again.',
+  'Discover.filtersActive': (params) => `${params?.count ?? 0} filter(s) active`,
 };
 
 jest.mock('next-intl', () => ({
   useLocale: () => 'en',
   useTranslations: (namespace) => (key, params) => {
     const fullKey = `${namespace}.${key}`;
-    const value = engagementTranslations[fullKey];
+    const value = discoverTranslations[fullKey];
     return typeof value === 'function' ? value(params) : value ?? key;
   },
 }));
