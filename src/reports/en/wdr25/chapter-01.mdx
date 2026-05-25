@@ -23,6 +23,7 @@ import {
   InterChapterLink,
   Table,
   TableCaption,
+  TableColGroup,
   TableHead,
   TableRow,
   TableHeaderCell,
@@ -571,11 +572,7 @@ Laws, policies and plans underpin all aspects of disaster risk management (DRM),
     </a>
   </TableCaption>
 
-  <colgroup>
-    <col className='w-[15%] md:w-[10%]'/>
-    <col className='w-[35%] md:w-[20%]'/>
-    <col className="w-[50%] md:w-[70%]" />
-  </colgroup>
+  <TableColGroup columns={['w-[15%] md:w-[10%]', 'w-[35%] md:w-[20%]', 'w-[50%] md:w-[70%]']} />
 
   <TableHead>
     <TableRow>

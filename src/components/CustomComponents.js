@@ -652,6 +652,16 @@ export function TableCaption({ children, className = '', ...props }) {
   )
 }
 
+export function TableColGroup({ columns = [] }) {
+  return (
+    <colgroup>
+      {columns.map((column, index) => (
+        <col key={index} className={column} />
+      ))}
+    </colgroup>
+  );
+}
+
 export function TableHead({ children, className = '', ...props }) {
   return (
     <thead className={`${className}`} {...props}>
@@ -731,6 +741,7 @@ const CustomComponents = {
   FundamentalPrinciplesDescriptionBoxBody,
   Table,
   TableCaption,
+  TableColGroup,
   TableHead,
   TableRow,
   TableHeaderCell,
