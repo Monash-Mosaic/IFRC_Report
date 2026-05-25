@@ -75,7 +75,7 @@ export default function QuotesSection({ selectedTag }) {
   const [quotes, setQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(0);
+  const [pageState, setPageState] = useState({ listKey: '', page: 0 });
 
   useEffect(() => {
     fetch('/engagement/engagement_tab.tsv')
@@ -138,13 +138,24 @@ export default function QuotesSection({ selectedTag }) {
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / TILES_PER_PAGE));
 
-  useEffect(() => {
-    setPage(0);
-  }, [filtered]);
+  const listKey = useMemo(() => filtered.map((q) => q.id).join('|'), [filtered]);
 
-  useEffect(() => {
-    if (page > totalPages - 1) setPage(Math.max(0, totalPages - 1));
-  }, [page, totalPages]);
+  const page =
+    listKey === pageState.listKey
+      ? Math.min(pageState.page, totalPages - 1)
+      : 0;
+
+  const setPage = (updater) => {
+    setPageState((prev) => {
+      const basePage = listKey === prev.listKey ? prev.page : 0;
+      const next =
+        typeof updater === 'function' ? updater(basePage) : updater;
+      return {
+        listKey,
+        page: Math.min(Math.max(0, next), totalPages - 1),
+      };
+    });
+  };
 
   const pageQuotes = useMemo(() => {
     const start = page * TILES_PER_PAGE;
