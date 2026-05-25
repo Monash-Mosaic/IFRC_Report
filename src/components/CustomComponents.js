@@ -641,6 +641,14 @@ export function ChapterLink({ children, ...props }) {
   );
 }
 
+export function InterChapterLink({ href, children, className = '', ...props }) {
+  return (
+    <a href={href} {...props}>
+      <span className={['text-purple-600', className].filter(Boolean).join(' ')}>{children}</span>
+    </a>
+  );
+}
+
 export function HeadingLabel({ index, className = '', ...props }) {
   return (
     <span
@@ -707,6 +715,7 @@ const CustomComponents = {
   ReccomendationsTitle,
   EndnotesLink,
   ChapterLink,
+  InterChapterLink,
   HeadingLabel,
   TableLabel,
   FigureLabel,

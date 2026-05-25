@@ -183,7 +183,7 @@ function QuoteCard({ quote }) {
 }
 
 export default function QuotesSection({ selectedTag }) {
-  const t = useTranslations('Engagement');
+  const t = useTranslations('Discover');
   const locale = useLocale();
   const [quotes, setQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
