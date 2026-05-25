@@ -317,5 +317,9 @@
     "psychological": "Психологический",
     "social": "Социальный",
     "informational": "Информационный"
+  },
+  "AsksAims": {
+    "asks": "Asks",
+    "aims": "Aims"
   }
 }

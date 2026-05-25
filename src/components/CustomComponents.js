@@ -220,12 +220,13 @@ export function AsksAims({ children, ...props }) {
   );
 }
 
-export function Asks({ title = "Asks", children, ...props }) {
+export async function Asks({ children, ...props }) {
+  const t = await getTranslations('AsksAims');
   return (
     <div {...props}>
       {/* Title NOT bold */}
       <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
-        {title}
+        {t('asks')}
       </div>
 
       {/* Content IS bold */}
@@ -236,12 +237,13 @@ export function Asks({ title = "Asks", children, ...props }) {
   );
 }
 
-export function Aims({ title = "Aims", children, ...props }) {
+export async function Aims({ children, ...props }) {
+  const t = await getTranslations('AsksAims');
   return (
     <div className="mt-8 lg:mt-0" {...props}>
       {/* Title NOT bold */}
       <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
-        {title}
+        {t('aims')}
       </div>
 
       {/* Content IS bold */}

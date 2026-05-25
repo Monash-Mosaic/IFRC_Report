@@ -317,5 +317,9 @@
     "disasters": "sobre Desastres",
     "reportTitle": "Informe",
     "year": "2026"
+  },
+  "AsksAims": {
+    "asks": "Preguntas",
+    "aims": "Objetivos"
   }
 }

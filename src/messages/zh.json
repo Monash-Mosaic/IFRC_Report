@@ -317,5 +317,9 @@
     "psychological": "心理",
     "social": "社交",
     "informational": "信息"
+  },
+  "AsksAims": {
+    "asks": "要求",
+    "aims": "目标"
   }
 }
