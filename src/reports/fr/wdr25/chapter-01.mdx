@@ -19,7 +19,15 @@ import {
   HeadingLabel,
   TableLabel,
   TohInsight,
-  ChapterLink
+  ChapterLink,
+  Table,
+  TableCaption,
+  TableColGroup,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell
 } from '@/components/CustomComponents';
 
 import {
@@ -529,8 +537,8 @@ Les lois, les politiques et les plans constituent le fondement de toutes les act
 
 <ChapterImage imagePath="/wdr25/chapter-01/01.webp" />
 
-<table className="w-full table-auto border-separate border-spacing-2">
-  <caption id="typologie-des-prejudices" className="target:scroll-mt-[100px] caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4">
+<Table>
+  <TableCaption id="typologie-des-prejudices">
     <TableLabel index="1.1" /> <span>Typologie des préjudices</span>
     <a
       href="#box-1-1-link-source"
@@ -539,120 +547,117 @@ Les lois, les politiques et les plans constituent le fondement de toutes les act
     >
       <Undo2 className="w-4 h-4 [transform:scaleY(-1)]" strokeWidth={2.75} />
     </a>
-  </caption>
-  <colgroup>
-    <col className='w-[15%] md:w-[10%]'/>
-    <col className='w-[35%] md:w-[20%]'/>
-    <col className="w-[50%] md:w-[70%]" />
-  </colgroup>
+  </TableCaption>
+  
+  <TableColGroup columns={['w-[15%] md:w-[10%]', 'w-[35%] md:w-[20%]', 'w-[50%] md:w-[70%]']} />
 
-  <thead>
-    <tr>
-      <th className="border-t-[2px] font-bold text-2xl p-2 text-start" colSpan={2}>Type de préjudice</th>
-      <th className="border-t-[2px] font-bold text-2xl p-2 text-start">Exemples de préjudice</th>
-    </tr>
-  </thead>
+  <TableHead>
+    <TableRow>
+      <TableHeaderCell className="text-2xl" colSpan={2}>Type de préjudice</TableHeaderCell>
+      <TableHeaderCell className="text-2xl">Exemples de préjudice</TableHeaderCell>
+    </TableRow>
+  </TableHead>
 
-  <tbody>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top"><Physical/></td>
-      <td className="border-t-[1px] font-medium p-2 align-top">Physique</td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">Blessures physiques, pertes en vies humaines, incitation à la violence, à la panique ou à des comportements dangereux, refus de soins médicaux. Attaques physiques contre des véhicules, des installations ou des bureaux humanitaires.</td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top">
+  <TableBody>
+    <TableRow>
+      <TableCell className="p-2"><Physical/></TableCell>
+      <TableCell className="font-medium">Physique</TableCell>
+      <TableCell className="font-extralight">Blessures physiques, pertes en vies humaines, incitation à la violence, à la panique ou à des comportements dangereux, refus de soins médicaux. Attaques physiques contre des véhicules, des installations ou des bureaux humanitaires.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="p-2">
         <Psychological/>
-      </td>
-      <td className="border-t-[1px] font-medium p-2 align-top">
+      </TableCell>
+      <TableCell className="font-medium">
         Psychologique
-      </td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">
+      </TableCell>
+      <TableCell className="font-extralight">
         Traumatisme émotionnel ou psychologique, peur, anxiété, désorientation,
         discrimination, honte, méfiance, manipulation, intimidation, harcèlement.
-      </td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top">
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="p-2">
         <Social/>
-      </td>
-      <td className="border-t-[1px] font-medium p-2 align-top">
+      </TableCell>
+      <TableCell className="font-medium">
         Social
-      </td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">
+      </TableCell>
+      <TableCell className="font-extralight">
         Perturbation de la cohésion sociale et de la confiance au sein des communautés,
         érosion des relations, stigmatisation, fragmentation sociale, divisions, polarisation.
         Déplacement forcé ou induit de populations entraînant la séparation des familles, la
         perte des liens communautaires et l'affaiblissement des systèmes de soutien collectifs.
-      </td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top">
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="p-2">
         <Societal/>
-      </td>
-      <td className="border-t-[1px] font-medium p-2 align-top">
+      </TableCell>
+      <TableCell className="font-medium">
         Sociétal
-      </td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">
+      </TableCell>
+      <TableCell className="font-extralight">
         Réduction de l'espace dédié à l'action humanitaire, affaiblissement de la confiance
         dans les institutions, atteinte à la réputation, perturbation des opérations, détérioration
         des services, musellement de certains secteurs de la société, érosion des droits,
         restriction de l'accès à l'information, exclusion, limitation de la liberté d'expression.
         Utilisation d'informations préjudiciables pour justifier des poursuites judiciaires,
         la pénalisation de certains propos ou des abus des systèmes judiciaires.
-      </td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top">
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="p-2">
         <Informational/>
-      </td>
-      <td className="border-t-[1px] font-medium p-2 align-top">
+      </TableCell>
+      <TableCell className="font-medium">
         Informationnel
-      </td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">
+      </TableCell>
+      <TableCell className="font-extralight">
         Déformation, suppression ou manipulation de l'information ; perte de l'accès à des
         informations exactes, opportunes ou fiables ; profusion de mensonges (surabondance d'informations) ; détérioration des principes communs nécessaires à la prise de décisions.
-      </td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top">
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="p-2">
         <Deprivational/>
-      </td>
-      <td className="border-t-[1px] font-medium p-2 align-top">
+      </TableCell>
+      <TableCell className="font-medium">
         Financier/économique/liée à la privation
-      </td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">
+      </TableCell>
+      <TableCell className="font-extralight">
         Perturbation des moyens de subsistance, pertes économiques, accès plus limité à des
         ressources ou services essentiels, pertes financières, vols, pillages, fraudes, escroqueries,
         détournement de ressources, incapacité de se procurer des produits de première nécessité,
         restrictions en matière de financement, extorsion, atteinte à la réputation, perte de soutien des donateurs.
-      </td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top">
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="p-2">
         <Digital/>
-      </td>
-      <td className="border-t-[1px] font-medium p-2 align-top">
+      </TableCell>
+      <TableCell className="font-medium">
         Numérique/technologique
-      </td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">
+      </TableCell>
+      <TableCell className="font-extralight">
         Attaques ciblant l'identité numérique, divulgation malveillante d'informations
         personnelles, amplification algorithmique de contenus préjudiciables, deepfakes, abus
         causés par des robots, manipulation des plateformes (voir <span className="text-purple-600">Annexe I, page 397</span>).
-      </td>
-    </tr>
-    <tr>
-      <td className="border-t-[1px] p-2 align-top">
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="p-2">
         <Longitudinal/>
-      </td>
-      <td className="border-t-[1px] font-medium p-2 align-top">
+      </TableCell>
+      <TableCell className="font-medium">
         Longitudinal/intergénérationnel (dimension transversale)
-      </td>
-      <td className="border-t-[1px] font-extralight p-2 align-top">
+      </TableCell>
+      <TableCell className="font-extralight">
         Effets durables sur les enfants exposés à des discours préjudiciables, rupture de la confiance intergénérationnelle, perpétuation des stéréotypes ou des traumatismes, perte d'espoir.
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
 
 <Box
   index="1.8"
