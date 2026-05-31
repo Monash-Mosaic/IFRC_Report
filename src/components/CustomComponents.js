@@ -684,6 +684,72 @@ export function FigureLabel({ index, label = 'Fig', className = '', ...props }) 
   );
 }
 
+export function Table({children, className = '', ...props}) {
+  return (
+    <table className={`w-full border-separate border-spacing-x-2 border-spacing-y-0 text-start ${className}`} {...props}>
+      {children}
+    </table>
+  );
+}
+
+export function TableCaption({ children, className = '', ...props }) {
+  return (
+    <caption className={`target:scroll-mt-[100px] caption-top [padding-inline-start:1rem] text-4xl font-bold text-start mb-4 ${className}`} {...props}>
+      {children}
+    </caption>
+  )
+}
+
+export function TableColGroup({ columns = [] }) {
+  return (
+    <colgroup>
+      {columns.map((column, index) => (
+        <col key={index} className={column} />
+      ))}
+    </colgroup>
+  );
+}
+
+export function TableHead({ children, className = '', ...props }) {
+  return (
+    <thead className={`${className}`} {...props}>
+      {children}
+    </thead>
+  );
+}
+
+export function TableRow({ children, className = '', ...props }) {
+  return (
+    <tr className={`${className}`} {...props}>
+      {children}
+    </tr>
+  )
+}
+
+export function TableHeaderCell({ children, className = '', ...props }) {
+  return (
+    <th className={`border-t-[2px] border-[#3a3a3a] py-6 font-bold text-start align-top ${className}`} {...props}>
+      {children}
+    </th>
+  );
+}
+
+export function TableBody({ children, className = '', ...props }) {
+  return (
+    <tbody className={`${className}`} {...props}>
+      {children}
+    </tbody>
+  );
+}
+
+export function TableCell({ children, className = '', ...props }) {
+  return (
+    <td className={`border-t-[1px] pt-2 pb-4 pe-2 text-start align-top ${className}`} {...props}>
+      {children}
+    </td>
+  )
+}
+
 const CustomComponents = {
   Box,
   H1Contributor,
@@ -724,6 +790,14 @@ const CustomComponents = {
   FundamentalPrinciples,
   FundamentalPrinciplesDescriptionBox,
   FundamentalPrinciplesDescriptionBoxBody,
+  Table,
+  TableCaption,
+  TableColGroup,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell
 };
 
 export default CustomComponents;
