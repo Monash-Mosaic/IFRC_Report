@@ -71,15 +71,57 @@ const CHAPTER_TITLES = {
   CH8: 'Recommendations and the Path Forward',
 };
 
+const CHAPTER_TITLES_FR = {
+  CH1: 'Chaos et confusion en situation de crise',
+  CH2: 'Confiance, perception et informations préjudiciables',
+  CH3: 'Détecter et comprendre les informations préjudiciables',
+  CH4: 'Protéger la réputation et maintenir la confiance',
+  CH5: 'Réglementation et droits dans l’environnement informationnel',
+  CH6: 'Voix communautaires et expériences vécues',
+  CH7: 'Études de cas des Sociétés nationales',
+  CH8: 'Recommandations et voie à suivre',
+};
+
 // Types of Harm (TOH): map harm tag labels to icon + display name for tooltip
 const HARM_TAG_TO_ICON = [
-  { label: 'psychological', displayLabel: 'Psychological', Icon: User },
-  { label: 'societal', displayLabel: 'Societal', Icon: Building2 },
-  { label: 'social', displayLabel: 'Social', Icon: Smartphone },
-  { label: 'informational', displayLabel: 'Informational', Icon: Wifi },
-  { label: 'digital/technological', displayLabel: 'Digital/technological', Icon: Monitor },
-  { label: 'physical', displayLabel: 'Physical', Icon: Activity },
-  { label: 'deprivational/financial/economic', displayLabel: 'Deprivational/financial/economic', Icon: Activity },
+  {
+    labels: ['psychological', 'psychologique'],
+    displayLabel: { en: 'Psychological', fr: 'Psychologique' },
+    Icon: User,
+  },
+  {
+    labels: ['societal', 'sociétal', 'societal'],
+    displayLabel: { en: 'Societal', fr: 'Sociétal' },
+    Icon: Building2,
+  },
+  {
+    labels: ['social'],
+    displayLabel: { en: 'Social', fr: 'Social' },
+    Icon: Smartphone,
+  },
+  {
+    labels: ['informational', 'informationnel'],
+    displayLabel: { en: 'Informational', fr: 'Informationnel' },
+    Icon: Wifi,
+  },
+  {
+    labels: ['digital/technological', 'numérique/technologique'],
+    displayLabel: { en: 'Digital/technological', fr: 'Numérique/technologique' },
+    Icon: Monitor,
+  },
+  {
+    labels: ['physical', 'physique'],
+    displayLabel: { en: 'Physical', fr: 'Physique' },
+    Icon: Activity,
+  },
+  {
+    labels: ['deprivational/financial/economic', 'financier/économique/lié à la privation'],
+    displayLabel: {
+      en: 'Deprivational/financial/economic',
+      fr: 'Financier/économique/lié à la privation',
+    },
+    Icon: Activity,
+  },
 ];
 
 /** Parse TSV (tab-separated) so commas in descriptions don't break parsing. Use when exporting from Sheets. */
@@ -120,25 +162,34 @@ function parseTags(str) {
 }
 
 /** CH1 -> "Chapter 1", CH2 -> "Chapter 2", etc. */
-function formatChapterLabel(chapterCode) {
+function formatChapterLabel(chapterCode, locale = 'en') {
   if (!chapterCode || typeof chapterCode !== 'string') return '';
   const m = chapterCode.trim().match(/^CH(\d+)$/i);
-  return m ? `Chapter ${m[1]}` : chapterCode;
+  if (!m) return chapterCode;
+
+  return locale === 'fr' ? `Chapitre ${m[1]}` : `Chapter ${m[1]}`;
 }
 
 /** Resolve quote harm tags to TOH icons with labels (unique by Icon, ordered). Only icons that match are returned. */
-function getIconsForHarm(harmStr) {
+function getIconsForHarm(harmStr, locale = 'en') {
   const tags = parseTags(harmStr).map((t) => t.toLowerCase().trim());
   const byIcon = new Map();
-  for (const { label, displayLabel, Icon } of HARM_TAG_TO_ICON) {
-    const labelNorm = label.toLowerCase();
-    const matches = tags.some((t) => t.includes(labelNorm) || labelNorm.includes(t));
+
+  for (const { labels, displayLabel, Icon } of HARM_TAG_TO_ICON) {
+    const matches = labels.some((label) => {
+      const labelNorm = label.toLowerCase();
+      return tags.some((t) => t.includes(labelNorm) || labelNorm.includes(t));
+    });
+
     if (matches) {
+      const localizedLabel = displayLabel[locale] || displayLabel.en;
       const existing = byIcon.get(Icon);
-      if (existing) existing.labels.push(displayLabel);
-      else byIcon.set(Icon, { Icon, labels: [displayLabel] });
+
+      if (existing) existing.labels.push(localizedLabel);
+      else byIcon.set(Icon, { Icon, labels: [localizedLabel] });
     }
   }
+
   return Array.from(byIcon.values());
 }
 
@@ -146,10 +197,13 @@ function getIconsForHarm(harmStr) {
 const QUOTE_CARD_HEIGHT = 340;
 const QUOTE_CARD_WIDTH = 280;
 
-function QuoteCard({ quote }) {
-  const chapterTitle = CHAPTER_TITLES[quote.chapter];
-  const chapterLabel = formatChapterLabel(quote.chapter);
-  const tohItems = getIconsForHarm(quote.harm);
+function QuoteCard({ quote, locale }) {
+  const chapterTitle =
+    locale === 'fr'
+      ? CHAPTER_TITLES_FR[quote.chapter]
+      : CHAPTER_TITLES[quote.chapter];
+  const chapterLabel = formatChapterLabel(quote.chapter, locale);
+  const tohItems = getIconsForHarm(quote.harm, locale);
 
   return (
     <div
@@ -343,7 +397,7 @@ export default function QuotesSection({ selectedTag }) {
           containerClassName="pb-3"
         >
           {filtered.map((quote) => (
-            <QuoteCard key={quote.id} quote={quote} />
+            <QuoteCard key={quote.id} quote={quote} locale={locale} />
           ))}
         </EmblaCarousel>
       )}
