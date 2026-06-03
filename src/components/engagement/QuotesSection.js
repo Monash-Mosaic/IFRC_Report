@@ -32,6 +32,34 @@ const TAG_COLUMN_MAP = {
   technology_governance: { column: 'governance',  label: 'Technology governance and platform accountability' },
 };
 
+const TAG_COLUMN_MAP_FR = {
+  psychological: { column: 'harm', label: 'Psychologique' },
+  societal: { column: 'harm', label: 'Societal' },
+  social: { column: 'harm', label: 'Social' },
+  informational: { column: 'harm', label: 'Informationnel' },
+  digital_technological: { column: 'harm', label: 'Numérique/technologique' },
+  physical: { column: 'harm', label: 'Physique' },
+  deprivational: { column: 'harm', label: 'Financier/économique/lié à la privation' },
+
+  programme: { column: 'operational', label: 'Efficacité des programmes et redevabilité' },
+  distorted_needs: { column: 'operational', label: 'Signaux de besoins et de demande faussés' },
+  safety: { column: 'operational', label: 'Sécurité et sûreté du personnel et des volontaires' },
+  access_constraints: { column: 'operational', label: "Contraintes d'accès et risques d'acceptation" },
+
+  prebunking: { column: 'response', label: 'Prébunking et résilience narrative' },
+  debunking: { column: 'response', label: 'Démystification et communication corrective' },
+  trusted_messenger: { column: 'response', label: 'Messagers de confiance et intermédiaires locaux' },
+  community_engagement: { column: 'response', label: 'Engagement communautaire et redevabilité' },
+  rumour_tracking: { column: 'response', label: 'Suivi des rumeurs et alerte précoce' },
+  information_aid: { column: 'response', label: "L'information comme aide" },
+  partnership: { column: 'response', label: 'Partenariat et coordination' },
+
+  principles: { column: 'governance', label: 'Principes humanitaires et neutralité' },
+  regulation: { column: 'governance', label: 'Réglementation et cadres de politique publique' },
+  freedom: { column: 'governance', label: "Liberté d'expression et droit à l'information" },
+  technology_governance: { column: 'governance', label: 'Gouvernance technologique et redevabilité des plateformes' },
+};
+
 const CHAPTER_TITLES = {
   CH1: 'Crisis Chaos and Confusion',
   CH2: 'Trust, Perception and Harmful Information',
@@ -263,13 +291,14 @@ export default function QuotesSection({ selectedTag }) {
 
     return quotes.filter((quote) =>
       activeTagIds.some((tagId) => {
-        const tagInfo = TAG_COLUMN_MAP[tagId];
+        const activeTagMap = locale === 'fr' ? TAG_COLUMN_MAP_FR : TAG_COLUMN_MAP;
+        const tagInfo = activeTagMap[tagId];
         if (!tagInfo) return false;
         const values = parseTags(quote[tagInfo.column]).map((v) => v.toLowerCase());
         return values.some((v) => v.includes(tagInfo.label.toLowerCase()));
       })
     );
-  }, [quotes, selectedTag]);
+  }, [quotes, selectedTag, locale]);
 
   const activeCount = Object.values(selectedTag).filter(Boolean).length;
 
