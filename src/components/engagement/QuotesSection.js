@@ -165,15 +165,28 @@ function QuoteCard({ quote }) {
       {/* Footer */}
       <div className="px-5 py-4 border-t border-slate-100 shrink-0">
         {chapterLabel && (
-          <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
-            {chapterLabel}
-          </span>
+          quote.url ? (
+            <a
+              href={quote.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-[#ee2435] underline underline-offset-2"
+            >
+              {chapterLabel}
+            </a>
+          ) : (
+            <span className="text-xs font-bold text-[#ee2435] underline underline-offset-2">
+              {chapterLabel}
+            </span>
+          )
         )}
+
         {chapterTitle && (
           <span className="text-xs font-bold text-slate-800 ml-1">
             {chapterTitle}
           </span>
         )}
+
         {quote.country && (
           <div className="text-[10px] text-slate-400 mt-1">{quote.country}</div>
         )}
@@ -183,14 +196,19 @@ function QuoteCard({ quote }) {
 }
 
 export default function QuotesSection({ selectedTag }) {
-  const t = useTranslations('Discover');
+  const t = useTranslations('Engagement');
   const locale = useLocale();
   const [quotes, setQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/engagement/engagement_tab.tsv')
+    const tsvFile =
+      locale === 'fr'
+        ? '/engagement/french-engagement_tab.tsv'
+        : '/engagement/engagement_tab.tsv';
+
+    fetch(tsvFile)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.text();
@@ -204,11 +222,15 @@ export default function QuotesSection({ selectedTag }) {
         const headers = rows[0].map((h) => h.trim());
         const colIndex = {};
         headers.forEach((h, i) => { colIndex[h] = i; });
-        if (colIndex['Quote text'] == null) {
+        const quoteTextIdx =
+          colIndex['Quote text'] ??
+          colIndex['Quote text (EN)'] ??
+          colIndex['Quote text (FR)'];
+
+        if (quoteTextIdx == null) {
           setQuotes([]);
           return;
         }
-        const quoteTextIdx = colIndex['Quote text'];
         const isValidQuoteText = (val) => {
           if (!val || typeof val !== 'string') return false;
           const v = val.trim();
@@ -227,12 +249,13 @@ export default function QuotesSection({ selectedTag }) {
             operational: (row[colIndex['tag:operational_impact']] || '').trim(),
             response: (row[colIndex['tag:response_strategy']] || '').trim(),
             governance: (row[colIndex['tag:governance']] || '').trim(),
+            url: colIndex['url'] != null ? (row[colIndex['url']] || '').trim() : '',
           }));
         setQuotes(parsed);
       })
       .catch((err) => setError(err?.message || 'Failed to load'))
       .finally(() => setLoading(false));
-  }, []);
+  }, [locale]);
 
   const filtered = useMemo(() => {
     const activeTagIds = Object.keys(selectedTag).filter((k) => selectedTag[k]);
