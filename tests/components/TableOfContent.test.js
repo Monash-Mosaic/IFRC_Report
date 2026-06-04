@@ -12,8 +12,8 @@ const mockChapterTableOfContents = [
     children: [
       {
         depth: 2,
-        id: 'endnotes-header',
-        value: 'Endnotes Header',
+        id: 'footnote-label',
+        value: 'Footnotes',
       },
     ],
   },

@@ -14,6 +14,7 @@
     "nav": {
       "logoAlt": "国际红十字与红新月联合会标志",
       "brand": "国际红十字会 | 索尔费里诺学院",
+      "home": "首页",
       "discover": "发现",
       "about": "关于",
       "bookmarks": "书签",
@@ -234,8 +235,10 @@
     "body": "红十字会与红新月会国际联合会（IFRC）是全球规模最大的人道主义网络，由191个国家红十字会和红新月会组成，汇聚约1700万名扎根社区的志愿者。我们的志愿者始终与社区同在，在危机或灾害发生前、发生时以及发生后，提供以本地为主导的支持与关怀服务。作为IFRC网络，我们致力于赋能社区，增强其韧性与能力，使之成为人们能够安全、有尊严、健康生活，并拥有发展机会的地方。",
     "coverPhotoTitle": "封面照片",
     "coverPhotoText": "黎巴嫩巴拉杰内堡难民营，2025年9月10日。这种以人为本的方法降低了获取服务的障碍和犹豫心理，同时在艰难环境中维持了尊严、信任和照护的连续性。",
+    "synthesisPhotoTitle": "Synthesis 封面照片",
+    "synthesisPhotoText": "巴勒斯坦红新月会的志愿者们在黎巴嫩的布尔吉·巴拉杰纳难民营挨家挨户走访，倾听民众的担忧，分享实用信息，并引导家庭前往近东救济工程处（UNRWA）的诊所，帮助儿童补种错过的疫苗。这种以人为本的方法在充满挑战的环境中，既降低了就医门槛，又维护了尊严、信任和医疗服务的连续性。\n2025年9月。拉玛·奇迪亚克，红十字与红新月国际联合会",
     "insidePhotosTitle": "内页图片",
-    "insidePhotosText": "Syrian Arab Red Crescent • Lama Chidiac, IFRC • Aki Kolehmainen, Finnish Red Cross • Syrian Arab Red Crescent • Lama Chidiac, IFRC • IFRC • Paul Wu, IFRC • IFRC and Ecuadorean Red Cross • Pakistan Red Crescent • IFRC",
+    "insidePhotosText": "Egyptian Red Crescent • James Tamba-Martha, Sierra Leone Red Cross Society • Lama Chidiac, IFRC • Aki Kolehmainen, Finnish Red Cross • Lama Chidiac, IFRC • Syrian Arab Red Crescent • Lama Chidiac, IFRC • IFRC • Syrien Red Crescent • Lama Chidiac, IFRC • IFRC • Paul Wu, IFRC • IFRC and Ecuadorean Red Cross • Pakistan Red Crescent • Turkish Red Crescent • Aki Kolehmainen, Finnish Red Cross • IFRC and Ecuadorean Red Cross • Aki Kolehmainen, Finnish Red Cross • Turkish Red Crescent • Aki Kolehmainen, Finnish Red Cross • Lama Chidiac, IFRC • The President of the IFRC at the Red Cross and Red Crescent Statutory Meetings, Geneva, Switzerland, 2024, IFRC • Aki Kolehmainen, Finnish Red Cross • Italian Red Cross • Pakistan Red Crescent • Aki Kolehmainen, Finnish Red Cross • Syrian Arab Red Crescent • Paul Wu, IFRC • Finnish Red Cross • Turkish Red Crescent • Aki Kolehmainen, Finnish Red Cross • James Tamba-Marth, Sierra Leone Red Cross Society • Aki Kolehmainen, Finnish Red Cross • Aki Kolehmainen, Finnish Red Cross",
     "contactUsTitle": "联系我们",
     "contactUsText": "如需商业用途复制，请联系 IFRC 秘书处：",
     "addressTitle": "地址",
@@ -273,7 +276,7 @@
     "contributions": "《2026 年世界灾害报告》汇集了来自人道主义领域 60 多位从业者和研究者的 100 余篇书面供稿，还呈现了政府、学术界、民间社会等各界人士的见解。这些“ ”贡献以 来稿洞见 专栏形式贯穿全书，并逐一标注了每位作者及其所属机构。",
     "research": "红十字会与红新月会国际联合会索尔费里诺学院牵头开展了一项为期两个月的快速社区情报研究，由来自 10 个国家红会的 40 名志愿者和工作人员组成调研团队。他们以社区研究员身份，采访了 132 名受人道主义危机影响的志愿者和社区成员。研究发现由密歇根大学、诺森比亚大学及纽卡斯尔大学开放实验室的志愿学术人员进行整合，确保保留了地方特色。报告全文穿插着精选的受访者原话。"
   },
-  "Engagement": {
+  "Discover": {
     "breadcrumbHome": "首页",
     "breadcrumbCurrent": "发现",
     "heroTitle": "发现互动手册",

@@ -100,21 +100,29 @@ export default function EmblaCarousel({
     };
   }, [emblaApi, onSelect]);
 
-  // Re-init when locale changes, then immediately re-sync button states
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    emblaApi.reInit({ direction: getDirection(locale) });
-
-    const timer = setTimeout(onSelect, 0);
-
-    return () => clearTimeout(timer);
-  }, [locale]);
-
   // Computed values
   const totalChildren = Array.isArray(children) ? children.length : 1;
   const totalPages = itemsPerPage > 0 ? Math.ceil(totalChildren / itemsPerPage) : 1;
   const shouldShowControls = showControls || totalChildren > 1;
+
+  // Re-init when direction or slide count changes, then re-sync controls.
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.reInit({
+      align,
+      loop,
+      slidesToScroll: 1,
+      direction: getDirection(locale),
+    });
+
+    const timer = setTimeout(() => {
+      calculateItemsPerPage();
+      onSelect();
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, [emblaApi, locale, totalChildren, align, loop, calculateItemsPerPage, onSelect]);
 
   // Slide styles
   const getSlideStyles = () => ({

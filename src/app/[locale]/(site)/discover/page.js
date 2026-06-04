@@ -9,12 +9,12 @@ export async function generateStaticParams() {
 }
 
 export const metadata = {
-  title: 'Engagement',
+  title: 'Discover',
 };
 
 export default async function EngagementPage({ params }) {
   const { locale } = await params;
-  const t = await getTranslations({ namespace: 'Engagement', locale });
+  const t = await getTranslations({ namespace: 'Discover', locale });
 
   return (
     <div className="bg-white text-black min-h-screen">
