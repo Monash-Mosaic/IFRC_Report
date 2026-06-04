@@ -275,7 +275,7 @@ describe('HeroSection', () => {
     expect(buttonContainer).toBeInTheDocument();
 
     // Should have video container with correct styling
-    const videoContainer = container.querySelector('.relative.p-\\[36px\\]');
+    const videoContainer = container.querySelector('[class~="relative"][class~="p-[36px]"]');
     expect(videoContainer).toBeInTheDocument();
     expect(videoContainer).toHaveClass('overflow-hidden', 'rounded-lg');
   });
