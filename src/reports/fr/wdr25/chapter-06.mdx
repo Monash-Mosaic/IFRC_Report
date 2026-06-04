@@ -23,7 +23,14 @@ import {
   ChapterLink,
   QuestionAnswerBox,
   QuestionAnswerBoxTitle,
-  QuestionAnswerBoxBody
+  QuestionAnswerBoxBody,
+  Table,
+  TableCaption,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell
 } from '@/components/CustomComponents';
 
 import {
@@ -997,87 +1004,88 @@ Une communication efficace requiert une précision stratégique : il faut comp
 </div>
 
 <div className="overflow-x-auto">
-  <table className="w-full border-separate border-spacing-x-3 border-spacing-y-0 text-left">
-    <thead>
-      <tr>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl font-bold w-[25%]">
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell className="text-2xl w-[25%]">
           Élément
-        </th>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl font-bold w-[37%]">
+        </TableHeaderCell>
+        <TableHeaderCell className="text-2xl w-[37%]">
           Questions directrices
-        </th>
-        <th className="border-t-4 border-[#3a3a3a] pt-6 pb-4 text-2xl font-bold w-[38%]">
+        </TableHeaderCell>
+        <TableHeaderCell className="text-2xl w-[38%]">
           Considérations pratiques
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4">
+        </TableHeaderCell>
+      </TableRow>
+    </TableHead>
+
+    <TableBody>
+      <TableRow>
+        <TableCell>
           <strong>Le bon public</strong>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
           Qui est touché ou menacé ?
           Qui doit changer de comportement, de perception ou d'objet de confiance ?
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
           Ventiler par genre, âge, langue, accès, vulnérabilité.
           <br />
           <br />
           Cartographier les réseaux de confiance et les influenceurs locaux.
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4">
+      <TableRow>
+        <TableCell>
           <strong>Le bon message</strong>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
           Qu'ont-ils besoin de savoir ?
           Qu'est-ce qui compte pour eux ? Quelles sont les préoccupations qu'ils expriment ?
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
           Ancrer les messages dans les préoccupations de la communauté. Veiller à la pertinence
           culturelle et contextuelle. Mettre l'accent sur ce que les populations veulent
           comprendre, et pas seulement sur ce que les intervenants veulent dire.
-        </td>
-      </tr>
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4">
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
           <strong>Le bon moment</strong>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
           Quand le public est-il le plus réceptif ? Quand a-t-il besoin de ces informations pour
           prendre des décisions ou agir ?
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
           Fournir des informations suffisamment tôt pour permettre la prise de mesures. Diffuser des
           informations en permanence au fur et à mesure de l'évolution de la situation. Aligner la
           diffusion sur les points de décision clés ou les moments les plus pertinents. Éviter la
           surcharge d'informations. Répéter les messages clés pour renforcer la compréhension et la confiance.
-        </td>
-      </tr>
+        </TableCell>
+      </TableRow>
 
-      <tr>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4">
+      <TableRow>
+        <TableCell>
           <strong>Le bon messager</strong>
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 pe-4 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
          À qui le public fait-il confiance ? Qui peut transmettre le message avec légitimité et
           empathie ?
-        </td>
-        <td className="align-top border-t border-[#8a8a8a] pt-4 pb-6 text-slate-700">
+        </TableCell>
+        <TableCell className="text-slate-700">
           Faire appel à des personnalités locales jouissant de la confiance de la communauté, telles
           que les dirigeants communautaires, les agents de santé, les chefs religieux, les jeunes ou
           les pairs.
           <br />
           <br />
           Garantir la diversité, la crédibilité et la sensibilité culturelle.
-        </td>
-      </tr>
-    </tbody>
+        </TableCell>
+      </TableRow>
+    </TableBody>
 
-  </table>
+  </Table>
 </div>
 # <HeadingLabel index="6.9" />Réflexions critiques : défis pratiques
 

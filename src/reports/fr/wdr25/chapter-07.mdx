@@ -6,6 +6,13 @@ import {
   Reccomendations,
   ReccomendationsTitle, SmallQuote,
   SmallQuoteAuthor, TableLabel,
+  Table,
+  TableCaption,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell
 } from '@/components/CustomComponents';
 import {TypologyOfHarm} from "@/types/TypologyOfHarm";
 
@@ -1053,30 +1060,30 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
 
 <TableLabel index="7.1" className="font-normal" /> **Les Principes fondamentaux dans le contexte des informations préjudiciables**
 
-<table className="w-full table-auto border-separate border-spacing-2">
-  <thead>
-  <tr>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Principe fondamental</th>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Composantes</th>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Pertinence actuelle à l’ère des informations préjudiciables</th>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Valeurs humanitaires sous-jacentes</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Humanité</td>
-    <td className="border-t-[1px] p-2 align-top">
+<Table>
+  <TableHead>
+  <TableRow>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Principe fondamental</TableHeaderCell>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Composantes</TableHeaderCell>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Pertinence actuelle à l’ère des informations préjudiciables</TableHeaderCell>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Valeurs humanitaires sous-jacentes</TableHeaderCell>
+  </TableRow>
+  </TableHead>
+  <TableBody>
+  <TableRow>
+    <TableCell className="font-bold">Humanité</TableCell>
+    <TableCell>
       Prévenir et alléger les souffrances<br/><br/>
       Protéger la vie et la dignité<br/><br/>
       Respecter et protéger les êtres humains
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Les informations préjudiciables peuvent mettre des vies en danger et aggraver les souffrances en sapant la confiance
       dans l’action humanitaire, les acteurs humanitaires et les informations sur les situations d’urgence.<br/><br/>
       Pour les combattre, il faut une communication et des échanges proactifs et centrés sur les personnes,
       qui protègent leur dignité et leur bien-être.
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Dignité humaine<br/><br/>
       Compassion<br/><br/>
       Bien-être<br/><br/>
@@ -1085,19 +1092,19 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       Respect<br/><br/>
       Empathie<br/><br/>
       Coopération
-    </td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">
+    </TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">
       Impartialité
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Non-discrimination<br/><br/>
       Action fondée sur les besoins, réponse proportionnelle au degré de souffrance<br/><br/>
       Priorité déterminée par le degré d’urgence<br/><br/>
       Pas d’action ou de décision individuelle fondée sur des préjugés ou des préférences personnelles
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Des informations préjudi-
       ciables risquent de donner
       une fausse idée des per-
@@ -1112,17 +1119,17 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       visibles. En y remédiant,
       on peut renforcer l’égalité
       d’accès et l’équité.
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Égalité des droits<br/><br/>
       Respect de la diversité<br/><br/>
       Objectivité<br/><br/>
       Acceptation
-    </td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Neutralité</td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">Neutralité</TableCell>
+    <TableCell>
       Absence de prise
       de position dans les
       conflits armés<br/><br/>
@@ -1130,8 +1137,8 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       aux controverses de
       nature politique, raciale,
       religieuse ou idéologique
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Des campagnes d’infor-
       mations préjudiciables
       peuvent faire croire que les
@@ -1146,18 +1153,18 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       des informations et la
       mobilisation de membres
       fiables des communautés.
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Confiance et assurance<br/><br/>
       Maîtrise de soi<br/><br/>
       Discipline<br/><br/>
       Liberté d’action<br/><br/>
       Objectivité
-    </td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Indépendance</td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">Indépendance</TableCell>
+    <TableCell>
       Indépendance vis-à-vis
       de toute influence
       politique, économique,
@@ -1180,8 +1187,8 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       Autonomie d’action
       conformément aux
       principes humanitaires
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Les accusations d’être
       trop proches des autorités
       ou trop détachés des
@@ -1192,18 +1199,18 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       crédibilité, il est essentiel
       de préserver son indépen-
       dance, perçue et réelle.
-    </td>
-    <td className="border-t-[1px] p-2 align-top">Redevabilité<br/><br/>Intégrité opérationnelle<br/><br/>Coopération<br/><br/>Liberté d’action</td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Volontariat</td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>Redevabilité<br/><br/>Intégrité opérationnelle<br/><br/>Coopération<br/><br/>Liberté d’action</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">Volontariat</TableCell>
+    <TableCell>
       Engagement librement consenti<br/><br/>
       Absence de motivation
       matérielle<br/><br/>
       Altruisme
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Les volontaires peuvent
       être la cible d’informations
       préjudiciables ou faire
@@ -1219,17 +1226,17 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       intégrés dans le processus
       de mobilisation des
       volontaires numériques.
-    </td>
-    <td className="border-t-[1px] p-2 align-top">Altruisme<br/><br/>Esprit de service<br/><br/>Solidarité<br/><br/>Esprit d’initiative<br/><br/>Discipline</td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Unité</td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>Altruisme<br/><br/>Esprit de service<br/><br/>Solidarité<br/><br/>Esprit d’initiative<br/><br/>Discipline</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">Unité</TableCell>
+    <TableCell>
       Une Société nationale par pays<br/><br/>
       Ouverte à tous<br/><br/>
       Active dans tout le pays
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Des discours préjudi-
       ciables peuvent amplifier
       les divisions internes ou
@@ -1246,20 +1253,20 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       contribuent à préserver
       l’unité et à renforcer
       l’objectif commun.
-    </td>
-    <td className="border-t-[1px] p-2 align-top">Cohésion<br/><br/>Inclusivité<br/><br/>Diversité<br/><br/>Confiance<br/><br/>Objectif commun<br/><br/>Acceptation</td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Universalité</td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>Cohésion<br/><br/>Inclusivité<br/><br/>Diversité<br/><br/>Confiance<br/><br/>Objectif commun<br/><br/>Acceptation</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">Universalité</TableCell>
+    <TableCell>
       Égalité de statut des
       Sociétés nationales<br/><br/>
       Solidarité et soutien
       mutuel dans le
       monde entier<br/><br/>
       Vocation universelle
-    </td>
-    <td className="border-t-[1px] p-2 align-top">
+    </TableCell>
+    <TableCell>
       Les informations préju-
       diciables se propagent
       rapidement par-delà les
@@ -1277,11 +1284,11 @@ au contexte, afin de répondre aux difficultés particulières posées par les i
       afin de préserver la
       confiance et l’intégrité
       au niveau mondial.
-    </td>
-    <td className="border-t-[1px] p-2 align-top">Coopération internationale<br/><br/>Assistance mutuelle<br/><br/>Solidarité mondiale<br/><br/>Ouverture</td>
-  </tr>
-  </tbody>
-</table>
+    </TableCell>
+    <TableCell>Coopération internationale<br/><br/>Assistance mutuelle<br/><br/>Solidarité mondiale<br/><br/>Ouverture</TableCell>
+  </TableRow>
+  </TableBody>
+</Table>
 
 ## <HeadingLabel index="7.9.1" /> Cadre décisionnel : répondre aux informations préjudiciables tout en appliquant les principes humanitaires
 
@@ -1335,36 +1342,36 @@ Utiliser des questions-guides pour comprendre quel est le type d’informations 
 
 <TableLabel index="7.2" className="font-normal" />**Modèle de matrice permettant de cartographier les compromis entre une réaction et les dommages potentiels**
 
-<table className="w-full table-auto border-separate border-spacing-2">
-  <thead>
-  <tr>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Réaction</th>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Principes soutenus</th>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Principes qui risquent d’être considérés enfreints</th>
-    <th className="border-t-[2px] font-bold text-xl p-2 text-start">Dommages potentiels</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Réaction du public</td>
-    <td className="border-t-[1px] p-2 align-top">Humanité<br/><br/>Indépendance</td>
-    <td className="border-t-[1px] p-2 align-top">Neutralité Impartialité</td>
-    <td className="border-t-[1px] p-2 align-top">Réaction politique<br/><br/>Fausse image<br/><br/>Escalade des tensions<br/><br/>Atteinte à la réputation</td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Silence ou échanges bilatéraux</td>
-    <td className="border-t-[1px] p-2 align-top">Neutralité</td>
-    <td className="border-t-[1px] p-2 align-top">Humanité</td>
-    <td className="border-t-[1px] p-2 align-top">Méfiance<br/><br/>Perte de pouvoir d’action<br/><br/>Impression de complicité</td>
-  </tr>
-  <tr>
-    <td className="border-t-[1px] font-bold p-2 align-top">Réaction dirigée par la communauté</td>
-    <td className="border-t-[1px] p-2 align-top">Tous les principes (en cas de succès)</td>
-    <td className="border-t-[1px] p-2 align-top">Impartialité</td>
-    <td className="border-t-[1px] p-2 align-top">Messages inégaux<br/><br/>Fragmentation potentielle de la confiance</td>
-  </tr>
-  </tbody>
-</table>
+<Table>
+  <TableHead>
+  <TableRow>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Réaction</TableHeaderCell>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Principes soutenus</TableHeaderCell>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Principes qui risquent d’être considérés enfreints</TableHeaderCell>
+    <TableHeaderCell className="text-xl w-[25%] pb-4">Dommages potentiels</TableHeaderCell>
+  </TableRow>
+  </TableHead>
+  <TableBody>
+  <TableRow>
+    <TableCell className="font-bold">Réaction du public</TableCell>
+    <TableCell>Humanité<br/><br/>Indépendance</TableCell>
+    <TableCell>Neutralité Impartialité</TableCell>
+    <TableCell>Réaction politique<br/><br/>Fausse image<br/><br/>Escalade des tensions<br/><br/>Atteinte à la réputation</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">Silence ou échanges bilatéraux</TableCell>
+    <TableCell>Neutralité</TableCell>
+    <TableCell>Humanité</TableCell>
+    <TableCell>Méfiance<br/><br/>Perte de pouvoir d’action<br/><br/>Impression de complicité</TableCell>
+  </TableRow>
+  <TableRow>
+    <TableCell className="font-bold">Réaction dirigée par la communauté</TableCell>
+    <TableCell>Tous les principes (en cas de succès)</TableCell>
+    <TableCell>Impartialité</TableCell>
+    <TableCell>Messages inégaux<br/><br/>Fragmentation potentielle de la confiance</TableCell>
+  </TableRow>
+  </TableBody>
+</Table>
 
 <hr className="border-t border-black my-6" />
 
