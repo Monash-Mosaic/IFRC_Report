@@ -584,16 +584,36 @@ export function ChapterImage({
 
 export function EndnotesLink({ children, ...props }) {
   const linkClass = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+  const childArray = React.Children.toArray(children);
+  const anchorChild = childArray.find(
+    (child) => React.isValidElement(child) && child.type === 'a'
+  );
+  const trailingText = childArray
+    .filter((child) => typeof child === 'string')
+    .join('');
+  const href = anchorChild
+    ? `${anchorChild.props.href ?? ''}${trailingText}`
+    : typeof children === 'string'
+      ? children
+      : trailingText;
+  const content = anchorChild
+    ? trailingText
+      ? href
+      : anchorChild.props.children
+    : children;
+  const mergedClassName = anchorChild
+    ? [anchorChild.props.className, linkClass].filter(Boolean).join(' ')
+    : linkClass;
 
   return (
     <a
-      href={children}
+      href={href}
+      className={mergedClassName}
+      {...props}
       target="_blank"
       rel="noopener noreferrer"
-      className={linkClass}
-      {...props}
     >
-      {children}
+      {content}
     </a>
   );
 }

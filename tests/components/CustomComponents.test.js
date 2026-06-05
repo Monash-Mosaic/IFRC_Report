@@ -288,40 +288,61 @@ describe('CustomComponents primitives', () => {
     expect(screen.queryByRole('figcaption')).not.toBeInTheDocument();
   });
 
-  it('renders EndnotesLink with correct href, target and rel for a string URL', () => {
+  describe('EndnotesLink', () => {
     const LINK_CLASS = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
 
-    render(<EndnotesLink>https://www.example.com</EndnotesLink>);
+    it('renders a link with correct href, target and rel for a string URL', () => {
+      render(<EndnotesLink>https://www.example.com</EndnotesLink>);
 
-    const link = screen.getByRole('link', { name: 'https://www.example.com' });
-    expect(link).toHaveAttribute('href', 'https://www.example.com');
-    expect(link).toHaveAttribute('target', '_blank');
-    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    expect(link).toHaveClass(...LINK_CLASS.split(' '));
+      const link = screen.getByRole('link', { name: 'https://www.example.com' });
+      expect(link).toHaveAttribute('href', 'https://www.example.com');
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(link).toHaveClass(...LINK_CLASS.split(' '));
+      expect(link.querySelector('a')).not.toBeInTheDocument();
+    });
+
+    it('renders a single anchor when child is an <a> element', () => {
+      render(
+        <EndnotesLink data-testid="endnotes-link" aria-label="External source">
+          <a href="https://www.example.com" className="child-class">
+            Click here
+          </a>
+        </EndnotesLink>
+      );
+
+      const link = screen.getByRole('link', { name: 'External source' });
+      expect(screen.getAllByRole('link')).toHaveLength(1);
+      expect(link).toHaveAttribute('href', 'https://www.example.com');
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(link).toHaveAttribute('data-testid', 'endnotes-link');
+      expect(link).toHaveClass('child-class');
+      expect(link).toHaveClass(...LINK_CLASS.split(' '));
+      expect(link).toHaveTextContent('Click here');
+      expect(link.querySelector('a')).not.toBeInTheDocument();
+    });
+
+    it('merges MDX autolink anchor and trailing URL text into one link', () => {
+      render(
+        <EndnotesLink>
+          <a href="https://www.youtube.com/watch">https://www.youtube.com/watch</a>
+          ?v=iSVOU1PqeM0
+        </EndnotesLink>
+      );
+
+      const link = screen.getByRole('link', {
+        name: 'https://www.youtube.com/watch?v=iSVOU1PqeM0',
+      });
+      expect(screen.getAllByRole('link')).toHaveLength(1);
+      expect(link).toHaveAttribute('href', 'https://www.youtube.com/watch?v=iSVOU1PqeM0');
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(link).toHaveClass(...LINK_CLASS.split(' '));
+      expect(link.querySelector('a')).not.toBeInTheDocument();
+    });
   });
 
-  it('clones EndnotesLink <a> child without double nesting and merges classNames', () => {
-    const LINK_CLASS = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
-
-    render(
-      <EndnotesLink data-testid="endnotes-link" aria-label="External source">
-        <a href="https://www.example.com" className="child-class">
-          Click here
-        </a>
-      </EndnotesLink>
-    );
-
-    const link = screen.getByRole('link', { name: 'External source' });
-    expect(screen.getAllByRole('link')).toHaveLength(1);
-    expect(link).toHaveAttribute('href', 'https://www.example.com');
-    expect(link).toHaveAttribute('target', '_blank');
-    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    expect(link).toHaveAttribute('data-testid', 'endnotes-link');
-    expect(link).toHaveClass('child-class');
-    expect(link).toHaveClass(...LINK_CLASS.split(' '));
-    expect(link).toHaveTextContent('Click here');
-  });
-  
   it('renders InterChapterLink with href and children', () => {
     render(<InterChapterLink href="/chapter-2">Go to Chapter 2</InterChapterLink>);
 
