@@ -590,15 +590,26 @@ export function EndnotesLink({ children, ...props }) {
   );
   const trailingText = childArray
     .filter((child) => typeof child === 'string')
-    .join('');
-  const href = anchorChild
+    .join('')
+    .trim();
+
+  const rawHref = anchorChild
     ? `${anchorChild.props.href ?? ''}${trailingText}`
     : typeof children === 'string'
       ? children
       : trailingText;
+
+  const href = (() => {
+    const trimmed = String(rawHref ?? '').trim();
+    if (!trimmed) return trimmed;
+    if (trimmed.startsWith('#') || trimmed.startsWith('/') || trimmed.startsWith('//')) return trimmed;
+    if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(trimmed)) return trimmed;
+    return `https://${trimmed}`;
+  })();
+
   const content = anchorChild
     ? trailingText
-      ? href
+      ? rawHref
       : anchorChild.props.children
     : children;
   const mergedClassName = anchorChild
