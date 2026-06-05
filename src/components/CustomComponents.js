@@ -203,7 +203,7 @@ export function ContributorSpotlightRole({ children, ...props }) {
 
 export function ChapterQuote({ children, ...props }) {
   return (
-    <div style={{ color: '#6b7280', fontSize: '2rem' }} {...props}>
+    <div style={{ color: '#6b7280', fontSize: '2rem', lineHeight: '1.2' }} {...props}>
       {children}
     </div>
   );
