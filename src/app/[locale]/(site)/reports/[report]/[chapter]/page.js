@@ -183,7 +183,7 @@ export default async function ReportChapterPage({ params }) {
               ]}
             />
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
+              <h1 className="text-3xl font-bold text-black mb-6 text-right">{reportTile}</h1>
             </div>
 
             <div className="mb-8 text-black text-5xl font-extrabold text-right">{chapterTitle}</div>
