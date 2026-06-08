@@ -337,17 +337,23 @@ describe('CustomComponents primitives', () => {
       expect(link.querySelector('a')).not.toBeInTheDocument();
     });
 
-    it('throws when an anchor child is followed by trailing URL text', () => {
-      expect(() =>
-        render(
-          <EndnotesLink>
-            <a href="https://www.youtube.com/watch">https://www.youtube.com/watch</a>
-            ?v=iSVOU1PqeM0
-          </EndnotesLink>
-        )
-      ).toThrow(
-        'EndnotesLink children must be a single URL string or a single anchor element.'
+    it('merges an anchor child with trailing URL text into one link', () => {
+      render(
+        <EndnotesLink>
+          <a href="https://www.youtube.com/watch">https://www.youtube.com/watch</a>
+          ?v=iSVOU1PqeM0
+        </EndnotesLink>
       );
+
+      const link = screen.getByRole('link', {
+        name: 'https://www.youtube.com/watch?v=iSVOU1PqeM0',
+      });
+      expect(screen.getAllByRole('link')).toHaveLength(1);
+      expect(link).toHaveAttribute('href', 'https://www.youtube.com/watch?v=iSVOU1PqeM0');
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(link).toHaveClass(...LINK_CLASS.split(' '));
+      expect(link.querySelector('a')).not.toBeInTheDocument();
     });
   });
 
