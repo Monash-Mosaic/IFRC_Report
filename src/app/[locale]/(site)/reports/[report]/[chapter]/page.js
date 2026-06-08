@@ -183,10 +183,10 @@ export default async function ReportChapterPage({ params }) {
               ]}
             />
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-black mb-6 text-right">{reportTitle}</h1>
-            </div>
+              <h1 className="text-3xl font-bold text-black mb-6 text-end">{reportTitle}</h1>
+</div>
 
-            <div className="mb-8 text-black text-5xl font-extrabold text-right">{chapterTitle}</div>
+<div className="mb-8 text-black text-5xl font-extrabold text-end">{chapterTitle}</div>
 
             <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 
