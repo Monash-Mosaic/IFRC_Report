@@ -593,8 +593,14 @@ export function EndnotesLink({ children, ...props }) {
     .join('')
     .trim();
 
+  if (anchorChild && trailingText) {
+    throw new Error(
+      'EndnotesLink children must be a single URL string or a single anchor element.'
+    );
+  }
+
   const rawHref = anchorChild
-    ? `${anchorChild.props.href ?? ''}${trailingText}`
+    ? anchorChild.props.href
     : typeof children === 'string'
       ? children
       : trailingText;
@@ -607,11 +613,7 @@ export function EndnotesLink({ children, ...props }) {
     return `https://${trimmed}`;
   })();
 
-  const content = anchorChild
-    ? trailingText
-      ? href
-      : anchorChild.props.children
-    : children;
+  const content = anchorChild ? anchorChild.props.children : children;
   const mergedClassName = anchorChild
     ? [anchorChild.props.className, linkClass].filter(Boolean).join(' ')
     : linkClass;
