@@ -27,7 +27,8 @@ import {
   TableRow,
   TableHeaderCell,
   TableBody,
-  TableCell
+  TableCell,
+  InterChapterLink
 } from '@/components/CustomComponents';
 
 import {
@@ -284,7 +285,7 @@ Renforcer la résilience face à la manipulation de l’information dans un éco
   </ContributorTag>
 </Box>
 
-D’autres facteurs qui contribuent à façonner l’écosystème de l’information sont abordés au <span className="text-purple-600"> Chapitre 2, page 75</span> et au <span className="text-purple-600">Chapitre 3, page 147.</span>
+D’autres facteurs qui contribuent à façonner l’écosystème de l’information sont abordés au <InterChapterLink href="glossaire"> Chapitre 2, page 75</InterChapterLink> et au <InterChapterLink href="chapitre-03">Chapitre 3, page 147.</InterChapterLink>
 
 # <HeadingLabel index="1.3" /> Qui sont les acteurs malveillants ?
 
@@ -642,7 +643,7 @@ Les lois, les politiques et les plans constituent le fondement de toutes les act
       <TableCell className="font-extralight">
         Attaques ciblant l'identité numérique, divulgation malveillante d'informations
         personnelles, amplification algorithmique de contenus préjudiciables, deepfakes, abus
-        causés par des robots, manipulation des plateformes (voir <span className="text-purple-600">Annexe I, page 397</span>).
+        causés par des robots, manipulation des plateformes (voir <InterChapterLink href="glossaire">Annexe I, page 397</InterChapterLink>).
       </TableCell>
     </TableRow>
     <TableRow>
@@ -796,7 +797,7 @@ Il est clair qu’un suivi systématique est nécessaire.
   caption={<>Sources : <ChapterLink href="https://airisk.mit.edu/ai-incident-tracker/incident-view" >MIT AI Risk Initiative</ChapterLink> - Tableaux de bord des outils « AI Incident Tracker » et « Scalable AI Incident Classification »</>}
 />
 
-De plus amples informations sur la réglementation, les droits et les politiques sont présentées au <span className="text-purple-600 text-center">Chapitre 5, page 185.</span>
+De plus amples informations sur la réglementation, les droits et les politiques sont présentées au <InterChapterLink href="chapitre-05">Chapitre 5, page 185.</InterChapterLink>
 
 # <HeadingLabel index="1.9" /> Les discours façonnent les perceptions, la confiance et l’action
 
@@ -922,7 +923,7 @@ Alors que les rapports humanitaires établis par les acteurs internationaux se c
 
 # <HeadingLabel index="1.11" /> Analyse et surveillance des informations préjudiciables
 
-Il est primordial d’analyser les informations préjudiciables et les risques qu’elles entraînent pour comprendre les tactiques, les techniques et les processus utilisés par ceux qui les créent et les diffusent. Cette analyse doit tenir compte de facteurs contextuels, historiques, politiques, sociaux, culturels et économiques. Il existe plusieurs cadres analytiques, notamment les 5 W[^42] (une méthode couramment employée par les journalistes) et les cadres ABCDE[^43], DISARM[^44] et MITRE ATT&CK[^45]. Ces derniers requièrent des capacités d’analyse et des niveaux de formation différents, et sont étudiés plus en détail au <span className="text-purple-600">Chapitre 3, page 147</span>.
+Il est primordial d’analyser les informations préjudiciables et les risques qu’elles entraînent pour comprendre les tactiques, les techniques et les processus utilisés par ceux qui les créent et les diffusent. Cette analyse doit tenir compte de facteurs contextuels, historiques, politiques, sociaux, culturels et économiques. Il existe plusieurs cadres analytiques, notamment les 5 W[^42] (une méthode couramment employée par les journalistes) et les cadres ABCDE[^43], DISARM[^44] et MITRE ATT&CK[^45]. Ces derniers requièrent des capacités d’analyse et des niveaux de formation différents, et sont étudiés plus en détail au <InterChapterLink href="chapitre-03">Chapitre 3, page 147</InterChapterLink>.
 
 Pour réaliser une analyse efficace, il convient en outre de surveiller les environnements opérationnels et informationnels afin de repérer les contenus préjudiciables, tout en intégrant des approches communautaires permettant de mieux comprendre leur fonctionnement et leurs effets. De nombreuses organisations humanitaires utilisent toute une gamme d’outils, disponibles sur le marché ou mis au point en interne, qui combinent des méthodes automatisées et manuelles pour extraire des données publiques. Trop souvent, elles se concentrent uniquement sur leur réputation, plutôt que d’évaluer l’incidence de ces informations sur leur sécurité, leurs opérations et l’action humanitaire au sens large.
 
