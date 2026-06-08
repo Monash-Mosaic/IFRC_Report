@@ -19,7 +19,7 @@ export default async function Breadcrumb({ locale, ariaLabel = '', items = [] })
   const isRtl = isRtlLocale(locale);
   return (
     <nav aria-label={ariaLabel} className="mb-6">
-      <ol className="flex items-center space-x-2 text-sm">
+      <ol className="flex items-center space-x-2 text-sm pt-6">
         <li>
           <Link
             href="/"
