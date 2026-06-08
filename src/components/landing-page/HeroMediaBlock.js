@@ -3,7 +3,7 @@ import HeroTitle from './HeroTitle';
 
 export default function HeroMediaBlock({ title, description, heroAlt }) {
   return (
-    <div className="relative p-[36px] overflow-hidden rounded-lg min-h-[500px] md:min-h-[600px]">
+    <div className="relative p-9 overflow-hidden rounded-lg min-h-[500px] md:min-h-[600px]">
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <HeroVideo alt={heroAlt} />
         <div className="absolute inset-0 bg-black/20 z-20" />
