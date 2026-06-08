@@ -289,7 +289,7 @@ describe('CustomComponents primitives', () => {
   });
 
   describe('EndnotesLink', () => {
-    const LINK_CLASS = 'underline decoration-[#68ACFD] wrap-break-word break-all text-[#68ACFD]';
+    const LINK_CLASS = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
 
     it('renders a link with correct href, target and rel for a string URL', () => {
       render(<EndnotesLink>https://www.example.com</EndnotesLink>);
