@@ -323,13 +323,8 @@ describe('CustomComponents primitives', () => {
       expect(link.querySelector('a')).not.toBeInTheDocument();
     });
 
-    it('merges MDX autolink anchor and trailing URL text into one link', () => {
-      render(
-        <EndnotesLink>
-          <a href="https://www.youtube.com/watch">https://www.youtube.com/watch</a>
-          ?v=iSVOU1PqeM0
-        </EndnotesLink>
-      );
+    it('renders a full URL string on one line', () => {
+      render(<EndnotesLink>https://www.youtube.com/watch?v=iSVOU1PqeM0</EndnotesLink>);
 
       const link = screen.getByRole('link', {
         name: 'https://www.youtube.com/watch?v=iSVOU1PqeM0',
@@ -340,6 +335,19 @@ describe('CustomComponents primitives', () => {
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
       expect(link).toHaveClass(...LINK_CLASS.split(' '));
       expect(link.querySelector('a')).not.toBeInTheDocument();
+    });
+
+    it('throws when an anchor child is followed by trailing URL text', () => {
+      expect(() =>
+        render(
+          <EndnotesLink>
+            <a href="https://www.youtube.com/watch">https://www.youtube.com/watch</a>
+            ?v=iSVOU1PqeM0
+          </EndnotesLink>
+        )
+      ).toThrow(
+        'EndnotesLink children must be a single URL string or a single anchor element.'
+      );
     });
   });
 
