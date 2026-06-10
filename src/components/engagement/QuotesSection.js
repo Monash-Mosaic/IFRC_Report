@@ -236,11 +236,7 @@ export default function QuotesSection({ selectedTag }) {
         const headers = rows[0].map((h) => h.trim());
         const colIndex = {};
         headers.forEach((h, i) => { colIndex[h] = i; });
-        const quoteTextIdx =
-          colIndex['Quote text'] ??
-          colIndex['Quote text (EN)'] ??
-          colIndex['Quote text (FR)'];
-
+        const quoteTextIdx = colIndex['Quote text'];
         if (quoteTextIdx == null) {
           setQuotes([]);
           return;
