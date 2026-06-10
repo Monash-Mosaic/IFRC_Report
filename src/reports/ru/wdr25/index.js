@@ -95,6 +95,7 @@ export const chapters = {
     tableOfContents: Synthesis.tableOfContents,
     downloadLink:
       'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_FullReport_EN.pdf',
+    released: true,
   },
   'глава-02': {
     metadata: {
