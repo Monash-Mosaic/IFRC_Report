@@ -10,8 +10,9 @@ import 'server-only';
  * @param {string} props.ariaLabel - Accessible label for the nav element
  * @param {string} props.homeLabel - Label for the home link
  * @param {Array<{label: string, href?: string}>} props.items - Breadcrumb items (last item has no href)
+ * @param {string} [props.listClassName] - Optional classes for the list element (defaults to pt-6)
  */
-export default async function Breadcrumb({ locale, ariaLabel = '', items = [] }) {
+export default async function Breadcrumb({ locale, ariaLabel = '', items = [], listClassName = 'pt-6' }) {
   const t = await getTranslations({
     namespace: 'Breadcrumb',
     locale,
@@ -19,7 +20,7 @@ export default async function Breadcrumb({ locale, ariaLabel = '', items = [] })
   const isRtl = isRtlLocale(locale);
   return (
     <nav aria-label={ariaLabel} className="mb-6">
-      <ol className="flex items-center space-x-2 text-sm pt-6">
+      <ol className={`flex items-center space-x-2 text-sm ${listClassName}`}>
         <li>
           <Link
             href="/"
