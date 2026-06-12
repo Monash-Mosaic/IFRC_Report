@@ -16,9 +16,15 @@ export default function TableOfContent({
   title,
   maxDepth = Number.POSITIVE_INFINITY,
 }) {
-  const processedToc = chapterTableOfContents.map((item) =>
-    item.id === 'endnotes' ? { ...item, children: [] } : item
-  );
+  /* `remark-gfm` generates a hidden footnotes section with a `<h2 id="footnote-label">Footnotes</h2>`,
+      and `rehype-extract-toc` can include that as an extra TOC entry.
+      Filter out the generated footnote heading here so only real chapter headings remain.*/
+  const processedToc = chapterTableOfContents.map((item) => {
+    if (item.children?.some(e => e.id === 'footnote-label')) {
+      item.children = item.children.filter(e => e.id !== 'footnote-label');
+    }
+    return item;
+  });
 
   /**
    * Recursively render the nested `<ul>` structure respecting the maxDepth limit.

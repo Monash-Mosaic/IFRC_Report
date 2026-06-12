@@ -131,7 +131,10 @@ export function SmallQuote({ children, ...props }) {
 
 export function SmallQuoteAuthor({ children, ...props }) {
   return (
-    <div className="text-start font-extralight border-t-2 border-[#ee2435]" {...props}>
+    <div
+      className="ml-12 text-start font-extralight border-t-2 border-[#ee2435]"
+      {...props}
+    >
       {children}
     </div>
   );
@@ -200,7 +203,7 @@ export function ContributorSpotlightRole({ children, ...props }) {
 
 export function ChapterQuote({ children, ...props }) {
   return (
-    <div style={{ color: '#6b7280', fontSize: '2rem' }} {...props}>
+    <div style={{ color: '#6b7280', fontSize: '2rem', lineHeight: 1.2 }} {...props}>
       {children}
     </div>
   );
@@ -628,10 +631,51 @@ export function ChapterImage({
 }
 
 export function EndnotesLink({ children, ...props }) {
+  const linkClass = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+  const childArray = React.Children.toArray(children);
+  const anchorChild = childArray.find(
+    (child) => React.isValidElement(child) && child.type === 'a'
+  );
+  const trailingText = childArray
+    .filter((child) => typeof child === 'string')
+    .join('')
+    .trim();
+
+  if (anchorChild && trailingText) {
+    throw new Error(
+      'EndnotesLink children must be a single URL string or a single anchor element.'
+    );
+  }
+
+  const rawHref = anchorChild
+    ? anchorChild.props.href
+    : typeof children === 'string'
+      ? children
+      : trailingText;
+
+  const href = (() => {
+    const trimmed = String(rawHref ?? '').trim();
+    if (!trimmed) return trimmed;
+    if (trimmed.startsWith('#') || trimmed.startsWith('/') || trimmed.startsWith('//')) return trimmed;
+    if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(trimmed)) return trimmed;
+    return `https://${trimmed}`;
+  })();
+
+  const content = anchorChild ? anchorChild.props.children : children;
+  const mergedClassName = anchorChild
+    ? [anchorChild.props.className, linkClass].filter(Boolean).join(' ')
+    : linkClass;
+
   return (
-    <span className="underline decoration-[#68ACFD] wrap-break-word break-all" {...props}>
-      {children}
-    </span>
+    <a
+      href={href}
+      className={mergedClassName}
+      {...props}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {content}
+    </a>
   );
 }
 
