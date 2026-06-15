@@ -26,11 +26,28 @@ jest.mock('lucide-react', () => ({
   Activity: () => <span />,
   User: () => <span />,
   Building2: () => <span />,
+  ChevronLeft: () => <span data-testid="chevron-left" />,
+  ChevronRight: () => <span data-testid="chevron-right" />,
 }));
 
-jest.mock('@/components/EmblaCarousel', () => function MockEmblaCarousel({ children }) {
-  return <div data-testid="embla-carousel">{children}</div>;
+jest.mock('next/image', () => function MockImage(props) {
+  // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+  return <img {...props} />;
 });
+
+jest.mock('@/i18n/navigation', () => ({
+  Link: ({ href, className, children, ...props }) => (
+    <a
+      href={typeof href === 'object' ? href.pathname : href}
+      className={className}
+      data-href-report={href?.params?.report}
+      data-href-chapter={href?.params?.chapter}
+      {...props}
+    >
+      {children}
+    </a>
+  ),
+}));
 
 const mockFetch = jest.fn();
 
@@ -91,6 +108,39 @@ describe('QuotesSection', () => {
     render(<QuotesSection selectedTag={{}} />);
     await waitFor(() => {
       expect(screen.getByText('2')).toBeInTheDocument();
+    });
+  });
+
+  it('shows three tiles per page and paginates when more than three quotes', async () => {
+    const tsv = [
+      'Q_ID\tQuote text\tChapter\tcountry_region\ttag:harm\ttag:operational_impact\ttag:response_strategy\ttag:governance',
+      '1\tQuote one\tCH1\t\tSocial\t\t\t',
+      '2\tQuote two\tCH2\t\tSocial\t\t\t',
+      '3\tQuote three\tCH3\t\tSocial\t\t\t',
+      '4\tQuote four\tCH4\t\tSocial\t\t\t',
+    ].join('\n');
+    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(tsv) });
+    render(<QuotesSection selectedTag={{}} />);
+    await waitFor(() => {
+      expect(screen.getByText(/Quote one/)).toBeInTheDocument();
+      expect(screen.getByText(/Quote three/)).toBeInTheDocument();
+      expect(screen.queryByText(/Quote four/)).not.toBeInTheDocument();
+    });
+    expect(screen.getByRole('button', { name: 'Next page' })).toBeInTheDocument();
+    expect(screen.queryByText(/\d+ \/ \d+/)).not.toBeInTheDocument();
+  });
+
+  it('renders Open link to the quote chapter', async () => {
+    const tsv = [
+      'Q_ID\tQuote text\tChapter\tcountry_region\ttag:harm\ttag:operational_impact\ttag:response_strategy\ttag:governance',
+      '1\tTest quote one\tCH1\t\tSocial\t\t\t',
+    ].join('\n');
+    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(tsv) });
+    render(<QuotesSection selectedTag={{}} />);
+    await waitFor(() => {
+      const link = screen.getByRole('link', { name: /Open Chapter 1/i });
+      expect(link).toHaveTextContent('Open');
+      expect(link).toHaveAttribute('data-href-chapter', 'chapter-01');
     });
   });
 });
