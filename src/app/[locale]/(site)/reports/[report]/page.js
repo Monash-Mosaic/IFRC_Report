@@ -164,7 +164,7 @@ export default async function ReportDetailPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reportJsonLd) }}
       />
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4">
         <Breadcrumb
           locale={locale}
           items={[

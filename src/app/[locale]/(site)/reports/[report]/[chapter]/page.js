@@ -169,6 +169,7 @@ export default async function ReportChapterPage({ params }) {
           <div className="flex-1 min-w-0 max-w-4xl mx-auto">
             <Breadcrumb
               locale={locale}
+              listClassName="p-0"
               items={[
                 {
                   label: reportTitle,
