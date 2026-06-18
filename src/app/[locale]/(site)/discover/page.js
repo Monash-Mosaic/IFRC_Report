@@ -18,7 +18,7 @@ export default async function EngagementPage({ params }) {
 
   return (
     <div className="bg-white text-black min-h-screen">
-      <section className="max-w-6xl mx-auto px-4 pt-4">
+      <section className="max-w-6xl mx-auto px-4">
         <Breadcrumb locale={locale} items={[{ label: t('breadcrumbCurrent') }]} />
       </section>
       <DiscoverHero />
