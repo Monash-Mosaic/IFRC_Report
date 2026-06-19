@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/react';
+import Link from 'next/link';
 import { sendGTMEvent } from '@next/third-parties/google';
 import SearchAnalyticsEvents from '@/components/SearchAnalyticsEvents';
 
@@ -38,7 +39,7 @@ describe('SearchAnalyticsEvents', () => {
     render(
       <>
         <SearchAnalyticsEvents locale="en" query="aid" resultCount={1} items={[]} />
-        <a
+        <Link
           href="/reports/ch1"
           data-search-result="true"
           data-result-href="/reports/ch1"
@@ -46,7 +47,7 @@ describe('SearchAnalyticsEvents', () => {
           data-result-index="0"
         >
           Chapter 1
-        </a>
+        </Link>
       </>
     );
 

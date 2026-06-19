@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/react';
+import Link from 'next/link';
 import OutboundLinkTracker from '@/components/OutboundLinkTracker';
 
 const trackOutboundClick = jest.fn();
@@ -43,7 +44,7 @@ describe('OutboundLinkTracker', () => {
       <>
         <OutboundLinkTracker />
         <header>
-          <a href="/discover">Discover</a>
+          <Link href="/discover">Discover</Link>
         </header>
       </>
     );
