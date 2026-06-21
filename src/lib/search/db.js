@@ -26,7 +26,7 @@ function normalizeNamespace(value) {
 function createFieldEncoder(locale, field) {
   // Keep current English behavior for excerpt scoring.
   if (locale === 'en' && field === 'excerpt') {
-    return new Encoder(Charset.LatinSoundex, { filter: stopword });
+    return new Encoder(Charset.LatinAdvanced, { filter: stopword });
   }
 
   // Chinese requires CJK token split support.
