@@ -454,6 +454,23 @@ describe('CustomComponents async components', () => {
     expect(screen.getByText('aims')).toBeInTheDocument();
     expect(screen.getByText('Aim Text')).toBeInTheDocument();
   });
+
+  it('renders AsksAims with Asks and Aims children', async () => {
+    const asksElement = await Asks({ children: 'Ask Text' });
+    const aimsElement = await Aims({ children: 'Aim Text' });
+
+    render(
+      <AsksAims>
+        {asksElement}
+        {aimsElement}
+      </AsksAims>
+    );
+
+    expect(screen.getByText('asks')).toBeInTheDocument();
+    expect(screen.getByText('Ask Text')).toBeInTheDocument();
+    expect(screen.getByText('aims')).toBeInTheDocument();
+    expect(screen.getByText('Aim Text')).toBeInTheDocument();
+  });
 });
 
 describe('CustomComponents default export', () => {
