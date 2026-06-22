@@ -113,7 +113,7 @@ export default async function ReportChapterPage({ params }) {
   const toAbsolute = (path) => (path.startsWith('http') ? path : `${baseUrl}${path}`);
   setRequestLocale(locale);
   const reportData = reportsByLocale[locale].reports[decodedReport];
-  const { chapters, title: reportTile, description, author, releaseDate } = reportData;
+  const { chapters, title: reportTitle, description, author, releaseDate } = reportData;
   const {
     component: Chapter,
     title: chapterTitle,
@@ -134,7 +134,7 @@ export default async function ReportChapterPage({ params }) {
     author: author ? { '@type': 'Organization', name: author } : undefined,
     isPartOf: {
       '@type': 'Report',
-      name: reportTile,
+      name: reportTitle,
       description,
       url: toAbsolute(getPathname({ locale, href: `/reports/${decodedReport}` })),
     },
@@ -169,9 +169,10 @@ export default async function ReportChapterPage({ params }) {
           <div className="flex-1 min-w-0 max-w-4xl mx-auto">
             <Breadcrumb
               locale={locale}
+              listClassName="p-0"
               items={[
                 {
-                  label: reportTile,
+                  label: reportTitle,
                   href: {
                     pathname: '/reports/[report]',
                     params: {
@@ -182,11 +183,11 @@ export default async function ReportChapterPage({ params }) {
                 { label: chapterPrefix },
               ]}
             />
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-black mb-6">{reportTile}</h1>
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-black mb-6 text-end">{reportTitle}</h1>
             </div>
 
-            <div className="mb-8 text-black text-5xl font-extrabold text-right">{chapterTitle}</div>
+            <div className="mb-8 text-black text-5xl font-extrabold text-end">{chapterTitle}</div>
 
             <div className="mb-8 text-black text-3xl font-bold">{chapterSubTitle}</div>
 

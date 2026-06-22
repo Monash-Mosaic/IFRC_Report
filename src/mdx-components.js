@@ -7,12 +7,12 @@ import Image from 'next/image';
  * @type {import('mdx/types').MDXComponents}
  */
 const components = {
-  h1: (props) => <h1 className="font-bold text-4xl" {...props} />,
-  h2: (props) => <h2 className="font-bold text-3xl" {...props} />,
-  h3: (props) => <h3 className="font-bold text-2xl" {...props} />,
-  h4: (props) => <h4 className="font-bold text-xl" {...props} />,
-  h5: (props) => <h5 {...props} />,
-  h6: (props) => <h6 {...props} />,
+  h1: (props) => <h1 className="font-bold text-4xl text-balance" {...props} />,
+  h2: (props) => <h2 className="font-bold text-3xl text-balance" {...props} />,
+  h3: (props) => <h3 className="font-bold text-2xl text-balance" {...props} />,
+  h4: (props) => <h4 className="font-bold text-xl text-balance" {...props} />,
+  h5: (props) => <h5 className="text-balance" {...props} />,
+  h6: (props) => <h6 className="text-balance" {...props} />,
   p: (props) => <p {...props} />,
   // a: (props) => <a {...props} />,
   ul: (props) => (
