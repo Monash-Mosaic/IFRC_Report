@@ -583,7 +583,7 @@ export function ChapterImage({
 }
 
 export function EndnotesLink({ children, ...props }) {
-  const linkClass = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+  const linkClass = 'underline decoration-blue-600 wrap-break-word break-all text-black';
   const childArray = React.Children.toArray(children);
   const anchorChild = childArray.find(
     (child) => React.isValidElement(child) && child.type === 'a'
