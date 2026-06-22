@@ -132,7 +132,7 @@ export function SmallQuote({ children, ...props }) {
 export function SmallQuoteAuthor({ children, ...props }) {
   return (
     <div
-      className="ml-12 text-start font-extralight border-t-2 border-[#ee2435]"
+      className="ms-12 text-start font-extralight border-t-2 border-[#ee2435]"
       {...props}
     >
       {children}
