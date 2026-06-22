@@ -477,7 +477,7 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
         return (
           <div key={index} className="grid grid-cols-[5%_95%] w-full h-auto">
             <div className="[border-inline-end:1px_solid_#ee2435]" />
-            <div className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem]">
+            <div className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem] font-light">
               {chunk}
             </div>
           </div>
