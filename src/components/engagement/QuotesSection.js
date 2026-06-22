@@ -5,36 +5,10 @@ import { QuoteIcon } from 'lucide-react';
 import QuoteTile from '@/components/engagement/QuoteTile';
 import QuotesPagination from '@/components/engagement/QuotesPagination';
 import { parseTags } from '@/lib/quoteHarmIcons';
-import {
-  TAG_COLUMN_MAP as TAG_COLUMN_MAP_FR,
-  CHAPTER_TITLES as CHAPTER_TITLES_FR,
-} from '@/reports/fr/engagement';
+import { TAG_COLUMN_MAP } from '@/reports/en/engagement';
+import { TAG_COLUMN_MAP as TAG_COLUMN_MAP_FR } from '@/reports/fr/engagement';
 
 const TILES_PER_PAGE = 3;
-
-import {
-  TAG_COLUMN_MAP as TAG_COLUMN_MAP_FR,
-  CHAPTER_TITLES as CHAPTER_TITLES_FR,
-} from '@/reports/fr/engagement';
-
-  programme:             { column: 'operational', label: 'Programme effectiveness and accountability' },
-  distorted_needs:       { column: 'operational', label: 'Distorted needs and demand signals' },
-  safety:                { column: 'operational', label: 'Safety and security of staff and volunteers' },
-  access_constraints:    { column: 'operational', label: 'Access constraints and acceptance risks' },
-
-  prebunking:            { column: 'response',    label: 'Prebunking and narrative resilience' },
-  debunking:             { column: 'response',    label: 'Debunking and corrective communication' },
-  trusted_messenger:     { column: 'response',    label: 'Trusted messengers and local intermediaries' },
-  community_engagement:  { column: 'response',    label: 'Community engagement and accountability' },
-  rumour_tracking:       { column: 'response',    label: 'Rumour tracking and early warning' },
-  information_aid:       { column: 'response',    label: 'Information as aid' },
-  partnership:           { column: 'response',    label: 'Partnership and coordination' },
-
-  principles:            { column: 'governance',  label: 'Humanitarian principles and neutrality' },
-  regulation:            { column: 'governance',  label: 'Regulation and public policy frameworks' },
-  freedom:               { column: 'governance',  label: 'Freedom of expression and information rights' },
-  technology_governance: { column: 'governance',  label: 'Technology governance and platform accountability' },
-};
 
 /** Parse TSV (tab-separated) so commas in descriptions don't break parsing. */
 function parseTSV(text) {
