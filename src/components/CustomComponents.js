@@ -10,7 +10,7 @@ import {
   Social,
   Societal,
 } from '@/components/icons/toh';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Tooltip from './Tooltip';
 import Image from 'next/image';
 
@@ -111,18 +111,28 @@ export function SideNote({ children, ...props }) {
   );
 }
 
-export function SmallQuote({ children, ...props }) {
+export async function SmallQuote({ children, ...props }) {
+  const locale = await getLocale();
+  const isFrench = locale === 'fr';
+
   return (
     <blockquote
       className="font-[var(--font-bespoke-serif)] my-4 text-2xl font-extrabold"
       {...props}
     >
-      <div className="flex items-start gap-4">
-        <Quote
-          className="w-8 h-8 shrink-0 rotate-180 text-[#ee2435]"
-          strokeWidth={2}
-          fill="#ee2435"
-        />
+      <div className="flex items-start gap-8">
+        {isFrench ? (
+          <span className="shrink-0 text-[#ee2435] text-7xl font-bold leading-none relative -top-6">
+            «
+          </span>
+        ) : (
+          <Quote
+            className="w-8 h-8 shrink-0 rotate-180 text-[#ee2435]"
+            strokeWidth={2}
+            fill="#ee2435"
+          />
+        )}
+
         <span>{children}</span>
       </div>
     </blockquote>
