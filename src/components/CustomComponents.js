@@ -111,9 +111,8 @@ export function SideNote({ children, ...props }) {
   );
 }
 
-export async function SmallQuote({ children, ...props }) {
-  const locale = await getLocale();
-  const isFrench = locale === 'fr';
+export function SmallQuote({ children, variant = 'default', ...props }) {
+  const isFrench = variant === 'fr';
 
   return (
     <blockquote
@@ -122,9 +121,7 @@ export async function SmallQuote({ children, ...props }) {
     >
       <div className="flex items-start gap-8">
         {isFrench ? (
-          <span className="shrink-0 text-[#ee2435] text-7xl font-bold leading-none relative -top-6">
-            «
-          </span>
+          <span className="shrink-0 text-[#ee2435] text-[5.5rem] font-black leading-[0.75] relative -top-5 tracking-[-0.18em]">«</span>
         ) : (
           <Quote
             className="w-8 h-8 shrink-0 rotate-180 text-[#ee2435]"
