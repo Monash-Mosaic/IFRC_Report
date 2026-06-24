@@ -317,5 +317,12 @@
     "psychological": "Психологический",
     "social": "Социальный",
     "informational": "Информационный"
+  },
+  "ChapterPrefix": {
+    "synthesis": "Synthesis",
+    "acronyms": "Acronyms",
+    "introduction": "Introduction",
+    "chapter": "Chapter",
+    "annex": "Annex"
   }
 }
