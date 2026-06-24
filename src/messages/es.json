@@ -317,5 +317,12 @@
     "disasters": "sobre Desastres",
     "reportTitle": "Informe",
     "year": "2026"
+  },
+  "ChapterPrefix": {
+    "synthesis": "Synthesis",
+    "acronyms": "Acronyms",
+    "introduction": "Introduction",
+    "chapter": "Chapter",
+    "annex": "Annex"
   }
 }

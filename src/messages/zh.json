@@ -317,5 +317,12 @@
     "psychological": "心理",
     "social": "社交",
     "informational": "信息"
+  },
+  "ChapterPrefix": {
+    "synthesis": "Synthesis",
+    "acronyms": "Acronyms",
+    "introduction": "Introduction",
+    "chapter": "Chapter",
+    "annex": "Annex"
   }
 }

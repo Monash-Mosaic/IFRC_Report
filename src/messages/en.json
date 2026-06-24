@@ -338,5 +338,12 @@
     "psychological": "Psychological",
     "social": "Social",
     "informational": "Informational"
+  },
+  "ChapterPrefix": {
+    "synthesis": "Synthesis",
+    "acronyms": "Acronyms",
+    "introduction": "Introduction",
+    "chapter": "Chapter",
+    "annex": "Annex"
   }
 }
