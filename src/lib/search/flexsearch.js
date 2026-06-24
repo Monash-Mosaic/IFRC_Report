@@ -47,10 +47,53 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
     clip: false,
   });
 
-  return results.map((result) => ({
+  const sortedResults = sortByChapterPrefix(results);
+
+  return sortedResults.map((result) => ({
     id: result.doc.id,
     title: `${result.doc.chapterPrefix} > ${result.doc.title}`,
     highlight: result.highlight,
     href: result.doc.href,
   }));
+}
+
+// Sort results by chapterPrefix in the order: Synthesis > Acronyms > Introduction > Chapter > Annex
+const sortByChapterPrefix = (results) => {
+  return results.sort((a, b) => {
+    const prefixA = a.doc.chapterPrefix;
+    const prefixB = b.doc.chapterPrefix;
+
+    const orderMap = {
+      'Synthesis': 0,
+      'Acronyms': 1,
+      'Introduction': 2,
+    };
+
+    const getSortKey = (prefix) => {
+      if (prefix in orderMap) {
+        return { priority: orderMap[prefix], number: 0 };
+      }
+
+      const chapterMatch = prefix.match(/^Chapter\s+(\d+)$/);
+      if (chapterMatch) {
+        return { priority: 3, number: parseInt(chapterMatch[1], 10) };
+      }
+
+      const annexMatch = prefix.match(/^Annex\s+(\d+)$/);
+      if (annexMatch) {
+        return { priority: 4, number: parseInt(annexMatch[1], 10) };
+      }
+
+      return { priority: 99, number: 0 };
+    };
+
+    const sortKeyA = getSortKey(prefixA);
+    const sortKeyB = getSortKey(prefixB);
+
+    if (sortKeyA.priority !== sortKeyB.priority) {
+      return sortKeyA.priority - sortKeyB.priority;
+    }
+
+    return sortKeyA.number - sortKeyB.number;
+  });
 }
