@@ -98,13 +98,15 @@ export async function createSearchIndex(locale, options) {
       field: [
         {
           field: 'title',
-          tokenize: 'forward',
-          encoder: createFieldEncoder(locale, 'title'),
+          tokenize: 'strict',
+          // encoder: createFieldEncoder(locale, 'title'),
+          encoder: Charset.Normalized,
         },
         {
           field: 'excerpt',
-          tokenize: 'forward',
-          encoder: createFieldEncoder(locale, 'excerpt'),
+          tokenize: 'strict',
+          // encoder: createFieldEncoder(locale, 'excerpt'),
+          encoder: Charset.Normalized,
           context: true,
         },
       ],
