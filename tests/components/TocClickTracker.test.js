@@ -17,6 +17,18 @@ describe('TocClickTracker', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
+  it('ignores clicks outside the table of contents', () => {
+    render(
+      <>
+        <TocClickTracker />
+        <a href="#elsewhere">Elsewhere</a>
+      </>
+    );
+
+    fireEvent.click(screen.getByRole('link', { name: 'Elsewhere' }));
+    expect(trackTocClick).not.toHaveBeenCalled();
+  });
+
   it('tracks table of contents anchor clicks', () => {
     render(
       <>

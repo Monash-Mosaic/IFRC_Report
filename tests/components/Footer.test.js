@@ -72,7 +72,7 @@ jest.mock('@/reports', () => ({
             url: 'https://example.com/download.pdf',
           },
           chapters: {
-            'synthesis': {
+            'synthesis-en': {
               downloadLink: 'https://example.com/download.pdf',
             },
           },
@@ -358,6 +358,32 @@ describe('Footer', () => {
       await renderFooter();
       expect(screen.getByText('Disinformer')).toBeVisible();
       expect(screen.getByText('Read Report')).toBeVisible();
+    });
+  });
+
+  describe('Download link fallback', () => {
+    it('uses chapter download link when report file url is missing', async () => {
+      const { reportsByLocale } = require('@/reports');
+      reportsByLocale.en.reports.wdr26.reportFile = undefined;
+      reportsByLocale.en.reports.wdr26.chapters = {
+        'synthesis-en': { downloadLink: mockDownloadLink },
+      };
+
+      await renderFooter();
+
+      const downloadEl = screen.getByText('Download Report');
+      expect(downloadEl.closest('a')).toHaveAttribute('href', mockDownloadLink);
+    });
+
+    it('falls back to hash when no download url is available', async () => {
+      const { reportsByLocale } = require('@/reports');
+      reportsByLocale.en.reports.wdr26.reportFile = undefined;
+      reportsByLocale.en.reports.wdr26.chapters = {};
+
+      await renderFooter();
+
+      const downloadEl = screen.getByText('Download Report');
+      expect(downloadEl.closest('a')).toHaveAttribute('href', '#');
     });
   });
 

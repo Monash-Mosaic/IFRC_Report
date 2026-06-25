@@ -47,4 +47,31 @@ describe('gtm tracking helpers', () => {
 
     expect(sendGAEvent).toHaveBeenCalledTimes(8);
   });
+
+  it('applies default empty values for optional tracking fields', () => {
+    trackShare({ platform: 'web', url: '/share' });
+    trackTextHighlight({ url: '/chapter', color: 'yellow' });
+    trackPdfDownload({ url: '/file.pdf' });
+    trackTocClick({ chapterUrl: '/chapter' });
+
+    expect(sendGAEvent).toHaveBeenCalledWith('event', 'share', {
+      platform_name: 'web',
+      share_url: '/share',
+      shared_text: '',
+    });
+    expect(sendGAEvent).toHaveBeenCalledWith('event', 'text_highlight', {
+      highlight_text: '',
+      highlight_url: '/chapter',
+      highlight_color: 'yellow',
+    });
+    expect(sendGAEvent).toHaveBeenCalledWith('event', 'file_download', {
+      file_url: '/file.pdf',
+      chapter: '',
+      language: '',
+    });
+    expect(sendGAEvent).toHaveBeenCalledWith('event', 'toc_click', {
+      heading_text: '',
+      chapter_url: '/chapter',
+    });
+  });
 });
