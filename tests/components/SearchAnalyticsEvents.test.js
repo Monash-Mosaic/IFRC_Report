@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import Link from 'next/link';
 import { sendGTMEvent } from '@next/third-parties/google';
 import SearchAnalyticsEvents from '@/components/SearchAnalyticsEvents';
@@ -32,6 +32,30 @@ describe('SearchAnalyticsEvents', () => {
         search_term: 'climate',
         results_count: 1,
       })
+    );
+  });
+
+  it('does not track duplicate search events for the same query payload', () => {
+    const items = [{ item_id: 'result-1', item_name: 'Result 1', index: 0 }];
+
+    const props = { locale: 'en', query: 'climate', resultCount: 1, items };
+    const { rerender } = render(<SearchAnalyticsEvents {...props} />);
+    rerender(<SearchAnalyticsEvents {...props} />);
+
+    expect(sendGTMEvent).toHaveBeenCalledTimes(2);
+  });
+
+  it('ignores clicks that are not on search result links', () => {
+    render(
+      <>
+        <SearchAnalyticsEvents locale="en" query="aid" resultCount={1} items={[]} />
+        <button type="button">Not a result</button>
+      </>
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+    expect(sendGTMEvent).not.toHaveBeenCalledWith(
+      expect.objectContaining({ event: 'select_item' })
     );
   });
 

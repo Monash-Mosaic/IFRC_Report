@@ -21,6 +21,19 @@ describe('OutboundLinkTracker', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
+  it('ignores clicks that are not links', () => {
+    render(
+      <>
+        <OutboundLinkTracker />
+        <button type="button">Not a link</button>
+      </>
+    );
+
+    fireEvent.click(document.querySelector('button'));
+    expect(trackOutboundClick).not.toHaveBeenCalled();
+    expect(trackNavClick).not.toHaveBeenCalled();
+  });
+
   it('tracks external link clicks', () => {
     render(
       <>

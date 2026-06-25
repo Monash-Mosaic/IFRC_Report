@@ -21,6 +21,31 @@ describe('ScrollDepthTracker', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
+  it('does not track when document has no scrollable height', () => {
+    Object.defineProperty(document.documentElement, 'scrollHeight', { value: 1000, configurable: true });
+    Object.defineProperty(window, 'innerHeight', { value: 1000, configurable: true });
+
+    render(<ScrollDepthTracker />);
+
+    act(() => {
+      window.dispatchEvent(new Event('scroll'));
+    });
+
+    expect(trackScrollDepth).not.toHaveBeenCalled();
+  });
+
+  it('uses documentElement.scrollTop when scrollY is unavailable', () => {
+    render(<ScrollDepthTracker />);
+
+    act(() => {
+      Object.defineProperty(window, 'scrollY', { value: undefined, configurable: true });
+      Object.defineProperty(document.documentElement, 'scrollTop', { value: 900, configurable: true });
+      window.dispatchEvent(new Event('scroll'));
+    });
+
+    expect(trackScrollDepth).toHaveBeenCalledWith({ depth: 90, url: expect.any(String) });
+  });
+
   it('tracks scroll depth thresholds', () => {
     render(<ScrollDepthTracker />);
 
