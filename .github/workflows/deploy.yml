@@ -76,7 +76,7 @@ jobs:
             core.setOutput('version_id', versionId);
 
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ steps.version.outputs.tag }}
 
