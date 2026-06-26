@@ -1,6 +1,8 @@
 import { Document, Charset, Encoder } from 'flexsearch';
+import EnglishPreset from "flexsearch/lang/en";
+import FrenchPreset from "flexsearch/lang/fr";
+
 import Database from './d1-database.js';
-import stopword from 'stopwords-en';
 
 const LOCALES = new Set(['ar', 'en', 'es', 'fr', 'ru', 'zh']);
 
@@ -23,31 +25,16 @@ function normalizeNamespace(value) {
   return normalized || null;
 }
 
-function createFieldEncoder(locale, field) {
-  // Keep current English behavior for excerpt scoring.
-  if (locale === 'en' && field === 'excerpt') {
-    return new Encoder(Charset.LatinAdvanced, { filter: stopword });
+function createFieldEncoder(locale) {
+  switch (locale) {
+    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset);
+    case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset);
+    case 'es': return new Encoder(Charset.LatinBalance);
+    case 'zh': return new Encoder(Charset.CJK);
+    case 'ar': return new Encoder(Charset.Normalize).assign({ rtl: true });
+    case 'ru':
+    default:   return new Encoder(Charset.Normalize); // unicode-normalize + lowercase
   }
-
-  // Chinese requires CJK token split support.
-  if (locale === 'zh') {
-    return Charset.CJK;
-  }
-
-  // Arabic and Cyrillic scripts rely on normalized unicode matching.
-  if (locale === 'ar') {
-    return {
-      ...Charset.Default,
-      rtl: true,
-    };
-  }
-
-  if (locale === 'ru') {
-    return Charset.Default;
-  }
-
-  // Romance languages and English use latin-focused encoders.
-  return Charset.LatinAdvanced;
 }
 
 function normalizeOptions(options) {
@@ -98,16 +85,15 @@ export async function createSearchIndex(locale, options) {
       field: [
         {
           field: 'title',
-          tokenize: 'strict',
-          // encoder: createFieldEncoder(locale, 'title'),
-          encoder: Charset.Normalized,
+          tokenize: locale === 'zh' ? 'strict' : 'forward',
+          context: locale === 'zh',
+          encoder: createFieldEncoder(locale)
         },
         {
           field: 'excerpt',
-          tokenize: 'strict',
-          // encoder: createFieldEncoder(locale, 'excerpt'),
-          encoder: Charset.Normalized,
-          context: true,
+          tokenize: locale === 'zh' ? 'strict' : 'forward',
+          encoder: createFieldEncoder(locale),
+          context: locale === 'zh',
         },
       ],
     },
