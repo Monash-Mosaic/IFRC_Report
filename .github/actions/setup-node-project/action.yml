@@ -1,5 +1,5 @@
 name: Setup Node.js project
-description: Checkout, setup Node.js 22 with npm cache, and install dependencies
+description: Checkout, setup Node.js 22 with npm cache, install dependencies, and restore build caches
 
 inputs:
   lfs:
@@ -10,6 +10,10 @@ inputs:
     description: Optional git ref to checkout (defaults to the triggering ref)
     required: false
     default: ''
+  skip-install:
+    description: Skip npm ci when node_modules cache was restored
+    required: false
+    default: 'false'
 
 runs:
   using: composite
@@ -26,7 +30,33 @@ runs:
         node-version: 22
         cache: npm
 
+    - name: Restore node_modules cache
+      id: node-modules-cache
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          node-modules-${{ runner.os }}-
+
+    - name: Restore Next.js cache
+      uses: actions/cache@v4
+      with:
+        path: .next/cache
+        key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          next-${{ runner.os }}-
+
+    - name: Restore Jest cache
+      uses: actions/cache@v4
+      with:
+        path: node_modules/.cache/jest
+        key: jest-${{ runner.os }}-${{ hashFiles('package-lock.json', 'jest.config.js') }}
+        restore-keys: |
+          jest-${{ runner.os }}-
+
     - name: Install dependencies
+      if: inputs.skip-install != 'true' || steps.node-modules-cache.outputs.cache-hit != 'true'
       shell: bash
       run: |
         if [ "${{ github.actor }}" = "dependabot[bot]" ]; then

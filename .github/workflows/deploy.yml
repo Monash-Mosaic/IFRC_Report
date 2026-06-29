@@ -94,7 +94,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           VERSION_ID: ${{ steps.version.outputs.version_id }}
-        run: npx --yes wrangler@4 versions deploy -y "$VERSION_ID"
+        run: npx wrangler versions deploy -y "$VERSION_ID"
 
       - name: Purge Cloudflare CDN cache
         if: ${{ vars.CLOUDFLARE_ZONE_ID != '' }}

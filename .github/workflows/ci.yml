@@ -3,8 +3,36 @@ name: CI
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'jest.config.js'
+      - 'jest.setup.js'
+      - 'next.config.*'
+      - 'open-next.config.*'
+      - 'wrangler.jsonc'
+      - 'eslint.config.*'
+      - '.github/**'
   push:
     branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'jest.config.js'
+      - 'jest.setup.js'
+      - 'next.config.*'
+      - 'open-next.config.*'
+      - 'wrangler.jsonc'
+      - 'eslint.config.*'
+      - '.github/**'
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -54,52 +82,36 @@ jobs:
         --severity=CRITICAL
         ./
 
-  base_coverage:
-    if: github.event_name == 'pull_request'
+  install:
     runs-on: ubuntu-latest
-    needs: dependency_review
     steps:
       - name: Setup Node.js project
         uses: ./.github/actions/setup-node-project
         with:
           lfs: 'true'
-          ref: ${{ github.event.pull_request.base.sha }}
 
-      - name: Collect base branch coverage
-        run: npm run ci:test
-
-      - name: Upload base coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: base-coverage-report
-          path: report.json
-          retention-days: 1
-
-  security_gates:
+  lint:
     runs-on: ubuntu-latest
-    needs:
-      - dependency_review
-      - osv_scan_pr
-      - osv_scan_main
-    if: >-
-      always() &&
-      !cancelled() &&
-      needs.dependency_review.result == 'success' &&
-      (needs.osv_scan_pr.result == 'success' || needs.osv_scan_pr.result == 'skipped') &&
-      (needs.osv_scan_main.result == 'success' || needs.osv_scan_main.result == 'skipped')
-    permissions:
-      checks: write
-      pull-requests: write
-      contents: write
-
+    needs: install
     steps:
       - name: Setup Node.js project
         uses: ./.github/actions/setup-node-project
         with:
           lfs: 'true'
+          skip-install: 'true'
 
       - name: Lint
         run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Setup Node.js project
+        uses: ./.github/actions/setup-node-project
+        with:
+          lfs: 'true'
+          skip-install: 'true'
 
       - name: Test
         id: test
@@ -128,19 +140,79 @@ jobs:
             junit.xml
           retention-days: 7
 
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Setup Node.js project
+        uses: ./.github/actions/setup-node-project
+        with:
+          lfs: 'true'
+          skip-install: 'true'
+
       - name: Build
-        if: steps.test.outcome == 'success'
         run: npm run ci:build
+
+      - name: Save Next.js cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .next/cache
+          key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+  base_coverage:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Setup Node.js project
+        uses: ./.github/actions/setup-node-project
+        with:
+          lfs: 'true'
+          ref: ${{ github.event.pull_request.base.sha }}
+          skip-install: 'true'
+
+      - name: Collect base branch coverage
+        run: npm run ci:test
+
+      - name: Upload base coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: base-coverage-report
+          path: report.json
+          retention-days: 1
+
+  security_gates:
+    runs-on: ubuntu-latest
+    needs:
+      - dependency_review
+      - osv_scan_pr
+      - osv_scan_main
+      - lint
+      - test
+      - build
+    if: >-
+      always() &&
+      !cancelled() &&
+      needs.dependency_review.result == 'success' &&
+      (needs.osv_scan_pr.result == 'success' || needs.osv_scan_pr.result == 'skipped') &&
+      (needs.osv_scan_main.result == 'success' || needs.osv_scan_main.result == 'skipped') &&
+      needs.lint.result == 'success' &&
+      needs.test.result == 'success' &&
+      needs.build.result == 'success'
+    steps:
+      - name: All security gates passed
+        run: echo "lint, test, build, dependency review, and OSV scan succeeded."
 
   coverage_report:
     if: >-
       always() &&
       !cancelled() &&
       github.event_name == 'pull_request' &&
-      (needs.security_gates.result == 'success' || needs.security_gates.result == 'failure')
+      (needs.test.result == 'success' || needs.test.result == 'failure')
     runs-on: ubuntu-latest
     needs:
-      - security_gates
+      - test
       - base_coverage
     permissions:
       checks: write
@@ -230,3 +302,27 @@ jobs:
           name: pr-quality-report
           path: pr-quality-comment.md
           retention-days: 7
+
+  ci_summary:
+    runs-on: ubuntu-latest
+    needs:
+      - security_gates
+      - coverage_report
+    if: always()
+    steps:
+      - name: Write CI timing summary
+        env:
+          START_TIME: ${{ github.event.pull_request.updated_at || github.event.head_commit.timestamp }}
+        run: |
+          END_EPOCH=$(date +%s)
+          echo "## CI timing" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Workflow completed at $(date -u '+%Y-%m-%d %H:%M:%S UTC')." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Job | Result |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| --- | --- |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| lint | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| test | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| build | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| security_gates | ${{ needs.security_gates.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| coverage_report | ${{ needs.coverage_report.result }} |" >> "$GITHUB_STEP_SUMMARY"
