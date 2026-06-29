@@ -7,25 +7,20 @@ on:
 permissions:
   contents: write # Required to edit releases
 
+concurrency:
+  group: staging-${{ github.event.release.tag_name }}
+  cancel-in-progress: true
+
 jobs:
   deploy_staging:
     runs-on: ubuntu-latest
     environment: production
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      - name: Setup Node.js project
+        uses: ./.github/actions/setup-node-project
         with:
-          lfs: true
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
+          lfs: 'true'
 
       - name: Inject D1 database IDs into Wrangler config
         env:

@@ -8,6 +8,10 @@ on:
         required: false
         type: string
 
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy_production:
     runs-on: ubuntu-latest
