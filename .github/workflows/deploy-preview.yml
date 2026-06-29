@@ -155,17 +155,17 @@ jobs:
           if [ -n "$COMMENT_SOURCE" ]; then
             INPUT_PATH="$COMMENT_SOURCE" OUTPUT_PATH=pr-quality-comment.md node scripts/ci/patch-pr-status-deploy.mjs
           else
-            cat > pr-quality-comment.md <<'EOF'
-<!-- pr-quality-report -->
-## PR Quality Report
-
-| Category | Status |
-| --- | --- |
-| Tests | — |
-| Coverage | — |
-| Preview Deployment | ⏳ Deploying… |
-| Worker Version | _pending deploy_ |
-EOF
+            {
+              echo '<!-- pr-quality-report -->'
+              echo '## PR Quality Report'
+              echo ''
+              echo '| Category | Status |'
+              echo '| --- | --- |'
+              echo '| Tests | — |'
+              echo '| Coverage | — |'
+              echo '| Preview Deployment | ⏳ Deploying… |'
+              echo '| Worker Version | _pending deploy_ |'
+            } > pr-quality-comment.md
             INPUT_PATH=pr-quality-comment.md OUTPUT_PATH=pr-quality-comment.md node scripts/ci/patch-pr-status-deploy.mjs
           fi
 
