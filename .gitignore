@@ -52,3 +52,4 @@ pnpm-lock.yaml
 
 # test reports
 report.json
+junit.xml

@@ -115,26 +115,54 @@ jobs:
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
           npx --yes wrangler@4 versions deploy -y "$VERSION_ID"
 
-      - name: Comment preview URL on PR
+      - name: Download CI PR quality report
         if: ${{ steps.ctx.outputs.is_pr == 'true' }}
-        uses: actions/github-script@v8
+        continue-on-error: true
+        uses: actions/download-artifact@v4
         with:
-          script: |
-            const prNumber = Number('${{ steps.ctx.outputs.pr_number }}');
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const versionId = `${{ steps.deploy.outputs.version_id }}`;
-            const previewUrl = `${{ steps.deploy.outputs.preview_url }}`;
-            const branchPreviewUrl = `${{ steps.deploy.outputs.branch_preview_url }}`;
-            const marker = '<!-- preview-url -->';
-            const body = `${marker}\n| Key | Value |\n|---|---|\n| Cloudflare Worker Version ID | ${versionId} |\n| Preview URL | ${previewUrl} |\n| Branch Preview URL | ${branchPreviewUrl} |`;
+          name: pr-quality-report
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-            await github.rest.issues.createComment({
-              owner,
-              repo,
-              issue_number: prNumber,
-              body,
-            });
+      - name: Update PR quality report with deployment
+        if: ${{ steps.ctx.outputs.is_pr == 'true' }}
+        env:
+          DEPLOY_STATUS: ${{ job.status == 'success' && 'success' || 'failed' }}
+          PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
+          BRANCH_PREVIEW_URL: ${{ steps.deploy.outputs.branch_preview_url }}
+          WORKER_VERSION_ID: ${{ steps.deploy.outputs.version_id }}
+        run: |
+          COMMENT_SOURCE=""
+          for candidate in pr-quality-comment.md pr-quality-report/pr-quality-comment.md; do
+            if [ -f "$candidate" ]; then
+              COMMENT_SOURCE="$candidate"
+              break
+            fi
+          done
+
+          if [ -n "$COMMENT_SOURCE" ]; then
+            INPUT_PATH="$COMMENT_SOURCE" OUTPUT_PATH=pr-quality-comment.md node scripts/ci/patch-pr-status-deploy.mjs
+          else
+            cat > pr-quality-comment.md <<'EOF'
+<!-- pr-quality-report -->
+## PR Quality Report
+
+| Category | Status |
+| --- | --- |
+| Tests | — |
+| Coverage | — |
+| Preview Deployment | ⏳ Deploying… |
+| Worker Version | _pending deploy_ |
+EOF
+            INPUT_PATH=pr-quality-comment.md OUTPUT_PATH=pr-quality-comment.md node scripts/ci/patch-pr-status-deploy.mjs
+          fi
+
+      - name: Post unified PR quality report
+        if: ${{ steps.ctx.outputs.is_pr == 'true' && hashFiles('pr-quality-comment.md') != '' }}
+        uses: marocchino/sticky-pull-request-comment@v3
+        with:
+          header: pr-quality-report
+          path: pr-quality-comment.md
 
       - name: Update deployment status
         if: ${{ always() }}

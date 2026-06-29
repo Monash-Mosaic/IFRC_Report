@@ -29,9 +29,64 @@ jobs:
           base-ref: ${{ github.event.pull_request.base.sha || github.event.before }}
           head-ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-  security_gates:
+  osv_scan_pr:
+    if: github.event_name == 'pull_request'
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@v2.3.8
+    with:
+      fail-on-vuln: true
+
+  osv_scan_main:
+    if: github.event_name == 'push'
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.3.8
+    with:
+      fail-on-vuln: true
+      scan-args: |-
+        --recursive
+        --severity=HIGH
+        --severity=CRITICAL
+        ./
+
+  base_coverage:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     needs: dependency_review
+    steps:
+      - name: Setup Node.js project
+        uses: ./.github/actions/setup-node-project
+        with:
+          lfs: 'true'
+          ref: ${{ github.event.pull_request.base.sha }}
+
+      - name: Collect base branch coverage
+        run: npm run ci:test
+
+      - name: Upload base coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: base-coverage-report
+          path: report.json
+          retention-days: 1
+
+  security_gates:
+    runs-on: ubuntu-latest
+    needs:
+      - dependency_review
+      - osv_scan_pr
+      - osv_scan_main
+    if: >-
+      always() &&
+      !cancelled() &&
+      needs.dependency_review.result == 'success' &&
+      (needs.osv_scan_pr.result == 'success' || needs.osv_scan_pr.result == 'skipped') &&
+      (needs.osv_scan_main.result == 'success' || needs.osv_scan_main.result == 'skipped')
     permissions:
       checks: write
       pull-requests: write
@@ -47,24 +102,131 @@ jobs:
         run: npm run lint
 
       - name: Test
+        id: test
         run: npm run ci:test
 
+      - name: Publish test report
+        if: always() && steps.test.outcome != 'skipped'
+        uses: dorny/test-reporter@v2
+        with:
+          name: Jest Tests
+          path: junit.xml
+          reporter: jest-junit
+          fail-on-error: true
+
+      - name: Write test summary
+        if: always() && steps.test.outcome != 'skipped'
+        run: node scripts/ci/write-test-summary.mjs report.json
+
+      - name: Upload test report artifact
+        if: always() && hashFiles('report.json') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: |
+            report.json
+            junit.xml
+          retention-days: 7
+
+      - name: Build
+        if: steps.test.outcome == 'success'
+        run: npm run ci:build
+
+  coverage_report:
+    if: >-
+      always() &&
+      !cancelled() &&
+      github.event_name == 'pull_request' &&
+      (needs.security_gates.result == 'success' || needs.security_gates.result == 'failure')
+    runs-on: ubuntu-latest
+    needs:
+      - security_gates
+      - base_coverage
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: write
+      actions: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          sparse-checkout: |
+            scripts/ci
+
+      - name: Download test report
+        uses: actions/download-artifact@v4
+        with:
+          name: test-report
+
+      - name: Download base coverage report
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: base-coverage-report
+
+      - name: Resolve base coverage file
+        id: base_cov
+        run: |
+          if [ -f base-coverage-report/report.json ]; then
+            echo "path=./base-coverage-report/report.json" >> "$GITHUB_OUTPUT"
+          else
+            echo "path=./report.json" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Collect test coverage
-        if: ${{ success() && github.event_name == 'pull_request' && hashFiles('report.json') != '' }}
+        if: hashFiles('report.json') != ''
         uses: ArtiomTr/jest-coverage-report-action@v2
         id: coverage
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           coverage-file: ./report.json
-          base-coverage-file: ./report.json
+          base-coverage-file: ${{ steps.base_cov.outputs.path }}
           skip-step: all
-          annotations: none
+          annotations: warning
           output: report-markdown
+          pull-request-number: ${{ github.event.pull_request.number }}
 
-      - name: Post coverage comment
-        if: ${{ success() && github.event_name == 'pull_request' && steps.coverage.outputs.report != '' }}
+      - name: Save coverage markdown
+        if: steps.coverage.outputs.report != ''
+        env:
+          REPORT: ${{ steps.coverage.outputs.report }}
+        run: printf '%s\n' "$REPORT" > coverage-markdown.md
+
+      - name: Resolve coverage inputs
+        id: coverage_inputs
+        run: |
+          if [ -f base-coverage-report/report.json ]; then
+            echo "base_report_path=base-coverage-report/report.json" >> "$GITHUB_OUTPUT"
+          else
+            echo "base_report_path=" >> "$GITHUB_OUTPUT"
+          fi
+          if [ -f coverage-markdown.md ]; then
+            echo "coverage_markdown_path=coverage-markdown.md" >> "$GITHUB_OUTPUT"
+          else
+            echo "coverage_markdown_path=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build PR quality report
+        if: hashFiles('report.json') != ''
+        env:
+          JEST_REPORT_PATH: report.json
+          BASE_REPORT_PATH: ${{ steps.coverage_inputs.outputs.base_report_path }}
+          COVERAGE_MARKDOWN_PATH: ${{ steps.coverage_inputs.outputs.coverage_markdown_path }}
+        run: node scripts/ci/build-pr-status-comment.mjs
+
+      - name: Post PR quality report
+        if: hashFiles('pr-quality-comment.md') != ''
         uses: marocchino/sticky-pull-request-comment@v3
         with:
-          message: ${{ steps.coverage.outputs.report }}
+          header: pr-quality-report
+          path: pr-quality-comment.md
 
-      - name: Build
-        run: npm run ci:build
+      - name: Upload PR quality report artifact
+        if: hashFiles('pr-quality-comment.md') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-quality-report
+          path: pr-quality-comment.md
+          retention-days: 7

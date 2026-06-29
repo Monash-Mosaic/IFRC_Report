@@ -19,7 +19,7 @@
     "format": "prettier --write $(git diff --name-only --diff-filter=ACM HEAD | grep -E '\\.(js|jsx|ts|tsx|json|css|md)$')",
     "test": "jest",
     "ci:build": "opennextjs-cloudflare build",
-    "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions --coverage --ci --json --outputFile=report.json --coveragePathIgnorePatterns='/packages/'",
+    "ci:test": "jest --testLocationInResults --ci --coverage --reporters=default --reporters=github-actions --reporters=jest-junit --json --outputFile=report.json --coveragePathIgnorePatterns='/packages/'",
     "test:watch": "jest --watch"
   },
   "workspaces": [
@@ -78,6 +78,7 @@
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
+    "jest-junit": "^17.0.0",
     "prettier": "3.9.1",
     "react-modal": "^3.16.3",
     "schema-dts": "^2.0.0",
