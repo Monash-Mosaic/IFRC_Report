@@ -47,7 +47,11 @@ jobs:
 
       - name: Install dependencies
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: bash scripts/ci/npm-ci.sh
+        run: |
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            npm install --package-lock-only --workspaces --include-workspace-root
+          fi
+          npm ci
 
       - name: Inject D1 database IDs into Wrangler config
         env:

@@ -133,7 +133,11 @@ jobs:
 
       - name: Install dependencies
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: bash scripts/ci/npm-ci.sh
+        run: |
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            npm install --package-lock-only --workspaces --include-workspace-root
+          fi
+          npm ci
 
       - name: Lint
         if: matrix.id == 'lint'
@@ -213,7 +217,11 @@ jobs:
 
       - name: Install dependencies
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: bash scripts/ci/npm-ci.sh
+        run: |
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            npm install --package-lock-only --workspaces --include-workspace-root
+          fi
+          npm ci
 
       - name: Collect base branch coverage
         run: npm run ci:test
@@ -359,3 +367,49 @@ jobs:
           echo "| ci-checks | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| security_gates | ${{ needs.security_gates.result }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| coverage_report | ${{ needs.coverage_report.result }} |" >> "$GITHUB_STEP_SUMMARY"
+
+  deploy_preview:
+    needs:
+      - security_gates
+      - coverage_report
+    if: >-
+      always() &&
+      !cancelled() &&
+      github.event_name == 'pull_request' &&
+      needs.security_gates.result == 'success' &&
+      needs.coverage_report.result != 'skipped'
+    uses: ./.github/workflows/deploy-preview.yml
+    secrets: inherit
+    permissions:
+      actions: read
+      contents: read
+      checks: write
+      statuses: write
+      pull-requests: write
+    with:
+      head_sha: ${{ github.event.pull_request.head.sha }}
+      head_ref: ${{ github.event.pull_request.head.ref }}
+      is_pr: 'true'
+      pr_number: ${{ github.event.pull_request.number }}
+      ci_run_id: ${{ github.run_id }}
+
+  deploy_preview_main:
+    needs:
+      - security_gates
+    if: >-
+      github.event_name == 'push' &&
+      needs.security_gates.result == 'success'
+    uses: ./.github/workflows/deploy-preview.yml
+    secrets: inherit
+    permissions:
+      actions: read
+      contents: read
+      checks: write
+      statuses: write
+      pull-requests: write
+    with:
+      head_sha: ${{ github.sha }}
+      head_ref: main
+      is_pr: 'false'
+      pr_number: ''
+      ci_run_id: ${{ github.run_id }}

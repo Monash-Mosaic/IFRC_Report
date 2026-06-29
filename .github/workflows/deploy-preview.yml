@@ -1,36 +1,27 @@
 name: Deploy to Cloudflare (PR Preview)
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'next.config.*'
-      - 'open-next.config.*'
-      - 'wrangler.jsonc'
-      - '.github/workflows/deploy-preview.yml'
-      - '.github/actions/**'
-  push:
-    branches: [main]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'next.config.*'
-      - 'open-next.config.*'
-      - 'wrangler.jsonc'
-      - '.github/workflows/deploy-preview.yml'
-      - '.github/actions/**'
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
+  workflow_call:
+    inputs:
+      head_sha:
+        required: true
+        type: string
+      head_ref:
+        required: true
+        type: string
+      is_pr:
+        required: true
+        type: string
+      pr_number:
+        required: false
+        type: string
+        default: ''
+      ci_run_id:
+        required: true
+        type: string
 
 concurrency:
-  group: deploy-${{ github.event.pull_request.number || github.event.workflow_run.pull_requests[0].number || github.event.workflow_run.head_branch || github.ref }}
+  group: deploy-${{ inputs.pr_number || inputs.head_ref }}
   cancel-in-progress: true
 
 permissions:
@@ -42,95 +33,17 @@ permissions:
 
 jobs:
   deploy_preview:
-    if: |
-      (github.event_name == 'workflow_run' &&
-        github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.event == 'push' &&
-        github.event.workflow_run.head_branch == 'main') ||
-      github.event_name == 'pull_request' ||
-      (github.event_name == 'push' && github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
     environment: preview
 
     steps:
-      - name: Resolve workflow context
-        id: ctx
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const run = context.payload.workflow_run;
-            const isWorkflowRun = context.eventName === 'workflow_run';
-            const isPR = isWorkflowRun
-              ? run.event === 'pull_request'
-              : context.eventName === 'pull_request';
-            let prNumber = '';
-            let headRef = '';
-            let headSha = '';
-
-            if (isWorkflowRun) {
-              headRef = run.head_branch || 'main';
-              headSha = run.head_sha;
-              if (isPR && run.pull_requests?.length > 0) {
-                prNumber = String(run.pull_requests[0].number);
-              } else if (isPR) {
-                const { data: prs } = await github.rest.pulls.list({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  state: 'open',
-                  head: `${context.repo.owner}:${run.head_branch}`,
-                });
-                if (prs.length > 0) {
-                  prNumber = String(prs[0].number);
-                }
-              }
-            } else if (context.eventName === 'pull_request') {
-              prNumber = String(context.payload.pull_request.number);
-              headRef = context.payload.pull_request.head.ref;
-              headSha = context.payload.pull_request.head.sha;
-            } else {
-              headRef = 'main';
-              headSha = context.sha;
-            }
-
-            core.setOutput('is_pr', isPR ? 'true' : 'false');
-            core.setOutput('pr_number', prNumber);
-            core.setOutput('head_ref', headRef);
-            core.setOutput('head_sha', headSha);
-
-      - name: Wait for CI workflow
-        if: github.event_name == 'pull_request'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          SHA="${{ steps.ctx.outputs.head_sha }}"
-          for attempt in $(seq 1 90); do
-            CONCLUSION=$(gh run list --workflow=ci.yml --commit "$SHA" --json conclusion --jq '.[0].conclusion // empty')
-            STATUS=$(gh run list --workflow=ci.yml --commit "$SHA" --json status --jq '.[0].status // empty')
-
-            if [ "$CONCLUSION" = "success" ]; then
-              echo "CI succeeded for ${SHA}"
-              exit 0
-            fi
-
-            if [ "$CONCLUSION" = "failure" ] || [ "$CONCLUSION" = "cancelled" ]; then
-              echo "CI finished with conclusion: ${CONCLUSION}"
-              exit 1
-            fi
-
-            echo "Waiting for CI (attempt ${attempt}/90, status=${STATUS:-unknown})..."
-            sleep 20
-          done
-
-          echo "Timed out waiting for CI workflow"
-          exit 1
-
       - name: Compute preview name and route
         id: preview
         run: |
-          RAW_BRANCH="${{ steps.ctx.outputs.head_ref }}"
+          RAW_BRANCH="${{ inputs.head_ref }}"
           BRANCH_SLUG=$(echo "$RAW_BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z]+/-/g' | sed -E 's/^-+|-+$//g' | cut -c1-40)
           if [ -z "$BRANCH_SLUG" ]; then
-            BRANCH_SLUG="${{ steps.ctx.outputs.pr_number && format('pr-{0}', steps.ctx.outputs.pr_number) || 'main' }}"
+            BRANCH_SLUG="${{ inputs.pr_number != '' && format('pr-{0}', inputs.pr_number) || 'main' }}"
           fi
           echo "branch_slug=$BRANCH_SLUG" >> "$GITHUB_OUTPUT"
 
@@ -138,7 +51,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           lfs: true
-          ref: ${{ steps.ctx.outputs.head_sha }}
+          ref: ${{ inputs.head_sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -165,7 +78,11 @@ jobs:
 
       - name: Install dependencies
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: bash scripts/ci/npm-ci.sh
+        run: |
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            npm install --package-lock-only --workspaces --include-workspace-root
+          fi
+          npm ci
 
       - name: Inject D1 database IDs into Wrangler config
         env:
@@ -173,7 +90,7 @@ jobs:
         run: node scripts/ci/inject-d1-database-ids.mjs
 
       - name: Build search index
-        if: ${{ steps.ctx.outputs.is_pr != 'true' }}
+        if: ${{ inputs.is_pr != 'true' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -182,7 +99,7 @@ jobs:
 
       - name: Deploy to Cloudflare (preview for PR)
         id: deploy
-        if: ${{ steps.ctx.outputs.is_pr == 'true' }}
+        if: ${{ inputs.is_pr == 'true' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -199,8 +116,7 @@ jobs:
           echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to Cloudflare (main)
-        id: deploy_preview_main
-        if: ${{ steps.ctx.outputs.is_pr != 'true' }}
+        if: ${{ inputs.is_pr != 'true' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -213,23 +129,15 @@ jobs:
           npx wrangler versions deploy -y "$VERSION_ID"
 
       - name: Download CI PR quality report
-        if: ${{ steps.ctx.outputs.is_pr == 'true' }}
+        if: ${{ inputs.is_pr == 'true' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_run" ]; then
-            gh run download "${{ github.event.workflow_run.id }}" -n pr-quality-report || true
-          else
-            SHA="${{ steps.ctx.outputs.head_sha }}"
-            RUN_ID=$(gh run list --workflow=ci.yml --commit "$SHA" --json databaseId --jq '.[0].databaseId')
-            if [ -n "$RUN_ID" ] && [ "$RUN_ID" != "null" ]; then
-              gh run download "$RUN_ID" -n pr-quality-report || true
-            fi
-          fi
+          gh run download "${{ inputs.ci_run_id }}" -n pr-quality-report || true
 
       - name: Update PR quality report with deployment
-        if: ${{ steps.ctx.outputs.is_pr == 'true' }}
+        if: ${{ inputs.is_pr == 'true' }}
         env:
           DEPLOY_STATUS: ${{ job.status == 'success' && 'success' || 'failed' }}
           PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
@@ -262,7 +170,7 @@ EOF
           fi
 
       - name: Post unified PR quality report
-        if: ${{ steps.ctx.outputs.is_pr == 'true' && hashFiles('pr-quality-comment.md') != '' }}
+        if: ${{ inputs.is_pr == 'true' && hashFiles('pr-quality-comment.md') != '' }}
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: pr-quality-report
@@ -275,7 +183,7 @@ EOF
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const sha = '${{ steps.ctx.outputs.head_sha }}';
+            const sha = '${{ inputs.head_sha }}';
             const state = '${{ job.status }}' === 'success' ? 'success' : 'failure';
             const previewUrl = `${{ steps.deploy.outputs.preview_url }}`;
 
