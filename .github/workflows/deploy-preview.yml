@@ -48,7 +48,11 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            npm install --package-lock-only --workspaces --include-workspace-root
+          fi
+          npm ci
 
       - name: Lint
         run: npm run lint
@@ -57,7 +61,7 @@ jobs:
         run: npm run ci:test
 
       - name: Collect test coverage
-        if: always()
+        if: ${{ success() && github.event_name == 'pull_request' && hashFiles('report.json') != '' }}
         uses: ArtiomTr/jest-coverage-report-action@v2
         id: coverage
         with:
@@ -68,7 +72,7 @@ jobs:
           output: report-markdown
 
       - name: Post coverage comment
-        if: always() && github.event_name == 'pull_request'
+        if: ${{ success() && github.event_name == 'pull_request' && steps.coverage.outputs.report != '' }}
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           message: ${{ steps.coverage.outputs.report }}
@@ -108,7 +112,11 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            npm install --package-lock-only --workspaces --include-workspace-root
+          fi
+          npm ci
 
       - name: Inject D1 database IDs into Wrangler config
         env:
