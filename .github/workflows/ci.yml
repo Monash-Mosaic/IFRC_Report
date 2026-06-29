@@ -82,54 +82,70 @@ jobs:
         --severity=CRITICAL
         ./
 
-  install:
+  ci-checks:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: lint
+            command: npm run lint
+          - id: test
+            command: npm run ci:test
+          - id: build
+            command: npm run ci:build
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
           lfs: true
 
-      - name: Setup Node.js project
-        uses: ./.github/actions/setup-node-project
-
-  lint:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
         with:
-          lfs: true
+          node-version: 22
+          cache: npm
 
-      - name: Setup Node.js project
-        uses: ./.github/actions/setup-node-project
+      - name: Restore node_modules cache
+        id: node-modules-cache
+        uses: actions/cache@v4
         with:
-          skip-install: 'true'
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+
+      - name: Restore Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            next-${{ runner.os }}-
+
+      - name: Restore Jest cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.cache/jest
+          key: jest-${{ runner.os }}-${{ hashFiles('package-lock.json', 'jest.config.js') }}
+          restore-keys: |
+            jest-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: bash scripts/ci/npm-ci.sh
 
       - name: Lint
-        run: npm run lint
-
-  test:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-        with:
-          lfs: true
-
-      - name: Setup Node.js project
-        uses: ./.github/actions/setup-node-project
-        with:
-          skip-install: 'true'
+        if: matrix.id == 'lint'
+        run: ${{ matrix.command }}
 
       - name: Test
+        if: matrix.id == 'test'
         id: test
-        run: npm run ci:test
+        run: ${{ matrix.command }}
 
       - name: Publish test report
-        if: always() && steps.test.outcome != 'skipped'
+        if: always() && matrix.id == 'test' && steps.test.outcome != 'skipped'
         uses: dorny/test-reporter@v2
         with:
           name: Jest Tests
@@ -138,11 +154,11 @@ jobs:
           fail-on-error: true
 
       - name: Write test summary
-        if: always() && steps.test.outcome != 'skipped'
+        if: always() && matrix.id == 'test' && steps.test.outcome != 'skipped'
         run: node scripts/ci/write-test-summary.mjs report.json
 
       - name: Upload test report artifact
-        if: always() && hashFiles('report.json') != ''
+        if: always() && matrix.id == 'test' && hashFiles('report.json') != ''
         uses: actions/upload-artifact@v4
         with:
           name: test-report
@@ -151,25 +167,12 @@ jobs:
             junit.xml
           retention-days: 7
 
-  build:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-        with:
-          lfs: true
-
-      - name: Setup Node.js project
-        uses: ./.github/actions/setup-node-project
-        with:
-          skip-install: 'true'
-
       - name: Build
-        run: npm run ci:build
+        if: matrix.id == 'build'
+        run: ${{ matrix.command }}
 
       - name: Save Next.js cache
-        if: always()
+        if: always() && matrix.id == 'build'
         uses: actions/cache/save@v4
         with:
           path: .next/cache
@@ -178,7 +181,6 @@ jobs:
   base_coverage:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    needs: install
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -186,8 +188,32 @@ jobs:
           lfs: true
           ref: ${{ github.event.pull_request.base.sha }}
 
-      - name: Setup Node.js project
-        uses: ./.github/actions/setup-node-project
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Restore node_modules cache
+        id: node-modules-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+
+      - name: Restore Jest cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.cache/jest
+          key: jest-${{ runner.os }}-${{ hashFiles('package-lock.json', 'jest.config.js') }}
+          restore-keys: |
+            jest-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: bash scripts/ci/npm-ci.sh
 
       - name: Collect base branch coverage
         run: npm run ci:test
@@ -205,18 +231,14 @@ jobs:
       - dependency_review
       - osv_scan_pr
       - osv_scan_main
-      - lint
-      - test
-      - build
+      - ci-checks
     if: >-
       always() &&
       !cancelled() &&
       needs.dependency_review.result == 'success' &&
       (needs.osv_scan_pr.result == 'success' || needs.osv_scan_pr.result == 'skipped') &&
       (needs.osv_scan_main.result == 'success' || needs.osv_scan_main.result == 'skipped') &&
-      needs.lint.result == 'success' &&
-      needs.test.result == 'success' &&
-      needs.build.result == 'success'
+      needs.ci-checks.result == 'success'
     steps:
       - name: All security gates passed
         run: echo "lint, test, build, dependency review, and OSV scan succeeded."
@@ -225,11 +247,10 @@ jobs:
     if: >-
       always() &&
       !cancelled() &&
-      github.event_name == 'pull_request' &&
-      (needs.test.result == 'success' || needs.test.result == 'failure')
+      github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     needs:
-      - test
+      - ci-checks
       - base_coverage
     permissions:
       checks: write
@@ -328,18 +349,13 @@ jobs:
     if: always()
     steps:
       - name: Write CI timing summary
-        env:
-          START_TIME: ${{ github.event.pull_request.updated_at || github.event.head_commit.timestamp }}
         run: |
-          END_EPOCH=$(date +%s)
           echo "## CI timing" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "Workflow completed at $(date -u '+%Y-%m-%d %H:%M:%S UTC')." >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| Job | Result |" >> "$GITHUB_STEP_SUMMARY"
           echo "| --- | --- |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| lint | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| test | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| build | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| ci-checks | ${{ needs.security_gates.result == 'success' && '✅' || 'see jobs' }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| security_gates | ${{ needs.security_gates.result }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| coverage_report | ${{ needs.coverage_report.result }} |" >> "$GITHUB_STEP_SUMMARY"
