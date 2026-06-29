@@ -132,7 +132,7 @@ export function SmallQuote({ children, ...props }) {
 export function SmallQuoteAuthor({ children, ...props }) {
   return (
     <div
-      className="ml-12 text-start font-extralight border-t-2 border-[#ee2435]"
+      className="ms-12 text-start font-extralight border-t-2 border-[#ee2435]"
       {...props}
     >
       {children}
@@ -477,7 +477,7 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
         return (
           <div key={index} className="grid grid-cols-[5%_95%] w-full h-auto">
             <div className="[border-inline-end:1px_solid_#ee2435]" />
-            <div className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem]">
+            <div className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem] font-light">
               {chunk}
             </div>
           </div>
@@ -583,7 +583,7 @@ export function ChapterImage({
 }
 
 export function EndnotesLink({ children, ...props }) {
-  const linkClass = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+  const linkClass = 'underline decoration-blue-600 wrap-break-word break-all text-black';
   const childArray = React.Children.toArray(children);
   const anchorChild = childArray.find(
     (child) => React.isValidElement(child) && child.type === 'a'
