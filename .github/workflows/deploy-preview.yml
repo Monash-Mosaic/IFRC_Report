@@ -140,21 +140,18 @@ jobs:
         if: ${{ inputs.is_pr == 'true' }}
         env:
           DEPLOY_STATUS: ${{ job.status == 'success' && 'success' || 'failed' }}
-          PREVIEW_URL: ${{ steps.deploy.outputs.preview_url }}
           BRANCH_PREVIEW_URL: ${{ steps.deploy.outputs.branch_preview_url }}
           WORKER_VERSION_ID: ${{ steps.deploy.outputs.version_id }}
         run: |
-          COMMENT_SOURCE=""
+          COMMENT_FILE=""
           for candidate in pr-quality-comment.md pr-quality-report/pr-quality-comment.md; do
             if [ -f "$candidate" ]; then
-              COMMENT_SOURCE="$candidate"
+              COMMENT_FILE="$candidate"
               break
             fi
           done
 
-          if [ -n "$COMMENT_SOURCE" ]; then
-            INPUT_PATH="$COMMENT_SOURCE" OUTPUT_PATH=pr-quality-comment.md node scripts/ci/patch-pr-status-deploy.mjs
-          else
+          if [ -z "$COMMENT_FILE" ]; then
             {
               echo '<!-- pr-quality-report -->'
               echo '## PR Quality Report'
@@ -166,8 +163,32 @@ jobs:
               echo '| Preview Deployment | ⏳ Deploying… |'
               echo '| Worker Version | _pending deploy_ |'
             } > pr-quality-comment.md
-            INPUT_PATH=pr-quality-comment.md OUTPUT_PATH=pr-quality-comment.md node scripts/ci/patch-pr-status-deploy.mjs
+            COMMENT_FILE=pr-quality-comment.md
+          elif [ "$COMMENT_FILE" != pr-quality-comment.md ]; then
+            cp "$COMMENT_FILE" pr-quality-comment.md
           fi
+
+          if [ "$DEPLOY_STATUS" = "success" ] && [ -n "$BRANCH_PREVIEW_URL" ]; then
+            DEPLOY_LINE="✅ [${BRANCH_PREVIEW_URL}](${BRANCH_PREVIEW_URL})"
+          elif [ "$DEPLOY_STATUS" = "failed" ]; then
+            DEPLOY_LINE="❌ Deploy failed"
+          else
+            DEPLOY_LINE="⏳ Deploying…"
+          fi
+
+          if [ -n "$WORKER_VERSION_ID" ]; then
+            WORKER_LINE="\`${WORKER_VERSION_ID}\`"
+          elif [ "$DEPLOY_STATUS" = "pending" ]; then
+            WORKER_LINE="_pending deploy_"
+          else
+            WORKER_LINE="—"
+          fi
+
+          export DEPLOY_LINE WORKER_LINE
+          perl -i -pe 's/\| Preview Deployment \| [^|]+ \|/| Preview Deployment | $ENV{DEPLOY_LINE} |/' pr-quality-comment.md
+          perl -i -pe 's/\| Worker Version \| [^|]+ \|/| Worker Version | $ENV{WORKER_LINE} |/' pr-quality-comment.md
+          perl -i -ne 'print unless /^\*\*Branch preview:\*\*/' pr-quality-comment.md > pr-quality-comment.md.tmp \
+            && mv pr-quality-comment.md.tmp pr-quality-comment.md
 
       - name: Post unified PR quality report
         if: ${{ inputs.is_pr == 'true' && hashFiles('pr-quality-comment.md') != '' }}
