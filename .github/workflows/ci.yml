@@ -182,7 +182,11 @@ jobs:
           path: .next/cache
           key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-  base_coverage:
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          rm -rf node_modules .next .open-next coverage
+          rm -f report.json junit.xml
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
@@ -233,6 +237,12 @@ jobs:
           path: report.json
           retention-days: 1
 
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          rm -rf node_modules coverage
+          rm -f report.json
+
   security_gates:
     runs-on: ubuntu-latest
     needs:
@@ -261,10 +271,8 @@ jobs:
       - ci-checks
       - base_coverage
     permissions:
-      checks: write
       pull-requests: write
-      contents: write
-      actions: read
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -288,50 +296,16 @@ jobs:
         id: base_cov
         run: |
           if [ -f base-coverage-report/report.json ]; then
-            echo "path=./base-coverage-report/report.json" >> "$GITHUB_OUTPUT"
+            echo "path=base-coverage-report/report.json" >> "$GITHUB_OUTPUT"
           else
-            echo "path=./report.json" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Collect test coverage
-        if: hashFiles('report.json') != ''
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        id: coverage
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          coverage-file: ./report.json
-          base-coverage-file: ${{ steps.base_cov.outputs.path }}
-          skip-step: all
-          annotations: coverage
-          output: report-markdown
-          prnumber: ${{ github.event.pull_request.number }}
-
-      - name: Save coverage markdown
-        if: steps.coverage.outputs.report != ''
-        env:
-          REPORT: ${{ steps.coverage.outputs.report }}
-        run: printf '%s\n' "$REPORT" > coverage-markdown.md
-
-      - name: Resolve coverage inputs
-        id: coverage_inputs
-        run: |
-          if [ -f base-coverage-report/report.json ]; then
-            echo "base_report_path=base-coverage-report/report.json" >> "$GITHUB_OUTPUT"
-          else
-            echo "base_report_path=" >> "$GITHUB_OUTPUT"
-          fi
-          if [ -f coverage-markdown.md ]; then
-            echo "coverage_markdown_path=coverage-markdown.md" >> "$GITHUB_OUTPUT"
-          else
-            echo "coverage_markdown_path=" >> "$GITHUB_OUTPUT"
+            echo "path=" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build PR quality report
         if: hashFiles('report.json') != ''
         env:
           JEST_REPORT_PATH: report.json
-          BASE_REPORT_PATH: ${{ steps.coverage_inputs.outputs.base_report_path }}
-          COVERAGE_MARKDOWN_PATH: ${{ steps.coverage_inputs.outputs.coverage_markdown_path }}
+          BASE_REPORT_PATH: ${{ steps.base_cov.outputs.path }}
         run: node scripts/ci/build-pr-status-comment.mjs
 
       - name: Post PR quality report
@@ -348,6 +322,12 @@ jobs:
           name: pr-quality-report
           path: pr-quality-comment.md
           retention-days: 7
+
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          rm -rf base-coverage-report scripts
+          rm -f report.json junit.xml pr-quality-comment.md
 
   ci_summary:
     runs-on: ubuntu-latest
@@ -413,3 +393,31 @@ jobs:
       is_pr: 'false'
       pr_number: ''
       ci_run_id: ${{ github.run_id }}
+
+  cleanup:
+    runs-on: ubuntu-latest
+    needs:
+      - ci_summary
+      - deploy_preview
+      - deploy_preview_main
+    if: always()
+    permissions:
+      actions: write
+    steps:
+      - name: Delete workflow artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          artifact_ids=$(gh api \
+            "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" \
+            --jq '.artifacts[].id')
+          if [ -z "$artifact_ids" ]; then
+            echo "No workflow artifacts to delete."
+            exit 0
+          fi
+          for artifact_id in $artifact_ids; do
+            gh api --method DELETE \
+              "repos/${GITHUB_REPOSITORY}/actions/artifacts/${artifact_id}" \
+              && echo "Deleted artifact ${artifact_id}" \
+              || echo "Failed to delete artifact ${artifact_id}"
+          done

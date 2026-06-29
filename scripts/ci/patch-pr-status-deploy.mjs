@@ -12,8 +12,9 @@ const branchPreviewUrl = process.env.BRANCH_PREVIEW_URL || '';
 const workerVersionId = process.env.WORKER_VERSION_ID || '';
 
 function formatDeployLine() {
-  if (deployStatus === 'success' && previewUrl) {
-    return `✅ [Preview](${previewUrl})`;
+  const url = branchPreviewUrl || previewUrl;
+  if (deployStatus === 'success' && url) {
+    return `✅ [${url}](${url})`;
   }
   if (deployStatus === 'failed') {
     return '❌ Deploy failed';
@@ -37,18 +38,6 @@ const workerLine = formatWorkerVersion();
 
 body = body.replace(/\| Preview Deployment \| [^|]+ \|/, `| Preview Deployment | ${deployLine} |`);
 body = body.replace(/\| Worker Version \| [^|]+ \|/, `| Worker Version | ${workerLine} |`);
-
-if (branchPreviewUrl && deployStatus === 'success') {
-  if (body.includes('**Branch preview:**')) {
-    body = body.replace(/\*\*Branch preview:\*\* .+/, `**Branch preview:** ${branchPreviewUrl}`);
-  } else {
-    const insertAt = body.indexOf('\n\n<details>');
-    const branchLine = `\n**Branch preview:** ${branchPreviewUrl}\n`;
-    body =
-      insertAt === -1
-        ? `${body.trimEnd()}${branchLine}\n`
-        : `${body.slice(0, insertAt)}${branchLine}${body.slice(insertAt)}`;
-  }
-}
+body = body.replace(/\n\*\*Branch preview:\*\* .+\n?/g, '\n');
 
 writeFileSync(outputPath, body);

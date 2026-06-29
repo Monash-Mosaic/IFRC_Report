@@ -86,6 +86,57 @@ function coveragePercent(report) {
   return (covered / total) * 100;
 }
 
+function formatPct(pct) {
+  return pct === null ? '—' : `${pct.toFixed(1)}%`;
+}
+
+function fileCoverageMetrics(fileData) {
+  const ratio = (covered, total) => (total === 0 ? null : (covered / total) * 100);
+
+  const statements = Object.values(fileData.s ?? {});
+  const branches = Object.values(fileData.b ?? {}).flat();
+  const functions = Object.values(fileData.f ?? {});
+
+  return {
+    statements: ratio(statements.filter((hits) => hits > 0).length, statements.length),
+    branches: ratio(branches.filter((hits) => hits > 0).length, branches.length),
+    functions: ratio(functions.filter((hits) => hits > 0).length, functions.length),
+  };
+}
+
+function relativeSourcePath(filePath) {
+  const srcIndex = filePath.lastIndexOf('/src/');
+  if (srcIndex !== -1) {
+    return filePath.slice(srcIndex + 1);
+  }
+  return filePath;
+}
+
+function buildCoverageDetailsMarkdown(headReport) {
+  const map = headReport?.coverageMap;
+  if (!map || Object.keys(map).length === 0) {
+    return '';
+  }
+
+  const rows = Object.entries(map)
+    .map(([filePath, fileData]) => ({
+      path: relativeSourcePath(filePath),
+      ...fileCoverageMetrics(fileData),
+    }))
+    .sort((left, right) => (left.statements ?? 100) - (right.statements ?? 100));
+
+  const lines = [
+    '| File | Stmts | Branch | Funcs |',
+    '| --- | ---: | ---: | ---: |',
+    ...rows.map(
+      (row) =>
+        `| \`${row.path}\` | ${formatPct(row.statements)} | ${formatPct(row.branches)} | ${formatPct(row.functions)} |`,
+    ),
+  ];
+
+  return lines.join('\n');
+}
+
 function formatCoverageLine(headReport, baseReport) {
   const headPct = coveragePercent(headReport);
   if (headPct === null) {
@@ -104,8 +155,9 @@ function formatCoverageLine(headReport, baseReport) {
 }
 
 function formatDeployLine() {
-  if (deployStatus === 'success' && previewUrl) {
-    return `✅ [Preview](${previewUrl})`;
+  const url = branchPreviewUrl || previewUrl;
+  if (deployStatus === 'success' && url) {
+    return `✅ [${url}](${url})`;
   }
   if (deployStatus === 'failed') {
     return '❌ Deploy failed';
@@ -144,8 +196,8 @@ if (baseReportPath) {
   }
 }
 
-let coverageDetails = '';
-if (coverageMarkdownPath) {
+let coverageDetails = buildCoverageDetailsMarkdown(report);
+if (!coverageDetails && coverageMarkdownPath) {
   try {
     coverageDetails = readFileSync(coverageMarkdownPath, 'utf8').trim();
   } catch {
@@ -168,10 +220,6 @@ let body = `${MARKER}
 | Preview Deployment | ${deployLine} |
 | Worker Version | ${workerLine} |
 `;
-
-if (branchPreviewUrl && deployStatus === 'success') {
-  body += `\n**Branch preview:** ${branchPreviewUrl}\n`;
-}
 
 if (coverageDetails) {
   body += `\n<details>\n<summary>Coverage details</summary>\n\n${coverageDetails}\n\n</details>\n`;

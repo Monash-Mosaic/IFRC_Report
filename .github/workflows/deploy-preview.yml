@@ -185,7 +185,7 @@ jobs:
             const repo = context.repo.repo;
             const sha = '${{ inputs.head_sha }}';
             const state = '${{ job.status }}' === 'success' ? 'success' : 'failure';
-            const previewUrl = `${{ steps.deploy.outputs.preview_url }}`;
+            const previewUrl = `${{ steps.deploy.outputs.branch_preview_url }}`;
 
             await github.rest.repos.createCommitStatus({
               owner,
@@ -196,3 +196,9 @@ jobs:
               description: state === 'success' ? 'Preview deployed' : 'Preview deploy failed',
               target_url: previewUrl || undefined,
             });
+
+      - name: Cleanup workspace
+        if: always()
+        run: |
+          rm -rf node_modules .next .open-next pr-quality-report
+          rm -f pr-quality-comment.md
