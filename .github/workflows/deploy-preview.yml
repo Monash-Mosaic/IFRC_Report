@@ -134,11 +134,14 @@ jobs:
           fi
           echo "branch_slug=$BRANCH_SLUG" >> "$GITHUB_OUTPUT"
 
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          lfs: true
+          ref: ${{ steps.ctx.outputs.head_sha }}
+
       - name: Setup Node.js project
         uses: ./.github/actions/setup-node-project
-        with:
-          lfs: 'true'
-          ref: ${{ steps.ctx.outputs.head_sha }}
 
       - name: Inject D1 database IDs into Wrangler config
         env:

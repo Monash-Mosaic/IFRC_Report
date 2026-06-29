@@ -17,10 +17,13 @@ jobs:
     environment: production
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          lfs: true
+
       - name: Setup Node.js project
         uses: ./.github/actions/setup-node-project
-        with:
-          lfs: 'true'
 
       - name: Inject D1 database IDs into Wrangler config
         env:

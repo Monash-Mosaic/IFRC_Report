@@ -1,15 +1,7 @@
 name: Setup Node.js project
-description: Checkout, setup Node.js 22 with npm cache, install dependencies, and restore build caches
+description: Setup Node.js 22 with npm cache, restore build caches, and install dependencies. Requires actions/checkout first.
 
 inputs:
-  lfs:
-    description: Whether to checkout with Git LFS
-    required: false
-    default: 'false'
-  ref:
-    description: Optional git ref to checkout (defaults to the triggering ref)
-    required: false
-    default: ''
   skip-install:
     description: Skip npm ci when node_modules cache was restored
     required: false
@@ -18,12 +10,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v6
-      with:
-        lfs: ${{ inputs.lfs == 'true' }}
-        ref: ${{ inputs.ref || github.ref }}
-
     - name: Setup Node.js
       uses: actions/setup-node@v6
       with:
