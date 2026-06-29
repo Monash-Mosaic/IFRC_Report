@@ -96,4 +96,37 @@ describe('EmblaCarousel', () => {
     const section = container.querySelector('section');
     expect(section?.firstElementChild?.tagName).toBe('DIV');
   });
+
+  it('renders a single non-array child and fixed-width slides', () => {
+    render(
+      <EmblaCarousel locale="ar" slideWidth={300} showArrows={false}>
+        <div>Only slide</div>
+      </EmblaCarousel>
+    );
+
+    act(() => {
+      jest.advanceTimersByTime(200);
+      window.dispatchEvent(new Event('resize'));
+    });
+
+    expect(screen.getByText('Only slide')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Next slide' })).not.toBeInTheDocument();
+  });
+
+  it('uses swapped chevrons for rtl locales', () => {
+    render(
+      <EmblaCarousel locale="ar">
+        <div>One</div>
+        <div>Two</div>
+        <div>Three</div>
+      </EmblaCarousel>
+    );
+
+    act(() => {
+      jest.advanceTimersByTime(200);
+    });
+
+    expect(screen.getAllByTestId('chevron-right').length).toBeGreaterThan(0);
+    expect(screen.getAllByTestId('chevron-left').length).toBeGreaterThan(0);
+  });
 });

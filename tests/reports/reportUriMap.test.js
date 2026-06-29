@@ -24,18 +24,20 @@ describe('reportUriMap', () => {
     expect(chapter.languages).toMatchObject({
       ar: 'الفصل-02',
       en: 'chapter-02',
-      es: 'capitulo-02',
       fr: 'chapitre-02',
       ru: 'глава-02',
       zh: '章节-02',
     });
 
     expect(reportUriMap[activeReportKey].chapters.uri.en['chapter-02']).toBe('chapter-02');
-    expect(reportUriMap[activeReportKey].chapters.uri.es['capitulo-02']).toBe('chapter-02');
     expect(reportUriMap[activeReportKey].chapters.uri.fr['chapitre-02']).toBe('chapter-02');
     expect(reportUriMap[activeReportKey].chapters.uri.ru['глава-02']).toBe('chapter-02');
     expect(reportUriMap[activeReportKey].chapters.uri.zh['章节-02']).toBe('chapter-02');
     expect(reportUriMap[activeReportKey].chapters.uri.ar['الفصل-02']).toBe('chapter-02');
+
+    const chapter01 = reportUriMap[activeReportKey].chapters['chapter-01'];
+    expect(chapter01.languages.es).toBe('capitulo-01');
+    expect(reportUriMap[activeReportKey].chapters.uri.es['capitulo-01']).toBe('chapter-01');
   });
 });
 

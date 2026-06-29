@@ -130,17 +130,26 @@ describe('QuotesSection', () => {
     expect(screen.queryByText(/\d+ \/ \d+/)).not.toBeInTheDocument();
   });
 
-  it('renders Open link to the quote chapter', async () => {
-    const tsv = [
-      'Q_ID\tQuote text\tChapter\tcountry_region\ttag:harm\ttag:operational_impact\ttag:response_strategy\ttag:governance',
-      '1\tTest quote one\tCH1\t\tSocial\t\t\t',
-    ].join('\n');
-    mockFetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(tsv) });
-    render(<QuotesSection selectedTag={{}} />);
-    await waitFor(() => {
-      const link = screen.getByRole('link', { name: /Open Chapter 1/i });
-      expect(link).toHaveTextContent('Open');
-      expect(link).toHaveAttribute('data-href-chapter', 'chapter-01');
-    });
+it('renders Open link to the quote chapter', async () => {
+  const tsv = [
+    'Q_ID\tQuote text\tChapter\tcountry_region\ttag:harm\ttag:operational_impact\ttag:response_strategy\ttag:governance\turl',
+    '1\tTest quote one\tCH1\t\tSocial\t\t\t\t/en/reports/wdr26/chapter-01#test',
+  ].join('\n');
+
+  mockFetch.mockResolvedValue({
+    ok: true,
+    text: () => Promise.resolve(tsv),
   });
+
+  render(<QuotesSection selectedTag={{}} />);
+
+  await waitFor(() => {
+    const link = screen.getByRole('link', { name: /Open Chapter 1/i });
+    expect(link).toHaveTextContent('Open');
+    expect(link).toHaveAttribute(
+      'href',
+      '/en/reports/wdr26/chapter-01#test'
+    );
+  });
+});
 });

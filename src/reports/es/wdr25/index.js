@@ -1,4 +1,4 @@
-import * as Chapter02 from './chapter-02.mdx';
+import * as Chapter01 from './chapter-01.mdx';
 import * as Synthesis from './exec-summary.mdx';
 export const title = 'Informe Mundial sobre Desastres 2026';
 
@@ -98,20 +98,25 @@ export const chapters = {
     thumbnailOverlay: 'red',
     released: true,
   },
-  'capitulo-02': {
+  'capitulo-01': {
     metadata: {
-      chapterKey: 'chapter-02',
-      chapterNumber: 2,
-      chapterPrefix: 'Capítulo 02',
+      chapterKey: 'chapter-01',
+      chapterNumber: 1,
+      chapterPrefix: 'Capítulo 01',
     },
-    component: Chapter02.default,
-    title: Chapter02.title,
-    subtitle: Chapter02.subtitle,
-    tableOfContents: Chapter02.tableOfContents,
+    component: Chapter01.default,
+    title: Chapter01.title,
+    subtitle: Chapter01.subtitle,
+    tableOfContents: Chapter01.tableOfContents,
+    downloadLink:
+      'https://www.dropbox.com/scl/fo/5fvbxslxzakc4x0wzwc2s/ADt-UaonXukovljH32UmqQE/WDR26-SP-01.pdf?rlkey=vaxd4b4i69het1z03iljwo3u4&st=3l4bgi3c&dl=1',
+    thumbnail: '/wdr25/chapters/Chapter1.webp',
+    thumbnailOverlay: 'red',
+    released: true,
     audios: [
       {
         id: 'intro',
-        name: 'Capítulo 02 - Descripción general',
+        name: 'Capítulo 01 - Descripción general',
         duration: '02:31',
         url: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3',
       },

@@ -45,6 +45,31 @@ describe('ShareButton', () => {
     });
   });
 
+  it('uses window location when url prop is omitted', async () => {
+    navigator.share = jest.fn().mockResolvedValue(undefined);
+
+    render(<ShareButton label="Share" title="Current page" />);
+    fireEvent.click(screen.getByRole('button'));
+
+    await waitFor(() => {
+      expect(navigator.share).toHaveBeenCalledWith({
+        title: 'Current page',
+        url: window.location.href,
+      });
+    });
+  });
+
+  it('swallows share cancellation errors', async () => {
+    navigator.share = jest.fn().mockRejectedValue(new Error('cancelled'));
+
+    render(<ShareButton label="Share" url="https://example.com/share" />);
+    fireEvent.click(screen.getByRole('button'));
+
+    await waitFor(() => {
+      expect(navigator.share).toHaveBeenCalled();
+    });
+  });
+
   it('copies URL to clipboard when Web Share API is unavailable', async () => {
     navigator.clipboard = { writeText: jest.fn().mockResolvedValue(undefined) };
 

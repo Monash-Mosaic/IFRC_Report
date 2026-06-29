@@ -1,10 +1,38 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import TagContainer, { TAG_CATEGORIES } from '@/components/engagement/TagContainer';
 
+const translations = {
+  selectedCount: (params) => `${params?.count ?? 0} selected`,
+  'tags.psychological': 'Psychological',
+  'tags.societal': 'Societal',
+  'tags.social': 'Social',
+  'tags.informational': 'Informational',
+  'tags.digital_technological': 'Digital/technological',
+  'tags.physical': 'Physical',
+  'tags.deprivational': 'Deprivational/financial/economic',
+  'tags.access_constraints': 'Access constraints and acceptance risks',
+  'tags.distorted_needs': 'Distorted needs and demand signals',
+  'tags.programme': 'Programme effectiveness and accountability',
+  'tags.safety': 'Safety and security of staff and volunteers',
+  'tags.community_engagement': 'Community engagement and accountability',
+  'tags information_aid': 'Information as aid',
+  'tags.prebunking': 'Prebunking and narrative resilience',
+  'tags.rumour_tracking': 'Rumour tracking and early warning',
+  'tags.trusted_messenger': 'Trusted messengers and local intermediaries',
+  'tags.debunking': 'Debunking and corrective communication',
+  'tags.partnership': 'Partnership and coordination',
+  'tags.regulation': 'Regulation and public policy frameworks',
+  'tags.freedom': 'Freedom of expression and information rights',
+  'tags.technology_governance': 'Technology governance and platform accountability',
+  'tags.principles': 'Humanitarian principles and neutrality'
+};
+
 jest.mock('next-intl', () => ({
   useTranslations: () => (key, params) => {
-    if (key === 'selectedCount') return `${params?.count ?? 0} selected`;
-    return key;
+    const value = translations[key];
+    return typeof value === 'function'
+      ? value(params)
+      : value ?? key;
   },
 }));
 
