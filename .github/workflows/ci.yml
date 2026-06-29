@@ -328,6 +328,12 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          sparse-checkout: |
+            .github
+
       - name: Download test report
         uses: actions/download-artifact@v4
         with:
@@ -340,6 +346,7 @@ jobs:
           name: base-coverage-report
 
       - name: Build PR quality report
+        id: build_comment
         if: hashFiles('report.json') != ''
         run: |
           BASE_REPORT_PATH=""
@@ -414,15 +421,20 @@ jobs:
             echo '| Worker Version | _pending deploy_ |'
           } > pr-quality-comment.md
 
+          if [ ! -s pr-quality-comment.md ]; then
+            echo "::error::PR quality comment file is missing or empty after build."
+            exit 1
+          fi
+
       - name: Post PR quality report
-        if: hashFiles('pr-quality-comment.md') != ''
+        if: steps.build_comment.outcome == 'success'
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: pr-quality-report
           path: pr-quality-comment.md
 
       - name: Upload PR quality report artifact
-        if: hashFiles('pr-quality-comment.md') != ''
+        if: steps.build_comment.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: pr-quality-report

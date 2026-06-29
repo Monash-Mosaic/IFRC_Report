@@ -137,9 +137,10 @@ jobs:
           gh run download "${{ inputs.ci_run_id }}" -n pr-quality-report || true
 
       - name: Update PR quality report with deployment
+        id: update_comment
         if: ${{ inputs.is_pr == 'true' }}
         env:
-          DEPLOY_STATUS: ${{ job.status == 'success' && 'success' || 'failed' }}
+          DEPLOY_STATUS: ${{ steps.deploy.outcome == 'success' && 'success' || 'failed' }}
           BRANCH_PREVIEW_URL: ${{ steps.deploy.outputs.branch_preview_url }}
           WORKER_VERSION_ID: ${{ steps.deploy.outputs.version_id }}
         run: |
@@ -185,13 +186,18 @@ jobs:
           fi
 
           export DEPLOY_LINE WORKER_LINE
-          perl -i -pe 's/\| Preview Deployment \| [^|]+ \|/| Preview Deployment | $ENV{DEPLOY_LINE} |/' pr-quality-comment.md
-          perl -i -pe 's/\| Worker Version \| [^|]+ \|/| Worker Version | $ENV{WORKER_LINE} |/' pr-quality-comment.md
-          perl -i -ne 'print unless /^\*\*Branch preview:\*\*/' pr-quality-comment.md > pr-quality-comment.md.tmp \
+          perl -i -pe 's#\| Preview Deployment \| [^|]+ \|#| Preview Deployment | $ENV{DEPLOY_LINE} |#' pr-quality-comment.md
+          perl -i -pe 's#\| Worker Version \| [^|]+ \|#| Worker Version | $ENV{WORKER_LINE} |#' pr-quality-comment.md
+          grep -v '^\*\*Branch preview:\*\*' pr-quality-comment.md > pr-quality-comment.md.tmp \
             && mv pr-quality-comment.md.tmp pr-quality-comment.md
 
+          if [ ! -s pr-quality-comment.md ]; then
+            echo "::error::PR quality comment file is missing or empty after update."
+            exit 1
+          fi
+
       - name: Post unified PR quality report
-        if: ${{ inputs.is_pr == 'true' && hashFiles('pr-quality-comment.md') != '' }}
+        if: ${{ inputs.is_pr == 'true' && steps.update_comment.outcome == 'success' }}
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: pr-quality-report
