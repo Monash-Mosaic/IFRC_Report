@@ -302,9 +302,9 @@ jobs:
           coverage-file: ./report.json
           base-coverage-file: ${{ steps.base_cov.outputs.path }}
           skip-step: all
-          annotations: warning
+          annotations: coverage
           output: report-markdown
-          pull-request-number: ${{ github.event.pull_request.number }}
+          prnumber: ${{ github.event.pull_request.number }}
 
       - name: Save coverage markdown
         if: steps.coverage.outputs.report != ''
