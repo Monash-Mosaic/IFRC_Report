@@ -362,5 +362,9 @@
     "psychological": "Psychological",
     "social": "Social",
     "informational": "Informational"
+  },
+  "AsksAims": {
+    "asks": "Asks",
+    "aims": "Aims"
   }
 }
