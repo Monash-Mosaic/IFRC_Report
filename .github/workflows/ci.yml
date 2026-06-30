@@ -1,24 +1,22 @@
 name: CI
 
-x-ci-paths: &ci-paths
-  - 'src/**'
-  - 'tests/**'
-  - 'scripts/**'
-  - 'public/**'
-  - 'package.json'
-  - 'package-lock.json'
-  - 'jest.config.js'
-  - 'jest.setup.js'
-  - 'next.config.*'
-  - 'open-next.config.*'
-  - 'wrangler.jsonc'
-  - 'eslint.config.*'
-  - '.github/**'
-
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths: *ci-paths
+    paths: &ci-paths
+      - 'src/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'jest.config.js'
+      - 'jest.setup.js'
+      - 'next.config.*'
+      - 'open-next.config.*'
+      - 'wrangler.jsonc'
+      - 'eslint.config.*'
+      - '.github/**'
   push:
     branches: [main]
     paths: *ci-paths
