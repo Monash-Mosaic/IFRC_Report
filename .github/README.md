@@ -16,7 +16,6 @@ This repository uses a single orchestration workflow (`ci.yml`) that defines job
 │   ├── cleanup-ci-workspace/          # Runner workspace cleanup profiles
 │   ├── dependency-review/             # Dependency Review action
 │   ├── run-ci-check/                  # lint | test | build matrix leg
-│   ├── collect-base-coverage/         # Base branch coverage baseline
 │   ├── post-coverage-report/          # Coverage delta + sticky PR comment
 │   ├── write-ci-summary/              # Workflow step summary table
 │   └── cleanup-workflow-artifacts/    # Delete workflow run artifacts
@@ -32,7 +31,7 @@ This repository uses a single orchestration workflow (`ci.yml`) that defines job
 
 `ci.yml` defines triggers, concurrency, permissions, job dependencies, and the lint/test/build matrix. Step logic lives in composite actions.
 
-Jobs that call local composite actions run `actions/checkout` first so action files are present on the runner workspace.
+Jobs that call local composite actions run `actions/checkout` first so action files are present on the runner workspace. The workflow also uses a YAML anchor for the shared path filters so pull request and push triggers stay aligned.
 
 ### Job graph
 
@@ -64,7 +63,7 @@ base_coverage ──────► coverage_report (PR only)
 | `post-coverage-report` | `coverage_report` |
 | `write-ci-summary` | `ci_summary` |
 | `cleanup-workflow-artifacts` | `cleanup` |
-| `setup-node-environment` | `run-ci-check`, `collect-base-coverage` |
+| `setup-node-environment` | `run-ci-check` |
 | `install-dependencies` | `run-ci-check` |
 | `restore-next-cache` | `run-ci-check` |
 | `restore-jest-cache` | `run-ci-check` |
@@ -73,7 +72,9 @@ base_coverage ──────► coverage_report (PR only)
 
 OSV scanning (`osv_scan_pr` / `osv_scan_main`) calls Google's reusable workflows directly from `ci.yml` — that cannot be moved into a composite action.
 
-`base_coverage` is also inlined in `ci.yml` because it checks out the PR base SHA; if it used a local composite action, that action would disappear from the workspace during post-run on branches where the base commit does not contain the new action files.
+`dependency_review` only runs for pull requests, and write permissions are scoped down to the jobs that actually need them.
+
+`base_coverage` is also inlined in `ci.yml` because it checks out the PR base SHA; if it used a local composite action, that action would disappear from the workspace during post-run on branches where the base commit does not contain the new action files. It also caches the generated baseline `report.json` by base SHA so repeated PR updates can reuse the coverage baseline while the target branch is unchanged.
 
 ### Caching strategy
 
@@ -84,7 +85,7 @@ OSV scanning (`osv_scan_pr` / `osv_scan_main`) calls Google's reusable workflows
 | `.next/cache` | `next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}` | `next-${{ runner.os }}-` |
 | Jest | `jest-${{ runner.os }}-${{ hashFiles('package-lock.json', 'jest.config.js') }}` | `jest-${{ runner.os }}-` |
 
-Build saves `.next/cache` after the build matrix leg completes.
+`install-dependencies` explicitly restores and saves the `node_modules` cache, and `run-ci-check` saves the Jest cache after the test leg. Build saves `.next/cache` after the build matrix leg completes.
 
 ### Dependabot
 

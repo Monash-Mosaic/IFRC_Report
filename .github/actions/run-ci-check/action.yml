@@ -22,6 +22,7 @@ runs:
       uses: ./.github/actions/restore-next-cache
 
     - name: Restore Jest cache
+      id: restore-jest-cache
       uses: ./.github/actions/restore-jest-cache
 
     - name: Lint
@@ -118,6 +119,13 @@ runs:
     - name: Save Next.js cache
       if: always() && inputs.check == 'build'
       uses: ./.github/actions/save-next-cache
+
+    - name: Save Jest cache
+      if: always() && inputs.check == 'test' && steps.restore-jest-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: node_modules/.cache/jest
+        key: jest-${{ runner.os }}-${{ hashFiles('package-lock.json', 'jest.config.js') }}
 
     - name: Cleanup workspace
       if: always()
