@@ -1,7 +1,9 @@
 name: Dependabot Auto Merge
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
 
 permissions:
   contents: write
@@ -9,12 +11,28 @@ permissions:
 
 jobs:
   automerge:
-    if: github.actor == 'dependabot[bot]'
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Enable auto-merge
-        run: gh pr merge --auto --squash "$PR_URL"
+      - name: Enable auto-merge for Dependabot PR
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          PR_NUMBER=$(gh api "repos/${REPOSITORY}/commits/${HEAD_SHA}/pulls" --jq '.[0].number')
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "No pull request found for ${HEAD_SHA}; skipping."
+            exit 0
+          fi
+
+          AUTHOR=$(gh api "repos/${REPOSITORY}/pulls/${PR_NUMBER}" --jq '.user.login')
+          if [ "$AUTHOR" != "dependabot[bot]" ]; then
+            echo "PR #${PR_NUMBER} is not from Dependabot; skipping."
+            exit 0
+          fi
+
+          gh pr merge "$PR_NUMBER" --repo "$REPOSITORY" --auto --squash
