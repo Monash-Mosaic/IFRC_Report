@@ -420,7 +420,7 @@ jobs:
           fi
 
       - name: Upload PR quality report artifact
-        if: steps.build_comment.outcome == 'success'
+        if: always() && steps.build_comment.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: pr-quality-report
