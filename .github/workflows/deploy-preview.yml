@@ -39,7 +39,6 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  actions: read
   contents: read
   checks: write
   statuses: write
@@ -142,172 +141,52 @@ jobs:
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
           npx wrangler versions deploy -y "$VERSION_ID"
 
-      - name: Post preview URL immediately
+      - name: Comment preview deployment on PR
         if: github.event_name == 'pull_request' && steps.deploy_pr.outcome == 'success'
-        env:
-          BRANCH_PREVIEW_URL: ${{ steps.deploy_pr.outputs.branch_preview_url }}
-          WORKER_VERSION_ID: ${{ steps.deploy_pr.outputs.version_id }}
-        run: |
-          if [ -n "$BRANCH_PREVIEW_URL" ]; then
-            DEPLOY_LINE="✅ [${BRANCH_PREVIEW_URL}](${BRANCH_PREVIEW_URL})"
-          else
-            DEPLOY_LINE="⏳ Deploying…"
-          fi
-          if [ -n "$WORKER_VERSION_ID" ]; then
-            WORKER_LINE="\`${WORKER_VERSION_ID}\`"
-          else
-            WORKER_LINE="_pending deploy_"
-          fi
-
-          {
-            echo '<!-- pr-quality-report -->'
-            echo '## PR Quality Report'
-            echo ''
-            echo '| Category | Status |'
-            echo '| --- | --- |'
-            echo '| Tests | ⏳ Running… |'
-            echo '| Coverage | ⏳ Running… |'
-            echo "| Preview Deployment | ${DEPLOY_LINE} |"
-            echo "| Worker Version | ${WORKER_LINE} |"
-          } > pr-quality-comment.md
-
-      - name: Publish early preview comment
-        if: github.event_name == 'pull_request' && steps.deploy_pr.outcome == 'success'
-        uses: marocchino/sticky-pull-request-comment@v3
+        uses: actions/github-script@v8
         with:
-          header: pr-quality-report
-          path: pr-quality-comment.md
+          script: |
+            const marker = '<!-- preview-deployment -->';
+            const previewUrl = `${{ steps.deploy_pr.outputs.branch_preview_url }}`;
+            const versionId = `${{ steps.deploy_pr.outputs.version_id }}`;
+            const previewCell = previewUrl
+              ? `[${previewUrl}](${previewUrl})`
+              : '—';
+            const body = [
+              marker,
+              '## Preview Deployment',
+              '',
+              '| Key | Value |',
+              '| --- | --- |',
+              `| Preview URL | ${previewCell} |`,
+              `| Worker Version | \`${versionId || '—'}\` |`,
+            ].join('\n');
 
-      - name: Wait for CI quality report artifact
-        if: github.event_name == 'pull_request'
-        id: wait_ci_report
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          rm -rf pr-quality-report
-          # CI runs on the PR merge commit (github.sha), not the head branch SHA.
-          CI_COMMIT="${{ github.sha }}"
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body,
+            });
 
-          has_quality_artifact() {
-            local run_id="$1"
-            gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/artifacts" \
-              --jq '.artifacts[] | select(.name == "pr-quality-report") | .name' \
-              | grep -q '^pr-quality-report$'
-          }
-
-          for attempt in $(seq 1 90); do
-            CI_RUN_ID=$(gh run list \
-              --repo "${GITHUB_REPOSITORY}" \
-              --workflow "CI" \
-              --commit "$CI_COMMIT" \
-              --json databaseId,status,conclusion \
-              --jq 'map(select(.status != "cancelled")) | .[0].databaseId // empty')
-
-            if [ -z "$CI_RUN_ID" ]; then
-              CI_RUN_ID=$(gh run list \
-                --repo "${GITHUB_REPOSITORY}" \
-                --workflow ci.yml \
-                --commit "$CI_COMMIT" \
-                --json databaseId,status,conclusion \
-                --jq 'map(select(.status != "cancelled")) | .[0].databaseId // empty')
-            fi
-
-            if [ -n "$CI_RUN_ID" ] && has_quality_artifact "$CI_RUN_ID"; then
-              if gh run download "$CI_RUN_ID" -n pr-quality-report -R "${GITHUB_REPOSITORY}"; then
-                echo "ci_run_id=$CI_RUN_ID" >> "$GITHUB_OUTPUT"
-                echo "ready=true" >> "$GITHUB_OUTPUT"
-                exit 0
-              fi
-            fi
-
-            if [ -n "$CI_RUN_ID" ]; then
-              CI_STATUS=$(gh run view "$CI_RUN_ID" --repo "${GITHUB_REPOSITORY}" --json status,conclusion --jq '.status + " " + (.conclusion // "")')
-              echo "CI run ${CI_RUN_ID} status: ${CI_STATUS} (attempt ${attempt}/90)"
-              if echo "$CI_STATUS" | grep -q '^completed'; then
-                echo "CI finished without pr-quality-report artifact; keeping early preview comment."
-                echo "ready=false" >> "$GITHUB_OUTPUT"
-                exit 0
-              fi
-            else
-              echo "Waiting for CI workflow run on commit ${CI_COMMIT} (attempt ${attempt}/90)..."
-            fi
-
-            sleep 20
-          done
-          echo "ready=false" >> "$GITHUB_OUTPUT"
-
-      - name: Merge CI report with deployment status
-        id: merge_comment
-        if: github.event_name == 'pull_request'
-        env:
-          DEPLOY_STATUS: ${{ steps.deploy_pr.outcome == 'success' && 'success' || 'failed' }}
-          BRANCH_PREVIEW_URL: ${{ steps.deploy_pr.outputs.branch_preview_url }}
-          WORKER_VERSION_ID: ${{ steps.deploy_pr.outputs.version_id }}
-          REPORT_READY: ${{ steps.wait_ci_report.outputs.ready }}
-        run: |
-          COMMENT_FILE=""
-          for candidate in pr-quality-report/pr-quality-comment.md pr-quality-comment.md; do
-            if [ -f "$candidate" ]; then
-              COMMENT_FILE="$candidate"
-              break
-            fi
-          done
-
-          if [ -n "$COMMENT_FILE" ] && [ "$COMMENT_FILE" != pr-quality-comment.md ]; then
-            cp "$COMMENT_FILE" pr-quality-comment.md
-          elif [ ! -f pr-quality-comment.md ]; then
-            {
-              echo '<!-- pr-quality-report -->'
-              echo '## PR Quality Report'
-              echo ''
-              echo '| Category | Status |'
-              echo '| --- | --- |'
-              echo '| Tests | — |'
-              echo '| Coverage | — |'
-              echo '| Preview Deployment | ⏳ Deploying… |'
-              echo '| Worker Version | _pending deploy_ |'
-            } > pr-quality-comment.md
-          fi
-
-          if [ "$DEPLOY_STATUS" = "success" ] && [ -n "$BRANCH_PREVIEW_URL" ]; then
-            DEPLOY_LINE="✅ [${BRANCH_PREVIEW_URL}](${BRANCH_PREVIEW_URL})"
-          elif [ "$DEPLOY_STATUS" = "failed" ]; then
-            DEPLOY_LINE="❌ Deploy failed"
-          else
-            DEPLOY_LINE="⏳ Deploying…"
-          fi
-
-          if [ -n "$WORKER_VERSION_ID" ]; then
-            WORKER_LINE="\`${WORKER_VERSION_ID}\`"
-          else
-            WORKER_LINE="—"
-          fi
-
-          export DEPLOY_LINE WORKER_LINE
-          perl -i -pe 's#\| Preview Deployment \| [^|]+ \|#| Preview Deployment | $ENV{DEPLOY_LINE} |#' pr-quality-comment.md
-          perl -i -pe 's#\| Worker Version \| [^|]+ \|#| Worker Version | $ENV{WORKER_LINE} |#' pr-quality-comment.md
-          grep -v '^\*\*Branch preview:\*\*' pr-quality-comment.md > pr-quality-comment.md.tmp \
-            && mv pr-quality-comment.md.tmp pr-quality-comment.md
-
-          if [ ! -s pr-quality-comment.md ]; then
-            echo "::error::PR quality comment file is missing or empty after merge."
-            exit 1
-          fi
-
-          if [ "$REPORT_READY" != "true" ]; then
-            echo "CI quality report artifact not ready; keeping early preview comment."
-          fi
-
-      - name: Post unified PR quality report
-        if: >-
-          github.event_name == 'pull_request' &&
-          steps.merge_comment.outcome == 'success' &&
-          steps.wait_ci_report.outputs.ready == 'true'
-        uses: marocchino/sticky-pull-request-comment@v3
+      - name: Comment preview deployment failure on PR
+        if: github.event_name == 'pull_request' && steps.deploy_pr.outcome == 'failure'
+        uses: actions/github-script@v8
         with:
-          header: pr-quality-report
-          path: pr-quality-comment.md
+          script: |
+            const body = [
+              '<!-- preview-deployment -->',
+              '## Preview Deployment',
+              '',
+              '❌ Preview deploy failed. See the workflow logs for details.',
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body,
+            });
 
       - name: Update deployment status
         if: always()
@@ -335,5 +214,4 @@ jobs:
       - name: Cleanup workspace
         if: always()
         run: |
-          rm -rf node_modules .next .open-next pr-quality-report
-          rm -f pr-quality-comment.md
+          rm -rf node_modules .next .open-next

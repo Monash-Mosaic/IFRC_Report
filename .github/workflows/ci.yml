@@ -325,6 +325,7 @@ jobs:
       - base_coverage
     permissions:
       contents: read
+      pull-requests: write
 
     steps:
       - name: Download test report
@@ -403,35 +404,32 @@ jobs:
           fi
 
           {
-            echo '<!-- pr-quality-report -->'
-            echo '## PR Quality Report'
+            echo '<!-- pr-ci-report -->'
+            echo '## CI Report'
             echo ''
             echo '| Category | Status |'
             echo '| --- | --- |'
             echo "| Tests | ${TESTS_LINE} |"
             echo "| Coverage | ${COVERAGE_LINE} |"
-            echo '| Preview Deployment | ⏳ Deploying… |'
-            echo '| Worker Version | _pending deploy_ |'
-          } > pr-quality-comment.md
+          } > pr-ci-comment.md
 
-          if [ ! -s pr-quality-comment.md ]; then
-            echo "::error::PR quality comment file is missing or empty after build."
+          if [ ! -s pr-ci-comment.md ]; then
+            echo "::error::CI report comment file is missing or empty after build."
             exit 1
           fi
 
-      - name: Upload PR quality report artifact
-        if: always() && steps.build_comment.outcome == 'success'
-        uses: actions/upload-artifact@v4
+      - name: Post CI report on PR
+        if: steps.build_comment.outcome == 'success'
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
-          name: pr-quality-report
-          path: pr-quality-comment.md
-          retention-days: 7
+          header: pr-ci-report
+          path: pr-ci-comment.md
 
       - name: Cleanup workspace
         if: always()
         run: |
           rm -rf base-coverage-report
-          rm -f report.json junit.xml pr-quality-comment.md
+          rm -f report.json junit.xml pr-ci-comment.md
 
   ci_summary:
     runs-on: ubuntu-latest
