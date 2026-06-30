@@ -1,10 +1,11 @@
 name: Post coverage report
-description: Build and post the sticky PR CI report comment.
+description: Build and post the sticky PR quality report comment.
 
 runs:
   using: composite
   steps:
     - name: Download test report
+      continue-on-error: true
       uses: actions/download-artifact@v4
       with:
         name: test-report
@@ -17,90 +18,48 @@ runs:
 
     - name: Build PR quality report
       id: build_comment
-      if: hashFiles('report.json') != ''
       shell: bash
       run: |
-        BASE_REPORT_PATH=""
+        HEAD_REPORT="report.json"
+        BASE_REPORT=""
+
+        if [ ! -f "$HEAD_REPORT" ] && [ -f "test-report/report.json" ]; then
+          HEAD_REPORT="test-report/report.json"
+        fi
+
         if [ -f base-coverage-report/report.json ]; then
-          BASE_REPORT_PATH=base-coverage-report/report.json
+          BASE_REPORT="base-coverage-report/report.json"
         fi
 
-        coverage_pct() {
-          local file="$1"
-          jq -r '
-            [.coverageMap // {} | .[] | .s // {} | .[]] as $hits
-            | if ($hits | length) == 0 then empty
-              else (($hits | map(select(. > 0)) | length) / ($hits | length) * 100) end
-          ' "$file" 2>/dev/null
-        }
+        node scripts/ci/build-pr-quality-comment.mjs "$HEAD_REPORT" "$BASE_REPORT"
 
-        NUM_PASSED=$(jq -r '.numPassedTests // 0' report.json)
-        NUM_FAILED=$(jq -r '.numFailedTests // 0' report.json)
-        NUM_PENDING=$(jq -r '.numPendingTests // 0' report.json)
-        SUCCESS=$(jq -r '.success' report.json)
-        DURATION_MS=$(jq -r '
-          if (.endTime and .startTime) then (.endTime - .startTime)
-          else ([.testResults[]?.assertionResults[]?.duration // 0] | add) end
-        ' report.json)
-        if [ "$DURATION_MS" != "0" ] && [ -n "$DURATION_MS" ]; then
-          DURATION_SEC=$(awk "BEGIN {printf \"%.1f\", $DURATION_MS / 1000}")
-          DURATION_SUFFIX=" (${DURATION_SEC}s)"
-        else
-          DURATION_SUFFIX=""
-        fi
-
-        if [ "$NUM_FAILED" -gt 0 ]; then
-          TESTS_LINE="❌ ${NUM_PASSED} passed, ${NUM_FAILED} failed"
-          [ "$NUM_PENDING" -gt 0 ] && TESTS_LINE="${TESTS_LINE}, ${NUM_PENDING} skipped"
-          TESTS_LINE="${TESTS_LINE}${DURATION_SUFFIX}"
-        elif [ "$SUCCESS" != "true" ]; then
-          TESTS_LINE="❌ Tests did not complete successfully"
-        else
-          TESTS_LINE="✅ ${NUM_PASSED} passed"
-          [ "$NUM_PENDING" -gt 0 ] && TESTS_LINE="${TESTS_LINE}, ${NUM_PENDING} skipped"
-          TESTS_LINE="${TESTS_LINE}${DURATION_SUFFIX}"
-        fi
-
-        HEAD_PCT=$(coverage_pct report.json)
-        if [ -z "$HEAD_PCT" ]; then
-          COVERAGE_LINE="—"
-        else
-          HEAD_FMT=$(awk "BEGIN {printf \"%.1f\", $HEAD_PCT}")
-          if [ -n "$BASE_REPORT_PATH" ] && [ -f "$BASE_REPORT_PATH" ]; then
-            BASE_PCT=$(coverage_pct "$BASE_REPORT_PATH")
-            if [ -n "$BASE_PCT" ]; then
-              DELTA=$(awk "BEGIN {printf \"%.1f\", $HEAD_PCT - $BASE_PCT}")
-              SIGN=$([ "$(awk "BEGIN {print ($DELTA > 0)}")" = "1" ] && echo '+' || echo '')
-              COVERAGE_LINE="${HEAD_FMT}% (${SIGN}${DELTA}% vs main)"
-            else
-              COVERAGE_LINE="${HEAD_FMT}%"
-            fi
-          else
-            COVERAGE_LINE="${HEAD_FMT}%"
-          fi
-        fi
-
-        {
-          echo '<!-- pr-ci-report -->'
-          echo '## CI Report'
-          echo ''
-          echo '| Category | Status |'
-          echo '| --- | --- |'
-          echo "| Tests | ${TESTS_LINE} |"
-          echo "| Coverage | ${COVERAGE_LINE} |"
-        } > pr-ci-comment.md
-
-        if [ ! -s pr-ci-comment.md ]; then
-          echo "::error::CI report comment file is missing or empty after build."
+        if [ ! -s pr-quality-comment.md ]; then
+          echo "::error::PR quality comment file is missing or empty after build."
           exit 1
         fi
 
-    - name: Post CI report on PR
-      if: steps.build_comment.outcome == 'success'
+    - name: Post PR quality report
+      if: always() && steps.build_comment.outcome == 'success'
       uses: marocchino/sticky-pull-request-comment@v3
       with:
-        header: pr-ci-report
-        path: pr-ci-comment.md
+        header: pr-quality-report
+        path: pr-quality-comment.md
+
+    - name: Post PR quality report failure
+      if: failure() && steps.build_comment.outcome != 'success'
+      uses: marocchino/sticky-pull-request-comment@v3
+      with:
+        header: pr-quality-report
+        message: |
+          <!-- pr-quality-report -->
+          ## PR Quality Report
+
+          | Category | Status |
+          | --- | --- |
+          | Tests | ❌ Could not build CI report |
+          | Coverage | ❌ Could not build CI report |
+
+          _See the `coverage_report` job logs for details._
 
     - name: Cleanup workspace
       if: always()

@@ -15,6 +15,7 @@ This repository uses a single orchestration workflow (`ci.yml`) that defines job
 │   ├── save-next-cache/               # .next/cache save (after build)
 │   ├── cleanup-ci-workspace/          # Runner workspace cleanup profiles
 │   ├── dependency-review/             # Dependency Review action
+│   ├── post-pr-quality-placeholder/   # Initial PR quality sticky comment
 │   ├── run-ci-check/                  # lint | test | build matrix leg
 │   ├── post-coverage-report/          # Coverage delta + sticky PR comment
 │   ├── write-ci-summary/              # Workflow step summary table
@@ -60,6 +61,7 @@ base_coverage ──────► coverage_report (PR only)
 | --- | --- |
 | `dependency-review` | `dependency_review` |
 | `run-ci-check` | `ci-checks` (matrix: lint, test, build) |
+| `post-pr-quality-placeholder` | `pr_quality_placeholder` |
 | `post-coverage-report` | `coverage_report` |
 | `write-ci-summary` | `ci_summary` |
 | `cleanup-workflow-artifacts` | `cleanup` |
@@ -107,7 +109,7 @@ When `github.actor` is `dependabot[bot]`, `install-dependencies` runs `npm insta
 | Jest GitHub Check | `dorny/test-reporter` in `run-ci-check` (test leg) |
 | Test step summary | `GITHUB_STEP_SUMMARY` in `run-ci-check` (test leg) |
 | CI timing summary | `write-ci-summary` composite action |
-| PR sticky comment | `post-coverage-report` (`header: pr-ci-report`) |
+| PR sticky comment | `post-coverage-report` (`header: pr-quality-report`) |
 
 Preview deployment comments are handled by `deploy-preview.yml` (separate workflow).
 

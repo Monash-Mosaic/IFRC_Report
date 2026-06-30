@@ -29,6 +29,16 @@ permissions:
   contents: read
 
 jobs:
+  pr_quality_placeholder:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/post-pr-quality-placeholder
+
   dependency_review:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest

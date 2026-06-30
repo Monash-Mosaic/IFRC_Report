@@ -22,8 +22,8 @@ runs:
             rm -f report.json
             ;;
           coverage-report)
-            rm -rf base-coverage-report
-            rm -f report.json junit.xml pr-ci-comment.md
+            rm -rf base-coverage-report test-report
+            rm -f report.json junit.xml pr-quality-comment.md
             ;;
           *)
             echo "Unknown cleanup mode: ${{ inputs.mode }}"
