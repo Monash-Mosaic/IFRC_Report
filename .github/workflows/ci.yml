@@ -48,6 +48,7 @@ jobs:
   dependency_review:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/dependency-review
 
   osv_scan_pr:
@@ -88,6 +89,7 @@ jobs:
           - id: build
             command: npm run ci:build
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/run-ci-check
         with:
           check: ${{ matrix.id }}
@@ -97,6 +99,7 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/collect-base-coverage
 
   security_gates:
@@ -127,6 +130,7 @@ jobs:
       github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/post-coverage-report
 
   ci_summary:
@@ -136,6 +140,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/write-ci-summary
         with:
           security-gates-result: ${{ needs.security_gates.result }}
@@ -149,4 +154,5 @@ jobs:
     permissions:
       actions: write
     steps:
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/cleanup-workflow-artifacts

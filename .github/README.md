@@ -32,6 +32,8 @@ This repository uses a single orchestration workflow (`ci.yml`) that defines job
 
 `ci.yml` defines triggers, concurrency, permissions, job dependencies, and the lint/test/build matrix. Step logic lives in composite actions.
 
+Jobs that call local composite actions run `actions/checkout` first so action files are present on the runner workspace.
+
 ### Job graph
 
 ```
