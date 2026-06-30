@@ -1,27 +1,41 @@
 name: Deploy to Cloudflare (PR Preview)
 
 on:
-  workflow_call:
-    inputs:
-      head_sha:
-        required: true
-        type: string
-      head_ref:
-        required: true
-        type: string
-      is_pr:
-        required: true
-        type: string
-      pr_number:
-        required: false
-        type: string
-        default: ''
-      ci_run_id:
-        required: true
-        type: string
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'jest.config.js'
+      - 'jest.setup.js'
+      - 'next.config.*'
+      - 'open-next.config.*'
+      - 'wrangler.jsonc'
+      - 'eslint.config.*'
+      - '.github/**'
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'jest.config.js'
+      - 'jest.setup.js'
+      - 'next.config.*'
+      - 'open-next.config.*'
+      - 'wrangler.jsonc'
+      - 'eslint.config.*'
+      - '.github/**'
 
 concurrency:
-  group: deploy-${{ inputs.pr_number || inputs.head_ref }}
+  group: deploy-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -32,7 +46,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  deploy_preview:
+  deploy:
     runs-on: ubuntu-latest
     environment: preview
 
@@ -40,18 +54,19 @@ jobs:
       - name: Compute preview name and route
         id: preview
         run: |
-          RAW_BRANCH="${{ inputs.head_ref }}"
+          RAW_BRANCH="${{ github.head_ref || github.ref_name }}"
           BRANCH_SLUG=$(echo "$RAW_BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z]+/-/g' | sed -E 's/^-+|-+$//g' | cut -c1-40)
           if [ -z "$BRANCH_SLUG" ]; then
-            BRANCH_SLUG="${{ inputs.pr_number != '' && format('pr-{0}', inputs.pr_number) || 'main' }}"
+            BRANCH_SLUG="${{ github.event.pull_request.number && format('pr-{0}', github.event.pull_request.number) || 'main' }}"
           fi
           echo "branch_slug=$BRANCH_SLUG" >> "$GITHUB_OUTPUT"
+          echo "head_sha=${{ github.event.pull_request.head.sha || github.sha }}" >> "$GITHUB_OUTPUT"
 
       - name: Checkout code
         uses: actions/checkout@v6
         with:
           lfs: true
-          ref: ${{ inputs.head_sha }}
+          ref: ${{ steps.preview.outputs.head_sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -90,7 +105,7 @@ jobs:
         run: node scripts/ci/inject-d1-database-ids.mjs
 
       - name: Build search index
-        if: ${{ inputs.is_pr != 'true' }}
+        if: github.event_name != 'pull_request'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -98,8 +113,8 @@ jobs:
         run: npm run build:search
 
       - name: Deploy to Cloudflare (preview for PR)
-        id: deploy
-        if: ${{ inputs.is_pr == 'true' }}
+        id: deploy_pr
+        if: github.event_name == 'pull_request'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -109,14 +124,13 @@ jobs:
         run: |
           LOG=$(npm run upload -- --preview-alias ${{ steps.preview.outputs.branch_slug }} --tag $NEXT_PUBLIC_GIT_TAG 2>&1 | tee /dev/stderr)
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
-          PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview URL: https?://[^[:space:]]+' | awk '{print $4}')
           BRANCH_PREVIEW_URL=$(echo "$LOG" | grep -oE 'Version Preview Alias URL: https?://[^[:space:]]+' | awk '{print $5}')
           echo "version_id=$VERSION_ID" >> "$GITHUB_OUTPUT"
-          echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
           echo "branch_preview_url=$BRANCH_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to Cloudflare (main)
-        if: ${{ inputs.is_pr != 'true' }}
+        id: deploy_main
+        if: github.event_name != 'pull_request'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -128,31 +142,88 @@ jobs:
           VERSION_ID=$(echo "$LOG" | grep -oE 'Worker Version ID: [0-9a-f-]+' | awk '{print $4}')
           npx wrangler versions deploy -y "$VERSION_ID"
 
-      - name: Download CI PR quality report
-        if: ${{ inputs.is_pr == 'true' }}
+      - name: Post preview URL immediately
+        if: github.event_name == 'pull_request' && steps.deploy_pr.outcome == 'success'
+        env:
+          BRANCH_PREVIEW_URL: ${{ steps.deploy_pr.outputs.branch_preview_url }}
+          WORKER_VERSION_ID: ${{ steps.deploy_pr.outputs.version_id }}
+        run: |
+          if [ -n "$BRANCH_PREVIEW_URL" ]; then
+            DEPLOY_LINE="✅ [${BRANCH_PREVIEW_URL}](${BRANCH_PREVIEW_URL})"
+          else
+            DEPLOY_LINE="⏳ Deploying…"
+          fi
+          if [ -n "$WORKER_VERSION_ID" ]; then
+            WORKER_LINE="\`${WORKER_VERSION_ID}\`"
+          else
+            WORKER_LINE="_pending deploy_"
+          fi
+
+          {
+            echo '<!-- pr-quality-report -->'
+            echo '## PR Quality Report'
+            echo ''
+            echo '| Category | Status |'
+            echo '| --- | --- |'
+            echo '| Tests | ⏳ Running… |'
+            echo '| Coverage | ⏳ Running… |'
+            echo "| Preview Deployment | ${DEPLOY_LINE} |"
+            echo "| Worker Version | ${WORKER_LINE} |"
+          } > pr-quality-comment.md
+
+      - name: Publish early preview comment
+        if: github.event_name == 'pull_request' && steps.deploy_pr.outcome == 'success'
+        uses: marocchino/sticky-pull-request-comment@v3
+        with:
+          header: pr-quality-report
+          path: pr-quality-comment.md
+
+      - name: Wait for CI quality report artifact
+        if: github.event_name == 'pull_request'
+        id: wait_ci_report
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_SHA: ${{ steps.preview.outputs.head_sha }}
         run: |
-          gh run download "${{ inputs.ci_run_id }}" -n pr-quality-report || true
+          rm -rf pr-quality-report
+          for attempt in $(seq 1 90); do
+            CI_RUN_ID=$(gh run list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --workflow ci.yml \
+              --commit "$HEAD_SHA" \
+              --json databaseId,status \
+              --jq 'map(select(.status != "cancelled")) | .[0].databaseId // empty')
+            if [ -n "$CI_RUN_ID" ] && gh run download "$CI_RUN_ID" -n pr-quality-report -R "${GITHUB_REPOSITORY}" 2>/dev/null; then
+              echo "ci_run_id=$CI_RUN_ID" >> "$GITHUB_OUTPUT"
+              echo "ready=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Waiting for CI pr-quality-report artifact (attempt ${attempt}/90)..."
+            sleep 20
+          done
+          echo "ready=false" >> "$GITHUB_OUTPUT"
 
-      - name: Update PR quality report with deployment
-        id: update_comment
-        if: ${{ inputs.is_pr == 'true' }}
+      - name: Merge CI report with deployment status
+        id: merge_comment
+        if: github.event_name == 'pull_request'
         env:
-          DEPLOY_STATUS: ${{ steps.deploy.outcome == 'success' && 'success' || 'failed' }}
-          BRANCH_PREVIEW_URL: ${{ steps.deploy.outputs.branch_preview_url }}
-          WORKER_VERSION_ID: ${{ steps.deploy.outputs.version_id }}
+          DEPLOY_STATUS: ${{ steps.deploy_pr.outcome == 'success' && 'success' || 'failed' }}
+          BRANCH_PREVIEW_URL: ${{ steps.deploy_pr.outputs.branch_preview_url }}
+          WORKER_VERSION_ID: ${{ steps.deploy_pr.outputs.version_id }}
+          REPORT_READY: ${{ steps.wait_ci_report.outputs.ready }}
         run: |
           COMMENT_FILE=""
-          for candidate in pr-quality-comment.md pr-quality-report/pr-quality-comment.md; do
+          for candidate in pr-quality-report/pr-quality-comment.md pr-quality-comment.md; do
             if [ -f "$candidate" ]; then
               COMMENT_FILE="$candidate"
               break
             fi
           done
 
-          if [ -z "$COMMENT_FILE" ]; then
+          if [ -n "$COMMENT_FILE" ] && [ "$COMMENT_FILE" != pr-quality-comment.md ]; then
+            cp "$COMMENT_FILE" pr-quality-comment.md
+          elif [ ! -f pr-quality-comment.md ]; then
             {
               echo '<!-- pr-quality-report -->'
               echo '## PR Quality Report'
@@ -164,9 +235,6 @@ jobs:
               echo '| Preview Deployment | ⏳ Deploying… |'
               echo '| Worker Version | _pending deploy_ |'
             } > pr-quality-comment.md
-            COMMENT_FILE=pr-quality-comment.md
-          elif [ "$COMMENT_FILE" != pr-quality-comment.md ]; then
-            cp "$COMMENT_FILE" pr-quality-comment.md
           fi
 
           if [ "$DEPLOY_STATUS" = "success" ] && [ -n "$BRANCH_PREVIEW_URL" ]; then
@@ -179,8 +247,6 @@ jobs:
 
           if [ -n "$WORKER_VERSION_ID" ]; then
             WORKER_LINE="\`${WORKER_VERSION_ID}\`"
-          elif [ "$DEPLOY_STATUS" = "pending" ]; then
-            WORKER_LINE="_pending deploy_"
           else
             WORKER_LINE="—"
           fi
@@ -192,27 +258,36 @@ jobs:
             && mv pr-quality-comment.md.tmp pr-quality-comment.md
 
           if [ ! -s pr-quality-comment.md ]; then
-            echo "::error::PR quality comment file is missing or empty after update."
+            echo "::error::PR quality comment file is missing or empty after merge."
             exit 1
           fi
 
+          if [ "$REPORT_READY" != "true" ]; then
+            echo "CI quality report artifact not ready; keeping early preview comment."
+          fi
+
       - name: Post unified PR quality report
-        if: ${{ inputs.is_pr == 'true' && steps.update_comment.outcome == 'success' }}
+        if: >-
+          github.event_name == 'pull_request' &&
+          steps.merge_comment.outcome == 'success' &&
+          steps.wait_ci_report.outputs.ready == 'true'
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: pr-quality-report
           path: pr-quality-comment.md
 
       - name: Update deployment status
-        if: ${{ always() }}
+        if: always()
         uses: actions/github-script@v8
         with:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const sha = '${{ inputs.head_sha }}';
+            const sha = context.eventName === 'pull_request'
+              ? context.payload.pull_request.head.sha
+              : context.sha;
             const state = '${{ job.status }}' === 'success' ? 'success' : 'failure';
-            const previewUrl = `${{ steps.deploy.outputs.branch_preview_url }}`;
+            const previewUrl = '${{ steps.deploy_pr.outputs.branch_preview_url }}';
 
             await github.rest.repos.createCommitStatus({
               owner,
