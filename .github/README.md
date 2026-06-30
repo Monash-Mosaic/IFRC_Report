@@ -1,6 +1,6 @@
 # GitHub Actions — CI Architecture
 
-This repository uses a single orchestration workflow (`ci.yml`) that defines jobs and delegates step logic to composite actions under `.github/actions/`.
+This repository uses a single orchestration workflow (`ci.yml`) that defines jobs and mostly delegates step logic to composite actions under `.github/actions/`.
 
 ## Folder structure
 
@@ -61,18 +61,19 @@ base_coverage ──────► coverage_report (PR only)
 | --- | --- |
 | `dependency-review` | `dependency_review` |
 | `run-ci-check` | `ci-checks` (matrix: lint, test, build) |
-| `collect-base-coverage` | `base_coverage` |
 | `post-coverage-report` | `coverage_report` |
 | `write-ci-summary` | `ci_summary` |
 | `cleanup-workflow-artifacts` | `cleanup` |
 | `setup-node-environment` | `run-ci-check`, `collect-base-coverage` |
-| `install-dependencies` | `run-ci-check`, `collect-base-coverage` |
+| `install-dependencies` | `run-ci-check` |
 | `restore-next-cache` | `run-ci-check` |
-| `restore-jest-cache` | `run-ci-check`, `collect-base-coverage` |
+| `restore-jest-cache` | `run-ci-check` |
 | `save-next-cache` | `run-ci-check` (build leg) |
-| `cleanup-ci-workspace` | `run-ci-check`, `collect-base-coverage`, `post-coverage-report` |
+| `cleanup-ci-workspace` | `run-ci-check`, `post-coverage-report` |
 
 OSV scanning (`osv_scan_pr` / `osv_scan_main`) calls Google's reusable workflows directly from `ci.yml` — that cannot be moved into a composite action.
+
+`base_coverage` is also inlined in `ci.yml` because it checks out the PR base SHA; if it used a local composite action, that action would disappear from the workspace during post-run on branches where the base commit does not contain the new action files.
 
 ### Caching strategy
 
