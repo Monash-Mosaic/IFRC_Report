@@ -1,0 +1,33 @@
+name: Collect base coverage
+description: Run tests on the PR base branch and upload coverage baseline.
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node environment
+      uses: ./.github/actions/setup-node-environment
+      with:
+        checkout-ref: ${{ github.event.pull_request.base.sha }}
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+
+    - name: Restore Jest cache
+      uses: ./.github/actions/restore-jest-cache
+
+    - name: Collect base branch coverage
+      shell: bash
+      run: npm run ci:test
+
+    - name: Upload base coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: base-coverage-report
+        path: report.json
+        retention-days: 1
+
+    - name: Cleanup workspace
+      if: always()
+      uses: ./.github/actions/cleanup-ci-workspace
+      with:
+        mode: base-coverage
