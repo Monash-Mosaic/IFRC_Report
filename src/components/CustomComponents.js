@@ -209,6 +209,54 @@ export function ChapterQuote({ children, ...props }) {
   );
 }
 
+export function AsksAims({ children, ...props }) {
+  return (
+    <section
+      className="relative block lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start my-8"
+      {...props}
+    >
+      {/* vertical divider (desktop only) */}
+      <div className="hidden lg:block absolute left-1/2 top-0 h-full w-px bg-black -translate-x-1/2" />
+
+      {children}
+    </section>
+  );
+}
+
+export async function Asks({ children, ...props }) {
+  const t = await getTranslations('AsksAims');
+  return (
+    <div {...props}>
+      {/* Title NOT bold */}
+      <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
+        {t('asks')}
+      </div>
+
+      {/* Content IS bold */}
+      <div className="font-bold leading-relaxed [&>p]:mb-4 [&>p:last-child]:mb-0">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export async function Aims({ children, ...props }) {
+  const t = await getTranslations('AsksAims');
+  return (
+    <div className="mt-8 lg:mt-0" {...props}>
+      {/* Title NOT bold */}
+      <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
+        {t('aims')}
+      </div>
+
+      {/* Content IS bold */}
+      <div className="font-bold leading-relaxed [&>p]:mb-4 [&>p:last-child]:mb-0">
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export function ReccomendationsTitle({ children, ...props }) {
   return (
     <div
@@ -772,6 +820,9 @@ const CustomComponents = {
   Definition,
   DefinitionDescription,
   H1Contributor,
+  Asks,
+  Aims,
+  AsksAims,
   Reccomendations,
   ReccomendationsTitle,
   EndnotesLink,
