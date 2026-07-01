@@ -44,10 +44,10 @@
     "hls.js": "^1.6.15",
     "jsonc-parser": "^3.3.1",
     "lodash": "^4.17.23",
-    "lucide-react": "^0.577.0",
+    "lucide-react": "^1.22.0",
     "min-indent": "^1.0.1",
     "next": "^16.2.6",
-    "next-intl": "^4.9.1",
+    "next-intl": "^4.13.1",
     "next-share": "^0.27.0",
     "postcss": "^8.5.15",
     "react": "^19.2.4",
@@ -73,7 +73,7 @@
     "baseline-browser-mapping": "^2.10.40",
     "cloudflared": "^0.7.1",
     "cssnano": "^8.0.2",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "~16.2.3",
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.3.0",
@@ -84,7 +84,7 @@
     "tailwindcss": "^4.2.2",
     "ts-node": "^10.9.2",
     "typescript": "6.0.3",
-    "wrangler": "^4.105.0"
+    "wrangler": "^4.106.0"
   },
   "overrides": {
     "postcss": "^8.5.15",
