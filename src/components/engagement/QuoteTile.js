@@ -10,7 +10,8 @@ export default function QuoteTile({ quote }) {
   const locale = useLocale();
   const chapterHref = quote.url
   const { label: chapterLabel, title: chapterTitle, thumbnail, thumbnailOverlay } = getChapterMeta(
-    quote.chapter
+    quote.chapter,
+    locale
   );
   const tohItems = getIconsForHarm(quote.harm);
   const thumbnailBgClass = thumbnailOverlay === 'blue' ? 'bg-blue-500' : 'bg-red-500';
