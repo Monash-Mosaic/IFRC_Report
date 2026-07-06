@@ -299,14 +299,14 @@ describe('Footer', () => {
       await renderFooter();
       const disinformerLink = screen.getByText('Disinformer');
       expect(disinformerLink).toBeInTheDocument();
-      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/coming-soon');
+      expect(disinformerLink.closest('a')).toHaveAttribute('href', 'https://disinformer-leaderboard--disinformer-d40c6.europe-west4.hosted.app/');
     });
 
     it('renders Ctrl + Alt + Prebunk game link with correct href', async () => {
       await renderFooter();
       const prebunkLink = screen.getByText('Ctrl + Alt + Prebunk');
       expect(prebunkLink).toBeInTheDocument();
-      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/coming-soon');
+      expect(prebunkLink.closest('a')).toHaveAttribute('href', 'https://ctrl-alt-prebunk.wdr26.org/en');
     });
 
     it('Download Report link uses dynamic download link from reportModule', async () => {
