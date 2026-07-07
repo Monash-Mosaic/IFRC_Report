@@ -21,8 +21,12 @@ jest.mock('next/image', () => ({
 
 // Mock i18n navigation
 jest.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, className }) => (
-    <a href={typeof href === 'object' ? JSON.stringify(href) : href} className={className}>
+  Link: ({ children, href, className, ...props }) => (
+    <a
+      href={typeof href === 'object' ? JSON.stringify(href) : href}
+      className={className}
+      {...props}
+    >
       {children}
     </a>
   ),
