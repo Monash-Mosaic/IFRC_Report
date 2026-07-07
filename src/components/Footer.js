@@ -123,7 +123,7 @@ export default async function Footer({ locale }) {
             {/* Games */}
             <div className="flex flex-col items-center gap-2 text-center lg:items-start lg:text-left">
               <p className="font-semibold">{t('games')}</p>
-              <Link href="https://disinformer-leaderboard--disinformer-d40c6.europe-west4.hosted.app/" target="_blank">Disinformer</Link>
+              <Link href="https://disinformer.wdr26.org" target="_blank">Disinformer</Link>
               <Link href="https://ctrl-alt-prebunk.wdr26.org/en" target="_blank">Ctrl + Alt + Prebunk</Link>
             </div>
 
