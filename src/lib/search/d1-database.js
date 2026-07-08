@@ -322,35 +322,44 @@ export default class D1Database {
     if (typeof ids !== 'object') {
       ids = [ids];
     }
-
     for (let count = 0; count < ids.length; ) {
       const chunk =
-        ids.length - count > MAXIMUM_QUERY_VARS
-          ? ids.slice(count, count + MAXIMUM_QUERY_VARS)
-          : count
-            ? ids.slice(count)
-            : ids;
-
+      ids.length - count > MAXIMUM_QUERY_VARS
+      ? ids.slice(count, count + MAXIMUM_QUERY_VARS)
+      : count
+      ? ids.slice(count)
+      : ids;
+      
       const stmt = buildInClauseParams(chunk.length);
       count += chunk.length;
-
+      
       promises.push(queryAll(this.db, `SELECT id, doc FROM ${regTable} WHERE id IN (${stmt})`, chunk));
     }
-
+    
     const batches = await Promise.all(promises);
-
+    
+    // `WHERE id IN (...)` returns rows in index order, not input order; the ids
+    // arrive ranked by relevance, so re-map rows onto the input order.
+    const rowById = new Map();
     for (const batch of batches) {
       if (batch && batch.length) {
         for (let i = 0; i < batch.length; i++) {
           if (batch[i].doc) {
             batch[i].doc = JSON.parse(batch[i].doc);
           }
+          rowById.set(String(batch[i].id), batch[i]);
         }
-        result.push(batch);
       }
     }
 
-    return result.length === 1 ? result[0] : result.length > 1 ? concat(result) : result;
+    for (const id of ids) {
+      const row = rowById.get(String(id));
+      if (row) {
+        result.push(row);
+      }
+    }
+
+    return result;
   }
 
   async has(id) {

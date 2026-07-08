@@ -387,12 +387,5 @@
   "AsksAims": {
     "asks": "Exigences",
     "aims": "Objectifs"
-  },
-  "ChapterPrefix": {
-    "synthesis": "Synthèse",
-    "acronyms": "Acronymes",
-    "introduction": "Introduction",
-    "chapter": "Chapitre",
-    "annex": "Annexe"
   }
 }

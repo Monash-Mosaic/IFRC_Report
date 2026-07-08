@@ -11,6 +11,10 @@ jest.mock('@/lib/search/flexsearch-highlight.js', () => ({
   ),
 }));
 
+jest.mock('next-intl/server', () => ({
+  getTranslations: jest.fn(async () => (key) => key),
+}));
+
 import { createSearchIndex } from '@/lib/search/db.js';
 import { highlight_fields } from '@/lib/search/flexsearch-highlight.js';
 import { searchDocuments } from '@/lib/search/flexsearch.js';

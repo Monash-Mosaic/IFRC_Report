@@ -353,12 +353,5 @@
   "AsksAims": {
     "asks": "الإجراءات المطلوبة",
     "aims": "الأهداف"
-  },
-  "ChapterPrefix": {
-    "synthesis": "Synthesis",
-    "acronyms": "Acronyms",
-    "introduction": "Introduction",
-    "chapter": "Chapter",
-    "annex": "Annex"
   }
 }

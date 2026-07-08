@@ -366,12 +366,5 @@
   "AsksAims": {
     "asks": "Asks",
     "aims": "Aims"
-  },
-  "ChapterPrefix": {
-    "synthesis": "Synthesis",
-    "acronyms": "Acronyms",
-    "introduction": "Introduction",
-    "chapter": "Chapter",
-    "annex": "Annex"
   }
 }
