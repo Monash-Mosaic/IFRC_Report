@@ -342,6 +342,10 @@
     "social": "社交",
     "informational": "信息"
   },
+  "AsksAims": {
+    "asks": "要求",
+    "aims": "目标"
+  },
   "ChapterPrefix": {
     "synthesis": "Synthesis",
     "acronyms": "Acronyms",

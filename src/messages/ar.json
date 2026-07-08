@@ -350,6 +350,10 @@
     "reportTitle": "التقرير",
     "year": "2026"
   },
+  "AsksAims": {
+    "asks": "الإجراءات المطلوبة",
+    "aims": "الأهداف"
+  },
   "ChapterPrefix": {
     "synthesis": "Synthesis",
     "acronyms": "Acronyms",

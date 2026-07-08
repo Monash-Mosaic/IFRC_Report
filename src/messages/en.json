@@ -363,6 +363,10 @@
     "social": "Social",
     "informational": "Informational"
   },
+  "AsksAims": {
+    "asks": "Asks",
+    "aims": "Aims"
+  },
   "ChapterPrefix": {
     "synthesis": "Synthesis",
     "acronyms": "Acronyms",

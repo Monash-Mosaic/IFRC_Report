@@ -342,6 +342,10 @@
     "social": "Социальный",
     "informational": "Информационный"
   },
+  "AsksAims": {
+    "asks": "Asks",
+    "aims": "Aims"
+  },
   "ChapterPrefix": {
     "synthesis": "Synthesis",
     "acronyms": "Acronyms",

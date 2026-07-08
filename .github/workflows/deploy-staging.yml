@@ -7,6 +7,10 @@ on:
 permissions:
   contents: write # Required to edit releases
 
+concurrency:
+  group: staging-${{ github.event.release.tag_name }}
+  cancel-in-progress: true
+
 jobs:
   deploy_staging:
     runs-on: ubuntu-latest
@@ -24,8 +28,30 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Restore node_modules cache
+        id: node-modules-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+
+      - name: Restore Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            next-${{ runner.os }}-
+
       - name: Install dependencies
-        run: npm ci
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: |
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            npm install --package-lock-only --workspaces --include-workspace-root
+          fi
+          npm ci
 
       - name: Inject D1 database IDs into Wrangler config
         env:

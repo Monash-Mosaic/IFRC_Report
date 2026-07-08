@@ -324,6 +324,99 @@ const wrapBoxRuns = (node) => {
   node.children = out;
 };
 
+const isAsksLabel = (node) =>
+  isElement(node) && node.name === 'normal-2c' && /^asks$/i.test(getTextContent(node).trim());
+
+const isAimsLabel = (node) =>
+  isElement(node) && node.name === 'normal-2c' && /^aims$/i.test(getTextContent(node).trim());
+
+const wrapAsksAimsSections = (node) => {
+  if (!node || !Array.isArray(node.children)) return;
+
+  const children = node.children;
+  const out = [];
+
+  for (let i = 0; i < children.length; i += 1) {
+    const child = children[i];
+
+    if (isAsksLabel(child)) {
+      const asksChildren = [];
+      const aimsChildren = [];
+      let foundAims = false;
+      let j = i + 1;
+
+      while (j < children.length) {
+        const next = children[j];
+        if (isWhitespaceText(next)) {
+          j += 1;
+          continue;
+        }
+        if (isAimsLabel(next)) {
+          foundAims = true;
+          j += 1;
+          break;
+        }
+        if (isElement(next) && next.name === 'recommendations') {
+          asksChildren.push(next);
+          j += 1;
+          continue;
+        }
+        break;
+      }
+
+      if (!foundAims || asksChildren.length === 0) {
+        out.push(child);
+        continue;
+      }
+
+      while (j < children.length) {
+        const next = children[j];
+        if (isWhitespaceText(next)) {
+          j += 1;
+          continue;
+        }
+        if (isElement(next) && next.name === 'recommendations') {
+          aimsChildren.push(next);
+          j += 1;
+          continue;
+        }
+        break;
+      }
+
+      out.push({
+        type: 'element',
+        name: 'AsksAims',
+        attributes: {},
+        children: [
+          {
+            type: 'element',
+            name: 'Asks',
+            attributes: {},
+            children: asksChildren,
+          },
+          {
+            type: 'element',
+            name: 'Aims',
+            attributes: {},
+            children: aimsChildren,
+          },
+        ],
+      });
+
+      i = j - 1;
+      continue;
+    }
+
+    if (isElement(child) && Array.isArray(child.children)) {
+      wrapAsksAimsSections(child);
+    }
+
+    out.push(child);
+  }
+
+  node.children = out;
+};
+
 const nextNonWhitespaceIndex = (nodes, startIndex) => {
   for (let i = startIndex; i < nodes.length; i += 1) {
     const current = nodes[i];
@@ -626,6 +719,12 @@ const convertToMDXAst = (node, index, parent) => {
     case 'h1-recommendations':
     case 'h1':
       return [heading(1, extractTextChildren(node))];
+    case 'AsksAims':
+      return [mdxJsxEl('AsksAims', [], node.children)];
+    case 'Asks':
+      return [mdxJsxEl('Asks', [], node.children)];
+    case 'Aims':
+      return [mdxJsxEl('Aims', [], node.children)];
     case 'h2':
       return [heading(2, extractTextChildren(node))];
     case 'h3':
@@ -650,6 +749,9 @@ const convertToMDXAst = (node, index, parent) => {
     case 'normal-2c':
       return [mdxJsxEl('ReccomendationsTitle', [], extractTextChildren(node))];
     case 'recommendations':
+      if (parent?.name === 'Asks' || parent?.name === 'Aims') {
+        return [paragraph(extractTextChildren(node))];
+      }
       return [mdxJsxEl('Reccomendations', [], extractTextChildren(node))];
     case 'bold':
       return [strong(extractTextChildren(node))];
@@ -754,6 +856,7 @@ const xmlAst = fromXml(fileContent);
 
 wrapContributorGroups(xmlAst);
 wrapBoxRuns(xmlAst);
+wrapAsksAimsSections(xmlAst);
 
 const normalizedXmlAst = flatMap(xmlAst, normalisedXmlAstFn);
 
