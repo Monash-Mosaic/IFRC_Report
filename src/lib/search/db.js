@@ -31,7 +31,7 @@ function createFieldEncoder(locale) {
     case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset);
     case 'es': return new Encoder(Charset.LatinBalance);
     case 'zh': return new Encoder(Charset.CJK);
-    case 'ar': return new Encoder(Charset.Normalize).assign({ rtl: true });
+    case 'ar': return new Encoder(Charset.Normalize, { rtl: true });
     case 'ru':
     default:   return new Encoder(Charset.Normalize); // unicode-normalize + lowercase
   }
