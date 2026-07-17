@@ -24,7 +24,7 @@ const withMDX = createMDX({
 const nextConfig = {
   // Ensure testing works with ESM packages
   // ref: https://github.com/vercel/next.js/issues/40183#issuecomment-3063588870
-  transpilePackages: ['next-intl', 'use-intl'],
+  transpilePackages: ['next-intl', 'use-intl', 'flexsearch'],
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   images: {
