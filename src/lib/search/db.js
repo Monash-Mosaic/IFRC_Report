@@ -71,14 +71,8 @@ async function resolveSearchDatabase(explicitDb) {
   return env.SEARCH_DB.withSession();
 }
 
-export async function createSearchIndex(locale, options) {
-  const normalized = normalizeOptions(options);
-
-  if (!LOCALES.has(locale)) {
-    throw new Error(`Unsupported locale: ${locale}`);
-  }
-
-  const doc = new Document({
+export function createDocument(locale) {
+  return new Document({
     document: {
       id: "id",
       store: true,
@@ -98,6 +92,16 @@ export async function createSearchIndex(locale, options) {
       ],
     },
   });
+}
+
+export async function createSearchIndex(locale, options) {
+  const normalized = normalizeOptions(options);
+
+  if (!LOCALES.has(locale)) {
+    throw new Error(`Unsupported locale: ${locale}`);
+  }
+
+  const doc = createDocument(locale);
 
   const d1 = await resolveSearchDatabase(normalized.db);
   const baseName = `ifrc-wdr-playbook-${locale}-db`;

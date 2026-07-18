@@ -1,34 +1,21 @@
 import { searchDocuments } from '@/lib/search/flexsearch.js';
-import { createSearchIndex } from '@/lib/search/db.js';
-import { Document, Charset, Encoder } from 'flexsearch';
-import EnglishPreset from "flexsearch/lang/en";
+import { createDocument, createSearchIndex } from '@/lib/search/db.js';
 
-jest.mock('@/lib/search/db.js');
+jest.mock('@/lib/search/db.js', () => {
+  const actual = jest.requireActual('@/lib/search/db.js');
+
+  return {
+    __esModule: true,
+    ...actual,
+    createSearchIndex: jest.fn(),
+  };
+});
 
 describe('searchDocuments() Test', () => {
   let dummyIndex;
 
   beforeEach(async () => {
-    dummyIndex = new Document({
-      document: {
-        id: "id",
-        store: true,
-        field: [
-          {
-            field: 'title',
-            tokenize: 'forward',
-            context: false,
-            encoder: new Encoder(Charset.LatinAdvanced, EnglishPreset)
-          },
-          {
-            field: 'excerpt',
-            tokenize: 'forward',
-            encoder: new Encoder(Charset.LatinAdvanced, EnglishPreset),
-            context: false,
-          },
-        ],
-      },
-    });
+    dummyIndex = createDocument('en');
 
     await dummyIndex.addAsync({
       id: "1",
@@ -66,7 +53,7 @@ describe('searchDocuments() Test', () => {
       id: "5",
       chapterPrefix: "Chapter 08",
       title: "What’s ahead? Evolutions and known unknowns",
-      excerpt: "AI holds potential for humanitarian action, but there is a growing risk that cost-driven, unregulated use could harm vulnerable communities. Building a Responsible Humanitarian Approach: The IFRC’s Policy on Artificial Intelligence [^10] provides an overarching framework to guide the organization’s exploration and use of AI in ways that align with its humanitarian mission and principles. The SAFE AI project,[^11] led by CDAC Network, The Alan Turing Institute and Humanitarian AI Advisory, with support from the UK Foreign, Commonwealth and Development Office, aims to create practical standards, tools and community-driven frameworks to ensure AI is used responsibly and ethically in humanitarian settings. Monitoring the impact of AI on crisis-affected populations will be essential to ensure that its use remains safe, effective and principled.\n",
+      excerpt: "AI holds potential for humanitarian action, but there is a growing risk that cost-driven, unregulated use could harm vulnerable communities. Building a Responsible Humanitarian Approach: The ICRC’s Policy on Artificial Intelligence [^10] provides an overarching framework to guide the organization’s exploration and use of AI in ways that align with its humanitarian mission and principles. The SAFE AI project,[^11] led by CDAC Network, The Alan Turing Institute and Humanitarian AI Advisory, with support from the UK Foreign, Commonwealth and Development Office, aims to create practical standards, tools and community-driven frameworks to ensure AI is used responsibly and ethically in humanitarian settings. Monitoring the impact of AI on crisis-affected populations will be essential to ensure that its use remains safe, effective and principled.\n",
       href: "/en/reports/wdr26/chapter-08#whats-ahead-evolutions-and-known-unknowns"
     });
 
@@ -197,6 +184,7 @@ describe('searchDocuments() Test', () => {
   it('returns relevant documents for multi-word search', async () => {
     const results = await searchDocuments({ locale: 'en', query: 'World Disasters Report', limit: 5 });
     expect(results).toHaveLength(3);
+    expect(results[0].id).toEqual('2'); // Most relevant document should be first
     expect(results.map((result) => result.id).sort()).toEqual(['2', '3', '4']);
   });
 
