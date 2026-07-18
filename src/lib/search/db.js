@@ -25,9 +25,39 @@ function normalizeNamespace(value) {
   return normalized || null;
 }
 
+function mapAcronyms(str) {
+  return str
+    .replace(/AI/g, "Artificial Intelligence")
+    .replace(/CAR/g, "Central African Republic")
+    .replace(/CBS/g, "Community-based surveillance")
+    .replace(/CDAC/g, "Communicating with Disaster Affected Communities")
+    .replace(/CEA/g, "Community engagement and accountability")
+    .replace(/CRED/g, "Centre for Research on the Epidemiology of Disasters")
+    .replace(/CSO/g, "Civil society organization")
+    .replace(/DRC/g, "Democratic Republic of the Congo")
+    .replace(/DREF/g, "Disaster Response Emergency Fund")
+    .replace(/DRM/g, "Disaster risk management")
+    .replace(/ICRC/g, "International Committee of the Red Cross")
+    .replace(/ICT/g, "Information and communication technology")
+    .replace(/IDMC/g, "Internal Displacement Monitoring Centre")
+    .replace(/IFRC/g, "International Federation of Red Cross and Red Crescent Societies")
+    .replace(/ITU/g, "International Telecommunication Union")
+    .replace(/MDH/g, "Misinformation, disinformation and hate speech")
+    .replace(/MHPSS/g, "Mental health and psychosocial support")
+    .replace(/NGO/g, "Non-governmental organization")
+    .replace(/OCHA/g, "Office for the Coordination of Humanitarian Affairs (UN)")
+    .replace(/OECD/g, "Organisation for Economic Co-operation and Development")
+    .replace(/Q&A/g, "Questions and answers")
+    .replace(/RCCE/g, "Risk Communication and Community Engagement")
+    .replace(/SDG/g, "Sustainable Development Goal")
+    .replace(/UNDP/g, "UN Development Programme")
+    .replace(/UNHCR/g, "UN High Commissioner for Refugees")
+    .replace(/WHO/g, "World Health Organization");
+}
+
 function createFieldEncoder(locale) {
   switch (locale) {
-    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset);
+    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: mapAcronyms });
     case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset);
     case 'es': return new Encoder(Charset.LatinBalance);
     case 'zh': return new Encoder(Charset.CJK);

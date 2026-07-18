@@ -21,7 +21,7 @@ describe('searchDocuments() Test', () => {
       id: "1",
       chapterPrefix: "Synthesis",
       title: "Harmful information is not background noise",
-      excerpt: "Harmful information is not background noise; it actively shapes how people understand crises, who they trust and whether they can access humanitarian assistance and protection. It influences safety and security both directly and indirectly. The struggle over harmful information is as much about cables as it is about content – the infrastructures and narratives that shape access, trust and power.\nAs the information ecosystem becomes increasingly complex, so too must the capacity to read it, respond to it and protect affected populations, individuals and organizations from its harms. Navigating this ecosystem is now a core part of what it means to act in humanitarian crises. It must inform how responses are designed and implemented, while also driving advocacy for broader systemic change.",
+      excerpt: "Harmful information is not background noise; it actively shapes how people understand crises, who they trust and whether they can access humanitarian assistance and protection. It influences safety and security both directly and indirectly. The struggle over harmful information is as much about cables as it is about content – the infrastructures and narratives that shape access, trust and power.\nAs the information ecosystem becomes increasingly complex, so too must the capacity to read it, respond to it and protect affected populations, individuals and organizations from its harms. Navigating this ecosystem is now a core part of what it means to act in humanitarian crises. It must inform how responses are designed and implemented, while also driving advocacy for broader systemic change. \nHere are some acronyms: AI, CAR, CBS, CDAC, CRED, CSO, DRC, DREF, DRM, ICRC, ICT, IDMC, IFRC, ITU, MDH, MHPSS, NGO, OCHA, OECD, Q&A, RCCE, SDG, UNDP, UNHCR, WHO.",
       href: "/en/reports/wdr26/synthesis#harmful-information-is-not-background-noise"
     });
 
@@ -186,6 +186,13 @@ describe('searchDocuments() Test', () => {
     expect(results).toHaveLength(3);
     expect(results[0].id).toEqual('2'); // Most relevant document should be first
     expect(results.map((result) => result.id).sort()).toEqual(['2', '3', '4']);
+  });
+
+  it('returns relevant documents for search with acronyms', async () => {
+    // AI (Artificial Intelligence)
+    const results = await searchDocuments({ locale: 'en', query: 'artificial intelligence', limit: 5 });
+    expect(results).toHaveLength(3);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']); // 1 doesn't have "Artificial Intelligence" in the excerpt but has "AI" which is an acronym for it
   });
 
   // it('test', async () => {
