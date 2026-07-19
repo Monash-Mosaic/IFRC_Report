@@ -25,6 +25,12 @@ function normalizeNamespace(value) {
   return normalized || null;
 }
 
+function customPrepare(str) {
+  return str
+    // Remove footnote references like [^1], [^2], etc.
+    .replace(/\[\^[0-9]+\]/g, "");
+};
+
 function mapAcronyms(str) {
   return str
     .replace(/AI/g, "Artificial Intelligence")
@@ -57,13 +63,13 @@ function mapAcronyms(str) {
 
 function createFieldEncoder(locale) {
   switch (locale) {
-    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: mapAcronyms });
-    case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset);
-    case 'es': return new Encoder(Charset.LatinBalance);
-    case 'zh': return new Encoder(Charset.CJK);
-    case 'ar': return new Encoder(Charset.Normalize, { rtl: true });
+    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: customPrepare });
+    case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset, { prepare: customPrepare });
+    case 'es': return new Encoder(Charset.LatinBalance, { prepare: customPrepare });
+    case 'zh': return new Encoder(Charset.CJK, { prepare: customPrepare });
+    case 'ar': return new Encoder(Charset.Normalize, { rtl: true, prepare: customPrepare });
     case 'ru':
-    default:   return new Encoder(Charset.Normalize); // unicode-normalize + lowercase
+    default:   return new Encoder(Charset.Normalize, { prepare: customPrepare }); // unicode-normalize + lowercase
   }
 }
 

@@ -120,6 +120,26 @@ describe('searchDocuments() Test', () => {
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>flagship</em>'));
   });
 
+  it('search ignores stop words', async () => {
+    let results = await searchDocuments({ locale: 'en', query: 'the flagship', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('2');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>flagship</em>'));
+
+    results = await searchDocuments({ locale: 'en', query: 'trust and power', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>trust</em> and <em>power</em>'));
+  });
+
+  it('search ignores footnotes', async () => {
+    let results = await searchDocuments({ locale: 'en', query: '[^1]', limit: 5 });
+    expect(results).toHaveLength(0);
+
+    results = await searchDocuments({ locale: 'en', query: '[^2]', limit: 5 });
+    expect(results).toHaveLength(0);
+  });
+
   // TODO: Fix this test. Test passes but the highlight is not working as expected
   it('returns relevant documents for words with hyphens (-)', async () => {
     const results = await searchDocuments({ locale: 'en', query: 'cost-driven', limit: 5 });
