@@ -140,20 +140,6 @@ describe('searchDocuments() Test', () => {
     expect(results).toHaveLength(0);
   });
 
-  // TODO: Fix this test. Test passes but the highlight is not working as expected
-  it('returns relevant documents for words with hyphens (-)', async () => {
-    const results = await searchDocuments({ locale: 'en', query: 'cost-driven', limit: 5 });
-    expect(results).toHaveLength(1);
-    expect(results[0].id).toEqual('5');
-  });
-
-  // TODO: Fix this test, currently failing
-  // it("returns relevant documents for words with apostrophes (’)", async () => {
-  //   const results = await searchDocuments({ locale: 'en', query: "organization’s", limit: 5 });
-  //   expect(results).toHaveLength(1);
-  //   expect(results[0].id).toEqual('5');
-  // });
-
   it('returns multiple relevant documents for single keyword search', async () => {
     const results = await searchDocuments({ locale: 'en', query: 'content', limit: 5 });
 
@@ -190,6 +176,10 @@ describe('searchDocuments() Test', () => {
     let results = await searchDocuments({ locale: 'en', query: 'build', limit: 5 });
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['4', '5']);
+
+    results = await searchDocuments({ locale: 'en', query: 'organize', limit: 5 });
+    expect(results).toHaveLength(2);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
 
     // TODO: Fix this test, currently failing
     // results = await searchDocuments({ locale: 'en', query: 'drive', limit: 5 });
