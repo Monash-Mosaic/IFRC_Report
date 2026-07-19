@@ -189,12 +189,14 @@ exports[`Footer Rendering matches snapshot 1`] = `
               Disinformation Games
             </p>
             <a
-              href="/coming-soon"
+              href="https://disinformer.wdr26.org"
+              target="_blank"
             >
               Disinformer
             </a>
             <a
-              href="/coming-soon"
+              href="https://ctrl-alt-prebunk.wdr26.org/en"
+              target="_blank"
             >
               Ctrl + Alt + Prebunk
             </a>
