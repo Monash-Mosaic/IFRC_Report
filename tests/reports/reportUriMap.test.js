@@ -39,6 +39,22 @@ describe('reportUriMap', () => {
     expect(chapter01.languages.es).toBe('capitulo-01');
     expect(reportUriMap[activeReportKey].chapters.uri.es['capitulo-01']).toBe('chapter-01');
   });
+
+  it('stores locale-specific chapter metadata', () => {
+    const chapter = reportUriMap[activeReportKey].chapters['chapter-01'];
+
+    expect(chapter.meta.en).toMatchObject({
+      title: expect.any(String),
+      prefix: 'Chapter 01',
+      thumbnail: expect.stringMatching(/Chapter1\.webp$/),
+      thumbnailOverlay: 'red',
+    });
+    expect(chapter.meta.fr).toMatchObject({
+      title: expect.any(String),
+      prefix: 'Chapitre 01',
+    });
+    expect(chapter.meta.fr.prefix).not.toBe(chapter.meta.en.prefix);
+  });
 });
 
 describe('report release helpers', () => {

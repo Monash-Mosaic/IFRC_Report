@@ -14,7 +14,7 @@ export default function EngagementClient() {
     <div className="bg-white text-black min-h-screen">
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-8">
         <TagContainer selectedTag={selectedTag} handleSelectionTag={handleSelectionTag} />
-<QuotesSection selectedTag={selectedTag} />
+        <QuotesSection selectedTag={selectedTag} />
       </div>
     </div>
   );

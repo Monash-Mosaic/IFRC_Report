@@ -40,6 +40,15 @@ const buildReportUriMap = (reportsByLocaleMap) => {
 //           zh: '章节-02',
 //           es: 'capitulo-02',
 //         },
+//         meta: { // locale to chapter display metadata
+//           en: {
+//             title: '...',
+//             prefix: 'Chapter 02',
+//             thumbnail: '/wdr25/chapters/Chapter2.webp',
+//             thumbnailOverlay: 'red',
+//           },
+//           fr: { ... },
+//         },
 //       },
 //       uri: { // localede to localized chapter slug to canonical chapter key
 //         ar: {
@@ -189,6 +198,7 @@ const buildReportUriMap = (reportsByLocaleMap) => {
           reportChapters[canonicalSlug] = {
             number: chapter?.metadata?.chapterNumber,
             languages: {},
+            meta: {},
           };
         } else if (
           reportChapters[canonicalSlug].number == null &&
@@ -201,6 +211,17 @@ const buildReportUriMap = (reportsByLocaleMap) => {
         if (!reportChapters[canonicalSlug].languages) {
           reportChapters[canonicalSlug].languages = {};
         }
+
+        if (!reportChapters[canonicalSlug].meta) {
+          reportChapters[canonicalSlug].meta = {};
+        }
+
+        reportChapters[canonicalSlug].meta[locale] = {
+          title: chapter.title || '',
+          prefix: chapter.metadata?.chapterPrefix || '',
+          thumbnail: chapter.thumbnail,
+          thumbnailOverlay: chapter.thumbnailOverlay || 'red',
+        };
 
         if (
           reportChapters[canonicalSlug].languages[locale] &&
