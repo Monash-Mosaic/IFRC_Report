@@ -36,7 +36,7 @@ export async function searchDocuments({ locale, query, limit = 10 }) {
     //   merge: true,
     //   clip: false,
     // },
-    suggest: true,
+    suggest: false,
     pluck: "excerpt",
   });
   

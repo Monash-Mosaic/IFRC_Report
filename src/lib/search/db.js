@@ -60,7 +60,7 @@ function customPrepareEn(str) {
 
 function createFieldEncoder(locale) {
   switch (locale) {
-    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: customPrepareEn });
+    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: customPrepareEn, stemmer: false });
     case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset);
     case 'es': return new Encoder(Charset.LatinBalance);
     case 'zh': return new Encoder(Charset.CJK);

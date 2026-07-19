@@ -141,13 +141,16 @@ describe('searchDocuments() Test', () => {
   });
 
   it('returns multiple relevant documents for single keyword search', async () => {
-    const results = await searchDocuments({ locale: 'en', query: 'content', limit: 5 });
-
+    let results = await searchDocuments({ locale: 'en', query: 'content', limit: 5 });
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '3']);
     results.forEach((result) => {
       expect(result.highlight).toEqual(expect.stringContaining('<em>content</em>'));
     });
+
+    results = await searchDocuments({ locale: 'en', query: 'drive', limit: 5 });
+    expect(results).toHaveLength(3);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']);
   });
 
   it('returns relevant documents for search with numerical characters', async () => {
@@ -172,19 +175,13 @@ describe('searchDocuments() Test', () => {
     // expect(results[0].id).toEqual('3');
   });
 
-  it('returns relevant documents with similar words to keyword', async () => {
-    let results = await searchDocuments({ locale: 'en', query: 'build', limit: 5 });
-    expect(results).toHaveLength(2);
-    expect(results.map((result) => result.id).sort()).toEqual(['4', '5']);
-
-    results = await searchDocuments({ locale: 'en', query: 'organize', limit: 5 });
+  it('similar words to keyword are treated different (e.g. "organization" vs. "organize")', async () => {
+    let results = await searchDocuments({ locale: 'en', query: 'organization', limit: 5 });
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
 
-    // TODO: Fix this test, currently failing
-    // results = await searchDocuments({ locale: 'en', query: 'drive', limit: 5 });
-    // expect(results).toHaveLength(3);
-    // expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']);
+    results = await searchDocuments({ locale: 'en', query: 'organize', limit: 5 });
+    expect(results).toHaveLength(0);
   });
 
   it('returns relevant documents for multi-word search', async () => {
@@ -198,9 +195,8 @@ describe('searchDocuments() Test', () => {
     expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
 
     results = await searchDocuments({ locale: 'en', query: 'policy change', limit: 5 });
-    expect(results).toHaveLength(4);
-    expect(results[0].id).toEqual('2'); // Most relevant document should be first
-    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4', '5']);
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('2'); 
   });
 
   it('returns relevant documents for search with acronyms', async () => {
