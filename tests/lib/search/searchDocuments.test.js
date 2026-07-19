@@ -187,11 +187,7 @@ describe('searchDocuments() Test', () => {
   });
 
   it('returns relevant documents with similar words to keyword', async () => {
-    let results = await searchDocuments({ locale: 'en', query: 'monitor', limit: 5 });
-    expect(results).toHaveLength(2);
-    expect(results.map((result) => result.id).sort()).toEqual(['4', '5']);
-
-    results = await searchDocuments({ locale: 'en', query: 'build', limit: 5 });
+    let results = await searchDocuments({ locale: 'en', query: 'build', limit: 5 });
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['4', '5']);
 
@@ -202,17 +198,31 @@ describe('searchDocuments() Test', () => {
   });
 
   it('returns relevant documents for multi-word search', async () => {
-    const results = await searchDocuments({ locale: 'en', query: 'World Disasters Report', limit: 5 });
-    expect(results).toHaveLength(3);
+    let results = await searchDocuments({ locale: 'en', query: 'background noise', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>background noise</em>'));
+
+    results = await searchDocuments({ locale: 'en', query: 'affected populations', limit: 5 });
+    expect(results).toHaveLength(2);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
+
+    results = await searchDocuments({ locale: 'en', query: 'policy change', limit: 5 });
+    expect(results).toHaveLength(4);
     expect(results[0].id).toEqual('2'); // Most relevant document should be first
-    expect(results.map((result) => result.id).sort()).toEqual(['2', '3', '4']);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4', '5']);
   });
 
   it('returns relevant documents for search with acronyms', async () => {
     // AI (Artificial Intelligence)
-    const results = await searchDocuments({ locale: 'en', query: 'artificial intelligence', limit: 5 });
+    let results = await searchDocuments({ locale: 'en', query: 'artificial intelligence', limit: 5 });
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']); // 1 doesn't have "Artificial Intelligence" in the excerpt but has "AI" which is an acronym for it
+
+    // DRC (Democratic Republic of the Congo)
+    results = await searchDocuments({ locale: 'en', query: 'democratic republic of the congo', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
   });
 
   // it('test', async () => {

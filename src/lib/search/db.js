@@ -25,51 +25,48 @@ function normalizeNamespace(value) {
   return normalized || null;
 }
 
-function customPrepare(str) {
+function customPrepareEn(str) {
   return str
     // Remove footnote references like [^1], [^2], etc.
-    .replace(/\[\^[0-9]+\]/g, "");
-};
-
-function mapAcronyms(str) {
-  return str
-    .replace(/AI/g, "Artificial Intelligence")
-    .replace(/CAR/g, "Central African Republic")
-    .replace(/CBS/g, "Community-based surveillance")
-    .replace(/CDAC/g, "Communicating with Disaster Affected Communities")
-    .replace(/CEA/g, "Community engagement and accountability")
-    .replace(/CRED/g, "Centre for Research on the Epidemiology of Disasters")
-    .replace(/CSO/g, "Civil society organization")
-    .replace(/DRC/g, "Democratic Republic of the Congo")
-    .replace(/DREF/g, "Disaster Response Emergency Fund")
-    .replace(/DRM/g, "Disaster risk management")
-    .replace(/ICRC/g, "International Committee of the Red Cross")
-    .replace(/ICT/g, "Information and communication technology")
-    .replace(/IDMC/g, "Internal Displacement Monitoring Centre")
-    .replace(/IFRC/g, "International Federation of Red Cross and Red Crescent Societies")
-    .replace(/ITU/g, "International Telecommunication Union")
-    .replace(/MDH/g, "Misinformation, disinformation and hate speech")
-    .replace(/MHPSS/g, "Mental health and psychosocial support")
-    .replace(/NGO/g, "Non-governmental organization")
-    .replace(/OCHA/g, "Office for the Coordination of Humanitarian Affairs (UN)")
-    .replace(/OECD/g, "Organisation for Economic Co-operation and Development")
-    .replace(/Q&A/g, "Questions and answers")
-    .replace(/RCCE/g, "Risk Communication and Community Engagement")
-    .replace(/SDG/g, "Sustainable Development Goal")
-    .replace(/UNDP/g, "UN Development Programme")
-    .replace(/UNHCR/g, "UN High Commissioner for Refugees")
-    .replace(/WHO/g, "World Health Organization");
+    .replace(/\[\^[0-9]+\]/g, "")
+    // Map acronyms to their full forms
+    .replace(/\bai\b/g, "artificial intelligence")
+    .replace(/\bcar\b/g, "central african republic")
+    .replace(/\bcbs\b/g, "community-based surveillance")
+    .replace(/\bcdac\b/g, "communicating with disaster affected communities")
+    .replace(/\bcea\b/g, "community engagement and accountability")
+    .replace(/\bcred\b/g, "centre for research on the epidemiology of disasters")
+    .replace(/\bcso\b/g, "civil society organization")
+    .replace(/\bdrc\b/g, "democratic republic of the congo")
+    .replace(/\bdref\b/g, "disaster response emergency fund")
+    .replace(/\bdrm\b/g, "disaster risk management")
+    .replace(/\bicrc\b/g, "international committee of the red cross")
+    .replace(/\bict\b/g, "information and communication technology")
+    .replace(/\bidmc\b/g, "internal displacement monitoring centre")
+    .replace(/\bifrc\b/g, "international federation of red cross and red crescent societies")
+    .replace(/\bitu\b/g, "international telecommunication union")
+    .replace(/\bmdh\b/g, "misinformation, disinformation and hate speech")
+    .replace(/\bmhpss\b/g, "mental health and psychosocial support")
+    .replace(/\bngo\b/g, "non-governmental organization")
+    .replace(/\bocha\b/g, "office for the coordination of humanitarian affairs (UN)")
+    .replace(/\boecd\b/g, "organisation for economic co-operation and development")
+    .replace(/\bq&a\b/g, "questions and answers")
+    .replace(/\brcce\b/g, "risk communication and community engagement")
+    .replace(/\bsdg\b/g, "sustainable development goal")
+    .replace(/\bundp\b/g, "un development programme")
+    .replace(/\bunhcr\b/g, "un high commissioner for refugees")
+    .replace(/\bwho\b/g, "world health organization");
 }
 
 function createFieldEncoder(locale) {
   switch (locale) {
-    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: customPrepare });
-    case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset, { prepare: customPrepare });
-    case 'es': return new Encoder(Charset.LatinBalance, { prepare: customPrepare });
-    case 'zh': return new Encoder(Charset.CJK, { prepare: customPrepare });
-    case 'ar': return new Encoder(Charset.Normalize, { rtl: true, prepare: customPrepare });
+    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: customPrepareEn });
+    case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset);
+    case 'es': return new Encoder(Charset.LatinBalance);
+    case 'zh': return new Encoder(Charset.CJK);
+    case 'ar': return new Encoder(Charset.Normalize, { rtl: true});
     case 'ru':
-    default:   return new Encoder(Charset.Normalize, { prepare: customPrepare }); // unicode-normalize + lowercase
+    default:   return new Encoder(Charset.Normalize); // unicode-normalize + lowercase
   }
 }
 
