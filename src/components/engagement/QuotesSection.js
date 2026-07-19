@@ -107,7 +107,7 @@ export default function QuotesSection({ selectedTag }) {
     if (activeTagIds.length === 0) return quotes;
 
     return quotes.filter((quote) =>
-      activeTagIds.some((tagId) => {
+      activeTagIds.every((tagId) => {
         const activeTagMap = locale === 'fr' ? TAG_COLUMN_MAP_FR : TAG_COLUMN_MAP;
         const tagInfo = activeTagMap[tagId];
         if (!tagInfo) return false;
