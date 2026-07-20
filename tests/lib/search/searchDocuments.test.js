@@ -151,6 +151,9 @@ describe('searchDocuments() Test', () => {
     results = await searchDocuments({ locale: 'en', query: 'drive', limit: 5 });
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['2', '5']);
+    results.forEach((result) => {
+      expect(result.highlight).toEqual(expect.stringContaining('<em>drive</em>'));
+    });
   });
 
   it('returns relevant documents for search with numerical characters', async () => {
@@ -179,6 +182,9 @@ describe('searchDocuments() Test', () => {
     let results = await searchDocuments({ locale: 'en', query: 'organization', limit: 5 });
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
+    results.forEach((result) => {
+      expect(result.highlight).toEqual(expect.stringContaining('<em>organization</em>'));
+    });
 
     results = await searchDocuments({ locale: 'en', query: 'organize', limit: 5 });
     expect(results).toHaveLength(0);
@@ -197,6 +203,7 @@ describe('searchDocuments() Test', () => {
     results = await searchDocuments({ locale: 'en', query: 'policy change', limit: 5 });
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2'); 
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>policy change</em>'));
   });
 
   it('returns relevant documents for search with acronyms', async () => {
