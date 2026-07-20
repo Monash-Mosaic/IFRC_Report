@@ -25,7 +25,7 @@ function normalizeNamespace(value) {
   return normalized || null;
 }
 
-function customPrepareEn(str) {
+function prepareEn(str) {
   return str
     // Remove footnote references like [^1], [^2], etc.
     .replace(/\[\^[0-9]+\]/g, "")
@@ -58,10 +58,39 @@ function customPrepareEn(str) {
     .replace(/\bwho\b/g, "world health organization");
 }
 
+function prepareFr(str) {
+  return str
+    // Remove footnote references like [^1], [^2], etc.
+    .replace(/\[\^[0-9]+\]/g, "")
+    // Map acronyms to their full forms
+    .replace(/\bcbs\b/gi, "surveillance a base communautaire")
+    .replace(/\bcdac\b/gi, "communiquer avec les communautes touchees par une catastrophe")
+    .replace(/\bcea\b/gi, "engagement des communautes et redevabilite")
+    .replace(/\bcicr\b/gi, "comite international de la croix-rouge")
+    .replace(/\bcred\b/gi, "centre de recherche sur l'epidemiologie des catastrophes")
+    .replace(/\bdref\b/gi, "fonds d'urgence pour l'intervention en cas de catastrophe")
+    .replace(/\bem[-]?dat\b/gi, "base de donnees sur les situations d'urgence")
+    .replace(/\bgiec\b/gi, "groupe d'experts intergouvernemental sur l'evolution du climat")
+    .replace(/\bhcr\b/gi, "haut-commissariat des nations unies pour les refugiés")
+    .replace(/\bia\b/gi, "intelligence artificielle")
+    .replace(/\bidmc\b/gi, "centre pour la surveillance des deplacements internes")
+    .replace(/\bifrc\b/gi, "federation internationale des societes de la croix-rouge et du croissant-rouge")
+    .replace(/\boecd\b/gi, "organisation de cooperation et de developpement economiques")
+    .replace(/\bocha\b/gi, "bureau de la coordination des affaires humanitaires des nations unies")
+    .replace(/\bodd\b/gi, "objectif de developpement durable")
+    .replace(/\boms\b/gi, "organisation mondiale de la sante")
+    .replace(/\bong\b/gi, "organisation non gouvernementale")
+    .replace(/\bpnud\b/gi, "programme des nations unies pour le developpement")
+    .replace(/\brcce\b/gi, "communication sur les risques et engagement des communautes")
+    .replace(/\brdc\b/gi, "republique democratique du congo")
+    .replace(/\btic\b/gi, "technologies de l'information et de la communication")
+    .replace(/\buit\b/gi, "union internationale des telecommunications");
+}
+
 function createFieldEncoder(locale) {
   switch (locale) {
-    case 'en': return new Encoder(Charset.Normalize, EnglishPreset, { prepare: customPrepareEn, stemmer: false });
-    case 'fr': return new Encoder(Charset.Normalize, FrenchPreset);
+    case 'en': return new Encoder(Charset.Normalize, EnglishPreset, { prepare: prepareEn, stemmer: false });
+    case 'fr': return new Encoder(Charset.Normalize, FrenchPreset, { prepare: prepareFr });
     case 'es': return new Encoder(Charset.Normalize);
     case 'zh': return new Encoder(Charset.CJK);
     case 'ar': return new Encoder(Charset.Normalize, { rtl: true});

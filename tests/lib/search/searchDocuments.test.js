@@ -11,7 +11,7 @@ jest.mock('@/lib/search/db.js', () => {
   };
 });
 
-describe('searchDocuments() Test', () => {
+describe('searchDocuments() English Test', () => {
   let dummyIndex;
 
   beforeEach(async () => {
@@ -217,9 +217,191 @@ describe('searchDocuments() Test', () => {
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
   });
+});
 
-  // it('test', async () => {
-  //   const results = await searchDocuments({ locale: 'en', query: "cost-driven", limit: 5 });
-  //   console.log('Results:', results);
-  // });
+describe('searchDocuments() French Test', () => {
+  let dummyIndex;
+
+  beforeEach(async () => {
+    dummyIndex = createDocument('fr');
+
+    await dummyIndex.addAsync({
+      id: "1",
+      chapterPrefix: "Synthèse",
+      title: "Les informations préjudiciables ne sont pas un bruit de fond",
+      excerpt: "Les informations préjudiciables ne sont pas un bruit de fond. En plus d’influencer directement la façon dont les personnes comprennent les crises, la confiance qu’elles accordent et leur accès à l’aide humanitaire et aux services de protection, elles influent aussi, directement et indirectement, sur la sûreté et la sécurité. La lutte contre les informations préjudiciables concerne autant le matériel que le contenu, c’est-à-dire les infrastructures et les propos qui ont un effet sur l’accès, la confiance et le pouvoir.\nL’écosystème de l’information devenant de plus en plus complexe, la capacité de le comprendre, d’y répondre et de protéger les populations, les personnes et les organisations concernées de ses atteintes doit être adaptée en conséquence. La gestion de cet écosystème fait désormais partie intégrante des interventions en cas de crise humanitaire. Cette nécessité doit guider la conception et la mise en œuvre des interventions, et sous-tendre un plaidoyer en faveur de changements systémiques plus vastes.\nVoici quelques acronymes: CBS, CDAC, CEA, CICR, CRED, DREF, EM-DAT, GIEC, HCR, IA, IDMC, IFRC, OCDE, OCHA, ODD, OMS, ONG, PNUD, RCCE, RDC, TIC, UIT.",
+      href: "/fr/reports/wdr26/synthèse#les-informations-préjudiciables-ne-sont-pas-un-bruit-de-fond"
+    });
+
+    await dummyIndex.addAsync({
+      id: "2",
+      chapterPrefix: "Introduction",
+      title: "Introduction",
+      excerpt: "Publication phare de la Fédération internationale des Sociétés de la Croix-Rouge et du Croissant-Rouge, le Rapport sur les catastrophes dans le monde vise à susciter des changements de politiques, à orienter la réflexion et à renforcer les pratiques dans l’ensemble du secteur humanitaire. Cette édition 2026 a pour thème les informations préjudiciables dans les contextes humanitaires.\nLa Fédération internationale définit les informations préjudiciables comme des informations susceptibles de causer, directement ou indirectement, un préjudice à une personne ou à une entité, ou d’y contribuer. Ce terme met l’accent sur les atteintes elles-mêmes, plutôt que sur le type d’information propagé, qui est souvent difficile à définir et évolue constamment. Les informations préjudiciables comprennent la mésinformation, la désinformation, la malinformation, les discours de haine et autres discours néfastes (voir Annexe I : Glossaire, page 397 ).\nAujourd’hui, alors que le secteur humanitaire fait face à une nouvelle vague de changements technologiques, notamment l’intelligence artificielle (IA), les enjeux augmentent une fois de plus. Avec l’IA, la production et la propagation d’informations atteignent une vitesse et une échelle sans précédent. ",
+      href: "/fr/reports/wdr26/introduction"
+    });
+
+    await dummyIndex.addAsync({
+      id: "3",
+      chapterPrefix: "Chapitre 01",
+      title: "Introduction",
+      excerpt: "Pour le secteur humanitaire, le tsunami survenu en 2004 dans l’océan Indien a été la première catastrophe d’envergure à faire l’objet d’une large couverture numérique, tandis que les guerres en Afghanistan et en Irak (au début des années 2000) ont constitué les premiers conflits armés analysés en temps réel par des milliers de commentateurs en ligne. Ces événements ont ainsi marqué l’avènement d’une ère de décentralisation de l’information numérique, davantage façonnée par des espaces en ligne rapides et participatifs que par les médias traditionnels. Les premiers contenus numériques reflétaient rarement les réalités locales, en particulier lorsque les plateformes ne permettaient pas de publier en langues locales. Cependant, la communauté émergente de blogueuses et blogueurs a contribué activement à la couverture médiatique, à la vérification des contenus, à la dénonciation des images manipulées[^1], des reportages fabriqués de toutes pièces[^2] ou des dommages exagérés. Bien qu’imparfaits[^3], ces efforts ont mis au jour de nouvelles possibilités en matière de vérification et de responsabilité publique.",
+      href: "/fr/reports/wdr26/chapitre-01#introduction"
+    });
+
+    await dummyIndex.addAsync({
+      id: "4",
+      chapterPrefix: "Chapitre 01",
+      title: "Quels sont les effets des informations préjudiciables ?",
+      excerpt: "Les lois, les politiques et les plans constituent le fondement de toutes les activités de gestion des risques de catastrophe, et contribuent à la protection et à la préparation des communautés du monde entier. Il est donc primordial d’établir des cadres juridiques et politiques solides afin de favoriser l’intégrité de l’information et de relever les défis résultant de la diffusion d’informations préjudiciables dans ce domaine. Pour réagir efficacement, les acteurs humanitaires doivent comprendre comment ces informations perturbent les interventions. Il convient d’établir une typologie des différents préjudices en vue de constituer une base de données probantes qui appuiera les efforts visant à identifier, mesurer et atténuer ces effets. Chacun des types de préjudice ci-après peut compromettre considérablement l’action humanitaire et l’ensemble d’entre eux doivent être mieux appréhendés, surveillés et traités.",
+      href: "/fr/reports/wdr26/chapitre-01#quels-sont-les-effets-des-informations-préjudiciables-"
+    });
+
+    await dummyIndex.addAsync({
+      id: "5",
+      chapterPrefix: "Chapitre 08",
+      title: "Que nous réserve l’avenir ? Évolutions et variables connues",
+      excerpt: "L’IA recèle un potentiel pour l’action humanitaire, mais le risque croissant d’une utilisation non réglementée et motivée par des considérations financières pourrait nuire aux communautés vulnérables. Dans sa publication intitulée « Building a Responsible Humanitarian Approach : The ICRC’s Policy on Artificial Intelligence » (Construire une approche humanitaire responsable : la politique du CICR en matière d’intelligence artificielle)[^10], le CICR fournit un cadre général pour guider l’exploration et l’utilisation de l’IA, conformément à sa mission et à ses principes humanitaires. Le projet SAFE AI[^11], mené par le réseau CDAC, l’Institut Alan Turing et Humanitarian AI Advisory, avec le soutien du ministère britannique des Affaires étrangères, du Commonwealth et du Développement, vise à élaborer des normes pratiques, des outils et des cadres communautaires afin de garantir une utilisation responsable et éthique de l’IA dans les contextes humanitaires. Il sera essentiel de surveiller les répercussions de l’IA sur les populations touchées par les crises afin de garantir que son utilisation reste sûre, efficace et conforme aux principes.",
+      href: "/fr/reports/wdr26/chapitre-08#que-nous-réserve-lavenir--évolutions-et-variables-connues"
+    });
+
+    createSearchIndex.mockResolvedValue(dummyIndex);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('returns empty results for blank or invalid input', async () => {
+    await expect(searchDocuments({ locale: 'fr', query: '   ' })).resolves.toEqual([]);
+    await expect(searchDocuments({ locale: 'fr', query: 'test', limit: 0 })).resolves.toEqual([]);
+    await expect(searchDocuments({ locale: 'xx', query: 'test' })).resolves.toEqual([]);
+  });
+
+  it('returns empty results for non-matching search terms', async () => {
+    const results = await searchDocuments({ locale: 'fr', query: 'nonexistent', limit: 5 });
+    expect(results).toEqual([]);
+  });
+
+  it('returns single relevant document for single unique keyword search', async () => {
+    const results = await searchDocuments({ locale: 'fr', query: 'concerne', limit: 5 });
+
+    expect(results).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: '1',
+          title: "Synthèse > Les informations préjudiciables ne sont pas un bruit de fond"
+        }),
+      ])
+    );
+
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>concerne</em>'));
+  });
+
+  it('search ignores leading and trailing spaces', async () => {
+    const results = await searchDocuments({ locale: 'fr', query: '   concerne  ', limit: 5 });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>concerne</em>'));
+  });
+
+  it('search is case insensitive', async () => {
+    const results = await searchDocuments({ locale: 'fr', query: 'CONcerNE', limit: 5 });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>concerne</em>'));
+  });
+
+  it('search ignores punctuation and special characters', async () => {
+    let results = await searchDocuments({ locale: 'fr', query: '[concerne]', limit: 5 });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>concerne</em>'));
+
+    results = await searchDocuments({ locale: 'fr', query: '"concerne"?!', limit: 5 });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>concerne</em>'));
+  });
+
+  it('search ignores accents', async () => {
+    // With accents
+    let results = await searchDocuments({ locale: 'fr', query: 'préjudiciables', limit: 5 });
+
+    expect(results).toHaveLength(3);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4']);
+    results.forEach((result) => {
+      expect(result.highlight).toEqual(expect.stringContaining('<em>préjudiciables</em>'));
+    });
+
+    // Without accents
+    results = await searchDocuments({ locale: 'fr', query: 'prejudiciables', limit: 5 });
+
+    expect(results).toHaveLength(3);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4']);
+    results.forEach((result) => {
+      expect(result.highlight).toEqual(expect.stringContaining('<em>préjudiciables</em>'));
+    });
+  });
+
+  it('search ignores footnotes', async () => {
+    let results = await searchDocuments({ locale: 'fr', query: '10', limit: 5 });
+    expect(results).toHaveLength(0);
+
+    results = await searchDocuments({ locale: 'fr', query: '[^11]', limit: 5 });
+    expect(results).toHaveLength(0);
+  });
+
+  it('returns multiple relevant documents for single keyword search', async () => {
+    let results = await searchDocuments({ locale: 'fr', query: 'changements', limit: 5 });
+    expect(results).toHaveLength(2);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2']);
+    results.forEach((result) => {
+      expect(result.highlight).toEqual(expect.stringContaining('<em>changements</em>'));
+    });
+  });
+
+  it('returns relevant documents for search with numerical characters', async () => {
+    let results = await searchDocuments({ locale: 'fr', query: '2026', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('2');
+
+    results = await searchDocuments({ locale: 'fr', query: '397', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('2');
+
+    results = await searchDocuments({ locale: 'fr', query: '92026', limit: 5 });
+    expect(results).toHaveLength(0);
+
+    results = await searchDocuments({ locale: 'fr', query: 'édition 2026', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('2');
+  });
+
+  it('returns relevant documents for multi-word search', async () => {
+    let results = await searchDocuments({ locale: 'fr', query: 'bruit de fond', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+    expect(results[0].highlight).toEqual(expect.stringContaining('<em>bruit</em> de <em>fond</em>'));
+
+    results = await searchDocuments({ locale: 'fr', query: 'informations préjudiciables', limit: 5 });
+    expect(results).toHaveLength(3);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4']);
+  });
+
+  it('returns relevant documents for search with acronyms', async () => {
+    // IA (intelligence artificielle)
+    let results = await searchDocuments({ locale: 'fr', query: 'intelligence artificielle', limit: 5 });
+    expect(results).toHaveLength(3);
+    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']); // 1 doesn't have "intelligence artificielle" in the excerpt but has "IA" which is an acronym for it
+
+    // ODD (objectif de developpement durable)
+    results = await searchDocuments({ locale: 'fr', query: 'objectif de developpement durable', limit: 5 });
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toEqual('1');
+  });
 });
