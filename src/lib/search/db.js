@@ -95,7 +95,7 @@ function createFieldEncoder(locale) {
     case 'zh': return new Encoder(Charset.CJK);
     case 'ar': return new Encoder(Charset.Normalize, { rtl: true});
     case 'ru':
-    default:   return new Encoder(Charset.Normalize, { prepare: customPrepareEn, stemmer: false }); // unicode-normalize + lowercase
+    default:   return new Encoder(Charset.Normalize, { prepare: prepareEn, stemmer: false }); // unicode-normalize + lowercase
   }
 }
 
