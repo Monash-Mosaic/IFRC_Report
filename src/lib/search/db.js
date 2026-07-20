@@ -60,13 +60,13 @@ function customPrepareEn(str) {
 
 function createFieldEncoder(locale) {
   switch (locale) {
-    case 'en': return new Encoder(Charset.LatinAdvanced, EnglishPreset, { prepare: customPrepareEn, stemmer: false });
-    case 'fr': return new Encoder(Charset.LatinBalance, FrenchPreset);
-    case 'es': return new Encoder(Charset.LatinBalance);
+    case 'en': return new Encoder(Charset.Normalize, EnglishPreset, { prepare: customPrepareEn, stemmer: false });
+    case 'fr': return new Encoder(Charset.Normalize, FrenchPreset);
+    case 'es': return new Encoder(Charset.Normalize);
     case 'zh': return new Encoder(Charset.CJK);
     case 'ar': return new Encoder(Charset.Normalize, { rtl: true});
     case 'ru':
-    default:   return new Encoder(Charset.Normalize); // unicode-normalize + lowercase
+    default:   return new Encoder(Charset.Normalize, { prepare: customPrepareEn, stemmer: false }); // unicode-normalize + lowercase
   }
 }
 

@@ -149,8 +149,8 @@ describe('searchDocuments() Test', () => {
     });
 
     results = await searchDocuments({ locale: 'en', query: 'drive', limit: 5 });
-    expect(results).toHaveLength(3);
-    expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']);
+    expect(results).toHaveLength(2);
+    expect(results.map((result) => result.id).sort()).toEqual(['2', '5']);
   });
 
   it('returns relevant documents for search with numerical characters', async () => {
