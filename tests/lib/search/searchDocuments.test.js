@@ -133,10 +133,10 @@ describe('searchDocuments() Test', () => {
   });
 
   it('search ignores footnotes', async () => {
-    let results = await searchDocuments({ locale: 'en', query: '[^1]', limit: 5 });
+    let results = await searchDocuments({ locale: 'en', query: '10', limit: 5 });
     expect(results).toHaveLength(0);
 
-    results = await searchDocuments({ locale: 'en', query: '[^2]', limit: 5 });
+    results = await searchDocuments({ locale: 'en', query: '[^11]', limit: 5 });
     expect(results).toHaveLength(0);
   });
 

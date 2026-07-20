@@ -8,6 +8,8 @@ import { getPlatformProxy } from 'wrangler';
 import { dirname, resolve as pathResolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+const EXCLUDED_HEADINGS = ['endnotes', 'notes de fin'];
+
 const slugger = new GithubSlugger();
 const projectRoot = pathResolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const dotenvResult = dotenv.config({ path: pathResolve(projectRoot, '.env') });
@@ -160,6 +162,7 @@ try {
             if (node?.type === 'paragraph' || (node?.type === 'mdxJsxFlowElement' && ['ChapterQuote', 'SideNote', 'SmallQuote', 'Spotlight'].includes(node?.name))) {
               const text = extractInlineText(node);
               const i = acc.length - 1;
+              if (EXCLUDED_HEADINGS.includes(acc[i].title.toLowerCase())) return acc; // Skip indexing content under excluded headings
               acc[i].excerpt = [acc[i].excerpt, text].join('\n').trimStart('\n');
             }
             return acc;
