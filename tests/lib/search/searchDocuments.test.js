@@ -65,18 +65,18 @@ describe('searchDocuments() English Test', () => {
   });
 
   it('returns empty results for blank or invalid input', async () => {
-    await expect(searchDocuments({ locale: 'en', query: '   ' })).resolves.toEqual([]);
-    await expect(searchDocuments({ locale: 'en', query: 'test', limit: 0 })).resolves.toEqual([]);
-    await expect(searchDocuments({ locale: 'xx', query: 'test' })).resolves.toEqual([]);
+    await expect(searchDocuments({ locale: 'en', query: '   ' })).resolves.toEqual({ total: 0, results: [] });
+    await expect(searchDocuments({ locale: 'en', query: 'test', limit: 0 })).resolves.toEqual({ total: 0, results: [] });
+    await expect(searchDocuments({ locale: 'xx', query: 'test' })).resolves.toEqual({ total: 0, results: [] });
   });
 
   it('returns empty results for non-matching search terms', async () => {
-    const results = await searchDocuments({ locale: 'en', query: 'nonexistent', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'en', query: 'nonexistent', limit: 5 });
     expect(results).toEqual([]);
   });
 
   it('returns single relevant document for single unique keyword search', async () => {
-    const results = await searchDocuments({ locale: 'en', query: 'flagship', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'en', query: 'flagship', limit: 5 });
 
     expect(results).toEqual(
       expect.arrayContaining([
@@ -91,7 +91,7 @@ describe('searchDocuments() English Test', () => {
   });
 
   it('search ignores leading and trailing spaces', async () => {
-    const results = await searchDocuments({ locale: 'en', query: '   flagship  ', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'en', query: '   flagship  ', limit: 5 });
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
@@ -99,7 +99,7 @@ describe('searchDocuments() English Test', () => {
   });
 
   it('search is case insensitive', async () => {
-    const results = await searchDocuments({ locale: 'en', query: 'fLAgshiP', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'en', query: 'fLAgshiP', limit: 5 });
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
@@ -107,13 +107,13 @@ describe('searchDocuments() English Test', () => {
   });
 
   it('search ignores punctuation and special characters', async () => {
-    let results = await searchDocuments({ locale: 'en', query: '[flagship]', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: '[flagship]', limit: 5 });
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>flagship</em>'));
 
-    results = await searchDocuments({ locale: 'en', query: '"flagship"?!', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: '"flagship"?!', limit: 5 }));
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
@@ -121,34 +121,34 @@ describe('searchDocuments() English Test', () => {
   });
 
   it('search ignores stop words', async () => {
-    let results = await searchDocuments({ locale: 'en', query: 'the flagship', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: 'the flagship', limit: 5 });
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>flagship</em>'));
 
-    results = await searchDocuments({ locale: 'en', query: 'trust and power', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: 'trust and power', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>trust</em> and <em>power</em>'));
   });
 
   it('search ignores footnotes', async () => {
-    let results = await searchDocuments({ locale: 'en', query: '10', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: '10', limit: 5 });
     expect(results).toHaveLength(0);
 
-    results = await searchDocuments({ locale: 'en', query: '[^11]', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: '[^11]', limit: 5 }));
     expect(results).toHaveLength(0);
   });
 
   it('returns multiple relevant documents for single keyword search', async () => {
-    let results = await searchDocuments({ locale: 'en', query: 'content', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: 'content', limit: 5 });
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '3']);
     results.forEach((result) => {
       expect(result.highlight).toEqual(expect.stringContaining('<em>content</em>'));
     });
 
-    results = await searchDocuments({ locale: 'en', query: 'drive', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: 'drive', limit: 5 }));
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['2', '5']);
     results.forEach((result) => {
@@ -157,18 +157,18 @@ describe('searchDocuments() English Test', () => {
   });
 
   it('returns relevant documents for search with numerical characters', async () => {
-    let results = await searchDocuments({ locale: 'en', query: '2026', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: '2026', limit: 5 });
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
 
-    results = await searchDocuments({ locale: 'en', query: '353', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: '353', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
 
-    results = await searchDocuments({ locale: 'en', query: '92026', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: '92026', limit: 5 }));
     expect(results).toHaveLength(0);
 
-    results = await searchDocuments({ locale: 'en', query: '2026 edition', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: '2026 edition', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
 
@@ -179,28 +179,28 @@ describe('searchDocuments() English Test', () => {
   });
 
   it('similar words to keyword are treated different (e.g. "organization" vs. "organize")', async () => {
-    let results = await searchDocuments({ locale: 'en', query: 'organization', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: 'organization', limit: 5 });
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
     results.forEach((result) => {
       expect(result.highlight).toEqual(expect.stringContaining('<em>organization</em>'));
     });
 
-    results = await searchDocuments({ locale: 'en', query: 'organize', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: 'organize', limit: 5 }));
     expect(results).toHaveLength(0);
   });
 
   it('returns relevant documents for multi-word search', async () => {
-    let results = await searchDocuments({ locale: 'en', query: 'background noise', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: 'background noise', limit: 5 });
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>background noise</em>'));
 
-    results = await searchDocuments({ locale: 'en', query: 'affected populations', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: 'affected populations', limit: 5 }));
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
 
-    results = await searchDocuments({ locale: 'en', query: 'policy change', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: 'policy change', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2'); 
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>policy change</em>'));
@@ -208,12 +208,12 @@ describe('searchDocuments() English Test', () => {
 
   it('returns relevant documents for search with acronyms', async () => {
     // AI (Artificial Intelligence)
-    let results = await searchDocuments({ locale: 'en', query: 'artificial intelligence', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'en', query: 'artificial intelligence', limit: 5 });
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']); // 1 doesn't have "Artificial Intelligence" in the excerpt but has "AI" which is an acronym for it
 
     // DRC (Democratic Republic of the Congo)
-    results = await searchDocuments({ locale: 'en', query: 'democratic republic of the congo', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'en', query: 'democratic republic of the congo', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
   });
@@ -273,18 +273,18 @@ describe('searchDocuments() French Test', () => {
   });
 
   it('returns empty results for blank or invalid input', async () => {
-    await expect(searchDocuments({ locale: 'fr', query: '   ' })).resolves.toEqual([]);
-    await expect(searchDocuments({ locale: 'fr', query: 'test', limit: 0 })).resolves.toEqual([]);
-    await expect(searchDocuments({ locale: 'xx', query: 'test' })).resolves.toEqual([]);
+    await expect(searchDocuments({ locale: 'fr', query: '   ' })).resolves.toEqual({ total: 0, results: [] });
+    await expect(searchDocuments({ locale: 'fr', query: 'test', limit: 0 })).resolves.toEqual({ total: 0, results: [] });
+    await expect(searchDocuments({ locale: 'xx', query: 'test' })).resolves.toEqual({ total: 0, results: [] });
   });
 
   it('returns empty results for non-matching search terms', async () => {
-    const results = await searchDocuments({ locale: 'fr', query: 'nonexistent', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'fr', query: 'nonexistent', limit: 5 });
     expect(results).toEqual([]);
   });
 
   it('returns single relevant document for single unique keyword search', async () => {
-    const results = await searchDocuments({ locale: 'fr', query: 'concerne', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'fr', query: 'concerne', limit: 5 });
 
     expect(results).toEqual(
       expect.arrayContaining([
@@ -299,7 +299,7 @@ describe('searchDocuments() French Test', () => {
   });
 
   it('search ignores leading and trailing spaces', async () => {
-    const results = await searchDocuments({ locale: 'fr', query: '   concerne  ', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'fr', query: '   concerne  ', limit: 5 });
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
@@ -307,7 +307,7 @@ describe('searchDocuments() French Test', () => {
   });
 
   it('search is case insensitive', async () => {
-    const results = await searchDocuments({ locale: 'fr', query: 'CONcerNE', limit: 5 });
+    const { results } = await searchDocuments({ locale: 'fr', query: 'CONcerNE', limit: 5 });
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
@@ -315,13 +315,13 @@ describe('searchDocuments() French Test', () => {
   });
 
   it('search ignores punctuation and special characters', async () => {
-    let results = await searchDocuments({ locale: 'fr', query: '[concerne]', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'fr', query: '[concerne]', limit: 5 });
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>concerne</em>'));
 
-    results = await searchDocuments({ locale: 'fr', query: '"concerne"?!', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: '"concerne"?!', limit: 5 }));
 
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
@@ -330,7 +330,7 @@ describe('searchDocuments() French Test', () => {
 
   it('search ignores accents', async () => {
     // With accents
-    let results = await searchDocuments({ locale: 'fr', query: 'préjudiciables', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'fr', query: 'préjudiciables', limit: 5 });
 
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4']);
@@ -339,7 +339,7 @@ describe('searchDocuments() French Test', () => {
     });
 
     // Without accents
-    results = await searchDocuments({ locale: 'fr', query: 'prejudiciables', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: 'prejudiciables', limit: 5 }));
 
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4']);
@@ -349,15 +349,15 @@ describe('searchDocuments() French Test', () => {
   });
 
   it('search ignores footnotes', async () => {
-    let results = await searchDocuments({ locale: 'fr', query: '10', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'fr', query: '10', limit: 5 });
     expect(results).toHaveLength(0);
 
-    results = await searchDocuments({ locale: 'fr', query: '[^11]', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: '[^11]', limit: 5 }));
     expect(results).toHaveLength(0);
   });
 
   it('returns multiple relevant documents for single keyword search', async () => {
-    let results = await searchDocuments({ locale: 'fr', query: 'changements', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'fr', query: 'changements', limit: 5 });
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2']);
     results.forEach((result) => {
@@ -366,41 +366,41 @@ describe('searchDocuments() French Test', () => {
   });
 
   it('returns relevant documents for search with numerical characters', async () => {
-    let results = await searchDocuments({ locale: 'fr', query: '2026', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'fr', query: '2026', limit: 5 });
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
 
-    results = await searchDocuments({ locale: 'fr', query: '397', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: '397', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
 
-    results = await searchDocuments({ locale: 'fr', query: '92026', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: '92026', limit: 5 }));
     expect(results).toHaveLength(0);
 
-    results = await searchDocuments({ locale: 'fr', query: 'édition 2026', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: 'édition 2026', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('2');
   });
 
   it('returns relevant documents for multi-word search', async () => {
-    let results = await searchDocuments({ locale: 'fr', query: 'bruit de fond', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'fr', query: 'bruit de fond', limit: 5 });
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>bruit</em> de <em>fond</em>'));
 
-    results = await searchDocuments({ locale: 'fr', query: 'informations préjudiciables', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: 'informations préjudiciables', limit: 5 }));
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '4']);
   });
 
   it('returns relevant documents for search with acronyms', async () => {
     // IA (intelligence artificielle)
-    let results = await searchDocuments({ locale: 'fr', query: 'intelligence artificielle', limit: 5 });
+    let { results } = await searchDocuments({ locale: 'fr', query: 'intelligence artificielle', limit: 5 });
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']); // 1 doesn't have "intelligence artificielle" in the excerpt but has "IA" which is an acronym for it
 
     // ODD (objectif de developpement durable)
-    results = await searchDocuments({ locale: 'fr', query: 'objectif de developpement durable', limit: 5 });
+    ({ results } = await searchDocuments({ locale: 'fr', query: 'objectif de developpement durable', limit: 5 }));
     expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
   });

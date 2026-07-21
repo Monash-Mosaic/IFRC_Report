@@ -160,7 +160,7 @@ try {
               });
             }
             if (node?.type === 'paragraph' || (node?.type === 'mdxJsxFlowElement' && ['ChapterQuote', 'SideNote', 'SmallQuote', 'Spotlight'].includes(node?.name))) {
-              const text = extractInlineText(node);
+              const text = extractInlineText(node).replace(/\[\^\d+\]/g, '');
               const i = acc.length - 1;
               if (EXCLUDED_HEADINGS.includes(acc[i].title.toLowerCase())) return acc; // Skip indexing content under excluded headings
               acc[i].excerpt = [acc[i].excerpt, text].join('\n').trimStart('\n');
