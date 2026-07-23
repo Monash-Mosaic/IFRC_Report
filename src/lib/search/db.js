@@ -142,14 +142,22 @@ export function createDocument(locale) {
         {
           field: 'title',
           tokenize: locale === 'zh' ? 'strict' : 'forward',
-          context: locale === 'zh',
-          encoder: createFieldEncoder(locale)
+          encoder: createFieldEncoder(locale),
+          context: {
+            resolution: 3,
+            depth: 1,
+            bidirectional: false,
+          }
         },
         {
           field: 'excerpt',
           tokenize: locale === 'zh' ? 'strict' : 'forward',
           encoder: createFieldEncoder(locale),
-          context: locale === 'zh',
+          context: {
+            resolution: 3,
+            depth: 1,
+            bidirectional: false,
+          }
         },
       ],
     },
