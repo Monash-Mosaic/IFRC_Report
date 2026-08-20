@@ -74,7 +74,7 @@ export default async function AboutPage({ params }) {
   };
 
   return (
-    <div className="bg-white text-black">
+    <div className="bg-white text-black pt-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
