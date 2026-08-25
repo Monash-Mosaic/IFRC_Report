@@ -36,7 +36,10 @@ import CustomComponents, {
   ChapterImage,
   Anchor,
   EndnotesLink,
-  InterChapterLink
+  InterChapterLink,
+  Asks,
+  Aims,
+  AsksAims
 } from '@/components/CustomComponents';
 
 jest.mock('next-intl/server', () => ({
@@ -312,7 +315,7 @@ it('renders French guillemets when variant is fr', () => {
   });
 
   describe('EndnotesLink', () => {
-    const LINK_CLASS = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+    const LINK_CLASS = 'underline decoration-blue-600 wrap-break-word break-all text-black';
 
     it('renders a link with correct href, target and rel for a string URL', () => {
       render(<EndnotesLink>https://www.example.com</EndnotesLink>);
@@ -457,6 +460,39 @@ describe('CustomComponents async components', () => {
     expect(screen.getByText('Box body')).toBeInTheDocument();
     expect(screen.getByText('Contributor Tag')).toBeInTheDocument();
     expect(screen.getByText('title 1')).toBeInTheDocument();
+  });
+
+  it('renders Asks', async () => {
+    const element = await Asks({ children: 'Ask Text' });
+    render(element);
+
+    expect(screen.getByText('asks')).toBeInTheDocument();
+    expect(screen.getByText('Ask Text')).toBeInTheDocument();
+  });
+
+  it('renders Aims', async () => {
+    const element = await Aims({ children: 'Aim Text' });
+    render(element);
+
+    expect(screen.getByText('aims')).toBeInTheDocument();
+    expect(screen.getByText('Aim Text')).toBeInTheDocument();
+  });
+
+  it('renders AsksAims with Asks and Aims children', async () => {
+    const asksElement = await Asks({ children: 'Ask Text' });
+    const aimsElement = await Aims({ children: 'Aim Text' });
+
+    render(
+      <AsksAims>
+        {asksElement}
+        {aimsElement}
+      </AsksAims>
+    );
+
+    expect(screen.getByText('asks')).toBeInTheDocument();
+    expect(screen.getByText('Ask Text')).toBeInTheDocument();
+    expect(screen.getByText('aims')).toBeInTheDocument();
+    expect(screen.getByText('Aim Text')).toBeInTheDocument();
   });
 });
 

@@ -260,6 +260,30 @@
     "heroSubtitle": "رؤى متعددة الوسائط وتجارب معاشة وتوصيات قابلة للتطبيق للسياسات والممارسات.",
     "heroAlt": "شعار اكتشف الدليل التفاعلي",
     "browseTopics": "تصفح المواضيع",
+    "tags": {
+      "psychological": "Psychological",
+      "societal": "Societal",
+      "social": "Social",
+      "informational": "Informational",
+      "digital_technological": "Digital/technological",
+      "physical": "Physical",
+      "deprivational": "Deprivational/financial/economic",
+      "access_constraints": "Access constraints and acceptance risks",
+      "distorted_needs": "Distorted needs and demand signals",
+      "programme": "Programme effectiveness and accountability",
+      "safety": "Safety and security of staff and volunteers",
+      "community_engagement": "Community engagement and accountability",
+      "information_aid": "Information as aid",
+      "prebunking": "Prebunking and narrative resilience",
+      "rumour_tracking": "Rumour tracking and early warning",
+      "trusted_messenger": "Trusted messengers and local intermediaries",
+      "debunking": "Debunking and corrective communication",
+      "partnership": "Partnership and coordination",
+      "regulation": "Regulation and public policy frameworks",
+      "freedom": "Freedom of expression and information rights",
+      "technology_governance": "Technology governance and platform accountability",
+      "principles": "Humanitarian principles and neutrality"
+    },
     "browseOperationalImpact": "التأثير التشغيلي",
     "browseResponseStrategy": "استراتيجية الاستجابة",
     "browseHarm": "أنواع الأضرار",
@@ -325,5 +349,9 @@
     "disasters": "الكوارث",
     "reportTitle": "التقرير",
     "year": "2026"
+  },
+  "AsksAims": {
+    "asks": "الإجراءات المطلوبة",
+    "aims": "الأهداف"
   }
 }

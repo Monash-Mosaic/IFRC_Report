@@ -8,9 +8,10 @@ import { getIconsForHarm } from '@/lib/quoteHarmIcons';
 
 export default function QuoteTile({ quote }) {
   const locale = useLocale();
-  const chapterHref = getQuoteChapterHref(quote.chapter, locale);
+  const chapterHref = quote.url
   const { label: chapterLabel, title: chapterTitle, thumbnail, thumbnailOverlay } = getChapterMeta(
-    quote.chapter
+    quote.chapter,
+    locale
   );
   const tohItems = getIconsForHarm(quote.harm);
   const thumbnailBgClass = thumbnailOverlay === 'blue' ? 'bg-blue-500' : 'bg-red-500';
@@ -81,13 +82,13 @@ export default function QuoteTile({ quote }) {
         </p>
         {chapterHref && (
           <div className="flex justify-end mt-4">
-            <Link
+            <a
               href={chapterHref}
               className="px-4 py-1.5 text-sm font-medium text-[#ee2435] border border-[#ee2435] rounded-md hover:bg-red-50 transition-colors"
               aria-label={heading ? `Open ${heading}` : 'Open chapter'}
             >
               Open
-            </Link>
+            </a>
           </div>
         )}
       </div>

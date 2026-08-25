@@ -305,6 +305,30 @@
     "heroSubtitle": "Multimedia insights, lived experiences, and actionable recommendations for policy and practice.",
     "heroAlt": "Discover the Interactive Playbook banner",
     "browseTopics": "Browse Topics",
+    "tags": {
+      "psychological": "Psychological",
+      "societal": "Societal",
+      "social": "Social",
+      "informational": "Informational",
+      "digital_technological": "Digital/technological",
+      "physical": "Physical",
+      "deprivational": "Deprivational/financial/economic",
+      "access_constraints": "Access constraints and acceptance risks",
+      "distorted_needs": "Distorted needs and demand signals",
+      "programme": "Programme effectiveness and accountability",
+      "safety": "Safety and security of staff and volunteers",
+      "community_engagement": "Community engagement and accountability",
+      "information_aid": "Information as aid",
+      "prebunking": "Prebunking and narrative resilience",
+      "rumour_tracking": "Rumour tracking and early warning",
+      "trusted_messenger": "Trusted messengers and local intermediaries",
+      "debunking": "Debunking and corrective communication",
+      "partnership": "Partnership and coordination",
+      "regulation": "Regulation and public policy frameworks",
+      "freedom": "Freedom of expression and information rights",
+      "technology_governance": "Technology governance and platform accountability",
+      "principles": "Humanitarian principles and neutrality"
+    },
     "browseOperationalImpact": "Operational Impact",
     "browseResponseStrategy": "Response Strategy",
     "browseHarm": "Types of Harm",
@@ -338,5 +362,9 @@
     "psychological": "Psychological",
     "social": "Social",
     "informational": "Informational"
+  },
+  "AsksAims": {
+    "asks": "Asks",
+    "aims": "Aims"
   }
 }

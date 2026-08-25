@@ -100,7 +100,7 @@ export default function TagContainer({ selectedTag, handleSelectionTag }) {
                       : 'bg-white text-[#ee2435] border-[#ee2435]/40 hover:border-[#ee2435] hover:bg-red-50'
                   }`}
                 >
-                  {tag.label}
+                  {t(`tags.${tag.id}`)}
                 </button>
               ))}
             </React.Fragment>

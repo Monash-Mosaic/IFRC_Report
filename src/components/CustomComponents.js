@@ -139,7 +139,7 @@ export function SmallQuote({ children, variant = 'default', ...props }) {
 export function SmallQuoteAuthor({ children, ...props }) {
   return (
     <div
-      className="ml-12 text-start font-extralight border-t-2 border-[#ee2435]"
+      className="ms-12 text-start font-extralight border-t-2 border-[#ee2435]"
       {...props}
     >
       {children}
@@ -212,6 +212,54 @@ export function ChapterQuote({ children, ...props }) {
   return (
     <div style={{ color: '#6b7280', fontSize: '2rem', lineHeight: 1.2 }} {...props}>
       {children}
+    </div>
+  );
+}
+
+export function AsksAims({ children, ...props }) {
+  return (
+    <section
+      className="relative block lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start my-8"
+      {...props}
+    >
+      {/* vertical divider (desktop only) */}
+      <div className="hidden lg:block absolute left-1/2 top-0 h-full w-px bg-black -translate-x-1/2" />
+
+      {children}
+    </section>
+  );
+}
+
+export async function Asks({ children, ...props }) {
+  const t = await getTranslations('AsksAims');
+  return (
+    <div {...props}>
+      {/* Title NOT bold */}
+      <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
+        {t('asks')}
+      </div>
+
+      {/* Content IS bold */}
+      <div className="font-bold leading-relaxed [&>p]:mb-4 [&>p:last-child]:mb-0">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export async function Aims({ children, ...props }) {
+  const t = await getTranslations('AsksAims');
+  return (
+    <div className="mt-8 lg:mt-0" {...props}>
+      {/* Title NOT bold */}
+      <div className="text-[#ee2435] text-2xl font-normal border-b-2 border-black pb-1 mb-4 lg:border-b-0">
+        {t('aims')}
+      </div>
+
+      {/* Content IS bold */}
+      <div className="font-bold leading-relaxed [&>p]:mb-4 [&>p:last-child]:mb-0">
+        {children}
+      </div>
     </div>
   );
 }
@@ -484,7 +532,7 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
         return (
           <div key={index} className="grid grid-cols-[5%_95%] w-full h-auto">
             <div className="[border-inline-end:1px_solid_#ee2435]" />
-            <div className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem]">
+            <div className="grid grid-cols-1 gap-8 pt-[20px] pb-[calc(var(--spacing)*8)] [padding-inline-start:1.5rem] font-light">
               {chunk}
             </div>
           </div>
@@ -590,7 +638,7 @@ export function ChapterImage({
 }
 
 export function EndnotesLink({ children, ...props }) {
-  const linkClass = 'underline decoration-purple-600 wrap-break-word break-all text-purple-600';
+  const linkClass = 'underline decoration-blue-600 wrap-break-word break-all text-black';
   const childArray = React.Children.toArray(children);
   const anchorChild = childArray.find(
     (child) => React.isValidElement(child) && child.type === 'a'
@@ -779,6 +827,9 @@ const CustomComponents = {
   Definition,
   DefinitionDescription,
   H1Contributor,
+  Asks,
+  Aims,
+  AsksAims,
   Reccomendations,
   ReccomendationsTitle,
   EndnotesLink,

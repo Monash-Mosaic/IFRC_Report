@@ -21,8 +21,12 @@ jest.mock('next/image', () => ({
 
 // Mock i18n navigation
 jest.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, className }) => (
-    <a href={typeof href === 'object' ? JSON.stringify(href) : href} className={className}>
+  Link: ({ children, href, className, ...props }) => (
+    <a
+      href={typeof href === 'object' ? JSON.stringify(href) : href}
+      className={className}
+      {...props}
+    >
       {children}
     </a>
   ),
@@ -72,7 +76,7 @@ jest.mock('@/reports', () => ({
             url: 'https://example.com/download.pdf',
           },
           chapters: {
-            'synthesis': {
+            'synthesis-en': {
               downloadLink: 'https://example.com/download.pdf',
             },
           },
@@ -299,14 +303,16 @@ describe('Footer', () => {
       await renderFooter();
       const disinformerLink = screen.getByText('Disinformer');
       expect(disinformerLink).toBeInTheDocument();
-      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/coming-soon');
+      expect(disinformerLink.closest('a')).toHaveAttribute('target', '_blank');
+      expect(disinformerLink.closest('a')).toHaveAttribute('href', 'https://disinformer.wdr26.org');
     });
 
     it('renders Ctrl + Alt + Prebunk game link with correct href', async () => {
       await renderFooter();
       const prebunkLink = screen.getByText('Ctrl + Alt + Prebunk');
       expect(prebunkLink).toBeInTheDocument();
-      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/coming-soon');
+      expect(prebunkLink.closest('a')).toHaveAttribute('target', '_blank');
+      expect(prebunkLink.closest('a')).toHaveAttribute('href', 'https://ctrl-alt-prebunk.wdr26.org/en');
     });
 
     it('Download Report link uses dynamic download link from reportModule', async () => {
@@ -358,6 +364,32 @@ describe('Footer', () => {
       await renderFooter();
       expect(screen.getByText('Disinformer')).toBeVisible();
       expect(screen.getByText('Read Report')).toBeVisible();
+    });
+  });
+
+  describe('Download link fallback', () => {
+    it('uses chapter download link when report file url is missing', async () => {
+      const { reportsByLocale } = require('@/reports');
+      reportsByLocale.en.reports.wdr26.reportFile = undefined;
+      reportsByLocale.en.reports.wdr26.chapters = {
+        'synthesis-en': { downloadLink: mockDownloadLink },
+      };
+
+      await renderFooter();
+
+      const downloadEl = screen.getByText('Download Report');
+      expect(downloadEl.closest('a')).toHaveAttribute('href', mockDownloadLink);
+    });
+
+    it('falls back to hash when no download url is available', async () => {
+      const { reportsByLocale } = require('@/reports');
+      reportsByLocale.en.reports.wdr26.reportFile = undefined;
+      reportsByLocale.en.reports.wdr26.chapters = {};
+
+      await renderFooter();
+
+      const downloadEl = screen.getByText('Download Report');
+      expect(downloadEl.closest('a')).toHaveAttribute('href', '#');
     });
   });
 

@@ -5,36 +5,10 @@ import { QuoteIcon } from 'lucide-react';
 import QuoteTile from '@/components/engagement/QuoteTile';
 import QuotesPagination from '@/components/engagement/QuotesPagination';
 import { parseTags } from '@/lib/quoteHarmIcons';
+import { TAG_COLUMN_MAP } from '@/reports/en/engagement';
+import { TAG_COLUMN_MAP as TAG_COLUMN_MAP_FR } from '@/reports/fr/engagement';
 
 const TILES_PER_PAGE = 3;
-
-const TAG_COLUMN_MAP = {
-  psychological:         { column: 'harm',        label: 'Psychological' },
-  societal:              { column: 'harm',        label: 'Societal' },
-  social:                { column: 'harm',        label: 'Social' },
-  informational:         { column: 'harm',        label: 'Informational' },
-  digital_technological: { column: 'harm',        label: 'Digital/technological' },
-  physical:              { column: 'harm',        label: 'Physical' },
-  deprivational:         { column: 'harm',        label: 'Deprivational/financial/economic' },
-
-  programme:             { column: 'operational', label: 'Programme effectiveness and accountability' },
-  distorted_needs:       { column: 'operational', label: 'Distorted needs and demand signals' },
-  safety:                { column: 'operational', label: 'Safety and security of staff and volunteers' },
-  access_constraints:    { column: 'operational', label: 'Access constraints and acceptance risks' },
-
-  prebunking:            { column: 'response',    label: 'Prebunking and narrative resilience' },
-  debunking:             { column: 'response',    label: 'Debunking and corrective communication' },
-  trusted_messenger:     { column: 'response',    label: 'Trusted messengers and local intermediaries' },
-  community_engagement:  { column: 'response',    label: 'Community engagement and accountability' },
-  rumour_tracking:       { column: 'response',    label: 'Rumour tracking and early warning' },
-  information_aid:       { column: 'response',    label: 'Information as aid' },
-  partnership:           { column: 'response',    label: 'Partnership and coordination' },
-
-  principles:            { column: 'governance',  label: 'Humanitarian principles and neutrality' },
-  regulation:            { column: 'governance',  label: 'Regulation and public policy frameworks' },
-  freedom:               { column: 'governance',  label: 'Freedom of expression and information rights' },
-  technology_governance: { column: 'governance',  label: 'Technology governance and platform accountability' },
-};
 
 /** Parse TSV (tab-separated) so commas in descriptions don't break parsing. */
 function parseTSV(text) {
@@ -78,7 +52,12 @@ export default function QuotesSection({ selectedTag }) {
   const [pageState, setPageState] = useState({ listKey: '', page: 0 });
 
   useEffect(() => {
-    fetch('/engagement/engagement_tab.tsv')
+    const tsvFile =
+      locale === 'fr'
+        ? '/engagement/french-engagement_tab.tsv'
+        : '/engagement/engagement_tab.tsv';
+
+    fetch(tsvFile)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.text();
@@ -92,11 +71,11 @@ export default function QuotesSection({ selectedTag }) {
         const headers = rows[0].map((h) => h.trim());
         const colIndex = {};
         headers.forEach((h, i) => { colIndex[h] = i; });
-        if (colIndex['Quote text'] == null) {
+        const quoteTextIdx = colIndex['Quote text'];
+        if (quoteTextIdx == null) {
           setQuotes([]);
           return;
         }
-        const quoteTextIdx = colIndex['Quote text'];
         const isValidQuoteText = (val) => {
           if (!val || typeof val !== 'string') return false;
           const v = val.trim();
@@ -115,26 +94,28 @@ export default function QuotesSection({ selectedTag }) {
             operational: (row[colIndex['tag:operational_impact']] || '').trim(),
             response: (row[colIndex['tag:response_strategy']] || '').trim(),
             governance: (row[colIndex['tag:governance']] || '').trim(),
+            url: colIndex['url'] != null ? (row[colIndex['url']] || '').trim() : '',
           }));
         setQuotes(parsed);
       })
       .catch((err) => setError(err?.message || 'Failed to load'))
       .finally(() => setLoading(false));
-  }, []);
+  }, [locale]);
 
   const filtered = useMemo(() => {
     const activeTagIds = Object.keys(selectedTag).filter((k) => selectedTag[k]);
     if (activeTagIds.length === 0) return quotes;
 
     return quotes.filter((quote) =>
-      activeTagIds.some((tagId) => {
-        const tagInfo = TAG_COLUMN_MAP[tagId];
+      activeTagIds.every((tagId) => {
+        const activeTagMap = locale === 'fr' ? TAG_COLUMN_MAP_FR : TAG_COLUMN_MAP;
+        const tagInfo = activeTagMap[tagId];
         if (!tagInfo) return false;
         const values = parseTags(quote[tagInfo.column]).map((v) => v.toLowerCase());
         return values.some((v) => v.includes(tagInfo.label.toLowerCase()));
       })
     );
-  }, [quotes, selectedTag]);
+  }, [quotes, selectedTag, locale]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / TILES_PER_PAGE));
 

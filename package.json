@@ -19,7 +19,7 @@
     "format": "prettier --write $(git diff --name-only --diff-filter=ACM HEAD | grep -E '\\.(js|jsx|ts|tsx|json|css|md)$')",
     "test": "jest",
     "ci:build": "opennextjs-cloudflare build",
-    "ci:test": "jest --testLocationInResults --reporters=summary --reporters=github-actions --coverage --ci --json --outputFile=report.json --coveragePathIgnorePatterns='/packages/'",
+    "ci:test": "jest --testLocationInResults --ci --coverage --reporters=default --reporters=github-actions --reporters=jest-junit --json --outputFile=report.json --coveragePathIgnorePatterns='/packages/'",
     "test:watch": "jest --watch"
   },
   "workspaces": [
@@ -33,7 +33,7 @@
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "~16.2.3",
     "@next/third-parties": "~16.2.3",
-    "@opennextjs/cloudflare": "^1.19.1",
+    "@opennextjs/cloudflare": "^1.20.1",
     "@stefanprobst/rehype-extract-toc": "^3.0.0",
     "@swc/helpers": "^0.5.21",
     "@types/mdx": "^2.0.13",
@@ -66,29 +66,34 @@
     "@testing-library/react": "^16.3.2",
     "@types/better-sqlite3": "^7.6.13",
     "@types/jest": "^30.0.0",
-    "@types/node": "25.5.0",
-    "@types/react": "19.2.14",
+    "@types/node": "26.0.1",
+    "@types/react": "19.2.17",
     "autocannon": "^8.0.0",
-    "autoprefixer": "^10.4.27",
-    "baseline-browser-mapping": "^2.10.9",
+    "autoprefixer": "^10.5.2",
+    "baseline-browser-mapping": "^2.10.40",
     "cloudflared": "^0.7.1",
-    "cssnano": "^7.1.3",
+    "cssnano": "^8.0.2",
     "eslint": "^9",
     "eslint-config-next": "~16.2.3",
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
-    "prettier": "3.8.1",
+    "prettier": "3.9.4",
     "react-modal": "^3.16.3",
-    "schema-dts": "^1.1.5",
+    "schema-dts": "^2.0.0",
     "tailwindcss": "^4.2.2",
     "ts-node": "^10.9.2",
-    "typescript": "5.9.3",
-    "wrangler": "^4.81.1"
+    "typescript": "6.0.3",
+    "wrangler": "^4.105.0"
   },
   "overrides": {
     "postcss": "^8.5.15",
     "esbuild": "^0.28.1",
-    "uuid": "^11.1.1"
+    "uuid": "^11.1.1",
+    "@babel/core": "^7.29.7",
+    "form-data": "^4.0.6",
+    "js-yaml": "^4.3.0",
+    "undici": "^7.28.0",
+    "ws": "^8.21.0"
   }
 }
