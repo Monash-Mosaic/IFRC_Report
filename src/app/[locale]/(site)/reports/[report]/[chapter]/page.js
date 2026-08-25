@@ -164,8 +164,8 @@ export default async function ReportChapterPage({ params }) {
       {/* <SidebarPanel chapterTitle={chapterTitle} audios={audios} videos={videos} /> */}
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="max-w-7xl mx-auto flex gap-6">
+      <div className="flex-1 p-4 sm:p-8 min-w-0 overflow-x-hidden">
+        <div className="max-w-7xl mx-auto flex gap-6 min-w-0">
           <div className="flex-1 min-w-0 max-w-4xl mx-auto">
             <Breadcrumb
               locale={locale}

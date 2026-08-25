@@ -70,6 +70,29 @@ describe('CustomComponents primitives', () => {
     expect(screen.getByLabelText('Reccomendations')).toHaveTextContent('Recommendation text');
   });
 
+  it('renders the default English quote icon', () => {
+  render(<SmallQuote>Quote text</SmallQuote>);
+
+  expect(screen.getByText('Quote text')).toBeInTheDocument();
+
+  // English should render the Lucide Quote icon
+  expect(document.querySelector('svg')).toBeInTheDocument();
+});
+
+it('renders French guillemets when variant is fr', () => {
+  render(
+    <SmallQuote variant="fr">
+      Texte de citation
+    </SmallQuote>
+  );
+
+  expect(screen.getByText('Texte de citation')).toBeInTheDocument();
+  expect(screen.getByText('«')).toBeInTheDocument();
+
+  // French variant should not render the Lucide Quote icon
+  expect(document.querySelector('svg')).not.toBeInTheDocument();
+});
+
   it('renders ContributorTag with column count', () => {
     const { container } = render(
       <ContributorTag>
