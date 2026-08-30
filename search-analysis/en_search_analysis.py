@@ -326,8 +326,9 @@ def _(mo):
     1. NFKD normalize → strip combining marks → **lowercase**
     2. `prepare`: EnglishPreset contraction rewriting, **then** `prepareEn`
        (`merge_option` chains both, preset first). `prepareEn` today is
-       `stripApostrophes(stripFootnotes(str))` — the ~~acronym expansion~~ that used to
-       run here is **commented out** in `db.js`
+       `expandEnAcronyms(stripApostrophes(stripFootnotes(str)))` — footnote refs out,
+       apostrophes deleted, then **bidirectional** acronym expansion (expansion →
+       acronym, then acronym → *acronym + expansion*)
     3. numeric triplet split → term split on `/[^\p{L}\p{N}]+/u`
     4. stopword filter (stemmer is disabled in both configs)
     5. consecutive-letter dedupe (both configs)
@@ -335,9 +336,9 @@ def _(mo):
        **removed** in the current config; this was `Charset.LatinAdvanced` steps 5–6
        and the sole source of *phonetic* fuzziness.
 
-    So `encode_en` (current) keeps only steps 1–5 with apostrophe stripping;
-    `encode_previous` restores step 6 *and* the acronym expansion, i.e. the config as it
-    stood before either round of changes. Both are ported below and validated against
+    So `encode_en` (current) keeps steps 1–5 with apostrophe stripping and bidirectional
+    expansion; `encode_previous` restores step 6 *and* the old one-directional expansion,
+    i.e. the config as it stood before any of these changes. Both are ported below and validated against
     the real JS encoder. The practical effect of dropping soundex:
     `government`/`goverment`/`govirnmend` were one term; now they are three distinct
     terms — typos no longer match.
@@ -402,6 +403,8 @@ def _(re, unicodedata):
         (re.compile(r"([a-z])'d" + _BE), r"\1 would had"),
     ]
 
+    # The list as it stood under the PREVIOUS config: one-directional acronym -> expansion
+    # rewriting, including the two entries that also spell ordinary English words.
     ACRONYM_EXPANSIONS = {
         "ai": "artificial intelligence",
         "car": "central african republic",
@@ -430,12 +433,45 @@ def _(re, unicodedata):
         "unhcr": "un high commissioner for refugees",
         "who": "world health organization",
     }
-    # prepareEn as it is written in db.js today: footnote refs out, apostrophes deleted.
-    # Deleting rather than splitting on the apostrophe keeps "todays" as one token
-    # instead of flooding the index with a single-letter "s" from every possessive.
+    # EN_ACRONYMS as db.js has it today: `who` and `car` removed (they are also ordinary
+    # English words and `prepare` only ever sees lowercased text), and `ocha` without the
+    # "(UN)" gloss the old list carried.
+    ACRONYM_EXPANSIONS_CURRENT = {
+        _k: _v for _k, _v in ACRONYM_EXPANSIONS.items() if _k not in ("who", "car")
+    }
+    ACRONYM_EXPANSIONS_CURRENT["ocha"] = "office for the coordination of humanitarian affairs"
+
+    # buildAcronymExpander() in db.js is BIDIRECTIONAL: it first collapses every spelled-out
+    # expansion back to its acronym, then expands every acronym to "acronym expansion". Both
+    # spellings therefore converge on the same term set, so either one finds both kinds of
+    # document. Order matters - the collapse has to run over the whole string first.
+    _EXPANSION_PATTERNS = [
+        (
+            re.compile(_BS + r"\s+".join(re.escape(_w) for _w in _v.split()) + _BE),
+            _k,
+        )
+        for _k, _v in ACRONYM_EXPANSIONS_CURRENT.items()
+    ]
+    _ACRONYM_PATTERNS = [
+        (re.compile(_BS + re.escape(_k) + _BE), f"{_k} {_v}")
+        for _k, _v in ACRONYM_EXPANSIONS_CURRENT.items()
+    ]
+
+    def expand_acronyms(s):
+        for _pat, _repl in _EXPANSION_PATTERNS:
+            s = _pat.sub(_repl, s)
+        for _pat, _repl in _ACRONYM_PATTERNS:
+            s = _pat.sub(_repl, s)
+        return s
+
+    # prepareEn as it is written in db.js today: footnote refs out, apostrophes deleted,
+    # then bidirectional acronym expansion. Deleting rather than splitting on the
+    # apostrophe keeps "todays" as one token instead of flooding the index with a
+    # single-letter "s" from every possessive.
     PREPARE_CURRENT = [
         (re.compile(r"\[\^[0-9]+\]"), ""),
         (re.compile(r"['‘’]"), ""),
+        (expand_acronyms, None),  # callable rule - applied by apply_prepare
     ]
     # prepareEn as it was: footnote refs out, then acronym -> expansion rewriting.
     PREPARE_PREVIOUS = [(re.compile(r"\[\^[0-9]+\]"), "")] + [
@@ -484,8 +520,15 @@ def _(re, unicodedata):
         return s
 
     def apply_prepare(s, rules):
+        """Rules are (compiled regex, replacement), (literal, replacement), or
+        (callable, None) for a rule that needs more than one pass over the string."""
         for _pat, _repl in rules:
-            s = _pat.sub(_repl, s) if hasattr(_pat, "sub") else s.replace(_pat, _repl)
+            if callable(_pat):
+                s = _pat(s)
+            elif hasattr(_pat, "sub"):
+                s = _pat.sub(_repl, s)
+            else:
+                s = s.replace(_pat, _repl)
         return s
 
     def mapper_dedupe(word, mapper, dedupe=True):
@@ -778,20 +821,29 @@ def _(collisions_current, mo, pd):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## 4. The `who` bug — fixed, by removing the whole feature ✅⚠️
+    ## 4. Acronyms — the `who` bug, and the fix that replaced it ✅
 
     `prepareEn` used to rewrite `/\bwho\b/g → "world health organization"`. Because
     `prepare` receives *lowercased* text, the English relative pronoun and the acronym
     were indistinguishable, so every *"people **who** fled"* injected
-    `world/health/organization` into the index. **That is gone** — the acronym
-    expansion call in `db.js` is commented out, so `en` no longer expands anything.
+    `world/health/organization` into the index — 81% of expansions were false.
 
-    The bug is fixed. The **feature** went with it, and that is now the live problem:
-    an acronym and its spelled-out form are two unrelated token sets, so neither finds
-    the other, and `WHO` in particular encodes to **nothing at all** because `who` is on
-    the stopword list. French still has its expansion (`prepareFr`), and it is
-    bidirectional — `IA` and *intelligence artificielle* both encode to
-    `[ia, inteligence, artificiele]`, which is what `en` should be doing.
+    The first response was to disable expansion for `en` entirely. That killed the bug
+    and the feature together: acronym and spelled-out form became unrelated token sets,
+    so a search for *artificial intelligence* reached 14 documents while 55 others said
+    only "AI".
+
+    **What is in place now** (this notebook is re-run against it): expansion is back and
+    **bidirectional**, as `prepareFr` already was — every spelled-out form is first
+    collapsed to its acronym, then every acronym expands to *acronym + expansion*, so
+    both spellings converge on one term set. `who` and `car` are **off that list** —
+    no encoder-side rule can separate them from the ordinary words — and are instead
+    expanded on the **query side** (`expandCasedAcronyms` in `flexsearch.js`), the one
+    place the user's capitalization still exists: an all-caps `WHO`, or a query that is
+    nothing but that word, becomes *world health organization*; a `who` inside a sentence
+    is left alone. The remaining gap is documents that use **only** the acronym and never
+    spell the name out — 5 of the 9 sections mentioning WHO — since the doc side still
+    cannot index it.
     """)
     return
 
@@ -831,17 +883,22 @@ def _(encode_en, encode_previous, mo, raw_tokens):
                            → {encode_en("people who fled their homes")}
                 ```
 
-                And the cost, on the query side:
+                And on the query side:
 
                 ```
-                encode_en("WHO")                          → {encode_en("WHO")}
-                encode_en("World Health Organization")     → {encode_en("World Health Organization")}
+                encode_en("AI")                        → {encode_en("AI")}
+                encode_en("artificial intelligence")   → {encode_en("artificial intelligence")}
+                encode_en("WHO")                       → {encode_en("WHO")}
                 ```
 
-                `WHO` is a **stopword-only** query: it returns nothing, for anyone, ever.
-                The other 25 acronyms still encode to themselves, but they no longer reach
-                documents that only spell the name out — and vice versa. The table below
-                sizes that gap over the real corpus.
+                `WHO` encodes to **nothing** — `who` is on the stopword list — which is
+                why it is handled before the encoder ever sees it, on the query side.
+                Every other acronym now converges
+                with its spelled-out form — `encode_en("AI")` and
+                `encode_en("artificial intelligence")` produce the same terms — so either
+                spelling finds both kinds of document. The table below re-measures the gap
+                over the real corpus; it should now be closed everywhere except the two
+                entries deliberately left out.
                 """
             ),
         ]
@@ -881,13 +938,12 @@ def _(acronym_gap, mm, mo):
     mo.vstack(
         [
             mo.md(
-                f"**{len(_one_sided)} of {len(_rows)}** acronyms appear somewhere in only "
-                f"one of their two forms. Across all of them, **{_stranded} of "
-                f"{_reachable}** document-mentions ({_stranded / max(1, _reachable):.0%}) "
-                f"are reachable by one spelling and invisible to the other. **{_worst['acronym']}** "
-                f"is the clearest case: {_worst['acronymOnly'] + _worst['both']} documents use "
-                f"the acronym, {_worst['expansionOnly'] + _worst['both']} spell it out, and a "
-                f"search for the long form reaches only those {_worst['expansionOnly'] + _worst['both']}."
+                f"**{len(_one_sided)} of {len(_rows)}** acronyms are now reachable by only "
+                f"one of their two spellings — {_stranded} of {_reachable} document-mentions "
+                f"({_stranded / max(1, _reachable):.0%}). Before expansion was restored that "
+                f"figure was **26%**, with *AI* the extreme: 55 documents wrote the acronym, "
+                f"8 spelled it out, and searching the long form found only those 8. The "
+                f"`both` column is where every row should now sit."
             ),
             mo.ui.table(acronym_gap, page_size=10),
         ]
@@ -951,19 +1007,22 @@ def _(mm, mo, pd):
     mo.vstack(
         [
             mo.md(
-                f"**Top 5 for `AI` today** — every one of the top three earns its rank from "
-                f"a word that merely starts with *ai*. "
-                f"{_ai['production']['titleAccidentTop3']:.0%} of the top three and "
-                f"{_ai['production']['titleAccidentTop10']:.0%} of the top ten are these "
-                f"prefix accidents:"
+                "**Top 5 for `AI` before the fix** — the top three earned their rank from "
+                "words that merely start with *ai*, and the sections actually about AI sat "
+                "below them:"
+            ),
+            mo.ui.table(_probe_rows(_ai, "legacy"), page_size=5),
+            mo.md(
+                f"**Top 5 for `AI` as it stands now** — expansion makes the query and the "
+                f"spelled-out form converge, and the graded score stops a prefix hit in a "
+                f"title from outscoring a real one. Top-ten prefix accidents fall from "
+                f"**{_ai['legacy']['titleAccidentTop10']:.0%}** to "
+                f"**{_ai['production']['titleAccidentTop10']:.0%}**, and every one of the "
+                f"top ten now contains the full query "
+                f"({_ai['legacy']['exactShareTop10']:.0%} → "
+                f"{_ai['production']['exactShareTop10']:.0%}):"
             ),
             mo.ui.table(_probe_rows(_ai, "production"), page_size=5),
-            mo.md(
-                "**The same query under the graded score from §7.8** — exact whole-word "
-                "hits and repeated mentions outweigh prefix accidents, so the sections "
-                "actually about AI surface:"
-            ),
-            mo.ui.table(_probe_rows(_ai, "graded"), page_size=5),
         ]
     )
     return
@@ -978,14 +1037,14 @@ def _(mm, mo, pd):
                 "query": _p["query"],
                 "encodes to": ", ".join(_p["encodedTerms"]) or "— (nothing)",
                 "results": _p["results"],
+                "top-3 prefix accidents (before)": (
+                    f"{_p['legacy']['titleAccidentTop3']:.0%}"
+                ),
                 "top-3 prefix accidents (now)": (
                     f"{_p['production']['titleAccidentTop3']:.0%}"
                 ),
-                "top-3 prefix accidents (graded)": (
-                    f"{_p['graded']['titleAccidentTop3']:.0%}"
-                ),
+                "top-10 with every term (before)": f"{_p['legacy']['exactShareTop10']:.0%}",
                 "top-10 with every term (now)": f"{_p['production']['exactShareTop10']:.0%}",
-                "top-10 with every term (graded)": f"{_p['graded']['exactShareTop10']:.0%}",
             }
         )
     mo.vstack(
@@ -1229,6 +1288,11 @@ def _(mm, mo):
             gap=2,
         )
     _view
+    return
+
+
+@app.cell
+def _():
     return
 
 
@@ -1491,7 +1555,7 @@ def _(alt, chart_ink, mm, mo, pd, series_hue):
             .configure_view(strokeWidth=0),
         ]
     )
-    return (depth_df,)
+    return
 
 
 @app.cell(hide_code=True)
@@ -1546,17 +1610,17 @@ def _(mm, mo, pd):
 @app.cell(hide_code=True)
 def _(alt, chart_ink, mm, mo, pd, series_hue):
     _order = [
-        "suggest-only", "production", "and-only", "and-rerank",
-        "exact-first", "coverage-rerank", "graded",
+        "suggest-only", "and-only", "exact-first", "and-rerank",
+        "legacy", "coverage-rerank", "production",
     ]
     _short_label = {
-        "production": "production",
+        "production": "production (now)",
+        "legacy": "previous production",
         "suggest-only": "no re-rank",
         "and-only": "AND, no re-rank",
         "and-rerank": "AND + re-rank",
         "exact-first": "exact-match gate ✗",
-        "coverage-rerank": "coverage-first",
-        "graded": "coverage-first + graded",
+        "coverage-rerank": "coverage-first only",
     }
     _rows = []
     for _key in _order:
@@ -1639,42 +1703,41 @@ def _(mm, mo):
         f"""
         Three things fall out of that chart:
 
-        **1. The context re-rank is doing the heavy lifting.** Without it, the same
-        result sets capture **{_w['suggest-only']:.1f}**; with it,
+        **1. The re-rank is doing the heavy lifting.** Without any of it, the same
+        result sets capture **{_w['suggest-only']:.1f}**; production is
         **{_w['production']:.1f}** — a **+{_w['production'] - _w['suggest-only']:.1f}**
-        swing, {(_w['production'] / _w['suggest-only'] - 1):.0%} more clicks, and it is
-        the single largest effect measured anywhere in this notebook. FlexSearch's own
+        swing, {(_w['production'] / _w['suggest-only'] - 1):.0%} more clicks, and the
+        single largest effect measured anywhere in this notebook. FlexSearch's own
         relevance ordering is close to useless here, which is expected: the `context`
         option in `db.js` is silently ignored under `tokenize: 'forward'`, so without the
         manual pass there is no proximity signal at all.
 
         **2. `suggest: true` costs almost nothing in ranking** —
-        {_w['production']:.1f} against {_w['and-rerank']:.1f} for a strict AND. It is
+        {_w['production']:.1f} against {_w['and-rerank']:.1f} for a strict AND, and it is
+        what keeps a cross-document query from returning an empty page (§7.6). It is
         *not* free, though; it is paid for in §7.4.
 
-        **3. A coverage-first tie-break is a real, cheap win.** Sorting complete matches
-        above partial ones *before* the context score reaches
-        **{_w['coverage-rerank']:.1f}** — as good as strict AND on ranking, while keeping
-        AND's zero-result problem solved (§7.6). It is ~10 lines in `flexsearch.js`.
+        **3. Coverage-first and the graded score are both live now.** Sorting complete
+        matches above partial ones takes the previous **{_w['legacy']:.1f}** to
+        **{_w['coverage-rerank']:.1f}**; grading the score on top — exact hits above
+        prefix hits, repeated mentions above single ones — reaches
+        **{_w['production']:.1f}**. Small in aggregate, but it is the only change that
+        improves the **1–2 word** bucket, which is half of all traffic:
+        {_v['legacy']['byBucket']['1-2 words']['ctrCapture']:.2f} →
+        **{_v['production']['byBucket']['1-2 words']['ctrCapture']:.2f}**, top-3
+        {_v['legacy']['byBucket']['1-2 words']['top3']:.0%} →
+        **{_v['production']['byBucket']['1-2 words']['top3']:.0%}**. §4.1 shows what it
+        does to a real query, where the effect is far more visible than the average
+        suggests.
 
-        **4. But a hard exact-match gate fails — and that is the useful negative result.**
-        Requiring a whole-word hit to outrank a prefix hit *lexicographically* fixes the
-        acronym case in §4.1 and **costs
-        {_w['production'] - _w['exact-first']:.1f} clicks overall**
+        **4. A hard exact-match gate fails — the useful negative result.** Requiring a
+        whole-word hit to outrank a prefix hit *lexicographically* also fixes §4.1 and
+        **costs {_w['production'] - _w['exact-first']:.1f} clicks overall**
         ({_w['exact-first']:.1f} vs {_w['production']:.1f}), because prefix matching is
         what carries morphology now that stemming is off: it disqualifies the document a
         searcher wanted whenever they typed *challenge* and the section says *challenges*.
-
-        **5. The same preference expressed as a _bonus_ works.** The graded score — exact
-        hits weighted above prefix hits, repeated mentions above single ones, still inside
-        the existing title/excerpt/proximity structure — reaches
-        **{_w['graded']:.1f}**, the best measured here, and it is the only variant that
-        improves the **1–2 word** bucket
-        ({_v['production']['byBucket']['1-2 words']['ctrCapture']:.2f} →
-        {_v['graded']['byBucket']['1-2 words']['ctrCapture']:.2f}, top-3
-        {_v['production']['byBucket']['1-2 words']['top3']:.0%} →
-        {_v['graded']['byBucket']['1-2 words']['top3']:.0%}), which is where half the
-        traffic is. §4.1 shows what it does to a real query.
+        That is why the shipped version expresses the preference as a **weight**, not a
+        filter.
         """
     )
     return
@@ -1685,8 +1748,8 @@ def _(alt, chart_ink, mm, mo, pd, series_hue):
     _rows = []
     for _b in mm["buckets"]:
         for _key, _label in [
-            ("production", "production"),
-            ("coverage-rerank", "coverage-first"),
+            ("legacy", "before"),
+            ("production", "now"),
         ]:
             _rows.append(
                 {
@@ -1712,11 +1775,11 @@ def _(alt, chart_ink, mm, mo, pd, series_hue):
             ),
             y=alt.Y("query length:N", title=None,
                     axis=alt.Axis(domainOpacity=0, tickOpacity=0, labelColor=chart_ink)),
-            yOffset=alt.YOffset("ranking:N", sort=["production", "coverage-first"]),
+            yOffset=alt.YOffset("ranking:N", sort=["before", "now"]),
             color=alt.Color(
                 "ranking:N",
                 title=None,
-                scale=alt.Scale(domain=["production", "coverage-first"], range=series_hue[:2]),
+                scale=alt.Scale(domain=["before", "now"], range=series_hue[:2]),
                 legend=alt.Legend(labelColor=chart_ink, orient="top"),
             ),
             tooltip=["query length", "ranking", alt.Tooltip("diluted:Q", format=".1f")],
@@ -1746,18 +1809,18 @@ def _(alt, chart_ink, mm, mo, pd, series_hue):
 
 @app.cell(hide_code=True)
 def _(mm, mo):
-    _prod = mm["variants"]["production"]["byBucket"]
-    _cov = mm["variants"]["coverage-rerank"]["byBucket"]
+    _prod = mm["variants"]["legacy"]["byBucket"]
+    _cov = mm["variants"]["production"]["byBucket"]
     _mid_loss = 68.7 * _prod["3-5 words"]["dilutedTop3"]
     _long_loss = 68.7 * _prod["6+ words"]["dilutedTop3"]
     mo.md(
         f"""
-        For a 3–5 word query — **43% of all searches** — **{_prod['3-5 words']['dilutedTop3']:.0%}**
-        of the top three are partial matches, i.e. about **{_mid_loss:.0f} of the 68.7**
-        click points at the top of the page are spent on documents that do not contain
-        everything the user asked for. At 6+ words it is
+        Before the fix, a 3–5 word query — **43% of all searches** — put
+        **{_prod['3-5 words']['dilutedTop3']:.0%}** partial matches in the top three, i.e.
+        about **{_mid_loss:.0f} of the 68.7** click points at the top of the page went to
+        documents that did not contain everything the user asked for. At 6+ words it was
         **{_prod['6+ words']['dilutedTop3']:.0%}** ({_long_loss:.0f} points). The
-        coverage-first tie-break roughly halves both
+        coverage-first sort roughly halves both
         ({_cov['3-5 words']['dilutedTop3']:.0%} and {_cov['6+ words']['dilutedTop3']:.0%})
         without dropping a single result from the page.
 
@@ -1901,26 +1964,29 @@ def _(mm, mo, pd):
 @app.cell(hide_code=True)
 def _(mm, mo):
     _prod = mm["variants"]["production"]
-    _cov = mm["variants"]["coverage-rerank"]
+    _v = mm["variants"]
+    _w = {_k: _v[_k]["weightedCtrCapture"] for _k in _v}
     mo.md(
         f"""
-        ### 7.8 What to change, in order of clicks recovered
+        ### 7.8 Status: what shipped, and what is still open
 
-        | # | Change | Where | Evidence |
+        | # | Change | Where | Status / evidence |
         |---|---|---|---|
-        | 1 | **Grade the score instead of tie-breaking on booleans.** Exact whole-word hit > prefix hit (title 10 vs 4, excerpt 3 vs 1) plus a damped term-frequency bonus, keeping the existing proximity structure | `contextScore()` | Best variant measured: **{mm['variants']['graded']['weightedCtrCapture']:.2f}**, and the only one that lifts the 1–2 word bucket ({_prod['byBucket']['1-2 words']['ctrCapture']:.2f} → {mm['variants']['graded']['byBucket']['1-2 words']['ctrCapture']:.2f}). 51% of traffic; {_prod['byBucket']['1-2 words']['tiedTop10']:.0%} of first pages are currently ties. Do **not** make it a hard gate: that scores {mm['variants']['exact-first']['weightedCtrCapture']:.2f} (§7.3) |
-        | 2 | **Rank complete matches above partial ones** before applying the context score | `searchDocuments()` | +{_cov['weightedCtrCapture'] - _prod['weightedCtrCapture']:.2f} clicks weighted, top-3 dilution roughly halved, cross-document top-3 coverage {mm['crossDocument']['variants']['production']['meanTop3Coverage']:.0%} → {mm['crossDocument']['variants']['coverage-rerank']['meanTop3Coverage']:.0%} |
-        | 3 | **Filter stopwords out of the document side too**, or count them as zero-cost gaps | `contextMatchGap()` | Multi-word queries containing a stopword engage the re-rank {_prod['byBucket']['3-5 words']['rerankEngagedWithStopword']:.0%} of the time vs {_prod['byBucket']['3-5 words']['rerankEngagedNoStopword']:.0%} without |
-        | 4 | **Restore acronym matching bidirectionally** (query-side synonyms, as `prepareFr` does), and drop `who` from the stopword filter | `db.js` | §4: `WHO` returns nothing; acronym and expansion are unlinked across the corpus. Note this does *not* fix `AI` — §4.1 is a ranking problem, fix 1 handles it |
-        | 5 | **Lock these numbers in.** The failures in §7.7 and the probes in §8 are ready-made regression tests | `tests/lib/search` | Nothing currently prevents a re-regression |
-        | — | **Do _not_ raise the page limit to compensate.** Reaching 90% recall on short queries needs a **{mm['depth']['1-2 words']['depthFor90pctRecall']}-result** page | `search/page.js` | §7.2: clicks captured are identical at 10 and at 327 results, for 3× the fetch |
+        | 1 | **Graded score** — exact whole-word hit outweighs a prefix hit (title 10 vs 4, excerpt 3 vs 1) plus a damped term-frequency bonus, inside the existing proximity structure | `contextScore()` | ✅ **Shipped.** {_w['legacy']:.2f} → **{_w['production']:.2f}** weighted, and the only change that lifts the 1–2 word bucket ({_v['legacy']['byBucket']['1-2 words']['ctrCapture']:.2f} → {_v['production']['byBucket']['1-2 words']['ctrCapture']:.2f}). Deliberately a weight, not a gate: a gate scores {_w['exact-first']:.2f} |
+        | 2 | **Coverage-first sort** — complete matches above partial ones, measured in encoder terms so acronym-expanded documents count | `searchDocuments()` | ✅ **Shipped.** Top-3 dilution {_v['legacy']['byBucket']['3-5 words']['dilutedTop3']:.0%} → {_v['production']['byBucket']['3-5 words']['dilutedTop3']:.0%} (3–5 words) and {_v['legacy']['byBucket']['6+ words']['dilutedTop3']:.0%} → {_v['production']['byBucket']['6+ words']['dilutedTop3']:.0%} (6+); cross-document top-3 term coverage {mm['crossDocument']['variants']['legacy']['meanTop3Coverage']:.0%} → {mm['crossDocument']['variants']['production']['meanTop3Coverage']:.0%} |
+        | 3 | **Bidirectional acronym expansion**, with `who`/`car` removed from the list because `prepare` cannot see capitalization | `db.js` | ✅ **Shipped.** `AI` and *artificial intelligence* now encode identically; the long form reaches {[_p for _p in mm['acronymProbes'] if _p['query'] == 'artificial intelligence'][0]['results']} documents instead of 14 (§4) |
+        | 4 | **Filter stopwords out of the document side too**, or count them as zero-cost gaps | `contextMatchGap()` | ⚠️ **Open.** Multi-word queries containing a stopword engage the re-rank {_prod['byBucket']['3-5 words']['rerankEngagedWithStopword']:.0%} of the time vs {_prod['byBucket']['3-5 words']['rerankEngagedNoStopword']:.0%} without |
+        | 5 | **`WHO`/`CAR`** — expanded on the query side, where capitalization survives | `flexsearch.js` | ✅ **Shipped.** `WHO` now finds and highlights *World Health Organization*; *"people who fled"* is untouched. Still unreachable: sections that only ever write the acronym (5 of the 9 that mention it), which needs doc-side handling |
+        | 6 | **Short-query ties.** {_prod['byBucket']['1-2 words']['tiedTop10']:.0%} of first pages still collapse onto ≤2 distinct scores — the graded score narrowed this but did not remove it; document length and IDF are the remaining signals | `contextScore()` | ⚠️ **Open, still the biggest lever.** 51% of traffic captures {_prod['byBucket']['1-2 words']['ctrCapture']:.2f} / 39.8 |
+        | 7 | **Lock these numbers in.** §7.7 and the probes in §8 are ready-made regression tests | `tests/lib/search` | ⚠️ **Partly.** The suite now asserts ordering rather than result counts, but none of §7 is pinned |
+        | — | **Do _not_ raise the page limit to compensate.** 90% recall on short queries needs a **{mm['depth']['1-2 words']['depthFor90pctRecall']}-result** page | `search/page.js` | §7.2: clicks captured are identical at 10 and at 327 results, for 3× the fetch |
 
-        **Ceiling check.** Fixes 2 and 3 are worth roughly a point of captured clicks
-        each. Fix 1 is worth several: the 1–2 word bucket is half of all traffic and the
-        weakest ranking on the page, and it is the only item here whose upside is measured
-        in *tens of percent* of the remaining headroom. Note what is *not* on this list:
-        showing more results, and any further encoder change — §7.2 shows the first buys
-        nothing, and §3 shows matching is no longer where the loss is.
+        **Ceiling check.** The shipped changes moved the aggregate from
+        {_w['legacy']:.2f} to {_w['production']:.2f} — modest, because the benchmark's
+        known-item queries are drawn from documents that mostly already ranked. What they
+        actually bought is visible in §4.1: queries whose terms are short or acronymic no
+        longer hand the top of the page to coincidences. The remaining headroom is still
+        concentrated in row 6.
         """
     )
     return
@@ -1970,19 +2036,22 @@ def _(mm, mo):
     | Q1 | Should typos match? | ✅ **Addressed** | `Normalize` in place — `govirnmend`/`goverment` no longer match. |
     | Q2 | Should partial words match? | ➖ unchanged | `trust` → *trusted* still works (forward prefix). It is also why a one-word query returns ~{mm['variants']['production']['byBucket']['1-2 words']['medianResults']} documents — see Q13. |
     | Q3 | Should word forms match? | ✅ **Improved** | *crisis/crises* are distinct terms; morphology now comes from prefix overlap, not phonetics. Note the direction: a plural query cannot reach a singular document. |
-    | Q4 | What should acronyms do? | ⚠️ **Regressed differently** | The pronoun-poisoning bug is **gone** (expansion disabled), but so is all acronym matching: `WHO` now returns **nothing**. Copy `prepareFr`'s bidirectional collapse and drop `who` from the filter. |
+    | Q4 | What should acronyms do? | ✅ **Resolved** | Pronoun-poisoning gone, expansion restored bidirectionally (`AI` ≡ *artificial intelligence*), and word-colliding acronyms (`WHO`, `CAR`) expanded on the query side where capitalization survives. Residual: sections that only ever write `WHO` are still unindexed for it. |
     | Q5 | Keep the stopword list? | ⚠️ still open | *time, work, new, good…* unsearchable — and the filter is what makes `WHO` unresolvable. |
     | Q8 | Multi-word semantics? | ✅ **Changed** — now measured | `suggest: true`: a document need not contain every term. Right call ({mm['crossDocument']['variants']['and-rerank']['zeroResultRate']:.0%} of cross-document queries would otherwise return nothing), but partial matches are not separated from complete ones — §7.4. |
     | Q9 | Title-only matches? | ✅ **Fixed** | `pluck` removed; titles are searched and weighted 10× excerpts in the re-rank. |
-    | Q12 | Regression tests? | ⚠️ still open | §7.7 and §8 are ready-made cases. |
+    | Q12 | Regression tests? | ⚠️ **Partly** | `tests/lib/search` now asserts *ordering* rather than result counts (the counts encoded the pre-`suggest` contract). §7.7 and §8 are still unpinned. |
     | Q13 | Endnotes in the index? | ✅ **Fixed** | `build-search-index` skips content under *Endnotes* / *Notes de fin*, and empty-excerpt sections are dropped. |
-    | Q14 | How should results be **ordered**? | ⚠️ **Open, and the biggest lever** | Production captures **{mm['variants']['production']['weightedCtrCapture']:.1f} of a possible 39.8** clicks. The manual re-rank is worth +{mm['variants']['production']['weightedCtrCapture'] - mm['variants']['suggest-only']['weightedCtrCapture']:.1f} of that, but {mm['variants']['production']['byBucket']['1-2 words']['tiedTop10']:.0%} of short-query first pages are effectively unordered ties. |
+    | Q14 | How should results be **ordered**? | ⚠️ **Improved, still the biggest lever** | Production captures **{mm['variants']['production']['weightedCtrCapture']:.1f} of a possible 39.8** clicks, up from {mm['variants']['legacy']['weightedCtrCapture']:.1f}. The re-rank as a whole is worth +{mm['variants']['production']['weightedCtrCapture'] - mm['variants']['suggest-only']['weightedCtrCapture']:.1f}, but {mm['variants']['production']['byBucket']['1-2 words']['tiedTop10']:.0%} of short-query first pages are still effectively unordered ties — §7.8 row 6. |
 
     **Scorecard.** Round 1 (encoder) closed Q1/Q3 and, for the other locales, the French
     stemmer (`santé` no longer stems to `s`) and Arabic `rtl` (queries return results at
-    all now). Round 2 (ranking) closed Q9 and Q8, and opened Q14 — which is where the
-    remaining clicks are. Q4 is the one place a fix regressed into a different gap. Full
-    six-locale before/after in [README.md](README.md).
+    all now). Round 2 (ranking) closed Q9 and Q8. Round 3 — bidirectional expansion,
+    coverage-first sorting and the graded score — closed most of Q4 and moved Q14 from
+    {mm['variants']['legacy']['weightedCtrCapture']:.1f} to
+    {mm['variants']['production']['weightedCtrCapture']:.1f} clicks captured. Q14 stays
+    open: short queries are half the traffic and still the weakest ranking on the page.
+    Full six-locale before/after in [README.md](README.md).
     """)
     return
 

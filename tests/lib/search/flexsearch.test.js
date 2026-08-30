@@ -1,5 +1,13 @@
 jest.mock('@/lib/search/db.js', () => ({
   createSearchIndex: jest.fn(),
+  // searchDocuments encodes the query (and each result's text) to tell a complete match
+  // from a partial one. This stub only has to be consistent with itself: lowercased word
+  // splitting is enough for the ordering assertions here, and keeps the unit test free of
+  // the real encoder's acronym/stopword behaviour, which is covered by the integration
+  // tests in searchDocuments.test.js.
+  createFieldEncoder: jest.fn(() => ({
+    encode: (str) => (str || '').toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean),
+  })),
 }));
 
 jest.mock('next-intl/server', () => ({

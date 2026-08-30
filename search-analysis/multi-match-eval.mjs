@@ -178,7 +178,10 @@ function contextMatchGap(text, queryWords, depth) {
   return best;
 }
 
-function contextScore(doc, queryWords) {
+// The scorer as it stood BEFORE the graded re-rank landed - kept so the benchmark can
+// still show the before/after. Production now uses gradedScore (below), which is a port
+// of the current contextScore() in flexsearch.js.
+function legacyContextScore(doc, queryWords) {
   if (!queryWords.length) return 0;
   let score = 0;
   const titleGap = contextMatchGap(doc.title, queryWords, TITLE_CONTEXT_DEPTH);
@@ -302,21 +305,22 @@ function generateQueries(index) {
 const PAGE_LIMIT = 30; // src/app/[locale]/(site)/search/page.js default `limit`
 
 const VARIANTS = [
-  { key: 'production', label: 'Production (suggest:true + context re-rank)', suggest: true, rerank: true },
+  // Production as it now stands: suggest:true, coverage-first, graded score. Mirrors
+  // searchDocuments() + contextScore() in src/lib/search/flexsearch.js.
+  { key: 'production', label: 'Production (suggest:true + coverage-first + graded score)', suggest: true, rerank: true, coverageFirst: true, graded: true },
+  // Production as it stood before the graded re-rank landed.
+  { key: 'legacy', label: 'Previous production (context re-rank only)', suggest: true, rerank: true },
   { key: 'suggest-only', label: 'suggest:true, no re-rank', suggest: true, rerank: false },
   { key: 'and-rerank', label: 'suggest:false (AND) + context re-rank', suggest: false, rerank: true },
   { key: 'and-only', label: 'suggest:false (AND), no re-rank', suggest: false, rerank: false },
   // Candidate fix: keep suggest:true (so a query whose words never co-occur still returns
   // something) but sort complete matches above partial ones before applying the existing
   // context score, instead of letting them interleave.
-  { key: 'coverage-rerank', label: 'suggest:true + coverage-first, then context', suggest: true, rerank: true, coverageFirst: true },
+  { key: 'coverage-rerank', label: 'coverage-first + old context score (intermediate step)', suggest: true, rerank: true, coverageFirst: true },
   // Same idea, one step stronger: a document containing the query term as a WHOLE word
   // outranks one that merely starts with it. This is what separates a query for "AI" from
   // every section titled "Asks, aims and recommendations" (see the acronym probes).
   { key: 'exact-first', label: 'suggest:true + exact-term-first, then coverage, then context', suggest: true, rerank: true, coverageFirst: true, exactFirst: true },
-  // The recommended shape: coverage-first, then a GRADED score in which exact hits and
-  // repeated mentions outweigh prefix accidents, rather than a hard exact-match gate.
-  { key: 'graded', label: 'suggest:true + coverage-first, then graded score', suggest: true, rerank: true, coverageFirst: true, graded: true },
 ];
 
 function runSearch(index, query, variant, pageLimit = PAGE_LIMIT) {
@@ -352,12 +356,9 @@ function runSearch(index, query, variant, pageLimit = PAGE_LIMIT) {
         if (delta) return delta;
       }
       if (variant.graded) {
-        return (
-          gradedScore(docsById.get(b.id), queryWords, queryTerms, encoderOf(index)) -
-          gradedScore(docsById.get(a.id), queryWords, queryTerms, encoderOf(index))
-        );
+        return gradedScore(b.doc, queryWords) - gradedScore(a.doc, queryWords);
       }
-      return contextScore(b.doc, queryWords) - contextScore(a.doc, queryWords);
+      return legacyContextScore(b.doc, queryWords) - legacyContextScore(a.doc, queryWords);
     });
   }
   return { ordered: ordered.slice(0, pageLimit), total: raw.length, queryWords, queryTerms };
@@ -384,6 +385,27 @@ function docTermsFor(doc, encoder) {
 // makes a query term match anything it prefixes, so a 2-letter query like "ai" also hits
 // "aid"/"aim"/"aims"; this separates "the document is about AI" from "the document
 // contains a word that happens to start with those two letters".
+// Share of the query's terms the document contains at all - counting a term as present
+// when any indexed term starts with it, which is what tokenize:'forward' does. This is
+// the port of termCoverage() in src/lib/search/flexsearch.js (keep in sync); it is
+// measured in encoder terms rather than raw words so that acronym expansion counts: a
+// document whose text only says "ODD" does contain the terms for "objectif de
+// developpement durable".
+function termCoverage(doc, encoder, queryTerms) {
+  if (!queryTerms.size) return 1;
+  const docTerms = docTermsFor(doc, encoder);
+  let hit = 0;
+  for (const term of queryTerms) {
+    for (const docTerm of docTerms) {
+      if (docTerm.startsWith(term)) {
+        hit++;
+        break;
+      }
+    }
+  }
+  return hit / queryTerms.size;
+}
+
 function exactTermCoverage(doc, encoder, queryTerms) {
   if (!queryTerms.size) return 1;
   const docTerms = docTermsFor(doc, encoder);
@@ -412,70 +434,37 @@ function titleExactMatch(doc, encoder, queryTerms) {
   return 0;
 }
 
-// How many times the query's terms occur as whole words in the excerpt. A section that
-// mentions AI thirty times is about AI; one that mentions it once is not.
-const termCountCache = new Map();
-function excerptTermCounts(doc, encoder) {
-  let counts = termCountCache.get(doc.id);
-  if (!counts) {
-    counts = new Map();
-    for (const term of encoder.encode(doc.excerpt)) {
-      counts.set(term, (counts.get(term) || 0) + 1);
-    }
-    termCountCache.set(doc.id, counts);
-  }
-  return counts;
-}
 
-// Graded alternative to contextScore(): same structure - title beats excerpt, closer
-// beats further - but an exact whole-word hit is worth more than a prefix accident, and
-// repeated mentions beat a single passing one. Both differences are BONUSES rather than
-// lexicographic keys, which is what keeps prefix matching (the thing carrying morphology
-// now that stemming is off) useful instead of disqualifying.
-const TITLE_EXACT_WEIGHT = 10;
+// Port of the CURRENT contextScore() in src/lib/search/flexsearch.js (keep in sync).
+// Same structure as the legacy scorer - title beats excerpt, closer beats further - but a
+// whole-word hit outscores a prefix accident, and repeated mentions outscore a single
+// passing one. Both are bonuses rather than gates, which is what keeps prefix matching
+// (the thing carrying morphology now that the stemmer is off) eligible; the `exact-first`
+// variant below shows what happens when the same preference is made a hard sort key.
 const TITLE_PREFIX_WEIGHT = 4;
-const EXCERPT_EXACT_WEIGHT = 3;
 const EXCERPT_PREFIX_WEIGHT = 1;
-const TF_BONUS = 3; // maximum contribution from repeated mentions
-const TF_SATURATION = 4; // occurrences at which half the bonus is reached
+const TERM_FREQUENCY_BONUS = 3;
+const TERM_FREQUENCY_SATURATION = 4;
 
-function gradedScore(doc, queryWords, queryTerms, encoder) {
-  if (!queryWords.length) return 0;
-  let score = 0;
+function fieldScore(text, queryWords, depth, exactWeight, prefixWeight) {
+  const gap = contextMatchGap(text, queryWords, depth);
+  if (gap === null) return 0;
 
-  const titleGap = contextMatchGap(doc.title, queryWords, TITLE_CONTEXT_DEPTH);
-  if (titleGap !== null) {
-    const exact = titleExactMatch(doc, encoder, queryTerms);
-    score += (exact ? TITLE_EXACT_WEIGHT : TITLE_PREFIX_WEIGHT) + (TITLE_CONTEXT_DEPTH - titleGap);
-  }
+  const words = cachedWords(text);
+  const exactHits = words.filter((word) => queryWords.includes(word)).length;
+  const base = (exactHits ? exactWeight : prefixWeight) + (depth - gap);
 
-  const excerptGap = contextMatchGap(doc.excerpt, queryWords, EXCERPT_CONTEXT_DEPTH);
-  if (excerptGap !== null) {
-    const counts = excerptTermCounts(doc, encoder);
-    const tf = [...queryTerms].reduce((acc, term) => acc + (counts.get(term) || 0), 0);
-    const exact = tf > 0;
-    score += (exact ? EXCERPT_EXACT_WEIGHT : EXCERPT_PREFIX_WEIGHT) + (EXCERPT_CONTEXT_DEPTH - excerptGap);
-    score += TF_BONUS * (tf / (tf + TF_SATURATION));
-  }
-
-  return score;
+  return exactHits
+    ? base + TERM_FREQUENCY_BONUS * (exactHits / (exactHits + TERM_FREQUENCY_SATURATION))
+    : base;
 }
 
-function termCoverage(doc, encoder, queryTerms) {
-  const terms = queryTerms;
-  if (!terms.size) return 1;
-  const docTerms = docTermsFor(doc, encoder);
-  let hit = 0;
-  for (const term of terms) {
-    // tokenize:'forward' means an indexed term matches any doc term it prefixes.
-    for (const docTerm of docTerms) {
-      if (docTerm.startsWith(term)) {
-        hit++;
-        break;
-      }
-    }
-  }
-  return hit / terms.size;
+function gradedScore(doc, queryWords) {
+  if (!queryWords.length) return 0;
+  return (
+    fieldScore(doc.title, queryWords, TITLE_CONTEXT_DEPTH, TITLE_WEIGHT, TITLE_PREFIX_WEIGHT) +
+    fieldScore(doc.excerpt, queryWords, EXCERPT_CONTEXT_DEPTH, EXCERPT_WEIGHT, EXCERPT_PREFIX_WEIGHT)
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -537,7 +526,7 @@ for (const variant of VARIANTS) {
     const position = ordered.findIndex((r) => r.id === q.targetId);
     const top3 = ordered.slice(0, 3);
     const partial = top3.filter((r) => termCoverage(docsById.get(r.id), encoder, queryTerms) < 1);
-    const top10Scores = ordered.slice(0, 10).map((r) => contextScore(r.doc, queryWords));
+    const top10Scores = ordered.slice(0, 10).map((r) => legacyContextScore(r.doc, queryWords));
     return {
       ...q,
       rank: position === -1 ? null : position + 1,
@@ -545,7 +534,7 @@ for (const variant of VARIANTS) {
       dilutedTop3: top3.length ? partial.length / top3.length : 0,
       // The re-rank only reorders when some document actually scores above zero -
       // i.e. when the query words appear close enough together to satisfy the depth.
-      rerankEngaged: ordered.some((r) => contextScore(r.doc, queryWords) > 0),
+      rerankEngaged: ordered.some((r) => legacyContextScore(r.doc, queryWords) > 0),
       // Sorting is stable, so documents sharing a score keep FlexSearch's arbitrary
       // (insertion-derived) order. When the whole first page collapses onto one or two
       // distinct scores, the ordering the user sees is effectively unranked.
@@ -792,10 +781,10 @@ const acronymProbes = ACRONYM_PROBE_QUERIES.map((query) => {
   const byKey = (key) => VARIANTS.find((v) => v.key === key);
   const prod = runSearch(index, query, VARIANTS[0]);
   const fixed = runSearch(index, query, byKey('exact-first'));
-  const gradedRun = runSearch(index, query, byKey('graded'));
+  const legacyRun = runSearch(index, query, byKey('legacy'));
   const prodRows = classifyResults(prod.ordered, queryTerms);
   const fixedRows = classifyResults(fixed.ordered, queryTerms);
-  const gradedRows = classifyResults(gradedRun.ordered, queryTerms);
+  const legacyRows = classifyResults(legacyRun.ordered, queryTerms);
   const share = (rows, n, key) =>
     rows.slice(0, n).length
       ? rows.slice(0, n).filter((r) => r[key]).length / Math.min(n, rows.length)
@@ -818,7 +807,7 @@ const acronymProbes = ACRONYM_PROBE_QUERIES.map((query) => {
     unsearchable: queryTerms.size === 0,
     production: summarizeRows(prodRows),
     exactFirst: summarizeRows(fixedRows),
-    graded: summarizeRows(gradedRows),
+    legacy: summarizeRows(legacyRows),
   };
 });
 
@@ -925,14 +914,14 @@ for (const variant of VARIANTS) {
       `median results=${cross.medianResults} top3 term coverage=${pct(cross.meanTop3Coverage)}`
   );
 }
-console.log('\n== Acronym query probes (production -> graded candidate)');
+console.log('\n== Acronym query probes (previous ranking -> current production)');
 for (const probe of acronymProbes) {
   console.log(
     `   ${JSON.stringify(probe.query).padEnd(28)} enc=${JSON.stringify(probe.encodedTerms).padEnd(34)} ` +
       `results=${String(probe.results).padStart(3)} ` +
-      `exact@10 ${pct(probe.production.exactShareTop10)} -> ${pct(probe.graded.exactShareTop10)}  ` +
-      `title-accident@3 ${pct(probe.production.titleAccidentTop3)} -> ${pct(probe.graded.titleAccidentTop3)}  ` +
-      `@10 ${pct(probe.production.titleAccidentTop10)} -> ${pct(probe.graded.titleAccidentTop10)}`
+      `exact@10 ${pct(probe.legacy.exactShareTop10)} -> ${pct(probe.production.exactShareTop10)}  ` +
+      `title-accident@3 ${pct(probe.legacy.titleAccidentTop3)} -> ${pct(probe.production.titleAccidentTop3)}  ` +
+      `@10 ${pct(probe.legacy.titleAccidentTop10)} -> ${pct(probe.production.titleAccidentTop10)}`
   );
 }
 

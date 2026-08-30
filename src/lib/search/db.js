@@ -48,9 +48,14 @@ function stripApostrophesFr(str) {
 // sees - lowercase and accent-free - because FlexSearch NFKD-normalizes and lowercases the
 // input *before* calling `prepare`, so anything injected here is never normalized again. An
 // accented expansion would emit a token no real text can ever produce.
+//
+// `who` and `car` are deliberately absent: they are also ordinary English words, and since
+// `prepare` only ever sees lowercased text there is no way to tell the acronym from the
+// pronoun/noun. Expanding them injected "world health organization" into every "people who
+// fled" sentence in the corpus. Acronyms that collide with a common word have to be handled
+// on the query side, where the user's capitalization still exists.
 const EN_ACRONYMS = [
   ['ai', 'artificial intelligence'],
-  ['car', 'central african republic'],
   ['cbs', 'community-based surveillance'],
   ['cdac', 'communicating with disaster affected communities'],
   ['cea', 'community engagement and accountability'],
@@ -74,7 +79,6 @@ const EN_ACRONYMS = [
   ['sdg', 'sustainable development goal'],
   ['undp', 'un development programme'],
   ['unhcr', 'un high commissioner for refugees'],
-  ['who', 'world health organization'],
 ];
 
 const FR_ACRONYMS = [
@@ -151,15 +155,17 @@ function stripFootnotes(str) {
 // Apostrophes are normalized before acronym matching so both the corpus and the expansions
 // above are in the same shape by the time patterns are applied.
 function prepareEn(str) {
-  // return expandEnAcronyms(stripApostrophes(stripFootnotes(str)));
-  return stripApostrophes(stripFootnotes(str));
+  return expandEnAcronyms(stripApostrophes(stripFootnotes(str)));
 }
 
 function prepareFr(str) {
   return expandFrAcronyms(stripApostrophesFr(stripFootnotes(str)));
 }
 
-function createFieldEncoder(locale) {
+// Exported because the query side has to encode a query exactly the way the index encoded
+// the documents - notably through the same acronym expansion - to tell a complete match
+// from a partial one (see termCoverage in flexsearch.js).
+export function createFieldEncoder(locale) {
   switch (locale) {
     case 'en': return new Encoder(Charset.Normalize, EnglishPreset, { prepare: prepareEn,stemmer: false });
     case 'fr': return new Encoder(Charset.Normalize, FrenchPreset, { prepare: prepareFr, stemmer: false });

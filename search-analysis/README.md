@@ -2,23 +2,29 @@
 
 **Date:** 2026-07-21 · **Branch:** `search-bug` · **FlexSearch:** 0.8.212 (D1-backed)
 
-> **Update (config + ranking logic changed).** Two rounds of changes have landed since the
+> **Update (config + ranking logic changed).** Three rounds of changes have landed since the
 > first version of this report.
 >
 > **Round 1 — `src/lib/search/db.js`:** Latin locales moved off the soundex charsets
 > (`LatinAdvanced`/`LatinBalance`) to **`Charset.Normalize`**; the **FR stemmer is now off**;
 > **`rtl` is off for Arabic**; apostrophes are normalized per-locale before tokenizing; and
-> **en acronym expansion is disabled** (the call in `prepareEn` is commented out), while `fr`
-> keeps a **bidirectional** expansion.
+> **en acronym expansion was disabled** to kill the `who` pronoun bug, while `fr` kept a
+> **bidirectional** expansion.
 >
 > **Round 2 — `src/lib/search/flexsearch.js`:** `pluck` removed (titles are searched again),
 > **`suggest: true`** (a document no longer needs every query term), and a hand-written
 > **context re-rank** that scores title/excerpt proximity.
 >
+> **Round 3 — applied after the analysis in §6:** en acronym expansion **restored
+> bidirectionally** (minus `who`/`car`, which spell ordinary words); word-colliding acronyms
+> expanded on the **query side** where capitalization survives (`expandCasedAcronyms`); and in
+> `flexsearch.js` a **coverage-first sort** (complete matches above partial ones) plus a **graded
+> score** — a whole-word hit outweighs a prefix hit, repeated mentions outweigh a single one.
+>
 > **Net:** en/es typo-fuzz fixed; **fr is fixed too** now the stemmer is off (`santé` no longer
-> stems to `s`); **Arabic returns results at all** again; the **`who` pronoun bug is gone** — but
-> so is all acronym matching in en (`WHO` now returns **nothing**). The open problem has moved
-> from *matching* to **ranking**: see §6.
+> stems to `s`); **Arabic returns results at all** again; the **`who` pronoun bug is gone** *and*
+> acronym matching works again in both directions (`AI` ≡ *artificial intelligence*, `WHO` resolves
+> via the query side). The open problem is now **short-query ranking** — half the traffic: see §6.
 
 Pre-work for making search "more straightforward with the search query and less fuzzy" across all
 six locales. Everything below is measured from the actual MDX corpus in `src/reports/<locale>/wdr25`
@@ -36,16 +42,16 @@ Latin tokens dropped from 332 (mostly citation URLs) to 17 (actual author names 
 
 | Locale | Verdict (current config) | Headline finding |
 |---|---|---|
-| en | **Matching fixed; ranking is the open problem** ✅⚠️ | Soundex gone: `govirnmend` no longer matches *government*; collisions 360 → **131**, survivors benign (*people/people's*, *risk/at-risk*). The `who`-pronoun bug is **gone** — but acronym expansion went with it, so `WHO` matches **nothing** and **67%** of acronym mentions are reachable by only one spelling. |
+| en | **Matching fixed; short-query ranking still open** ✅⚠️ | Soundex gone: `govirnmend` no longer matches *government*; collisions 360 → **131**, survivors benign (*people/people's*, *risk/at-risk*). The `who`-pronoun bug is gone and expansion is back bidirectionally, so the 26% of acronym mentions that were single-spelling-only are reachable either way; `WHO` resolves via query-side expansion. |
 | fr | **Fixed** ✅ | Collisions 1,736 → **882** (baseline 610). The `FrenchPreset` stemmer is **off**, so `santé` is indexed as `sante`, not `s`. Acronym expansion here is **bidirectional** — `IA` and *intelligence artificielle* converge. Cost: a plural query no longer reaches a singular document. |
 | es | **Fixed** ✅ | Soundex gone: `copierno` no longer matches *gobierno*; collisions 25 → **1** (== baseline). Still no stopword filter (`y`, `e`, `de` indexed). |
 | ru | Mostly sane | Plain normalize + `prepareEn` (now just footnote/apostrophe cleanup). Corpus still largely **untranslated English**. |
 | ar | **Unblocked** ✅⚠️ | `rtl: false` — queries return results again, including the exact indexed string. Still open: the definite article `ال` blocks bare-stem queries, and hamza still splits words in half. |
 | zh | Works, char-based | Unchanged. Char n-gram + context; no word segmentation; embedded Latin names (e.g. *Pariser*) findable. |
 
-**Cross-locale headline (en, measured):** the ranking now captures **21.2 of a possible 39.8**
-click-share points (§6). Half of all searches are 1–2 words, and that is the bucket the ranking
-handles worst.
+**Cross-locale headline (en, measured):** the ranking now captures **21.6 of a possible 39.8**
+click-share points, up from 21.1 before round 3 (§6). Half of all searches are 1–2 words, and that
+is still the bucket the ranking handles worst.
 
 ---
 
@@ -68,7 +74,7 @@ being sliced to the page limit.
 
 | Locale | Charset (current) | Was | Extras | Tokenize |
 |---|---|---|---|---|
-| en | **`Normalize`** | *`LatinAdvanced`* | EN stopwords, stemmer **off**, `prepareEn` = footnote + apostrophe strip (**acronym expansion disabled**) | forward |
+| en | **`Normalize`** | *`LatinAdvanced`* | EN stopwords, stemmer **off**, `prepareEn` = footnote + apostrophe strip + **bidirectional** acronym expansion (minus `who`/`car`) | forward |
 | fr | **`Normalize`** | *`LatinBalance`* | FR stopwords, **stemmer off**, `prepareFr` = elision-aware apostrophes + **bidirectional** acronym expansion | forward |
 | es | **`Normalize`** | *`LatinBalance`* | apostrophe strip, stemmer off | forward |
 | zh | `CJK` (split every char) | — | none | strict + context |
@@ -77,8 +83,12 @@ being sliced to the page limit.
 
 **Search-time config** (`src/lib/search/flexsearch.js`): `field: ['title','excerpt']`, `merge: true`,
 `enrich: true`, `suggest: true`, `limit = pageLimit × 3` (over-fetch, then re-rank, then slice).
-`contextScore()` adds **10** for a title proximity match (depth 1 — words must be adjacent) and **3**
-for an excerpt one (depth 2), plus a small closeness bonus.
+Results are sorted by **term coverage first** (documents containing every query term, measured in
+encoder terms so acronym-expanded documents count) and then by `contextScore()`, which adds **10**
+for a whole-word title proximity match (depth 1 — words must be adjacent) or **4** for a prefix-only
+one, **3**/**1** for the excerpt (depth 2), plus a closeness bonus and a damped term-frequency bonus.
+Queries are pre-processed by `expandCasedAcronyms()`, which expands `WHO`/`CAR` when capitalization
+(or a one-word query) marks them as acronyms.
 
 Key mechanics discovered in the FlexSearch source:
 
@@ -88,7 +98,8 @@ Key mechanics discovered in the FlexSearch source:
   lowercasing, NFKD diacritic folding, and consecutive-letter dedupe.
 - **`prepare` is independent of the charset** and runs **after** lowercasing — which is why the `who`
   bug could never be fixed by case: the encoder cannot tell the acronym from the pronoun. It was
-  fixed by disabling en expansion outright (see §3.1).
+  fixed by dropping `who`/`car` from the doc-side list and expanding them on the query side, where
+  capitalization still exists (see §3.1).
 - **The language preset's `prepare` runs before the custom one.** The EN preset's contraction rules
   only recognise the *straight* apostrophe (its curly→straight rule is an upstream bug: a literal
   string where a character class was meant), so `people's` → `people` but `people’s` → `peoples`.
@@ -131,7 +142,7 @@ the endnote-inclusive figures because acronyms are dense in citations.)
 
 ## 3. Findings per language (with evidence)
 
-### 3.1 English — soundex removed ✅; acronyms lost with the bug ⚠️
+### 3.1 English — soundex removed ✅; acronyms fixed in both directions ✅
 
 **Collisions: 360 (previous) → 131 (current), vs. 59 baseline.** Dropping soundex removed **64%** of
 collision groups, and the *character* of the survivors changed completely. Under the old encoder they
@@ -149,22 +160,28 @@ For comparison, the old encoder merged *need/meet/net/myth* → `met` and *crisi
 **Probes confirm the fix:** `goverment` and `govirnmend` now return **no match** (both were
 *government* before). `trust` → *trusted* still works (forward prefix, desirable).
 
-**✅ The `who` bug is gone — ⚠️ and so is acronym matching.** `prepareEn`'s expansion call is
-commented out, so the relative pronoun is no longer rewritten into *world/health/organization*
-(previously **81%** of expansions were false: lowercase *who* 122 + *Who* 17 against acronym *WHO*
-32). The replacement problem:
+**✅ The `who` bug is gone — and acronym matching came back with it.** Expansion was first disabled
+outright, which stopped the relative pronoun being rewritten into *world/health/organization*
+(**81%** of expansions were false: lowercase *who* 122 + *Who* 17 against acronym *WHO* 32) but also
+unlinked every acronym from its spelled-out form: **18 of 25** measurable acronyms then appeared in
+only one of their forms, **148 of 220 document-mentions (67%)** reachable by one spelling and
+invisible to the other. *AI* was the extreme — 63 documents used the acronym, 8 spelled it out, and
+searching the long form reached only those 8.
 
-- `WHO` as a query encodes to **`[]`** — `who` is on the EN stopword list, so the acronym is
-  *unresolvable*, not merely unexpanded. Same shape of failure for `Q&A`, which the preset's
-  `& → and` rule reduces to the single letter **`q`**.
-- Acronym and expansion are now unrelated token sets. Over the real 327-document index, **18 of 25**
-  measurable acronyms appear somewhere in only one of their forms, and **148 of 220 document-mentions
-  (67%)** are reachable by one spelling and invisible to the other — *AI* is the extreme: **63**
-  documents use the acronym, **8** spell it out, and a search for *artificial intelligence* reaches
-  only those 8.
-- French shows the shape of the fix: `prepareFr` collapses expansion → acronym **first**, then
-  expands, so `IA` and *intelligence artificielle* both encode to `[ia, inteligence, artificiele]`
-  and either spelling finds both kinds of document.
+**What is in place now:**
+
+- **Doc-side expansion, bidirectional** (the shape `prepareFr` already had): every spelled-out form
+  collapses to its acronym first, then every acronym expands to *acronym + expansion*, so both
+  spellings converge on one term set. `AI` and *artificial intelligence* now encode identically and
+  the long form reaches **102** documents instead of 14.
+- **`who` and `car` are off that list** — they spell ordinary English words, and `prepare` only ever
+  sees lowercased text. They are expanded on the **query side** (`expandCasedAcronyms` in
+  `flexsearch.js`), where the user's capitalization survives: an all-caps `WHO`, or a query that is
+  nothing but that word, becomes *world health organization*; *"people who fled"* is left alone.
+- **Residual gap:** sections that only ever write the acronym and never spell the name out — 5 of the
+  9 sections mentioning WHO — are still unreachable, because the document side genuinely cannot tell
+  which "who" it is. `Q&A` is likewise still indexed as the single letter **`q`** (the preset rewrites
+  `&` → ` and `, and both halves are stopwords).
 
 **⚠️ Short acronyms are also a _ranking_ failure, and that half is not fixed by expansion.**
 `tokenize: 'forward'` matches a query term against every indexed term it prefixes, so a two-letter
@@ -177,11 +194,14 @@ acronym is a prefix, not a word. In this corpus `ai…` is mostly **aid** and **
 | `aims` | 30 | 30 |
 | `aim` | 27 | 25 |
 
-A query for **`AI` returns 104 of 327 sections** — a third of the report — of which only 63 contain
-the acronym. And because `contextScore()` pays **10 for a title hit vs 3 for an excerpt hit**, and
-pays it for a *prefix* hit, **100% of the top three** are sections called *"Asks, **aims** and
-recommendations"* / *"Information as **aid**"*. The pages actually about AI (*"UN action on AI and
-information integrity"*, *"Artificial intelligence and harmful information"*) are pushed below them.
+A query for **`AI` returned 104 of 327 sections** — a third of the report — of which only 63 contained
+the acronym. And because `contextScore()` paid **10 for a title hit vs 3 for an excerpt hit**, and
+paid it for a *prefix* hit, **100% of the top three** were sections called *"Asks, **aims** and
+recommendations"* / *"Information as **aid**"*, with the pages actually about AI pushed below them.
+Both halves are now fixed — expansion on one side, the graded score on the other — and the top two
+results for `AI` are *"UN action on AI and information integrity"* and the IFRC AI workshop
+spotlight. The table below is the **before** state, kept because it is what the fix was measured
+against:
 
 | query | encodes to | results | top-3 title hits that are prefix accidents |
 |---|---|---|---|
@@ -189,10 +209,14 @@ information integrity"*, *"Artificial intelligence and harmful information"*) ar
 | `AI-generated` | `ai`, `generated` | 104 | 0% (the second term does the filtering) |
 | `artificial intelligence` | `artificial`, `inteligence` | 14 | 0% |
 | `Q&A` | `q` — the preset rewrites `&`→` and ` | 93 | **67%** (*quality*, *quarter*, *questions*) |
-| `WHO` | — (nothing) | 0 | n/a |
+| `WHO` | — (nothing; now expanded query-side) | 0 | n/a |
 
-No charset change can tell *aid* from *AI* when the user typed two letters — this is fixed in the
-ranking, by weighting exact whole-word hits above prefix hits (§7, finding 7).
+No charset change can tell *aid* from *AI* when the user typed two letters. **Both halves are now
+fixed:** expansion makes `AI` and *artificial intelligence* one term set (the long form reaches 102
+documents instead of 14), and the graded score stops a prefix hit in a title from outscoring a real
+one — top-ten prefix accidents for `AI` fall from **80% to 50%**, and the top two results are now
+*"UN action on AI and information integrity"* and the IFRC AI workshop spotlight. `Q&A` improves the
+same way (top-3 accidents 67% → 0%); it is still indexed as the single letter `q`.
 
 **Stopword list still removes content words:** FlexSearch's EN filter drops *time, work, good, new,
 know, think, way, use, back* — plausible queries here ("aid work", "screen time") that can't match.
@@ -374,14 +398,13 @@ index**: `build-search-index` now skips content under an `EXCLUDED_HEADINGS` tit
 sides.** *Still open if source/author lookup ever matters: index one document per note with URLs
 stripped, ranked below prose.*
 
-**Q14 — Result ordering. ⚠️ OPEN — now the largest lever.** New question, raised by §6. Ranking is
-currently a coarse hand-written score (title 10 / excerpt 3 + proximity) applied over a `suggest:true`
-result set. It captures **21.2 of a possible 39.8** click-share points; the re-rank itself is worth
-+8.7 of that, but short queries — **51% of traffic** — sit at 13.5 with **84%** of first pages
-effectively tied. Confirm the priority order in §6: (1) tie-breakers for short queries, (2)
-coverage-first sort, (3) stopword-consistent gap calculation. *Recommendation: (1) and (2) together;
-they are small, local changes to `flexsearch.js` and are measurable before/after with
-`multi-match-eval.mjs`.*
+**Q14 — Result ordering. ⚠️ IMPROVED, still the largest lever.** New question, raised by §6. Ranking
+was a coarse hand-written score (title 10 / excerpt 3 + proximity) over a `suggest:true` result set,
+capturing **21.1 of a possible 39.8** click-share points. Round 3 added the coverage-first sort and
+the graded score, taking it to **21.6** — but short queries, **51% of traffic**, still sit at 13.8
+with **84%** of first pages effectively tied on score. Remaining signals to bring in: document
+length and IDF. *Recommendation: measure each change with `multi-match-eval.mjs`, which reports the
+before/after in click-share directly.*
 
 ---
 
@@ -404,12 +427,12 @@ anchors, and below p10 counts as zero (the page is one un-paginated list). A ran
 | Ranking | Clicks captured (weighted) | 1–2 words | 3–5 words | 6+ words |
 |---|---|---|---|---|
 | `suggest:true`, no re-rank | 12.5 | 10.5 | 15.1 | 11.4 |
-| **production** (`suggest:true` + context re-rank) | **21.2** | 13.5 | 28.9 | 31.5 |
+| previous production (`suggest:true` + context re-rank) | 21.1 | 13.4 | 28.9 | 31.5 |
 | `suggest:false` (AND), no re-rank | 17.9 | 11.5 | 23.8 | 29.3 |
 | `suggest:false` (AND) + re-rank | 21.6 | 13.6 | 29.4 | 33.6 |
-| **candidate:** `suggest:true` + coverage-first, then context | **21.6** | 13.5 | 29.4 | 34.2 |
-| *rejected:* exact-match gate (whole word must outrank prefix) | 15.3 | 12.0 | 19.1 | 16.0 |
-| **candidate:** coverage-first + **graded** score | **21.6** | **13.8** | 29.1 | 34.2 |
+| coverage-first + old context score (intermediate) | 21.5 | 13.4 | 29.4 | 34.2 |
+| *rejected:* exact-match gate (whole word must outrank prefix) | 15.2 | 11.9 | 18.9 | 15.9 |
+| **production now** (coverage-first + graded score) | **21.6** | **13.8** | 29.0 | 34.4 |
 
 **Findings:**
 
@@ -447,22 +470,29 @@ anchors, and below p10 counts as zero (the page is one un-paginated list). A ran
    | 49 | 90.2% | 13.49 | 97.8% | 100% |
    | 327 (whole corpus) | 100% | 13.49 | 100% | 100% |
 
-7. **Prefix hits and exact hits must be scored differently — but as a bonus, not a gate.** §3.1's
-   `AI` case is a ranking bug: a title containing *aims* earns the same 10 points as one containing
-   *AI*. Making a whole-word hit outrank a prefix hit **lexicographically** fixes that query and
-   **costs 5.9 click-points overall** (21.2 → 15.3), because prefix matching is what carries
-   morphology now that stemming is off — it disqualifies the right document whenever someone types
-   *challenge* and the section says *challenges*. Expressing the same preference as a **graded
-   score** (title 10 exact / 4 prefix, excerpt 3 / 1, plus a damped term-frequency bonus) scores
-   **21.6 — the best measured — and is the only variant that improves the 1–2 word bucket**
-   (13.49 → 13.80, top-3 42.5% → 45.1%). On the `AI` query it drops top-3 prefix accidents from
-   **100% to 33%** and surfaces the actual AI sections.
+7. **Prefix hits and exact hits must be scored differently — but as a bonus, not a gate.** ✅ *applied.*
+   §3.1's `AI` case is a ranking bug: a title containing *aims* earned the same 10 points as one
+   containing *AI*. Making a whole-word hit outrank a prefix hit **lexicographically** fixes that
+   query and **costs 5.9 click-points overall** (21.1 → 15.2), because prefix matching is what
+   carries morphology now that stemming is off — it disqualifies the right document whenever
+   someone types *challenge* and the section says *challenges*. The same preference as a **graded
+   score** (title 10 exact / 4 prefix, excerpt 3 / 1, plus a damped term-frequency bonus) is what
+   shipped: **21.6, the best measured, and the only variant that improves the 1–2 word bucket**
+   (13.4 → 13.8, top-3 42.2% → 45.2%).
 
-Priority order for the ranking work, by clicks recovered: **(1)** the graded score (finding 7),
-**(2)** coverage-first sort, **(3)** stopword-consistent gap calculation, **(4)** bidirectional
-acronyms (Q4), **(5)** regression tests. Explicitly *not* on the list: raising the page limit
-(finding 6) and any further encoder change (§3 — matching is no longer where the loss is). Full
-detail, charts and worked failure cases in the notebook's §7.
+**Applied (round 3):** the graded score (finding 7), the coverage-first sort (finding 3),
+bidirectional doc-side acronym expansion and query-side expansion for `WHO`/`CAR` (Q4). Weighted
+click capture **21.1 → 21.6**, with the 1–2 word bucket 13.4 → 13.8 and top-3 dilution roughly
+halved. `tests/lib/search` now asserts ordering rather than result counts, plus a new
+`searchDocuments.casedAcronym.test.js` pinning the `WHO` behaviour and the pronoun regression.
+
+**Still open, in order:** **(1)** short-query tie-breaking — document length and IDF are the
+remaining signals, and 84% of first pages still collapse onto ≤2 distinct scores;
+**(2)** stopword-consistent gap calculation (finding 4); **(3)** doc-side handling for sections that
+only ever write `WHO` (5 of the 9 that mention it); **(4)** regression tests for the §6 failure
+cases. Explicitly *not* on the list: raising the page limit (finding 6) and any further encoder
+change (§3 — matching is no longer where the loss is). Full detail, charts and worked failure cases
+in the notebook's §7.
 
 ---
 
@@ -474,9 +504,11 @@ detail, charts and worked failure cases in the notebook's §7.
   a before/after. Also runs behavioural probes with the production field config and search options.
   Run: `node search-analysis/analyze-corpus.mjs`.
 - `multi-match-eval.mjs` — the ranking benchmark behind §6. Rebuilds the real en document set with
-  the build script's mdast rules, indexes it with the production encoder, and scores five rankings
-  over 1,500 known-item queries in the observed 51/43/6 length mix, plus 400 cross-document queries,
-  using the click-through curve. Run: `node search-analysis/multi-match-eval.mjs`.
+  the build script's mdast rules, indexes it with the production encoder, and scores seven rankings —
+  including the current production one, the one it replaced, and the rejected exact-match gate — over
+  1,500 known-item queries in the observed 51/43/6 length mix, plus 400 cross-document queries, a
+  page-depth sweep and the acronym probes, using the click-through curve.
+  Run: `node search-analysis/multi-match-eval.mjs`.
 - `data/corpus-stats.json` — full raw output: per-locale token frequencies, collision groups
   (`currentEncoder` / `previousEncoder` / `normalizeBaseline`) with examples, probe outcomes, samples.
 - `data/multi-match-eval.json` — per-bucket and per-variant ranking metrics, cross-document results,

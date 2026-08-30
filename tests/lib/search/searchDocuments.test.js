@@ -200,10 +200,14 @@ describe('searchDocuments() English Test', () => {
     expect(results).toHaveLength(2);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '5']);
 
+    // `suggest: true` also returns documents matching only *part* of the query - here
+    // "policy" alone and "change" alone - so the assertion is about order, not count: the
+    // document containing the whole phrase has to come first, with the partial matches
+    // ranked below it.
     ({ results } = await searchDocuments({ locale: 'en', query: 'policy change', limit: 5 }));
-    expect(results).toHaveLength(1);
-    expect(results[0].id).toEqual('2'); 
+    expect(results[0].id).toEqual('2');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>policy change</em>'));
+    expect(results.slice(1).map((result) => result.id)).not.toContain('2');
   });
 
   it('returns relevant documents for search with acronyms', async () => {
@@ -383,8 +387,10 @@ describe('searchDocuments() French Test', () => {
   });
 
   it('returns relevant documents for multi-word search', async () => {
+    // Ranked, not filtered: "fondement" is a forward-prefix match for "fond", so that
+    // document is a legitimate partial hit under `suggest: true` - it just has to rank
+    // below the one containing the actual phrase.
     let { results } = await searchDocuments({ locale: 'fr', query: 'bruit de fond', limit: 5 });
-    expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
     expect(results[0].highlight).toEqual(expect.stringContaining('<em>bruit</em> de <em>fond</em>'));
 
@@ -399,9 +405,9 @@ describe('searchDocuments() French Test', () => {
     expect(results).toHaveLength(3);
     expect(results.map((result) => result.id).sort()).toEqual(['1', '2', '5']); // 1 doesn't have "intelligence artificielle" in the excerpt but has "IA" which is an acronym for it
 
-    // ODD (objectif de developpement durable)
+    // ODD (objectif de developpement durable). Documents mentioning only "développement"
+    // are partial matches and come back too; the acronym document has to outrank them.
     ({ results } = await searchDocuments({ locale: 'fr', query: 'objectif de developpement durable', limit: 5 }));
-    expect(results).toHaveLength(1);
     expect(results[0].id).toEqual('1');
   });
 });
