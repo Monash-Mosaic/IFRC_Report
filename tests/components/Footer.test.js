@@ -21,8 +21,12 @@ jest.mock('next/image', () => ({
 
 // Mock i18n navigation
 jest.mock('@/i18n/navigation', () => ({
-  Link: ({ children, href, className }) => (
-    <a href={typeof href === 'object' ? JSON.stringify(href) : href} className={className}>
+  Link: ({ children, href, className, ...props }) => (
+    <a
+      href={typeof href === 'object' ? JSON.stringify(href) : href}
+      className={className}
+      {...props}
+    >
       {children}
     </a>
   ),
@@ -299,14 +303,16 @@ describe('Footer', () => {
       await renderFooter();
       const disinformerLink = screen.getByText('Disinformer');
       expect(disinformerLink).toBeInTheDocument();
-      expect(disinformerLink.closest('a')).toHaveAttribute('href', '/coming-soon');
+      expect(disinformerLink.closest('a')).toHaveAttribute('target', '_blank');
+      expect(disinformerLink.closest('a')).toHaveAttribute('href', 'https://disinformer.wdr26.org');
     });
 
     it('renders Ctrl + Alt + Prebunk game link with correct href', async () => {
       await renderFooter();
       const prebunkLink = screen.getByText('Ctrl + Alt + Prebunk');
       expect(prebunkLink).toBeInTheDocument();
-      expect(prebunkLink.closest('a')).toHaveAttribute('href', '/coming-soon');
+      expect(prebunkLink.closest('a')).toHaveAttribute('target', '_blank');
+      expect(prebunkLink.closest('a')).toHaveAttribute('href', 'https://ctrl-alt-prebunk.wdr26.org/en');
     });
 
     it('Download Report link uses dynamic download link from reportModule', async () => {
