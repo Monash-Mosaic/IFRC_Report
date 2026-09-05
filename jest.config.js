@@ -22,7 +22,7 @@ const config = {
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // Telling Jest to transform these ESM modules
-  transformIgnorePatterns: ['/node_modules/(?!next-intl|use-intl)'],
+  transformIgnorePatterns: ['/node_modules/(?!(flexsearch|next-intl|use-intl)/)'],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

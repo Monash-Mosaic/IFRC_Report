@@ -161,6 +161,32 @@ describe('D1Database', () => {
     expect(Array.isArray(many)).toBe(true);
   });
 
+  it('preserves input id order when enriching', async () => {
+    const db = createMockD1({
+      allResults: [
+        { id: 'a', doc: JSON.stringify({ title: 'A' }) },
+        { id: 'b', doc: JSON.stringify({ title: 'B' }) },
+        { id: 'c', doc: JSON.stringify({ title: 'C' }) },
+      ],
+    });
+    const instance = new D1Database('db-enrich-order', { db });
+    const result = await instance.enrich(['b', 'c', 'a']);
+    expect(result.map((row) => row.id)).toEqual(['b', 'c', 'a']);
+    expect(result[0].doc).toEqual({ title: 'B' });
+  });
+
+  it('drops ids missing from the registry when enriching', async () => {
+    const db = createMockD1({
+      allResults: [
+        { id: 'a', doc: JSON.stringify({ title: 'A' }) },
+        { id: 'b', doc: JSON.stringify({ title: 'B' }) },
+      ],
+    });
+    const instance = new D1Database('db-enrich-missing', { db });
+    const result = await instance.enrich(['b', 'x', 'a']);
+    expect(result.map((row) => row.id)).toEqual(['b', 'a']);
+  });
+
   it('returns empty enrich result for missing docs', async () => {
     const db = createMockD1({ allResults: [] });
     const instance = new D1Database('db-enrich-empty', { db });
