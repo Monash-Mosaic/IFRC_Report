@@ -634,7 +634,13 @@ export function EndnotesLink({ children, ...props }) {
   const linkClass = 'underline decoration-blue-600 wrap-break-word break-all text-black';
   const childArray = React.Children.toArray(children);
   const anchorChild = childArray.find(
-    (child) => React.isValidElement(child) && child.type === 'a'
+    (child) =>
+      React.isValidElement(child) &&
+      (child.type === 'a' ||
+        (typeof child.props === 'object' &&
+          child.props !== null &&
+          'href' in child.props &&
+          child.props.href != null))
   );
   const trailingText = childArray
     .filter((child) => typeof child === 'string')

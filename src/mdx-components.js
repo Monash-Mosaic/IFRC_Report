@@ -14,7 +14,18 @@ const components = {
   h5: (props) => <h5 className="text-balance" {...props} />,
   h6: (props) => <h6 className="text-balance" {...props} />,
   p: (props) => <p {...props} />,
-  // a: (props) => <a {...props} />,
+  a: ({ className, ...props }) => {
+    const isFootnoteBackref = props['data-footnote-backref'] !== undefined;
+    return (
+      <a
+        className={
+          [isFootnoteBackref ? 'text-[#ee2435]' : null, className].filter(Boolean).join(' ') ||
+          undefined
+        }
+        {...props}
+      />
+    );
+  },
   ul: (props) => (
     <ul
       className="list-['—'] ps-12 marker:font-bold  [&>li]:ps-5 marker:text-[#ee2435] text-balance"
