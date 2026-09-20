@@ -1,0 +1,8 @@
+<Root>
+  <Story>
+    <chapter-title>Title</chapter-title>
+    <chapter-subtitle>Subtitle</chapter-subtitle>
+    <h1>Heading</h1>
+    <normal>Body</normal>
+  </Story>
+</Root>
