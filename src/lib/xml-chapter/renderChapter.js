@@ -60,7 +60,11 @@ function renderNode(node, key) {
   if (node.type === 'heading') {
     const depth = Number.isInteger(node.depth) && node.depth >= 1 && node.depth <= 4
       ? node.depth : 1;
-    return React.createElement(`h${depth}`, { id: node.id, key },
+    return React.createElement(`h${depth}`, {
+      id: node.id,
+      className: headingClassName(depth),
+      key,
+    },
       ...renderChildren(node.children));
   }
 
@@ -110,6 +114,17 @@ function renderNode(node, key) {
     return React.createElement(tag, { key }, renderChildren(node.children));
   }
   return null;
+}
+
+/** Returns the typography classes for a normalized heading depth. */
+function headingClassName(depth) {
+  const sizeByDepth = {
+    1: 'text-4xl',
+    2: 'text-3xl',
+    3: 'text-2xl',
+    4: 'text-xl',
+  };
+  return `font-bold ${sizeByDepth[depth] || sizeByDepth[1]} text-balance`;
 }
 
 /** Returns a safe asset path. */

@@ -26,7 +26,7 @@ describe('XML chapter renderer', () => {
     };
 
     expect(renderToStaticMarkup(renderChapter(tree))).toBe(
-      '<h2 id="intro">Intro</h2><p>A <strong>safe</strong></p><ul><li>One</li></ul>'
+      '<h2 id="intro" class="font-bold text-3xl text-balance">Intro</h2><p>A <strong>safe</strong></p><ul><li>One</li></ul>'
     );
   });
 
