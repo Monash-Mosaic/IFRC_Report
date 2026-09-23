@@ -1,4 +1,4 @@
-import { parseXmlFile } from './parseXml.js';
+import { parseXmlFileSync } from './parseXml.js';
 import { convertToChapterTree } from './chapterTree.js';
 import { renderChapter } from './renderChapter.js';
 
@@ -8,14 +8,14 @@ import { renderChapter } from './renderChapter.js';
  * The returned Chapter component closes over plain data; parsing is never
  * performed while rendering the component.
  */
-export async function loadXmlChapter({
+export function loadXmlChapter({
   filePath,
   locale,
   reportSlug,
   chapterNumber,
   assetBasePath,
 }) {
-  const xml = await parseXmlFile(filePath);
+  const xml = parseXmlFileSync(filePath);
   const tree = convertToChapterTree(xml, {
     locale,
     reportSlug,

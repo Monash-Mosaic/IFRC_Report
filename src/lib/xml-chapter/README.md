@@ -10,7 +10,7 @@ The high-level flow is:
 
 ```mermaid
 flowchart TD
-    XML[chapter-01.xml] --> PARSE[parseXmlFile]
+    XML[chapter-01.xml] --> PARSE[parseXmlFileSync]
     PARSE --> AST[Safe XML syntax tree]
     AST --> TREE[convertToChapterTree]
     TREE --> DATA[Plain-data ChapterTree]
@@ -32,14 +32,17 @@ All parser modules are located in
 
 Provides the XML input boundary:
 
-- Reads XML files as UTF-8 with `fs.readFile`.
+- Reads XML files as UTF-8 with Node's built-in filesystem APIs.
 - Parses XML with `xast-util-from-xml`.
 - Removes external `DOCTYPE` declarations before parsing.
 - Rejects entity and notation declarations.
 - Rejects unexpected processing instructions.
 - Converts parser and file-system failures into `XmlChapterError` instances.
 
-This module is server/build-time code because it uses `node:fs/promises`.
+This module is server/build-time code because it uses Node's built-in filesystem
+APIs. The APIs are resolved only when file parsing is invoked, so importing the
+module through shared report metadata does not add filesystem dependencies to
+client bundles.
 
 ### `errors.js`
 
@@ -134,7 +137,7 @@ Exports the public loader, `loadXmlChapter`.
 
 `loadXmlChapter`:
 
-1. Calls `parseXmlFile`.
+1. Calls `parseXmlFileSync`.
 2. Calls `convertToChapterTree` with locale, report, chapter, and asset context.
 3. Creates a server-renderable `Chapter` component that closes over the tree.
 4. Returns an MDX-compatible module-shaped object:
@@ -162,7 +165,7 @@ Chapter 1 is loaded from XML at module initialization:
 import path from 'node:path';
 import { loadXmlChapter } from '@/lib/xml-chapter/index.js';
 
-const Chapter01 = await loadXmlChapter({
+const Chapter01 = loadXmlChapter({
   filePath: path.join(
     process.cwd(),
     'src',

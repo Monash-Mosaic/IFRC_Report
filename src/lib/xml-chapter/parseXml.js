@@ -1,12 +1,31 @@
-import fs from 'node:fs/promises';
 import { fromXml } from 'xast-util-from-xml';
 import { XmlChapterError } from './errors.js';
+
+function getFileSystem(moduleName) {
+  const fileSystem = process.getBuiltinModule?.(moduleName);
+  if (!fileSystem) {
+    throw new XmlChapterError('XML file parsing requires a Node.js runtime');
+  }
+  return fileSystem;
+}
 
 /** Reads and safely parses an XML file as UTF-8 into an XML Abstract Syntax Tree. */
 export async function parseXmlFile(filePath) {
   let source;
   try {
-    source = await fs.readFile(filePath, 'utf8');
+    source = await getFileSystem('node:fs/promises').readFile(filePath, 'utf8');
+  } catch (error) {
+    throw new XmlChapterError(`Unable to read XML source: ${error.message}`, { filePath });
+  }
+
+  return parseXmlSource(source, filePath);
+}
+
+/** Reads and safely parses an XML file synchronously for module initialization. */
+export function parseXmlFileSync(filePath) {
+  let source;
+  try {
+    source = getFileSystem('node:fs').readFileSync(filePath, 'utf8');
   } catch (error) {
     throw new XmlChapterError(`Unable to read XML source: ${error.message}`, { filePath });
   }
@@ -108,4 +127,3 @@ function rejectUnexpectedProcessingInstructions(source) {
     throw new XmlChapterError('Processing instructions are not allowed in chapter XML');
   }
 }
-

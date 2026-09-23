@@ -15,7 +15,7 @@ import * as Annex02 from './annex-02.mdx';
 import path from 'node:path';
 import { loadXmlChapter } from '@/lib/xml-chapter/index.js';
 
-const Chapter01 = await loadXmlChapter({
+const Chapter01 = loadXmlChapter({
   filePath: path.join(process.cwd(), 'src', 'reports', 'en', 'wdr25', 'chapter-01.xml'),
   locale: 'en',
   reportSlug: 'wdr25',
