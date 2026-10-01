@@ -12,7 +12,7 @@ import * as Chapter08 from './chapter-08.mdx';
 import * as Glossary from './glossary.mdx';
 import * as Annex02 from './annex-02.mdx';
 
-export const title = 'World \n Disaster\n Report\n\n 2026';
+export const title = 'World \n Disasters\n Report\n\n 2026';
 
 export const description =
   "The International Federation of Red Cross and Red Crescent Societies' Annual Report for 2025, detailing global disaster response and humanitarian efforts.";
