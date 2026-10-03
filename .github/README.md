@@ -38,7 +38,7 @@ Jobs that call local composite actions run `actions/checkout` first so action fi
 
 ```
 dependency_review ──┐
-osv_scan_pr/main ───┼──► security_gates ──► ci_summary ──► cleanup
+npm_audit ──────────┼──► security_gates ──► ci_summary ──► cleanup
 ci-checks ──────────┘         ▲
     │                         │
     └──► coverage_report ─────┘ (PR only)
@@ -72,7 +72,7 @@ base_coverage ──────► coverage_report (PR only)
 | `save-next-cache` | `run-ci-check` (build leg) |
 | `cleanup-ci-workspace` | `run-ci-check`, `post-coverage-report` |
 
-OSV scanning (`osv_scan_pr` / `osv_scan_main`) calls Google's reusable workflows directly from `ci.yml` — that cannot be moved into a composite action.
+`npm_audit` checks all dependencies for high- and critical-severity vulnerabilities directly from `ci.yml`.
 
 `dependency_review` only runs for pull requests, and write permissions are scoped down to the jobs that actually need them.
 

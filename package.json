@@ -74,7 +74,7 @@
     "cloudflared": "^0.7.1",
     "cssnano": "^8.0.2",
     "eslint": "^9",
-    "eslint-config-next": "~16.2.3",
+    "eslint-config-next": "^16.3.8",
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
@@ -87,6 +87,8 @@
     "wrangler": "^4.105.0"
   },
   "overrides": {
+    "fast-glob": "3.3.3",
+    "brace-expansion@1": "1.1.21",
     "postcss": "^8.5.15",
     "esbuild": "^0.28.1",
     "uuid": "^11.1.1",
