@@ -68,6 +68,8 @@ export default async function RootLayout({ children, params }) {
 
   setRequestLocale(locale);
 
+  const dummyGaId = 'G-Q2MVR76Q7Z';
+
   return (
     <html lang={locale} dir={dir}>
       <body
@@ -79,7 +81,7 @@ export default async function RootLayout({ children, params }) {
           <OutboundLinkTracker />
           <ScrollDepthTracker />
         </NextIntlClientProvider>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        <GoogleAnalytics gaId={dummyGaId} />
         {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && <Script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
