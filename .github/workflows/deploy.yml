@@ -94,6 +94,8 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           VERSION_ID: ${{ steps.version.outputs.version_id }}
+          NOTION_INCIDENT_DATABASE_ID: ${{ env.NOTION_INCIDENT_DATABASE_ID }}
+          NOTION_SECRET: ${{ env.NOTION_SECRET }}
         run: npx wrangler versions deploy -y "$VERSION_ID"
 
       - name: Purge Cloudflare CDN cache
