@@ -25,9 +25,33 @@ describe('XML chapter renderer', () => {
       ],
     };
 
-    expect(renderToStaticMarkup(renderChapter(tree))).toBe(
-      '<h2 id="intro" class="font-bold text-3xl text-balance">Intro</h2><p>A <strong>safe</strong></p><ul><li>One</li></ul>'
-    );
+    const html = renderToStaticMarkup(renderChapter(tree));
+    expect(html).toContain('class="font-bold text-3xl text-balance"');
+    expect(html).toContain('<p>A <strong>safe</strong></p>');
+    expect(html).toContain('<ul class="');
+    expect(html).toContain("list-['—']");
+    expect(html).toContain('marker:text-[#ee2435]');
+    expect(html).toContain('<li class="mb-3">One</li>');
+  });
+
+  it('renders ordered lists with red decimal markers', () => {
+    const tree = {
+      type: 'chapter',
+      children: [
+        { type: 'list', ordered: true, children: [
+          { type: 'listItem', children: [{ type: 'text', value: 'First' }] },
+          { type: 'listItem', children: [{ type: 'text', value: 'Second' }] },
+        ] },
+      ],
+    };
+
+    const html = renderToStaticMarkup(renderChapter(tree));
+    expect(html).toContain('<ol class="');
+    expect(html).toContain('list-decimal');
+    expect(html).toContain('li::marker]:text-[#ee2435]');
+    expect(html).toContain('<li class="mb-3">First</li>');
+    expect(html).toContain('<li class="mb-3">Second</li>');
+    expect(html.match(/<ol /g)).toHaveLength(1);
   });
 
   it('does not turn unknown nodes into arbitrary React tags', () => {

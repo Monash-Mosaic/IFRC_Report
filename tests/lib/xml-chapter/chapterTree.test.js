@@ -31,6 +31,28 @@ describe('XML chapter normalization', () => {
     expect(result.children[0].children).toHaveLength(2);
   });
 
+  it('coalesces bullet and numbered items inside Box components', () => {
+    // Include inter-element whitespace like the publisher XML files.
+    const result = convertToChapterTree(parseXmlSource(
+      '<Story><Story><chapter-title>T</chapter-title>' +
+        '<Box index="1.1" types="Physical">\n' +
+        '  <normal-box-bullet-list>one</normal-box-bullet-list>\n' +
+        '  <normal-box-bullet-list>two</normal-box-bullet-list>\n' +
+        '  <normal-box-numbered-list><bold>Title</bold> description</normal-box-numbered-list>\n' +
+        '  <normal-box-numbered-list>second</normal-box-numbered-list>\n' +
+        '</Box></Story></Story>'
+    ));
+    const boxChildren = result.children[0].children;
+    expect(boxChildren.map((n) => [n.type, n.ordered])).toEqual([
+      ['list', false], ['list', true],
+    ]);
+    expect(boxChildren[0].children).toHaveLength(2);
+    expect(boxChildren[1].children).toHaveLength(2);
+    expect(boxChildren[1].children[0].children.map((n) => n.type)).toEqual([
+      'strong', 'text',
+    ]);
+  });
+
   it('rejects visible tags that are not part of the chapter vocabulary', () => {
     expect(() => convertToChapterTree(parseXmlSource(
       '<Story><Story><chapter-title>T</chapter-title><unknown>visible</unknown></Story></Story>'
