@@ -81,7 +81,7 @@ export default async function AcknowledgementsPage({ params }) {
   };
 
   return (
-    <div className="bg-white text-black">
+    <div className="bg-white text-black pt-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(acknowledgementJsonLd) }}
