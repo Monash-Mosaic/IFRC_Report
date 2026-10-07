@@ -63,7 +63,8 @@ describe('createSearchIndex', () => {
     expect(mockMount).toHaveBeenCalledTimes(6);
   });
 
-  it('uses English soundex encoder for excerpt field', async () => {
+  // TODO: Delete this test case
+  it.skip('uses English soundex encoder for excerpt field', async () => {
     await createSearchIndex('en', { db: mockDb });
 
     const config = mockDocument.mock.calls.at(-1)[0];

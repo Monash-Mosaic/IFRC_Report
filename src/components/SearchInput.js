@@ -154,7 +154,7 @@ export default function SearchInput() {
               className="relative flex-1"
               onSubmit={handleSearchSubmit}
             >
-              <input type="hidden" name="limit" defaultValue={10} />
+              <input type="hidden" name="limit" defaultValue={50} />
               <label htmlFor={overlayInputId} className="sr-only">
                 {t('nav.search')}
               </label>

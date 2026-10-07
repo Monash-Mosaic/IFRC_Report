@@ -82,7 +82,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function SearchEngineResultPage({ params, searchParams }) {
   const { locale } = await params;
-  const { q: rawQuery = '', limit = '10' } = (await searchParams) || {};
+  const { q: rawQuery = '', limit = '50' } = (await searchParams) || {};
   const query = decodeSearchQuery(rawQuery);
 
   const t = await getTranslations({
@@ -90,7 +90,7 @@ export default async function SearchEngineResultPage({ params, searchParams }) {
     locale,
   });
 
-  const searchResults = await searchDocuments({
+  const { total: totalResults, results: searchResults } = await searchDocuments({
     locale,
     query,
     limit: parseLimit(limit),
@@ -106,7 +106,7 @@ export default async function SearchEngineResultPage({ params, searchParams }) {
     url: new URL(searchPath, getBaseUrl()).toString(),
     mainEntity: {
       '@type': 'ItemList',
-      numberOfItems: searchResults.length,
+      numberOfItems: totalResults,
       itemListElement: searchResults.map((result, index) => ({
         '@type': 'ListItem',
         position: index + 1,
@@ -134,14 +134,14 @@ export default async function SearchEngineResultPage({ params, searchParams }) {
       <SearchAnalyticsEvents
         locale={locale}
         query={query}
-        resultCount={searchResults.length}
+        resultCount={totalResults}
         items={analyticsItems}
       />
       <div className="space-y-4">
         {searchResults.map((result, index) => (
           <SearchResultCard
             key={result.id}
-            title={result.title}
+            title={result.titleHighlight}
             highlight={result.highlight}
             href={result.href}
             resultIndex={index + 1}

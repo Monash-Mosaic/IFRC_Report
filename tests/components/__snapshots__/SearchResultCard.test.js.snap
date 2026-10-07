@@ -16,7 +16,9 @@ exports[`SearchResultCard renders SearchResultCard with all content 1`] = `
       <h3
         class="text-lg font-bold text-gray-900 mb-3 line-clamp-2"
       >
-        Test Chapter Title: Understanding Humanitarian Response
+        <span>
+          Test Chapter Title: Understanding Humanitarian Response
+        </span>
       </h3>
       <p
         class="text-sm text-gray-600 leading-relaxed line-clamp-3"

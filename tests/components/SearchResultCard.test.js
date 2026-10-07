@@ -86,7 +86,7 @@ describe('SearchResultCard', () => {
     );
 
     // Title should have correct classes
-    const title = screen.getByText('Test Chapter Title: Understanding Humanitarian Response');
+    const title = screen.getByText('Test Chapter Title: Understanding Humanitarian Response').closest('h3');
     expect(title.tagName).toBe('H3');
     expect(title).toHaveClass('text-lg', 'font-bold', 'text-gray-900', 'mb-3', 'line-clamp-2');
 
@@ -124,7 +124,7 @@ describe('SearchResultCard', () => {
 
     render(<SearchResultCard {...longTitleProps} />);
 
-    const title = screen.getByText(/This is an extremely long title/);
+    const title = screen.getByText(/This is an extremely long title/).closest('h3');
     expect(title).toHaveClass('line-clamp-2');
   });
 
