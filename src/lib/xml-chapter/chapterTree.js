@@ -126,30 +126,38 @@ export function convertToChapterTree(root, context = {}) {
   });
 
   // Coalesce consecutive list items into a single list and assign unique IDs to headings
-  const result = [];
+  const result = coalesceListItems(raw);
   const headingIds = new Map();
-  for (const n of raw) {
-    if (n.type === 'listItem') {
-      // Style tags are converted before coalescing; numbered lists are marked by
-      // the private flag below while preserving the public plain-data shape.
-      const ordered = n.ordered === true;
-      const prev = result.at(-1);
-      delete n.ordered;
-      if (prev?.type === 'list' && prev.ordered === ordered) prev.children.push(n);
-      else result.push(ordered ? orderedList([n]) : unorderedList([n]));
-    } else {
-      if (n.type === 'heading') {
-        const base = n.id || slug(n.value);
-        const count = (headingIds.get(base) || 0) + 1;
-        headingIds.set(base, count);
-        n.id = count === 1 ? base : `${base}-${count}`;
-      }
-      result.push(n);
-    }
+  for (const n of result) {
+    if (n.type !== 'heading') continue;
+    const base = n.id || slug(n.value);
+    const count = (headingIds.get(base) || 0) + 1;
+    headingIds.set(base, count);
+    n.id = count === 1 ? base : `${base}-${count}`;
   }
   const tableOfContents = result.filter((n) => n.type === 'heading')
     .map(({ value, id, depth }) => ({ value, id, depth }));
   return chapter(result, { ...context, title, subtitle, tableOfContents });
+}
+
+/**
+ * Groups consecutive listItem nodes into ordered/unordered list nodes.
+ * Numbered items carry a private `ordered` flag until coalescing.
+ */
+function coalesceListItems(nodes = []) {
+  const result = [];
+  for (const n of nodes) {
+    if (n.type !== 'listItem') {
+      result.push(n);
+      continue;
+    }
+    const ordered = n.ordered === true;
+    const prev = result.at(-1);
+    delete n.ordered;
+    if (prev?.type === 'list' && prev.ordered === ordered) prev.children.push(n);
+    else result.push(ordered ? orderedList([n]) : unorderedList([n]));
+  }
+  return result;
 }
 
 /** Selects the narrative Story element from a parsed XML tree. */
@@ -197,7 +205,13 @@ function inlineChildren(n) {
 /** Converts a publisher XML node into normalized chapter data. */
 function convertNode(n, inline = false, parent = null) {
   if (!n) return null;
-  if (n.type === 'text') return text(n.value.replace(/\s+/g, ' '));
+  if (n.type === 'text') {
+    const value = n.value.replace(/\s+/g, ' ');
+    // Ignore inter-element whitespace at block level so consecutive list
+    // items can coalesce (otherwise each item becomes its own list).
+    if (!inline && !value.trim()) return null;
+    return text(value);
+  }
   if (n.type !== 'element') return null;
   if (n.name === 'Story' || n.name === 'Root') return childrenOf(n).flatMap((c) => convertNode(c, false) || []);
   if (COMPONENTS.has(n.name)) return componentNode(n);
@@ -269,8 +283,8 @@ function componentNode(n) {
       throw new XmlChapterError('AsksAims requires Asks before Aims', { node: n });
     }
   }
-  return component(name, props, childrenOf(n).flatMap((c) => {
+  return component(name, props, coalesceListItems(childrenOf(n).flatMap((c) => {
     const value = convertNode(c, false, n);
     return value ? (Array.isArray(value) ? value : [value]) : [];
-  }));
+  })));
 }

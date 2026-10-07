@@ -69,11 +69,17 @@ function renderNode(node, key) {
   }
 
   if (node.type === 'list') {
-    return React.createElement(node.ordered ? 'ol' : 'ul', { key },
-      renderChildren(node.children));
+    const tag = node.ordered ? 'ol' : 'ul';
+    return React.createElement(tag, {
+      key,
+      className: node.ordered
+        ? 'list-decimal ps-12 [&>li::marker]:text-[#ee2435] [&>li::marker]:font-bold'
+        : "list-['—'] ps-12 marker:font-bold [&>li]:ps-5 marker:text-[#ee2435] text-balance",
+    }, renderChildren(node.children));
   }
   if (node.type === 'listItem') {
-    return React.createElement('li', { key }, renderChildren(node.children));
+    return React.createElement('li', { key, className: 'mb-3' },
+      renderChildren(node.children));
   }
 
   const intrinsic = INTRINSIC.get(node.type);
