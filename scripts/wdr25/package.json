@@ -12,7 +12,7 @@
     "estree-util-to-js": "^2.0.0",
     "mdast-builder": "^1.1.1",
     "mdast-util-mdx": "^3.0.0",
-    "mdast-util-to-markdown": "^2.1.2",
+    "mdast-util-to-markdown": "^2.2.0",
     "my-next-app": "file:../..",
     "remark-stringify": "^11.0.0",
     "unified": "^11.0.5",
