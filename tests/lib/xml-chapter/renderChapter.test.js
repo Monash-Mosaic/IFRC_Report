@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { renderChapter, renderChildren } from '@/lib/xml-chapter/renderChapter';
 import { COMPONENT_REGISTRY } from '@/lib/xml-chapter/componentRegistry';
+import { SmallQuote, SmallQuoteAuthor } from '@/components/CustomComponents';
 
 describe('XML chapter renderer', () => {
   it('registers a renderable component for every approved XML component', () => {
@@ -33,6 +34,24 @@ describe('XML chapter renderer', () => {
   it('does not turn unknown nodes into arbitrary React tags', () => {
     expect(renderChildren([{ type: 'script', props: { dangerouslySetInnerHTML: {} } }]))
       .toEqual([null]);
+  });
+
+  it('renders quotes with the SmallQuote and SmallQuoteAuthor components', () => {
+    const tree = {
+      type: 'chapter',
+      children: [
+        { type: 'component', name: 'SmallQuote', props: {}, children: [{ type: 'text', value: 'Quoted' }] },
+        { type: 'component', name: 'SmallQuoteAuthor', props: {}, children: [{ type: 'text', value: 'Author' }] },
+      ],
+    };
+
+    const expected = renderToStaticMarkup(
+      <>
+        <SmallQuote>Quoted</SmallQuote>
+        <SmallQuoteAuthor>Author</SmallQuoteAuthor>
+      </>
+    );
+    expect(renderToStaticMarkup(renderChapter(tree))).toBe(expected);
   });
 
   it('renders safe links, figures and captions', () => {

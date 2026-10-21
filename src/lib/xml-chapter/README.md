@@ -67,6 +67,8 @@ Responsibilities include:
 - Extracting chapter title and subtitle metadata.
 - Mapping publisher style tags to normalized nodes such as headings,
   paragraphs, lists, quotes, figures, tables, links, and endnote references.
+- Mapping `quote` and `quote-author` style tags to the `SmallQuote` and
+  `SmallQuoteAuthor` application components.
 - Converting explicit XML application components into
   `{ type: 'component', name, props, children }` nodes.
 - Generating stable heading IDs and a table of contents.

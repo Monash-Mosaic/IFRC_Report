@@ -18,7 +18,6 @@ const unorderedList = (children = []) => node('list', { ordered: false }, childr
 const orderedList = (children = []) => node('list', { ordered: true }, children);
 const listItem = (children = []) => node('listItem', {}, children);
 const quote = (children = []) => node('quote', {}, children);
-const quoteAuthor = (children = []) => node('quoteAuthor', {}, children);
 const figure = (props = {}, children = []) => node('figure', { props }, children);
 const endnoteReference = (id) => node('endnoteReference', { id });
 const component = (name, props = {}, children = []) =>
@@ -224,8 +223,9 @@ function convertNode(n, inline = false, parent = null) {
   if (NUMBERED.has(n.name)) return { ...listItem(inlineChildren(n)), ordered: true };
   if (n.name === 'bold') return strong(inlineChildren(n));
   if (n.name === 'regular-italic' || n.name === 'light-italic' || n.name === 'sup') return emphasis(inlineChildren(n));
-  if (n.name === 'quote' || n.name === 'chapter-quote') return quote(inlineChildren(n));
-  if (n.name === 'quote-author') return quoteAuthor(inlineChildren(n));
+  if (n.name === 'quote') return component('SmallQuote', {}, inlineChildren(n));
+  if (n.name === 'quote-author') return component('SmallQuoteAuthor', {}, inlineChildren(n));
+  if (n.name === 'chapter-quote') return quote(inlineChildren(n));
   if (n.name === 'endnotes-ref') return endnoteReference(attr(n, 'endnoteId') || attr(n, 'id'));
   if (n.name === 'fig') return figure({ src: attr(n, 'href_fmt') || attr(n, 'href'), alt: clean(textValue(n)) });
   if (n.name === 'anchor') return component('Anchor', { meta: `Fig ${attr(n, 'index') || ''}`.trim() }, inlineChildren(n));
