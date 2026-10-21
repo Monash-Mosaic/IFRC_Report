@@ -2,6 +2,8 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { renderChapter, renderChildren } from '@/lib/xml-chapter/renderChapter';
 import { COMPONENT_REGISTRY } from '@/lib/xml-chapter/componentRegistry';
+import { parseXmlSource } from '@/lib/xml-chapter/parseXml';
+import { convertToChapterTree } from '@/lib/xml-chapter/chapterTree';
 
 describe('XML chapter renderer', () => {
   it('registers a renderable component for every approved XML component', () => {
@@ -28,6 +30,23 @@ describe('XML chapter renderer', () => {
     expect(renderToStaticMarkup(renderChapter(tree))).toBe(
       '<h2 id="intro" class="font-bold text-3xl text-balance">Intro</h2><p>A <strong>safe</strong></p><ul><li>One</li></ul>'
     );
+  });
+
+  it('renders definition style tags with Definition and DefinitionDescription', () => {
+    const tree = convertToChapterTree(parseXmlSource(
+      '<Story><Story><chapter-title>T</chapter-title>' +
+      '<h1-definition>Infodemic</h1-definition>' +
+      '<normal-definition-first>An <bold>infodemic</bold> is too much information.</normal-definition-first>' +
+      '</Story></Story>'
+    ));
+    const html = renderToStaticMarkup(renderChapter(tree));
+
+    expect(html).toContain('Infodemic');
+    expect(html).toContain('border-b-2');
+    expect(html).toContain('<aside');
+    expect(html).toContain('border-inline-start:4px_solid_#030303ff');
+    expect(html).toContain('<strong>infodemic</strong>');
+    expect(html).not.toContain('<h2');
   });
 
   it('does not turn unknown nodes into arbitrary React tags', () => {
