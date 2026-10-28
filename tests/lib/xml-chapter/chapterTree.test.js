@@ -84,6 +84,24 @@ describe('XML chapter normalization', () => {
     expect(node.type).toBe(expectedType);
   });
 
+  it('maps definition style tags to Definition and DefinitionDescription', () => {
+    const result = convertToChapterTree(chapterWith(
+      '<definition-icon></definition-icon>' +
+      '<h1-definition>Infodemic </h1-definition>' +
+      '<normal-definition-first>An <bold>infodemic</bold> is too much information.</normal-definition-first>'
+    ));
+
+    expect(result.children).toMatchObject([
+      { type: 'component', name: 'Definition', props: {} },
+      { type: 'component', name: 'DefinitionDescription', props: {} },
+    ]);
+    expect(result.children[0].children).toEqual([{ type: 'text', value: 'Infodemic' }]);
+    expect(result.children[1].children.map((child) => child.type)).toEqual([
+      'text', 'strong', 'text',
+    ]);
+    expect(result.tableOfContents).toEqual([]);
+  });
+  
   it('maps quote and quote-author tags to SmallQuote and SmallQuoteAuthor components', () => {
     const result = convertToChapterTree(chapterWith(
       '<quote>Quoted <bold>text</bold></quote><quote-author>Community member, Uganda </quote-author>'
@@ -189,6 +207,11 @@ describe('XML chapter normalization', () => {
       .toHaveLength(14);
     expect(result.children.filter((node) => node.type === 'component' && node.name === 'AsksAims'))
       .toHaveLength(1);
+    expect(result.children.filter((node) => node.type === 'component' && node.name === 'Definition'))
+      .toHaveLength(3);
+    expect(result.children.filter((node) => node.type === 'component' && node.name === 'DefinitionDescription'))
+      .toHaveLength(3);
+    expect(result.tableOfContents.some((item) => /infodemic/i.test(item.value))).toBe(false);
   });
 
   it.each([

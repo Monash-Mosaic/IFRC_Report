@@ -37,7 +37,6 @@ const BLOCK = new Set([
   'normal-box-expanded',
   'normal-box-expander-super', 
   'normal-definition', 
-  'normal-definition-first',
   'normal-first-col', 
   'normal-last-col', 
   'normal-last-col-next',
@@ -50,7 +49,6 @@ const HEADING = {
   'h1-conclusion': 1,
   'h1-box': 2, 
   'h1-fig-box': 2, 
-  'h1-definition': 2, 
   h2: 2, 
   'h2-box': 3,
   h3: 3, 
@@ -213,6 +211,14 @@ function convertNode(n, inline = false, parent = null) {
     };
     const types = clean(textValue(n)).split(/\s+/).map((x) => codeMap[x]).filter(Boolean);
     return types.length ? component('TohInsight', { align: 'right', types }) : null;
+  }
+  if (n.name === 'h1-definition') {
+    const children = inlineChildren(n);
+    return children.length ? component('Definition', {}, children) : null;
+  }
+  if (n.name === 'normal-definition-first') {
+    const children = inlineChildren(n);
+    return children.length ? component('DefinitionDescription', {}, children) : null;
   }
   if (HEADING[n.name]) {
     const value = clean(textValue(n));
