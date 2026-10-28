@@ -37,8 +37,8 @@ console.log(__dirname);
 const DEFAULTS = {
   sourceDir: path.join(__dirname, 'data'),
   outputDir: path.join(__dirname, 'output'),
-  source: '5-SUMMRY.with-links-and-endnotes.xml',
-  mdx: 'exec_sum_ar.mdx',
+  source: 'WDR26-EN-01-test.with-links-and-endnotes',
+  mdx: 'WDR26-EN-01-test.mdx',
   endnotesSource: 'endnotes.json',
 };
 

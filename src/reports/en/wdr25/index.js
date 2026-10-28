@@ -1,7 +1,7 @@
 import * as Synthesis from './exec-summary.mdx';
 import * as Acronyms from './acronyms.mdx';
 import * as Introduction from './introduction.mdx';
-import * as Chapter01 from './chapter-01.mdx';
+// import * as Chapter01 from './chapter-01.mdx';
 import * as Chapter02 from './chapter-02.mdx';
 import * as Chapter05 from './chapter-05.mdx';
 import * as Chapter03 from './chapter-03.mdx';
@@ -11,6 +11,17 @@ import * as Chapter07 from './chapter-07.mdx';
 import * as Chapter08 from './chapter-08.mdx';
 import * as Glossary from './glossary.mdx';
 import * as Annex02 from './annex-02.mdx';
+
+import path from 'node:path';
+import { loadXmlChapter } from '@/lib/xml-chapter/index.js';
+
+const Chapter01 = loadXmlChapter({
+  filePath: path.join(process.cwd(), 'src', 'reports', 'en', 'wdr25', 'chapter-01.xml'),
+  locale: 'en',
+  reportSlug: 'wdr25',
+  chapterNumber: 1,
+  assetBasePath: '/wdr25/chapter-01',
+});
 
 export const title = 'World \n Disasters\n Report\n\n 2026';
 

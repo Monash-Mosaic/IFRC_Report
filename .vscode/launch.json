@@ -25,6 +25,22 @@
         "uriFormat": "%s",
         "webRoot": "${workspaceFolder}"
       }
+    },
+    {
+      "name": "Debug XML converter",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/wdr25/convert-xml.mjs",
+      "runtimeArgs": ["--inspect-brk"],
+      "args": [
+        "--source",
+        "WDR26-EN-01-test.with-links-and-endnotes.xml",
+        "--mdx",
+        "WDR26-EN-01-test.mdx"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
