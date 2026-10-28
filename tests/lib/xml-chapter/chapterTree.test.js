@@ -68,8 +68,9 @@ describe('XML chapter normalization', () => {
     ['heading', '<h2>Heading text</h2>', 'heading'],
     ['unordered list', '<bullet-list>List item</bullet-list>', 'list'],
     ['ordered list', '<numbered-list>List item</numbered-list>', 'list'],
-    ['quote', '<quote>Quoted text</quote>', 'quote'],
-    ['quote author', '<quote-author>Author</quote-author>', 'quoteAuthor'],
+    ['quote', '<quote>Quoted text</quote>', 'component'],
+    ['quote author', '<quote-author>Author</quote-author>', 'component'],
+    ['chapter quote', '<chapter-quote>Quoted text</chapter-quote>', 'quote'],
     ['figure', '<fig href_fmt="figure.jpg"></fig>', 'figure'],
     ['endnote reference', '<normal>Text<endnotes-ref endnoteId="n1"/></normal>', 'paragraph'],
     ['table', '<Table><Cell>Cell text</Cell></Table>', 'table'],
@@ -99,6 +100,30 @@ describe('XML chapter normalization', () => {
       'text', 'strong', 'text',
     ]);
     expect(result.tableOfContents).toEqual([]);
+  });
+  
+  it('maps quote and quote-author tags to SmallQuote and SmallQuoteAuthor components', () => {
+    const result = convertToChapterTree(chapterWith(
+      '<quote>Quoted <bold>text</bold></quote><quote-author>Community member, Uganda </quote-author>'
+    ));
+
+    expect(result.children).toEqual([
+      {
+        type: 'component',
+        name: 'SmallQuote',
+        props: {},
+        children: [
+          { type: 'text', value: 'Quoted ' },
+          { type: 'strong', children: [{ type: 'text', value: 'text' }] },
+        ],
+      },
+      {
+        type: 'component',
+        name: 'SmallQuoteAuthor',
+        props: {},
+        children: [{ type: 'text', value: 'Community member, Uganda' }],
+      },
+    ]);
   });
 
   it('normalizes inline text, strong and emphasis nodes', () => {

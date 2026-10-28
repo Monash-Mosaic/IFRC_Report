@@ -10,7 +10,6 @@ const INTRINSIC = new Map([
   ['strong', 'strong'],
   ['emphasis', 'em'],
   ['quote', 'blockquote'],
-  ['quoteAuthor', 'cite'],
   ['link', 'a'],
   ['figcaption', 'figcaption'],
 ]);
