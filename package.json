@@ -85,7 +85,7 @@
     "tailwindcss": "^4.2.2",
     "ts-node": "^10.9.2",
     "typescript": "6.0.3",
-    "wrangler": "^4.105.0"
+    "wrangler": "^4.156.0"
   },
   "overrides": {
     "fast-glob": "3.3.3",
