@@ -135,18 +135,59 @@ export function convertToChapterTree(root, context = {}) {
       if (prev?.type === 'list' && prev.ordered === ordered) prev.children.push(n);
       else result.push(ordered ? orderedList([n]) : unorderedList([n]));
     } else {
-      if (n.type === 'heading') {
+      result.push(n);
+    }
+  }
+
+  // Walk the whole tree in document order (including headings nested inside
+  // components such as Box) so every heading gets a unique id and a TOC entry.
+  const headings = [];
+  /** Assigns unique ids to headings and collects them in document order. */
+  const collectHeadings = (nodes) => {
+    for (const n of nodes) {
+      if (n?.type === 'heading') {
         const base = n.id || slug(n.value);
         const count = (headingIds.get(base) || 0) + 1;
         headingIds.set(base, count);
         n.id = count === 1 ? base : `${base}-${count}`;
+        headings.push(n);
       }
-      result.push(n);
+      if (Array.isArray(n?.children)) collectHeadings(n.children);
     }
-  }
-  const tableOfContents = result.filter((n) => n.type === 'heading')
-    .map(({ value, id, depth }) => ({ value, id, depth }));
+  };
+  collectHeadings(result);
+
+  const tableOfContents = buildTableOfContents(headings);
   return chapter(result, { ...context, title, subtitle, tableOfContents });
+}
+
+/**
+ * Builds a nested table of contents from a flat, document-ordered list of
+ * heading nodes. Mirrors the output of `@stefanprobst/rehype-extract-toc`:
+ * `{ depth, value, id, children? }`, where `children` exists only when deeper
+ * headings follow.
+ */
+export function buildTableOfContents(headings) {
+  const root = { depth: 0, children: [] };
+  const parents = [];
+  let previous = root;
+
+  for (const { depth, value, id } of headings) {
+    const entry = { depth, value };
+    if (id != null) entry.id = id;
+
+    if (entry.depth > previous.depth) {
+      if (previous.children === undefined) previous.children = [];
+      parents.push(previous);
+    } else if (entry.depth < previous.depth) {
+      while (parents[parents.length - 1].depth >= entry.depth) parents.pop();
+    }
+
+    parents[parents.length - 1].children.push(entry);
+    previous = entry;
+  }
+
+  return root.children;
 }
 
 /** Selects the narrative Story element from a parsed XML tree. */
@@ -194,7 +235,11 @@ function inlineChildren(n) {
 /** Converts a publisher XML node into normalized chapter data. */
 function convertNode(n, inline = false, parent = null) {
   if (!n) return null;
-  if (n.type === 'text') return text(n.value.replace(/\s+/g, ' '));
+  if (n.type === 'text') {
+    // Whitespace-only text between block-level elements is XML formatting, not content.
+    // (Inline whitespace is handled separately in inlineChildren, which never routes text here.)
+    return clean(n.value) ? text(n.value.replace(/\s+/g, ' ')) : null;
+  }
   if (n.type !== 'element') return null;
   if (n.name === 'Story' || n.name === 'Root') return childrenOf(n).flatMap((c) => convertNode(c, false) || []);
   if (COMPONENTS.has(n.name)) return componentNode(n);
