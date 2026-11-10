@@ -20,9 +20,11 @@ const config = {
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(mdx)$': '<rootDir>/tests/__mocks__/mdxMock.js',
   },
+  modulePathIgnorePatterns: ['<rootDir>/.next/standalone/'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  // Telling Jest to transform these ESM modules
-  transformIgnorePatterns: ['/node_modules/(?!next-intl|use-intl)'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(@rgrove/parse-xml|xast-util-from-xml|vfile-location|vfile-message|unist-util-stringify-position)/)',
+  ],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
