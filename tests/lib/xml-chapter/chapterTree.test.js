@@ -3,6 +3,9 @@ import { parseXmlSource, parseXmlFile } from '@/lib/xml-chapter/parseXml';
 import { convertToChapterTree, selectNarrativeStory } from '@/lib/xml-chapter/chapterTree';
 import { XmlChapterError } from '@/lib/xml-chapter/errors';
 
+const ENDNOTES =
+  '<endnotes><endnote endnoteId="n1" n="1"><endnote-text>Note</endnote-text></endnote></endnotes>';
+
 describe('XML chapter normalization', () => {
   const chapterWith = (content) =>
     parseXmlSource(`<Story><Story><chapter-title>T</chapter-title>${content}</Story></Story>`);
@@ -72,7 +75,7 @@ describe('XML chapter normalization', () => {
     ['quote author', '<quote-author>Author</quote-author>', 'component'],
     ['chapter quote', '<chapter-quote>Quoted text</chapter-quote>', 'quote'],
     ['figure', '<fig href_fmt="figure.jpg"></fig>', 'figure'],
-    ['endnote reference', '<normal>Text<endnotes-ref endnoteId="n1"/></normal>', 'paragraph'],
+    ['endnote reference', `<normal>Text<endnotes-ref endnoteId="n1"/></normal>${ENDNOTES}`, 'paragraph'],
     ['table', '<Table><Cell>Cell text</Cell></Table>', 'table'],
     ['typology insight', '<toh-body-box>p1.3</toh-body-box>', 'component'],
   ])('normalizes an XML %s node', (_label, xml, expectedType) => {
@@ -230,5 +233,45 @@ describe('XML chapter normalization', () => {
     ['Asks child', '<Asks><normal>Text</normal></Asks>'],
   ])('rejects invalid explicit structure: %s', (_label, xml) => {
     expect(() => convertToChapterTree(chapterWith(xml))).toThrow(XmlChapterError);
+  });
+
+  describe('endnotes', () => {
+    const withNotes = (body, notes) => convertToChapterTree(chapterWith(
+      `${body}<endnotes>${notes}</endnotes>`
+    ), { locale: 'en' });
+    const note = (id, n, text = 'Note') =>
+      `<endnote endnoteId="${id}" n="${n}"><endnote-text>${text}</endnote-text></endnote>`;
+
+    it('numbers references from the endnote n and appends a heading and list', () => {
+      const result = withNotes(
+        '<normal>A<endnotes-ref endnoteId="b"/> B<endnotes-ref endnoteId="a"/></normal>',
+        note('a', 1) + note('b', 2, 'See <cite>Title</cite> <EndnotesLink>www.who.int</EndnotesLink>')
+      );
+      const refs = result.children[0].children.filter((c) => c.type === 'endnoteReference');
+      expect(refs.map((r) => r.n)).toEqual([2, 1]);
+      expect(result.children.slice(1).map((c) => c.type)).toEqual(['heading', 'endnotes']);
+      expect(result.tableOfContents).toEqual([{ depth: 1, value: 'Endnotes', id: 'endnotes' }]);
+      const second = result.children[2].children[1];
+      expect(second).toMatchObject({ type: 'endnote', id: 'b', n: 2 });
+      expect(second.children.map((c) => c.type)).toEqual(['text', 'emphasis', 'text', 'component']);
+    });
+
+    it.each([
+      ['a reference with no endnoteId', '<normal>A<endnotes-ref/></normal>', note('a', 1)],
+      ['a reference to an unknown endnote', '<normal>A<endnotes-ref endnoteId="zz"/></normal>', note('a', 1)],
+      ['an endnote referenced twice',
+        '<normal>A<endnotes-ref endnoteId="a"/><endnotes-ref endnoteId="a"/></normal>', note('a', 1)],
+      ['an endnote that is never referenced', '<normal>A</normal>', note('a', 1)],
+      ['a duplicate endnote number',
+        '<normal><endnotes-ref endnoteId="a"/><endnotes-ref endnoteId="b"/></normal>', note('a', 1) + note('b', 1)],
+    ])('rejects %s', (_label, body, notes) => {
+      expect(() => withNotes(body, notes)).toThrow(XmlChapterError);
+    });
+
+    it('rejects an endnotes section for a locale without a heading', () => {
+      expect(() => convertToChapterTree(chapterWith(
+        `<normal>A<endnotes-ref endnoteId="a"/></normal><endnotes>${note('a', 1)}</endnotes>`
+      ), { locale: 'xx' })).toThrow(XmlChapterError);
+    });
   });
 });

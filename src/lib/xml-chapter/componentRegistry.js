@@ -50,6 +50,7 @@ const COMPONENT_REGISTRY = {
   AsksAims: { component: CustomComponents.AsksAims, attributes: new Set(), children: new Set(['Asks', 'Aims']) },
   Asks: { component: CustomComponents.Asks, attributes: new Set(), children: new Set(['recommendations']) },
   Aims: { component: CustomComponents.Aims, attributes: new Set(), children: new Set(['recommendations']) },
+  EndnotesLink: { component: CustomComponents.EndnotesLink, attributes: new Set(), children: 'inline' },
   Reccomendations: { component: CustomComponents.Reccomendations, attributes: new Set(), children: 'inline' },
   ReccomendationsTitle: { component: CustomComponents.ReccomendationsTitle, attributes: new Set(), children: 'inline' },
 };
