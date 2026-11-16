@@ -101,13 +101,28 @@ function renderNode(node, key) {
   }
 
   if (node.type === 'endnoteReference') {
-    const id = typeof node.id === 'string' && /^[\w-]+$/.test(node.id) ? node.id : null;
-    return id
+    return Number.isInteger(node.n)
       ? React.createElement('sup', { key },
-        React.createElement('a', { href: `#endnote-${id}` }, node.label || id))
+        React.createElement('a', { id: `endnote-ref-${node.n}`, href: `#endnote-${node.n}` }, String(node.n)))
       : null;
   }
-  
+
+  if (node.type === 'endnotes') {
+    return React.createElement('ol', {
+      key,
+      className: 'list-decimal ps-12 [&>li::marker]:text-[#ee2435] [&>li::marker]:font-bold',
+    }, ...(node.children || []).map((item, i) => React.createElement('li', {
+      key: `endnote-${i}`,
+      id: `endnote-${item.n}`,
+      value: item.n,
+      className: 'mb-3',
+    }, ...renderChildren(item.children), ' ',
+    React.createElement('a', {
+      href: `#endnote-ref-${item.n}`,
+      'aria-label': `Back to reference ${item.n}`,
+    }, '↩'))));
+  }
+
   if (node.type === 'table' || node.type === 'tableCell' || node.type === 'tableHeaderCell') {
     const tag = node.type === 'table' ? 'table' : node.type === 'tableHeaderCell' ? 'th' : 'td';
     return React.createElement(tag, { key }, renderChildren(node.children));

@@ -73,6 +73,10 @@ Responsibilities include:
   `{ type: 'component', name, props, children }` nodes.
 - Generating stable heading IDs and a table of contents.
 - Coalescing adjacent list items into ordered or unordered lists.
+- Reading the `<endnotes>` section into an `endnotes` node (preceded by an
+  "Endnotes" heading), numbering each `endnoteReference` from its endnote's `n`,
+  and failing the build on missing, unknown, duplicate or unreferenced endnotes.
+  `<cite>` becomes emphasis and `<EndnotesLink>` wraps URLs.
 - Ignoring metadata and layout-only XML elements.
 - Rejecting unsupported visible XML content.
 
@@ -126,7 +130,9 @@ It uses a closed mapping for intrinsic elements and supports:
 - Ordered and unordered lists.
 - Figures with safe asset paths.
 - Tables and table cells.
-- Endnote references.
+- Endnote references as `<sup><a id="endnote-ref-{n}" href="#endnote-{n}">{n}</a></sup>`.
+- The endnotes list as an `<ol>` of `<li id="endnote-{n}">` items, each ending
+  with a `↩` link back to its reference.
 - Registry-approved application components.
 
 The renderer never turns arbitrary XML names or attributes into React

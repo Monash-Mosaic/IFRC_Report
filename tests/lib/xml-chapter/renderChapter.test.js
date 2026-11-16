@@ -93,4 +93,21 @@ describe('XML chapter renderer', () => {
       '<a href="#section">Jump</a><figure><img src="/image.webp" alt="Image"/><figcaption>Caption</figcaption></figure>'
     );
   });
+
+  it('renders endnote references with their number and an endnote list with back links', () => {
+    const tree = convertToChapterTree(parseXmlSource(
+      '<Story><Story><chapter-title>T</chapter-title>' +
+      '<normal>Claim<endnotes-ref endnoteId="x"/></normal></Story>' +
+      '<endnotes><endnote endnoteId="x" n="1"><endnote-text>See <cite>Book</cite>. ' +
+      '<EndnotesLink>www.who.int</EndnotesLink></endnote-text></endnote></endnotes></Story>'
+    ), { locale: 'en' });
+    const html = renderToStaticMarkup(renderChapter(tree));
+
+    expect(html).toContain('<sup><a id="endnote-ref-1" href="#endnote-1">1</a></sup>');
+    expect(html).toContain('<h1 id="endnotes"');
+    expect(html).toContain('<li id="endnote-1" value="1"');
+    expect(html).toContain('See <em>Book</em>.');
+    expect(html).toContain('href="https://www.who.int"');
+    expect(html).toContain('<a href="#endnote-ref-1" aria-label="Back to reference 1">↩</a>');
+  });
 });

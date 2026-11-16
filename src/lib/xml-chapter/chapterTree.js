@@ -20,6 +20,8 @@ const listItem = (children = []) => node('listItem', {}, children);
 const quote = (children = []) => node('quote', {}, children);
 const figure = (props = {}, children = []) => node('figure', { props }, children);
 const endnoteReference = (id) => node('endnoteReference', { id });
+const endnote = (id, n, children = []) => node('endnote', { id, n }, children);
+const endnotes = (children = []) => node('endnotes', {}, children);
 const component = (name, props = {}, children = []) =>
   node('component', { name, props }, children);
 const chapter = (children = [], properties = {}) =>
@@ -92,7 +94,14 @@ const COMPONENTS = new Set([
   'DefinitionDescription', 
   'Reccomendations', 
   'ReccomendationsTitle',
+  'EndnotesLink',
 ]);
+
+/** Heading shown above the endnote list, by locale. */
+const ENDNOTES_HEADING = { en: 'Endnotes' };
+
+/** Maps plain-data endnote nodes back to their XML nodes, for error locations. */
+const sourceOf = new WeakMap();
 
 /** Returns the child nodes of an XML node. */
 const childrenOf = (n) => Array.isArray(n?.children) ? n.children : [];
@@ -139,6 +148,13 @@ export function convertToChapterTree(root, context = {}) {
     }
   }
 
+  // Number the endnote references and append the endnote list (with its heading).
+  const endnoteList = convertEndnotes(root, context);
+  resolveEndnoteReferences(result, endnoteList);
+  if (endnoteList) {
+    result.push(heading(1, endnoteList.heading, 'endnotes'), endnotes(endnoteList.items));
+  }
+
   // Walk the whole tree in document order (including headings nested inside
   // components such as Box) so every heading gets a unique id and a TOC entry.
   const headings = [];
@@ -159,6 +175,74 @@ export function convertToChapterTree(root, context = {}) {
 
   const tableOfContents = buildTableOfContents(headings);
   return chapter(result, { ...context, title, subtitle, tableOfContents });
+}
+
+/** Reads the `<endnotes>` section, wherever it sits in the XML, into plain endnote nodes. */
+function convertEndnotes(root, context) {
+  let section = null;
+  /** Finds the first `<endnotes>` element. */
+  const visit = (n) => {
+    if (section) return;
+    if (n?.type === 'element' && n.name === 'endnotes') section = n;
+    else childrenOf(n).forEach(visit);
+  };
+  visit(root);
+  if (!section) return null;
+
+  const locale = context.locale ?? 'en';
+  const heading = ENDNOTES_HEADING[locale];
+  if (!heading) throw new XmlChapterError(`No endnotes heading is defined for locale "${locale}"`, { node: section });
+
+  const byId = new Map();
+  const numbers = new Set();
+  const items = childrenOf(section).filter((c) => c.type === 'element').map((c) => {
+    if (c.name !== 'endnote') throw new XmlChapterError(`Unexpected "${c.name}" in endnotes`, { node: c });
+
+    const id = attr(c, 'endnoteId');
+    const n = Number(attr(c, 'n'));
+
+    if (!id) throw new XmlChapterError('endnote requires an endnoteId', { node: c, attribute: 'endnoteId' });
+    if (!Number.isInteger(n) || n < 1) throw new XmlChapterError('endnote requires a positive integer n', { node: c, attribute: 'n' });
+    if (byId.has(id)) throw new XmlChapterError(`Duplicate endnoteId "${id}"`, { node: c, attribute: 'endnoteId' });
+    if (numbers.has(n)) throw new XmlChapterError(`Duplicate endnote number ${n}`, { node: c, attribute: 'n' });
+
+    const textNode = childrenOf(c).find((e) => e.type === 'element' && e.name === 'endnote-text');
+    if (!textNode) throw new XmlChapterError('endnote requires an endnote-text element', { node: c });
+
+    const item = endnote(id, n, inlineChildren(textNode));
+    sourceOf.set(item, c);
+    byId.set(id, item);
+    numbers.add(n);
+    return item;
+  });
+  return { heading, items, byId };
+}
+
+/** Sets each reference's number from its endnote; every endnote needs exactly one reference. */
+function resolveEndnoteReferences(nodes, endnoteList) {
+  const referenced = new Set();
+  /** Visits every node, and assigns a number to each endnote reference. */
+  const visit = (list) => list.forEach((n) => {
+    if (n?.type === 'endnoteReference') {
+      const at = { node: sourceOf.get(n), attribute: 'endnoteId' };
+      if (!n.id) throw new XmlChapterError('endnotes-ref requires an endnoteId', at);
+
+      const target = endnoteList?.byId.get(n.id);
+      if (!target) throw new XmlChapterError(`endnotes-ref points to unknown endnote "${n.id}"`, at);
+      if (referenced.has(n.id)) throw new XmlChapterError(`Endnote "${n.id}" is referenced more than once`, at);
+
+      referenced.add(n.id);
+      n.n = target.n;
+    }
+    if (Array.isArray(n?.children)) visit(n.children);
+  });
+  visit(nodes);
+
+  for (const item of endnoteList?.items ?? []) {
+    if (!referenced.has(item.id)) {
+      throw new XmlChapterError(`Endnote "${item.id}" is never referenced`, { node: sourceOf.get(item) });
+    }
+  }
 }
 
 /**
@@ -243,6 +327,7 @@ function convertNode(n, inline = false, parent = null) {
   if (n.type !== 'element') return null;
   if (n.name === 'Story' || n.name === 'Root') return childrenOf(n).flatMap((c) => convertNode(c, false) || []);
   if (COMPONENTS.has(n.name)) return componentNode(n);
+  if (n.name === 'endnotes') return null; // read separately by convertEndnotes
   if (n.name === 'chapter-number' || n.name === 'chapter-title' || n.name === 'chapter-subtitle') return null;
   if (n.name === 'toh-body-box' || n.name === 'toh-body') {
     const codeMap = {
@@ -277,7 +362,12 @@ function convertNode(n, inline = false, parent = null) {
   if (n.name === 'quote') return component('SmallQuote', {}, inlineChildren(n));
   if (n.name === 'quote-author') return component('SmallQuoteAuthor', {}, inlineChildren(n));
   if (n.name === 'chapter-quote') return quote(inlineChildren(n));
-  if (n.name === 'endnotes-ref') return endnoteReference(attr(n, 'endnoteId') || attr(n, 'id'));
+  if (n.name === 'endnotes-ref') {
+    const ref = endnoteReference(attr(n, 'endnoteId'));
+    sourceOf.set(ref, n);
+    return ref;
+  }
+  if (n.name === 'cite') return emphasis(inlineChildren(n));
   if (n.name === 'fig') return figure({ src: attr(n, 'href_fmt') || attr(n, 'href'), alt: clean(textValue(n)) });
   if (n.name === 'anchor') return component('Anchor', { meta: `Fig ${attr(n, 'index') || ''}`.trim() }, inlineChildren(n));
   if (n.name === 'definition-icon') return null;
