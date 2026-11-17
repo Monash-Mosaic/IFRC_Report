@@ -123,10 +123,6 @@ function renderNode(node, key) {
     }, '↩'))));
   }
 
-  if (node.type === 'table' || node.type === 'tableCell' || node.type === 'tableHeaderCell') {
-    const tag = node.type === 'table' ? 'table' : node.type === 'tableHeaderCell' ? 'th' : 'td';
-    return React.createElement(tag, { key }, renderChildren(node.children));
-  }
   return null;
 }
 

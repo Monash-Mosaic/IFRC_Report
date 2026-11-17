@@ -57,7 +57,6 @@ const HEADING = {
   'h3-box': 4, 
   'heading-3': 3, 
   h4: 4, 
-  'h1-tables': 2, 
   'h1-figures-body': 2,
   'h2-figures-body': 3, 
   'h1-chapter-toc-title': 2,
@@ -97,6 +96,23 @@ const COMPONENTS = new Set([
   'EndnotesLink',
 ]);
 
+/** Publisher typology codes used in `<toh>` cells and TohInsight body tags. */
+const TOH_CODES = {
+  'p1.3': 'Physical',
+  'p3.19': 'Psychological',
+  'p1.28': 'Social',
+  'p1.17': 'Societal',
+  'p3.17': 'Informational',
+  'p1.20': 'Deprivational',
+  'p3.25': 'Digital',
+  'p5.10': 'Longitudinal',
+};
+
+/** Default column width classes for typology-style 3-column tables. */
+const TABLE_COL_CLASSES = {
+  3: ['w-[15%] md:w-[10%]', 'w-[35%] md:w-[20%]', 'w-[50%] md:w-[70%]'],
+};
+
 /** Heading shown above the endnote list, by locale. */
 const ENDNOTES_HEADING = { en: 'Endnotes' };
 
@@ -131,10 +147,48 @@ export function convertToChapterTree(root, context = {}) {
     return value ? (Array.isArray(value) ? value : [value]) : [];
   });
 
-  // Coalesce consecutive list items into a single list and assign unique IDs to headings
+  // Coalesce consecutive list items into a single list, attach table captions from
+  // preceding h1-tables titles, and keep orphan titles as ordinary headings.
   const result = [];
   const headingIds = new Map();
+  let pendingTableTitle = null;
+  /** Flushes an unmatched table title as a depth-2 heading. */
+  const flushTableTitle = () => {
+    if (!pendingTableTitle) return;
+    result.push(heading(
+      2,
+      pendingTableTitle.value,
+      slug(pendingTableTitle.value),
+      pendingTableTitle.children || [text(pendingTableTitle.value)]
+    ));
+    pendingTableTitle = null;
+  };
   for (const n of raw) {
+    if (n.type === 'tableTitle') {
+      flushTableTitle();
+      pendingTableTitle = n;
+      continue;
+    }
+    if (n.type === 'component' && n.name === 'Table') {
+      context.tableCount = (context.tableCount || 0) + 1;
+      const index = context.chapterNumber != null
+        ? `${context.chapterNumber}.${context.tableCount}`
+        : String(context.tableCount);
+      if (pendingTableTitle) {
+        n.children = [
+          component('TableCaption', { id: slug(pendingTableTitle.value) }, [
+            component('TableLabel', { index }),
+            text(' '),
+            text(pendingTableTitle.value),
+          ]),
+          ...(n.children || []),
+        ];
+        pendingTableTitle = null;
+      }
+      result.push(n);
+      continue;
+    }
+    flushTableTitle();
     if (n.type === 'listItem') {
       // Style tags are converted before coalescing; numbered lists are marked by
       // the private flag below while preserving the public plain-data shape.
@@ -147,6 +201,7 @@ export function convertToChapterTree(root, context = {}) {
       result.push(n);
     }
   }
+  flushTableTitle();
 
   // Number the endnote references and append the endnote list (with its heading).
   const endnoteList = convertEndnotes(root, context);
@@ -330,16 +385,7 @@ function convertNode(n, inline = false, parent = null) {
   if (n.name === 'endnotes') return null; // read separately by convertEndnotes
   if (n.name === 'chapter-number' || n.name === 'chapter-title' || n.name === 'chapter-subtitle') return null;
   if (n.name === 'toh-body-box' || n.name === 'toh-body') {
-    const codeMap = {
-      'p1.3': 'Physical', 
-      'p3.19': 'Psychological', 
-      'p1.28': 'Social',
-      'p1.17': 'Societal', 
-      'p3.17': 'Informational', 
-      'p1.20': 'Deprivational',
-      'p3.25': 'Digital',
-    };
-    const types = clean(textValue(n)).split(/\s+/).map((x) => codeMap[x]).filter(Boolean);
+    const types = clean(textValue(n)).split(/\s+/).map((x) => TOH_CODES[x]).filter(Boolean);
     return types.length ? component('TohInsight', { align: 'right', types }) : null;
   }
   if (n.name === 'h1-definition') {
@@ -349,6 +395,10 @@ function convertNode(n, inline = false, parent = null) {
   if (n.name === 'normal-definition-first') {
     const children = inlineChildren(n);
     return children.length ? component('DefinitionDescription', {}, children) : null;
+  }
+  if (n.name === 'h1-tables') {
+    const value = clean(textValue(n));
+    return value ? { type: 'tableTitle', value, children: [text(value)] } : null;
   }
   if (HEADING[n.name]) {
     const value = clean(textValue(n));
@@ -372,12 +422,11 @@ function convertNode(n, inline = false, parent = null) {
   if (n.name === 'anchor') return component('Anchor', { meta: `Fig ${attr(n, 'index') || ''}`.trim() }, inlineChildren(n));
   if (n.name === 'definition-icon') return null;
   if (n.name === 'caption') return paragraph(inlineChildren(n));
-  if (n.name === 'tables-left' || n.name === 'Table')
-    return { type: 'table', children: childrenOf(n).flatMap((c) => convertNode(c, false) || []) };
-  if (n.name === 'Cell')
-    return { type: 'tableCell', children: childrenOf(n).flatMap((c) => convertNode(c, false) || []) };
-  if (n.name === 'header-cell') return { type: 'tableHeaderCell', children: inlineChildren(n) };
-  if (n.name === 'toh') return text(clean(textValue(n)));
+  if (n.name === 'tables-left') {
+    const table = childrenOf(n).find((c) => c.type === 'element' && c.name === 'Table');
+    return table ? convertPublisherTable(table) : null;
+  }
+  if (n.name === 'Table') return convertPublisherTable(n);
   if (n.name === 'cross-reference-link' || n.name === 'link' || n.name === 'body-hyperlinks') return inlineChildren(n);
   if (n.name === 'normal-2c') return component('ReccomendationsTitle', {}, inlineChildren(n));
   if (n.name === 'recommendations') {
@@ -391,10 +440,131 @@ function convertNode(n, inline = false, parent = null) {
     n.name === 'toc-page-number' ||
     n.name === 'toh' ||
     n.name === 'toh-next' ||
-    n.name === 'img-4c'
+    n.name === 'img-4c' ||
+    n.name === 'Cell' ||
+    n.name === 'header-cell'
   ) return null;
   if (childrenOf(n).some(visible)) throw new XmlChapterError(`Unsupported visible XML tag "${n.name}"`, { node: n });
   return null;
+}
+
+/** Converts a publisher InDesign `<Table>` into custom table components. */
+function convertPublisherTable(tableNode) {
+  const columnCount = Number(attr(tableNode, 'aid:tcols')) || 3;
+  const cells = childrenOf(tableNode).filter((c) => c.type === 'element' && c.name === 'Cell');
+  const rows = groupTableCellsIntoRows(cells, columnCount);
+  const headerRows = [];
+  const bodyRows = [];
+  for (const row of rows) {
+    (isHeaderTableRow(row) ? headerRows : bodyRows).push(row);
+  }
+
+  const children = [];
+  const colClasses = TABLE_COL_CLASSES[columnCount];
+  if (colClasses) {
+    children.push(component('TableColGroup', { columns: colClasses }));
+  }
+  if (headerRows.length) {
+    children.push(component('TableHead', {}, headerRows.map((row) =>
+      component('TableRow', {}, row.map((cell) => convertPublisherTableHeaderCell(cell)))
+    )));
+  }
+  if (bodyRows.length) {
+    children.push(component('TableBody', {}, bodyRows.map((row) =>
+      component('TableRow', {}, row.map((cell, index) => convertPublisherTableBodyCell(cell, index)))
+    )));
+  }
+  return component('Table', {}, children);
+}
+
+/** Groups flat InDesign table cells into rows using column spans. */
+function groupTableCellsIntoRows(cells, columnCount) {
+  const rows = [];
+  let current = [];
+  let width = 0;
+  for (const cell of cells) {
+    const span = Number(attr(cell, 'aid:ccols')) || 1;
+    current.push(cell);
+    width += span;
+    if (width >= columnCount) {
+      rows.push(current);
+      current = [];
+      width = 0;
+    }
+  }
+  if (current.length) rows.push(current);
+  return rows;
+}
+
+/** Returns whether a row is a header row. */
+function isHeaderTableRow(row) {
+  return row.some((cell) => {
+    if (Object.prototype.hasOwnProperty.call(cell.attributes || {}, 'aid:theader')) return true;
+    return childrenOf(cell).some((child) => child.type === 'element' && child.name === 'header-cell');
+  });
+}
+
+/** Converts a publisher header cell into a TableHeaderCell component. */
+function convertPublisherTableHeaderCell(cell) {
+  const colSpan = Number(attr(cell, 'aid:ccols')) || 1;
+  const props = { className: 'text-2xl' };
+  if (colSpan > 1) props.colSpan = colSpan;
+  const header = childrenOf(cell).find((child) => child.type === 'element' && child.name === 'header-cell');
+  const content = header ? inlineChildren(header) : convertPublisherTableCellContent(cell);
+  return component('TableHeaderCell', props, content);
+}
+
+/** Converts a publisher body cell into a TableCell component. */
+function convertPublisherTableBodyCell(cell, columnIndex) {
+  const colSpan = Number(attr(cell, 'aid:ccols')) || 1;
+  const props = {};
+  if (colSpan > 1) props.colSpan = colSpan;
+
+  const toh = childrenOf(cell).find((child) => child.type === 'element' && child.name === 'toh');
+  if (toh) {
+    const type = TOH_CODES[clean(textValue(toh))];
+    props.className = 'p-2';
+    return component('TableCell', props, type ? [component('TohIcon', { type })] : []);
+  }
+
+  const hasFirstCol = childrenOf(cell).some((child) =>
+    child.type === 'element' && child.name === 'normal-first-col'
+  );
+  props.className = hasFirstCol || columnIndex === 1 ? 'font-medium' : 'font-extralight';
+  return component('TableCell', props, convertPublisherTableCellContent(cell));
+}
+
+/** Flattens publisher cell children into inline chapter nodes. */
+function convertPublisherTableCellContent(cell) {
+  const out = [];
+  for (const child of childrenOf(cell)) {
+    if (child.type === 'text') {
+      const value = clean(child.value);
+      if (!value) continue;
+      if (out.length) out.push(text(' '));
+      out.push(text(value));
+      continue;
+    }
+    if (child.type !== 'element') continue;
+    if (child.name === 'toh' || child.name === 'header-cell') continue;
+    if (
+      child.name === 'normal-first-col' ||
+      child.name === 'normal-last-col' ||
+      child.name === 'normal-last-col-next' ||
+      BLOCK.has(child.name)
+    ) {
+      const piece = inlineChildren(child);
+      if (out.length && piece.length) out.push(text(' '));
+      out.push(...piece);
+      continue;
+    }
+    const converted = convertNode(child, true, cell);
+    if (!converted) continue;
+    const piece = Array.isArray(converted) ? converted : [converted];
+    if (out.length && piece.length) out.push(text(' '));
+    out.push(...piece);
+  }
+  return out;
 }
 
 /** Converts an explicit application component into a chapter node. */

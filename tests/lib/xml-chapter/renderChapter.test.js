@@ -33,6 +33,30 @@ describe('XML chapter renderer', () => {
     );
   });
 
+  it('renders publisher tables with custom Table components and Toh icons', () => {
+    const tree = convertToChapterTree(parseXmlSource(
+      '<Story><Story><chapter-title>T</chapter-title>' +
+      '<h1-tables>Typology of harm</h1-tables>' +
+      '<tables-left><Table xmlns:aid="http://ns.adobe.com/AdobeInDesign/4.0/" aid:tcols="3">' +
+      '<Cell aid:theader="" aid:ccols="2"><header-cell>Type of harm</header-cell></Cell>' +
+      '<Cell aid:theader="" aid:ccols="1"><header-cell>Examples of harm</header-cell></Cell>' +
+      '<Cell aid:ccols="1"><toh>p1.3</toh></Cell>' +
+      '<Cell aid:ccols="1"><normal-first-col>Physical</normal-first-col></Cell>' +
+      '<Cell aid:ccols="1"><normal-last-col>Injury</normal-last-col></Cell>' +
+      '</Table></tables-left></Story></Story>'
+    ), { chapterNumber: 1 });
+    const html = renderToStaticMarkup(renderChapter(tree));
+
+    expect(html).toContain('Table 1.1');
+    expect(html).toContain('Typology of harm');
+    expect(html).toContain('id="typology-of-harm"');
+    expect(html).toContain('border-separate');
+    expect(html).toContain('Type of harm');
+    expect(html).toContain('Physical');
+    expect(html).toContain('<svg');
+    expect(html).not.toMatch(/<h2[^>]*>Typology of harm<\/h2>/);
+  });
+
   it('renders definition style tags with Definition and DefinitionDescription', () => {
     const tree = convertToChapterTree(parseXmlSource(
       '<Story><Story><chapter-title>T</chapter-title>' +

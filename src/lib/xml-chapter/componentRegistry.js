@@ -53,6 +53,68 @@ const COMPONENT_REGISTRY = {
   EndnotesLink: { component: CustomComponents.EndnotesLink, attributes: new Set(), children: 'inline' },
   Reccomendations: { component: CustomComponents.Reccomendations, attributes: new Set(), children: 'inline' },
   ReccomendationsTitle: { component: CustomComponents.ReccomendationsTitle, attributes: new Set(), children: 'inline' },
+  Table: {
+    component: CustomComponents.Table,
+    attributes: new Set(['className']),
+    children: new Set([
+      'TableCaption', 'TableColGroup', 'TableHead', 'TableBody', 'TableRow',
+    ]),
+  },
+  TableCaption: {
+    component: CustomComponents.TableCaption,
+    attributes: new Set(['id', 'className']),
+    children: 'inline',
+  },
+  TableColGroup: {
+    component: CustomComponents.TableColGroup,
+    attributes: new Set(['columns']),
+    children: new Set(),
+  },
+  TableHead: {
+    component: CustomComponents.TableHead,
+    attributes: new Set(['className']),
+    children: new Set(['TableRow']),
+  },
+  TableBody: {
+    component: CustomComponents.TableBody,
+    attributes: new Set(['className']),
+    children: new Set(['TableRow']),
+  },
+  TableRow: {
+    component: CustomComponents.TableRow,
+    attributes: new Set(['className']),
+    children: new Set(['TableHeaderCell', 'TableCell']),
+  },
+  TableHeaderCell: {
+    component: CustomComponents.TableHeaderCell,
+    attributes: new Set(['className', 'colSpan']),
+    children: 'inline',
+  },
+  TableCell: {
+    component: CustomComponents.TableCell,
+    attributes: new Set(['className', 'colSpan']),
+    children: 'inline',
+  },
+  TableLabel: {
+    component: CustomComponents.TableLabel,
+    attributes: new Set(['index', 'label', 'className']),
+    children: 'inline',
+  },
+  TohIcon: {
+    component: CustomComponents.TohIcon,
+    attributes: new Set(['type', 'className']),
+    validate(node, props) {
+      props.type = parseRequiredString(props.type, 'type', node);
+      const allowed = new Set([
+        'Physical', 'Psychological', 'Social', 'Societal',
+        'Informational', 'Deprivational', 'Digital', 'Longitudinal',
+      ]);
+      if (!allowed.has(props.type)) {
+        throw new XmlChapterError(`Invalid TohIcon type "${props.type}"`, { node, attribute: 'type' });
+      }
+    },
+    children: new Set(),
+  },
 };
 
 const FLOW_TAGS = new Set([

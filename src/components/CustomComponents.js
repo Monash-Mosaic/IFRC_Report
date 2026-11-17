@@ -797,6 +797,24 @@ export function TableCell({ children, className = '', ...props }) {
   )
 }
 
+const TOH_ICON_BY_TYPE = {
+  Physical,
+  Psychological,
+  Social,
+  Societal,
+  Informational,
+  Deprivational,
+  Digital,
+  Longitudinal,
+};
+
+/** Renders a typology-of-harm icon by canonical type name. */
+export function TohIcon({ type, className = 'w-8 h-8', ...props }) {
+  const Icon = TOH_ICON_BY_TYPE[type];
+  if (!Icon) return null;
+  return <Icon className={className} {...props} />;
+}
+
 const CustomComponents = {
   Box,
   H1Contributor,
@@ -844,7 +862,8 @@ const CustomComponents = {
   TableRow,
   TableHeaderCell,
   TableBody,
-  TableCell
+  TableCell,
+  TohIcon,
 };
 
 export default CustomComponents;

@@ -76,7 +76,7 @@ describe('XML chapter normalization', () => {
     ['chapter quote', '<chapter-quote>Quoted text</chapter-quote>', 'quote'],
     ['figure', '<fig href_fmt="figure.jpg"></fig>', 'figure'],
     ['endnote reference', `<normal>Text<endnotes-ref endnoteId="n1"/></normal>${ENDNOTES}`, 'paragraph'],
-    ['table', '<Table><Cell>Cell text</Cell></Table>', 'table'],
+    ['table', '<Table><Cell>Cell text</Cell></Table>', 'component'],
     ['typology insight', '<toh-body-box>p1.3</toh-body-box>', 'component'],
   ])('normalizes an XML %s node', (_label, xml, expectedType) => {
     const result = convertToChapterTree(chapterWith(xml));
@@ -139,14 +139,43 @@ describe('XML chapter normalization', () => {
     ]);
   });
 
-  it('normalizes table cells and header cells', () => {
+  it('maps publisher tables to custom Table components', () => {
     const result = convertToChapterTree(chapterWith(
-      '<Table><Cell>Body cell</Cell><header-cell>Header cell</header-cell></Table>'
-    ));
+      '<h1-tables>Typology of harm <return>↩</return></h1-tables>' +
+      '<tables-left><Table xmlns:aid="http://ns.adobe.com/AdobeInDesign/4.0/" aid:tcols="3">' +
+      '<Cell aid:theader="" aid:ccols="2"><header-cell>Type of harm</header-cell></Cell>' +
+      '<Cell aid:theader="" aid:ccols="1"><header-cell>Examples of harm</header-cell></Cell>' +
+      '<Cell aid:ccols="1"><toh>p1.3</toh></Cell>' +
+      '<Cell aid:ccols="1"><normal-first-col>Physical</normal-first-col></Cell>' +
+      '<Cell aid:ccols="1"><normal-last-col>Injury</normal-last-col></Cell>' +
+      '</Table></tables-left>'
+    ), { chapterNumber: 1 });
 
-    expect(result.children[0].children.map((child) => child.type)).toEqual([
-      'tableCell', 'tableHeaderCell',
+    const table = result.children[0];
+    expect(table).toMatchObject({ type: 'component', name: 'Table' });
+    expect(table.children.map((child) => child.name)).toEqual([
+      'TableCaption', 'TableColGroup', 'TableHead', 'TableBody',
     ]);
+    expect(table.children[0]).toMatchObject({
+      name: 'TableCaption',
+      props: { id: 'typology-of-harm' },
+    });
+    expect(table.children[0].children[0]).toMatchObject({
+      name: 'TableLabel',
+      props: { index: '1.1' },
+    });
+    expect(table.children[2].children[0].children[0]).toMatchObject({
+      name: 'TableHeaderCell',
+      props: { className: 'text-2xl', colSpan: 2 },
+    });
+    expect(table.children[3].children[0].children.map((cell) => cell.props.className)).toEqual([
+      'p-2', 'font-medium', 'font-extralight',
+    ]);
+    expect(table.children[3].children[0].children[0].children[0]).toMatchObject({
+      name: 'TohIcon',
+      props: { type: 'Physical' },
+    });
+    expect(result.tableOfContents).toEqual([]);
   });
 
   it('normalizes explicit application components', () => {
@@ -214,7 +243,23 @@ describe('XML chapter normalization', () => {
       .toHaveLength(3);
     expect(result.children.filter((node) => node.type === 'component' && node.name === 'DefinitionDescription'))
       .toHaveLength(3);
-    expect(result.tableOfContents.some((item) => /infodemic/i.test(item.value))).toBe(false);
+    const table = result.children.find((node) => node.type === 'component' && node.name === 'Table');
+    expect(table).toBeTruthy();
+    expect(table.children[0]).toMatchObject({
+      name: 'TableCaption',
+      props: { id: 'typology-of-harm' },
+    });
+    expect(table.children.some((child) => child.name === 'TableBody')).toBe(true);
+    const tocValues = [];
+    const walkToc = (items = []) => {
+      for (const item of items) {
+        tocValues.push(item.value);
+        walkToc(item.children);
+      }
+    };
+    walkToc(result.tableOfContents);
+    expect(tocValues.some((value) => /infodemic/i.test(value))).toBe(false);
+    expect(tocValues.some((value) => /typology of harm/i.test(value))).toBe(false);
   });
 
   it.each([
