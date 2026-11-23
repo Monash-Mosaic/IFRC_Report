@@ -35,15 +35,21 @@
       <normal-box-bullet-list>helping migrants instead of Spanish citizens affected by the DANA </normal-box-bullet-list>
       <normal-box-bullet-list>misusing funds &#8211; lying about their destination and amounts allocated or refusing inkind donations to keep the money. </normal-box-bullet-list>
       <h1-fig-box>Posts on X, November and December 2024 </h1-fig-box>
-      <anchor>
-        <fig href_fmt="images/fig-1-1-c_fmt2.png" href="file://images/fig-1-1-c2.psd"></fig>
-      </anchor>
-      <normal-box-alt>A smaller number of recurring posts attacked the Spanish Red Cross&#8217; international work (e.g., for Ukraine or Gaza) or resurfaced older posts related to migrants in Spain or blood donations. </normal-box-alt>
-      <normal-box>In this case, harmful information did not directly hinder the humanitarian response; it was not an obstacle to providing assistance. However, it undoubtedly had an impact on the people involved in the response by: </normal-box>
-      <normal-box-bullet-list>creating an extraordinary workload dedicated to denying, explaining or minimizing the impact of harmful information </normal-box-bullet-list>
-      <normal-box-bullet-list>causing emotional distress and even doubts about the organization, both within society and among Spanish Red Cross members </normal-box-bullet-list>
-      <normal-box-bullet-list>undermining public trust, with some donors questioning the organization. </normal-box-bullet-list>
-      <normal-box-expander-super>During the DANA, the groups most vulnerable to misinformation were our staff and volunteers (both on the ground and off), our partners and allies, and, of course, our beneficiaries. Migrants were also targeted in the harmful information &#8211; these posts inevitably fuelled xenophobia &#8211; but in this case, they were used more as a tool to target the Spanish Red Cross. These groups were emotionally affected to varying degrees and some also experienced a certain loss of trust in the organization.  </normal-box-expander-super>
+      <ColumParagraphs>
+        <ColumParagraph>
+          <normal-box-alt>A smaller number of recurring posts attacked the Spanish Red Cross&#8217; international work (e.g., for Ukraine or Gaza) or resurfaced older posts related to migrants in Spain or blood donations. </normal-box-alt>
+          <normal-box>In this case, harmful information did not directly hinder the humanitarian response; it was not an obstacle to providing assistance. However, it undoubtedly had an impact on the people involved in the response by: </normal-box>
+          <normal-box-bullet-list>creating an extraordinary workload dedicated to denying, explaining or minimizing the impact of harmful information </normal-box-bullet-list>
+          <normal-box-bullet-list>causing emotional distress and even doubts about the organization, both within society and among Spanish Red Cross members </normal-box-bullet-list>
+          <normal-box-bullet-list>undermining public trust, with some donors questioning the organization. </normal-box-bullet-list>
+          <normal-box-expander-super>During the DANA, the groups most vulnerable to misinformation were our staff and volunteers (both on the ground and off), our partners and allies, and, of course, our beneficiaries. Migrants were also targeted in the harmful information &#8211; these posts inevitably fuelled xenophobia &#8211; but in this case, they were used more as a tool to target the Spanish Red Cross. These groups were emotionally affected to varying degrees and some also experienced a certain loss of trust in the organization.  </normal-box-expander-super>
+        </ColumParagraph>
+        <ColumParagraph>
+          <anchor>
+            <fig imagePath="/wdr25/chapter-01/fig-1-1-c_opt.webp" width="782" height="1366" href_fmt="images/fig-1-1-c_fmt2.png" href="file://images/fig-1-1-c2.psd"></fig>
+          </anchor>
+        </ColumParagraph>
+      </ColumParagraphs>
       <ContributorTag>
         <Contributor>
           <ContributorName>María Trénor Alvargonzález</ContributorName>
@@ -130,7 +136,7 @@
     <normal-tight>The introduction of AI has further lowered the barrier to entry, enabling more sophisticated, scalable manipulation and deepening the asymmetry between those spreading harmful information and those trying to contain it. What most clearly differentiates these actors is their intent &#8211; whether to deceive, disrupt, distract, divide or dominate. That intent not only shapes the forms their actions take but also determines the countermeasures required. This is not a level playing field: those spreading harmful content are faster, louder and have fewer constraints than those working to uphold truth and trust.</normal-tight>
     <h1-figures-body>Threat actors involved in harmful information </h1-figures-body>
     <normal>
-      <fig href_fmt="images/c1-word-cloud-CMYK_fmt2.png" href="file://images/c1-word-cloud-CMYK2.ai"></fig>
+      <fig imagePath="/wdr25/chapter-01/c1-word-cloud.webp" href_fmt="images/c1-word-cloud-CMYK_fmt2.png" href="file://images/c1-word-cloud-CMYK2.ai"></fig>
     </normal>
     <h1>Information integrity in crisis situations </h1>
     <normal>The UN has identified strengthening information integrity as &#8220;one of the most urgent challenges of our time&#8221; &#8211; fundamental to human rights, peace and sustainable development. Information integrity refers to the accuracy, consistency and reliability of information. In response to growing threats from misinformation, disinformation, hate speech and the misuse of digital technologies, including AI, the UN Global Principles for Information Integrity<endnotes-ref endnoteId="u53dab"></endnotes-ref> were launched. </normal>
@@ -392,18 +398,18 @@
     <normal>The broader impact of AI-driven disinformation is still debated. Some studies suggest its spread and effects may be limited; others warn it may be more concentrated, harder to trace and prone to unintended consequences. What is certain is that the information space is becoming more complex and contested. Although no scientific consensus exists on the full societal impact of false information, its viral potential is well documented. Efforts such as adding watermarks or filtering content show some promise in detecting and mitigating AI-generated manipulation but remain limited. Moreover, interventions must balance curbing manipulation with protecting free expression. Reports point to an increase in the prevalence of AI-generated deepfake content (see box) but overall, scientific evidence remains limited. Anecdotal reports of harm caused by AI-generated fake content is growing, but without better evidence the full scale and impact remains difficult to assess.<endnotes-ref endnoteId="u53de0"></endnotes-ref>
     </normal>
     <definition-icon>
-      <endnotes-ref endnoteId="u53de4"></endnotes-ref>
+      
     </definition-icon>
     <h1-definition>AIgenerated fake content </h1-definition>
-    <normal-definition-first>Audio, text, or visual content, produced by generative AI, that depicts people or events in a way that differs from reality in a malicious or deceptive way, e.g., showing people doing things they did not do, saying things they did not say, changing the location of real events, or depicting events that did not happen.<endnotes-ref endnoteId="u53de7"></endnotes-ref>
+    <normal-definition-first>Audio, text, or visual content, produced by generative AI, that depicts people or events in a way that differs from reality in a malicious or deceptive way, e.g., showing people doing things they did not do, saying things they did not say, changing the location of real events, or depicting events that did not happen.<endnotes-ref endnoteId="u53de4"></endnotes-ref>
     </normal-definition-first>
     <definition-icon>
-      <endnotes-ref endnoteId="u53de9"></endnotes-ref>
+      
     </definition-icon>
     <h1-definition>Deepfake </h1-definition>
     <normal-definition-first>Synthetic media &#8211; most often video, audio or images &#8211; created using artificial intelligence techniques, particularly deep learning, to realistically manipulate or generate content that portrays events or people in ways that did not actually occur. </normal-definition-first>
     <normal-definition>A subset of AIgenerated fake content. Examples include video face swaps, fake voice recordings. </normal-definition>
-    <normal>As AI-generated content becomes increasingly indistinguishable from human-created material, detection remains a persistent challenge. Media authentication techniques such as digital watermarks offer some protection but are easily bypassed or removed, especially in high-risk or adversarial environments.<endnotes-ref endnoteId="u53deb"></endnotes-ref>
+    <normal>As AI-generated content becomes increasingly indistinguishable from human-created material, detection remains a persistent challenge. Media authentication techniques such as digital watermarks offer some protection but are easily bypassed or removed, especially in high-risk or adversarial environments.<endnotes-ref endnoteId="u53de7"></endnotes-ref>
     </normal>
     <Box
       index="1.9"
@@ -421,27 +427,27 @@
         </Contributor>
       </ContributorTag>
     </Box>
-    <normal>There is no consensus on whether more realistic fake content leads to more effective manipulation, or whether the main barrier is distribution. Some experts argue that the greater challenge lies in spreading fake content at scale &#8211; not creating it.<endnotes-ref endnoteId="u53dee"></endnotes-ref> Research also suggests that &#8216;cheapfakes&#8217; (simple, less sophisticated manipulations of audiovisual content) may be just as harmful as sophisticated deepfakes, reinforcing the idea that distribution and reach may matter more than quality.<endnotes-ref endnoteId="u53df1"></endnotes-ref> While social media platforms deploy moderation, labelling and source credibility checks to limit the spread of manipulated content, these measures raise concerns about free expression. At the same time, research shows that algorithms often &#8220;prioritise engagement and virality over accuracy or authenticity of content&#8221;, potentially aiding the rapid spread of AI-generated content to manipulate public opinion.<endnotes-ref endnoteId="u53df4"></endnotes-ref>
+    <normal>There is no consensus on whether more realistic fake content leads to more effective manipulation, or whether the main barrier is distribution. Some experts argue that the greater challenge lies in spreading fake content at scale &#8211; not creating it.<endnotes-ref endnoteId="u53de9"></endnotes-ref> Research also suggests that &#8216;cheapfakes&#8217; (simple, less sophisticated manipulations of audiovisual content) may be just as harmful as sophisticated deepfakes, reinforcing the idea that distribution and reach may matter more than quality.<endnotes-ref endnoteId="u53deb"></endnotes-ref> While social media platforms deploy moderation, labelling and source credibility checks to limit the spread of manipulated content, these measures raise concerns about free expression. At the same time, research shows that algorithms often &#8220;prioritise engagement and virality over accuracy or authenticity of content&#8221;, potentially aiding the rapid spread of AI-generated content to manipulate public opinion.<endnotes-ref endnoteId="u53dee"></endnotes-ref>
     </normal>
-    <normal>The UN report <regular-italic>Governing AI for Humanity </regular-italic>emphasizes that it is &#8220;more useful to look at risks from the perspective of vulnerable communities and the commons&#8221;.<endnotes-ref endnoteId="u53df6"></endnotes-ref> It draws on the AI Risk Global Pulse Check, a survey of 348 AI experts that captures emerging AI-related trends and risks. The report stresses, however, that risk management must go beyond simply listing or prioritizing risks. It advocates for framing risks through the lens of vulnerability &#8211; shifting the focus from <bold>what</bold> the risk is (e.g., &#8216;risk to safety&#8217;) to <bold>who</bold> is at risk, <bold>where</bold> these risks occur and <bold>who</bold> should be accountable. This approach highlights the vulnerability of individuals, political systems, society, the economy and the environment. In the context of safety, the report underscores the importance of ensuring reliability and interpretability of AI systems and of assessing and mitigating risks to individual and collective rights, national and international security, and public safety across diverse contexts.<endnotes-ref endnoteId="u53df8"></endnotes-ref>
+    <normal>The UN report <regular-italic>Governing AI for Humanity </regular-italic>emphasizes that it is &#8220;more useful to look at risks from the perspective of vulnerable communities and the commons&#8221;.<endnotes-ref endnoteId="u53df1"></endnotes-ref> It draws on the AI Risk Global Pulse Check, a survey of 348 AI experts that captures emerging AI-related trends and risks. The report stresses, however, that risk management must go beyond simply listing or prioritizing risks. It advocates for framing risks through the lens of vulnerability &#8211; shifting the focus from <bold>what</bold> the risk is (e.g., &#8216;risk to safety&#8217;) to <bold>who</bold> is at risk, <bold>where</bold> these risks occur and <bold>who</bold> should be accountable. This approach highlights the vulnerability of individuals, political systems, society, the economy and the environment. In the context of safety, the report underscores the importance of ensuring reliability and interpretability of AI systems and of assessing and mitigating risks to individual and collective rights, national and international security, and public safety across diverse contexts.<endnotes-ref endnoteId="u53df4"></endnotes-ref>
     </normal>
     <normal>Access to AI tools also remains uneven, reinforcing existing digital divides. People without reliable connectivity, digital literacy or language inclusion continue to be excluded or misinformed. </normal>
     <normal>What is clear is the need for systematic monitoring.</normal>
     <h1-figures-body>AI Incident Tracker </h1-figures-body>
     <h2-figures-body>This tracker illustrates how the severity of AI incidents has changed over time. </h2-figures-body>
     <normal>
-      <fig href_fmt="images/Fig-1-3_fmt2.png" href="file://images/Fig-1-32.ai"></fig>
+      <fig imagePath="/wdr25/chapter-01/Fig-1-3.webp" href_fmt="images/Fig-1-3_fmt2.png" href="file://images/Fig-1-32.ai"></fig>
     </normal>
     <source>Sources: <body-hyperlinks>MIT AI Risk Initiative</body-hyperlinks> &#8212; AI Incident Tracker &amp; Scalable AI Incident Classification dashboards (based on the AI Incident Database) </source>
     <normal>See <cross-reference-link>Chapter 5, on page 167 </cross-reference-link>for reflections on regulation, rights and policy. </normal>
     <h1>Narratives shape perception, trust and action </h1>
     <normal>Narratives are the frameworks through which people make sense of their experiences and the world around them. They connect the personal to the political, the local to the global. Strong narratives simplify complexity, offering coherence &#8211; often at the expense of nuance. Narratives matter. In harmful information campaigns, they often carry historical or cultural weight, with many actors playing a long game. </normal>
     <normal>An event holds power only if people <bold>believe</bold>
-      <regular-italic></regular-italic>it happened. In today&#8217;s information environment, perception can outweigh truth: fabricated incidents can generate real consequences, while verified ones may be ignored. Outcomes are increasingly shaped less by <regular-italic>facts </regular-italic>and more<regular-italic></regular-italic>by psychological, political and algorithmic influence. Trust is easily eroded by distortion and distraction. Political discourse often borrows tactics from the use of information in warfare, while armed conflict is shaped by battles over online narratives.<endnotes-ref endnoteId="u53dfb"></endnotes-ref> The risk is that we all become participants when we click, like or share &#8211; feeding a wider contest over attention, belief and bias. </normal>
+      <regular-italic></regular-italic>it happened. In today&#8217;s information environment, perception can outweigh truth: fabricated incidents can generate real consequences, while verified ones may be ignored. Outcomes are increasingly shaped less by <regular-italic>facts </regular-italic>and more<regular-italic></regular-italic>by psychological, political and algorithmic influence. Trust is easily eroded by distortion and distraction. Political discourse often borrows tactics from the use of information in warfare, while armed conflict is shaped by battles over online narratives.<endnotes-ref endnoteId="u53df6"></endnotes-ref> The risk is that we all become participants when we click, like or share &#8211; feeding a wider contest over attention, belief and bias. </normal>
     <normal>In armed conflicts, civilians are often inadvertently drawn into the information dynamics, exposing them to serious risks to their safety &#8211; for example, by posting geolocated photos or videos of shelling on social media, relaying updates about territorial control or documenting attacks to seek help or accountability. </normal>
-    <normal>These overlapping, often invisible, struggles shape how we perceive the world and act within it. In this &#8216;network of networks&#8217;<regular-italic>, </regular-italic>there is no neutral ground<endnotes-ref endnoteId="u53dff"></endnotes-ref> &#8211; the objective is influence, control and power.  As Singer and Brooking note, influence is achieved not only through force but through shaping how people interpret the world, triggering emotional reactions that drive action and cultivating a sense of shared identity and belonging. Those who succeed are the ones who construct and spread compelling narratives &#8211; consistently, repeatedly and globally.<endnotes-ref endnoteId="u53e02"></endnotes-ref>
+    <normal>These overlapping, often invisible, struggles shape how we perceive the world and act within it. In this &#8216;network of networks&#8217;<regular-italic>, </regular-italic>there is no neutral ground<endnotes-ref endnoteId="u53df8"></endnotes-ref> &#8211; the objective is influence, control and power.  As Singer and Brooking note, influence is achieved not only through force but through shaping how people interpret the world, triggering emotional reactions that drive action and cultivating a sense of shared identity and belonging. Those who succeed are the ones who construct and spread compelling narratives &#8211; consistently, repeatedly and globally.<endnotes-ref endnoteId="u53dfb"></endnotes-ref>
     </normal>
-    <normal>Effective narratives in the digital landscape rely on simplicity, allowing messages to be absorbed quickly. This is why images resonate so powerfully. Resonance and novelty drive engagement. Yet simplicity is not something the humanitarian sector excels at; some argue the sector has even complicated public understanding of the humanitarian endeavour.<endnotes-ref endnoteId="u53e06"></endnotes-ref>
+    <normal>Effective narratives in the digital landscape rely on simplicity, allowing messages to be absorbed quickly. This is why images resonate so powerfully. Resonance and novelty drive engagement. Yet simplicity is not something the humanitarian sector excels at; some argue the sector has even complicated public understanding of the humanitarian endeavour.<endnotes-ref endnoteId="u53dff"></endnotes-ref>
     </normal>
     <normal>Geopolitical tensions are intensifying polarization within societies and across borders, fuelling division, mistrust and competing narratives that complicate humanitarian action and undermine social cohesion. Returning to the earlier discussion of cables and content, control over both is increasingly treated as a strategic priority, with direct consequences for humanitarian response. </normal>
     <Box
@@ -470,7 +476,7 @@
       types="informational societal"
     >
       <h1-box>Locally led action in the struggle for humanitarian connectivity </h1-box>
-      <normal-box>Since 2021, millions of people across Myanmar have been disconnected from the internet, especially in conflict-affected regions. Access Now and the #KeepItOn coalition &#8211; uniting more than 334 national, international, regional and local organizations &#8211; recorded 85 shutdowns in Myanmar in 2024 alone.<endnotes-ref endnoteId="u53e08"></endnotes-ref>
+      <normal-box>Since 2021, millions of people across Myanmar have been disconnected from the internet, especially in conflict-affected regions. Access Now and the #KeepItOn coalition &#8211; uniting more than 334 national, international, regional and local organizations &#8211; recorded 85 shutdowns in Myanmar in 2024 alone.<endnotes-ref endnoteId="u53e02"></endnotes-ref>
       </normal-box>
       <normal-box>This is hardly an isolated case. In 2024, the #KeepItOn coalition documented 296 shutdowns in 54 countries, an all-time-high and a 35% increase in the number of countries where shutdowns occurred compared with the previous peak in 2022. </normal-box>
       <normal-box>The 2024 data confirms that conflict was the leading trigger for internet shutdowns for a second consecutive year, with an expanding arsenal of tools deployed to cut connectivity &#8211; jamming devices, cutting cables, destroying infrastructure and sabotaging internet service providers. Humanitarian crises are increasingly becoming complex emergencies with some countries affected by a layering of disaster, climate change and conflict. </normal-box>
@@ -496,7 +502,7 @@
       </ContributorTag>
     </Box>
     <h1>Analysis and monitoring of harmful information </h1>
-    <normal>Analysing harmful information and its risks is essential to understanding the tactics, techniques and procedures used by those who create and disseminate it. Such analysis must consider contextual, historical, political, social, cultural and economic factors. Several analytical frameworks exist, including the 5 Ws<endnotes-ref endnoteId="u53e0b"></endnotes-ref> (commonly used by journalists), ABCDE,<endnotes-ref endnoteId="u53e0e"></endnotes-ref> DISARM<endnotes-ref endnoteId="u53e10"></endnotes-ref> and MITRE ATT&amp;CK,<endnotes-ref endnoteId="u53e13"></endnotes-ref> each requiring different levels of training and analytical capacity. This is explored more fully in <cross-reference-link>Chapter 3, on page 103</cross-reference-link>. 
+    <normal>Analysing harmful information and its risks is essential to understanding the tactics, techniques and procedures used by those who create and disseminate it. Such analysis must consider contextual, historical, political, social, cultural and economic factors. Several analytical frameworks exist, including the 5 Ws<endnotes-ref endnoteId="u53e06"></endnotes-ref> (commonly used by journalists), ABCDE,<endnotes-ref endnoteId="u53e08"></endnotes-ref> DISARM<endnotes-ref endnoteId="u53e0b"></endnotes-ref> and MITRE ATT&amp;CK,<endnotes-ref endnoteId="u53e0e"></endnotes-ref> each requiring different levels of training and analytical capacity. This is explored more fully in <cross-reference-link>Chapter 3, on page 103</cross-reference-link>. 
     </normal>
     <normal>Effective analysis also relies on monitoring both the operational and information environments to detect harmful content, while integrating community-based approaches to better understand its dynamics and impact. Many humanitarian organizations are using a range of tools &#8211; commercially available or internally developed &#8211; that combine automated and manual methods to scrape public data. This is too often with a narrow focus on reputation, rather than assessing how harmful information affects their security, operations and the broader humanitarian context. </normal>
     <normal>The humanitarian sector urgently needs more systematic monitoring and social listening &#8211; including sentiment analysis &#8211; to detect, understand and frame responses to harmful information. In this regard, monitoring remains fragmented, underfunded and often ad hoc. By incorporating community-based approaches and sentiment analysis into social listening, organizations can detect and track not only what is being said but also how people feel &#8211; fearful, angry, mistrustful or supportive &#8211; providing deeper insights into shifting perceptions and risks. </normal>
@@ -522,7 +528,7 @@
         <Contributor>
           <ContributorName>Karl Aberer</ContributorName>
           <ContributorEntity>Professor, Swiss Federal Institute of Technology in Lausanne</ContributorEntity>
-          <ContributorRole>LinkAlong<endnotes-ref endnoteId="u53e15"></endnotes-ref></ContributorRole>
+          <ContributorRole>LinkAlong<endnotes-ref endnoteId="u53e10"></endnotes-ref></ContributorRole>
         </Contributor>
       </ContributorTag>
     </Box>
@@ -531,13 +537,13 @@
       types=""
     >
       <h1-box>Building resilience: Catalogue of fact checks, false claim markers and provenance support </h1-box>
-      <normal-box>Among monitoring tools developed to provide structured, machine-readable data on false and misleading claims circulating online, NewsGuard&#8217;s False Claim Fingerprints database tracks provably false narratives across 102 countries in local languages. It covers topics such as humanitarian crises and wars, health emergencies, earthquakes, climate-related disasters and migration. It also monitors information operations by malign actors worldwide. The database serves as an early warning system and fact-based &#8216;guardrails&#8217; for high-risk false claims, providing a &#8216;Fingerprint&#8217; for each (detailing the evidence for why the claim was determined false) with human-verified URLs,<endnotes-ref></endnotes-ref> keywords, search terms, social posts, multimedia assets and language excerpts. </normal-box>
+      <normal-box>Among monitoring tools developed to provide structured, machine-readable data on false and misleading claims circulating online, NewsGuard&#8217;s False Claim Fingerprints database tracks provably false narratives across 102 countries in local languages. It covers topics such as humanitarian crises and wars, health emergencies, earthquakes, climate-related disasters and migration. It also monitors information operations by malign actors worldwide. The database serves as an early warning system and fact-based &#8216;guardrails&#8217; for high-risk false claims, providing a &#8216;Fingerprint&#8217; for each (detailing the evidence for why the claim was determined false) with human-verified URLs,<endnotes-ref endnoteId="u53e13"></endnotes-ref> keywords, search terms, social posts, multimedia assets and language excerpts. </normal-box>
       <normal-box>NGOs and other institutions can use the database to detect false claims targeting them &#8211; or the vulnerable communities they serve &#8211; before those claims enter the mainstream. NewsGuard detects and flags high-risk claims before any public reporting or fact-checking in two-thirds of cases, and is the first to debunk false claims by authoritarian governments 83% of the time. Public relations teams can integrate NewsGuard&#8217;s journalistic assessments into their communication responses, using accurate, transparent, evidence-backed insights to defend their reputation when under attack. As more internet users turn to generative AI chatbots for information and news, such a database can be used to verify whether false claims have contaminated AI-generated responses, enabling organizations to respond quickly and strategically. </normal-box>
       <ContributorTag>
         <Contributor>
           <ContributorName>Chine Labbe</ContributorName>
           <ContributorEntity>Senior Vice President, Partnerships and Managing Editor, Europe and Canada</ContributorEntity>
-          <ContributorRole>NewsGuard Technologies<endnotes-ref></endnotes-ref></ContributorRole>
+          <ContributorRole>NewsGuard Technologies<endnotes-ref endnoteId="u53e15"></endnotes-ref></ContributorRole>
         </Contributor>
       </ContributorTag>
     </Box>
@@ -716,148 +722,148 @@
   </wdr-exported-endnote-hyperlinks>
   <endnotes>
     <endnote endnoteId="u53d98" n="1" textRangeId="u53d99">
-      <endnote-text>For example, in 2006, Reuters severed tieswith a freelance photographer after discovering digitally manipulated images, mostnotably smoke plumes, added to photographs related to the Israel–Lebanon conflict: ‘Reuters drops photographer over doctored images,’&lt;cite&gt;TheGuardian&lt;/cite&gt;, 7 August 2006.</endnote-text>
+      <endnote-text>For example, in 2006, Reuters severed ties with a freelance photographer after discovering digitally manipulated images, most notably smoke plumes, added to photographs related to the Israel–Lebanon conflict: ‘Reuters drops photographer over doctored images,’ <cite>The Guardian</cite>, 7 August 2006.</endnote-text>
     </endnote>
     <endnote endnoteId="u53d9b" n="2" textRangeId="u53d9c">
-      <endnote-text>During the Arab Spring, the blog&lt;cite&gt;A Gay Girl in Damascus&lt;/cite&gt;, purportedly written by a Syrian-American woman, was revealed to be a fictitious persona createdby a male university student in Scotland. See Mackey, R. ‘Gay Girl in Damascus’ Blog a Hoax, American Says,’&lt;cite&gt;TheNew York Times&lt;/cite&gt;, 13 June 2011,</endnote-text>
+      <endnote-text>During the Arab Spring, the blog <cite>A Gay Girl in Damascus</cite>, purportedly written by a Syrian-American woman, was revealed to be a fictitious persona created by a male university student in Scotland. See Mackey, R. ‘Gay Girl in Damascus’ Blog a Hoax, American Says,’ <cite>The New York Times</cite>, 13 June 2011,</endnote-text>
     </endnote>
     <endnote endnoteId="u53d9d" n="3" textRangeId="u53d9e">
-      <endnote-text>In July 2006, during theIsrael–Lebanon conflict, two Lebanese Red Cross ambulances were struckby munitions, injuring crew members. Blogger communities claimed the damagewas staged due to the appearance of the vehicles. Investigationsconfirmed the attack was real. See UN Human Rights Council, Report of the Commission of Inquiry on Lebanon pursuant to Human Rights Council resolution S-2/1, A/HRC/3/2, 23 November 2006, para.173,</endnote-text>
+      <endnote-text>In July 2006, during the Israel–Lebanon conflict, two Lebanese Red Cross ambulances were struckby munitions, injuring crew members. Blogger communities claimed the damage was staged due to the appearance of the vehicles. Investigations confirmed the attack was real. See UN Human Rights Council, Report of the Commission of Inquiry on Lebanon pursuant to Human Rights Council resolution S-2/1, A/HRC/3/2, 23 November 2006, para.173,</endnote-text>
     </endnote>
     <endnote endnoteId="u53da0" n="4" textRangeId="u53da1">
-      <endnote-text>See, for example, Rid, T.&lt;cite&gt;Active Measures: The Secret History of Disinformation and Political Warfare.&lt;/cite&gt;(2020)</endnote-text>
+      <endnote-text>See, for example, Rid, T. <cite>Active Measures: The Secret History of Disinformation and Political Warfare.</cite> (2020)</endnote-text>
     </endnote>
     <endnote endnoteId="u53da2" n="5" textRangeId="u53da3">
-      <endnote-text>See, for example, West, DM.&lt;cite&gt;Fighting hurricanemisinformation requires aggressive pushback.&lt;/cite&gt;Brookings. (2024)</endnote-text>
+      <endnote-text>See, for example, West, DM. <cite>Fighting hurricane misinformation requires aggressive pushback.</cite> Brookings. (2024)</endnote-text>
     </endnote>
     <endnote endnoteId="u53da4" n="6" textRangeId="u53da5">
-      <endnote-text>See World HealthOrganization.&lt;cite&gt;Infodemic&lt;/cite&gt;.www.who.int/health-topics/infodemic</endnote-text>
+      <endnote-text>See World Health Organization. <cite>Infodemic</cite>. <EndnotesLink>www.who.int/health-topics/infodemic</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53da7" n="7" textRangeId="u53da8">
-      <endnote-text>Falseclaims that 5G mobile phone towers were linked to thespread of COVID-19 led to arson attacks on telecommunicationsinfrastructure in the UK and threats against telecom workers. Scientificauthorities consistently debunked any connection between 5G technology and thevirus. See Hern, A. ‘Arsonists Attack Phone Mast Serving NHSNightingale Hospital.’&lt;cite&gt;The Guardian&lt;/cite&gt;, 14 April 2020.</endnote-text>
+      <endnote-text>False claims that 5G mobile phone towers were linked to thespread of COVID-19 led to arson attacks on telecommunicationsinfrastructure in the UK and threats against telecom workers. Scientific authorities consistently debunked any connection between 5G technology and the virus. See Hern, A. ‘Arsonists Attack Phone Mast Serving NHS Nightingale Hospital.’ <cite>The Guardian</cite>, 14 April 2020.</endnote-text>
     </endnote>
     <endnote endnoteId="u53da9" n="8" textRangeId="u53daa">
-      <endnote-text>Nichols, T.&lt;cite&gt;The Death of Expertise: TheCampaign Against Established Knowledge and Why It Matters.&lt;/cite&gt;(2024)</endnote-text>
+      <endnote-text>Nichols, T. <cite>The Death of Expertise: The Campaign Against Established Knowledge and Why It Matters.</cite> (2024)</endnote-text>
     </endnote>
     <endnote endnoteId="u53dab" n="9" textRangeId="u53dac">
-      <endnote-text>The ‘UN Global Principles for Information Integrity: Recommendations for Multi-stakeholder Action’ were officially launched on 24 June 2024, duringa press conference led by UN Secretary-General António Guterres.www.un.org/en/information-integrity</endnote-text>
+      <endnote-text>The ‘UN Global Principles for Information Integrity: Recommendations for Multi-stakeholder Action’ were officially launched on 24 June 2024, during a press conference led by UN Secretary-General António Guterres. <EndnotesLink>www.un.org/en/information-integrity</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53dae" n="10" textRangeId="u53daf">
-      <endnote-text>See UN.&lt;cite&gt;Information Integrity on Digital Platforms&lt;/cite&gt;. (Our Common Agenda, Policy Brief8). Executive Office of the Secretary-General. (2023) p.2.</endnote-text>
+      <endnote-text>See UN. <cite>Information Integrity on Digital Platforms</cite>. (Our Common Agenda, Policy Brief8). Executive Office of the Secretary-General. (2023) p.2.</endnote-text>
     </endnote>
     <endnote endnoteId="u53db0" n="11" textRangeId="u53db1">
-      <endnote-text>UN Department of Global Communications. Issue Brief1 –&lt;cite&gt;From Principles to Practice: Strengthening Information Integrity.&lt;/cite&gt;(2025)</endnote-text>
+      <endnote-text>UN Department of Global Communications. Issue Brief1 – <cite>From Principles to Practice: Strengthening Information Integrity.</cite> (2025)</endnote-text>
     </endnote>
     <endnote endnoteId="u53db2" n="12" textRangeId="u53db3">
-      <endnote-text>IFRC, ICRC and RedCross Society of Guinea,&lt;cite&gt;Red Cross Red Crescent denounces continuedviolence against volunteers working to stop spread of Ebola&lt;/cite&gt;. Jointstatement. 11 February 2015.</endnote-text>
+      <endnote-text>IFRC, ICRC and RedCross Society of Guinea, <cite>Red Cross Red Crescent denounces continued violence against volunteers working to stop spread of Ebola</cite>. Joint statement. 11 February 2015.</endnote-text>
     </endnote>
     <endnote endnoteId="u53db5" n="13" textRangeId="u53db6">
-      <endnote-text>See, for example,www.mdpi.com/2673-5172/2/4/34;;www.axios.com/2023/07/06/online-comments-medianews-group-newspapers-end</endnote-text>
+      <endnote-text>See, for example, <EndnotesLink>www.mdpi.com/2673-5172/2/4/34</EndnotesLink>;;<EndnotesLink>www.axios.com/2023/07/06/online-comments-medianews-group-newspapers-end</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53db8" n="14" textRangeId="u53db9">
-      <endnote-text>Singer, PW. and Brooking, ET.&lt;cite&gt;LikeWar: The Weaponization of Social Media.&lt;/cite&gt;(2018) p.270</endnote-text>
+      <endnote-text>Singer, PW. and Brooking, ET. <cite>LikeWar: The Weaponization of Social Media.</cite> (2018) p.270</endnote-text>
     </endnote>
     <endnote endnoteId="u53dba" n="15" textRangeId="u53dbb">
-      <endnote-text>Ayala Iacucci, A.&lt;cite&gt;Misinformation, Disinformation, and Hate Speech inHumanitarian Contexts.&lt;/cite&gt;Grand Challenges Canada, Creating Hope in Conflict initiative. (2024) p.38This scoping study providesa comprehensive overview of operational challenges, strategic approaches and innovativeopportunities for countering misinformation, disinformation and hate speech in conflict-affected humanitarian settings.</endnote-text>
+      <endnote-text>Ayala Iacucci, A. <cite>Misinformation, Disinformation, and Hate Speech inHumanitarian Contexts.</cite> Grand Challenges Canada, Creating Hope in Conflict initiative. (2024) p.38 This scoping study provides a comprehensive overview of operational challenges, strategic approaches and innovative opportunities for countering misinformation, disinformation and hate speech in conflict-affected humanitarian settings.</endnote-text>
     </endnote>
     <endnote endnoteId="u53dbd" n="16" textRangeId="u53dbe">
-      <endnote-text>Borges do Nascimento, IJ., Pizarro, AB., Almeida, JM. et al. Infodemics and health misinformation: a systematicreview of reviews.&lt;cite&gt;Bull World Health Organ&lt;/cite&gt;. 2022:100(9), 544–561. doi:10.2471/BLT.21.287654, p.557</endnote-text>
+      <endnote-text>Borges do Nascimento, IJ., Pizarro, AB., Almeida, JM. et al. Infodemics and health misinformation: a systematic review of reviews. <cite>Bull World Health Organ</cite>. 2022:100(9), 544–561. doi:10.2471/BLT.21.287654, p.557</endnote-text>
     </endnote>
     <endnote endnoteId="u53dc0" n="17" textRangeId="u53dc1">
-      <endnote-text>ICRC,&lt;cite&gt;Addressing Harmful Informationin Conflict Settings: A Response Framework for Humanitarian Organizations&lt;/cite&gt;. (2025) p.8</endnote-text>
+      <endnote-text>ICRC, <cite>Addressing Harmful Information in Conflict Settings: A Response Framework for Humanitarian Organizations</cite>. (2025) p.8</endnote-text>
     </endnote>
     <endnote endnoteId="u53dc2" n="18" textRangeId="u53dc3">
-      <endnote-text>Ibid.u53dc3u53dc2</endnote-text>
+      <endnote-text>Ibid.</endnote-text>
     </endnote>
     <endnote endnoteId="u53dc5" n="19" textRangeId="u53dc6">
-      <endnote-text>UN GeneralAssembly, Disinformation and freedom of opinion and expression during armedconflicts. Report of the Special Rapporteur on the promotion andprotection of the right to freedom of opinion and expression. A/77/288, August 2022, para. 59,</endnote-text>
+      <endnote-text>UN General Assembly, Disinformation and freedom of opinion and expression during armedconflicts. Report of the Special Rapporteur on the promotion and protection of the right to freedom of opinion and expression. A/77/288, August 2022, para. 59,</endnote-text>
     </endnote>
     <endnote endnoteId="u53dc8" n="20" textRangeId="u53dc9">
-      <endnote-text>Radford, A., Tanno, S. and Kemp, O. ‘At least 290 killed in Air Indiacrash.’ CNN. 12 June 2025.</endnote-text>
+      <endnote-text>Radford, A., Tanno, S. and Kemp, O. ‘At least 290 killed in Air India crash.’ CNN. 12 June 2025.</endnote-text>
     </endnote>
     <endnote endnoteId="u53dcb" n="21" textRangeId="u53dcc">
-      <endnote-text>Silva, A. ‘Social media flooded with racist comments after Air India crash, but Indians are speaking out.’&lt;cite&gt;ABC News.&lt;/cite&gt;17 June 2025.</endnote-text>
+      <endnote-text>Silva, A. ‘Social media flooded with racist comments after Air India crash, but Indians are speaking out.’ <cite>ABC News.</cite> 17 June 2025.</endnote-text>
     </endnote>
     <endnote endnoteId="u53dce" n="22" textRangeId="u53dcf">
-      <endnote-text>Mellersh, N.Anti-Syrian sentiment grows in Turkey following earthquake.&lt;cite&gt;Infomigrants.&lt;/cite&gt;February 2023.; Ozduzen, O., Korkut, U. andOzduzen, C. ‘Refugees are not welcome’: Digital racism, online place-making and the evolving categorization of Syrians in Turkey.&lt;cite&gt;NewMedia &amp; Society&lt;/cite&gt;2020:23(11), 3349–3369.https://doi.org/10.1177/1461444820956341</endnote-text>
+      <endnote-text>Mellersh, N. Anti-Syrian sentiment grows in Turkey following earthquake. <cite>Infomigrants.</cite> February 2023.; Ozduzen, O., Korkut, U. and Ozduzen, C. ‘Refugees are not welcome’: Digital racism, online place-making and the evolving categorization of Syrians in Turkey. <cite>New Media &amp; Society</cite> 2020:23(11), 3349–3369. <EndnotesLink>https://doi.org/10.1177/1461444820956341</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53dd0" n="23" textRangeId="u53dd1">
-      <endnote-text>Carter, RT. Racism and Psychological and Emotional Injury: Recognizing and AssessingRace-Based Traumatic Stress.&lt;cite&gt;The Counseling Psychologist&lt;/cite&gt;2007:35(1), 13–105.; Hankerson, SH., Moise, N. and Wilson, DR. The Intergenerational Impact of Structural Racism and Cumulative Trauma onDepression.&lt;cite&gt;The American Journal of Psychiatry&lt;/cite&gt;2022:179(6), 434–440.; Polanco-Roman, L., DeLapp, RC. and Dackis, MN. Racial/ethnic discrimination and suicide-related riskin a treatment-seeking group of ethnoracially minoritized adolescents.&lt;cite&gt;ClinicalChild Psychology and Psychiatry&lt;/cite&gt;2023:28(4), 1305–1320.https://doi.org/10.1177/13591045221132682</endnote-text>
+      <endnote-text>Carter, RT. Racism and Psychological and Emotional Injury: Recognizing and AssessingRace-Based Traumatic Stress. <cite>The Counseling Psychologist</cite> 2007:35(1), 13–105.; Hankerson, SH., Moise, N. and Wilson, DR. The Intergenerational Impact of Structural Racism and Cumulative Trauma on Depression. <cite>The American Journal of Psychiatry</cite> 2022:179(6), 434–440.; Polanco-Roman, L., DeLapp, RC. and Dackis, MN. Racial/ethnic discrimination and suicide-related risk in a treatment-seeking group of ethnoracially minoritized adolescents. <cite>Clinical Child Psychology and Psychiatry</cite> 2023:28(4), 1305–1320. <EndnotesLink>https://doi.org/10.1177/13591045221132682</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53dd3" n="24" textRangeId="u53dd4">
-      <endnote-text>Rodriguez-Díaz, CE. and Lewellen-Williams, C. Race andRacism as Structural Determinants for Emergency and Recovery Response inthe Aftermath of Hurricanes Irma and Maria in Puerto Rico.&lt;cite&gt;Health Equity&lt;/cite&gt;2020:4(1), 232–238.https://doi.org/10.1089/heq.2019.0103</endnote-text>
+      <endnote-text>Rodriguez-Díaz, CE. and Lewellen-Williams, C. Race and Racism as Structural Determinants for Emergency and Recovery Response in the Aftermath of Hurricanes Irma and Maria in Puerto Rico. <cite>Health Equity</cite> 2020:4(1), 232–238. <EndnotesLink>https://doi.org/10.1089/heq.2019.0103</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53dd5" n="25" textRangeId="u53dd6">
-      <endnote-text>Gatwiri, K. and Anderson, L. Boundaries of Belonging: TheorizingBlack African Migrant Experiences in Australia.&lt;cite&gt;International Journal of EnvironmentalResearch and Public Health&lt;/cite&gt;2020:18(1), 38.</endnote-text>
+      <endnote-text>Gatwiri, K. and Anderson, L. Boundaries of Belonging: Theorizing Black African Migrant Experiences in Australia. <cite>International Journal of Environmental Research and Public Health</cite> 2020:18(1), 38.</endnote-text>
     </endnote>
     <endnote endnoteId="u53dd9" n="26" textRangeId="u53dda">
-      <endnote-text>Quiñones-Rosado, R. Liberation Psychology and Racism. InComas-Díaz, L. and Torres Rivera, E. (Eds.),&lt;cite&gt;Liberation Psychology: Theory, Method, Practice, and Social Justice.&lt;/cite&gt;American Psychological Association. (2020) pp.53–68https://doi.org/10.1037/0000198-004</endnote-text>
+      <endnote-text>Quiñones-Rosado, R. Liberation Psychology and Racism. In Comas-Díaz, L. and Torres Rivera, E. (Eds.), <cite>Liberation Psychology: Theory, Method, Practice, and Social Justice.</cite> American Psychological Association. (2020) pp.53–68 <EndnotesLink>https://doi.org/10.1037/0000198-004</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53ddb" n="27" textRangeId="u53ddc">
-      <endnote-text>Perrigo, B.Exclusive: New Global Safety Standards Aim to Protect AI’sMost Traumatized Workers.&lt;cite&gt;Time.&lt;/cite&gt;19 June 2025.</endnote-text>
+      <endnote-text>Perrigo, B. Exclusive: New Global Safety Standards Aim to Protect AI’s Most Traumatized Workers. <cite>Time.</cite> 19 June 2025.</endnote-text>
     </endnote>
     <endnote endnoteId="u53dde" n="28" textRangeId="u53ddf">
-      <endnote-text>Bengio, Y, Mindermann, S.,Privitera, D. et al.&lt;cite&gt;International Scientific Report on the Safetyof Advanced AI&lt;/cite&gt;. International Scientific Panel on the Safety of Advanced AI. (2025)https://internationalaisafetyreport.org</endnote-text>
+      <endnote-text>Bengio, Y, Mindermann, S., Privitera, D. et al. <cite>International Scientific Report on the Safetyof Advanced AI</cite>. International Scientific Panel on the Safety of Advanced AI. (2025) <EndnotesLink>https://internationalaisafetyreport.org</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53de0" n="29" textRangeId="u53de1">
-      <endnote-text>Ibidu53de1u53de0</endnote-text>
+      <endnote-text>Ibid</endnote-text>
     </endnote>
     <endnote endnoteId="u53de4" n="30" textRangeId="u53de5">
-      <endnote-text>Ibid, p.62u53de5u53de4</endnote-text>
+      <endnote-text>Ibid, p.62</endnote-text>
     </endnote>
     <endnote endnoteId="u53de7" n="31" textRangeId="u53de8">
-      <endnote-text>Ibid, p.65u53de8u53de7</endnote-text>
+      <endnote-text>Ibid, p.65</endnote-text>
     </endnote>
     <endnote endnoteId="u53de9" n="32" textRangeId="u53dea">
       <endnote-text>Ibid, p.69</endnote-text>
     </endnote>
     <endnote endnoteId="u53deb" n="33" textRangeId="u53dec">
-      <endnote-text>Ibidu53decu53deb</endnote-text>
+      <endnote-text>Ibid</endnote-text>
     </endnote>
     <endnote endnoteId="u53dee" n="34" textRangeId="u53def">
-      <endnote-text>Ibid, p.69u53defu53dee</endnote-text>
+      <endnote-text>Ibid, p.69</endnote-text>
     </endnote>
     <endnote endnoteId="u53df1" n="35" textRangeId="u53df2">
-      <endnote-text>UN.&lt;cite&gt;Governing AI for Humanity: Final Report.&lt;/cite&gt;(2024) p. The UN High-Level Advisory Body on Artificial Intelligence (HLAB-AI), established bythe UN Secretary-General and composed of 32 global experts, aims to align AI development with human rights and theSustainable Development Goals.</endnote-text>
+      <endnote-text>UN. <cite>Governing AI for Humanity: Final Report.</cite> (2024) p. The UN High-Level Advisory Body on Artificial Intelligence (HLAB-AI), established bythe UN Secretary-General and composed of 32 global experts, aims to align AI development with human rights and the Sustainable Development Goals.</endnote-text>
     </endnote>
     <endnote endnoteId="u53df4" n="36" textRangeId="u53df5">
-      <endnote-text>Ibid, pp.28, 30, 57u53df5u53df4</endnote-text>
+      <endnote-text>Ibid, pp.28, 30, 57</endnote-text>
     </endnote>
     <endnote endnoteId="u53df6" n="37" textRangeId="u53df7">
-      <endnote-text>See, for example, Singer, PW. and Brooking, ET.&lt;cite&gt;LikeWar: TheWeaponization of Social Media.&lt;/cite&gt;(2018) p.262</endnote-text>
+      <endnote-text>See, for example, Singer, PW. and Brooking, ET. <cite>LikeWar: The Weaponization of Social Media.</cite> (2018) p.262</endnote-text>
     </endnote>
     <endnote endnoteId="u53df8" n="38" textRangeId="u53df9">
-      <endnote-text>Ibidu53df9u53df8</endnote-text>
+      <endnote-text>Ibid</endnote-text>
     </endnote>
     <endnote endnoteId="u53dfb" n="39" textRangeId="u53dfc">
       <endnote-text>Ibid,p.160</endnote-text>
     </endnote>
     <endnote endnoteId="u53dff" n="40" textRangeId="u53e00">
-      <endnote-text>See, for example, Slim, H.&lt;cite&gt;Solferino 21: Warfare, Civilians and Humanitarians in the Twenty-FirstCentury.&lt;/cite&gt;(2022)</endnote-text>
+      <endnote-text>See, for example, Slim, H. <cite>Solferino 21: Warfare, Civilians and Humanitarians in the Twenty-First Century.</cite> (2022)</endnote-text>
     </endnote>
     <endnote endnoteId="u53e02" n="41" textRangeId="u53e03">
-      <endnote-text>Access Now. ‘Lives on hold: internet shutdownsin 2024’. 24 February 2025.; DW. ‘Myanmar: Why is junta shutting down internet?’ 27February 2025.; Myanmar Internet Project, Access Now, et al. ‘Myanmar must lift internet restrictions following devastating earthquake.’ Joint statement. 31 March 2025..</endnote-text>
+      <endnote-text>Access Now. ‘Lives on hold: internet shutdowns in 2024’. 24 February 2025.; DW. ‘Myanmar: Why is junta shutting down internet?’ 27 February 2025.; Myanmar Internet Project, Access Now, et al. ‘Myanmar must lift internet restrictions following devastating earthquake.’ Joint statement. 31 March 2025..</endnote-text>
     </endnote>
     <endnote endnoteId="u53e06" n="42" textRangeId="u53e07">
-      <endnote-text>The ‘5 W’s’ (Who, What, When, Where, Why) are a standard journalistic framework forensuring completeness and clarity in reporting; sometimes ‘How’ is addedas a sixth element.</endnote-text>
+      <endnote-text>The ‘5 W’s’ (Who, What, When, Where, Why) are a standard journalistic framework forensuring completeness and clarity in reporting; sometimes ‘How’ is added as a sixth element.</endnote-text>
     </endnote>
     <endnote endnoteId="u53e08" n="43" textRangeId="u53e09">
-      <endnote-text>A: Actor, B: Behaviour, C: Content, D: Degree, E: Effect. Pamment, J.&lt;cite&gt;The EU’sRole in Fighting Disinformation: Crafting A Disinformation Framework&lt;/cite&gt;. (2020)</endnote-text>
+      <endnote-text>A: Actor, B: Behaviour, C: Content, D: Degree, E: Effect. Pamment, J. <cite>The EU’s Role in Fighting Disinformation: Crafting A Disinformation Framework</cite>. (2020)</endnote-text>
     </endnote>
     <endnote endnoteId="u53e0b" n="44" textRangeId="u53e0c">
-      <endnote-text>DISARM (&lt;cite&gt;Disinformation Analysis and Risk Management&lt;/cite&gt;) is an open-sourceframework developed by the DISARM Foundation drawing on cybersecurity methodologiesto help organizations identify, analyse and coordinate responses to disinformationcampaigns through a shared taxonomy of tactics, techniques and procedures.www.disarm.foundation</endnote-text>
+      <endnote-text>DISARM (<cite>Disinformation Analysis and Risk Management</cite>) is an open-source framework developed by the DISARM Foundation drawing on cybersecurity methodologies to help organizations identify, analyse and coordinate responses to disinformation campaigns through a shared taxonomy of tactics, techniques and procedures. <EndnotesLink>www.disarm.foundation</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53e0e" n="45" textRangeId="u53e0f">
-      <endnote-text>MITRE ATT&amp;CK (Adversarial Tactics, Techniquesand Common Knowledge) is an open knowledge base developed bythe MITRE Foundation that documents real-world adversary tactics andtechniques used in cyberattacks.https://attack.mitre.org</endnote-text>
+      <endnote-text>MITRE ATT&amp;CK (Adversarial Tactics, Techniques and Common Knowledge) is an open knowledge base developed bythe MITRE Foundation that documents real-world adversary tactics andtechniques used in cyberattacks. <EndnotesLink>https://attack.mitre.org</EndnotesLink></endnote-text>
     </endnote>
     <endnote endnoteId="u53e10" n="46" textRangeId="u53e11">
-      <endnote-text>LinkAlongSàrl, a Swiss-based company founded at École Polytechnique Fédéralede Lausanne – one of Europe’s leading science and engineeringinstitutions – combines advanced AI with human expertise to detect weaksignals, anticipate risks and accelerate insight-driven decisions.</endnote-text>
+      <endnote-text>LinkAlong Sàrl, a Swiss-based company founded at École Polytechnique Fédéralede Lausanne – one of Europe’s leading science and engineering institutions – combines advanced AI with human expertise to detect weak signals, anticipate risks and accelerate insight-driven decisions.</endnote-text>
     </endnote>
     <endnote endnoteId="u53e13" n="47" textRangeId="u53e14">
-      <endnote-text>URLstands for uniform resource locator: the web address typed intoa browser to reach a specific page or resource onthe internet.</endnote-text>
+      <endnote-text>URL stands for uniform resource locator: the web address typed intoa browser to reach a specific page or resource on the internet.</endnote-text>
     </endnote>
     <endnote endnoteId="u53e15" n="48" textRangeId="u53e16">
-      <endnote-text>NewsGuard is a US company employing aninternational team of journalists to produce information reliability data forconsumers, brands and institutions. It maintains a continuously updated, machine-readable database of provably false claims circulating online.</endnote-text>
+      <endnote-text>NewsGuard is a US company employing an international team of journalists to produce information reliability data for consumers, brands and institutions. It maintains a continuously updated, machine-readable database of provably false claims circulating online.</endnote-text>
     </endnote>
   </endnotes>
 </Story>

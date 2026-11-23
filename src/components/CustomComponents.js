@@ -495,8 +495,11 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
   const contributorTagIndex = rest.findIndex((child) => child.type === ContributorTag);
   const contributorTag = contributorTagIndex >= 0 ? rest.splice(contributorTagIndex, 1) : [];
   const splittedByAnchor = chunkByPredicate(rest, (child) => child.type === Anchor);
+  const spotlightHeading = React.isValidElement(h2)
+    ? React.cloneElement(h2, { id: null })
+    : h2;
   return (
-    <div id={h2.props.id}>
+    <div id={h2?.props?.id}>
       <div className="text-[#ee2435] grid grid-cols-[5%_95%] w-full h-auto" {...props}>
         <div className="[border-inline-start:1px_solid_#ee2435]" />
         <div className="flex items-center justify-between pt-4 pb-4">
@@ -517,7 +520,7 @@ export const Box = async ({ children, index, types, arrowHref, arrowLabel, ...pr
           </div>
         </div>
       </div>
-      {<Spotlight>{React.cloneElement(h2, { id: null })}</Spotlight>}
+      {h2 ? <Spotlight>{spotlightHeading}</Spotlight> : null}
       {splittedByAnchor.map((chunk, index) => {
         if (chunk[0].type === Anchor) {
           return chunk[0];
