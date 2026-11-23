@@ -34,6 +34,8 @@ const COMPONENT_REGISTRY = {
     parse: parseImageAttributes,
     children: 'inline',
   },
+  ColumParagraphs: { component: CustomComponents.ColumParagraphs, attributes: new Set(), children: new Set(['ColumParagraph']) },
+  ColumParagraph: { component: CustomComponents.ColumParagraph, attributes: new Set(), children: 'flow' },
   ContributorTag: { component: CustomComponents.ContributorTag, attributes: new Set(), children: new Set(['Contributor']) },
   Contributor: {
     component: CustomComponents.Contributor,
@@ -65,7 +67,7 @@ const FLOW_TAGS = new Set([
   'normal-first-col', 'normal-last-col', 'normal-last-col-next',
   'normal-box-numbered-list', 'numbered-list', 'recommendations', 'toh-body-box', 'toh-body',
   'ContributorTag', 'Anchor', 'AsksAims',
-  'TohInsight', 'ChapterImage',
+  'TohInsight', 'ChapterImage', 'ColumParagraphs',
 ]);
 
 /** Returns the approved component registry entry for an XML component name. */

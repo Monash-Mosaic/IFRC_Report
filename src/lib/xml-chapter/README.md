@@ -83,7 +83,8 @@ Responsibilities include:
   optional `width`, `height` and `alt`) into a `ChapterImage`. A preceding
   `h1-figures-body`/`h2-figures-body` and a following `source` fold into its
   title, subtitle and caption; in a box, `h1-fig-box` becomes an `Anchor`
-  above the image. Titled figures are numbered `{chapterNumber}.{count}` in
+  above the image (or above a `ColumParagraphs` that holds the image in one
+  column beside text). Titled figures are numbered `{chapterNumber}.{count}` in
   document order, alt defaults to the title, and these title tags never enter
   the table of contents.
 - Ignoring metadata and layout-only XML elements.
@@ -126,7 +127,8 @@ For each approved component it defines:
 The registry prevents arbitrary XML element names from becoming React
 components and validates component structure before it reaches the renderer.
 Examples include `Box`, `TohInsight`, `Anchor`, `ChapterImage`, contributor
-components, definitions, and `AsksAims` components.
+components, definitions, `AsksAims` components, and the
+`ColumParagraphs`/`ColumParagraph` two-column layout.
 
 ### `renderChapter.js`
 

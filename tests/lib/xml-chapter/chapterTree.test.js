@@ -229,6 +229,17 @@ describe('XML chapter normalization', () => {
       ['ChapterImage', '1.3', '/wdr25/chapter-01/Fig-1-3.webp'],
     ]);
     expect(JSON.stringify(result.tableOfContents)).not.toMatch(/Posts on X|AI Incident Tracker|Threat actors involved/);
+
+    const box11 = result.children.find((n) => n.name === 'Box' && n.props.index === '1.1');
+    const anchorAt = box11.children.findIndex((n) => n.name === 'Anchor');
+    const columns = box11.children[anchorAt + 1];
+    expect(columns.name).toBe('ColumParagraphs');
+    const [textColumn, imageColumn] = columns.children;
+    expect(textColumn.children.map((n) => n.type))
+      .toEqual(['paragraph', 'paragraph', 'listItem', 'listItem', 'listItem', 'paragraph']);
+    expect(imageColumn.children).toMatchObject([
+      { name: 'ChapterImage', props: { imagePath: '/wdr25/chapter-01/fig-1-1-c_opt.webp', alt: 'Posts on X, November and December 2024' } },
+    ]);
   });
 
   it.each([
@@ -338,11 +349,38 @@ describe('XML chapter normalization', () => {
       expect(result.tableOfContents).toEqual([]);
     });
 
+    it('places a box figure in two columns after its numbered Anchor', () => {
+      const result = figures(
+        '<Box index="1.1" types="Physical"><h1-fig-box>Posts on X </h1-fig-box>' +
+        '<ColumParagraphs><ColumParagraph><normal-box>Text</normal-box></ColumParagraph>' +
+        '<ColumParagraph><anchor><fig imagePath="/b.webp"/></anchor></ColumParagraph></ColumParagraphs></Box>'
+      );
+      expect(result.children[0].children).toEqual([
+        { type: 'component', name: 'Anchor', props: { meta: 'Fig 1.1' }, children: [{ type: 'text', value: 'Posts on X' }] },
+        {
+          type: 'component', name: 'ColumParagraphs', props: {}, children: [
+            { type: 'component', name: 'ColumParagraph', props: {}, children: [
+              { type: 'paragraph', children: [{ type: 'text', value: 'Text' }] },
+            ] },
+            { type: 'component', name: 'ColumParagraph', props: {}, children: [
+              { type: 'component', name: 'ChapterImage', props: { imagePath: '/b.webp', alt: 'Posts on X' } },
+            ] },
+          ],
+        },
+      ]);
+    });
+
     it.each([
       ['a figure title with no fig', '<h1-figures-body>T</h1-figures-body><normal>Text</normal>'],
       ['a box figure title with no fig', '<h1-fig-box>T</h1-fig-box><normal>Text</normal>'],
       ['a source with text that follows no figure', '<normal>Text</normal><source>Sources: X</source>'],
       ['a fig without imagePath', '<fig href_fmt="images/a_fmt2.png"/>'],
+      ['box figure columns with no fig',
+        '<Box index="1.1" types="Physical"><h1-fig-box>T</h1-fig-box><ColumParagraphs><ColumParagraph><normal-box>x</normal-box></ColumParagraph></ColumParagraphs></Box>'],
+      ['box figure columns with two figs',
+        '<Box index="1.1" types="Physical"><h1-fig-box>T</h1-fig-box><ColumParagraphs><ColumParagraph><fig imagePath="/a.webp"/></ColumParagraph><ColumParagraph><fig imagePath="/b.webp"/></ColumParagraph></ColumParagraphs></Box>'],
+      ['ColumParagraphs with a non-column child', '<ColumParagraphs><normal>x</normal></ColumParagraphs>'],
+      ['ColumParagraphs with a count attribute', '<ColumParagraphs count="3"><ColumParagraph><normal>x</normal></ColumParagraph></ColumParagraphs>'],
     ])('rejects %s', (_label, xml) => {
       expect(() => figures(xml)).toThrow(XmlChapterError);
     });

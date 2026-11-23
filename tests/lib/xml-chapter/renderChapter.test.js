@@ -121,4 +121,19 @@ describe('XML chapter renderer', () => {
     expect(html).toContain('alt="AI Incident Tracker"');
     expect(html).toMatch(/<figcaption[^>]*>Sources: <strong>MIT<\/strong> dashboards<\/figcaption>/);
   });
+
+  it('renders a box figure beside its text in two columns', () => {
+    const tree = convertToChapterTree(parseXmlSource(
+      '<Story><Story><chapter-title>T</chapter-title>' +
+      '<Box index="1.1" types="Physical"><h1-fig-box>Posts on X</h1-fig-box>' +
+      '<ColumParagraphs><ColumParagraph><normal-box>Left text</normal-box></ColumParagraph>' +
+      '<ColumParagraph><anchor><fig imagePath="/wdr25/chapter-01/fig.webp"/></anchor></ColumParagraph>' +
+      '</ColumParagraphs></Box></Story></Story>'
+    ), { locale: 'en', chapterNumber: 1 });
+    // Box itself suspends under renderToStaticMarkup, so render its contents.
+    const html = renderToStaticMarkup(renderChildren(tree.children[0].children));
+
+    expect(html).toMatch(/Fig 1\.1.*Posts on X.*<div class="grid gap-6 md:grid-cols-2"><div class="space-y-4"><p>Left text<\/p><\/div><div class="space-y-4"><figure/s);
+    expect(html).toContain('alt="Posts on X"');
+  });
 });

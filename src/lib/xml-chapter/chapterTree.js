@@ -92,6 +92,8 @@ const COMPONENTS = new Set([
   'Reccomendations', 
   'ReccomendationsTitle',
   'EndnotesLink',
+  'ColumParagraphs',
+  'ColumParagraph',
 ]);
 
 /** Heading shown above the endnote list, by locale. */
@@ -102,6 +104,9 @@ const sourceOf = new WeakMap();
 
 /** Figure nodes (ChapterImage or box Anchor) that receive the next figure number. */
 const numberedFigures = new WeakSet();
+
+/** Default alt text for a box figure's fig that sits inside ColumParagraphs, away from its title. */
+const figAlt = new WeakMap();
 
 /** Returns the child nodes of an XML node. */
 const childrenOf = (n) => Array.isArray(n?.children) ? n.children : [];
@@ -126,24 +131,8 @@ export function convertToChapterTree(root, context = {}) {
   const subtitle = subtitleNode?.name === 'chapter-subtitle' ? clean(textValue(subtitleNode)) : '';
 
   // Convert the story children into normalized chapter nodes
-  const raw = convertBlocks(childrenOf(story), story);
-
-  // Coalesce consecutive list items into a single list and assign unique IDs to headings
-  const result = [];
+  const result = coalesceLists(convertBlocks(childrenOf(story), story));
   const headingIds = new Map();
-  for (const n of raw) {
-    if (n.type === 'listItem') {
-      // Style tags are converted before coalescing; numbered lists are marked by
-      // the private flag below while preserving the public plain-data shape.
-      const ordered = n.ordered === true;
-      const prev = result.at(-1);
-      delete n.ordered;
-      if (prev?.type === 'list' && prev.ordered === ordered) prev.children.push(n);
-      else result.push(ordered ? orderedList([n]) : unorderedList([n]));
-    } else {
-      result.push(n);
-    }
-  }
 
   // Number the endnote references and append the endnote list (with its heading).
   const endnoteList = convertEndnotes(root, context);
@@ -432,8 +421,19 @@ function convertBlocks(children, parent) {
     const subtitle = is(i, 'h2-figures-body') ? nodes[i++] : null;
     const boxTitle = !title && !subtitle && is(i, 'h1-fig-box') ? nodes[i++] : null;
     const runStart = title ?? subtitle ?? boxTitle;
-    const fig = soleFig(nodes[i]);
-    if (runStart && !fig) throw new XmlChapterError(`"${runStart.name}" must be followed by a fig`, { node: runStart });
+    // A box figure may sit in a column beside text: h1-fig-box, then ColumParagraphs holding the fig.
+    const columnLayout = boxTitle && is(i, 'ColumParagraphs') ? nodes[i] : null;
+    const fig = columnLayout ? null : soleFig(nodes[i]);
+    if (columnLayout) {
+      const figs = childrenOf(columnLayout).flatMap((col) => childrenOf(col).map(soleFig).filter(Boolean));
+      if (figs.length !== 1) {
+        throw new XmlChapterError('"h1-fig-box" columns must contain exactly one fig', { node: columnLayout });
+      }
+      const titleText = clean(textValue(boxTitle));
+      figAlt.set(figs[0], titleText);
+      out.push(boxAnchor(titleText, figs[0]));
+    }
+    if (runStart && !fig && !columnLayout) throw new XmlChapterError(`"${runStart.name}" must be followed by a fig`, { node: runStart });
 
     // If we found a figure run, convert it into a ChapterImage (or an Anchor for a box figure).
     if (fig) {
@@ -446,11 +446,7 @@ function convertBlocks(children, parent) {
         if (caption.length) image.caption = caption;
       }
       if (boxTitle) {
-        // Box figures show their title in an Anchor above an untitled image, as in the MDX.
-        const anchor = component('Anchor', { meta: '' }, [text(titleText)]);
-        numberedFigures.add(anchor);
-        sourceOf.set(anchor, fig);
-        out.push(anchor);
+        out.push(boxAnchor(titleText, fig));
       } else if (title) {
         image.props.imageTitle = titleText;
         numberedFigures.add(image);
@@ -467,6 +463,32 @@ function convertBlocks(children, parent) {
     if (value) out.push(...(Array.isArray(value) ? value : [value]));
   }
   return out;
+}
+
+/** Box figures show their title in a numbered Anchor above an untitled image, as in the MDX. */
+function boxAnchor(titleText, fig) {
+  const anchor = component('Anchor', { meta: '' }, [text(titleText)]);
+  numberedFigures.add(anchor);
+  sourceOf.set(anchor, fig);
+  return anchor;
+}
+
+/** Merges consecutive top-level list items into one ordered or unordered list. */
+function coalesceLists(nodes) {
+  const result = [];
+  for (const n of nodes) {
+    if (n.type !== 'listItem') {
+      result.push(n);
+      continue;
+    }
+    // Numbered items carry a private `ordered` flag until they are merged.
+    const ordered = n.ordered === true;
+    delete n.ordered;
+    const prev = result.at(-1);
+    if (prev?.type === 'list' && prev.ordered === ordered) prev.children.push(n);
+    else result.push(ordered ? orderedList([n]) : unorderedList([n]));
+  }
+  return result;
 }
 
 /** Gives each titled figure, in document order, the label `{chapterNumber}.{count}`. */
@@ -503,6 +525,6 @@ function figureImage(fig, { alt } = {}) {
     if (attr(fig, name) !== undefined) attributes[name] = attr(fig, name);
   }
   const props = parseImageAttributes(attributes, fig);
-  props.alt ??= alt ?? '';
+  props.alt ??= alt ?? figAlt.get(fig) ?? '';
   return component('ChapterImage', props);
 }
