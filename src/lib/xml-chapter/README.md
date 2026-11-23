@@ -70,13 +70,22 @@ Responsibilities include:
 - Mapping `quote` and `quote-author` style tags to the `SmallQuote` and
   `SmallQuoteAuthor` application components.
 - Converting explicit XML application components into
-  `{ type: 'component', name, props, children }` nodes.
+  `{ type: 'component', name, props, children }` nodes. A `ChapterImage`
+  node may also carry `caption` (inline nodes from its `source`), which the
+  renderer passes as the `caption` prop.
 - Generating stable heading IDs and a table of contents.
 - Coalescing adjacent list items into ordered or unordered lists.
 - Reading the `<endnotes>` section into an `endnotes` node (preceded by an
   "Endnotes" heading), numbering each `endnoteReference` from its endnote's `n`,
   and failing the build on missing, unknown, duplicate or unreferenced endnotes.
   `<cite>` becomes emphasis and `<EndnotesLink>` wraps URLs.
+- Converting each `<fig>` (which must carry an explicit `imagePath`, plus
+  optional `width`, `height` and `alt`) into a `ChapterImage`. A preceding
+  `h1-figures-body`/`h2-figures-body` and a following `source` fold into its
+  title, subtitle and caption; in a box, `h1-fig-box` becomes an `Anchor`
+  above the image. Titled figures are numbered `{chapterNumber}.{count}` in
+  document order, alt defaults to the title, and these title tags never enter
+  the table of contents.
 - Ignoring metadata and layout-only XML elements.
 - Rejecting unsupported visible XML content.
 
@@ -128,7 +137,8 @@ It uses a closed mapping for intrinsic elements and supports:
 - Headings with generated IDs and depth-specific typography classes.
 - Paragraphs, strong/emphasis text, quotes, links, and captions.
 - Ordered and unordered lists.
-- Figures with safe asset paths.
+- `ChapterImage` figures, passing a figure's source caption nodes as the
+  `caption` prop.
 - Tables and table cells.
 - Endnote references as `<sup><a id="endnote-ref-{n}" href="#endnote-{n}">{n}</a></sup>`.
 - The endnotes list as an `<ol>` of `<li id="endnote-{n}">` items, each ending

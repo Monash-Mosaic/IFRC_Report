@@ -43,6 +43,8 @@ function renderNode(node, key) {
     // Props were parsed and validated by the component registry.  Construct a
     // fresh object so a tree cannot mutate registry data or add event props.
     const props = { ...(node.props || {}), key };
+    // ChapterImage takes its source caption as a prop, not as children.
+    if (node.caption) props.caption = renderChildren(node.caption);
     let children;
     try {
       children = renderChildren(node.children);
@@ -84,22 +86,6 @@ function renderNode(node, key) {
     return React.createElement(intrinsic, props, renderChildren(node.children));
   }
 
-  if (node.type === 'figure') {
-    const props = node.props || {};
-    const imageProps = {
-      key,
-      ...(safeAsset(props.src) ? { src: props.src } : {}),
-      ...(typeof props.alt === 'string' ? { alt: props.alt } : { alt: '' }),
-    };
-    const caption = typeof props.caption === 'string'
-      ? React.createElement('figcaption', { key: `${key}-caption` }, props.caption)
-      : null;
-    return React.createElement('figure', { key },
-      React.createElement('img', imageProps),
-      renderChildren(node.children),
-      caption);
-  }
-
   if (node.type === 'endnoteReference') {
     return Number.isInteger(node.n)
       ? React.createElement('sup', { key },
@@ -139,13 +125,6 @@ function headingClassName(depth) {
     4: 'text-xl',
   };
   return `font-bold ${sizeByDepth[depth] || sizeByDepth[1]} text-balance`;
-}
-
-/** Returns a safe asset path. */
-function safeAsset(value) {
-  return typeof value === 'string' && value.startsWith('/') &&
-    !value.includes('..') && !value.includes('\\') &&
-    !/^[a-z][a-z\d+.-]*:/i.test(value);
 }
 
 /** Returns a safe same-document or HTTPS link value. */

@@ -73,7 +73,7 @@ describe('XML chapter renderer', () => {
     expect(renderToStaticMarkup(renderChapter(tree))).toBe(expected);
   });
 
-  it('renders safe links, figures and captions', () => {
+  it('renders safe links', () => {
     const tree = {
       type: 'chapter',
       children: [
@@ -82,15 +82,11 @@ describe('XML chapter renderer', () => {
           props: { href: '#section' },
           children: [{ type: 'text', value: 'Jump' }],
         },
-        {
-          type: 'figure',
-          props: { src: '/image.webp', alt: 'Image', caption: 'Caption' },
-        },
       ],
     };
 
     expect(renderToStaticMarkup(renderChapter(tree))).toContain(
-      '<a href="#section">Jump</a><figure><img src="/image.webp" alt="Image"/><figcaption>Caption</figcaption></figure>'
+      '<a href="#section">Jump</a>'
     );
   });
 
@@ -109,5 +105,20 @@ describe('XML chapter renderer', () => {
     expect(html).toContain('See <em>Book</em>.');
     expect(html).toContain('href="https://www.who.int"');
     expect(html).toContain('<a href="#endnote-ref-1" aria-label="Back to reference 1">↩</a>');
+  });
+
+  it('renders a figure as ChapterImage with its label, title and source caption', () => {
+    const tree = convertToChapterTree(parseXmlSource(
+      '<Story><Story><chapter-title>T</chapter-title>' +
+      '<h1-figures-body>AI Incident Tracker</h1-figures-body>' +
+      '<normal><fig imagePath="/wdr25/chapter-01/Fig-1-3.webp"/></normal>' +
+      '<source>Sources: <bold>MIT</bold> dashboards</source></Story></Story>'
+    ), { locale: 'en', chapterNumber: 1 });
+    const html = renderToStaticMarkup(renderChapter(tree));
+
+    expect(html).toContain('Fig 1.1');
+    expect(html).toContain('AI Incident Tracker');
+    expect(html).toContain('alt="AI Incident Tracker"');
+    expect(html).toMatch(/<figcaption[^>]*>Sources: <strong>MIT<\/strong> dashboards<\/figcaption>/);
   });
 });

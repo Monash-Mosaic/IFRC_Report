@@ -36,7 +36,7 @@
       <normal-box-bullet-list>misusing funds &#8211; lying about their destination and amounts allocated or refusing inkind donations to keep the money. </normal-box-bullet-list>
       <h1-fig-box>Posts on X, November and December 2024 </h1-fig-box>
       <anchor>
-        <fig href_fmt="images/fig-1-1-c_fmt2.png" href="file://images/fig-1-1-c2.psd"></fig>
+        <fig imagePath="/wdr25/chapter-01/fig-1-1-c_opt.webp" width="782" height="1366" href_fmt="images/fig-1-1-c_fmt2.png" href="file://images/fig-1-1-c2.psd"></fig>
       </anchor>
       <normal-box-alt>A smaller number of recurring posts attacked the Spanish Red Cross&#8217; international work (e.g., for Ukraine or Gaza) or resurfaced older posts related to migrants in Spain or blood donations. </normal-box-alt>
       <normal-box>In this case, harmful information did not directly hinder the humanitarian response; it was not an obstacle to providing assistance. However, it undoubtedly had an impact on the people involved in the response by: </normal-box>
@@ -130,7 +130,7 @@
     <normal-tight>The introduction of AI has further lowered the barrier to entry, enabling more sophisticated, scalable manipulation and deepening the asymmetry between those spreading harmful information and those trying to contain it. What most clearly differentiates these actors is their intent &#8211; whether to deceive, disrupt, distract, divide or dominate. That intent not only shapes the forms their actions take but also determines the countermeasures required. This is not a level playing field: those spreading harmful content are faster, louder and have fewer constraints than those working to uphold truth and trust.</normal-tight>
     <h1-figures-body>Threat actors involved in harmful information </h1-figures-body>
     <normal>
-      <fig href_fmt="images/c1-word-cloud-CMYK_fmt2.png" href="file://images/c1-word-cloud-CMYK2.ai"></fig>
+      <fig imagePath="/wdr25/chapter-01/c1-word-cloud.webp" href_fmt="images/c1-word-cloud-CMYK_fmt2.png" href="file://images/c1-word-cloud-CMYK2.ai"></fig>
     </normal>
     <h1>Information integrity in crisis situations </h1>
     <normal>The UN has identified strengthening information integrity as &#8220;one of the most urgent challenges of our time&#8221; &#8211; fundamental to human rights, peace and sustainable development. Information integrity refers to the accuracy, consistency and reliability of information. In response to growing threats from misinformation, disinformation, hate speech and the misuse of digital technologies, including AI, the UN Global Principles for Information Integrity<endnotes-ref endnoteId="u53dab"></endnotes-ref> were launched. </normal>
@@ -430,7 +430,7 @@
     <h1-figures-body>AI Incident Tracker </h1-figures-body>
     <h2-figures-body>This tracker illustrates how the severity of AI incidents has changed over time. </h2-figures-body>
     <normal>
-      <fig href_fmt="images/Fig-1-3_fmt2.png" href="file://images/Fig-1-32.ai"></fig>
+      <fig imagePath="/wdr25/chapter-01/Fig-1-3.webp" href_fmt="images/Fig-1-3_fmt2.png" href="file://images/Fig-1-32.ai"></fig>
     </normal>
     <source>Sources: <body-hyperlinks>MIT AI Risk Initiative</body-hyperlinks> &#8212; AI Incident Tracker &amp; Scalable AI Incident Classification dashboards (based on the AI Incident Database) </source>
     <normal>See <cross-reference-link>Chapter 5, on page 167 </cross-reference-link>for reflections on regulation, rights and policy. </normal>

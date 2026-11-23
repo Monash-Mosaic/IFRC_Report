@@ -1,5 +1,6 @@
 import { XmlChapterError } from './errors.js';
 import { parseComponentProps, validateComponentNode } from './componentRegistry.js';
+import { parseImageAttributes } from './attributeParsers.js';
 
 /** Plain-data constructors used by the XML chapter normalizer. */
 export const node = (type, properties = {}, children = []) => ({
@@ -18,7 +19,6 @@ const unorderedList = (children = []) => node('list', { ordered: false }, childr
 const orderedList = (children = []) => node('list', { ordered: true }, children);
 const listItem = (children = []) => node('listItem', {}, children);
 const quote = (children = []) => node('quote', {}, children);
-const figure = (props = {}, children = []) => node('figure', { props }, children);
 const endnoteReference = (id) => node('endnoteReference', { id });
 const endnote = (id, n, children = []) => node('endnote', { id, n }, children);
 const endnotes = (children = []) => node('endnotes', {}, children);
@@ -50,7 +50,6 @@ const HEADING = {
   'h1-recommendations': 1, 
   'h1-conclusion': 1,
   'h1-box': 2, 
-  'h1-fig-box': 2, 
   h2: 2, 
   'h2-box': 3,
   h3: 3, 
@@ -58,8 +57,6 @@ const HEADING = {
   'heading-3': 3, 
   h4: 4, 
   'h1-tables': 2, 
-  'h1-figures-body': 2,
-  'h2-figures-body': 3, 
   'h1-chapter-toc-title': 2,
 };
 
@@ -100,8 +97,11 @@ const COMPONENTS = new Set([
 /** Heading shown above the endnote list, by locale. */
 const ENDNOTES_HEADING = { en: 'Endnotes' };
 
-/** Maps plain-data endnote nodes back to their XML nodes, for error locations. */
+/** Maps plain-data endnote and figure nodes back to their XML nodes, for error locations. */
 const sourceOf = new WeakMap();
+
+/** Figure nodes (ChapterImage or box Anchor) that receive the next figure number. */
+const numberedFigures = new WeakSet();
 
 /** Returns the child nodes of an XML node. */
 const childrenOf = (n) => Array.isArray(n?.children) ? n.children : [];
@@ -126,10 +126,7 @@ export function convertToChapterTree(root, context = {}) {
   const subtitle = subtitleNode?.name === 'chapter-subtitle' ? clean(textValue(subtitleNode)) : '';
 
   // Convert the story children into normalized chapter nodes
-  const raw = childrenOf(story).flatMap((n) => {
-    const value = convertNode(n, false, story);
-    return value ? (Array.isArray(value) ? value : [value]) : [];
-  });
+  const raw = convertBlocks(childrenOf(story), story);
 
   // Coalesce consecutive list items into a single list and assign unique IDs to headings
   const result = [];
@@ -172,6 +169,8 @@ export function convertToChapterTree(root, context = {}) {
     }
   };
   collectHeadings(result);
+
+  numberFigures(result, context.chapterNumber);
 
   const tableOfContents = buildTableOfContents(headings);
   return chapter(result, { ...context, title, subtitle, tableOfContents });
@@ -368,7 +367,7 @@ function convertNode(n, inline = false, parent = null) {
     return ref;
   }
   if (n.name === 'cite') return emphasis(inlineChildren(n));
-  if (n.name === 'fig') return figure({ src: attr(n, 'href_fmt') || attr(n, 'href'), alt: clean(textValue(n)) });
+  if (n.name === 'fig') return figureImage(n);
   if (n.name === 'anchor') return component('Anchor', { meta: `Fig ${attr(n, 'index') || ''}`.trim() }, inlineChildren(n));
   if (n.name === 'definition-icon') return null;
   if (n.name === 'caption') return paragraph(inlineChildren(n));
@@ -387,7 +386,7 @@ function convertNode(n, inline = false, parent = null) {
   }
   if (
     n.name === 'return' ||
-    n.name === 'source' ||
+    n.name === 'source' || // a source with text is only valid after a figure (see convertBlocks)
     n.name === 'toc-page-number' ||
     n.name === 'toh' ||
     n.name === 'toh-next' ||
@@ -410,8 +409,100 @@ function componentNode(n) {
       throw new XmlChapterError('AsksAims requires Asks before Aims', { node: n });
     }
   }
-  return component(name, props, childrenOf(n).flatMap((c) => {
-    const value = convertNode(c, false, n);
-    return value ? (Array.isArray(value) ? value : [value]) : [];
-  }));
+  return component(name, props, convertBlocks(childrenOf(n), n));
+}
+
+/**
+ * Converts block-level siblings. A figure run (`h1-figures-body`, optional
+ * `h2-figures-body`, the fig, optional `source`) becomes one ChapterImage; a
+ * wrapper holding only a fig is unwrapped to the figure.
+ */
+function convertBlocks(children, parent) {
+  const nodes = children.filter(visible);
+
+  /** Checks if the node at index `i` is an element with the given `name`. */
+  const is = (i, name) => nodes[i]?.type === 'element' && nodes[i].name === name;
+
+  const out = [];
+
+  // Walk the nodes in order, looking for figure runs and other block-level content.
+  for (let i = 0; i < nodes.length; i++) {
+    // Check if a figure run starts here: an optional h1-figures-body, optional h2-figures-body, and a fig.
+    const title = is(i, 'h1-figures-body') ? nodes[i++] : null;
+    const subtitle = is(i, 'h2-figures-body') ? nodes[i++] : null;
+    const boxTitle = !title && !subtitle && is(i, 'h1-fig-box') ? nodes[i++] : null;
+    const runStart = title ?? subtitle ?? boxTitle;
+    const fig = soleFig(nodes[i]);
+    if (runStart && !fig) throw new XmlChapterError(`"${runStart.name}" must be followed by a fig`, { node: runStart });
+
+    // If we found a figure run, convert it into a ChapterImage (or an Anchor for a box figure).
+    if (fig) {
+      const titleText = title ?? boxTitle ? clean(textValue(title ?? boxTitle)) : undefined;
+      const image = figureImage(fig, { alt: titleText });
+      if (subtitle) image.props.imageSubtitle = clean(textValue(subtitle));
+      if (is(i + 1, 'source')) {
+        // A source with text is only valid after a figure (see convertNode). The source text becomes the image caption.
+        const caption = inlineChildren(nodes[++i]);
+        if (caption.length) image.caption = caption;
+      }
+      if (boxTitle) {
+        // Box figures show their title in an Anchor above an untitled image, as in the MDX.
+        const anchor = component('Anchor', { meta: '' }, [text(titleText)]);
+        numberedFigures.add(anchor);
+        sourceOf.set(anchor, fig);
+        out.push(anchor);
+      } else if (title) {
+        image.props.imageTitle = titleText;
+        numberedFigures.add(image);
+        sourceOf.set(image, fig);
+      }
+      out.push(image);
+      continue;
+    }
+
+    if (is(i, 'source') && childrenOf(nodes[i]).some(visible)) {
+      throw new XmlChapterError('"source" must follow a figure', { node: nodes[i] });
+    }
+    const value = convertNode(nodes[i], false, parent);
+    if (value) out.push(...(Array.isArray(value) ? value : [value]));
+  }
+  return out;
+}
+
+/** Gives each titled figure, in document order, the label `{chapterNumber}.{count}`. */
+function numberFigures(nodes, chapterNumber) {
+  let count = 0;
+  /** Visits nodes in document order. */
+  const visit = (list) => list.forEach((n) => {
+    if (numberedFigures.has(n)) {
+      if (chapterNumber == null) {
+        throw new XmlChapterError('Numbering figures requires a chapterNumber', { node: sourceOf.get(n) });
+      }
+      const index = `${chapterNumber}.${++count}`;
+      if (n.name === 'Anchor') n.props.meta = `Fig ${index}`;
+      else n.props.imageIndex = index;
+    }
+    if (Array.isArray(n?.children)) visit(n.children);
+  });
+  visit(nodes);
+}
+
+/** Returns the fig itself, or the only fig inside a paragraph/anchor wrapper with no visible text. */
+function soleFig(n) {
+  if (n?.type !== 'element') return null;
+  if (n.name === 'fig') return n;
+  if (!BLOCK.has(n.name) && n.name !== 'anchor') return null;
+  const content = childrenOf(n).filter(visible);
+  return content.length === 1 && content[0].name === 'fig' ? content[0] : null;
+}
+
+/** Builds a ChapterImage from a fig's attributes (imagePath is required). */
+function figureImage(fig, { alt } = {}) {
+  const attributes = {};
+  for (const name of ['imagePath', 'width', 'height', 'alt']) {
+    if (attr(fig, name) !== undefined) attributes[name] = attr(fig, name);
+  }
+  const props = parseImageAttributes(attributes, fig);
+  props.alt ??= alt ?? '';
+  return component('ChapterImage', props);
 }

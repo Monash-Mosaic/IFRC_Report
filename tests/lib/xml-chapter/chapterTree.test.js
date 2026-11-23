@@ -74,7 +74,7 @@ describe('XML chapter normalization', () => {
     ['quote', '<quote>Quoted text</quote>', 'component'],
     ['quote author', '<quote-author>Author</quote-author>', 'component'],
     ['chapter quote', '<chapter-quote>Quoted text</chapter-quote>', 'quote'],
-    ['figure', '<fig href_fmt="figure.jpg"></fig>', 'figure'],
+    ['figure', '<fig imagePath="/figure.jpg"></fig>', 'component'],
     ['endnote reference', `<normal>Text<endnotes-ref endnoteId="n1"/></normal>${ENDNOTES}`, 'paragraph'],
     ['table', '<Table><Cell>Cell text</Cell></Table>', 'table'],
     ['typology insight', '<toh-body-box>p1.3</toh-body-box>', 'component'],
@@ -215,6 +215,20 @@ describe('XML chapter normalization', () => {
     expect(result.children.filter((node) => node.type === 'component' && node.name === 'DefinitionDescription'))
       .toHaveLength(3);
     expect(result.tableOfContents.some((item) => /infodemic/i.test(item.value))).toBe(false);
+
+    const figures = [];
+    const visit = (nodes) => nodes.forEach((n) => {
+      if (n.name === 'ChapterImage' || (n.name === 'Anchor' && n.props.meta)) figures.push(n);
+      if (n.children) visit(n.children);
+    });
+    visit(result.children);
+    expect(figures.map((n) => [n.name, n.props.meta ?? n.props.imageIndex, n.props.imagePath])).toEqual([
+      ['Anchor', 'Fig 1.1', undefined],
+      ['ChapterImage', undefined, '/wdr25/chapter-01/fig-1-1-c_opt.webp'],
+      ['ChapterImage', '1.2', '/wdr25/chapter-01/c1-word-cloud.webp'],
+      ['ChapterImage', '1.3', '/wdr25/chapter-01/Fig-1-3.webp'],
+    ]);
+    expect(JSON.stringify(result.tableOfContents)).not.toMatch(/Posts on X|AI Incident Tracker|Threat actors involved/);
   });
 
   it.each([
@@ -272,6 +286,79 @@ describe('XML chapter normalization', () => {
       expect(() => convertToChapterTree(chapterWith(
         `<normal>A<endnotes-ref endnoteId="a"/></normal><endnotes>${note('a', 1)}</endnotes>`
       ), { locale: 'xx' })).toThrow(XmlChapterError);
+    });
+  });
+
+  describe('figures', () => {
+    const figures = (xml) => convertToChapterTree(chapterWith(xml), { locale: 'en', chapterNumber: 1 });
+
+    it('renders an untitled fig as an unnumbered ChapterImage with empty alt', () => {
+      const result = figures('<normal><fig imagePath="/wdr25/a.webp" href_fmt="images/a_fmt2.png"/></normal>');
+      expect(result.children).toEqual([
+        { type: 'component', name: 'ChapterImage', props: { imagePath: '/wdr25/a.webp', alt: '' } },
+      ]);
+    });
+
+    it('folds a figure title, subtitle and source into one numbered ChapterImage', () => {
+      const result = figures(
+        '<h1>Intro</h1>' +
+        '<h1-figures-body>AI Incident Tracker </h1-figures-body>' +
+        '<h2-figures-body>Severity over time. </h2-figures-body>' +
+        '<normal><fig imagePath="/wdr25/fig.webp"/></normal>' +
+        '<source>Sources: <body-hyperlinks>MIT</body-hyperlinks> dashboards</source>'
+      );
+      expect(result.children[1]).toEqual({
+        type: 'component',
+        name: 'ChapterImage',
+        props: {
+          imagePath: '/wdr25/fig.webp',
+          imageTitle: 'AI Incident Tracker',
+          imageSubtitle: 'Severity over time.',
+          imageIndex: '1.1',
+          alt: 'AI Incident Tracker',
+        },
+        caption: expect.any(Array),
+      });
+      expect(result.children[1].caption.map((c) => c.value).join('')).toBe('Sources: MIT dashboards');
+      expect(result.children).toHaveLength(2);
+      expect(result.tableOfContents).toEqual([{ depth: 1, value: 'Intro', id: 'intro' }]);
+    });
+
+    it('renders a box figure as a numbered Anchor followed by an untitled ChapterImage', () => {
+      const result = figures(
+        '<h1-figures-body>First</h1-figures-body><fig imagePath="/a.webp"/>' +
+        '<Box index="1.1" types="Physical"><h1-fig-box>Posts on X </h1-fig-box>' +
+        '<anchor><fig imagePath="/b.webp" width="782" height="1366"/></anchor></Box>'
+      );
+      const box = result.children[1];
+      expect(box.children).toEqual([
+        { type: 'component', name: 'Anchor', props: { meta: 'Fig 1.2' }, children: [{ type: 'text', value: 'Posts on X' }] },
+        { type: 'component', name: 'ChapterImage', props: { imagePath: '/b.webp', width: 782, height: 1366, alt: 'Posts on X' } },
+      ]);
+      expect(result.tableOfContents).toEqual([]);
+    });
+
+    it.each([
+      ['a figure title with no fig', '<h1-figures-body>T</h1-figures-body><normal>Text</normal>'],
+      ['a box figure title with no fig', '<h1-fig-box>T</h1-fig-box><normal>Text</normal>'],
+      ['a source with text that follows no figure', '<normal>Text</normal><source>Sources: X</source>'],
+      ['a fig without imagePath', '<fig href_fmt="images/a_fmt2.png"/>'],
+    ])('rejects %s', (_label, xml) => {
+      expect(() => figures(xml)).toThrow(XmlChapterError);
+    });
+
+    it('takes a source caption after any figure and ignores an empty source', () => {
+      const result = figures(
+        '<fig imagePath="/a.webp"/><source>Src A</source>' +
+        '<h1-figures-body>T</h1-figures-body><fig imagePath="/b.webp"/><source></source>'
+      );
+      expect(result.children.map((n) => n.caption?.map((c) => c.value).join(''))).toEqual(['Src A', undefined]);
+    });
+
+    it('rejects a titled figure when no chapterNumber is given', () => {
+      expect(() => convertToChapterTree(chapterWith(
+        '<h1-figures-body>T</h1-figures-body><fig imagePath="/a.webp"/>'
+      ))).toThrow(XmlChapterError);
     });
   });
 });
