@@ -33,6 +33,20 @@ describe('XML chapter renderer', () => {
     );
   });
 
+  it('renders auto-numbered h1 headings with HeadingLabel', () => {
+    const tree = convertToChapterTree(parseXmlSource(
+      '<Story><Story><chapter-title>T</chapter-title>' +
+      '<h1>Defining harmful information</h1>' +
+      '</Story></Story>'
+    ), { chapterNumber: 1 });
+    const html = renderToStaticMarkup(renderChapter(tree));
+
+    expect(html).toContain('>1.1<');
+    expect(html).toContain('text-[#fe4d60]');
+    expect(html).toContain('Defining harmful information');
+    expect(html).toMatch(/<h1[^>]*id="defining-harmful-information"/);
+  });
+
   it('renders definition style tags with Definition and DefinitionDescription', () => {
     const tree = convertToChapterTree(parseXmlSource(
       '<Story><Story><chapter-title>T</chapter-title>' +

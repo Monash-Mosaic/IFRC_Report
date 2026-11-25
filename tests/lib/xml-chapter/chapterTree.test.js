@@ -87,6 +87,43 @@ describe('XML chapter normalization', () => {
     expect(node.type).toBe(expectedType);
   });
 
+  it('auto-numbers plain h1 headings with HeadingLabel from chapterNumber', () => {
+    const result = convertToChapterTree(chapterWith(
+      '<h1-introduction>Introduction </h1-introduction>' +
+      '<h1>Defining harmful information </h1>' +
+      '<h1>The evolving information ecosystem </h1>' +
+      '<h1-conclusion>Concluding remarks</h1-conclusion>'
+    ), { chapterNumber: 1 });
+
+    expect(result.children.map((node) => [
+      node.value,
+      node.children?.[0]?.type === 'component' ? node.children[0].props.index : null,
+    ])).toEqual([
+      ['Introduction', null],
+      ['Defining harmful information', '1.1'],
+      ['The evolving information ecosystem', '1.2'],
+      ['Concluding remarks', null],
+    ]);
+  });
+
+  it('keeps an explicit heading index attribute when provided', () => {
+    const result = convertToChapterTree(chapterWith(
+      '<h1 index="1.4">Information integrity in crisis situations</h1>'
+    ), { chapterNumber: 1 });
+
+    expect(result.children[0].children[0]).toEqual({
+      type: 'component',
+      name: 'HeadingLabel',
+      props: { index: '1.4' },
+    });
+  });
+
+  it('rejects an invalid heading index attribute', () => {
+    expect(() => convertToChapterTree(chapterWith(
+      '<h1 index="bad">Labeled</h1>'
+    ), { chapterNumber: 1 })).toThrow(XmlChapterError);
+  });
+
   it('maps definition style tags to Definition and DefinitionDescription', () => {
     const result = convertToChapterTree(chapterWith(
       '<definition-icon></definition-icon>' +
@@ -215,6 +252,25 @@ describe('XML chapter normalization', () => {
     expect(result.children.filter((node) => node.type === 'component' && node.name === 'DefinitionDescription'))
       .toHaveLength(3);
     expect(result.tableOfContents.some((item) => /infodemic/i.test(item.value))).toBe(false);
+
+    const labeledHeadings = result.children.filter((node) =>
+      node.type === 'heading' &&
+      node.children?.[0]?.type === 'component' &&
+      node.children[0].name === 'HeadingLabel'
+    );
+    expect(labeledHeadings.map((node) => [node.children[0].props.index, node.value])).toEqual([
+      ['1.1', 'Defining harmful information'],
+      ['1.2', 'The evolving information ecosystem'],
+      ['1.3', 'Who are the threat actors?'],
+      ['1.4', 'Information integrity in crisis situations'],
+      ['1.5', 'From broadcast to twoway engagement'],
+      ['1.6', 'Who is most vulnerable to harmful information – and why?'],
+      ['1.7', 'What is the impact of harmful information?'],
+      ['1.8', 'Artificial intelligence and harmful information'],
+      ['1.9', 'Narratives shape perception, trust and action'],
+      ['1.10', 'Controlling accessibility and content moderation'],
+      ['1.11', 'Analysis and monitoring of harmful information'],
+    ]);
 
     const figures = [];
     const visit = (nodes) => nodes.forEach((n) => {
