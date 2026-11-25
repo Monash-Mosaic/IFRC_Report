@@ -104,6 +104,8 @@ const sourceOf = new WeakMap();
 
 /** Figure nodes (ChapterImage or box Anchor) that receive the next figure number. */
 const numberedFigures = new WeakSet();
+/** Section `<h1>` headings that should get an auto-assigned HeadingLabel. */
+const numberedHeadings = new WeakSet();
 
 /** Default alt text for a box figure's fig that sits inside ColumParagraphs, away from its title. */
 const figAlt = new WeakMap();
@@ -160,6 +162,7 @@ export function convertToChapterTree(root, context = {}) {
   collectHeadings(result);
 
   numberFigures(result, context.chapterNumber);
+  numberHeadings(result, context.chapterNumber);
 
   const tableOfContents = buildTableOfContents(headings);
   return chapter(result, { ...context, title, subtitle, tableOfContents });
@@ -340,7 +343,26 @@ function convertNode(n, inline = false, parent = null) {
   }
   if (HEADING[n.name]) {
     const value = clean(textValue(n));
-    return value ? heading(HEADING[n.name], value, slug(value), inlineChildren(n)) : null;
+    if (!value) return null;
+    const children = inlineChildren(n);
+    const index = clean(attr(n, 'index') || '');
+    if (index) {
+      if (!/^\d+\.\d+$/.test(index)) {
+        throw new XmlChapterError('Heading index must look like "1.1"', {
+          node: n,
+          attribute: 'index',
+        });
+      }
+      return heading(HEADING[n.name], value, slug(value), [
+        component('HeadingLabel', { index }),
+        ...children,
+      ]);
+    }
+    const headingNode = heading(HEADING[n.name], value, slug(value), children);
+    // Plain section `<h1>` tags get chapter-relative labels (1.1, 1.2, …),
+    // matching MDX HeadingLabel usage. Introduction/conclusion/box titles do not.
+    if (n.name === 'h1') numberedHeadings.add(headingNode);
+    return headingNode;
   }
   if (BLOCK.has(n.name)) return inline ? inlineChildren(n) : paragraph(inlineChildren(n));
   if (BULLETS.has(n.name)) return listItem(inlineChildren(n));
@@ -503,6 +525,23 @@ function numberFigures(nodes, chapterNumber) {
       const index = `${chapterNumber}.${++count}`;
       if (n.name === 'Anchor') n.props.meta = `Fig ${index}`;
       else n.props.imageIndex = index;
+    }
+    if (Array.isArray(n?.children)) visit(n.children);
+  });
+  visit(nodes);
+}
+
+/** Prepends HeadingLabel to each numbered section heading in document order. */
+function numberHeadings(nodes, chapterNumber) {
+  let count = 0;
+  /** Visits nodes in document order. */
+  const visit = (list) => list.forEach((n) => {
+    if (numberedHeadings.has(n)) {
+      if (chapterNumber == null) {
+        throw new XmlChapterError('Numbering headings requires a chapterNumber');
+      }
+      const index = `${chapterNumber}.${++count}`;
+      n.children = [component('HeadingLabel', { index }), ...(n.children || [])];
     }
     if (Array.isArray(n?.children)) visit(n.children);
   });

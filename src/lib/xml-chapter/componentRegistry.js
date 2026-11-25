@@ -55,6 +55,17 @@ const COMPONENT_REGISTRY = {
   EndnotesLink: { component: CustomComponents.EndnotesLink, attributes: new Set(), children: 'inline' },
   Reccomendations: { component: CustomComponents.Reccomendations, attributes: new Set(), children: 'inline' },
   ReccomendationsTitle: { component: CustomComponents.ReccomendationsTitle, attributes: new Set(), children: 'inline' },
+  HeadingLabel: {
+    component: CustomComponents.HeadingLabel,
+    attributes: new Set(['index', 'className']),
+    validate(node, props) {
+      props.index = parseRequiredString(props.index, 'index', node);
+      if (!/^\d+\.\d+$/.test(props.index)) {
+        throw new XmlChapterError('HeadingLabel requires a valid index', { node, attribute: 'index' });
+      }
+    },
+    children: new Set(),
+  },
 };
 
 const FLOW_TAGS = new Set([
