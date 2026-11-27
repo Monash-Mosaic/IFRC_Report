@@ -13,8 +13,7 @@ export const category = 'تقرير سنوي';
 export const releaseDate = new Date('2025-11-15');
 
 export const reportFile = {
-  // TODO: Update with the full report file details
-  // url: 'https://www.ifrc.org/sites/default/files/2026-02/WDR2026_Synthesis_AR.pdf',
+  url: 'https://www.ifrc.org/sites/default/files/2026-08/WDR2026_FullReport_AR.pdf',
   // size: 19_389_263,
 };
 
